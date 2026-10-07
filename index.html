@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Géoco · Comprendre le monde en 3 minutes</title>
+  <meta name="description" content="L'actualité économique et géopolitique expliquée simplement, pour tout le monde.">
+  <meta name="theme-color" content="#0f3d3e">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a href="#/" class="brand" aria-label="Accueil">
+      <img src="assets/icon.svg" alt="" width="28" height="28">
+      <span>Géoco</span>
+    </a>
+    <span class="tagline">Le monde, expliqué simplement</span>
+  </header>
+
+  <main id="app" tabindex="-1"></main>
+
+  <nav class="tabbar" aria-label="Navigation principale">
+    <a href="#/" data-tab="home"><span aria-hidden="true">◉</span>Dossiers</a>
+    <a href="#/lexique" data-tab="lexique"><span aria-hidden="true">Aa</span>Lexique</a>
+    <a href="#/quiz" data-tab="quiz"><span aria-hidden="true">?</span>Quiz</a>
+  </nav>
+
+  <script src="data/content.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "Géoco · Comprendre le monde en 3 minutes",
+  "short_name": "Géoco",
+  "description": "L'actualité économique et géopolitique expliquée simplement.",
+  "lang": "fr",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f4ef",
+  "theme_color": "#0f3d3e",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
