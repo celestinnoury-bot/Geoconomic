@@ -48,3 +48,10 @@ Les nouvelles actus se placent **en haut** du tableau. Le globe de l'accueil aff
 1. `node tools/check-content.mjs` doit afficher « Contenu OK ».
 2. Si un chiffre de l'onglet Chiffres (`data/indicators.js`) a été publié officiellement depuis (inflation, chômage), le mettre à jour avec sa date et sa source.
 3. On garde les actus des 14 derniers jours ; les plus anciennes peuvent être retirées.
+
+## Publier l'aperçu
+
+Aperçu privé de l'appli : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT
+
+1. `python3 tools/build-preview.py` prépare le dossier `.preview/`.
+2. Republier ce dossier sur la même adresse (outil Artifact, `url` ci-dessus, `root` = `.preview`, page = `.preview/index.html`, et tous les autres fichiers du dossier dans `files`).

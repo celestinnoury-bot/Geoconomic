@@ -97,8 +97,9 @@ main { outline: none; padding-top: 72px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 
 /* ---------- Apparition au défilement ---------- */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
-.reveal.in { opacity: 1; transform: none; }
+/* Le contenu reste toujours lisible : seule une légère montée accompagne l'apparition. */
+.reveal { transform: translateY(14px); transition: transform .9s var(--ease); }
+.reveal.in { transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .reveal { opacity: 1; transform: none; transition: none; }
 }

@@ -763,7 +763,7 @@
 
     app.querySelectorAll("[data-ind]").forEach((b) => b.addEventListener("click", () => {
       indicatorId = b.dataset.ind;
-      history.replaceState(null, "", "#/chiffres/" + indicatorId);
+      try { history.replaceState(null, "", "#/chiffres/" + indicatorId); } catch (e) {}
       draw();
     }));
 
