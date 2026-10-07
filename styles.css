@@ -602,3 +602,19 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 /* Les fiches apparaissent en glissant, sans partir d'une opacité nulle : elles restent lisibles même si l'animation est retardée. */
 @keyframes cardIn { from { transform: translateY(16px); } to { transform: none; } }
 .car-card, .globe-sheet, .ind-card { animation: cardIn .4s var(--ease); }
+
+/* ---------- Focus : l'enjeu de la semaine ---------- */
+.weekly { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.weekly-label { color: var(--gold); }
+.weekly-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; margin-top: 8px; }
+.weekly-figs .bigstat { font-size: clamp(44px, 9vw, 72px); }
+.weekly-figs .bigstat-label { font-family: var(--font); font-size: 14px; font-weight: 500; margin-top: 6px; }
+.towatch { margin-top: 40px; background: var(--surface); border-radius: 22px; padding: 20px 22px; }
+.towatch .eyebrow { margin-bottom: 12px; }
+.towatch ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+.towatch li { display: grid; grid-template-columns: 130px 1fr; gap: 14px; align-items: baseline; }
+.towatch-when { color: var(--gold); font-size: 14px; font-weight: 600; letter-spacing: 0; }
+.towatch-what { font-family: var(--serif); font-size: 18px; line-height: 1.4; min-width: 0; }
+@media (max-width: 480px) { .towatch li { grid-template-columns: 1fr; gap: 2px; } }
+.teaser-q { font-family: var(--serif); font-size: 19px; margin-top: 4px; }
+.focus-teaser .badge { margin: 14px 0 0; }

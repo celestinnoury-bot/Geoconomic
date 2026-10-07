@@ -18,6 +18,28 @@ window.GEOCO.focus = [
       credit: "Modèle 3D « Car Concept » d'Eric Chadwick (Darmstadt Graphics Group), d'après un modèle de Unity Fan, licence CC BY 4.0, Khronos glTF Sample Assets."
     },
     paints: [["rouge", "Rouge"], ["nacre", "Nacré"], ["graphite", "Graphite"]],
+    // « L'enjeu de la semaine » : l'angle d'actualité du focus, à renouveler chaque semaine.
+    weekly: {
+      label: "L'enjeu de la semaine",
+      question: "Trop de clients, pas assez de batteries : l'Europe peut-elle rattraper la Chine ?",
+      paragraphs: [
+        "Stellantis va arrêter quatre usines françaises en octobre. À Sochaux et à Rennes, la raison est surprenante : il manque des batteries pour les versions « grande autonomie » de ses voitures électriques, alors que les commandes suivent [12][13].",
+        "Ces batteries viennent d'ACC, la coentreprise européenne créée par Stellantis, Mercedes-Benz et Saft (filiale de TotalEnergies) justement pour moins dépendre de l'Asie [13]. Elle n'arrive pas encore à suivre le rythme.",
+        "Car la demande décolle : entre janvier et août 2026, les ventes de voitures 100 % électriques ont bondi de 45 % dans l'Union européenne, à 1,64 million. Au deuxième trimestre, elles ont même dépassé les voitures à essence pour la première fois, avec 22 % du marché [14][15].",
+        "L'enjeu est là : l'Europe veut fabriquer ses propres batteries pour garder ses usines et ses emplois. Mais face aux géants chinois, qui produisent environ 70 % des batteries du monde [5], chaque retard laisse la place aux importations."
+      ],
+      figures: [
+        { value: "4", label: "usines Stellantis à l'arrêt en octobre", src: 12 },
+        { value: "+45 %", label: "de ventes de voitures électriques dans l'UE (janv.-août 2026)", src: 14 },
+        { value: "22 %", label: "de part de marché au 2e trimestre, devant l'essence", src: 15 }
+      ],
+      toWatch: [
+        { when: "12 octobre", text: "Mondial de l'Auto à Paris : Renault y présente un Espace électrique (concept E-Space)." },
+        { when: "15 au 30 octobre", text: "Arrêts de production chez Stellantis à Mulhouse, Poissy, Rennes et Sochaux [12]." },
+        { when: "10 novembre", text: "Fin de la suspension des restrictions chinoises sur les terres rares, indispensables aux moteurs électriques." },
+        { when: "À venir", text: "Vote reporté du Parlement européen sur l'assouplissement de l'objectif 2035 [8]." }
+      ]
+    },
     hotspots: [
       {
         id: "batterie", label: "Batterie", part: "InteriorFloor", offset: [0, -0.05, 0],
@@ -140,7 +162,12 @@ window.GEOCO.focus = [
       { short: "electrive", name: "electrive, « EU Transport Committee postpones 'Auto Package' vote » (2 oct. 2026)", url: "https://www.electrive.com/2026/10/02/eu-transport-committee-postpones-auto-package-vote/" },
       { short: "Assemblée nationale", name: "Assemblée nationale, rapport de la commission des affaires économiques sur l'industrie automobile", url: "https://www.assemblee-nationale.fr/dyn/17/documents/cion-eco/l17n977630962_document" },
       { short: "L'argus", name: "L'argus, « Industrie : quels modèles sont produits en France en 2026 ? »", url: "https://www.largus.fr/actualite-automobile/industrie-quels-modeles-sont-produits-en-france-en-2026-40006411.html" },
-      { short: "CnEVPost", name: "CnEVPost, « Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales » (2 oct. 2026)", url: "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/" }
+      { short: "CnEVPost", name: "CnEVPost, « Tesla beats Q3 delivery expectations but falls further behind BYD in BEV sales » (2 oct. 2026)", url: "https://cnevpost.com/2026/10/02/tesla-q3-delivery-byd-bev-sales/" },
+      { short: "L'Usine Nouvelle", name: "L'Usine Nouvelle, « Stellantis met ses usines de Sochaux, Rennes, Mulhouse et Poissy au chômage partiel en octobre »", url: "https://www.usinenouvelle.com/auto/constructeurs/stellantis/stellantis-met-ses-usines-de-sochaux-rennes-et-mulhouse-au-chomage-partiel-en-octobre.LFXXPKK7C5GFFBRSVG4C56CORI.html" },
+      { short: "Automobile Propre", name: "Automobile Propre, « Stellantis va mettre plusieurs usines françaises à l'arrêt faute de batteries pour ses modèles électriques »", url: "https://www.automobile-propre.com/articles/stellantis-va-mettre-plusieurs-usines-francaises-a-larret-faute-de-batteries-pour-ses-modeles-electriques/" },
+      { short: "L'Automobiliste", name: "L'Automobiliste, « La voiture électrique explose en Europe avec un record historique » (5 oct. 2026), d'après Transport & Environment", url: "https://lautomobiliste.fr/05/10/2026/voiture-electrique-explose-europe-record-historique/" },
+      { short: "RSE Magazine", name: "RSE Magazine, « Voiture électrique : l'Europe franchit un cap historique en 2026 »", url: "https://www.rse-magazine.com/voiture-electrique-leurope-franchit-un-cap-historique-en-2026/" },
+      { short: "Boursorama", name: "Boursorama, « Trois usines françaises de Stellantis au chômage partiel en octobre » (29 sept. 2026)", url: "https://www.boursorama.com/bourse/actualites/trois-usines-francaises-de-stellantis-au-chomage-partiel-en-octobre-ee5cb3d3341f1bd725eb0425f8c70024" }
     ]
   }
 ];

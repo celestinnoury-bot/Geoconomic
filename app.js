@@ -206,6 +206,7 @@
           <h2 class="title reveal">${focusList[0].industry}.</h2>
           <a class="news-card eco reveal focus-teaser" href="#/focus/${focusList[0].id}">
             <h3>${focusList[0].title}</h3>
+            ${focusList[0].weekly ? `<p class="badge">${focusList[0].weekly.label}</p><p class="teaser-q">${focusList[0].weekly.question}</p>` : ""}
             <p class="summary">${focusList[0].hook}</p>
             <span class="more">Explorer en 3D ›</span>
           </a>
@@ -567,6 +568,25 @@
           <p class="lead reveal">${f.hook}</p>
         </div>
       </section>
+
+      ${f.weekly ? `
+      <section class="section alt weekly">
+        <div class="wrap">
+          <p class="eyebrow reveal weekly-label">${f.weekly.label} · ${f.week}</p>
+          <h2 class="title reveal">${f.weekly.question}</h2>
+          <div class="weekly-figs reveal">
+            ${f.weekly.figures.map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
+          </div>
+          ${f.weekly.paragraphs.map((p) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>`).join("")}
+          ${f.weekly.toWatch && f.weekly.toWatch.length ? `
+          <div class="towatch reveal">
+            <p class="eyebrow">À suivre</p>
+            <ol>
+              ${f.weekly.toWatch.map((w) => `<li><span class="towatch-when">${w.when}</span><span class="towatch-what">${cite(w.text, f.sources)}</span></li>`).join("")}
+            </ol>
+          </div>` : ""}
+        </div>
+      </section>` : ""}
 
       ${figuresBlock(f.figures)}
 

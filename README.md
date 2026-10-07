@@ -37,7 +37,7 @@ L'appli est organisée en trois grandes parties, accessibles depuis la barre du 
 2. **Cours** : comprendre les enjeux (inflation, droits de douane, routes maritimes, puces, sanctions, dollar), avec quiz et lexique (`data/content.js`).
 3. **Articles** : analyses, recherches et Culture G rédigées par l'auteur, signées (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md)).
 
-En plus : l'onglet **Chiffres** (inflation, chômage, croissance par pays sur un globe, et zooms comme l'emploi en France).
+En plus : le **Focus industrie** (`data/focus.js`), chaque semaine une industrie avec un objet 3D, des points cliquables et **« L'enjeu de la semaine »** (`weekly` : la question de la semaine, chiffres, explication et dates « À suivre ») ; et l'onglet **Chiffres** (inflation, chômage, croissance par pays sur un globe, et zooms comme l'emploi en France).
 
 ## Ce que contient le prototype
 
