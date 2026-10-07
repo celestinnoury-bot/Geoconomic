@@ -84,6 +84,14 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 - **Parcours** : séries de dossiers à suivre (ex. « Comprendre l'énergie en 5 étapes »)
 - **Application native** (React Native / Expo) si besoin de passer par les stores
 
+## Avant la sortie publique
+
+- [ ] Relire les actus, le Focus et les chiffres (surtout ceux signalés comme incertains)
+- [ ] Vérifier que les liens des sources s'ouvrent bien (certains n'ont pas pu être testés)
+- [ ] Remplacer ou signer les articles d'exemple (« Rédaction Géoconomic (exemple) »)
+- [ ] Choisir l'hébergement public (GitHub Pages ou Netlify) et l'adresse du site
+- [ ] Mettre à jour la page « À propos » (contact, nom de l'auteur) si besoin
+
 ## Crédits
 
 - Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le paquet [three-globe](https://github.com/vasturiano/three-globe)

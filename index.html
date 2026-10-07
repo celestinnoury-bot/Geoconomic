@@ -10,7 +10,13 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="assets/icon.svg">
+  <link rel="apple-touch-icon" href="assets/icon-180.png">
+  <!-- Aperçu quand le lien est partagé (réseaux sociaux, messageries) -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Géoconomic">
+  <meta property="og:description" content="L'actualité économique et géopolitique expliquée simplement, sur un globe 3D.">
+  <meta property="og:image" content="assets/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
   <!-- Textes en Times New Roman (Tinos, son équivalent, sur les appareils qui ne l'ont pas).
        Boutons et petites étiquettes : police système (SF Pro sur Apple), Inter ailleurs. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -33,6 +39,19 @@
   </header>
 
   <main id="app" tabindex="-1"></main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <p class="footer-brand">Géoconomic <span class="beta">Bêta</span></p>
+      <nav class="footer-links" aria-label="Liens de bas de page">
+        <a href="#/apropos">À propos et méthode</a>
+        <a href="#/apropos">Crédits</a>
+        <a href="#/lexique">Lexique</a>
+        <a href="#/quiz">Quiz</a>
+      </nav>
+      <p class="footer-note">L'économie et la géopolitique expliquées simplement. Chaque fait est sourcé.</p>
+    </div>
+  </footer>
 
   <script src="data/content.js"></script>
   <script src="data/news.js"></script>

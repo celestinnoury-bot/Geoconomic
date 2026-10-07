@@ -981,6 +981,12 @@
             <div class="row-main"><div class="row-title">Le grand quiz</div><div class="row-sub">Toutes les questions, dans le désordre</div></div>
             <span class="chev" aria-hidden="true">›</span>
           </a>
+          ${focusList.filter((f) => f.quiz && f.quiz.length).map((f) => `
+            <a class="row" href="#/quiz/focus-${f.id}">
+              <span class="dot eco"></span>
+              <div class="row-main"><div class="row-title">Focus : ${f.industry}</div><div class="row-sub">${f.quiz.length} questions · ${f.week}</div></div>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>`).join("")}
           ${dossiers.map((d) => `
             <a class="row" href="#/quiz/${d.id}">
               <span class="dot ${d.theme}"></span>
@@ -1087,6 +1093,56 @@
     drawQuestion();
   }
 
+  // ---------- À propos ----------
+  function renderAbout() {
+    const last = news.length ? formatDate(news[0].date) : "";
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow">À propos</p>
+        <h1 class="title">Comprendre le monde.<br><span class="grad mix">Sans jargon.</span></h1>
+        <p class="lead">Géoconomic rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title">Ce que tu trouves ici.</h2>
+          <div class="group">
+            <a class="row" href="#/actu"><div class="row-main"><div class="row-title">Actu</div><div class="row-sub">Chaque jour, les événements qui comptent, partout dans le monde, sur un globe 3D</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/focus"><div class="row-main"><div class="row-title">Focus</div><div class="row-sub">Chaque semaine, une industrie décryptée, en 3D, avec l'enjeu de la semaine</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/cours"><div class="row-main"><div class="row-title">Cours</div><div class="row-sub">Les mécanismes à connaître, en trois minutes, avec quiz et lexique</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/articles"><div class="row-main"><div class="row-title">Articles</div><div class="row-sub">Analyses et recherches sur les sujets dont on parle peu</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/chiffres"><div class="row-main"><div class="row-title">Chiffres</div><div class="row-sub">Inflation, chômage et croissance, pays par pays</div></div><span class="chev" aria-hidden="true">›</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title">Notre méthode.</h2>
+          <p class="copy"><strong>Chaque fait est sourcé.</strong> Le nom de la source apparaît entre parenthèses dans le texte, avec un lien vers l'article ou le rapport d'origine, et la liste complète est en bas de chaque page.</p>
+          <p class="copy"><strong>Des sources fiables.</strong> Agences de presse, médias économiques, institutions internationales (FMI, Agence internationale de l'énergie), banques centrales et instituts de statistique comme l'Insee ou Eurostat.</p>
+          <p class="copy"><strong>Préparé avec l'aide d'une intelligence artificielle, vérifié avant publication.</strong> Les actus sont rassemblées et rédigées avec un assistant d'IA à partir des sources citées, contrôlées automatiquement (sources, chiffres, liens), puis relues.</p>
+          <p class="copy"><strong>Neutre.</strong> On explique les enjeux et les arguments ; on ne prend pas parti.</p>
+          ${last ? `<p class="ind-date" style="margin-top:24px">Dernière mise à jour de l'actu : ${last}.</p>` : ""}
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title">Crédits.</h2>
+          <ol class="source-list">
+            <li>Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le projet three-globe.</li>
+            <li>Contours des pays et fonds de carte : Natural Earth (domaine public).</li>
+            <li>Voiture 3D : « Car Concept » d'Eric Chadwick (Darmstadt Graphics Group), d'après un modèle de Unity Fan, licence CC BY 4.0, Khronos glTF Sample Assets.</li>
+            <li>Globe 3D : globe.gl (licence MIT). Rendu 3D : three.js (licence MIT).</li>
+            <li>Polices : Inter (licence OFL) et Tinos (licence Apache 2.0), via Google Fonts.</li>
+            <li>Données : FMI, Insee, Agence internationale de l'énergie, instituts statistiques nationaux (via Trading Economics) et les sources citées dans chaque page.</li>
+          </ol>
+        </div>
+      </section>
+    `;
+  }
+
   function renderNotFound() {
     app.innerHTML = `<section class="wrap hero"><p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p></section>`;
   }
@@ -1103,6 +1159,7 @@
     else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param);
     else if (section === "focus") renderFocus(param);
+    else if (section === "apropos") renderAbout();
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();

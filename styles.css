@@ -618,3 +618,13 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 @media (max-width: 480px) { .towatch li { grid-template-columns: 1fr; gap: 2px; } }
 .teaser-q { font-family: var(--serif); font-size: 19px; margin-top: 4px; }
 .focus-teaser .badge { margin: 14px 0 0; }
+
+/* ---------- Pied de page ---------- */
+.site-footer { border-top: 1px solid var(--hairline); margin-top: 40px; padding: 36px 0 calc(36px + env(safe-area-inset-bottom)); background: var(--bg); }
+.footer-inner { display: flex; flex-direction: column; gap: 14px; }
+.footer-brand { font-weight: 600; font-size: 17px; display: flex; align-items: center; gap: 10px; }
+.beta { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .06em; color: var(--gold); border: 1px solid rgba(245,200,107,.4); border-radius: 999px; padding: 2px 8px; }
+.footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+.footer-links a { color: var(--muted); font-size: 14px; }
+.footer-links a:hover { color: var(--text); }
+.footer-note { color: var(--muted); font-size: 13px; letter-spacing: 0; }

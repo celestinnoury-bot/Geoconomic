@@ -1,11 +1,14 @@
 // Service worker : met l'application en cache pour qu'elle marche hors connexion.
 // Pense à changer la version quand tu modifies des fichiers, pour forcer la mise à jour.
-const CACHE = "geoco-v10";
+const CACHE = "geoconomic-v1";
 const FILES = [
   "./",
   "index.html",
   "styles.css",
   "app.js",
+  "viz.js",
+  "globe.js",
+  "car3d.js",
   "data/content.js",
   "data/news.js",
   "data/culture.js",
@@ -13,14 +16,11 @@ const FILES = [
   "data/world.js",
   "data/countries.js",
   "data/indicators.js",
-  "viz.js",
-  "globe.js",
-  "assets/vendor/globe.gl.min.js",
-  "assets/earth/earth-blue-marble.jpg",
-  "assets/earth/earth-topology.png",
-  "assets/earth/clouds-alpha.jpg",
   "manifest.webmanifest",
-  "assets/icon.svg"
+  "assets/icon.svg",
+  "assets/icon-180.png",
+  "assets/icon-192.png",
+  "assets/icon-512.png"
 ];
 
 self.addEventListener("install", (event) => {
