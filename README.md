@@ -19,7 +19,7 @@ Chaque sujet est un **dossier court** construit toujours de la même façon :
 - Un lexique de 23 mots avec recherche
 - Des quiz par dossier et un « grand quiz »
 - Suivi des dossiers lus (enregistré sur l'appareil)
-- Mode sombre automatique, pensé pour le mobile
+- Design inspiré des pages produit d'Apple : fond noir, grande typo (SF Pro sur iPhone/iPad/Mac), barre flottante translucide, apparitions au défilement
 - **PWA** : installable sur l'écran d'accueil du téléphone et utilisable hors connexion
 
 ## Lancer l'application

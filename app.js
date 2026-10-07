@@ -3,7 +3,7 @@
 
   const { dossiers, glossary } = window.GEOCO;
   const app = document.getElementById("app");
-  const THEMES = { eco: "Éco", geo: "Géopo", mix: "Éco + Géopo" };
+  const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
 
   // ---------- Progression (dossiers lus), gardée sur l'appareil ----------
   const STORE_KEY = "geoco.read";
@@ -15,8 +15,33 @@
   }
 
   const byId = (list, id) => list.find((x) => x.id === id);
-  const tag = (theme) => `<span class="tag ${theme}">${THEMES[theme]}</span>`;
   let homeFilter = "all";
+
+  // Façon Apple : la première phrase en blanc et en gras, la suite en gris.
+  function leadIn(text) {
+    const m = text.match(/^(.{8,140}?[.!?])\s+(.*)$/s);
+    return m ? `<strong>${m[1]}</strong> ${m[2]}` : text;
+  }
+
+  // ---------- Animations d'apparition au défilement ----------
+  let observer = null;
+  function watchReveals() {
+    if (observer) observer.disconnect();
+    const els = app.querySelectorAll(".reveal");
+    if (!("IntersectionObserver" in window)) { els.forEach((el) => el.classList.add("in")); return; }
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) { e.target.classList.add("in"); observer.unobserve(e.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    els.forEach((el) => observer.observe(el));
+  }
+
+  function segmented(items, current, attr) {
+    return `<div class="segmented" role="group">
+      ${items.map(([k, label]) => `<button data-${attr}="${k}" aria-pressed="${current === k}">${label}</button>`).join("")}
+    </div>`;
+  }
 
   // ---------- Accueil ----------
   function renderHome() {
@@ -25,44 +50,76 @@
     const visible = dossiers.filter((d) => homeFilter === "all" || d.theme === homeFilter || d.theme === "mix");
 
     app.innerHTML = `
-      <section class="hello">
-        <h1>Comprendre le monde, en 3 minutes</h1>
-        <p>L'actualité économique et géopolitique, expliquée sans jargon.</p>
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Géoco</p>
+        <h1 class="headline reveal">Le monde,<br><span class="grad mix">enfin expliqué.</span></h1>
+        <p class="lead reveal">L'actualité économique et géopolitique, en trois minutes et sans jargon. Pour comprendre ce qui se passe aujourd'hui, et pourquoi ça te concerne.</p>
+        <div class="hero-actions reveal">
+          <a class="pill-btn blue lg" href="#/dossier/${nextUp.id}">Commencer à lire</a>
+          <a class="pill-btn outline lg" href="#/quiz">Faire un quiz</a>
+        </div>
       </section>
 
-      <div class="progress" aria-label="Progression">
-        <div class="progress-bar"><div style="width:${(readCount / dossiers.length) * 100}%"></div></div>
-        <span>${readCount}/${dossiers.length} lus</span>
-      </div>
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">À lire maintenant.</h2>
+          <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
+          <div class="carousel">
+            ${visible.map((d) => {
+              const f = d.figures[0];
+              return `
+              <a class="tile ${d.theme}" href="#/dossier/${d.id}">
+                <div>
+                  <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}</p>
+                  <h3>${d.title}</h3>
+                </div>
+                <div>
+                  <div class="stat grad ${d.theme}">${f.value}</div>
+                  <p class="stat-label">${f.label}</p>
+                </div>
+                <span class="plus" aria-hidden="true">+</span>
+              </a>`;
+            }).join("")}
+          </div>
+        </div>
+      </section>
 
-      <a class="card feature" href="#/dossier/${nextUp.id}">
-        <span class="kicker">${readSet.has(nextUp.id) ? "À relire" : "À lire maintenant"}</span>
-        <h2>${nextUp.emoji} ${nextUp.title}</h2>
-        <p>${nextUp.hook}</p>
-        <span class="meta">${tag(nextUp.theme)} · ${nextUp.minutes} min · ${nextUp.level}</span>
-      </a>
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">Ta progression</p>
+          <div class="bigstat grad mix reveal">${readCount}/${dossiers.length}</div>
+          <p class="bigstat-label reveal">${readCount === 0 ? "Aucun dossier lu pour l'instant. Le premier prend trois minutes." : readCount === dossiers.length ? "Tous les dossiers lus. Bravo." : "dossiers lus. Continue comme ça."}</p>
+          <div class="bar reveal"><div style="width:${(readCount / dossiers.length) * 100}%"></div></div>
+        </div>
+      </section>
 
-      <div class="chips" role="group" aria-label="Filtrer par thème">
-        ${[["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]]
-          .map(([k, label]) => `<button class="chip" data-filter="${k}" aria-pressed="${homeFilter === k}">${label}</button>`)
-          .join("")}
-      </div>
-
-      <div class="list">
-        ${visible.map((d) => `
-          <a class="card item ${readSet.has(d.id) ? "read" : ""}" href="#/dossier/${d.id}">
-            <span class="emoji" aria-hidden="true">${d.emoji}</span>
-            <div>
-              ${tag(d.theme)}${readSet.has(d.id) ? '<span class="read-mark">✓ Lu</span>' : ""}
-              <h3>${d.title}</h3>
-              <p>${d.minutes} min · ${d.level}</p>
-            </div>
-          </a>`).join("")}
-      </div>
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Tous les dossiers.</h2>
+          <div class="group reveal">
+            ${dossiers.map((d) => `
+              <a class="row" href="#/dossier/${d.id}">
+                <span class="dot ${d.theme}"></span>
+                <div class="row-main">
+                  <div class="row-title">${d.title}</div>
+                  <div class="row-sub">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</div>
+                </div>
+                ${readSet.has(d.id) ? '<span class="check">Lu</span>' : ""}
+                <span class="chev" aria-hidden="true">›</span>
+              </a>`).join("")}
+          </div>
+        </div>
+      </section>
     `;
 
     app.querySelectorAll("[data-filter]").forEach((btn) =>
-      btn.addEventListener("click", () => { homeFilter = btn.dataset.filter; renderHome(); })
+      btn.addEventListener("click", () => {
+        homeFilter = btn.dataset.filter;
+        const y = window.scrollY;
+        renderHome();
+        app.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+        window.scrollTo(0, y);
+      })
     );
   }
 
@@ -70,55 +127,93 @@
   function renderDossier(id) {
     const d = byId(dossiers, id);
     if (!d) return renderNotFound();
+    const terms = d.terms.map((t) => byId(glossary, t)).filter(Boolean);
 
     app.innerHTML = `
-      <a class="back" href="#/">← Tous les dossiers</a>
-      <article>
-        <header class="article-head">
-          ${tag(d.theme)} <span class="meta">· ${d.minutes} min · ${d.level}</span>
-          <h1 style="margin-top:10px">${d.emoji} ${d.title}</h1>
-          <p class="hook">${d.hook}</p>
-        </header>
+      <section class="wrap hero">
+        <a class="back" href="#/">‹ Dossiers</a>
+        <p class="eyebrow reveal">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</p>
+        <h1 class="title reveal">${d.title}</h1>
+        <p class="lead reveal">${d.hook}</p>
+      </section>
 
-        <div class="box tldr">
-          <h3>L'essentiel en 30 secondes</h3>
-          <ul>${d.tldr.map((t) => `<li>${t}</li>`).join("")}</ul>
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">L'essentiel en 30 secondes</p>
+          ${d.tldr.map((t) => `<p class="statement reveal">${t}</p>`).join("")}
         </div>
+      </section>
 
-        ${d.sections.map((s) => `
-          <h2>${s.title}</h2>
-          ${s.paragraphs.map((p) => `<p>${p}</p>`).join("")}
-        `).join("")}
+      ${d.sections.map((s) => `
+        <section class="section">
+          <div class="wrap">
+            <h2 class="title reveal">${s.title}</h2>
+            ${s.paragraphs.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+          </div>
+        </section>
+      `).join("")}
 
-        <div class="box me">
-          <h3>Et moi, dans tout ça ?</h3>
+      <section class="wrap">
+        <div class="panel ${d.theme} reveal">
+          <p class="eyebrow">Et moi, dans tout ça ?</p>
           <p>${d.forMe}</p>
         </div>
+      </section>
 
-        <h2>Les chiffres à retenir</h2>
-        <div class="figures">
-          ${d.figures.map((f) => `<div class="figure"><strong>${f.value}</strong><span>${f.label}</span></div>`).join("")}
+      <section class="section center">
+        <div class="wrap">
+          <h2 class="title reveal">Les chiffres.</h2>
+          <div class="reveal">${segmented(d.figures.map((f, i) => [String(i), f.value]), "0", "fig")}</div>
+          <div class="figure-display" id="figure"></div>
         </div>
+      </section>
 
-        <h2>Les mots pour comprendre</h2>
-        <div class="chips">
-          ${d.terms.map((t) => byId(glossary, t)).filter(Boolean)
-            .map((g) => `<a class="chip" href="#/lexique/${g.id}">${g.term}</a>`).join("")}
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">Les mots pour comprendre.</h2>
+          <div class="feature-pills">
+            ${terms.map((g) => `
+              <button class="fpill reveal" aria-expanded="false">
+                <span class="ico" aria-hidden="true">+</span>
+                <span>
+                  <span class="fpill-label">${g.term}</span>
+                  <span class="fpill-body"><strong>${g.term}.</strong> ${g.def}</span>
+                </span>
+              </button>`).join("")}
+          </div>
         </div>
+      </section>
 
-        <div class="article-actions">
-          <a class="btn" href="#/quiz/${d.id}" data-markread>Tester mes connaissances</a>
-          <button class="btn ghost" data-markread>${readSet.has(d.id) ? "✓ Déjà lu" : "Marquer comme lu"}</button>
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Tu as tout compris ?</h2>
+          <p class="copy reveal">Deux questions pour vérifier. Ça prend trente secondes.</p>
+          <div class="actions reveal">
+            <a class="pill-btn blue lg" href="#/quiz/${d.id}" data-markread>Tester mes connaissances</a>
+            <button class="pill-btn outline lg" data-markread>${readSet.has(d.id) ? "Déjà lu" : "Marquer comme lu"}</button>
+          </div>
+          <p class="sources">Sources : ${d.sources.join(" · ")}</p>
         </div>
-
-        <p class="sources">Sources : ${d.sources.join(" · ")}</p>
-      </article>
+      </section>
     `;
+
+    const figBox = app.querySelector("#figure");
+    function showFigure(i) {
+      const f = d.figures[i];
+      figBox.innerHTML = `<div class="fade"><div class="bigstat grad ${d.theme}">${f.value}</div><p>${f.label}</p></div>`;
+      app.querySelectorAll("[data-fig]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fig === String(i)));
+    }
+    app.querySelectorAll("[data-fig]").forEach((b) => b.addEventListener("click", () => showFigure(Number(b.dataset.fig))));
+    showFigure(0);
+
+    app.querySelectorAll(".fpill").forEach((p) =>
+      p.addEventListener("click", () => p.setAttribute("aria-expanded", p.getAttribute("aria-expanded") !== "true"))
+    );
 
     app.querySelectorAll("[data-markread]").forEach((el) =>
       el.addEventListener("click", () => {
         markRead(d.id);
-        if (el.tagName === "BUTTON") el.textContent = "✓ Déjà lu";
+        if (el.tagName === "BUTTON") el.textContent = "Déjà lu";
       })
     );
   }
@@ -129,10 +224,12 @@
     const normalize = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
     app.innerHTML = `
-      <h1>Lexique</h1>
-      <p class="meta">Les mots de l'actu, expliqués simplement.</p>
-      <input class="search" type="search" placeholder="Chercher un mot (inflation, SWIFT…)" aria-label="Chercher un mot">
-      <div class="list" id="terms"></div>
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Lexique</p>
+        <h1 class="title reveal">Les mots de l'actu.<br><span class="grad geo">Sans le jargon.</span></h1>
+        <input class="search" type="search" placeholder="Rechercher" aria-label="Chercher un mot">
+        <div class="group" id="terms"></div>
+      </section>
     `;
 
     const input = app.querySelector(".search");
@@ -143,12 +240,14 @@
       const matches = sorted.filter((g) => !nq || normalize(g.term + " " + g.def).includes(nq));
       list.innerHTML = matches.length
         ? matches.map((g) => `
-            <div class="card term ${g.id === focusId ? "highlight" : ""}" id="term-${g.id}">
-              <h3>${g.term}</h3>
-              <p>${g.def}</p>
-              ${g.example ? `<p class="example">Exemple : ${g.example}</p>` : ""}
+            <div class="row term ${g.id === focusId ? "highlight" : ""}" id="term-${g.id}">
+              <div class="row-main">
+                <h3>${g.term}</h3>
+                <p>${g.def}</p>
+                ${g.example ? `<p class="example">${g.example}</p>` : ""}
+              </div>
             </div>`).join("")
-        : `<p class="empty">Aucun mot trouvé. Essaie un autre terme.</p>`;
+        : `<p class="empty">Aucun résultat.</p>`;
     }
 
     input.addEventListener("input", () => draw(input.value));
@@ -163,19 +262,24 @@
   // ---------- Quiz ----------
   function renderQuizIndex() {
     app.innerHTML = `
-      <h1>Quiz</h1>
-      <p class="meta">Vérifie ce que tu as retenu, dossier par dossier, ou tente le grand mélange.</p>
-      <div class="list">
-        <a class="card item" href="#/quiz/tout">
-          <span class="emoji" aria-hidden="true">🎲</span>
-          <div><h3>Le grand quiz</h3><p>Toutes les questions, dans le désordre</p></div>
-        </a>
-        ${dossiers.map((d) => `
-          <a class="card item" href="#/quiz/${d.id}">
-            <span class="emoji" aria-hidden="true">${d.emoji}</span>
-            <div>${tag(d.theme)}<h3>${d.title}</h3><p>${d.quiz.length} questions</p></div>
-          </a>`).join("")}
-      </div>
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Quiz</p>
+        <h1 class="title reveal">Mets-toi<br><span class="grad eco">à l'épreuve.</span></h1>
+        <p class="lead reveal" style="margin-bottom:36px">Vérifie ce que tu as retenu, dossier par dossier, ou tente le grand mélange.</p>
+        <div class="group reveal">
+          <a class="row" href="#/quiz/tout">
+            <span class="dot mix"></span>
+            <div class="row-main"><div class="row-title">Le grand quiz</div><div class="row-sub">Toutes les questions, dans le désordre</div></div>
+            <span class="chev" aria-hidden="true">›</span>
+          </a>
+          ${dossiers.map((d) => `
+            <a class="row" href="#/quiz/${d.id}">
+              <span class="dot ${d.theme}"></span>
+              <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${d.quiz.length} questions</div></div>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>`).join("")}
+        </div>
+      </section>
     `;
   }
 
@@ -189,17 +293,19 @@
   }
 
   function renderQuiz(id) {
-    let questions, title, backHref;
+    let questions, title, backHref, theme;
     if (id === "tout") {
       questions = shuffle(dossiers.flatMap((d) => d.quiz));
       title = "Le grand quiz";
       backHref = "#/quiz";
+      theme = "mix";
     } else {
       const d = byId(dossiers, id);
       if (!d) return renderNotFound();
       questions = d.quiz;
       title = d.title;
       backHref = "#/dossier/" + d.id;
+      theme = d.theme;
     }
 
     let index = 0;
@@ -208,15 +314,17 @@
     function drawQuestion() {
       const q = questions[index];
       app.innerHTML = `
-        <a class="back" href="${backHref}">← Retour</a>
-        <div class="card">
-          <span class="q-count">${title} · Question ${index + 1}/${questions.length}</span>
-          <h2 class="q-title">${q.q}</h2>
-          <div class="options">
-            ${q.options.map((o, i) => `<button class="option" data-i="${i}">${o}</button>`).join("")}
+        <section class="wrap hero">
+          <a class="back" href="${backHref}">‹ Retour</a>
+          <div class="fade">
+            <p class="q-count">Question ${index + 1} sur ${questions.length}</p>
+            <h1 class="q-title">${q.q}</h1>
+            <div class="options">
+              ${q.options.map((o, i) => `<button class="option" data-i="${i}">${o}</button>`).join("")}
+            </div>
+            <div id="after"></div>
           </div>
-          <div id="after"></div>
-        </div>
+        </section>
       `;
 
       app.querySelectorAll(".option").forEach((btn) =>
@@ -231,11 +339,12 @@
           });
           const last = index === questions.length - 1;
           app.querySelector("#after").innerHTML = `
-            <div class="explain"><strong>${ok ? "✅ Bien vu !" : "❌ Pas tout à fait."}</strong>${q.explain}</div>
-            <div class="article-actions"><button class="btn" id="next">${last ? "Voir mon score" : "Question suivante"}</button></div>
+            <p class="explain fade"><strong>${ok ? "Bien vu." : "Pas tout à fait."}</strong> ${q.explain}</p>
+            <div class="actions"><button class="pill-btn blue lg" id="next">${last ? "Voir mon score" : "Continuer"}</button></div>
           `;
           app.querySelector("#next").addEventListener("click", () => {
             index++;
+            window.scrollTo(0, 0);
             index < questions.length ? drawQuestion() : drawScore();
           });
         })
@@ -244,17 +353,17 @@
 
     function drawScore() {
       const ratio = score / questions.length;
-      const msg = ratio === 1 ? "Parfait, tu maîtrises le sujet !" : ratio >= 0.5 ? "Pas mal du tout ! Encore un petit effort." : "Relis le dossier, ça va venir !";
+      const msg = ratio === 1 ? "Parfait. Tu maîtrises le sujet." : ratio >= 0.5 ? "Pas mal du tout. Encore un petit effort." : "Relis le dossier, ça va venir.";
       app.innerHTML = `
-        <div class="card score">
-          <p class="q-count">${title}</p>
-          <div class="big">${score}/${questions.length}</div>
-          <p>${msg}</p>
-          <div class="article-actions" style="justify-content:center">
-            <a class="btn" href="#/quiz/${id}" id="retry">Recommencer</a>
-            <a class="btn ghost" href="#/">Autres dossiers</a>
+        <section class="wrap hero center score">
+          <p class="eyebrow">${title}</p>
+          <div class="bigstat grad ${theme} fade">${score}/${questions.length}</div>
+          <p class="bigstat-label">${msg}</p>
+          <div class="actions" style="justify-content:center">
+            <a class="pill-btn blue lg" href="#/quiz/${id}" id="retry">Recommencer</a>
+            <a class="pill-btn outline lg" href="#/">Autres dossiers</a>
           </div>
-        </div>
+        </section>
       `;
       app.querySelector("#retry").addEventListener("click", (e) => { e.preventDefault(); renderQuiz(id); });
     }
@@ -263,14 +372,13 @@
   }
 
   function renderNotFound() {
-    app.innerHTML = `<p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p>`;
+    app.innerHTML = `<section class="wrap hero"><p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p></section>`;
   }
 
   // ---------- Routeur ----------
   function route() {
     const [, section, param] = (location.hash || "#/").split("/");
-    const tab = section === "lexique" ? "lexique" : section === "quiz" ? "quiz" : "home";
-    document.querySelectorAll(".tabbar a").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
+    document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === section));
 
     if (section === "dossier") renderDossier(param);
     else if (section === "lexique") renderLexique(param);
@@ -278,6 +386,7 @@
     else renderHome();
 
     if (!(section === "lexique" && param)) window.scrollTo(0, 0);
+    watchReveals();
   }
 
   window.addEventListener("hashchange", route);

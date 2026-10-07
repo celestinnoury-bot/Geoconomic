@@ -5,31 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Géoco · Comprendre le monde en 3 minutes</title>
   <meta name="description" content="L'actualité économique et géopolitique expliquée simplement, pour tout le monde.">
-  <meta name="theme-color" content="#0f3d3e">
+  <meta name="theme-color" content="#000000">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="assets/icon.svg">
+  <!-- Sur iPhone/iPad/Mac, la police système (SF Pro) est utilisée. Inter sert de relais ailleurs. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,800&family=Instrument+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a href="#/" class="brand" aria-label="Accueil">
-      <img src="assets/icon.svg" alt="" width="28" height="28">
-      <span>Géoco</span>
-    </a>
-    <span class="tagline">Le monde, expliqué simplement</span>
+  <header class="navbar">
+    <div class="navbar-inner">
+      <a href="#/" class="brand" aria-label="Accueil">Géoco</a>
+      <nav class="nav-actions" aria-label="Navigation principale">
+        <a href="#/lexique" class="pill-btn outline" data-tab="lexique">Lexique</a>
+        <a href="#/quiz" class="pill-btn blue" data-tab="quiz">Quiz</a>
+      </nav>
+    </div>
   </header>
 
   <main id="app" tabindex="-1"></main>
-
-  <nav class="tabbar" aria-label="Navigation principale">
-    <a href="#/" data-tab="home"><span aria-hidden="true">◉</span>Dossiers</a>
-    <a href="#/lexique" data-tab="lexique"><span aria-hidden="true">Aa</span>Lexique</a>
-    <a href="#/quiz" data-tab="quiz"><span aria-hidden="true">?</span>Quiz</a>
-  </nav>
 
   <script src="data/content.js"></script>
   <script src="app.js"></script>
