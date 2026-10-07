@@ -21,6 +21,12 @@ En faisant défiler vers le bas : l'actu du jour, les articles (Culture G), les 
 
 Pour qu'une actu apparaisse sur le globe, il suffit de lui donner un champ `geo` dans `data/news.js`.
 
+## L'onglet Chiffres
+
+Un second globe 3D colore chaque pays selon l'**inflation**, le **chômage** ou la **croissance** (sélecteur en haut). Plus la valeur est élevée, plus le pays est clair et en relief. On touche un pays pour voir son chiffre ; un classement en barres reprend toutes les valeurs, avec leur date et leurs sources.
+
+Les données sont dans `data/indicators.js` (clés = codes ISO numériques des pays, contours dans `data/countries.js`). Elles doivent être mises à jour à la main ou par la routine quotidienne.
+
 ## Les rubriques
 
 - **Actu** : chaque jour, les événements éco et géopo qui comptent, avec ce qui s'est passé, pourquoi c'est important, l'impact concret et les sources (`data/news.js`)
@@ -77,4 +83,5 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 
 - Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le paquet [three-globe](https://github.com/vasturiano/three-globe)
 - Globe 3D : [globe.gl](https://github.com/vasturiano/globe.gl) (licence MIT), basé sur three.js
-- Fonds de carte 2D : Natural Earth (domaine public)
+- Fonds de carte 2D et contours des pays : Natural Earth (domaine public)
+- Indicateurs : FMI (prévisions de croissance), instituts statistiques nationaux via Trading Economics (inflation, chômage)

@@ -236,6 +236,10 @@
               <div class="row-main"><div class="row-title">Lexique</div><div class="row-sub">${glossary.length} mots de l'actu, expliqués</div></div>
               <span class="chev" aria-hidden="true">›</span>
             </a>
+            <a class="row" href="#/chiffres">
+              <div class="row-main"><div class="row-title">Les chiffres du monde</div><div class="row-sub">Inflation, chômage et croissance sur un globe</div></div>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
             <a class="row" href="#/quiz">
               <div class="row-main"><div class="row-title">Quiz par dossier</div><div class="row-sub">Vérifie ce que tu as retenu</div></div>
               <span class="chev" aria-hidden="true">›</span>
@@ -273,13 +277,15 @@
       if (currentGlobe) currentGlobe.reset();
     }
     function openSheet(place) {
+      const multi = place.names.length > 1;
       sheet.innerHTML = `
         <div class="sheet-head">
-          <p class="eyebrow">${place.name}</p>
+          <p class="eyebrow">${place.title}</p>
           <button class="sheet-close" aria-label="Fermer">×</button>
         </div>
-        ${place.items.map((n) => `
+        ${place.items.map(({ news: n, place: where }) => `
           <a class="sheet-item" href="#/actu/${n.id}">
+            ${multi ? `<p class="sheet-place">${where}</p>` : ""}
             <h3>${n.title}</h3>
             <p class="summary">${n.summary}</p>
             <span class="more">Lire l'article ›</span>
@@ -297,10 +303,13 @@
     if (!currentGlobe) { hero.classList.add("no-webgl"); return; }
 
     // Le globe ne tourne que lorsqu'il est visible : économise la batterie.
+    // On garde une référence à CE globe : après un changement de page, l'observateur s'arrête
+    // au lieu de mettre en pause le globe d'une autre page.
+    const homeGlobe = currentGlobe;
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver(([entry]) => {
-        if (!currentGlobe) return io.disconnect();
-        entry.isIntersecting ? currentGlobe.world.resumeAnimation() : currentGlobe.world.pauseAnimation();
+        if (currentGlobe !== homeGlobe || !document.body.contains(hero)) return io.disconnect();
+        entry.isIntersecting ? homeGlobe.world.resumeAnimation() : homeGlobe.world.pauseAnimation();
       });
       io.observe(hero);
     }
@@ -538,6 +547,115 @@
     mountVisuals(c.visuals);
   }
 
+  // ---------- Chiffres du monde ----------
+  let indicatorId = "inflation";
+
+  function renderChiffres(param) {
+    const data = window.GEOCO.indicators;
+    const features = window.GEOCO_COUNTRIES && window.GEOCO_COUNTRIES.features;
+    if (!data || !features) return renderNotFound();
+    if (param && data.list.some((i) => i.id === param)) indicatorId = param;
+    const names = data.names || {};
+    const nameOf = (id) => names[id] || (features.find((f) => f.id === id) || { properties: { name: id } }).properties.name;
+    const fmtV = (v) => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Chiffres</p>
+        <h1 class="title reveal">L'économie mondiale.<br><span class="grad mix">En un coup d'œil.</span></h1>
+        <div class="reveal">${segmented(data.list.map((i) => [i.id, i.label]), indicatorId, "ind")}</div>
+        <p class="lead" id="ind-explain"></p>
+      </section>
+
+      <section class="wrap">
+        <div class="ind-stage">
+          <div class="ind-globe" id="ind-globe"></div>
+          <div class="ind-card" id="ind-card" hidden></div>
+        </div>
+        <div class="legend" id="legend"></div>
+        <p class="viz-cap">Touche un pays pour voir son chiffre. Plus un pays est clair et « haut », plus la valeur est élevée.</p>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title" id="rank-title"></h2>
+          <div class="rank" id="rank"></div>
+          <p class="copy ind-note" id="ind-note"></p>
+        </div>
+      </section>
+
+      <div id="ind-sources"></div>
+    `;
+
+    let globe = null;
+    const card = app.querySelector("#ind-card");
+
+    function showCard(id, d, name) {
+      if (!id) { card.hidden = true; return; }
+      const ind = data.list.find((i) => i.id === indicatorId);
+      card.hidden = false;
+      card.innerHTML = `
+        <button class="sheet-close" aria-label="Fermer">×</button>
+        <p class="eyebrow">${ind.label}</p>
+        <h3>${name}</h3>
+        ${d ? `<div class="bigstat grad mix">${fmtV(d.v)} ${ind.unit}</div><p class="ind-date">${d.d}</p>` : `<p class="ind-date">Pas de donnée pour l'instant.</p>`}`;
+      card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
+    }
+
+    function draw() {
+      const ind = data.list.find((i) => i.id === indicatorId);
+      app.querySelector("#ind-explain").textContent = ind.explain;
+      app.querySelectorAll("[data-ind]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.ind === ind.id));
+
+      // Légende : une pastille par classe de couleur
+      const edges = [null, ...ind.bins, null];
+      app.querySelector("#legend").innerHTML = ind.colors.map((c, i) => {
+        const lo = edges[i], hi = edges[i + 1];
+        const label = lo == null ? `< ${fmtV(hi)} %` : hi == null ? `≥ ${fmtV(lo)} %` : `${fmtV(lo)}–${fmtV(hi)} %`;
+        return `<span class="legend-item"><i style="background:${c}"></i>${label}</span>`;
+      }).join("") + `<span class="legend-item"><i class="none"></i>Pas de donnée</span>`;
+
+      // Classement
+      const rows = Object.entries(ind.values).map(([id, d]) => ({ id, ...d, name: nameOf(id) })).sort((a, b) => b.v - a.v);
+      const max = Math.max(...rows.map((r) => r.v));
+      app.querySelector("#rank-title").textContent = ind.title + ".";
+      app.querySelector("#rank").innerHTML = rows.map((r) => `
+        <button class="rank-row" data-iso="${r.id}">
+          <span class="rank-name">${r.name}</span>
+          <span class="rank-bar"><i style="width:${Math.max(2, (r.v / max) * 100)}%;background:${ind.colors[window.GeocoGlobe.classOf(r.v, ind.bins)]}"></i></span>
+          <span class="rank-val">${fmtV(r.v)} %<small>${r.d}</small></span>
+        </button>`).join("");
+      app.querySelectorAll(".rank-row").forEach((b) => b.addEventListener("click", () => {
+        app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
+        if (globe) globe.selectById(b.dataset.iso);
+        else showCard(b.dataset.iso, ind.values[b.dataset.iso], nameOf(b.dataset.iso));
+      }));
+
+      app.querySelector("#ind-note").innerHTML = cite(ind.note, ind.sources);
+      app.querySelector("#ind-sources").innerHTML = sourcesBlock(ind.sources);
+      if (globe) globe.setIndicator(ind);
+      card.hidden = true;
+    }
+
+    app.querySelectorAll("[data-ind]").forEach((b) => b.addEventListener("click", () => {
+      indicatorId = b.dataset.ind;
+      history.replaceState(null, "", "#/chiffres/" + indicatorId);
+      draw();
+    }));
+
+    draw();
+
+    window.GeocoGlobe.mountIndicators(app.querySelector("#ind-globe"), {
+      features, names,
+      onSelect: (f, d, name) => showCard(f && f.id, d, name)
+    }).then((g) => {
+      if (!g) { app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"); return; }
+      globe = g;
+      currentGlobe = g;
+      g.setIndicator(data.list.find((i) => i.id === indicatorId));
+    }).catch(() => app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"));
+  }
+
   // ---------- Lexique ----------
   function renderLexique(focusId) {
     const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, "fr"));
@@ -704,6 +822,7 @@
     if (section === "dossier") renderDossier(param);
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
     else if (section === "culture") param ? renderCulture(param) : renderCultureIndex();
+    else if (section === "chiffres") renderChiffres(param);
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();

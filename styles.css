@@ -391,7 +391,7 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
   margin-top: -72px; overflow: hidden;
   background: radial-gradient(90% 60% at 50% 55%, #0a1a33 0%, #000 70%);
 }
-.globe { position: absolute; left: 0; right: 0; top: 16%; bottom: -4%; cursor: grab; }
+.globe { position: absolute; left: 0; right: 0; top: 16%; bottom: -4%; cursor: grab; z-index: 0; }
 .globe-overlay { transition: opacity .4s var(--ease); }
 .globe-hero.sheet-open .globe-overlay { opacity: 0; }
 .globe:active { cursor: grabbing; }
@@ -468,3 +468,56 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .panel .bigstat { font-size: 72px; }
 .panel .bigstat-label { font-family: var(--font); font-size: 15px; font-weight: 500; }
 @media (prefers-reduced-motion: reduce) { .scroll-hint .arrow, .globe-sheet { animation: none; } }
+
+/* ---------- Fiche du globe : lieux regroupés ---------- */
+.sheet-place { color: var(--gold); font-size: 13px; font-weight: 600; margin: 2px 0 0; letter-spacing: 0; }
+
+/* ---------- Onglet Chiffres ---------- */
+.ind-stage {
+  position: relative; width: 100%; aspect-ratio: 1 / 1; max-height: 78vh; margin: 8px auto 0;
+  border-radius: 32px; overflow: hidden;
+  background: radial-gradient(70% 70% at 50% 50%, #0b1a33 0%, #000 75%);
+}
+.ind-globe { position: absolute; inset: 0; cursor: grab; z-index: 0; }
+.ind-card {
+  position: absolute; left: 12px; right: 12px; bottom: 12px; max-width: 360px;
+  background: rgba(28,28,30,.8); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid var(--hairline); border-radius: 22px; padding: 16px 18px; animation: sheetIn .4s var(--ease);
+}
+.ind-card .sheet-close { position: absolute; top: 12px; right: 12px; }
+.ind-card .eyebrow { margin: 0; font-size: 14px; }
+.ind-card h3 { font-size: 26px; margin: 2px 0 6px; }
+.ind-card .bigstat { font-size: 56px; }
+.ind-date { color: var(--muted); font-size: 14px; margin-top: 4px; letter-spacing: 0; }
+.ind-stage.no-webgl { aspect-ratio: auto; min-height: 0; background: none; }
+.globe-tip {
+  font-family: var(--font); background: rgba(28,28,30,.9); border: 1px solid var(--hairline);
+  border-radius: 12px; padding: 6px 10px; color: var(--text); letter-spacing: 0;
+}
+.globe-tip strong { display: block; font-size: 14px; }
+.globe-tip span { color: var(--muted); font-size: 12px; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; margin-top: 18px; font-size: 13px; color: var(--muted); letter-spacing: 0; }
+.legend-item { display: inline-flex; align-items: center; gap: 6px; }
+.legend-item i { width: 14px; height: 14px; border-radius: 4px; display: inline-block; }
+.legend-item i.none { background: rgba(52,57,68,.85); border: 1px solid var(--hairline); }
+
+.rank { display: flex; flex-direction: column; gap: 2px; background: var(--surface); border-radius: 20px; padding: 8px; }
+.rank-row {
+  display: grid; grid-template-columns: minmax(96px, 30%) 1fr auto; align-items: center; gap: 12px;
+  border: 0; background: none; color: var(--text); padding: 10px 10px; border-radius: 12px; cursor: pointer; text-align: left;
+}
+.rank-row:hover { background: var(--surface-2); }
+.rank-name { font-family: var(--serif); font-size: 17px; }
+.rank-bar { height: 10px; background: rgba(255,255,255,.05); border-radius: 999px; overflow: hidden; }
+.rank-bar i { display: block; height: 100%; border-radius: 999px; }
+.rank-val { font-size: 15px; font-weight: 600; text-align: right; font-variant-numeric: tabular-nums; min-width: 64px; }
+.rank-val small { display: block; color: var(--muted); font-size: 11px; font-weight: 500; }
+.ind-note { margin-top: 24px; font-size: 17px; }
+
+@media (max-width: 420px) {
+  .nav-actions { gap: 5px; }
+  .navbar-inner { padding-left: 14px; }
+  .nav-actions .pill-btn { padding: 6px 10px; font-size: 13px; }
+}
+.globe-pin.left .globe-label { left: auto; right: 14px; }

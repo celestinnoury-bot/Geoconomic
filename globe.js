@@ -32,15 +32,31 @@
     } catch (e) { return false; }
   }
 
-  // Regroupe les actus par lieu : un point sur le globe peut porter plusieurs actus.
+  // Regroupe les actus par lieu, puis les lieux trop proches (moins de ~11°) en un seul point,
+  // pour que les étiquettes ne se chevauchent pas. Chaque actu garde le nom de son lieu.
   function placesFrom(news) {
-    const map = new Map();
+    const spots = [];
     news.forEach((n) => (n.geo || []).forEach((g) => {
-      const key = g.coords.join(",");
-      if (!map.has(key)) map.set(key, { name: g.name, lng: g.coords[0], lat: g.coords[1], items: [] });
-      map.get(key).items.push(n);
+      const [lng, lat] = g.coords;
+      const near = spots.find((p) => {
+        const dx = (lng - p.lng) * Math.cos((lat * Math.PI) / 180), dy = lat - p.lat;
+        return Math.hypot(dx, dy) < 11;
+      });
+      const entry = { news: n, place: g.name };
+      if (near) {
+        near.items.push(entry);
+        if (!near.names.includes(g.name)) near.names.push(g.name);
+      } else {
+        spots.push({ lng, lat, names: [g.name], items: [entry] });
+      }
     }));
-    return [...map.values()];
+    spots.forEach((p) => {
+      p.name = p.names.length > 1 ? `${p.names[0]} +${p.names.length - 1}` : p.names[0];
+      p.title = p.names.join(", ");
+      // Étiquette à gauche du point si un autre point est juste à sa droite, à la même hauteur.
+      p.left = spots.some((q) => q !== p && q.lng > p.lng && q.lng - p.lng < 30 && Math.abs(q.lat - p.lat) < 6);
+    });
+    return spots;
   }
 
   // Ajoute une couche de nuages qui tourne lentement, en réutilisant les classes three.js du globe.
@@ -74,7 +90,108 @@
     } catch (e) { /* les nuages sont un bonus : on s'en passe si ça échoue */ }
   }
 
+  // Classe de couleur d'une valeur selon les seuils de l'indicateur (0 = plus faible).
+  function classOf(v, bins) {
+    let i = 0;
+    while (i < bins.length && v >= bins[i]) i++;
+    return i;
+  }
+
+  // Centre approximatif d'un pays (milieu de son plus grand polygone), pour y diriger la caméra.
+  function centerOf(feature) {
+    const polys = feature.geometry.type === "Polygon" ? [feature.geometry.coordinates] : feature.geometry.coordinates;
+    let best = polys[0], size = 0;
+    polys.forEach((p) => { if (p[0].length > size) { size = p[0].length; best = p; } });
+    let minX = 180, maxX = -180, minY = 90, maxY = -90;
+    best[0].forEach(([x, y]) => { minX = Math.min(minX, x); maxX = Math.max(maxX, x); minY = Math.min(minY, y); maxY = Math.max(maxY, y); });
+    return { lng: (minX + maxX) / 2, lat: (minY + maxY) / 2 };
+  }
+
+  async function mountIndicators(container, { features, names, onSelect }) {
+    if (!webglOK()) { container.classList.add("no-webgl"); return null; }
+    await loadLib();
+    if (!document.body.contains(container)) return null;
+
+    let ind = null, hovered = null, selected = null;
+    const valueOf = (f) => ind && ind.values[f.id];
+    const nameOf = (f) => (names && names[f.id]) || f.properties.name;
+    // Les pays sont colorés selon leur classe et « montent » d'autant plus que la valeur est élevée.
+    function capColor(f) {
+      const d = valueOf(f);
+      if (!d) return f === hovered ? "rgba(90,96,110,.9)" : "rgba(52,57,68,.85)";
+      return ind.colors[classOf(d.v, ind.bins)];
+    }
+    function altitude(f) {
+      const d = valueOf(f);
+      const base = d ? 0.01 + classOf(d.v, ind.bins) * 0.012 : 0.004;
+      return base + (f === hovered || f === selected ? 0.025 : 0);
+    }
+
+    // Océans sombres : une texture unie de 2 × 1 px, générée sur place (globe.gl a besoin d'une image).
+    const ocean = document.createElement("canvas");
+    ocean.width = 2; ocean.height = 1;
+    const ctx = ocean.getContext("2d");
+    ctx.fillStyle = "#0a1628"; ctx.fillRect(0, 0, 2, 1);
+
+    const world = new window.Globe(container, { animateIn: true })
+      .globeImageUrl(ocean.toDataURL())
+      .backgroundColor("rgba(0,0,0,0)")
+      .showAtmosphere(true)
+      .atmosphereColor("#3b7fe0")
+      .atmosphereAltitude(0.16)
+      .width(container.clientWidth)
+      .height(container.clientHeight)
+      .polygonsData(features)
+      .polygonCapColor((f) => capColor(f))
+      .polygonSideColor((f) => (valueOf(f) ? capColor(f) + "b3" : "rgba(52,57,68,.6)"))
+      .polygonStrokeColor(() => "rgba(255,255,255,0.28)")
+      .polygonAltitude((f) => altitude(f))
+      .polygonsTransitionDuration(500)
+      .polygonLabel((f) => {
+        const d = valueOf(f);
+        return `<div class="globe-tip"><strong>${nameOf(f)}</strong>${d ? `<span>${String(d.v).replace(".", ",")} ${ind.unit} · ${d.d}</span>` : "<span>Pas de donnée</span>"}</div>`;
+      })
+      .onPolygonHover((f) => {
+        hovered = f;
+        container.style.cursor = f ? "pointer" : "grab";
+        // Nouvelles fonctions = globe.gl recalcule couleurs et hauteurs.
+        world.polygonAltitude((x) => altitude(x)).polygonCapColor((x) => capColor(x));
+      })
+      .onPolygonClick((f) => select(f));
+
+
+    const controls = world.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.35;
+    controls.enableZoom = false;
+    world.pointOfView({ lat: 25, lng: 15, altitude: 2.4 });
+
+    function refresh() { world.polygonsData(features.slice()); }
+    function select(f, fly = true) {
+      selected = f;
+      controls.autoRotate = false;
+      if (f && fly) { const c = centerOf(f); world.pointOfView({ lat: c.lat, lng: c.lng, altitude: 1.6 }, 1200); }
+      refresh();
+      if (onSelect) onSelect(f, f && valueOf(f), f && nameOf(f));
+    }
+
+    const onResize = () => {
+      if (!document.body.contains(container)) return window.removeEventListener("resize", onResize);
+      world.width(container.clientWidth).height(container.clientHeight);
+    };
+    window.addEventListener("resize", onResize);
+
+    return {
+      world,
+      setIndicator(next) { ind = next; refresh(); },
+      selectById(id) { const f = features.find((x) => x.id === id); if (f) select(f); },
+      destroy() { try { world.pauseAnimation(); world.renderer().dispose(); } catch (e) {} }
+    };
+  }
+
   window.GeocoGlobe = {
+    mountIndicators,
+    classOf,
     // container : élément qui reçoit le globe ; onOpen(place) : appelé quand on touche un lieu.
     async mount(container, news, { onOpen } = {}) {
       if (!webglOK()) { container.classList.add("no-webgl"); return null; }
@@ -117,7 +234,8 @@
         .htmlLat("lat").htmlLng("lng").htmlAltitude(0.015)
         .htmlElement((p) => {
           const el = document.createElement("button");
-          el.className = "globe-pin";
+          el.className = p.left ? "globe-pin left" : "globe-pin";
+          el.setAttribute("aria-label", `${p.title} : ${p.items.length} actu${p.items.length > 1 ? "s" : ""}`);
           el.innerHTML = `<span class="globe-dot"></span><span class="globe-label">${p.name}${p.items.length > 1 ? ` <em>${p.items.length}</em>` : ""}</span>`;
           el.addEventListener("click", (e) => { e.stopPropagation(); focus(p); });
           return el;
