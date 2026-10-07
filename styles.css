@@ -272,3 +272,42 @@ main { outline: none; padding-top: 72px; }
   transition: opacity .9s var(--ease), transform .9s var(--ease), color 1.2s var(--ease) .2s;
 }
 .statement.in { color: var(--text); }
+
+/* ---------- Typographie : Times New Roman pour les titres et les textes ---------- */
+:root { --serif: "Times New Roman", Times, "Tinos", "Liberation Serif", serif; }
+h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .tile h3, .tile .stat,
+.row-title, .term h3, .term p, .q-title, .option, .explain, .fpill-body, .figure-display p, .summary {
+  font-family: var(--serif);
+}
+.headline, .title, .tile h3, .q-title, .term h3 { letter-spacing: -.015em; }
+.statement, .bigstat, .tile .stat { letter-spacing: -.02em; }
+.lead, .copy, .panel p, .term p, .option, .explain, .fpill-body, .figure-display p, .summary { letter-spacing: 0; }
+.copy, .lead { font-weight: 400; font-size: 21px; line-height: 1.45; }
+.copy strong { font-weight: 700; }
+.row-title { font-size: 19px; letter-spacing: 0; }
+
+/* ---------- Actu & Culture G ---------- */
+.day + .day { margin-top: 56px; }
+.news-card {
+  display: block; position: relative; overflow: hidden;
+  background: var(--surface); border-radius: 24px; padding: 26px 24px; color: var(--text);
+  transition: transform .3s var(--ease);
+}
+.news-card + .news-card { margin-top: 14px; }
+.news-card:active { transform: scale(.985); }
+.news-card::before {
+  content: ""; position: absolute; inset: 0; opacity: .3; pointer-events: none;
+  background: radial-gradient(80% 90% at 100% 0%, var(--tile-glow, #2997ff) 0%, transparent 60%);
+}
+.news-card > * { position: relative; }
+.news-card h3 { font-size: 25px; line-height: 1.15; margin-bottom: 10px; letter-spacing: -.01em; }
+.summary { color: var(--muted); font-size: 18px; line-height: 1.45; }
+.news-card .more { display: inline-block; margin-top: 14px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
+.badge {
+  display: inline-block; font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 999px; background: rgba(245,200,107,.14); color: var(--gold); margin-bottom: 12px;
+}
+.links { display: flex; flex-direction: column; gap: 8px; }
+.links a { font-size: 15px; }
+.links a::after { content: " ↗"; }
+.panel p.eyebrow { font-family: var(--font); font-size: 17px; letter-spacing: -.01em; }

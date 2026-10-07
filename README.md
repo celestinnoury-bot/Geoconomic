@@ -13,13 +13,20 @@ Chaque sujet est un **dossier court** construit toujours de la même façon :
 5. **Les mots pour comprendre**, reliés au lexique
 6. **Un mini-quiz** pour vérifier ce qu'on a retenu
 
+## Les rubriques
+
+- **Actu** : chaque jour, les événements éco et géopo qui comptent, avec ce qui s'est passé, pourquoi c'est important, l'impact concret et les sources (`data/news.js`)
+- **Culture G** : recherches sur des sujets peu médiatisés qui éclairent l'actu (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md))
+- **Dossiers** : les grands mécanismes à connaître (`data/content.js`)
+- **Lexique** et **Quiz**
+
 ## Ce que contient le prototype
 
 - 6 dossiers : inflation et taux, droits de douane, routes maritimes, semi-conducteurs et Taïwan, sanctions, dollar
 - Un lexique de 23 mots avec recherche
 - Des quiz par dossier et un « grand quiz »
 - Suivi des dossiers lus (enregistré sur l'appareil)
-- Design inspiré des pages produit d'Apple : fond noir, grande typo (SF Pro sur iPhone/iPad/Mac), barre flottante translucide, apparitions au défilement
+- Design inspiré des pages produit d'Apple : fond noir, textes en Times New Roman, barre flottante translucide, apparitions au défilement
 - **PWA** : installable sur l'écran d'accueil du téléphone et utilisable hors connexion
 
 ## Lancer l'application

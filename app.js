@@ -2,6 +2,8 @@
   "use strict";
 
   const { dossiers, glossary } = window.GEOCO;
+  const news = window.GEOCO.news || [];
+  const culture = window.GEOCO.culture || [];
   const app = document.getElementById("app");
   const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
 
@@ -16,6 +18,57 @@
 
   const byId = (list, id) => list.find((x) => x.id === id);
   let homeFilter = "all";
+
+  const formatDate = (iso) =>
+    new Date(iso + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+  function newsCard(n) {
+    return `
+      <a class="news-card ${n.theme} reveal" href="#/actu/${n.id}">
+        <p class="eyebrow">${THEMES[n.theme]}</p>
+        <h3>${n.title}</h3>
+        <p class="summary">${n.summary}</p>
+        <span class="more">Comprendre en 2 min ›</span>
+      </a>`;
+  }
+
+  function cultureTile(c) {
+    return `
+      <a class="tile ${c.theme}" href="#/culture/${c.id}">
+        <div>
+          <p class="eyebrow">Culture G · ${THEMES[c.theme]}</p>
+          <h3>${c.title}</h3>
+        </div>
+        <p class="stat-label">${c.hook}</p>
+        <span class="plus" aria-hidden="true">+</span>
+      </a>`;
+  }
+
+  // Bloc « chiffres » avec sélecteur segmenté, partagé entre dossiers et actus.
+  function figuresBlock(figures) {
+    return `
+      <section class="section center">
+        <div class="wrap">
+          <h2 class="title reveal">Les chiffres.</h2>
+          <div class="reveal">${segmented(figures.map((f, i) => [String(i), f.value]), "0", "fig")}</div>
+          <div class="figure-display" id="figure"></div>
+        </div>
+      </section>`;
+  }
+  function bindFigures(figures, theme) {
+    const box = app.querySelector("#figure");
+    function show(i) {
+      const f = figures[i];
+      box.innerHTML = `<div class="fade"><div class="bigstat grad ${theme}">${f.value}</div><p>${f.label}</p></div>`;
+      app.querySelectorAll("[data-fig]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fig === String(i)));
+    }
+    app.querySelectorAll("[data-fig]").forEach((b) => b.addEventListener("click", () => show(Number(b.dataset.fig))));
+    show(0);
+  }
+
+  function sourcesList(sources) {
+    return `<div class="links">${sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`).join("")}</div>`;
+  }
 
   // Façon Apple : la première phrase en blanc et en gras, la suite en gris.
   function leadIn(text) {
@@ -60,9 +113,19 @@
         </div>
       </section>
 
+      ${news.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">${formatDate(news[0].date)}</p>
+          <h2 class="title reveal">Aujourd'hui.</h2>
+          ${news.filter((n) => n.date === news[0].date).map(newsCard).join("")}
+          <p class="reveal" style="margin-top:20px"><a href="#/actu">Toutes les actus ›</a></p>
+        </div>
+      </section>` : ""}
+
       <section class="section">
         <div class="wrap">
-          <h2 class="title reveal">À lire maintenant.</h2>
+          <h2 class="title reveal">Les dossiers.</h2>
           <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
           <div class="carousel">
             ${visible.map((d) => {
@@ -83,6 +146,15 @@
           </div>
         </div>
       </section>
+
+      ${culture.length ? `
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Culture G.</h2>
+          <p class="copy reveal">Les sujets dont on parle peu, mais qui expliquent beaucoup.</p>
+          <div class="carousel">${culture.map(cultureTile).join("")}</div>
+        </div>
+      </section>` : ""}
 
       <section class="section alt">
         <div class="wrap">
@@ -107,6 +179,12 @@
                 ${readSet.has(d.id) ? '<span class="check">Lu</span>' : ""}
                 <span class="chev" aria-hidden="true">›</span>
               </a>`).join("")}
+          </div>
+          <div class="group reveal" style="margin-top:20px">
+            <a class="row" href="#/lexique">
+              <div class="row-main"><div class="row-title">Lexique</div><div class="row-sub">${glossary.length} mots de l'actu, expliqués</div></div>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
           </div>
         </div>
       </section>
@@ -160,13 +238,7 @@
         </div>
       </section>
 
-      <section class="section center">
-        <div class="wrap">
-          <h2 class="title reveal">Les chiffres.</h2>
-          <div class="reveal">${segmented(d.figures.map((f, i) => [String(i), f.value]), "0", "fig")}</div>
-          <div class="figure-display" id="figure"></div>
-        </div>
-      </section>
+      ${figuresBlock(d.figures)}
 
       <section class="section alt">
         <div class="wrap">
@@ -197,14 +269,7 @@
       </section>
     `;
 
-    const figBox = app.querySelector("#figure");
-    function showFigure(i) {
-      const f = d.figures[i];
-      figBox.innerHTML = `<div class="fade"><div class="bigstat grad ${d.theme}">${f.value}</div><p>${f.label}</p></div>`;
-      app.querySelectorAll("[data-fig]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fig === String(i)));
-    }
-    app.querySelectorAll("[data-fig]").forEach((b) => b.addEventListener("click", () => showFigure(Number(b.dataset.fig))));
-    showFigure(0);
+    bindFigures(d.figures, d.theme);
 
     app.querySelectorAll(".fpill").forEach((p) =>
       p.addEventListener("click", () => p.setAttribute("aria-expanded", p.getAttribute("aria-expanded") !== "true"))
@@ -216,6 +281,154 @@
         if (el.tagName === "BUTTON") el.textContent = "Déjà lu";
       })
     );
+  }
+
+  // ---------- Actu du jour ----------
+  function renderActuIndex() {
+    const days = [...new Set(news.map((n) => n.date))];
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Actu</p>
+        <h1 class="title reveal">L'actu du jour.<br><span class="grad mix">Expliquée.</span></h1>
+        <p class="lead reveal" style="margin-bottom:48px">Chaque jour, les événements qui comptent, ce qu'il faut en retenir et pourquoi ça te concerne.</p>
+        ${days.map((day) => `
+          <div class="day">
+            <p class="eyebrow reveal">${formatDate(day)}</p>
+            ${news.filter((n) => n.date === day).map(newsCard).join("")}
+          </div>`).join("") || '<p class="empty">Pas encore d\'actu.</p>'}
+      </section>
+    `;
+  }
+
+  function renderNews(id) {
+    const n = byId(news, id);
+    if (!n) return renderNotFound();
+    const cult = (n.culture || []).map((c) => byId(culture, c)).filter(Boolean);
+    const doss = (n.dossiers || []).map((x) => byId(dossiers, x)).filter(Boolean);
+
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/actu">‹ Actu</a>
+        <p class="eyebrow reveal">${formatDate(n.date)} · ${THEMES[n.theme]}</p>
+        <h1 class="title reveal">${n.title}</h1>
+        <p class="lead reveal">${n.summary}</p>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">Ce qui s'est passé</p>
+          ${n.points.map((t) => `<p class="statement reveal">${t}</p>`).join("")}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Pourquoi c'est important.</h2>
+          ${n.why.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+        </div>
+      </section>
+
+      <section class="wrap">
+        <div class="panel ${n.theme} reveal">
+          <p class="eyebrow">Et moi, dans tout ça ?</p>
+          <p>${n.forMe}</p>
+        </div>
+      </section>
+
+      ${figuresBlock(n.figures)}
+
+      ${cult.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">Culture G.</h2>
+          <p class="copy reveal">Pour aller plus loin que l'actu.</p>
+          <div class="carousel">${cult.map(cultureTile).join("")}</div>
+        </div>
+      </section>` : ""}
+
+      ${doss.length ? `
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Les dossiers pour comprendre.</h2>
+          <div class="group reveal">
+            ${doss.map((d) => `
+              <a class="row" href="#/dossier/${d.id}">
+                <span class="dot ${d.theme}"></span>
+                <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${d.minutes} min · ${d.level}</div></div>
+                <span class="chev" aria-hidden="true">›</span>
+              </a>`).join("")}
+          </div>
+        </div>
+      </section>` : ""}
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow">Sources</p>
+          ${sourcesList(n.sources)}
+        </div>
+      </section>
+    `;
+    bindFigures(n.figures, n.theme);
+  }
+
+  // ---------- Culture G ----------
+  function renderCultureIndex() {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Culture G</p>
+        <h1 class="title reveal">Ce dont on parle peu.<br><span class="grad geo">Et qui explique tout.</span></h1>
+        <p class="lead reveal">Des recherches sur les coulisses de l'actu : l'histoire, les ressources, les infrastructures et les rivalités qu'on voit rarement à la une.</p>
+        <div class="carousel">${culture.map(cultureTile).join("")}</div>
+      </section>
+    `;
+  }
+
+  function renderCulture(id) {
+    const c = byId(culture, id);
+    if (!c) return renderNotFound();
+    const linked = news.filter((n) => (n.culture || []).includes(c.id));
+
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/culture">‹ Culture G</a>
+        <p class="eyebrow reveal">Culture G · ${THEMES[c.theme]}</p>
+        <h1 class="title reveal">${c.title}</h1>
+        <p class="lead reveal">${c.hook}</p>
+      </section>
+
+      ${c.sections.map((sec, i) => `
+        <section class="section ${i % 2 === 0 ? "alt" : ""}">
+          <div class="wrap">
+            <h2 class="title reveal">${sec.title}</h2>
+            ${sec.paragraphs.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+          </div>
+        </section>
+      `).join("")}
+
+      <section class="section">
+        <div class="wrap">
+          <div class="panel ${c.theme} reveal">
+            <p class="eyebrow">Le saviez-vous ?</p>
+            <p>${c.didYouKnow}</p>
+          </div>
+        </div>
+      </section>
+
+      ${linked.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">Dans l'actu.</h2>
+          ${linked.map(newsCard).join("")}
+        </div>
+      </section>` : ""}
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow">Sources</p>
+          ${sourcesList(c.sources)}
+        </div>
+      </section>
+    `;
   }
 
   // ---------- Lexique ----------
@@ -381,6 +594,8 @@
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === section));
 
     if (section === "dossier") renderDossier(param);
+    else if (section === "actu") param ? renderNews(param) : renderActuIndex();
+    else if (section === "culture") param ? renderCulture(param) : renderCultureIndex();
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();
