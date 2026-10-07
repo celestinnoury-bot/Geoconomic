@@ -13,6 +13,14 @@ Chaque sujet est un **dossier court** construit toujours de la même façon :
 5. **Les mots pour comprendre**, reliés au lexique
 6. **Un mini-quiz** pour vérifier ce qu'on a retenu
 
+## L'accueil : le globe
+
+En ouvrant l'appli, on arrive sur un **globe terrestre en 3D** (images satellite NASA) qui tourne lentement. Les actus du jour y sont des points lumineux : Ormuz, Washington, Paris… En touchant un point, la caméra s'envole vers le lieu et une fiche s'ouvre avec le résumé et le lien vers l'article. Les routes du pétrole partent d'Ormuz en arcs animés.
+
+En faisant défiler vers le bas : l'actu du jour, les articles (Culture G), les dossiers pour comprendre, puis les quiz.
+
+Pour qu'une actu apparaisse sur le globe, il suffit de lui donner un champ `geo` dans `data/news.js`.
+
 ## Les rubriques
 
 - **Actu** : chaque jour, les événements éco et géopo qui comptent, avec ce qui s'est passé, pourquoi c'est important, l'impact concret et les sources (`data/news.js`)
@@ -64,3 +72,9 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 - **Notifications** : « Ton explication du jour est prête »
 - **Parcours** : séries de dossiers à suivre (ex. « Comprendre l'énergie en 5 étapes »)
 - **Application native** (React Native / Expo) si besoin de passer par les stores
+
+## Crédits
+
+- Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le paquet [three-globe](https://github.com/vasturiano/three-globe)
+- Globe 3D : [globe.gl](https://github.com/vasturiano/globe.gl) (licence MIT), basé sur three.js
+- Fonds de carte 2D : Natural Earth (domaine public)

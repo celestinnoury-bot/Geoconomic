@@ -140,92 +140,104 @@
   }
 
   // ---------- Accueil ----------
+  // ---------- Accueil : le globe, puis le fil ----------
+  let currentGlobe = null;
+
+  function dossierTiles() {
+    return dossiers
+      .filter((d) => homeFilter === "all" || d.theme === homeFilter || d.theme === "mix")
+      .map((d) => {
+        const f = d.figures[0];
+        return `
+        <a class="tile ${d.theme}" href="#/dossier/${d.id}">
+          <div>
+            <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}</p>
+            <h3>${d.title}</h3>
+          </div>
+          <div>
+            <div class="stat grad ${d.theme}">${f.value}</div>
+            <p class="stat-label">${f.label}</p>
+          </div>
+          <span class="plus" aria-hidden="true">+</span>
+        </a>`;
+      }).join("");
+  }
+
   function renderHome() {
-    const nextUp = dossiers.find((d) => !readSet.has(d.id)) || dossiers[0];
     const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
-    const visible = dossiers.filter((d) => homeFilter === "all" || d.theme === homeFilter || d.theme === "mix");
+    const today = news.length ? news[0].date : null;
+    const todays = news.filter((n) => n.date === today);
+    const onGlobe = todays.filter((n) => n.geo && n.geo.length);
 
     app.innerHTML = `
-      <section class="wrap hero">
-        <p class="eyebrow reveal">Géoco</p>
-        <h1 class="headline reveal">Le monde,<br><span class="grad mix">enfin expliqué.</span></h1>
-        <p class="lead reveal">L'actualité économique et géopolitique, en trois minutes et sans jargon. Pour comprendre ce qui se passe aujourd'hui, et pourquoi ça te concerne.</p>
-        <div class="hero-actions reveal">
-          <a class="pill-btn blue lg" href="#/dossier/${nextUp.id}">Commencer à lire</a>
-          <a class="pill-btn outline lg" href="#/quiz">Faire un quiz</a>
+      <section class="globe-hero" aria-label="Globe de l'actualité">
+        <div class="globe" id="globe"></div>
+        <div class="globe-overlay">
+          <p class="eyebrow">${today ? formatDate(today) : "Géoco"}</p>
+          <h1 class="headline">Le monde,<br><span class="grad mix">aujourd'hui.</span></h1>
+          <p class="globe-hint">Touche un point lumineux pour comprendre ce qui s'y passe.</p>
         </div>
+        <div class="globe-fallback">
+          ${onGlobe.map((n) => `<a class="tagpill" href="#/actu/${n.id}">${n.geo[0].name} · ${n.title}</a>`).join("")}
+        </div>
+        <div class="globe-sheet" hidden></div>
+        <a class="scroll-hint" href="#/" data-scroll="feed"><span>Toute l'actu</span><span class="arrow" aria-hidden="true">↓</span></a>
       </section>
 
-      ${news.length ? `
-      <section class="section alt">
+      <div id="feed"></div>
+      ${todays.length ? `
+      <section class="section">
         <div class="wrap">
-          <p class="eyebrow reveal">${formatDate(news[0].date)}</p>
+          <p class="eyebrow reveal">L'actu du jour</p>
           <h2 class="title reveal">Aujourd'hui.</h2>
-          ${news.filter((n) => n.date === news[0].date).map(newsCard).join("")}
+          ${todays.map(newsCard).join("")}
           <p class="reveal" style="margin-top:20px"><a href="#/actu">Toutes les actus ›</a></p>
         </div>
       </section>` : ""}
 
-      <section class="section">
-        <div class="wrap">
-          <h2 class="title reveal">Les dossiers.</h2>
-          <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
-          <div class="carousel">
-            ${visible.map((d) => {
-              const f = d.figures[0];
-              return `
-              <a class="tile ${d.theme}" href="#/dossier/${d.id}">
-                <div>
-                  <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}</p>
-                  <h3>${d.title}</h3>
-                </div>
-                <div>
-                  <div class="stat grad ${d.theme}">${f.value}</div>
-                  <p class="stat-label">${f.label}</p>
-                </div>
-                <span class="plus" aria-hidden="true">+</span>
-              </a>`;
-            }).join("")}
-          </div>
-        </div>
-      </section>
-
       ${culture.length ? `
-      <section class="section">
+      <section class="section alt">
         <div class="wrap">
-          <h2 class="title reveal">Culture G.</h2>
+          <p class="eyebrow reveal">Culture G et recherches</p>
+          <h2 class="title reveal">Articles.</h2>
           <p class="copy reveal">Les sujets dont on parle peu, mais qui expliquent beaucoup.</p>
           <div class="carousel">${culture.map(cultureTile).join("")}</div>
         </div>
       </section>` : ""}
 
-      <section class="section alt">
+      <section class="section">
         <div class="wrap">
-          <p class="eyebrow reveal">Ta progression</p>
-          <div class="bigstat grad mix reveal">${readCount}/${dossiers.length}</div>
-          <p class="bigstat-label reveal">${readCount === 0 ? "Aucun dossier lu pour l'instant. Le premier prend trois minutes." : readCount === dossiers.length ? "Tous les dossiers lus. Bravo." : "dossiers lus. Continue comme ça."}</p>
-          <div class="bar reveal"><div style="width:${(readCount / dossiers.length) * 100}%"></div></div>
+          <p class="eyebrow reveal">Les bases</p>
+          <h2 class="title reveal">Comprendre.</h2>
+          <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
+          <div class="carousel" id="dossier-tiles">${dossierTiles()}</div>
         </div>
       </section>
 
-      <section class="section">
+      <section class="section alt">
         <div class="wrap">
-          <h2 class="title reveal">Tous les dossiers.</h2>
-          <div class="group reveal">
-            ${dossiers.map((d) => `
-              <a class="row" href="#/dossier/${d.id}">
-                <span class="dot ${d.theme}"></span>
-                <div class="row-main">
-                  <div class="row-title">${d.title}</div>
-                  <div class="row-sub">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</div>
-                </div>
-                ${readSet.has(d.id) ? '<span class="check">Lu</span>' : ""}
-                <span class="chev" aria-hidden="true">›</span>
-              </a>`).join("")}
+          <p class="eyebrow reveal">À toi de jouer</p>
+          <h2 class="title reveal">Teste-toi.</h2>
+          <div class="grid-2">
+            <a class="panel mix reveal play" href="#/quiz/tout">
+              <p class="eyebrow">Le grand quiz</p>
+              <p>${dossiers.reduce((k, d) => k + d.quiz.length, 0)} questions sur tout ce qu'il faut savoir.</p>
+              <span class="pill-btn blue">Jouer</span>
+            </a>
+            <div class="panel geo reveal">
+              <p class="eyebrow">Ta progression</p>
+              <div class="bigstat grad mix">${readCount}/${dossiers.length}</div>
+              <p class="bigstat-label">dossiers lus</p>
+              <div class="bar"><div style="width:${(readCount / dossiers.length) * 100}%"></div></div>
+            </div>
           </div>
           <div class="group reveal" style="margin-top:20px">
             <a class="row" href="#/lexique">
               <div class="row-main"><div class="row-title">Lexique</div><div class="row-sub">${glossary.length} mots de l'actu, expliqués</div></div>
+              <span class="chev" aria-hidden="true">›</span>
+            </a>
+            <a class="row" href="#/quiz">
+              <div class="row-main"><div class="row-title">Quiz par dossier</div><div class="row-sub">Vérifie ce que tu as retenu</div></div>
               <span class="chev" aria-hidden="true">›</span>
             </a>
           </div>
@@ -236,12 +248,62 @@
     app.querySelectorAll("[data-filter]").forEach((btn) =>
       btn.addEventListener("click", () => {
         homeFilter = btn.dataset.filter;
-        const y = window.scrollY;
-        renderHome();
-        app.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
-        window.scrollTo(0, y);
+        app.querySelectorAll("[data-filter]").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        app.querySelector("#dossier-tiles").innerHTML = dossierTiles();
       })
     );
+
+    app.querySelector("[data-scroll]").addEventListener("click", (e) => {
+      e.preventDefault();
+      document.getElementById("feed").scrollIntoView({ behavior: "smooth" });
+    });
+
+    mountHomeGlobe(onGlobe);
+  }
+
+  async function mountHomeGlobe(items) {
+    const el = app.querySelector("#globe");
+    const hero = app.querySelector(".globe-hero");
+    const sheet = app.querySelector(".globe-sheet");
+    if (!el || !window.GeocoGlobe) return hero && hero.classList.add("no-webgl");
+
+    function closeSheet() {
+      sheet.hidden = true;
+      hero.classList.remove("sheet-open");
+      if (currentGlobe) currentGlobe.reset();
+    }
+    function openSheet(place) {
+      sheet.innerHTML = `
+        <div class="sheet-head">
+          <p class="eyebrow">${place.name}</p>
+          <button class="sheet-close" aria-label="Fermer">×</button>
+        </div>
+        ${place.items.map((n) => `
+          <a class="sheet-item" href="#/actu/${n.id}">
+            <h3>${n.title}</h3>
+            <p class="summary">${n.summary}</p>
+            <span class="more">Lire l'article ›</span>
+          </a>`).join("")}`;
+      sheet.hidden = false;
+      hero.classList.add("sheet-open");
+      sheet.querySelector(".sheet-close").addEventListener("click", closeSheet);
+    }
+
+    try {
+      currentGlobe = await window.GeocoGlobe.mount(el, items, { onOpen: openSheet });
+    } catch (e) {
+      currentGlobe = null;
+    }
+    if (!currentGlobe) { hero.classList.add("no-webgl"); return; }
+
+    // Le globe ne tourne que lorsqu'il est visible : économise la batterie.
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(([entry]) => {
+        if (!currentGlobe) return io.disconnect();
+        entry.isIntersecting ? currentGlobe.world.resumeAnimation() : currentGlobe.world.pauseAnimation();
+      });
+      io.observe(hero);
+    }
   }
 
   // ---------- Dossier ----------
@@ -635,6 +697,7 @@
 
   // ---------- Routeur ----------
   function route() {
+    if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param] = (location.hash || "#/").split("/");
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === section));
 
