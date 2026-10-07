@@ -85,42 +85,68 @@ window.GEOCO = {
       id: "droits-de-douane",
       emoji: "🚧",
       theme: "mix",
-      title: "Droits de douane : comprendre la guerre commerciale",
-      hook: "Les États-Unis taxent les produits chinois, la Chine riposte, l'Europe est prise entre les deux. Qui paie vraiment l'addition ?",
-      minutes: 3,
+      title: "Droits de douane : à quoi ça sert, et qui paie vraiment ?",
+      hook: "Les États-Unis taxent les produits étrangers, l'Europe taxe les voitures chinoises. Officiellement, c'est pour protéger. Mais au bout de la chaîne, c'est souvent toi qui paies.",
+      minutes: 5,
       level: "Débutant",
       tldr: [
-        "Un droit de douane est une taxe sur un produit importé. Il rend les produits étrangers plus chers que les produits locaux.",
-        "En 2025, les États-Unis ont fortement relevé leurs droits de douane, contre la Chine mais aussi contre leurs alliés, dont l'Union européenne.",
-        "La taxe est payée par l'importateur, et souvent répercutée sur le consommateur final."
+        "Un droit de douane est une taxe sur un produit importé, payée quand il passe la frontière.",
+        "Il sert à protéger les entreprises locales, à rapporter de l'argent à l'État et à faire pression sur un autre pays.",
+        "Mais c'est l'entreprise qui importe qui paie la taxe, et elle la répercute presque toujours sur le prix final : au bout du compte, c'est le consommateur qui paie [3]."
+      ],
+      visuals: [
+        {
+          kind: "chart",
+          type: "bar",
+          title: "Qui paie les droits de douane américains ?",
+          subtitle: "Part du coût des taxes de 2025 : acheteurs américains (entreprises et consommateurs) ou exportateurs étrangers",
+          xLabel: "Qui paie",
+          unit: "Part du coût (%)",
+          suffix: " %",
+          data: [["Américains", 96], ["Étrangers", 4]],
+          source: "Institut de Kiel, janvier 2026 (25 millions d'expéditions analysées)"
+        }
       ],
       sections: [
         {
-          title: "Pourquoi un pays taxe-t-il les importations ?",
+          title: "À quoi sert un droit de douane ?",
           paragraphs: [
-            "Pour protéger ses entreprises de la concurrence étrangère, pour relocaliser des usines, pour faire rentrer de l'argent dans les caisses de l'État, ou pour faire pression sur un autre pays dans une négociation.",
-            "C'est ce qu'on appelle le protectionnisme, l'inverse du libre-échange qui a dominé le monde depuis les années 1990."
+            "Protéger les entreprises du pays. En rendant les produits étrangers plus chers, la taxe donne un avantage aux usines locales face à des concurrents qui produisent moins cher, par exemple parce que leurs salaires sont plus bas ou qu'ils reçoivent des aides de leur État.",
+            "Riposter à une concurrence jugée déloyale. En 2024, l'Union européenne a ajouté des taxes allant jusqu'à 35,3 % sur les voitures électriques fabriquées en Chine, estimant qu'elles étaient vendues à bas prix grâce aux subventions de Pékin [2].",
+            "Rapporter de l'argent à l'État. La taxe est encaissée par les douanes, comme un impôt.",
+            "Faire pression dans une négociation. Un pays menace de taxer les produits d'un autre pour obtenir quelque chose en échange : un accord commercial, des achats, ou une décision politique.",
+            "Protéger des secteurs jugés stratégiques, comme l'acier, les médicaments ou les puces électroniques, pour ne pas dépendre d'un autre pays en cas de crise ou de guerre."
           ]
         },
         {
-          title: "Qui paie vraiment ?",
+          title: "Qui paie vraiment ? Le consommateur, surtout",
           paragraphs: [
             "Contrairement à une idée reçue, ce n'est pas le pays exportateur qui verse la taxe. C'est l'entreprise qui importe le produit, au moment où il passe la frontière.",
-            "Elle a alors trois choix : augmenter ses prix (le consommateur paie), réduire sa marge (l'entreprise paie) ou changer de fournisseur. Dans les faits, c'est souvent un mélange des trois."
+            "Un exemple simple : un magasin achète une télévision 100 € à l'étranger. Avec un droit de douane de 25 %, il doit verser 25 € aux douanes : la télévision lui coûte 125 €. Pour ne pas perdre d'argent, il augmente son prix de vente. C'est toi qui paies la différence en caisse.",
+            "Les études le confirment. Après les taxes américaines de 2018 sur les produits chinois, le coût a été supporté presque entièrement par les entreprises et les consommateurs américains, pas par la Chine [4]. Rebelote avec les taxes de 2025 : selon l'Institut de Kiel, 96 % du coût est retombé sur les acheteurs américains, et seulement 4 % sur les exportateurs étrangers [3].",
+            "Et les prix montent même pour des produits non taxés. En 2018, les États-Unis ont taxé les machines à laver importées : leur prix a augmenté d'environ 12 %, soit près de 90 dollars par machine. Les sèche-linge, pourtant non taxés, ont aussi augmenté, car les vendeurs en ont profité. Les producteurs américains, protégés, ont eux aussi relevé leurs prix [5]."
+          ]
+        },
+        {
+          title: "Protéger des emplois, mais à quel prix ?",
+          paragraphs: [
+            "La taxe sur les machines à laver a bien créé environ 1 800 emplois aux États-Unis. Mais elle a coûté aux consommateurs américains environ 1,5 milliard de dollars par an, soit environ 815 000 dollars par emploi créé [5].",
+            "C'est tout le dilemme : les bénéfices d'un droit de douane sont visibles et concentrés (une usine, des emplois dans une région), alors que son coût est invisible et réparti sur des millions d'acheteurs qui paient chacun un peu plus cher."
           ]
         },
         {
           title: "Le risque de l'escalade",
           paragraphs: [
-            "Quand un pays taxe, l'autre riposte souvent par ses propres taxes. C'est l'engrenage de la guerre commerciale.",
+            "Quand un pays taxe, l'autre riposte souvent par ses propres taxes. C'est l'engrenage de la guerre commerciale, et les consommateurs des deux côtés paient plus cher.",
             "L'histoire sert d'avertissement : en 1930, la loi américaine Smoot-Hawley a augmenté les droits de douane sur des milliers de produits. Les représailles qui ont suivi ont fait chuter le commerce mondial et aggravé la Grande Dépression."
           ]
         }
       ],
-      forMe: "Ton smartphone, tes vêtements ou les pièces de ta voiture traversent souvent plusieurs frontières avant d'arriver chez toi. Chaque nouvelle taxe peut se retrouver dans le prix final, et les entreprises européennes qui exportent (vin, luxe, aéronautique) peuvent perdre des clients.",
+      forMe: "Ton smartphone, tes vêtements, ton électroménager ou les pièces de ta voiture traversent souvent plusieurs frontières avant d'arriver chez toi. Chaque droit de douane ajouté en chemin finit en grande partie dans le prix que tu paies en magasin. Et si l'Europe est visée par des taxes, ce sont aussi des entreprises européennes qui exportent (vin, luxe, aéronautique) qui perdent des clients, avec des emplois en jeu.",
       figures: [
-        { value: "1930", label: "Smoot-Hawley, le contre-exemple historique" },
-        { value: "≈ 15 %", label: "le taux américain négocié avec l'UE à l'été 2025 sur la plupart des produits" }
+        { value: "96 %", label: "du coût des taxes américaines de 2025 payé par les acheteurs américains (Institut de Kiel)" },
+        { value: "+12 %", label: "le prix des machines à laver aux États-Unis après la taxe de 2018" },
+        { value: "1930", label: "Smoot-Hawley, le contre-exemple historique" }
       ],
       terms: ["droits-de-douane", "protectionnisme", "libre-echange", "mondialisation"],
       quiz: [
@@ -128,7 +154,13 @@ window.GEOCO = {
           q: "Qui verse concrètement un droit de douane ?",
           options: ["Le pays qui exporte", "L'entreprise qui importe", "L'Organisation mondiale du commerce", "Personne, c'est symbolique"],
           answer: 1,
-          explain: "C'est l'importateur qui paie à la frontière. Il peut ensuite répercuter tout ou partie de la taxe sur ses clients."
+          explain: "C'est l'importateur qui paie à la frontière. Il répercute ensuite la plus grande partie de la taxe sur ses clients."
+        },
+        {
+          q: "Un magasin importe un produit à 100 € taxé à 20 %. Que se passe-t-il le plus souvent ?",
+          options: ["Le pays exportateur rembourse les 20 €", "Le prix en magasin augmente", "Le produit devient moins cher", "Rien ne change"],
+          answer: 1,
+          explain: "Le magasin paie 20 € de taxe et, pour garder sa marge, il augmente son prix de vente. Le consommateur paie la plus grande partie de la taxe."
         },
         {
           q: "Le contraire du protectionnisme, c'est…",
@@ -139,7 +171,10 @@ window.GEOCO = {
       ],
       sources: [
         { short: "OMC", name: "Organisation mondiale du commerce, les droits de douane", url: "https://www.wto.org" },
-        { short: "Commission européenne", name: "Commission européenne, relations commerciales UE–États-Unis", url: "https://policy.trade.ec.europa.eu" }
+        { short: "Commission européenne", name: "Commission européenne, droits compensateurs sur les voitures électriques chinoises (octobre 2024)", url: "https://policy.trade.ec.europa.eu" },
+        { short: "Institut de Kiel", name: "Institut de Kiel, étude sur l'incidence des droits de douane américains, janvier 2026 (via Fortune)", url: "https://fortune.com/2026/01/20/americans-pay-nearly-all-of-tariff-burden-study" },
+        { short: "CEPR", name: "Amiti, Redding et Weinstein, « Who's Paying for the US Tariffs? A Longer-Term Perspective », CEPR, 2019", url: "https://cepr.org/publications/dp14229" },
+        { short: "NBC News", name: "NBC News, sur l'étude Flaaen, Hortaçsu et Tintelnot consacrée à la taxe sur les machines à laver (2019)", url: "https://www.nbcnews.com/business/consumer/trump-s-washing-machine-tariffs-are-costing-americans-almost-100-n999461" }
       ]
     },
 
