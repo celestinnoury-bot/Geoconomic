@@ -7,14 +7,17 @@
 //
 // `visuals` : cartes ("map") et graphiques ("chart") interactifs, voir viz.js.
 // `image` (facultatif) : { src, alt, credit } pour une photo en tête d'article.
-// `geo` : lieux [longitude, latitude] où l'actu apparaît sur le globe de l'accueil.
+// `geo` : lieux [longitude, latitude] où l'actu apparaît sur le globe de l'accueil ;
+//         `label` (facultatif) = nom court affiché sur le globe, `name` = nom complet dans la fiche.
 // `routes` (facultatif) : arcs tracés sur le globe depuis le premier lieu.
+// `region` (facultatif) : Afrique, Asie, Europe, Amériques, Moyen-Orient (filtre de la page Actu).
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
     id: "2026-10-07-gazole-reserves",
     date: "2026-10-07",
+    region: "Europe",
     theme: "eco",
     geo: [{ name: "Paris", coords: [2.35, 48.86] }],
     title: "La France ouvre ses réserves de gazole pour faire baisser les prix à la pompe",
@@ -60,8 +63,9 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-ormuz",
     date: "2026-10-07",
+    region: "Moyen-Orient",
     theme: "geo",
-    geo: [{ name: "Détroit d'Ormuz", coords: [56.4, 26.5] }],
+    geo: [{ name: "Détroit d'Ormuz", label: "Ormuz", coords: [56.4, 26.5] }],
     // Routes du pétrole qui partent du Golfe (affichées en arcs sur le globe).
     routes: [
       { to: [121.5, 31.2], name: "vers la Chine" },
@@ -113,6 +117,7 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-droits-de-douane",
     date: "2026-10-07",
+    region: "Amériques",
     theme: "eco",
     title: "Droits de douane : le déficit commercial américain au plus haut depuis 2025",
     summary: "Malgré les droits de douane de Donald Trump, les États-Unis n'ont jamais autant importé depuis mars 2025. Et Washington rembourse des milliards aux importateurs.",
@@ -148,6 +153,7 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-zone-euro-inflation",
     date: "2026-10-07",
+    region: "Europe",
     theme: "eco",
     title: "Zone euro : l'inflation bondit à 3,8 %, tirée par l'énergie",
     summary: "La hausse des prix s'accélère nettement en septembre dans les pays de l'euro. Le choc pétrolier venu d'Ormuz se diffuse à toute l'économie.",
@@ -178,6 +184,7 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-allemagne",
     date: "2026-10-07",
+    region: "Europe",
     theme: "eco",
     title: "Allemagne : le moteur de l'Europe cale sous le choc de l'énergie",
     summary: "Première économie européenne, l'Allemagne frôle la récession. Son industrie, très gourmande en énergie, souffre de la flambée des prix.",
@@ -208,10 +215,11 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-suez",
     date: "2026-10-07",
+    region: "Moyen-Orient",
     theme: "geo",
     title: "Le canal de Suez profite de la crise d'Ormuz",
     summary: "Ormuz bloqué, le pétrole saoudien passe par la mer Rouge. Résultat : le trafic et les recettes du canal de Suez remontent en flèche.",
-    geo: [{ name: "Canal de Suez", coords: [32.34, 30.6] }],
+    geo: [{ name: "Canal de Suez", label: "Suez", coords: [32.34, 30.6] }],
     points: [
       "En juillet, le canal a rapporté 505 millions de dollars à l'Égypte, soit 42 % de plus qu'un an plus tôt, un record depuis fin 2023 [1].",
       "1 340 navires l'ont traversé ce mois-là, 27 % de plus qu'en juillet 2025, dont 526 pétroliers [1].",
@@ -238,10 +246,11 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-opep",
     date: "2026-10-07",
+    region: "Moyen-Orient",
     theme: "geo",
     title: "OPEP+ : les producteurs de pétrole marquent une pause",
     summary: "Après quatre mois de hausse, les grands producteurs ont gelé leur production pour octobre. Mais avec Ormuz bloqué, leur pouvoir sur les prix s'est réduit.",
-    geo: [{ name: "Riyad", coords: [46.68, 24.71] }],
+    geo: [{ name: "Riyad", label: "Arabie saoudite", coords: [46.68, 24.71] }],
     points: [
       "Le 6 septembre, sept pays de l'OPEP+ (Arabie saoudite, Russie, Irak, Koweït, Kazakhstan, Algérie, Oman) ont décidé de maintenir leur production d'octobre au niveau de septembre [1][2].",
       "Ils venaient de terminer l'annulation d'une baisse de production de 1,65 million de barils par jour décidée en 2023 [3].",
@@ -267,10 +276,11 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-turquie",
     date: "2026-10-07",
+    region: "Moyen-Orient",
     theme: "eco",
     title: "Turquie : l'inflation reste autour de 30 %",
     summary: "Les prix augmentent encore de près d'un tiers en un an. La banque centrale garde son taux directeur à 37 %.",
-    geo: [{ name: "Ankara", coords: [32.85, 39.93] }],
+    geo: [{ name: "Ankara", label: "Turquie", coords: [32.85, 39.93] }],
     points: [
       "L'inflation turque est passée de 31,5 % en août à 29,7 % en septembre [1][2].",
       "Le 10 septembre, la banque centrale a laissé son taux directeur à 37 %, pour la cinquième fois de suite [3].",
@@ -296,10 +306,11 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-philippines",
     date: "2026-10-07",
+    region: "Asie",
     theme: "eco",
     title: "Philippines : l'inflation grimpe à 7,2 %, au plus haut depuis trois ans",
     summary: "Le riz et le carburant font flamber les prix dans l'archipel, très dépendant des importations d'énergie.",
-    geo: [{ name: "Manille", coords: [120.98, 14.6] }],
+    geo: [{ name: "Manille", label: "Philippines", coords: [120.98, 14.6] }],
     points: [
       "L'inflation a atteint 7,2 % en septembre aux Philippines, son niveau le plus élevé depuis trois ans [1][2].",
       "En août, elle était de 6,1 %, avec un prix du riz en hausse de 19,4 % sur un an [3].",
@@ -325,10 +336,11 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-canada",
     date: "2026-10-07",
+    region: "Amériques",
     theme: "eco",
     title: "Washington interdit près d'un milliard de dollars de produits canadiens",
     summary: "Alcools, produits laitiers, motos : les États-Unis bloquent certaines importations canadiennes en représailles. Une escalade entre voisins et alliés.",
-    geo: [{ name: "Ottawa", coords: [-75.7, 45.42] }],
+    geo: [{ name: "Ottawa", label: "Canada", coords: [-75.7, 45.42] }],
     points: [
       "Depuis le 29 septembre, les États-Unis interdisent l'importation de près d'un milliard de dollars de produits canadiens [1].",
       "87 % de cette somme concerne des boissons alcoolisées : Washington répond ainsi aux provinces canadiennes qui ont retiré l'alcool américain de leurs rayons [1].",
@@ -353,6 +365,7 @@ window.GEOCO.news = [
   {
     id: "2026-10-07-chine",
     date: "2026-10-07",
+    region: "Asie",
     theme: "eco",
     title: "Chine : les exportations tiennent, l'immobilier s'enfonce",
     summary: "La deuxième économie mondiale croît plus vite que prévu grâce à ses exportations, mais la crise immobilière et la faible consommation pèsent toujours.",
@@ -382,8 +395,366 @@ window.GEOCO.news = [
     ]
   },
   {
+    id: "2026-10-07-niger-uranium",
+    date: "2026-10-07",
+    theme: "geo",
+    region: "Afrique",
+    title: "Niger : la junte garde l'uranium que la France exploitait",
+    summary: "Le Niger a confié à une société d'État la grande mine d'uranium que le groupe français Orano exploitait depuis des décennies.",
+    geo: [{ name: "Arlit (Niger)", label: "Niger", coords: [7.39, 18.74] }],
+    points: [
+      "En juin 2025, la junte au pouvoir à Niamey a nationalisé la mine de la Somaïr, dont Orano détenait 63,4 % [2].",
+      "En août 2026, le permis minier a été attribué à Tsumco, une société d'État créée après la nationalisation [1].",
+      "Un tribunal d'arbitrage international a demandé au Niger de ne pas vendre cet uranium, mais Niamey affirme son « droit légitime » à le mettre sur le marché [3]."
+    ],
+    why: [
+      "L'uranium sert de combustible aux centrales nucléaires. Le Niger en a longtemps été l'un des grands fournisseurs pour la France et l'Europe. Depuis le coup d'État de 2023, la junte s'est éloignée de Paris et rapprochée de la Russie [3].",
+      "C'est un exemple de « nationalisme des ressources » : de plus en plus de pays pauvres mais riches en minerais veulent garder davantage de la valeur de leur sous-sol, au lieu de la laisser aux entreprises étrangères."
+    ],
+    forMe: "Près de 70 % de l'électricité française vient du nucléaire. La France diversifie ses achats d'uranium (Kazakhstan, Canada, Australie), mais la perte du Niger montre que l'énergie dépend aussi de la géopolitique.",
+    figures: [
+      { value: "63,4 %", label: "la part d'Orano dans la mine avant la nationalisation", src: 2 },
+      { value: "2025", label: "nationalisation de la Somaïr", src: 2 }
+    ],
+    culture: [],
+    dossiers: ["sanctions"],
+    sources: [
+      { short: "Bloomberg", name: "Bloomberg, « Niger awards former Orano-operated uranium mine to state company » (22 août 2026)", url: "https://www.bloomberg.com/news/articles/2026-08-22/niger-awards-former-orano-operated-uranium-mine-to-state-company" },
+      { short: "Mining.com", name: "Mining.com, « Niger ready to return Orano-produced uranium after mine takeover » (fév. 2026)", url: "https://www.mining.com/web/niger-ready-to-return-orano-produced-uranium-after-mine-takeover/" },
+      { short: "bne IntelliNews", name: "bne IntelliNews, « Niger puts nationalised Somair uranium on global market amid standoff with France's Orano »", url: "https://www.intellinews.com/niger-puts-nationalised-somair-uranium-on-global-market-amid-standoff-with-france-s-orano-414385/" }
+    ]
+  },
+  {
+    id: "2026-10-07-rdc-cobalt",
+    date: "2026-10-07",
+    theme: "geo",
+    region: "Afrique",
+    title: "RDC : le pays du cobalt ferme le robinet pour faire monter les prix",
+    summary: "La République démocratique du Congo, premier producteur mondial de cobalt, limite ses exportations. Le métal des batteries a flambé.",
+    geo: [{ name: "Kolwezi (RDC)", label: "RD Congo", coords: [25.47, -10.71] }],
+    points: [
+      "Après avoir suspendu ses exportations en 2025, la RDC les plafonne à 87 000 tonnes par an en 2026 et 2027, soit 7 250 tonnes par mois [1].",
+      "Fin juin, l'autorité congolaise a même supprimé les quotas du deuxième trimestre non utilisés, retirant 15 000 à 20 000 tonnes du marché [3].",
+      "Le cobalt a commencé 2026 au-dessus de 56 000 dollars la tonne, un niveau plus vu depuis 2022 [2]."
+    ],
+    why: [
+      "Le cobalt est indispensable aux batteries des téléphones et de nombreuses voitures électriques. La RDC en produit plus de la moitié du monde. En limitant l'offre, Kinshasa a réussi à faire remonter des prix qui s'étaient effondrés [1].",
+      "C'est le paradoxe de la RDC : un sous-sol parmi les plus riches de la planète (cobalt, cuivre, coltan), mais une population parmi les plus pauvres, et un est du pays déchiré par la guerre autour des mines."
+    ],
+    forMe: "Ton smartphone contient probablement du cobalt congolais. Quand son prix monte, celui des batteries suit, et la course aux voitures électriques devient une course aux minerais.",
+    figures: [
+      { value: "87 000 t", label: "de cobalt exportables par an en 2026-2027", src: 1 },
+      { value: "≈ 56 400 $", label: "la tonne de cobalt début 2026", src: 2 }
+    ],
+    culture: [],
+    dossiers: ["semi-conducteurs"],
+    sources: [
+      { short: "Benchmark", name: "Benchmark Mineral Intelligence, « DRC to lift cobalt export ban and impose quotas through 2027 »", url: "https://source.benchmarkminerals.com/article/drc-to-lift-cobalt-export-ban-and-impose-quotas-through-2027" },
+      { short: "SunSirs", name: "SunSirs, « Cobalt prices surged in 2025, and here's the outlook for 2026 »", url: "https://www.sunsirs.com/m/page/commodity-news-detail/commodity-news-detail-29434.html" },
+      { short: "Fastmarkets", name: "Fastmarkets, « DRC may reduce cobalt quota if market needs rebalancing, ARECOMS says »", url: "https://www.fastmarkets.com/insights/drc-may-reduce-cobalt-quota-if-market-needs-rebalancing-arecoms-says-exclusive/" }
+    ]
+  },
+  {
+    id: "2026-10-07-zambie-cuivre",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Afrique",
+    title: "Zambie : le cuivre au plus haut, le pays rêve d'un million de tonnes",
+    summary: "Le cuivre bat des records de prix, porté par l'électrification du monde. La Zambie veut en profiter pour relancer une économie fragile.",
+    geo: [{ name: "Copperbelt (Zambie)", label: "Zambie", coords: [28.2, -12.8] }],
+    points: [
+      "La Zambie a produit un record de 890 346 tonnes de cuivre en 2025, en hausse de 8 % [1].",
+      "Au premier semestre 2026, la production n'a progressé que de 0,45 %, à 447 182 tonnes : l'objectif d'un million de tonnes cette année sera difficile à atteindre [2].",
+      "Le cuivre a atteint un prix record à Londres à la mi-septembre [2]."
+    ],
+    why: [
+      "Le cuivre est le métal de l'électricité : câbles, réseaux, moteurs, éoliennes, voitures électriques. Plus le monde s'électrifie, plus il en faut. La Zambie vise 3 millions de tonnes d'ici 2031 [1].",
+      "Le pays a fait défaut sur sa dette en 2020 et dépend énormément du cuivre, qui représente l'essentiel de ses exportations. Ses mines souffrent aussi des coupures d'électricité liées aux sécheresses, car son courant vient surtout des barrages."
+    ],
+    forMe: "Les prix du cuivre se retrouvent dans le coût des installations électriques, des voitures et des bornes de recharge. C'est l'un des métaux les plus surveillés par les industriels.",
+    figures: [
+      { value: "890 346 t", label: "de cuivre produites en 2025, un record", src: 1 },
+      { value: "3 Mt", label: "l'objectif de production en 2031", src: 1 }
+    ],
+    culture: [],
+    dossiers: [],
+    sources: [
+      { short: "Bloomberg", name: "Bloomberg, « Zambia restates copper ambition after posting record output » (27 janv. 2026)", url: "https://www.bloomberg.com/news/articles/2026-01-27/zambia-restates-copper-ambition-after-posting-record-output" },
+      { short: "Zambia Monitor", name: "Zambia Monitor, « Copper production edges up in first half of 2026 »", url: "https://www.zambiamonitor.com/copper-production-edges-up-in-first-half-of-2026-zambia-ministry-official-says/" }
+    ]
+  },
+  {
+    id: "2026-10-07-guinee-simandou",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Afrique",
+    title: "Guinée : Simandou, la montagne de fer qui fait trembler l'Australie",
+    summary: "Le plus grand gisement de fer inexploité du monde exporte enfin vers la Chine. Un tournant pour la Guinée et pour le marché de l'acier.",
+    geo: [{ name: "Simandou (Guinée)", label: "Guinée", coords: [-8.9, 8.6] }],
+    points: [
+      "La première cargaison de minerai de Simandou est partie début décembre 2025 [3].",
+      "En mai 2026, les exportations ont atteint environ 2,2 millions de tonnes sur le mois, un record [2].",
+      "Wood Mackenzie prévoit environ 16 millions de tonnes exportées en 2026, pour une capacité finale de 120 millions de tonnes par an [1]."
+    ],
+    why: [
+      "Le projet, porté notamment par Rio Tinto et des groupes chinois, a nécessité plus de 600 km de voie ferrée et un nouveau port. Son minerai très riche intéresse la Chine, qui veut moins dépendre du fer australien [1].",
+      "Pour la Guinée, l'un des pays les plus pauvres du monde, c'est une chance historique, à condition que les revenus profitent vraiment à la population."
+    ],
+    forMe: "Le fer sert à faire l'acier de nos voitures, immeubles et ponts. Une nouvelle source géante peut faire baisser son prix mondial et changer les rapports de force entre la Chine et l'Australie.",
+    figures: [
+      { value: "120 Mt", label: "de capacité annuelle visée", src: 1 },
+      { value: "≈ 16 Mt", label: "d'exportations prévues en 2026", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["routes-maritimes"],
+    sources: [
+      { short: "Wood Mackenzie", name: "Wood Mackenzie, « Simandou iron ore 2026 »", url: "https://www.woodmac.com/press-releases/simandou-iron-ore-2026/" },
+      { short: "Miningmx", name: "Miningmx, « Simandou iron ore exports surge in ramp-up milestone »", url: "https://www.miningmx.com/news/ferrous-metals/65528-simandou-iron-ore-exports-surge-in-ramp-up-milestone/" },
+      { short: "S&P Global", name: "S&P Global, première cargaison de Simandou arrivée en Chine (janv. 2026)", url: "https://www.spglobal.com/energy/en/news-research/latest-news/metals/011926-simandous-first-shipment-with-200000-mt-high-grade-iron-ore-arrives-in-china" }
+    ]
+  },
+  {
+    id: "2026-10-07-mali-or",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Afrique",
+    title: "Mali : la grande mine d'or repart après deux ans de bras de fer",
+    summary: "Le géant canadien Barrick et la junte malienne ont fait la paix. La mine de Loulo-Gounkoto tourne de nouveau, et un accord vient d'éviter une grève.",
+    geo: [{ name: "Loulo (Mali)", label: "Mali", coords: [-11.48, 13.0] }],
+    points: [
+      "Le 27 septembre, Barrick a signé un accord avec les syndicats de la mine, écartant une menace de grève [1].",
+      "En février 2026, le Mali avait renouvelé le permis de la mine pour dix ans, après un an et demi de conflit [3].",
+      "Barrick prévoit d'y produire 260 000 à 290 000 onces d'or en 2026 [2]."
+    ],
+    why: [
+      "Le Mali a adopté en 2023 un nouveau code minier pour récupérer une plus grande part des richesses. Barrick a refusé, l'État a saisi de l'or et la mine a été fermée en janvier 2025, avant un accord en novembre 2025 [2].",
+      "L'or représente environ 80 % des exportations du Mali [2]. Avec un prix de l'or très élevé, chaque mois d'arrêt coûtait très cher à l'un des pays les plus pauvres du monde."
+    ],
+    forMe: "L'or est une valeur refuge : quand le monde est instable, son prix monte. Il fait vivre des pays entiers comme le Mali, mais attise aussi les convoitises et les conflits.",
+    figures: [
+      { value: "≈ 80 %", label: "des exportations du Mali viennent de l'or", src: 2 },
+      { value: "10 ans", label: "durée du permis renouvelé en 2026", src: 3 }
+    ],
+    culture: [],
+    dossiers: [],
+    sources: [
+      { short: "Bloomberg", name: "Bloomberg, « Barrick Mining reaches deal with Mali unions, averting strikes » (27 sept. 2026)", url: "https://www.bloomberg.com/news/articles/2026-09-27/barrick-mining-reaches-deal-with-mali-unions-averting-strikes" },
+      { short: "Ecofin", name: "Agence Ecofin, « Barrick confirms gold production restart at Mali's Loulo-Gounkoto mine in 2026 »", url: "https://www.ecofinagency.com/news-industry/0602-52638-barrick-confirms-gold-production-restart-at-mali-s-loulo-gounkoto-mine-in-2026" },
+      { short: "Semafor", name: "Semafor, « Mali agrees gold mining deal extension after standoff with Barrick » (16 fév. 2026)", url: "https://www.semafor.com/article/02/16/2026/mali-agrees-gold-mining-deal-extension-after-standoff-with-barrick" }
+    ]
+  },
+  {
+    id: "2026-10-07-senegal-dette",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Afrique",
+    title: "Sénégal : la dette cachée qui fait trembler le pays",
+    summary: "Après la découverte d'une dette dissimulée par l'ancien gouvernement, le Sénégal négocie avec le FMI et ses créanciers pour éviter l'asphyxie.",
+    geo: [{ name: "Dakar", label: "Sénégal", coords: [-17.45, 14.69] }],
+    points: [
+      "Un audit a révélé que la dette atteignait 99,7 % du PIB fin 2023, et non 74,4 % comme annoncé [2].",
+      "Le 1er septembre, le Sénégal et le FMI ont conclu un accord préliminaire pour un prêt d'environ 2,2 milliards de dollars sur trois ans [1].",
+      "Le pays va restructurer sa dette extérieure. L'agence S&P a abaissé sa note à « CC », proche du défaut de paiement [4]."
+    ],
+    why: [
+      "Quand un État découvre qu'il doit beaucoup plus que prévu, les investisseurs prennent peur et ne prêtent plus qu'à des taux très élevés. Le pays doit alors couper des dépenses ou négocier des délais avec ses créanciers [1].",
+      "Le gouvernement veut allonger la durée de remboursement plutôt qu'effacer une partie de la dette. Mais la population ressent déjà la crise : des manifestations contre la vie chère ont eu lieu début septembre [3]."
+    ],
+    forMe: "La France a aussi une dette élevée (plus de 110 % du PIB). La différence : elle emprunte dans sa propre monnaie, l'euro, et inspire plus confiance. L'histoire du Sénégal montre pourquoi cette confiance vaut de l'or.",
+    figures: [
+      { value: "99,7 %", label: "la dette réelle du Sénégal, en % du PIB, fin 2023", src: 2 },
+      { value: "2,2 Md$", label: "le prêt négocié avec le FMI", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["dollar"],
+    sources: [
+      { short: "Bloomberg", name: "Bloomberg, « Senegal to rework debt as it reaches new IMF deal » (1er sept. 2026)", url: "https://www.bloomberg.com/news/articles/2026-09-01/senegal-imf-reach-staff-agreement-on-2-2-billion-loan-program" },
+      { short: "CNBC Africa", name: "CNBC Africa, « Senegal's hidden debt crisis and attempts to resolve it »", url: "https://www.cnbcafrica.com/2026/senegals-hidden-debt-crisis-and-attempts-to-resolve-it-3" },
+      { short: "Semafor", name: "Semafor, « Senegal seeks more time to pay off debt » (9 sept. 2026)", url: "https://www.semafor.com/article/09/09/2026/senegal-seeks-more-time-to-pay-off-debt" },
+      { short: "Pan African Visions", name: "Pan African Visions, « Senegal's $2.2 billion IMF lifeline comes with a $13 billion debt shadow »", url: "https://panafricanvisions.com/2026/09/senegals-2-2-billion-imf-lifeline-comes-with-a-13-billion-debt-shadow/" }
+    ]
+  },
+  {
+    id: "2026-10-07-nigeria-dangote",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Afrique",
+    title: "Nigeria : la raffinerie géante qui inverse le commerce du carburant",
+    summary: "Grand producteur de pétrole, le Nigeria importait pourtant son essence. Grâce à la raffinerie Dangote, il en exporte désormais, jusqu'en Europe.",
+    geo: [{ name: "Lagos", label: "Nigeria", coords: [3.4, 6.45] }],
+    points: [
+      "En mars 2026, le Nigeria est devenu pour la première fois exportateur net d'essence, grâce à la raffinerie Dangote [2].",
+      "Ses exportations de produits pétroliers vers l'Europe ont bondi de 767 % depuis 2023, à 130 000 barils par jour au deuxième trimestre 2026, selon l'agence américaine de l'énergie [1].",
+      "La raffinerie, près de Lagos, peut traiter environ 650 000 barils de pétrole brut par jour, l'une des plus grandes du monde [1]."
+    ],
+    why: [
+      "Pendant des décennies, le Nigeria exportait son pétrole brut puis rachetait l'essence raffinée à l'étranger, plus chère. Raffiner sur place permet de garder cette valeur et d'économiser des devises [2].",
+      "Avec la crise d'Ormuz, l'Europe cherche d'autres fournisseurs de carburant : le timing est idéal. Mais la raffinerie peine parfois à obtenir assez de pétrole brut nigérian et de dollars [3]."
+    ],
+    forMe: "Une partie du gazole et de l'essence vendus en Europe pourrait bientôt venir d'Afrique de l'Ouest. C'est une nouvelle route de l'énergie qui se dessine.",
+    figures: [
+      { value: "+767 %", label: "d'exportations de carburants vers l'Europe depuis 2023", src: 1 },
+      { value: "≈ 650 000", label: "barils de brut raffinés par jour (capacité)", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["routes-maritimes"],
+    sources: [
+      { short: "Nairametrics", name: "Nairametrics, « Dangote refinery drives 767% surge in Nigeria's petroleum exports to Europe » (25 août 2026)", url: "https://nairametrics.com/2026/08/25/dangote-refinery-drives-767-surge-in-nigerias-petroleum-exports-to-europe/" },
+      { short: "News Ghana", name: "News Ghana, « Dangote refinery turns Nigeria into net petrol exporter for first time »", url: "https://www.newsghana.com.gh/dangote-refinery-turns-nigeria-into-net-petrol-exporter-for-first-time/" },
+      { short: "Ground News", name: "Ground News, « Dangote refinery ramps up fuel exports as crude shortages, forex squeeze bite »", url: "https://ground.news/article/dangote-refinery-ramps-up-fuel-exports-as-crude-shortages-forex-squeeze-bite" }
+    ]
+  },
+  {
+    id: "2026-10-07-kazakhstan-uranium",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Asie",
+    title: "Kazakhstan : le roi de l'uranium dose sa production",
+    summary: "Premier producteur mondial d'uranium, le Kazakhstan augmente sa production, mais refuse d'« inonder le marché d'uranium bon marché ».",
+    geo: [{ name: "Kazakhstan", coords: [68.3, 44.0] }],
+    points: [
+      "Kazatomprom, la compagnie nationale, a produit 13 291 tonnes d'uranium au premier semestre 2026, 9 % de plus qu'un an plus tôt [1].",
+      "Elle vise 27 500 à 29 000 tonnes sur l'année [1].",
+      "Mais elle a abaissé son plafond de production de 32 777 à 29 697 tonnes, pour ne pas faire chuter les prix [2]."
+    ],
+    why: [
+      "Avec la relance du nucléaire dans le monde (pour le climat et l'indépendance énergétique), la demande d'uranium augmente. Le Kazakhstan, coincé entre la Russie et la Chine, est un fournisseur clé, y compris pour l'Europe.",
+      "Comme l'OPEP avec le pétrole, il préfère vendre un peu moins mais plus cher. Son patron l'a dit clairement : pas question d'« inonder le marché d'uranium bon marché » [1]."
+    ],
+    forMe: "Après la perte du Niger, le Kazakhstan est devenu encore plus important pour faire tourner les centrales nucléaires européennes, donc pour notre électricité.",
+    figures: [
+      { value: "13 291 t", label: "d'uranium produites au 1er semestre 2026", src: 1 },
+      { value: "+9 %", label: "sur un an", src: 1 }
+    ],
+    culture: [],
+    dossiers: [],
+    sources: [
+      { short: "World Nuclear News", name: "World Nuclear News, « Mid-year updates from major uranium producers » (août 2026)", url: "https://www.world-nuclear-news.org/articles/mid-year-updates-from-major-uranium-producers" },
+      { short: "World Nuclear News", name: "World Nuclear News, « Kazatomprom to lower uranium production in 2026 »", url: "https://www.world-nuclear-news.org/articles/kazatomprom-to-lower-uranium-production-in-2026" }
+    ]
+  },
+  {
+    id: "2026-10-07-chine-terres-rares",
+    date: "2026-10-07",
+    theme: "geo",
+    region: "Asie",
+    title: "Terres rares : la Chine tient le monde entier, échéance le 10 novembre",
+    summary: "Pékin a suspendu pour un an ses restrictions les plus dures sur les terres rares. La trêve expire dans un mois.",
+    geo: [{ name: "Baotou (Chine)", label: "Chine", coords: [109.84, 40.66] }],
+    points: [
+      "Annoncées en octobre 2025, les nouvelles restrictions chinoises à l'export de terres rares sont suspendues jusqu'au 10 novembre 2026 [1].",
+      "En juin 2026, la Chine a ajouté dix entreprises américaines à sa liste noire, dont le principal producteur de terres rares des États-Unis [2].",
+      "Les contrôles plus anciens sur le tungstène, le bismuth ou l'indium restent en vigueur [1]."
+    ],
+    why: [
+      "Les terres rares sont 17 métaux indispensables aux aimants des moteurs électriques, des éoliennes, des smartphones et des missiles. La Chine domine l'essentiel du raffinage mondial, ce qui lui donne un énorme moyen de pression [3].",
+      "C'est la réponse de Pékin aux restrictions américaines sur les puces électroniques : chacun bloque ce dont l'autre a besoin. Le sommet Trump-Xi du 24 septembre n'a pas encore réglé la question [3]."
+    ],
+    forMe: "Sans terres rares, pas de voitures électriques ni d'éoliennes en Europe. Les industriels européens surveillent la date du 10 novembre de très près.",
+    figures: [
+      { value: "17", label: "métaux forment la famille des terres rares" },
+      { value: "10 nov.", label: "fin de la suspension des restrictions chinoises", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["semi-conducteurs", "droits-de-douane"],
+    sources: [
+      { short: "Clark Hill", name: "Clark Hill, « China hits pause on rare-earth export controls and what it means for supply chains »", url: "https://www.clarkhill.com/news-events/news/china-hits-pause-on-rare-earth-export-controls-and-what-it-means-for-supply-chains/" },
+      { short: "Al Jazeera", name: "Al Jazeera, « China adds 10 US firms, including rare-earth miner, to export control list » (22 juin 2026)", url: "https://www.aljazeera.com/news/2026/6/22/china-adds-10-us-firms-including-rare-earth-miner-to-export-control-list" },
+      { short: "Rare Earth Exchanges", name: "Rare Earth Exchanges, « China rare earth export controls: November 2026 deadline explained »", url: "https://rareearthexchanges.com/news/china-rare-earth-controls-trump-xi-deadline/" }
+    ]
+  },
+  {
+    id: "2026-10-07-birmanie-terres-rares",
+    date: "2026-10-07",
+    theme: "geo",
+    region: "Asie",
+    title: "Birmanie : la guerre pour les mines de terres rares",
+    summary: "Dans le nord de la Birmanie, l'armée tente de reprendre aux rebelles une région minière qui fournit une grande partie des terres rares lourdes du monde.",
+    geo: [{ name: "Kachin (Birmanie)", label: "Birmanie", coords: [97.9, 25.8] }],
+    points: [
+      "En octobre 2024, l'Armée pour l'indépendance kachin a pris le contrôle de la ceinture minière près de la frontière chinoise [1].",
+      "Depuis mai 2026, la junte birmane mène une offensive pour reprendre ces mines [1].",
+      "Cette région produit environ la moitié des terres rares lourdes du monde, essentielles aux éoliennes et aux voitures électriques [1]."
+    ],
+    why: [
+      "Les terres rares extraites en Birmanie partent presque toutes en Chine pour y être raffinées. Qui contrôle ces mines a donc un poids sur toute la chaîne mondiale [1].",
+      "L'extraction, souvent illégale, pollue lourdement les rivières et les forêts. Des habitants manifestent pour exiger le départ des entreprises minières chinoises [2]."
+    ],
+    forMe: "La « transition verte » repose aussi sur des mines dans des zones de guerre, avec des dégâts environnementaux importants. C'est l'envers du décor des technologies propres.",
+    figures: [
+      { value: "≈ 50 %", label: "des terres rares lourdes du monde viennent de cette région", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["semi-conducteurs"],
+    sources: [
+      { short: "Asia News Network", name: "Asia News Network (Reuters), « Myanmar junta pushes to retake rare-earth belt near China border »", url: "https://asianews.network/myanmar-junta-pushes-to-retake-rare-earth-belt-near-china-border/" },
+      { short: "BNI", name: "BNI Online, « Kachin residents demand Chinese rare-earth mining companies stop operations »", url: "https://www.bnionline.net/en/node/97753" }
+    ]
+  },
+  {
+    id: "2026-10-07-indonesie-nickel",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Asie",
+    title: "Indonésie : le pays du nickel serre la vis",
+    summary: "Premier producteur mondial de nickel, l'Indonésie réduit sa production et contrôle davantage ses exportations. Les prix remontent.",
+    geo: [{ name: "Sulawesi (Indonésie)", label: "Indonésie", coords: [121.9, -2.8] }],
+    points: [
+      "L'Indonésie a réduit d'environ un tiers son quota de production de minerai de nickel pour 2026 [1].",
+      "À partir du 1er janvier 2027, certains produits du nickel ne pourront plus être exportés que par des entreprises d'État [2].",
+      "Le prix du nickel a dépassé 18 000 dollars la tonne, au plus haut depuis deux ans [3]."
+    ],
+    why: [
+      "Depuis 2020, l'Indonésie interdit d'exporter son minerai brut : elle oblige les industriels à construire des usines de transformation sur place, souvent avec des capitaux chinois. Le pays est ainsi devenu un géant du nickel [3].",
+      "En limitant maintenant la production, Jakarta fait comme l'OPEP avec le pétrole : moins de volume pour des prix plus élevés."
+    ],
+    forMe: "Le nickel entre dans l'acier inoxydable de ta cuisine et dans beaucoup de batteries de voitures électriques. Quand l'Indonésie bouge, ces prix bougent.",
+    figures: [
+      { value: "≈ -1/3", label: "de quota de production de nickel en 2026", src: 1 },
+      { value: "> 18 000 $", label: "la tonne de nickel, au plus haut depuis deux ans", src: 3 }
+    ],
+    culture: [],
+    dossiers: [],
+    sources: [
+      { short: "Argus", name: "Argus Media, « Indonesia to cut nickel mining quota in 2026 »", url: "https://www.argusmedia.com/news-and-insights/latest-market-news/2787275-indonesia-to-cut-nickel-mining-quota-in-2026" },
+      { short: "SMM", name: "SMM, « Indonesia government officially releases new export controls on FeNi and NPI » (juil. 2026)", url: "https://news.metal.com/newscontent/103996838-smm-tin-nhanh-niken-chính-phủ-indonesia-chính-thức-công-bố-các-biện-pháp-kiểm-soát-xuất-khẩu-mới-đối-với-feni-và-npi" },
+      { short: "The Oregon Group", name: "The Oregon Group, « Can nickel prices hit $25,000 in 2026? »", url: "https://theoregongroup.com/commodities/nickel/can-nickel-prices-hit-25000-in-2026/" }
+    ]
+  },
+  {
+    id: "2026-10-07-pakistan",
+    date: "2026-10-07",
+    theme: "eco",
+    region: "Asie",
+    title: "Pakistan : 250 millions d'habitants face au choc pétrolier",
+    summary: "Très dépendant du pétrole du Golfe et sous perfusion du FMI, le Pakistan est l'un des pays les plus exposés à la crise d'Ormuz.",
+    geo: [{ name: "Islamabad", label: "Pakistan", coords: [73.05, 33.7] }],
+    points: [
+      "Le pays ne dispose que de 10 à 14 jours de réserves stratégiques de carburant [2].",
+      "En mars, le gouvernement a augmenté l'essence et le diesel de 55 roupies par litre d'un coup [2].",
+      "En mai, le FMI a versé 1,1 milliard de dollars dans le cadre de son programme d'aide de 7 milliards [1]."
+    ],
+    why: [
+      "Le Pakistan importe l'essentiel de son énergie et a peu de devises en réserve. Chaque hausse de 10 dollars du baril alourdit sa facture d'importation d'environ 2 milliards de dollars par an [2].",
+      "Le pays sert aussi de médiateur entre les États-Unis et l'Iran, son voisin. Mais les négociations piétinent, et avec elles l'espoir d'une baisse rapide des prix [1]."
+    ],
+    forMe: "Quand le pétrole flambe, les pays pauvres et importateurs souffrent bien plus que l'Europe : pour eux, c'est parfois une question de coupures d'électricité et de pénuries.",
+    figures: [
+      { value: "10-14 j", label: "de réserves stratégiques de carburant", src: 2 },
+      { value: "7 Md$", label: "le programme d'aide du FMI", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["routes-maritimes"],
+    sources: [
+      { short: "SCMP", name: "South China Morning Post, « Pakistan's IMF-backed recovery under pressure as US-Iran mediation stalls »", url: "https://www.scmp.com/week-asia/economics/article/3352061/pakistans-imf-backed-recovery-under-pressure-us-iran-mediation-stalls" },
+      { short: "Nukta", name: "Nukta, « Pakistan faces fresh economic shock as Hormuz closure drives oil surge »", url: "https://nukta.com/pakistan-faces-fresh-economic-shock-as-hormuz-closure-drives-oil-surge" },
+      { short: "Arab News", name: "Arab News, « Pakistan warns prolonged Hormuz crisis could fuel inflation, hurt growth in developing countries »", url: "https://www.arabnews.pk/node/2641560" }
+    ]
+  },
+  {
     id: "2026-10-07-fed",
     date: "2026-10-07",
+    region: "Amériques",
     theme: "eco",
     geo: [{ name: "Washington", coords: [-77.04, 38.9] }],
     title: "La Fed remonte ses taux pour la première fois depuis trois ans",

@@ -1,9 +1,13 @@
-# Modèle de fiche « Culture G »
+# Modèle d'article
 
 Tu peux m'envoyer tes recherches dans n'importe quelle forme (notes, liens, texte brut) :
 je les mets au format de l'appli. Si tu veux écrire directement, suis ce modèle.
 
 ---
+
+**Signature** : ton nom ou pseudo, tel qu'il doit apparaître (« Par … »).
+
+**Type** : Analyse, Enquête, Culture G, Portrait de pays…
 
 **Titre** : une phrase qui donne envie (ex. « Les câbles sous-marins : l'internet mondial tient à un fil »)
 

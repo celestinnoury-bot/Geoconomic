@@ -528,3 +528,18 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .focus-figs .bigstat { font-size: clamp(36px, 9vw, 64px); }
 .focus-figs .bigstat-label { font-size: 14px; margin-top: 6px; }
 .focus-link { display: inline-block; margin-top: 10px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
+
+/* ---------- Filtres de la page Actu ---------- */
+.filters { display: flex; flex-direction: column; gap: 14px; margin: 28px 0 40px; }
+.chips-row { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.chips-row::-webkit-scrollbar { display: none; }
+.chip-btn {
+  flex-shrink: 0; border: 1px solid var(--hairline); background: transparent; color: var(--muted);
+  font-size: 14px; font-weight: 500; padding: 7px 14px; border-radius: 999px; cursor: pointer;
+}
+.chip-btn[aria-pressed="true"] { background: var(--text); color: #000; border-color: var(--text); }
+.byline { color: var(--muted); font-size: 14px; margin-top: 10px; letter-spacing: 0; }
+.article-list { margin-top: 36px; }
+.pill-btn.blue.active { box-shadow: 0 0 0 2px rgba(255,255,255,.5); }
+.globe-label { transition: opacity .25s var(--ease); }
+.globe-label.muted-label { opacity: 0; pointer-events: none; }

@@ -32,7 +32,7 @@
     } catch (e) { return false; }
   }
 
-  // Regroupe les actus par lieu, puis les lieux trop proches (moins de ~11°) en un seul point,
+  // Regroupe les actus par lieu, puis les lieux trop proches (moins de ~8°) en un seul point,
   // pour que les étiquettes ne se chevauchent pas. Chaque actu garde le nom de son lieu.
   function placesFrom(news) {
     const spots = [];
@@ -40,18 +40,19 @@
       const [lng, lat] = g.coords;
       const near = spots.find((p) => {
         const dx = (lng - p.lng) * Math.cos((lat * Math.PI) / 180), dy = lat - p.lat;
-        return Math.hypot(dx, dy) < 11;
+        return Math.hypot(dx, dy) < 8;
       });
       const entry = { news: n, place: g.name };
+      const short = g.label || g.name;
       if (near) {
         near.items.push(entry);
-        if (!near.names.includes(g.name)) near.names.push(g.name);
+        if (!near.names.includes(g.name)) { near.names.push(g.name); near.labels.push(short); }
       } else {
-        spots.push({ lng, lat, names: [g.name], items: [entry] });
+        spots.push({ lng, lat, names: [g.name], labels: [short], items: [entry] });
       }
     }));
     spots.forEach((p) => {
-      p.name = p.names.length > 1 ? `${p.names[0]} +${p.names.length - 1}` : p.names[0];
+      p.name = p.labels.length > 1 ? `${p.labels[0]} +${p.labels.length - 1}` : p.labels[0];
       p.title = p.names.join(", ");
       // Étiquette à gauche du point si un autre point est juste à sa droite, à la même hauteur.
       p.left = spots.some((q) => q !== p && q.lng > p.lng && q.lng - p.lng < 30 && Math.abs(q.lat - p.lat) < 6);
@@ -235,6 +236,7 @@
         .htmlElement((p) => {
           const el = document.createElement("button");
           el.className = p.left ? "globe-pin left" : "globe-pin";
+          el.dataset.n = p.items.length;
           el.setAttribute("aria-label", `${p.title} : ${p.items.length} actu${p.items.length > 1 ? "s" : ""}`);
           el.innerHTML = `<span class="globe-dot"></span><span class="globe-label">${p.name}${p.items.length > 1 ? ` <em>${p.items.length}</em>` : ""}</span>`;
           el.addEventListener("click", (e) => { e.stopPropagation(); focus(p); });
@@ -257,6 +259,26 @@
       }
 
       addClouds(world);
+
+      // Anti-chevauchement : plusieurs fois par seconde, on masque les étiquettes qui en recouvrent
+      // une autre plus importante (plus d'actus). Les points lumineux restent toujours visibles.
+      const declutter = () => {
+        if (!document.body.contains(container)) return clearInterval(timer);
+        const labels = [...container.querySelectorAll(".globe-pin")]
+          .map((pin) => ({ pin, label: pin.querySelector(".globe-label"), n: Number(pin.dataset.n) || 1 }))
+          .filter((x) => x.label && x.pin.offsetParent !== null && x.pin.style.opacity !== "0")
+          .sort((a, b) => b.n - a.n);
+        const placed = [];
+        labels.forEach(({ label }) => {
+          label.classList.remove("muted-label");
+          const r = label.getBoundingClientRect();
+          if (!r.width) return;
+          const hit = placed.some((q) => r.left < q.right + 4 && r.right + 4 > q.left && r.top < q.bottom + 2 && r.bottom + 2 > q.top);
+          if (hit) label.classList.add("muted-label");
+          else placed.push(r);
+        });
+      };
+      const timer = setInterval(declutter, 250);
 
       const onResize = () => {
         if (!document.body.contains(container)) return window.removeEventListener("resize", onResize);

@@ -1,10 +1,13 @@
-// Rubrique « Culture G » : recherches perso et sujets peu médiatisés.
-// Pour ajouter une fiche, voir contenu/MODELE_FICHE.md.
+// Rubrique « Articles » : analyses, recherches et Culture G.
+// Pour ajouter un article, voir contenu/MODELE_FICHE.md.
+// `author` : signature affichée ; `kind` : type d'article (Culture G, Analyse, Enquête…).
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.culture = [
   {
     id: "reserves-strategiques",
+    author: "Rédaction Géoco (exemple)",
+    kind: "Culture G",
     theme: "eco",
     title: "Les réserves stratégiques de pétrole : l'assurance-vie des pays",
     hook: "La France a des millions de barils cachés dans des cuves, prêts à servir en cas de crise. D'où vient cette idée ?",
@@ -52,6 +55,8 @@ window.GEOCO.culture = [
   },
   {
     id: "cables-sous-marins",
+    author: "Rédaction Géoco (exemple)",
+    kind: "Culture G",
     theme: "geo",
     title: "Les câbles sous-marins : l'internet mondial tient à un fil",
     hook: "Tu penses que tes messages passent par des satellites ? En réalité, l'immense majorité traverse les océans dans des câbles posés au fond de la mer.",
@@ -99,6 +104,8 @@ window.GEOCO.culture = [
   },
   {
     id: "barrage-renaissance",
+    author: "Rédaction Géoco (exemple)",
+    kind: "Culture G",
     theme: "geo",
     title: "Le barrage de la Renaissance : la guerre de l'eau sur le Nil",
     hook: "L'Éthiopie a construit le plus grand barrage d'Afrique. Pour l'Égypte, c'est une question de survie.",

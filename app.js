@@ -25,7 +25,7 @@
   function newsCard(n) {
     return `
       <a class="news-card ${n.theme} reveal" href="#/actu/${n.id}">
-        <p class="eyebrow">${THEMES[n.theme]}</p>
+        <p class="eyebrow">${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}</p>
         <h3>${n.title}</h3>
         <p class="summary">${n.summary}</p>
         <span class="more">Comprendre en 2 min ›</span>
@@ -34,9 +34,9 @@
 
   function cultureTile(c) {
     return `
-      <a class="tile ${c.theme}" href="#/culture/${c.id}">
+      <a class="tile ${c.theme}" href="#/articles/${c.id}">
         <div>
-          <p class="eyebrow">Culture G · ${THEMES[c.theme]}</p>
+          <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
           <h3>${c.title}</h3>
         </div>
         <p class="stat-label">${c.hook}</p>
@@ -151,7 +151,7 @@
       .map((d) => {
         const f = d.figures[0];
         return `
-        <a class="tile ${d.theme}" href="#/dossier/${d.id}">
+        <a class="tile ${d.theme}" href="#/cours/${d.id}">
           <div>
             <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}</p>
             <h3>${d.title}</h3>
@@ -197,26 +197,29 @@
         </div>
       </section>` : ""}
 
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">Comprendre les enjeux</p>
+          <h2 class="title reveal">Cours.</h2>
+          <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
+          <div class="carousel" id="dossier-tiles">${dossierTiles()}</div>
+          <p class="reveal" style="margin-top:20px"><a href="#/cours">Tous les cours ›</a></p>
+        </div>
+      </section>
+
       ${culture.length ? `
       <section class="section alt">
         <div class="wrap">
-          <p class="eyebrow reveal">Culture G et recherches</p>
+          <p class="eyebrow reveal">Analyses et recherches</p>
           <h2 class="title reveal">Articles.</h2>
           <p class="copy reveal">Les sujets dont on parle peu, mais qui expliquent beaucoup.</p>
           <div class="carousel">${culture.map(cultureTile).join("")}</div>
+          <p class="reveal" style="margin-top:20px"><a href="#/articles">Tous les articles ›</a></p>
         </div>
       </section>` : ""}
 
       <section class="section">
-        <div class="wrap">
-          <p class="eyebrow reveal">Les bases</p>
-          <h2 class="title reveal">Comprendre.</h2>
-          <div class="reveal">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
-          <div class="carousel" id="dossier-tiles">${dossierTiles()}</div>
-        </div>
-      </section>
-
-      <section class="section alt">
         <div class="wrap">
           <p class="eyebrow reveal">À toi de jouer</p>
           <h2 class="title reveal">Teste-toi.</h2>
@@ -325,7 +328,7 @@
 
     app.innerHTML = `
       <section class="wrap hero">
-        <a class="back" href="#/">‹ Dossiers</a>
+        <a class="back" href="#/cours">‹ Cours</a>
         <p class="eyebrow reveal">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</p>
         <h1 class="title reveal">${d.title}</h1>
         <p class="lead reveal">${d.hook}</p>
@@ -405,20 +408,47 @@
   }
 
   // ---------- Actu du jour ----------
+  let actuTheme = "all", actuRegion = "all";
+  const REGIONS = ["Europe", "Amériques", "Moyen-Orient", "Afrique", "Asie"];
+
   function renderActuIndex() {
-    const days = [...new Set(news.map((n) => n.date))];
     app.innerHTML = `
       <section class="wrap hero">
         <p class="eyebrow reveal">Actu</p>
-        <h1 class="title reveal">L'actu du jour.<br><span class="grad mix">Expliquée.</span></h1>
-        <p class="lead reveal" style="margin-bottom:48px">Chaque jour, les événements qui comptent, ce qu'il faut en retenir et pourquoi ça te concerne.</p>
-        ${days.map((day) => `
-          <div class="day">
-            <p class="eyebrow reveal">${formatDate(day)}</p>
-            ${news.filter((n) => n.date === day).map(newsCard).join("")}
-          </div>`).join("") || '<p class="empty">Pas encore d\'actu.</p>'}
+        <h1 class="title reveal">L'actu éco et géopo.<br><span class="grad mix">Expliquée.</span></h1>
+        <p class="lead reveal">L'économie et la géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix de ton téléphone. Chaque jour, ce qui compte et pourquoi ça te concerne.</p>
+        <div class="filters reveal">
+          ${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], actuTheme, "atheme")}
+          <div class="chips-row" role="group" aria-label="Filtrer par région">
+            ${[["all", "Monde"], ...REGIONS.map((r) => [r, r])].map(([k, l]) => `<button class="chip-btn" data-aregion="${k}" aria-pressed="${actuRegion === k}">${l}</button>`).join("")}
+          </div>
+        </div>
+        <div id="actu-list"></div>
       </section>
     `;
+    function drawList() {
+      const list = news.filter((n) =>
+        (actuTheme === "all" || n.theme === actuTheme || n.theme === "mix") &&
+        (actuRegion === "all" || n.region === actuRegion));
+      const days = [...new Set(list.map((n) => n.date))];
+      app.querySelector("#actu-list").innerHTML = days.map((day) => `
+        <div class="day">
+          <p class="eyebrow">${formatDate(day)} · ${list.filter((n) => n.date === day).length} actus</p>
+          ${list.filter((n) => n.date === day).map(newsCard).join("")}
+        </div>`).join("") || '<p class="empty">Aucune actu pour ce filtre.</p>';
+      app.querySelectorAll("#actu-list .reveal").forEach((el) => el.classList.add("in"));
+    }
+    app.querySelectorAll("[data-atheme]").forEach((b) => b.addEventListener("click", () => {
+      actuTheme = b.dataset.atheme;
+      app.querySelectorAll("[data-atheme]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      drawList();
+    }));
+    app.querySelectorAll("[data-aregion]").forEach((b) => b.addEventListener("click", () => {
+      actuRegion = b.dataset.aregion;
+      app.querySelectorAll("[data-aregion]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      drawList();
+    }));
+    drawList();
   }
 
   function renderNews(id) {
@@ -464,7 +494,7 @@
       ${cult.length ? `
       <section class="section alt">
         <div class="wrap">
-          <h2 class="title reveal">Culture G.</h2>
+          <h2 class="title reveal">À lire aussi.</h2>
           <p class="copy reveal">Pour aller plus loin que l'actu.</p>
           <div class="carousel">${cult.map(cultureTile).join("")}</div>
         </div>
@@ -473,10 +503,10 @@
       ${doss.length ? `
       <section class="section">
         <div class="wrap">
-          <h2 class="title reveal">Les dossiers pour comprendre.</h2>
+          <h2 class="title reveal">Les cours pour comprendre.</h2>
           <div class="group reveal">
             ${doss.map((d) => `
-              <a class="row" href="#/dossier/${d.id}">
+              <a class="row" href="#/cours/${d.id}">
                 <span class="dot ${d.theme}"></span>
                 <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${d.minutes} min · ${d.level}</div></div>
                 <span class="chev" aria-hidden="true">›</span>
@@ -491,14 +521,79 @@
     mountVisuals(n.visuals);
   }
 
-  // ---------- Culture G ----------
-  function renderCultureIndex() {
+  // ---------- Cours ----------
+  function renderCoursIndex() {
+    const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
     app.innerHTML = `
       <section class="wrap hero">
-        <p class="eyebrow reveal">Culture G</p>
-        <h1 class="title reveal">Ce dont on parle peu.<br><span class="grad geo">Et qui explique tout.</span></h1>
-        <p class="lead reveal">Des recherches sur les coulisses de l'actu : l'histoire, les ressources, les infrastructures et les rivalités qu'on voit rarement à la une.</p>
-        <div class="carousel">${culture.map(cultureTile).join("")}</div>
+        <p class="eyebrow reveal">Cours</p>
+        <h1 class="title reveal">Comprendre les enjeux.<br><span class="grad eco">En trois minutes.</span></h1>
+        <p class="lead reveal">Les mécanismes à connaître pour décrypter l'actu : inflation, droits de douane, routes maritimes, sanctions, dollar… Chaque cours se termine par un quiz.</p>
+        <div class="reveal" style="margin-top:28px">${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], homeFilter, "filter")}</div>
+        <div class="carousel" id="dossier-tiles">${dossierTiles()}</div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Tous les cours.</h2>
+          <p class="eyebrow reveal">${readCount}/${dossiers.length} lus</p>
+          <div class="group reveal">
+            ${dossiers.map((d) => `
+              <a class="row" href="#/cours/${d.id}">
+                <span class="dot ${d.theme}"></span>
+                <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</div></div>
+                ${readSet.has(d.id) ? '<span class="check">Lu</span>' : ""}
+                <span class="chev" aria-hidden="true">›</span>
+              </a>`).join("")}
+          </div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">S'entraîner.</h2>
+          <div class="group reveal">
+            <a class="row" href="#/quiz"><div class="row-main"><div class="row-title">Quiz</div><div class="row-sub">Un quiz par cours, ou le grand mélange</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/lexique"><div class="row-main"><div class="row-title">Lexique</div><div class="row-sub">${glossary.length} mots de l'actu, expliqués simplement</div></div><span class="chev" aria-hidden="true">›</span></a>
+            <a class="row" href="#/chiffres"><div class="row-main"><div class="row-title">Les chiffres du monde</div><div class="row-sub">Inflation, chômage et croissance sur un globe</div></div><span class="chev" aria-hidden="true">›</span></a>
+          </div>
+        </div>
+      </section>
+    `;
+    app.querySelectorAll("[data-filter]").forEach((btn) =>
+      btn.addEventListener("click", () => {
+        homeFilter = btn.dataset.filter;
+        app.querySelectorAll("[data-filter]").forEach((b) => b.setAttribute("aria-pressed", b === btn));
+        app.querySelector("#dossier-tiles").innerHTML = dossierTiles();
+      })
+    );
+  }
+
+  // ---------- Articles ----------
+  function renderArticlesIndex() {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Articles</p>
+        <h1 class="title reveal">Analyses et recherches.<br><span class="grad geo">Pour aller plus loin.</span></h1>
+        <p class="lead reveal">Des articles plus personnels sur les coulisses de l'actu : l'histoire, les ressources, les infrastructures et les rivalités qu'on voit rarement à la une.</p>
+        <div class="article-list">
+          ${culture.map((c) => `
+            <a class="news-card ${c.theme} reveal" href="#/articles/${c.id}">
+              <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
+              <h3>${c.title}</h3>
+              <p class="summary">${c.hook}</p>
+              ${c.author ? `<p class="byline">Par ${c.author}</p>` : ""}
+            </a>`).join("")}
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <div class="panel mix reveal">
+            <p class="eyebrow">Écrire un article</p>
+            <p>Une recherche, une analyse, un sujet peu médiatisé ? Écris-le comme tu veux, avec tes sources : il sera mis en forme avec cartes, chiffres et graphiques.</p>
+          </div>
+        </div>
       </section>
     `;
   }
@@ -510,8 +605,9 @@
 
     app.innerHTML = `
       <section class="wrap hero">
-        <a class="back" href="#/culture">‹ Culture G</a>
-        <p class="eyebrow reveal">Culture G · ${THEMES[c.theme]}</p>
+        <a class="back" href="#/articles">‹ Articles</a>
+        <p class="eyebrow reveal">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
+        ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
         <h1 class="title reveal">${c.title}</h1>
         <p class="lead reveal">${c.hook}</p>
         ${heroImage(c.image)}
@@ -770,7 +866,7 @@
       if (!d) return renderNotFound();
       questions = d.quiz;
       title = d.title;
-      backHref = "#/dossier/" + d.id;
+      backHref = "#/cours/" + d.id;
       theme = d.theme;
     }
 
@@ -845,11 +941,12 @@
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param] = (location.hash || "#/").split("/");
-    document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === section));
+    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours" }[section] || section;
+    document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
 
-    if (section === "dossier") renderDossier(param);
+    if (section === "cours" || section === "dossier") param ? renderDossier(param) : renderCoursIndex();
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
-    else if (section === "culture") param ? renderCulture(param) : renderCultureIndex();
+    else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param);
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();

@@ -29,12 +29,15 @@ Sous le classement, des **zooms** racontent un fait marquant avec un graphique, 
 
 Les données sont dans `data/indicators.js` (clés = codes ISO numériques des pays, contours dans `data/countries.js`). Elles doivent être mises à jour à la main ou par la routine quotidienne.
 
-## Les rubriques
+## Les trois parties
 
-- **Actu** : chaque jour, les événements éco et géopo qui comptent, avec ce qui s'est passé, pourquoi c'est important, l'impact concret et les sources (`data/news.js`)
-- **Culture G** : recherches sur des sujets peu médiatisés qui éclairent l'actu (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md))
-- **Dossiers** : les grands mécanismes à connaître (`data/content.js`)
-- **Lexique** et **Quiz**
+L'appli est organisée en trois grandes parties, accessibles depuis la barre du haut :
+
+1. **Actu** : l'actualité économique et géopolitique, traitée ensemble parce qu'elles sont liées. Chaque actu a un lieu sur le globe, une région (Europe, Amériques, Moyen-Orient, Afrique, Asie) et des filtres par thème et par région (`data/news.js`).
+2. **Cours** : comprendre les enjeux (inflation, droits de douane, routes maritimes, puces, sanctions, dollar), avec quiz et lexique (`data/content.js`).
+3. **Articles** : analyses, recherches et Culture G rédigées par l'auteur, signées (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md)).
+
+En plus : l'onglet **Chiffres** (inflation, chômage, croissance par pays sur un globe, et zooms comme l'emploi en France).
 
 ## Ce que contient le prototype
 
