@@ -175,7 +175,7 @@
       <section class="globe-hero" aria-label="Globe de l'actualité">
         <div class="globe" id="globe"></div>
         <div class="globe-overlay">
-          <p class="eyebrow">${today ? formatDate(today) : "Géoco"}</p>
+          <p class="eyebrow">${today ? formatDate(today) : "Géoconomic"}</p>
           <h1 class="headline">Le monde,<br><span class="grad mix">aujourd'hui.</span></h1>
           <p class="globe-hint">Touche un point lumineux pour comprendre ce qui s'y passe.</p>
         </div>

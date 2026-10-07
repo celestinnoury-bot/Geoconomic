@@ -1,4 +1,4 @@
-# Géoco : comprendre le monde en 3 minutes
+# Géoconomic : comprendre le monde en 3 minutes
 
 Une application qui **vulgarise l'actualité économique et géopolitique** pour la rendre accessible à tout le monde, sans jargon.
 

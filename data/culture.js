@@ -6,7 +6,7 @@ window.GEOCO = window.GEOCO || {};
 window.GEOCO.culture = [
   {
     id: "reserves-strategiques",
-    author: "Rédaction Géoco (exemple)",
+    author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "eco",
     title: "Les réserves stratégiques de pétrole : l'assurance-vie des pays",
@@ -55,7 +55,7 @@ window.GEOCO.culture = [
   },
   {
     id: "cables-sous-marins",
-    author: "Rédaction Géoco (exemple)",
+    author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "geo",
     title: "Les câbles sous-marins : l'internet mondial tient à un fil",
@@ -104,7 +104,7 @@ window.GEOCO.culture = [
   },
   {
     id: "barrage-renaissance",
-    author: "Rédaction Géoco (exemple)",
+    author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "geo",
     title: "Le barrage de la Renaissance : la guerre de l'eau sur le Nil",
