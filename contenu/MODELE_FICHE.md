@@ -24,4 +24,6 @@ Paragraphes courts. La première phrase de chaque paragraphe doit pouvoir se lir
 
 **Le saviez-vous ?** : une anecdote surprenante en une ou deux phrases.
 
-**Sources** : les liens que tu as utilisés (articles, rapports, livres).
+**Sources** : les liens que tu as utilisés (articles, rapports, livres). Indique après chaque fait d'où il vient, je le mettrai entre parenthèses dans le texte.
+
+**Visuel** (facultatif) : une carte (quels lieux montrer ?), un graphique (quels chiffres, quelle source ?) ou une photo (avec son auteur et sa licence).

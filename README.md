@@ -29,6 +29,18 @@ Chaque sujet est un **dossier court** construit toujours de la même façon :
 - Design inspiré des pages produit d'Apple : fond noir, textes en Times New Roman, barre flottante translucide, apparitions au défilement
 - **PWA** : installable sur l'écran d'accueil du téléphone et utilisable hors connexion
 
+## Sources
+
+Chaque fait est sourcé. Dans les fichiers de données, `[1]` après une phrase renvoie à la première source de la liste `sources` : l'appli affiche le nom de la source entre parenthèses, avec un lien, et la liste complète numérotée en bas de page. Les chiffres clés ont aussi leur source (`src`).
+
+## Cartes et graphiques interactifs
+
+Chaque dossier, actu ou fiche peut avoir des `visuals` (voir `viz.js`) :
+- **carte** (`kind: "map"`) : lieux cliquables avec zoom animé, pays mis en valeur ; fond de carte Natural Earth (domaine public) généré par `tools/build-map.mjs`
+- **graphique** (`kind: "chart"`, en barres ou en ligne) : valeurs au toucher, tableau des données consultable
+
+Une photo d'en-tête peut aussi être ajoutée avec `image: { src, alt, credit }`.
+
 ## Lancer l'application
 
 Aucune installation nécessaire :

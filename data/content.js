@@ -15,7 +15,7 @@ window.GEOCO = {
       level: "Débutant",
       tldr: [
         "L'inflation, c'est la hausse générale et durable des prix : avec le même billet, on achète moins.",
-        "En 2022, elle a dépassé 5 % en France, du jamais vu depuis le milieu des années 1980.",
+        "En 2022, elle a dépassé 5 % en France, du jamais vu depuis le milieu des années 1980 [1].",
         "Pour la freiner, les banques centrales augmentent leurs taux d'intérêt : emprunter coûte plus cher, on dépense moins, les prix ralentissent."
       ],
       sections: [
@@ -29,8 +29,8 @@ window.GEOCO = {
         {
           title: "Le rôle de la banque centrale",
           paragraphs: [
-            "Dans la zone euro, c'est la Banque centrale européenne (BCE) qui veille sur les prix. Son objectif : une inflation proche de 2 % par an. Ni trop (on s'appauvrit), ni trop peu (l'économie s'endort).",
-            "Son outil principal, ce sont les taux directeurs : le prix auquel les banques empruntent de l'argent. Entre 2022 et 2023, la BCE les a fait passer d'un niveau négatif à 4 %, la hausse la plus rapide de son histoire."
+            "Dans la zone euro, c'est la Banque centrale européenne (BCE) qui veille sur les prix. Son objectif : une inflation proche de 2 % par an [2]. Ni trop (on s'appauvrit), ni trop peu (l'économie s'endort).",
+            "Son outil principal, ce sont les taux directeurs : le prix auquel les banques empruntent de l'argent. Entre 2022 et 2023, la BCE les a fait passer d'un niveau négatif à 4 %, la hausse la plus rapide de son histoire [2]."
           ]
         },
         {
@@ -43,9 +43,9 @@ window.GEOCO = {
       ],
       forMe: "Si l'inflation est à 5 % et que ton salaire augmente de 2 %, ton pouvoir d'achat baisse. Et quand les taux montent, ton futur crédit immobilier coûte plus cher, mais ton livret d'épargne rapporte un peu plus.",
       figures: [
-        { value: "2 %", label: "l'objectif d'inflation de la BCE" },
-        { value: "+5,2 %", label: "l'inflation en France en 2022 (Insee)" },
-        { value: "4 %", label: "le taux de dépôt de la BCE fin 2023" }
+        { value: "2 %", label: "l'objectif d'inflation de la BCE", src: 2 },
+        { value: "+5,2 %", label: "l'inflation en France en 2022", src: 1 },
+        { value: "4 %", label: "le taux de dépôt de la BCE fin 2023", src: 2 }
       ],
       terms: ["inflation", "banque-centrale", "taux-directeur", "pouvoir-achat", "chaine-appro"],
       quiz: [
@@ -62,7 +62,23 @@ window.GEOCO = {
           explain: "En augmentant les taux, elle rend le crédit plus cher : on emprunte et on dépense moins, ce qui ralentit la hausse des prix."
         }
       ],
-      sources: ["Insee, indice des prix à la consommation", "Banque centrale européenne, décisions de politique monétaire"]
+      sources: [
+        { short: "Insee", name: "Insee, indice des prix à la consommation (moyennes annuelles)", url: "https://www.insee.fr" },
+        { short: "BCE", name: "Banque centrale européenne, taux directeurs", url: "https://www.ecb.europa.eu/stats/policy_and_exchange_rates/key_ecb_interest_rates/html/index.en.html" }
+      ],
+      visuals: [
+        {
+          kind: "chart",
+          type: "bar",
+          title: "L'inflation en France depuis 2015",
+          subtitle: "Hausse moyenne des prix à la consommation sur l'année",
+          xLabel: "Année",
+          unit: "Inflation (%)",
+          suffix: " %",
+          data: [["2015", 0.0], ["2016", 0.2], ["2017", 1.0], ["2018", 1.8], ["2019", 1.1], ["2020", 0.5], ["2021", 1.6], ["2022", 5.2], ["2023", 4.9], ["2024", 2.0]],
+          source: "Insee, indice des prix à la consommation"
+        }
+      ]
     },
 
     {
@@ -121,7 +137,10 @@ window.GEOCO = {
           explain: "Le libre-échange consiste à réduire au maximum les barrières (taxes, quotas) entre pays pour faciliter le commerce."
         }
       ],
-      sources: ["Organisation mondiale du commerce", "Commission européenne, accord commercial UE–États-Unis (2025)"]
+      sources: [
+        { short: "OMC", name: "Organisation mondiale du commerce, les droits de douane", url: "https://www.wto.org" },
+        { short: "Commission européenne", name: "Commission européenne, relations commerciales UE–États-Unis", url: "https://policy.trade.ec.europa.eu" }
+      ]
     },
 
     {
@@ -133,7 +152,7 @@ window.GEOCO = {
       minutes: 4,
       level: "Débutant",
       tldr: [
-        "Environ 80 % des marchandises échangées dans le monde voyagent par bateau.",
+        "Environ 80 % des marchandises échangées dans le monde voyagent par bateau [1].",
         "Beaucoup de ces navires doivent passer par quelques détroits et canaux très étroits : Ormuz, Bab-el-Mandeb, Suez, Malacca, Panama.",
         "Si l'un d'eux est bloqué ou menacé, les délais s'allongent, l'assurance et le transport coûtent plus cher, et les prix montent."
       ],
@@ -141,9 +160,9 @@ window.GEOCO = {
         {
           title: "Le détroit d'Ormuz, le robinet du pétrole",
           paragraphs: [
-            "Entre l'Iran et la péninsule arabique, le détroit d'Ormuz voit passer environ un cinquième du pétrole consommé dans le monde, venu d'Arabie saoudite, d'Irak, des Émirats, du Koweït ou du Qatar (pour le gaz).",
+            "Entre l'Iran et la péninsule arabique, le détroit d'Ormuz voit passer environ un cinquième du pétrole consommé dans le monde [2], venu d'Arabie saoudite, d'Irak, des Émirats, du Koweït ou du Qatar (pour le gaz).",
             "La moindre tension dans la région fait réagir les marchés : même sans blocage réel, la simple menace suffit à faire grimper le prix du baril.",
-            "En 2026, le scénario redouté est devenu réalité : après les frappes américaines et israéliennes contre l'Iran, Téhéran a bloqué le détroit pendant des mois. Le baril a dépassé 100 dollars et le gazole a battu des records en Europe."
+            "En 2026, le scénario redouté est devenu réalité : après les frappes américaines et israéliennes contre l'Iran, Téhéran a bloqué le détroit pendant des mois. Le baril a dépassé 100 dollars et le gazole a battu des records en Europe [3]."
           ]
         },
         {
@@ -163,8 +182,8 @@ window.GEOCO = {
       ],
       forMe: "Quand un détroit est menacé, le prix du plein d'essence peut monter en quelques jours. Et quand les cargos font le tour de l'Afrique, certains produits importés d'Asie arrivent plus tard et plus cher.",
       figures: [
-        { value: "≈ 80 %", label: "du commerce mondial (en volume) se fait par la mer" },
-        { value: "≈ 1/5", label: "du pétrole mondial passe par Ormuz" },
+        { value: "≈ 80 %", label: "du commerce mondial (en volume) se fait par la mer", src: 1 },
+        { value: "≈ 1/5", label: "du pétrole mondial passait par Ormuz avant 2026", src: 2 },
         { value: "+10 à 14 j", label: "pour contourner l'Afrique au lieu de Suez" }
       ],
       terms: ["detroit", "chaine-appro", "opep", "mondialisation"],
@@ -182,7 +201,27 @@ window.GEOCO = {
           explain: "Les attaques des Houthis contre des navires marchands ont poussé beaucoup d'armateurs à contourner l'Afrique, plus long mais plus sûr."
         }
       ],
-      sources: ["CNUCED, Review of Maritime Transport", "Agence internationale de l'énergie (AIE)"]
+      sources: [
+        { short: "CNUCED", name: "CNUCED, Review of Maritime Transport", url: "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport" },
+        { short: "EIA", name: "Agence américaine d'information sur l'énergie, « World Oil Transit Chokepoints »", url: "https://www.eia.gov/international/analysis/special-topics/World_Oil_Transit_Chokepoints" },
+        { short: "House of Commons Library", name: "House of Commons Library, crise d'Ormuz 2026", url: "https://commonslibrary.parliament.uk/research-briefings/cbp-10636/" }
+      ],
+      visuals: [
+        {
+          kind: "map",
+          title: "Les passages qui tiennent le commerce mondial",
+          intro: "Touche un passage pour zoomer dessus.",
+          points: [
+            { name: "Ormuz", coords: [56.4, 26.5], zoom: 10, text: "Entre l'Iran et Oman. Environ un cinquième du pétrole consommé dans le monde y passait avant la crise de 2026 (EIA)." },
+            { name: "Bab-el-Mandeb", coords: [43.33, 12.6], zoom: 10, text: "Entre le Yémen et Djibouti, l'entrée sud de la mer Rouge. Zone des attaques houthies depuis fin 2023." },
+            { name: "Suez", coords: [32.35, 30.6], zoom: 10, text: "Le canal égyptien relie la Méditerranée à la mer Rouge : le raccourci entre l'Europe et l'Asie." },
+            { name: "Cap de Bonne-Espérance", coords: [18.47, -34.36], zoom: 16, text: "Le détour par le sud de l'Afrique quand la mer Rouge est trop dangereuse : environ 10 à 14 jours de mer en plus." },
+            { name: "Malacca", coords: [100.9, 2.6], zoom: 14, text: "Entre la Malaisie et l'Indonésie : l'autoroute entre l'océan Indien et le Pacifique, vitale pour la Chine, le Japon et la Corée." },
+            { name: "Panama", coords: [-79.7, 9.1], zoom: 10, text: "Le canal relie l'Atlantique au Pacifique. Il fonctionne avec l'eau douce du lac Gatún : la sécheresse de 2023 a forcé à limiter les passages." }
+          ],
+          source: "EIA ; CNUCED"
+        }
+      ]
     },
 
     {
@@ -246,7 +285,24 @@ window.GEOCO = {
           explain: "Comme le monde entier dépend des puces taïwanaises, une attaque contre l'île aurait un coût énorme pour tous, y compris pour la Chine."
         }
       ],
-      sources: ["Semiconductor Industry Association", "Commission européenne, European Chips Act"]
+      sources: [
+        { short: "SIA", name: "Semiconductor Industry Association", url: "https://www.semiconductors.org/" },
+        { short: "Commission européenne", name: "Commission européenne, European Chips Act", url: "https://digital-strategy.ec.europa.eu/fr/policies/european-chips-act" }
+      ],
+      visuals: [
+        {
+          kind: "map",
+          title: "Une puce, trois continents",
+          intro: "Les étapes clés de la fabrication d'une puce avancée. Touche un lieu pour zoomer.",
+          points: [
+            { name: "Santa Clara", coords: [-121.96, 37.35], zoom: 12, text: "La Silicon Valley, en Californie : c'est ici que Nvidia (entre autres) conçoit ses puces. Mais elle ne les fabrique pas." },
+            { name: "Veldhoven", coords: [5.4, 51.42], zoom: 12, text: "Aux Pays-Bas, siège d'ASML, seul fabricant au monde des machines de lithographie EUV indispensables aux puces les plus fines." },
+            { name: "Hsinchu", coords: [120.97, 24.8], zoom: 12, text: "Au nord de Taïwan, siège de TSMC, qui fabrique la très grande majorité des puces les plus avancées du monde." },
+            { name: "Détroit de Taïwan", coords: [119.6, 24.3], zoom: 9, text: "Environ 130 km au plus étroit séparent Taïwan de la Chine continentale." }
+          ],
+          source: "SIA ; sites des entreprises"
+        }
+      ]
     },
 
     {
@@ -259,7 +315,7 @@ window.GEOCO = {
       level: "Intermédiaire",
       tldr: [
         "Une sanction économique est une mesure qui coupe ou limite les échanges avec un pays, une entreprise ou une personne pour faire pression.",
-        "Après l'invasion de l'Ukraine en 2022, l'Occident a gelé environ 300 milliards de dollars de réserves de la banque centrale russe et exclu plusieurs banques russes du système SWIFT.",
+        "Après l'invasion de l'Ukraine en 2022, l'Occident a gelé environ 300 milliards de dollars de réserves de la banque centrale russe et exclu plusieurs banques russes du système SWIFT [1].",
         "Les sanctions affaiblissent une économie, mais le pays visé trouve souvent des contournements."
       ],
       sections: [
@@ -315,7 +371,10 @@ window.GEOCO = {
           explain: "Elle a réorienté ses exportations vers l'Asie, notamment la Chine et l'Inde, souvent à prix réduit."
         }
       ],
-      sources: ["Conseil de l'Union européenne, mesures restrictives contre la Russie", "SWIFT"]
+      sources: [
+        { short: "Conseil de l'UE", name: "Conseil de l'Union européenne, sanctions contre la Russie", url: "https://www.consilium.europa.eu/fr/policies/sanctions-against-russia/" },
+        { short: "SWIFT", name: "SWIFT, à propos", url: "https://www.swift.com/about-us" }
+      ]
     },
 
     {
@@ -327,7 +386,7 @@ window.GEOCO = {
       minutes: 3,
       level: "Intermédiaire",
       tldr: [
-        "Le dollar est la principale monnaie de réserve : près de 60 % des réserves de change des banques centrales sont en dollars.",
+        "Le dollar est la principale monnaie de réserve : près de 60 % des réserves de change des banques centrales sont en dollars [1].",
         "Cette domination remonte aux accords de Bretton Woods (1944), qui ont placé le dollar au centre du système monétaire mondial.",
         "Elle donne aux États-Unis un « privilège exorbitant » : emprunter moins cher et pouvoir sanctionner d'autres pays via leur système financier."
       ],
@@ -356,8 +415,8 @@ window.GEOCO = {
       ],
       forMe: "Quand le dollar se renforce face à l'euro, ton voyage aux États-Unis coûte plus cher, tout comme le pétrole, qui s'achète en dollars. À l'inverse, un dollar faible rend les produits européens moins compétitifs à l'export.",
       figures: [
-        { value: "≈ 58 %", label: "des réserves de change mondiales sont en dollars (FMI)" },
-        { value: "≈ 20 %", label: "pour l'euro, deuxième monnaie de réserve" },
+        { value: "≈ 58 %", label: "des réserves de change mondiales sont en dollars", src: 1 },
+        { value: "≈ 20 %", label: "pour l'euro, deuxième monnaie de réserve", src: 1 },
         { value: "1971", label: "fin de la convertibilité du dollar en or" }
       ],
       terms: ["monnaie-reserve", "banque-centrale", "brics", "sanctions"],
@@ -375,7 +434,24 @@ window.GEOCO = {
           explain: "Valéry Giscard d'Estaing, alors ministre des Finances, dénonçait dans les années 1960 l'avantage que le dollar donnait aux États-Unis."
         }
       ],
-      sources: ["FMI, données COFER sur la composition des réserves de change", "Banque des règlements internationaux"]
+      sources: [
+        { short: "FMI", name: "FMI, COFER : composition des réserves de change", url: "https://data.imf.org" },
+        { short: "BRI", name: "Banque des règlements internationaux, enquête triennale sur les changes", url: "https://www.bis.org/statistics/rpfx22.htm" }
+      ],
+      visuals: [
+        {
+          kind: "chart",
+          type: "line",
+          title: "La part du dollar dans les réserves mondiales",
+          subtitle: "Part des réserves de change déclarées détenue en dollars, en fin d'année",
+          xLabel: "Année",
+          unit: "Part (%)",
+          suffix: " %",
+          yMin: 0,
+          data: [["1999", 71.0], ["2005", 66.5], ["2010", 62.2], ["2015", 65.7], ["2020", 59.0], ["2024", 57.8]],
+          source: "FMI, COFER"
+        }
+      ]
     }
   ],
 

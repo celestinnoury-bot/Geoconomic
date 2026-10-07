@@ -55,19 +55,62 @@
         </div>
       </section>`;
   }
-  function bindFigures(figures, theme) {
+  function bindFigures(figures, theme, sources) {
     const box = app.querySelector("#figure");
     function show(i) {
       const f = figures[i];
-      box.innerHTML = `<div class="fade"><div class="bigstat grad ${theme}">${f.value}</div><p>${f.label}</p></div>`;
+      const src = f.src && sources && sources[f.src - 1];
+      box.innerHTML = `<div class="fade"><div class="bigstat grad ${theme}">${f.value}</div><p>${f.label}</p>
+        ${src ? `<p class="fig-src">Source : <a href="${src.url}" target="_blank" rel="noopener">${src.short || src.name}</a></p>` : ""}</div>`;
       app.querySelectorAll("[data-fig]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fig === String(i)));
     }
     app.querySelectorAll("[data-fig]").forEach((b) => b.addEventListener("click", () => show(Number(b.dataset.fig))));
     show(0);
   }
 
-  function sourcesList(sources) {
-    return `<div class="links">${sources.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${s.name}</a>`).join("")}</div>`;
+  // Liste numérotée des sources, en bas de page.
+  function sourcesBlock(sources) {
+    if (!sources || !sources.length) return "";
+    return `
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow">Sources</p>
+          <ol class="source-list">
+            ${sources.map((s, i) => `<li id="src-${i + 1}"><a href="${s.url}" target="_blank" rel="noopener">${s.name}</a></li>`).join("")}
+          </ol>
+        </div>
+      </section>`;
+  }
+
+  // Les [n] du texte deviennent « (Nom de la source) », avec un lien vers l'article.
+  function cite(text, sources) {
+    return text.replace(/\s*\[(\d+)\]/g, (m, n) => {
+      const src = sources && sources[Number(n) - 1];
+      if (!src) return "";
+      return ` <a class="cite" href="${src.url}" target="_blank" rel="noopener">(${src.short || src.name})</a>`;
+    });
+  }
+
+  // Texte d'un paragraphe : première phrase en gras, puis sources citées.
+  const para = (text, sources) => cite(leadIn(text), sources);
+
+  // Bloc des visuels interactifs (cartes, graphiques).
+  function visualsBlock(visuals, alt) {
+    if (!visuals || !visuals.length || !window.GeocoViz) return "";
+    return `
+      <section class="section ${alt ? "alt" : ""}">
+        <div class="wrap">
+          <h2 class="title reveal">Voir pour comprendre.</h2>
+          <div class="reveal">${window.GeocoViz.html(visuals)}</div>
+        </div>
+      </section>`;
+  }
+  const mountVisuals = (visuals) => window.GeocoViz && window.GeocoViz.mountAll(visuals);
+
+  // Photo d'en-tête facultative : { src, alt, credit }.
+  function heroImage(img) {
+    if (!img) return "";
+    return `<figure class="hero-img reveal"><img src="${img.src}" alt="${img.alt || ""}" loading="lazy"><figcaption>${img.credit || ""}</figcaption></figure>`;
   }
 
   // Façon Apple : la première phrase en blanc et en gras, la suite en gris.
@@ -213,20 +256,23 @@
         <p class="eyebrow reveal">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</p>
         <h1 class="title reveal">${d.title}</h1>
         <p class="lead reveal">${d.hook}</p>
+        ${heroImage(d.image)}
       </section>
 
       <section class="section alt">
         <div class="wrap">
           <p class="eyebrow reveal">L'essentiel en 30 secondes</p>
-          ${d.tldr.map((t) => `<p class="statement reveal">${t}</p>`).join("")}
+          ${d.tldr.map((t) => `<p class="statement reveal">${cite(t, d.sources)}</p>`).join("")}
         </div>
       </section>
+
+      ${visualsBlock(d.visuals)}
 
       ${d.sections.map((s) => `
         <section class="section">
           <div class="wrap">
             <h2 class="title reveal">${s.title}</h2>
-            ${s.paragraphs.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+            ${s.paragraphs.map((p) => `<p class="copy reveal">${para(p, d.sources)}</p>`).join("")}
           </div>
         </section>
       `).join("")}
@@ -264,12 +310,14 @@
             <a class="pill-btn blue lg" href="#/quiz/${d.id}" data-markread>Tester mes connaissances</a>
             <button class="pill-btn outline lg" data-markread>${readSet.has(d.id) ? "Déjà lu" : "Marquer comme lu"}</button>
           </div>
-          <p class="sources">Sources : ${d.sources.join(" · ")}</p>
         </div>
       </section>
+
+      ${sourcesBlock(d.sources)}
     `;
 
-    bindFigures(d.figures, d.theme);
+    bindFigures(d.figures, d.theme, d.sources);
+    mountVisuals(d.visuals);
 
     app.querySelectorAll(".fpill").forEach((p) =>
       p.addEventListener("click", () => p.setAttribute("aria-expanded", p.getAttribute("aria-expanded") !== "true"))
@@ -312,19 +360,22 @@
         <p class="eyebrow reveal">${formatDate(n.date)} · ${THEMES[n.theme]}</p>
         <h1 class="title reveal">${n.title}</h1>
         <p class="lead reveal">${n.summary}</p>
+        ${heroImage(n.image)}
       </section>
 
       <section class="section alt">
         <div class="wrap">
           <p class="eyebrow reveal">Ce qui s'est passé</p>
-          ${n.points.map((t) => `<p class="statement reveal">${t}</p>`).join("")}
+          ${n.points.map((t) => `<p class="statement reveal">${cite(t, n.sources)}</p>`).join("")}
         </div>
       </section>
+
+      ${visualsBlock(n.visuals)}
 
       <section class="section">
         <div class="wrap">
           <h2 class="title reveal">Pourquoi c'est important.</h2>
-          ${n.why.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+          ${n.why.map((p) => `<p class="copy reveal">${para(p, n.sources)}</p>`).join("")}
         </div>
       </section>
 
@@ -361,14 +412,10 @@
         </div>
       </section>` : ""}
 
-      <section class="section">
-        <div class="wrap">
-          <p class="eyebrow">Sources</p>
-          ${sourcesList(n.sources)}
-        </div>
-      </section>
+      ${sourcesBlock(n.sources)}
     `;
-    bindFigures(n.figures, n.theme);
+    bindFigures(n.figures, n.theme, n.sources);
+    mountVisuals(n.visuals);
   }
 
   // ---------- Culture G ----------
@@ -394,22 +441,24 @@
         <p class="eyebrow reveal">Culture G · ${THEMES[c.theme]}</p>
         <h1 class="title reveal">${c.title}</h1>
         <p class="lead reveal">${c.hook}</p>
+        ${heroImage(c.image)}
       </section>
 
       ${c.sections.map((sec, i) => `
         <section class="section ${i % 2 === 0 ? "alt" : ""}">
           <div class="wrap">
             <h2 class="title reveal">${sec.title}</h2>
-            ${sec.paragraphs.map((p) => `<p class="copy reveal">${leadIn(p)}</p>`).join("")}
+            ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, c.sources)}</p>`).join("")}
           </div>
         </section>
+        ${i === 0 ? visualsBlock(c.visuals) : ""}
       `).join("")}
 
       <section class="section">
         <div class="wrap">
           <div class="panel ${c.theme} reveal">
             <p class="eyebrow">Le saviez-vous ?</p>
-            <p>${c.didYouKnow}</p>
+            <p>${cite(c.didYouKnow, c.sources)}</p>
           </div>
         </div>
       </section>
@@ -422,19 +471,15 @@
         </div>
       </section>` : ""}
 
-      <section class="section">
-        <div class="wrap">
-          <p class="eyebrow">Sources</p>
-          ${sourcesList(c.sources)}
-        </div>
-      </section>
+      ${sourcesBlock(c.sources)}
     `;
+    mountVisuals(c.visuals);
   }
 
   // ---------- Lexique ----------
   function renderLexique(focusId) {
     const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, "fr"));
-    const normalize = (s) => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+    const normalize = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     app.innerHTML = `
       <section class="wrap hero">

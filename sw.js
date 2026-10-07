@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle marche hors connexion.
 // Pense à changer la version quand tu modifies des fichiers, pour forcer la mise à jour.
-const CACHE = "geoco-v4";
+const CACHE = "geoco-v5";
 const FILES = [
   "./",
   "index.html",
@@ -9,6 +9,8 @@ const FILES = [
   "data/content.js",
   "data/news.js",
   "data/culture.js",
+  "data/world.js",
+  "viz.js",
   "manifest.webmanifest",
   "assets/icon.svg"
 ];
