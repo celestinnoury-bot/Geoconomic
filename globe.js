@@ -60,6 +60,31 @@
     return spots;
   }
 
+  // Zoom : pincement à deux doigts sur mobile, Ctrl + molette (ou pincement du pavé tactile) sur
+  // ordinateur, et boutons + / −. La molette seule continue de faire défiler la page.
+  function addZoom(world, container, controls) {
+    controls.enableZoom = true;
+    controls.minDistance = 125;
+    controls.maxDistance = 480;
+    container.addEventListener("wheel", (e) => {
+      if (!e.ctrlKey && !e.metaKey) e.stopPropagation();
+    }, { capture: true });
+    const box = document.createElement("div");
+    box.className = "globe-zoom";
+    box.innerHTML = '<button type="button" data-z="0.7" aria-label="Zoomer">+</button><button type="button" data-z="1.4" aria-label="Dézoomer">−</button>';
+    box.addEventListener("pointerdown", (e) => e.stopPropagation());
+    box.addEventListener("click", (e) => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      e.stopPropagation();
+      controls.autoRotate = false;
+      const pov = world.pointOfView();
+      const alt = Math.min(3.8, Math.max(0.25, pov.altitude * Number(b.dataset.z)));
+      world.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: alt }, 500);
+    });
+    container.appendChild(box);
+  }
+
   // Ajoute une couche de nuages qui tourne lentement, en réutilisant les classes three.js du globe.
   function addClouds(world) {
     try {
@@ -164,7 +189,7 @@
     const controls = world.controls();
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.35;
-    controls.enableZoom = false;
+    addZoom(world, container, controls);
     world.pointOfView({ lat: 25, lng: 15, altitude: 2.4 });
 
     function refresh() { world.polygonsData(features.slice()); }
@@ -246,7 +271,7 @@
       const controls = world.controls();
       controls.autoRotate = true;
       controls.autoRotateSpeed = 0.45;
-      controls.enableZoom = false; // la molette et le pincement servent à faire défiler la page
+      addZoom(world, container, controls);
       controls.enableDamping = true;
 
       // Point de vue de départ : le Golfe et l'Europe, là où se concentre l'actu.
