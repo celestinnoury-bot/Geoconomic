@@ -5,10 +5,11 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/indicators.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/indicators.js", "data/focus.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
+const focus = ctx.window.GEOCO.focus || [];
 
 const errors = [];
 const warn = [];
@@ -91,6 +92,21 @@ culture.forEach((c) => {
 (indicators.focus || []).forEach((z) => {
   checkSources(`zoom ${z.id}`, z.sources);
   [z.statement, ...z.text, z.compare && z.compare.text].filter(Boolean).forEach((t) => checkCites(`zoom ${z.id}`, t, z.sources));
+});
+
+// ---- Focus industrie
+focus.forEach((f) => {
+  const w = `focus ${f.id}`;
+  checkSources(w, f.sources);
+  if (!f.model || !f.model.src || !f.model.credit) err(w, "modèle 3D et crédit obligatoires");
+  else if (!fs.existsSync(f.model.src)) err(w, `modèle introuvable : ${f.model.src}`);
+  [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).map((h) => h.text)].forEach((t) => checkCites(w, t, f.sources));
+  (f.figures || []).forEach((x) => { if (x.src && !f.sources[x.src - 1]) err(w, `chiffre « ${x.value} » : src inexistante`); });
+  (f.hotspots || []).forEach((h) => (h.links || []).forEach(([kind, id]) => {
+    if (kind === "actu" && !newsIds.has(id)) warn.push(`${w} : lien vers une actu retirée (${id})`);
+    if (kind === "cours" && !dossierIds.has(id)) err(w, `cours inconnu « ${id} »`);
+  }));
+  (f.quiz || []).forEach((q, i) => { if (!(q.answer >= 0 && q.answer < q.options.length)) err(w, `quiz ${i + 1} : réponse hors des choix`); });
 });
 
 const today = news.length ? news[0].date : "—";

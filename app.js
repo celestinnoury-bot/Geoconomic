@@ -4,6 +4,7 @@
   const { dossiers, glossary } = window.GEOCO;
   const news = window.GEOCO.news || [];
   const culture = window.GEOCO.culture || [];
+  const focusList = window.GEOCO.focus || [];
   const app = document.getElementById("app");
   const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
 
@@ -197,6 +198,19 @@
         </div>
       </section>` : ""}
 
+
+      ${focusList.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">Focus industrie · ${focusList[0].week}</p>
+          <h2 class="title reveal">${focusList[0].industry}.</h2>
+          <a class="news-card eco reveal focus-teaser" href="#/focus/${focusList[0].id}">
+            <h3>${focusList[0].title}</h3>
+            <p class="summary">${focusList[0].hook}</p>
+            <span class="more">Explorer en 3D ›</span>
+          </a>
+        </div>
+      </section>` : ""}
 
       <section class="section">
         <div class="wrap">
@@ -519,6 +533,119 @@
     `;
     bindFigures(n.figures, n.theme, n.sources);
     mountVisuals(n.visuals);
+  }
+
+  // ---------- Focus industrie ----------
+  function focusLink([kind, id, label]) {
+    const href = kind === "actu" ? `#/actu/${id}` : `#/cours/${id}`;
+    return `<a class="tagpill" href="${href}">${label} ›</a>`;
+  }
+
+  function renderFocus(id) {
+    const f = id ? byId(focusList, id) : focusList[0];
+    if (!f) return renderNotFound();
+    const others = focusList.filter((x) => x !== f);
+
+    app.innerHTML = `
+      <section class="focus-hero">
+        <div class="focus-head wrap">
+          <p class="eyebrow">Focus industrie · ${f.week}</p>
+          <h1 class="title">${f.industry}.<br><span class="grad eco">${f.title}</span></h1>
+        </div>
+        <div class="car-stage" id="car-stage">
+          <p class="car-loading" id="car-loading">Chargement de la voiture 3D…</p>
+          <div class="car-card" id="car-card" hidden></div>
+        </div>
+        <div class="wrap focus-controls">
+          ${f.paints ? `<div>${segmented(f.paints, f.paints[0][0], "paint")}</div>` : ""}
+          <p class="globe-hint">Fais tourner la voiture et touche ses pièces : chacune raconte un morceau de géopolitique.</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="lead reveal">${f.hook}</p>
+        </div>
+      </section>
+
+      ${figuresBlock(f.figures)}
+
+      ${f.sections.map((sec, i) => `
+        <section class="section ${i % 2 === 0 ? "alt" : ""}">
+          <div class="wrap">
+            <h2 class="title reveal">${sec.title}</h2>
+            ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, f.sources)}</p>`).join("")}
+          </div>
+        </section>
+        ${i === 1 ? visualsBlock([f.chart].filter(Boolean)) : ""}
+        ${i === 3 ? visualsBlock([f.map].filter(Boolean), true) : ""}
+      `).join("")}
+
+      <section class="wrap">
+        <div class="panel eco reveal">
+          <p class="eyebrow">Et moi, dans tout ça ?</p>
+          <p>${f.forMe}</p>
+        </div>
+      </section>
+
+      ${f.quiz && f.quiz.length ? `
+      <section class="section">
+        <div class="wrap">
+          <h2 class="title reveal">Tu as tout compris ?</h2>
+          <div class="actions reveal"><a class="pill-btn blue lg" href="#/quiz/focus-${f.id}">Faire le quiz</a></div>
+        </div>
+      </section>` : ""}
+
+      ${others.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">Les autres focus.</h2>
+          <div class="group reveal">
+            ${others.map((o) => `<a class="row" href="#/focus/${o.id}"><div class="row-main"><div class="row-title">${o.industry} : ${o.title}</div><div class="row-sub">${o.week}</div></div><span class="chev" aria-hidden="true">›</span></a>`).join("")}
+          </div>
+        </div>
+      </section>` : ""}
+
+      <section class="section">
+        <div class="wrap">
+          <p class="viz-cap">${f.model.credit}</p>
+        </div>
+      </section>
+      ${sourcesBlock(f.sources)}
+    `;
+
+    bindFigures(f.figures, "eco", f.sources);
+    mountVisuals([f.chart, f.map].filter(Boolean));
+
+    const stage = app.querySelector("#car-stage");
+    const card = app.querySelector("#car-card");
+    function showSpot(h) {
+      card.hidden = false;
+      card.innerHTML = `
+        <button class="sheet-close" aria-label="Fermer">×</button>
+        <p class="eyebrow">${h.label}</p>
+        <h3>${h.title}</h3>
+        <p>${cite(h.text, f.sources)}</p>
+        ${h.links && h.links.length ? `<div class="pills">${h.links.map(focusLink).join("")}</div>` : ""}`;
+      card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
+    }
+
+    import("./car3d.js")
+      .then((m) => m.mountCar(stage, { src: f.model.src, hotspots: f.hotspots, onHotspot: showSpot }))
+      .then((car) => {
+        const loading = app.querySelector("#car-loading");
+        if (loading) loading.remove();
+        if (!car || !document.body.contains(stage)) { if (car) car.destroy(); return; }
+        currentGlobe = car;
+        app.querySelectorAll("[data-paint]").forEach((b) => b.addEventListener("click", () => {
+          app.querySelectorAll("[data-paint]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+          car.setPaint(b.dataset.paint);
+        }));
+      })
+      .catch(() => {
+        const loading = app.querySelector("#car-loading");
+        if (loading) loading.textContent = "La voiture 3D ne peut pas s'afficher sur cet appareil.";
+      });
   }
 
   // ---------- Cours ----------
@@ -856,7 +983,14 @@
 
   function renderQuiz(id) {
     let questions, title, backHref, theme;
-    if (id === "tout") {
+    if (id && id.startsWith("focus-")) {
+      const f = byId(focusList, id.slice(6));
+      if (!f) return renderNotFound();
+      questions = f.quiz;
+      title = "Focus : " + f.industry;
+      backHref = "#/focus/" + f.id;
+      theme = "eco";
+    } else if (id === "tout") {
       questions = shuffle(dossiers.flatMap((d) => d.quiz));
       title = "Le grand quiz";
       backHref = "#/quiz";
@@ -948,6 +1082,7 @@
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
     else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param);
+    else if (section === "focus") renderFocus(param);
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();
