@@ -387,22 +387,24 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .pin-label { font-size: 12px; letter-spacing: 0; }
 
 /* ---------- Accueil : globe 3D ---------- */
+@media (max-width: 560px) { .globe { top: calc(220px + env(safe-area-inset-top)); } .globe-hint { font-size: 14px; } }
 .globe-hero {
   position: relative; height: 100vh; height: 100svh; min-height: 560px;
   margin-top: -72px; overflow: hidden;
   background: radial-gradient(90% 60% at 50% 55%, #0a1a33 0%, #000 70%);
 }
-.globe { position: absolute; left: 0; right: 0; top: 16%; bottom: -4%; cursor: grab; z-index: 0; }
+.globe { position: absolute; left: 0; right: 0; top: calc(200px + env(safe-area-inset-top)); bottom: 0; cursor: grab; z-index: 0; }
 .globe-overlay { transition: opacity .4s var(--ease); }
 .globe-hero.sheet-open .globe-overlay { opacity: 0; }
 .globe:active { cursor: grabbing; }
 .globe canvas { display: block; }
 .globe-overlay {
-  position: absolute; left: 0; right: 0; top: calc(92px + env(safe-area-inset-top));
-  max-width: 980px; margin: 0 auto; padding: 0 20px; pointer-events: none;
+  position: absolute; left: 0; right: 0; top: calc(84px + env(safe-area-inset-top));
+  max-width: 980px; margin: 0 auto; padding: 0 20px; pointer-events: none; text-align: center; z-index: 1;
 }
-.globe-overlay .headline { font-size: clamp(40px, 8vw, 72px); text-shadow: 0 2px 30px rgba(0,0,0,.6); }
-.globe-hint { margin-top: 10px; color: rgba(245,245,247,.75); font-size: 15px; letter-spacing: -.01em; text-shadow: 0 1px 12px rgba(0,0,0,.8); }
+.globe-overlay .eyebrow { margin-bottom: 4px; }
+.globe-overlay .headline { font-size: clamp(30px, 5vw, 48px); line-height: 1.1; text-shadow: 0 2px 30px rgba(0,0,0,.6); }
+.globe-hint { margin-top: 6px; color: rgba(245,245,247,.75); font-size: 15px; letter-spacing: -.01em; text-shadow: 0 1px 12px rgba(0,0,0,.8); }
 
 /* Le bouton fait 0 × 0 px : globe.gl le centre exactement sur le lieu, le point et l'étiquette s'y accrochent. */
 .globe-pin {
