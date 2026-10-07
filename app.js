@@ -84,6 +84,8 @@
 
   // Les [n] du texte deviennent « (Nom de la source) », avec un lien vers l'article.
   function cite(text, sources) {
+    // Espaces insécables dans les nombres (« 322 544 ») pour qu'ils ne soient jamais coupés en fin de ligne.
+    text = text.replace(/(\d) (?=\d{3}\b)/g, "$1\u00a0");
     return text.replace(/\s*\[(\d+)\]/g, (m, n) => {
       const src = sources && sources[Number(n) - 1];
       if (!src) return "";
@@ -585,7 +587,28 @@
       </section>
 
       <div id="ind-sources"></div>
+
+      ${(data.focus || []).map((z) => `
+      <section class="section alt focus" id="focus-${z.id}">
+        <div class="wrap">
+          <p class="eyebrow reveal">${z.eyebrow}</p>
+          <h2 class="title reveal">${z.title}</h2>
+          <p class="statement reveal">${cite(z.statement, z.sources)}</p>
+          ${z.text.map((t) => `<p class="copy reveal" style="margin-top:22px">${para(t, z.sources)}</p>`).join("")}
+          <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([z.chart]) : ""}</div>
+          ${z.compare ? `
+          <div class="panel geo reveal" style="margin-top:36px">
+            <p class="eyebrow">${z.compare.title}</p>
+            <p>${cite(z.compare.text, z.sources)}</p>
+            <div class="focus-figs">
+              ${z.compare.figures.map((f) => `<div><div class="bigstat grad geo">${f.value}</div><p class="bigstat-label">${f.label}${f.src && z.sources[f.src - 1] ? ` <a class="cite" href="${z.sources[f.src - 1].url}" target="_blank" rel="noopener">(${z.sources[f.src - 1].short})</a>` : ""}</p></div>`).join("")}
+            </div>
+          </div>` : ""}
+        </div>
+      </section>
+      ${sourcesBlock(z.sources)}`).join("")}
     `;
+    if (window.GeocoViz) window.GeocoViz.mountAll((data.focus || []).map((z) => z.chart));
 
     let globe = null;
     const card = app.querySelector("#ind-card");
@@ -598,7 +621,12 @@
         <button class="sheet-close" aria-label="Fermer">×</button>
         <p class="eyebrow">${ind.label}</p>
         <h3>${name}</h3>
-        ${d ? `<div class="bigstat grad mix">${fmtV(d.v)} ${ind.unit}</div><p class="ind-date">${d.d}</p>` : `<p class="ind-date">Pas de donnée pour l'instant.</p>`}`;
+        ${d ? `<div class="bigstat grad mix">${fmtV(d.v)} ${ind.unit}</div><p class="ind-date">${d.d}</p>` : `<p class="ind-date">Pas de donnée pour l'instant.</p>`}
+        ${(data.focus || []).filter((z) => z.country === id).map((z) => `<a class="more focus-link" href="#/chiffres" data-focus="${z.id}">${z.eyebrow} ›</a>`).join("")}`;
+      card.querySelectorAll("[data-focus]").forEach((a) => a.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("focus-" + a.dataset.focus).scrollIntoView({ behavior: "smooth" });
+      }));
       card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
     }
 

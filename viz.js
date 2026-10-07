@@ -178,8 +178,11 @@
       </figure>`;
   }
 
+  // `signed: true` affiche le signe (+ / −), utile pour les soldes (créations moins destructions).
   function fmt(v, spec) {
-    return v.toLocaleString("fr-FR", { minimumFractionDigits: spec.decimals ?? 1, maximumFractionDigits: spec.decimals ?? 1 }) + (spec.suffix || "");
+    const txt = Math.abs(v).toLocaleString("fr-FR", { minimumFractionDigits: spec.decimals ?? 1, maximumFractionDigits: spec.decimals ?? 1 });
+    const sign = v < 0 ? "−" : spec.signed && v > 0 ? "+" : "";
+    return sign + txt + (spec.suffix || "");
   }
 
   function niceMax(v) {
@@ -195,25 +198,39 @@
 
     function render() {
       const W = Math.max(280, stage.clientWidth), H = 240;
-      const m = { t: 24, r: 16, b: 28, l: 40 };
-      const iw = W - m.l - m.r, ih = H - m.t - m.b;
       const vals = spec.data.map((d) => d[1]);
-      const yMin = spec.yMin ?? 0;
-      const yMax = niceMax(Math.max(...vals));
-      const ticks = 4;
+      const lo = Math.min(...vals), hi = Math.max(...vals);
+      let yMin, yMax, ticks;
+      if (lo < 0) {
+        // Valeurs négatives : axe de part et d'autre de zéro, avec un pas « rond ».
+        const step = niceMax((Math.max(hi, 0) - lo) / 4);
+        yMin = Math.floor(lo / step) * step;
+        yMax = Math.max(step, Math.ceil(hi / step) * step);
+        ticks = Math.round((yMax - yMin) / step);
+      } else {
+        yMin = spec.yMin ?? 0;
+        yMax = niceMax(hi);
+        ticks = 4;
+      }
+      const tickText = (v) => (v < 0 ? "−" : "") + Math.abs(v).toLocaleString("fr-FR") + (spec.suffix || "");
+      const longest = Math.max(tickText(yMin).length, tickText(yMax).length);
+      const m = { t: 24, r: 16, b: 28, l: Math.max(40, longest * 6.5 + 12) };
+      const iw = W - m.l - m.r, ih = H - m.t - m.b;
       const y = (v) => m.t + ih - ((v - yMin) / (yMax - yMin)) * ih;
       const n = spec.data.length;
       const band = iw / n;
       const xc = (i) => m.l + band * i + band / 2;
-      const maxI = vals.indexOf(Math.max(...vals));
+      const maxI = vals.indexOf(hi);
+      const minI = vals.indexOf(lo);
       const lastI = n - 1;
 
       let out = `<svg xmlns="${NS}" viewBox="0 0 ${W} ${H}" width="${W}" height="${H}">`;
       for (let k = 0; k <= ticks; k++) {
         const v = yMin + ((yMax - yMin) * k) / ticks;
         out += `<line class="grid" x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}"/>`;
-        out += `<text class="axis" x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${v.toLocaleString("fr-FR")}${spec.suffix || ""}</text>`;
+        out += `<text class="axis" x="${m.l - 8}" y="${y(v) + 4}" text-anchor="end">${tickText(v)}</text>`;
       }
+      if (lo < 0) out += `<line class="zero" x1="${m.l}" x2="${W - m.r}" y1="${y(0)}" y2="${y(0)}"/>`;
       const every = Math.ceil(n / Math.floor(iw / 44));
       spec.data.forEach(([x], i) => {
         if ((i % every === 0 && lastI - i >= every) || i === lastI) out += `<text class="axis" x="${xc(i)}" y="${H - 8}" text-anchor="middle">${esc(x)}</text>`;
@@ -226,15 +243,22 @@
         pts.forEach((p, i) => { out += `<circle class="mark" data-i="${i}" cx="${p[0]}" cy="${p[1]}" r="4.5"/>`; });
       } else {
         const bw = Math.min(24, band - 2), r = Math.min(4, bw / 2);
+        const base = lo < 0 ? 0 : yMin;
         spec.data.forEach(([, v], i) => {
-          const x0 = xc(i) - bw / 2, y0 = y(v), yb = y(yMin), h = Math.max(0, yb - y0);
-          const rr = Math.min(r, h);
-          out += `<path class="mark" data-i="${i}" d="M${x0},${yb} V${y0 + rr} Q${x0},${y0} ${x0 + rr},${y0} H${x0 + bw - rr} Q${x0 + bw},${y0} ${x0 + bw},${y0 + rr} V${yb} Z"/>`;
+          const x0 = xc(i) - bw / 2, y0 = y(v), yb = y(base);
+          const rr = Math.min(r, Math.abs(yb - y0));
+          if (v >= base) {
+            out += `<path class="mark" data-i="${i}" d="M${x0},${yb} V${y0 + rr} Q${x0},${y0} ${x0 + rr},${y0} H${x0 + bw - rr} Q${x0 + bw},${y0} ${x0 + bw},${y0 + rr} V${yb} Z"/>`;
+          } else {
+            // Barre négative : elle descend sous zéro, arrondie en bas.
+            out += `<path class="mark neg" data-i="${i}" d="M${x0},${yb} V${y0 - rr} Q${x0},${y0} ${x0 + rr},${y0} H${x0 + bw - rr} Q${x0 + bw},${y0} ${x0 + bw},${y0 - rr} V${yb} Z"/>`;
+          }
         });
       }
-      // Étiquettes directes : seulement le maximum et la dernière valeur.
-      [...new Set([maxI, lastI])].forEach((i) => {
-        out += `<text class="val" x="${xc(i)}" y="${y(vals[i]) - 10}" text-anchor="middle">${fmt(vals[i], spec)}</text>`;
+      // Étiquettes directes : seulement le maximum, le minimum (s'il est négatif) et la dernière valeur.
+      [...new Set([maxI, lastI, ...(lo < 0 ? [minI] : []), ...(spec.highlight || [])])].forEach((i) => {
+        const below = vals[i] < 0;
+        out += `<text class="val" x="${xc(i)}" y="${y(vals[i]) + (below ? 18 : -10)}" text-anchor="middle">${fmt(vals[i], spec)}</text>`;
       });
       // Zones de survol plus larges que les marques.
       spec.data.forEach((_, i) => { out += `<rect class="hit" data-i="${i}" x="${m.l + band * i}" y="${m.t}" width="${band}" height="${ih}"/>`; });

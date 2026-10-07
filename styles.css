@@ -521,3 +521,10 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
   .nav-actions .pill-btn { padding: 6px 10px; font-size: 13px; }
 }
 .globe-pin.left .globe-label { left: auto; right: 14px; }
+.chart-svg .mark.neg { fill: #e8613a; }
+.chart-svg .zero { stroke: rgba(255,255,255,.35); stroke-width: 1; }
+.focus .statement { color: var(--text); }
+.focus-figs { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 24px; }
+.focus-figs .bigstat { font-size: clamp(36px, 9vw, 64px); }
+.focus-figs .bigstat-label { font-size: 14px; margin-top: 6px; }
+.focus-link { display: inline-block; margin-top: 10px; color: var(--blue-text); font-size: 15px; font-weight: 500; }

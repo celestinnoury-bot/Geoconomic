@@ -128,3 +128,48 @@ window.GEOCO.indicators = {
     }
   ]
 };
+
+// « Zooms » : un fait marquant sur un pays, avec un graphique et ses sources.
+// Pour en ajouter un, copier celui-ci. `country` = code ISO numérique (lien depuis le globe).
+window.GEOCO.indicators.focus = [
+  {
+    id: "france-emploi",
+    country: "250",
+    eyebrow: "Zoom France · Emploi",
+    title: "La France détruit plus d'emplois qu'elle n'en crée.",
+    statement: "Au premier trimestre 2025, le secteur privé a perdu 27 600 emplois salariés : il y a eu plus de suppressions de postes que de créations [1].",
+    text: [
+      "Ce n'est pas un accident isolé. Depuis début 2024, le solde de l'emploi privé a été négatif lors de 7 trimestres sur 10, selon les chiffres de l'Insee [1][2].",
+      "Les pertes se concentrent dans l'intérim et la construction, deux secteurs qui réagissent en premier quand l'activité ralentit : les entreprises arrêtent d'abord de prendre des intérimaires avant de toucher à leurs CDI [1].",
+      "Le recul reste modeste, autour de 0,1 % par trimestre, mais il dure : c'est le signe d'un marché du travail qui s'essouffle, alors que la croissance française est l'une des plus faibles d'Europe [3]."
+    ],
+    chart: {
+      kind: "chart",
+      type: "bar",
+      title: "Le solde de l'emploi privé, trimestre par trimestre",
+      subtitle: "Emplois salariés créés moins emplois détruits dans le privé, en France",
+      xLabel: "Trimestre",
+      unit: "Solde d'emplois",
+      decimals: 0,
+      signed: true,
+      highlight: [4],
+      data: [["T1 24", 57500], ["T2 24", -28500], ["T3 24", 16800], ["T4 24", -68000], ["T1 25", -27600], ["T2 25", 40600], ["T3 25", -24200], ["T4 25", -19500], ["T1 26", -13900], ["T2 26", -19300]],
+      source: "Insee, estimations trimestrielles d'emploi salarié (dernière version publiée de chaque trimestre ; T2 2026 = estimation flash, susceptible d'être révisée)"
+    },
+    compare: {
+      title: "À ne pas confondre : les entreprises.",
+      text: "Côté entreprises, c'est l'inverse. Au premier semestre 2025, 322 544 entreprises ont été créées en France [4], contre 34 431 défaillances (17 845 au premier trimestre et 16 586 au deuxième) [5]. Mais une grande partie des créations sont des micro-entreprises, souvent sans salarié, alors que les défaillances touchent de plus en plus de grandes entreprises (+28 % pour celles de plus de 100 salariés début 2025) [5]. On peut donc créer beaucoup d'entreprises et perdre quand même des emplois.",
+      figures: [
+        { value: "322 544", label: "créations d'entreprises au 1er semestre 2025", src: 4 },
+        { value: "34 431", label: "défaillances d'entreprises au 1er semestre 2025", src: 5 }
+      ]
+    },
+    sources: [
+      { short: "Insee", name: "Insee, « Au premier trimestre 2025, l'emploi salarié est quasi stable (-0,1 %) », Informations rapides n° 135", url: "https://www.insee.fr/fr/statistiques/8576114" },
+      { short: "Journal du Net", name: "Journal du Net, « L'emploi salarié du secteur privé recule de 0,1 % au deuxième trimestre 2026, soit 19 300 emplois perdus selon l'Insee »", url: "https://www.journaldunet.com/business/1553253-l-emploi-salarie-du-secteur-prive-en-france-recule-de-0-1-au-deuxieme-trimestre-2026-soit-19-300-emplois-perdus-selon-l-insee/" },
+      { short: "Euronews", name: "Euronews, prévisions du FMI pour l'Europe (8 juil. 2026)", url: "https://www.euronews.com/business/2026/07/08/economy-imf-forecasts-modest-growth-for-italy-cuts-estimates-for-france-and-germany" },
+      { short: "Infogreffe", name: "Infogreffe, « Le coût invisible des faillites : plus de 32 000 entreprises en difficulté au premier semestre 2025 »", url: "https://www.infogreffe.fr/actualites/le-cout-invisible-des-faillites---plus-de-32-000-entreprises-en-difficulte-au-premier-semestre-2025" },
+      { short: "Altares", name: "Altares, défaillances d'entreprises en France, bilan 2025", url: "https://www.altares.com/fr/statistiques-defaillance-entreprises-france/bilan-2025/" }
+    ]
+  }
+];

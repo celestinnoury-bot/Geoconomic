@@ -25,6 +25,8 @@ Pour qu'une actu apparaisse sur le globe, il suffit de lui donner un champ `geo`
 
 Un second globe 3D colore chaque pays selon l'**inflation**, le **chômage** ou la **croissance** (sélecteur en haut). Plus la valeur est élevée, plus le pays est clair et en relief. On touche un pays pour voir son chiffre ; un classement en barres reprend toutes les valeurs, avec leur date et leurs sources.
 
+Sous le classement, des **zooms** racontent un fait marquant avec un graphique, par exemple « La France détruit plus d'emplois qu'elle n'en crée » (solde trimestriel de l'emploi privé, Insee), comparé aux créations et défaillances d'entreprises. Ils sont dans `focus`, à la fin de `data/indicators.js`.
+
 Les données sont dans `data/indicators.js` (clés = codes ISO numériques des pays, contours dans `data/countries.js`). Elles doivent être mises à jour à la main ou par la routine quotidienne.
 
 ## Les rubriques
