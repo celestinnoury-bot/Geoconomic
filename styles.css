@@ -844,3 +844,8 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .anec { background: var(--surface); border: 1px solid var(--hairline); border-radius: 22px; padding: 22px 22px; }
 .anec.focus { border-color: rgba(245,200,107,.7); box-shadow: 0 0 0 3px rgba(245,200,107,.15); }
 .anec-text { font-family: var(--serif); font-size: 21px; line-height: 1.4; font-weight: 700; margin: 6px 0 8px; }
+
+/* Le globe s'arrête au-dessus du bandeau : on voit toute la Terre. */
+.globe-hero .globe { bottom: calc(52px + env(safe-area-inset-bottom)); }
+.globe-hero .scroll-hint { left: 20px; transform: none; bottom: calc(56px + env(safe-area-inset-bottom)); padding: 8px 14px; font-size: 14px; }
+@media (max-width: 560px) { .globe-hero .scroll-hint { display: none; } }

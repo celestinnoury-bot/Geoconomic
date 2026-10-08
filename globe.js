@@ -275,7 +275,9 @@
       controls.enableDamping = true;
 
       // Point de vue de départ : le Golfe et l'Europe, là où se concentre l'actu.
-      world.pointOfView({ lat: 28, lng: 20, altitude: 2.3 });
+      // Sur un écran étroit (téléphone), on recule pour voir toute la Terre.
+      const homeAlt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 0.9 ? 3.4 : 2.3);
+      world.pointOfView({ lat: 28, lng: 20, altitude: homeAlt() });
 
       function focus(p) {
         controls.autoRotate = false;
@@ -316,7 +318,7 @@
         places,
         focus,
         reset() {
-          world.pointOfView({ lat: 28, lng: 20, altitude: 2.3 }, 1400);
+          world.pointOfView({ lat: 28, lng: 20, altitude: homeAlt() }, 1400);
           controls.autoRotate = true;
         },
         destroy() {
