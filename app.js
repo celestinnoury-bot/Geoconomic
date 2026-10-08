@@ -270,6 +270,8 @@
         </div>
       </section>` : ""}
 
+      ${auteur ? `<section class="section alt" id="qui"><div class="wrap">${auteurBlock(true)}</div></section>` : ""}
+
 
       ${focusList.length ? `
       <section class="section alt">
@@ -305,8 +307,6 @@
           <p class="reveal" style="margin-top:20px"><a href="#/articles">Tous les articles ›</a></p>
         </div>
       </section>` : ""}
-
-      ${auteur ? `<section class="section"><div class="wrap">${auteurBlock(true)}</div></section>` : ""}
 
       <section class="section">
         <div class="wrap">
@@ -1206,6 +1206,11 @@
           <h2 class="title reveal">Le prix des armes.</h2>
           <p class="statement reveal">${cite(S.statement, C.sources)}</p>
           ${statGrid(S.figures, C.sources, "eco")}
+          ${S.compare && S.compare.length ? `
+          <div class="panel geo reveal compare-panel" style="margin-top:32px">
+            <p class="eyebrow">Pour se rendre compte</p>
+            <ul class="takeaways">${S.compare.map((t) => `<li>${cite(t, C.sources)}</li>`).join("")}</ul>
+          </div>` : ""}
           <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([S.spendChart]) : ""}</div>
           ${S.text.map((t) => `<p class="copy reveal" style="margin-top:18px">${para(t, C.sources)}</p>`).join("")}
           <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([S.armsChart]) : ""}</div>
@@ -1614,7 +1619,7 @@
         <p class="lead">Géoconomic rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
       </section>
 
-      ${auteur ? `<section class="wrap" style="padding-bottom:24px">${auteurBlock(false)}</section>` : ""}
+      ${auteur ? `<section class="wrap" id="qui" style="padding-bottom:24px">${auteurBlock(false)}</section>` : ""}
 
       <section class="section alt">
         <div class="wrap">

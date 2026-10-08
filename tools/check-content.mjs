@@ -110,7 +110,7 @@ if (C) {
   checkSources(w, C.sources);
   const B = C.barometre;
   [B.intro, ...B.worse.map((x) => x.text), ...B.alerts.map((x) => x.text), C.ucdp.statement, ...C.ucdp.text,
-    C.acled.intro, C.acled.note, C.sipri.statement, ...C.sipri.text].forEach((t) => checkCites(w, t, C.sources));
+    C.acled.intro, C.acled.note, C.sipri.statement, ...C.sipri.text, ...(C.sipri.compare || [])].forEach((t) => checkCites(w, t, C.sources));
   [...C.ucdp.figures, ...C.sipri.figures].forEach((f) => { if (f.src && !C.sources[f.src - 1]) err(w, `chiffre « ${f.value} » : src inexistante`); });
   const conf = (C.layers || []).find((l) => l.id === "conflits");
   [...B.worse, ...B.alerts].forEach((x) => { if (conf && !conf.countries[x.iso]) err(w, `${x.name} (${x.iso}) absent de la couche Conflits`); });

@@ -106,6 +106,12 @@ window.GEOCO.conflits = {
       "L'Europe réarme à un rythme inédit : l'Allemagne a augmenté ses dépenses de 24 %, à 114 milliards de dollars, et dépasse 2 % de son PIB pour la première fois depuis 1990 [8].",
       "Côté ventes d'armes, les États-Unis fournissent 42 % des exportations mondiales sur 2021-2025. La France est deuxième, devant la Russie, dont les ventes s'effondrent [9][10]."
     ],
+    // « Pour se rendre compte » : les dépenses militaires mondiales comparées à d'autres montants.
+    compare: [
+      "Les 2 887 milliards de dollars dépensés en 2025 pour les armées représentent près de 90 fois l'appel humanitaire mondial de l'ONU pour 2026 (33 milliards de dollars pour aider 135 millions de personnes) [13].",
+      "C'est plus que toute la richesse produite en un an par l'Italie (environ 2 400 milliards de dollars de PIB en 2025), et presque autant que celle de la France (environ 3 300 milliards) [15].",
+      "C'est environ un tiers de ce que le monde consacre à la santé : 9 800 milliards de dollars en 2021, dernier total publié par l'Organisation mondiale de la santé [14]."
+    ],
     spendChart: {
       kind: "chart", type: "bar",
       title: "Les plus gros budgets militaires",
@@ -136,6 +142,9 @@ window.GEOCO.conflits = {
     { short: "SIPRI", name: "SIPRI, « Trends in International Arms Transfers, 2025 » (mars 2026)", url: "https://www.sipri.org/sites/default/files/2026-03/fs_2603_at_2025.pdf" },
     { short: "Defaiya", name: "Defaiya, « SIPRI: US, France, Russia Top Global Arms Exporters in 2021-2025 » (12 mars 2026)", url: "https://www.defaiya.com/news/Defense%20News/North%20America/2026/03/12/sipri-us-france-russia-top-global-arms-exporters-in-2021-2025" },
     { short: "NPR", name: "NPR, « Houthi attacks on Saudi Arabia ignite fires at oil facilities and wound 73 people » (8 sept. 2026)", url: "https://www.npr.org/2026/09/08/g-s1-142296/houthi-attacks-saudi-arabia" },
-    { short: "Long War Journal", name: "FDD's Long War Journal, « Fighting between Pakistan and the Taliban persists into second week » (sept. 2026)", url: "https://www.longwarjournal.org/archives/2026/09/fighting-between-pakistan-and-the-taliban-persists-into-second-week.php" }
+    { short: "Long War Journal", name: "FDD's Long War Journal, « Fighting between Pakistan and the Taliban persists into second week » (sept. 2026)", url: "https://www.longwarjournal.org/archives/2026/09/fighting-between-pakistan-and-the-taliban-persists-into-second-week.php" },
+    { short: "ONU Info", name: "ONU Info, lancement de l'appel humanitaire mondial 2026 de 33 milliards de dollars (8 déc. 2025)", url: "https://news.un.org/en/story/2025/12/1166526" },
+    { short: "OMS", name: "Organisation mondiale de la santé, Global health expenditure report 2023 (dépenses de 2021), via P4H", url: "https://p4h.world/en/documents/global-health-expenditure-report-2023/" },
+    { short: "StatRanker", name: "StatRanker, « Largest Economies by Nominal GDP 2025 » (données du FMI)", url: "https://statranker.org/economy/top-10-largest-economies-by-nominal-gdp-2025/" }
   ]
 };
