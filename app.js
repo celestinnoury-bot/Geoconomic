@@ -175,7 +175,9 @@
     const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
     const today = news.length ? news[0].date : null;
     const todays = news.filter((n) => n.date === today);
-    const onGlobe = todays.filter((n) => n.geo && n.geo.length);
+    // Sur le globe : les actus des 7 derniers jours (plus de points partout dans le monde).
+    const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 6 * 864e5).toISOString().slice(0, 10) : null;
+    const onGlobe = news.filter((n) => n.geo && n.geo.length && (!weekAgo || n.date >= weekAgo));
 
     app.innerHTML = `
       <section class="globe-hero" aria-label="Globe de l'actualité">
@@ -183,7 +185,7 @@
         <div class="globe-overlay">
           <p class="eyebrow">${today ? formatDate(today) : "Géoconomic"}</p>
           <h1 class="headline">Le monde, <span class="grad mix">aujourd'hui.</span></h1>
-          <p class="globe-hint">Touche un point lumineux pour comprendre ce qui s'y passe.</p>
+          <p class="globe-hint">${onGlobe.length} actus de la semaine. Touche un point lumineux pour comprendre ce qui s'y passe.</p>
         </div>
         <div class="globe-fallback">
           ${onGlobe.map((n) => `<a class="tagpill" href="#/actu/${n.id}">${n.geo[0].name} · ${n.title}</a>`).join("")}
@@ -311,7 +313,7 @@
         </div>
         ${place.items.map(({ news: n, place: where }) => `
           <a class="sheet-item" href="#/actu/${n.id}">
-            ${multi ? `<p class="sheet-place">${where}</p>` : ""}
+            <p class="sheet-place">${multi ? `${where} · ` : ""}${new Date(n.date + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
             <h3>${n.title}</h3>
             <p class="summary">${n.summary}</p>
             <span class="more">Lire l'article ›</span>
@@ -1016,11 +1018,18 @@
   }
 
   // ---------- Conflits : guerre, paix et économie de la défense ----------
+  let confLayer = "conflits";
   function renderConflits() {
     const C = conflits;
     const features = window.GEOCO_COUNTRIES && window.GEOCO_COUNTRIES.features;
     if (!C || !features) return renderNotFound();
     const B = C.barometre, U = C.ucdp, A = C.acled, S = C.sipri;
+    // Ancien format (une seule carte) : on le transforme en une couche.
+    if (!C.layers && C.map) {
+      C.layers = [{ id: "conflits", label: "Conflits armés", legend: C.map.legend,
+        countries: Object.fromEntries(Object.entries(C.map.countries).map(([iso, d]) => [iso, Object.assign({ name: C.map.names[iso] }, d,
+          { text: ((B.worse.concat(B.alerts)).find((x) => x.iso === iso) || {}).text || d.t })])) }];
+    }
     const countryRow = (x, kind) => `
       <button class="conflict-row ${kind} reveal" data-iso="${x.iso}">
         <span class="conflict-name">${x.name}</span>
@@ -1035,14 +1044,18 @@
       </section>
 
       <section class="wrap">
-        <div class="ind-stage">
+        <div class="reveal">${segmented(C.layers.map((l) => [l.id, l.label]), confLayer, "layer")}</div>
+        <p class="copy" id="layer-intro" style="margin-top:14px"></p>
+        <div class="ind-stage" style="margin-top:18px">
           <div class="ind-globe" id="conf-globe"></div>
           <div class="ind-card" id="conf-card" hidden></div>
         </div>
-        <div class="legend">
-          ${C.map.legend.map((l) => `<span class="legend-item"><i style="background:${l.color}"></i>${l.label}</span>`).join("")}
-        </div>
+        <div class="legend" id="conf-legend"></div>
         <p class="viz-cap">Touche un pays coloré pour savoir ce qui s'y passe.</p>
+        <details class="layer-list">
+          <summary id="layer-count"></summary>
+          <div id="layer-rows"></div>
+        </details>
       </section>
 
       <section class="section">
@@ -1113,33 +1126,59 @@
     if (window.GeocoViz) window.GeocoViz.mountAll([U.chart, S.spendChart, S.armsChart]);
 
     const card = app.querySelector("#conf-card");
-    const textFor = (iso) => [...B.worse, ...B.alerts].find((x) => x.iso === iso);
+    const layerOf = () => C.layers.find((l) => l.id === confLayer) || C.layers[0];
     function showCard(iso) {
-      const d = iso && C.map.countries[iso];
+      const L = layerOf();
+      const d = iso && L.countries[iso];
       if (!d) { card.hidden = true; return; }
-      const more = textFor(iso);
-      const leg = C.map.legend.find((l) => l.v === d.v);
+      const leg = L.legend.find((l) => l.v === d.v) || L.legend[0];
       card.hidden = false;
       card.innerHTML = `
         <button class="sheet-close" aria-label="Fermer">×</button>
         <p class="eyebrow" style="color:${leg.color}">${leg.label}</p>
-        <h3>${C.map.names[iso] || iso}</h3>
-        <p>${more ? cite(more.text, C.sources) : d.t}</p>`;
+        <h3>${d.name || iso}</h3>
+        <p>${cite(d.text || d.t, d.sources || C.sources)}</p>`;
       card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
     }
 
     let globe = null;
-    app.querySelectorAll(".conflict-row").forEach((b) => b.addEventListener("click", () => {
-      app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
-      if (globe) globe.selectById(b.dataset.iso); else showCard(b.dataset.iso);
-    }));
-
-    const layer = {
-      unit: "", bins: [1.5, 2.5], empty: "Pas de crise signalée ici ce mois-ci",
-      colors: [...C.map.legend].sort((a, b) => a.v - b.v).map((l) => l.color),
-      values: Object.fromEntries(Object.entries(C.map.countries).map(([iso, d]) => [iso, { v: d.v, t: d.t, d: "" }]))
+    const names = Object.assign({}, (window.GEOCO.indicators && window.GEOCO.indicators.names) || {});
+    C.layers.forEach((L) => Object.entries(L.countries).forEach(([iso, d]) => { if (d.name) names[iso] = d.name; }));
+    const layerInd = (L) => {
+      const vs = [...new Set(L.legend.map((l) => l.v))].sort((a, b) => a - b);
+      return {
+        unit: "", empty: L.empty || "Rien de signalé ici",
+        bins: vs.slice(1).map((v) => v - 0.5),
+        colors: vs.map((v) => L.legend.find((l) => l.v === v).color),
+        values: Object.fromEntries(Object.entries(L.countries).map(([iso, d]) => [iso, { v: d.v, t: d.t, d: "" }]))
+      };
     };
-    const names = Object.assign({}, (window.GEOCO.indicators && window.GEOCO.indicators.names) || {}, C.map.names);
+    function drawLayer() {
+      const L = layerOf();
+      app.querySelectorAll("[data-layer]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.layer === L.id));
+      app.querySelector("#layer-intro").innerHTML = cite(L.intro || "", L.sources || C.sources);
+      app.querySelector("#conf-legend").innerHTML = L.legend.map((l) => `<span class="legend-item"><i style="background:${l.color}"></i>${l.label}</span>`).join("");
+      const rows = Object.entries(L.countries).sort((a, b) => b[1].v - a[1].v || (a[1].name || "").localeCompare(b[1].name || "", "fr"));
+      app.querySelector("#layer-count").textContent = `Voir la liste des ${rows.length} pays`;
+      app.querySelector("#layer-rows").innerHTML = rows.map(([iso, d]) => {
+        const leg = L.legend.find((l) => l.v === d.v) || L.legend[0];
+        return `<button class="conflict-row" data-iso="${iso}" style="--dot:${leg.color}"><span class="conflict-name">${d.name || iso}</span><span class="conflict-text">${cite(d.text || d.t, d.sources || C.sources)}</span></button>`;
+      }).join("");
+      bindRows(app.querySelectorAll("#layer-rows .conflict-row"));
+      card.hidden = true;
+      if (globe) globe.setIndicator(layerInd(L));
+    }
+    function bindRows(list) {
+      list.forEach((b) => b.addEventListener("click", (e) => {
+        if (e.target.closest("a")) return;
+        app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
+        if (globe) globe.selectById(b.dataset.iso); else showCard(b.dataset.iso);
+      }));
+    }
+    bindRows(app.querySelectorAll(".conflict-list .conflict-row"));
+    app.querySelectorAll("[data-layer]").forEach((b) => b.addEventListener("click", () => { confLayer = b.dataset.layer; drawLayer(); }));
+    drawLayer();
+
     window.GeocoGlobe.mountIndicators(app.querySelector("#conf-globe"), {
       features, names,
       onSelect: (f) => showCard(f && f.id)
@@ -1147,8 +1186,8 @@
       if (!g) { app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"); return; }
       globe = g;
       currentGlobe = g;
-      g.setIndicator(layer);
-      g.world.pointOfView({ lat: 22, lng: 45, altitude: 2.2 });
+      g.setIndicator(layerInd(layerOf()));
+      g.world.pointOfView({ lat: 22, lng: 35, altitude: 2.3 });
     }).catch(() => app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"));
   }
 
