@@ -1397,12 +1397,14 @@
 
       // Classement
       const rows = Object.entries(ind.values).map(([id, d]) => ({ id, ...d, name: nameOf(id) })).sort((a, b) => b.v - a.v);
-      const max = Math.max(...rows.map((r) => r.v));
+      // Échelle des barres : on ignore les valeurs extrêmes (ex. inflation à 500 %) pour garder des barres lisibles.
+      const sorted = rows.map((r) => r.v).sort((a, b) => a - b);
+      const max = Math.max(1, sorted[Math.floor(sorted.length * 0.95)] || sorted[sorted.length - 1]);
       app.querySelector("#rank-title").textContent = ind.title + ".";
       app.querySelector("#rank").innerHTML = rows.map((r) => `
         <button class="rank-row" data-iso="${r.id}">
           <span class="rank-name">${r.name}</span>
-          <span class="rank-bar"><i style="width:${Math.max(2, (r.v / max) * 100)}%;background:${ind.colors[window.GeocoGlobe.classOf(r.v, ind.bins)]}"></i></span>
+          <span class="rank-bar"><i style="width:${Math.min(100, Math.max(2, (r.v / max) * 100))}%;background:${ind.colors[window.GeocoGlobe.classOf(r.v, ind.bins)]}"></i></span>
           <span class="rank-val">${fmtV(r.v)} %<small>${r.d}</small></span>
         </button>`).join("");
       app.querySelectorAll(".rank-row").forEach((b) => b.addEventListener("click", () => {
