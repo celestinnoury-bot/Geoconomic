@@ -93,6 +93,10 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 - [ ] Choisir l'hébergement public (GitHub Pages ou Netlify) et l'adresse du site
 - [ ] Mettre à jour la page « À propos » (contact, nom de l'auteur) si besoin
 
+## Idées en attente (importantes)
+
+- [ ] **Toyota GR Supra MK5 en 3D** : deux modèles choisis, sur Google Drive (`toyota-gr-supra.zip`, 81 Mo, et `2020-toyota-gr-supra.zip`, 13 Mo ; pas la version GT300 de vecarz.com). Bloqué : il faut ouvrir l'accès réseau de l'environnement à `drive.google.com` et `drive.usercontent.google.com` et partager les deux zips par lien. Ensuite : vérifier la licence et l'auteur à créditer, alléger les modèles pour le téléphone, placer les points cliquables, et décider où les mettre (Focus voiture actuel avec un sélecteur, ou nouveau Focus sur l'automobile japonaise et l'alliance Toyota-BMW).
+
 ## Crédits
 
 - Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le paquet [three-globe](https://github.com/vasturiano/three-globe)
