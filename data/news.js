@@ -325,6 +325,70 @@ window.GEOCO.news = [
     ]
   },
   {
+    "id": "2026-10-08-madagascar-russie-electricite",
+    "date": "2026-10-08",
+    "region": "Afrique",
+    "theme": "mix",
+    "title": "Madagascar : face aux coupures de courant, des générateurs russes achetés sans appel d'offres",
+    "summary": "Pour lutter contre les délestages, le gouvernement malgache autorise la compagnie publique Jirama à acheter 18 groupes électrogènes à une société russe sans mise en concurrence, sur fond de rapprochement avec Moscou.",
+    "geo": [
+      {
+        "name": "Antananarivo, Madagascar",
+        "label": "Madagascar",
+        "coords": [
+          47.52,
+          -18.88
+        ]
+      }
+    ],
+    "points": [
+      "Un décret adopté le 6 octobre 2026 permet à la Jirama d'acheter directement 18 générateurs diesel à la société russe Malmekhservice, sans appel d'offres [1].",
+      "Le ministère de l'Énergie n'a précisé ni le montant de la transaction ni la puissance des machines [1] ; selon une source proche du dossier, chaque groupe ferait 1 MW, soit 18 MW au total [2].",
+      "Ce choix découle de la prolongation de l'état d'urgence énergétique décidée en Conseil des ministres le 29 septembre, qui permet d'alléger les procédures d'achat [2].",
+      "Sur le réseau d'Antananarivo, les coupures tournantes durent désormais trois heures [2]."
+    ],
+    "why": [
+      "Madagascar manque cruellement d'électricité et la Jirama peine à suivre : les délestages pèsent sur les ménages comme sur les entreprises [2]. L'état d'urgence permet d'acheter vite, mais pose la question de la transparence des dépenses publiques [2].",
+      "L'opération s'inscrit dans un rapprochement diplomatique entre Madagascar et la Russie [1][2]. En parallèle, le pays cherche à lever jusqu'à 5 milliards de dollars avec le gestionnaire d'actifs Gemcorp pour financer énergie, infrastructures et mines [3]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Madagascar est un partenaire historique de la France, qui y a de nombreuses entreprises et une forte diaspora. Le choix de fournisseurs russes illustre la concurrence d'influence qui se joue en Afrique, y compris dans l'océan Indien, près de La Réunion et Mayotte.",
+    "figures": [
+      {
+        "value": "18",
+        "label": "Générateurs diesel achetés à une société russe",
+        "src": 1
+      },
+      {
+        "value": "3 h",
+        "label": "Durée des coupures tournantes à Antananarivo",
+        "src": 2
+      },
+      {
+        "value": "5 Md$",
+        "label": "Financement recherché avec Gemcorp",
+        "src": 3
+      }
+    ],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Bloomberg",
+        "name": "Madagascar Skips Tender for Power Equipment as Russia Ties Grow (8 octobre 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-08/madagascar-skips-tender-for-power-equipment-as-russia-ties-grow"
+      },
+      {
+        "short": "Newsmada",
+        "name": "Pénurie d'électricité : Malmekhservice, le fournisseur russe imposé à la Jirama (8 octobre 2026)",
+        "url": "https://newsmada.com/2026/10/08/penurie-delectricite-malmekhservice-le-fournisseur-russe-impose-a-la-jirama/"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Gemcorp Joins Madagascar to Raise $5 Billion for Energy, Mining (6 octobre 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-06/gemcorp-joins-madagascar-to-raise-5-billion-for-energy-mining"
+      }
+    ]
+  },
+  {
     "id": "2026-10-07-gazole-reserves",
     "date": "2026-10-07",
     "region": "Europe",
@@ -2235,6 +2299,142 @@ window.GEOCO.news = [
     ]
   },
   {
+    "id": "2026-10-07-norvege-budget",
+    "date": "2026-10-07",
+    "region": "Europe",
+    "theme": "eco",
+    "title": "Norvège : le pays va puiser 608 milliards de couronnes dans son fonds pétrolier en 2027",
+    "summary": "Le gouvernement norvégien a présenté son projet de budget 2027, qui prévoit un prélèvement record sur le plus grand fonds souverain du monde, tout en restant sous la limite fixée par sa règle budgétaire.",
+    "geo": [
+      {
+        "name": "Oslo, Norvège",
+        "label": "Norvège",
+        "coords": [
+          10.75,
+          59.91
+        ]
+      }
+    ],
+    "points": [
+      "Le projet de budget 2027, présenté le 7 octobre 2026, prévoit de retirer 608,4 milliards de couronnes (environ 63,6 milliards de dollars) du fonds pétrolier, contre 583,4 milliards dans le budget révisé 2026 [1].",
+      "Ce retrait représente 2,7 % de la valeur du fonds, le même taux que prévu pour 2026 [2].",
+      "Le gouvernement table sur une croissance de 1,7 % en 2027, contre 1,1 % attendue en 2026 [2].",
+      "Le budget doit encore être négocié avec quatre partis du centre et de gauche (SP, SV, Rødt et MDG) au Parlement [2]."
+    ],
+    "why": [
+      "La Norvège vit en partie de la rente de son pétrole placée dans un gigantesque fonds souverain : chaque année, l'État y prélève de quoi financer plus d'un quart de ses dépenses [3]. Un fonds souverain est une sorte de « tirelire » publique investie en actions, obligations et immobilier dans le monde entier.",
+      "Le pays s'impose une règle : ne pas dépenser plus de 3 % de la valeur du fonds par an, pour préserver la richesse des générations futures [2]. Avec 2,7 %, le gouvernement reste prudent, et estime que son budget aura un effet neutre sur l'activité économique [2]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le fonds norvégien détient des parts dans des milliers d'entreprises, y compris de grands groupes français du CAC 40. Sa gestion prudente est souvent citée en exemple dans les débats français sur la dette : la Norvège dépense les revenus de son épargne, pas l'épargne elle-même.",
+    "figures": [
+      {
+        "value": "608,4 Md NOK",
+        "label": "Prélèvement prévu sur le fonds en 2027",
+        "src": 1
+      },
+      {
+        "value": "2,7 %",
+        "label": "Part de la valeur du fonds dépensée (plafond : 3 %)",
+        "src": 2
+      },
+      {
+        "value": "+1,7 %",
+        "label": "Croissance prévue en 2027",
+        "src": 2
+      }
+    ],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "OilPrice",
+        "name": "Norway Plans to Tap $63.7 Billion From Its Oil Fund in 2027 (octobre 2026)",
+        "url": "https://oilprice.com/Latest-Energy-News/World-News/Norway-Plans-to-Tap-637-Billion-From-Its-Oil-Fund-in-2027.html"
+      },
+      {
+        "short": "Bytes Europe",
+        "name": "Norway plans to spend $63.6 billion from wealth fund in 2027 (octobre 2026)",
+        "url": "https://www.byteseu.com/2430778/"
+      },
+      {
+        "short": "Mediabias",
+        "name": "Norway proposes increased withdrawal from sovereign wealth fund (octobre 2026)",
+        "url": "https://mediabias.news/politics/norway-proposes-increased-withdrawal-from-sovereign-wealth-fund"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-07-japon-taux",
+    "date": "2026-10-07",
+    "region": "Asie",
+    "theme": "eco",
+    "title": "Japon : les taux d'emprunt à 30 ans battent un record, la Première ministre Takaichi tente de rassurer",
+    "summary": "Inquiets des projets de dépenses de Sanae Takaichi, les investisseurs ont poussé le taux de la dette japonaise à 30 ans à un sommet historique. La Première ministre promet de revoir ses plans si les marchés s'emballent.",
+    "geo": [
+      {
+        "name": "Tokyo, Japon",
+        "label": "Japon",
+        "coords": [
+          139.69,
+          35.69
+        ]
+      }
+    ],
+    "points": [
+      "Le 5 octobre 2026, le taux des obligations d'État japonaises à 30 ans a atteint le record de 4,235 % [1].",
+      "Le même jour, le taux à 10 ans tournait autour de 3,08 % et celui à 2 ans autour de 1,9 % [2].",
+      "Le 7 octobre, Sanae Takaichi a déclaré au Parlement qu'en cas de mouvement inattendu des taux, le gouvernement pourrait restructurer ses projets et revoir dépenses et recettes [3].",
+      "Takaichi a indiqué que, lors de sa rencontre avec Donald Trump, on lui avait fait valoir que la faiblesse du yen pénalisait le commerce américain [4]."
+    ],
+    "why": [
+      "Quand les investisseurs doutent de la capacité d'un État à tenir ses finances, ils exigent un intérêt plus élevé pour lui prêter, surtout sur de longues durées [2]. Or la dette publique japonaise représente environ deux fois la taille de son économie, la plus élevée des pays développés [1].",
+      "Le contexte pèse aussi sur le yen : Tokyo et Washington ont mené une intervention commune sur le marché des changes pour soutenir la monnaie japonaise, une première en 28 ans [4]. La Première ministre veut baisser la taxe sur l'alimentation sans émettre de nouvelle dette, mais n'a pas détaillé comment [1]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Les épargnants et les fonds japonais sont de gros prêteurs dans le monde entier, y compris à la France. Si les taux montent fortement au Japon, ils peuvent rapatrier leur argent, ce qui pousse à la hausse les taux d'emprunt ailleurs, et donc à terme le coût des crédits.",
+    "figures": [
+      {
+        "value": "4,235 %",
+        "label": "Taux record des obligations japonaises à 30 ans (5 oct.)",
+        "src": 1
+      },
+      {
+        "value": "≈ 3,08 %",
+        "label": "Taux à 10 ans",
+        "src": 2
+      },
+      {
+        "value": "28 ans",
+        "label": "Première intervention commune Japon-États-Unis sur le yen depuis",
+        "src": 4
+      }
+    ],
+    "dossiers": [
+      "inflation-taux",
+      "dollar"
+    ],
+    "sources": [
+      {
+        "short": "IndexBox",
+        "name": "Takaichi Vows Fiscal Discipline as Japan's 30-Year Bond Yield Hits Record High (octobre 2026)",
+        "url": "https://www.indexbox.io/blog/japan-pm-takaichi-pledges-bond-issuance-control-as-30-year-jgb-yield-hits-record-4235/"
+      },
+      {
+        "short": "Finimize",
+        "name": "Japan's 30-Year Bond Yield Hit A Record Ahead Of Takaichi's Speech (octobre 2026)",
+        "url": "https://finimize.com/content/japans-30-year-bond-yield-hit-a-record-ahead-of-takaichis-speech"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Takaichi Says Japan May Review Spending if Yields Move Sharply (7 octobre 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-07/takaichi-says-japan-may-review-spending-if-yields-move-sharply"
+      },
+      {
+        "short": "Japan Times",
+        "name": "Takaichi told during Trump talks that weak yen was hurting U.S. trade (2 octobre 2026)",
+        "url": "https://www.japantimes.co.jp/news/2026/10/02/japan/politics/takaichi-trump-talks-weak-yen/"
+      }
+    ]
+  },
+  {
     "id": "2026-10-06-bangladesh-banque-mondiale",
     "date": "2026-10-06",
     "region": "Asie",
@@ -2303,6 +2503,161 @@ window.GEOCO.news = [
     ]
   },
   {
+    "id": "2026-10-06-canada-etats-unis-guerre-commerciale",
+    "date": "2026-10-06",
+    "region": "Amériques",
+    "theme": "eco",
+    "title": "Canada–États-Unis : la guerre des droits de douane s'installe",
+    "summary": "Depuis l'échec des négociations fin août, Washington taxe à 50 % une série de produits canadiens et interdit désormais certains d'entre eux, tandis qu'Ottawa riposte. Les exportateurs canadiens ont accéléré leurs envois avant la hausse, gonflant l'excédent commercial d'août.",
+    "geo": [
+      {
+        "name": "Ottawa, Canada",
+        "label": "Canada",
+        "coords": [
+          -75.7,
+          45.42
+        ]
+      }
+    ],
+    "points": [
+      "Le Premier ministre Mark Carney a suspendu les négociations commerciales avec les États-Unis le 21 août au soir, juste avant l'entrée en vigueur, le 22 août, de droits de douane de 50 % sur environ 28 milliards de dollars de produits canadiens [1].",
+      "Ces taxes visent notamment les crosses de hockey, les matériaux de construction, les alcools et certains vêtements [1].",
+      "Le Canada a riposté le 8 septembre avec des droits de 15 % à 50 % sur près de 20 milliards de dollars de produits américains, les taux les plus élevés frappant l'acier, l'aluminium et le fer, les meubles, les motos et les vêtements [2].",
+      "Washington a répliqué en interdisant à partir du 29 septembre l'importation de certains produits canadiens : boissons alcoolisées, certains produits laitiers, mélasse, bières sans alcool et motos [3][4].",
+      "Donald Trump a aussi promis de doubler, de 25 % à 50 %, les droits sur les voitures et pièces automobiles canadiennes à partir du 1er janvier 2027 [2].",
+      "En août, les exportations canadiennes vers les États-Unis ont bondi de 8,1 % et l'excédent avec eux a atteint 11,2 milliards de dollars canadiens, un plus haut depuis 19 mois, sans doute gonflé par des envois anticipés avant la hausse [5]."
+    ],
+    "why": [
+      "Ce conflit est la rupture la plus nette entre deux pays parmi les plus intégrés économiquement au monde. Carney reproche aux États-Unis d'avoir ajouté, dans les dernières heures, des exigences sur l'automobile, sur les autres partenariats commerciaux du Canada et sur la protection de la culture et de la langue française ; Washington accuse au contraire Ottawa d'être revenu sur ses engagements [1].",
+      "Les droits américains « section 232 » de 50 % sur l'acier, l'aluminium et le cuivre continuent par ailleurs de s'appliquer sans exemption pour le Canada [6]. Le bois d'œuvre canadien cumule de son côté droits antidumping, droits compensateurs et nouveaux droits, pour des taux combinés dépassant 40 % [7].",
+      "Le bond des exportations d'août pourrait n'être qu'un effet d'anticipation : Statistique Canada prévient qu'une partie de cette vigueur reflète le calendrier des échanges plutôt qu'une hausse durable de la demande, et les chiffres de septembre seront plus parlants [5]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Canada cherche à vendre davantage ailleurs qu'aux États-Unis, et l'Europe fait partie des débouchés évidents grâce à l'accord de libre-échange UE-Canada. Pour les entreprises françaises, cela peut ouvrir des portes, mais aussi accroître la concurrence sur certains marchés. Pour toi, l'impact direct reste limité, sauf si tu travailles dans l'export ou dans des secteurs comme le vin ou les produits laitiers, où le jeu des taxes entre Ottawa et Washington rebat les cartes.",
+    "figures": [
+      {
+        "value": "50 %",
+        "label": "Droits américains sur environ 28 milliards de dollars de produits canadiens depuis le 22 août",
+        "src": 1
+      },
+      {
+        "value": "+8,1 %",
+        "label": "Hausse des exportations canadiennes vers les États-Unis en août",
+        "src": 5
+      },
+      {
+        "value": "11,2 Md$ CA",
+        "label": "Excédent commercial du Canada avec les États-Unis en août",
+        "src": 5
+      }
+    ],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "NBC News",
+        "name": "Canadian prime minister suspends trade talks with U.S., setting new 50% tariffs in motion (août 2026)",
+        "url": "https://www.nbcnews.com/business/economy/trump-canada-tariffs-carney-rcna593510"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "As Canada's retaliatory tariffs on US goods take effect, tensions soar (8 septembre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/9/8/canadas-retaliatory-tariffs-on-20bn-of-us-goods-take-effect"
+      },
+      {
+        "short": "Maison-Blanche",
+        "name": "Fact Sheet: President Donald J. Trump Responds to Canada's Retaliation (septembre 2026)",
+        "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-responds-to-canadas-retaliation/"
+      },
+      {
+        "short": "Dorsey & Whitney",
+        "name": "White House Ups the Ante with Section 338 Import Bans Against Canadian Products (septembre 2026)",
+        "url": "https://www.dorsey.com/newsresources/publications/client-alerts/2026/9/section-338-import-ban"
+      },
+      {
+        "short": "BNN Bloomberg / Reuters",
+        "name": "Canada's trade surplus surprisingly widens to over four-year high in August (6 octobre 2026)",
+        "url": "https://www.bnnbloomberg.ca/business/economics/2026/10/06/canadas-trade-surplus-surprisingly-widens-to-over-four-year-high-in-august/"
+      },
+      {
+        "short": "Congressional Research Service",
+        "name": "U.S.-Canada Trade Relations (2026)",
+        "url": "https://www.congress.gov/crs-product/IF12595"
+      },
+      {
+        "short": "Daily Commercial News",
+        "name": "A tariff exemption was Canada's salvation in 2025. It's 'absolutely' at risk in 2026 (janvier 2026)",
+        "url": "https://canada.constructconnect.com/dcn/news/economic/2026/01/a-tariff-exemption-was-canadas-salvation-in-2025-its-absolutely-at-risk-in-2026"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-06-qatar-banque-mondiale",
+    "date": "2026-10-06",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "title": "Qatar : l'économie devrait s'effondrer de 20,9 % en 2026, selon la Banque mondiale",
+    "summary": "Frappé par la guerre avec l'Iran et le blocage du détroit d'Ormuz, le Qatar devrait connaître sa pire année économique depuis cinquante ans, d'après les nouvelles prévisions de la Banque mondiale.",
+    "geo": [
+      {
+        "name": "Doha, Qatar",
+        "label": "Qatar",
+        "coords": [
+          51.53,
+          25.29
+        ]
+      }
+    ],
+    "points": [
+      "La Banque mondiale prévoit une contraction de 20,9 % du PIB du Qatar en 2026, après une croissance de 1,8 % en 2025 : sa pire performance en cinq décennies [1].",
+      "La production mensuelle moyenne de gaz du pays a chuté d'environ 67 % entre mars et juillet en raison des dégâts sur ses sites [1].",
+      "Des frappes en mars ont mis hors service près de 17 % de la capacité d'exportation de gaz naturel liquéfié (GNL) du Qatar [2].",
+      "À l'échelle de la région, l'économie devrait reculer de 2,1 % en 2026 et celle des pays du Golfe de 4,3 % [1][3]."
+    ],
+    "why": [
+      "Le Qatar est l'un des grands exportateurs mondiaux de GNL, du gaz refroidi pour être transporté par bateau. Ses exportations passent par le détroit d'Ormuz, où le trafic reste quasi nul : en moyenne trois pétroliers par jour fin septembre selon l'outil PortWatch du FMI [2].",
+      "La prévision suppose une réouverture progressive du détroit à partir du 31 décembre, ce qui permettrait un fort rebond en 2027 [2]. Mais certaines installations endommagées pourraient mettre des années à être entièrement réparées [3]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Qatar fournit une partie du gaz liquéfié importé par l'Europe. Moins de gaz qatari sur le marché, c'est une pression à la hausse sur les prix de l'énergie, qui peut se retrouver sur ta facture de chauffage ou d'électricité.",
+    "figures": [
+      {
+        "value": "-20,9 %",
+        "label": "PIB du Qatar prévu en 2026",
+        "src": 1
+      },
+      {
+        "value": "-67 %",
+        "label": "Production mensuelle de gaz (mars-juillet)",
+        "src": 1
+      },
+      {
+        "value": "-2,1 %",
+        "label": "Économie de la région Moyen-Orient en 2026",
+        "src": 1
+      }
+    ],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "The National",
+        "name": "World Bank says Middle East economy to contract 2.1% in 2026 on Iran war (6 octobre 2026)",
+        "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
+      },
+      {
+        "short": "JFeed",
+        "name": "Strait of Hormuz Blockade: Qatar's Gas Revenue Crisis (octobre 2026)",
+        "url": "https://www.jfeed.com/middleeast/strait-hormuz-blockade-qatar"
+      },
+      {
+        "short": "Economy Middle East",
+        "name": "World Bank revises 2026 outlook for GCC economies (octobre 2026)",
+        "url": "https://economymiddleeast.com/news/world-bank-revises-2026-outlook-for-gcc-economies-sees-uae-growth-rebounding-to-9-5-percent-in-2027-saudi-arabia-to-7-9-percent/"
+      }
+    ]
+  },
+  {
     "id": "2026-10-05-japon-quitte-chine",
     "date": "2026-10-05",
     "region": "Asie",
@@ -2364,6 +2719,218 @@ window.GEOCO.news = [
         "short": "SCMP",
         "name": "South China Morning Post, « Japanese business presence in China down nearly 30% from peak in 2012: survey » (septembre 2026)",
         "url": "https://www.scmp.com/economy/china-economy/article/3369164/japanese-firms-pull-back-china-amid-geopolitical-tensions-supply-chains-shifts"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-aceum-revision-annuelle",
+    "date": "2026-10-05",
+    "region": "Amériques",
+    "theme": "mix",
+    "title": "Libre-échange nord-américain : l'ACEUM entre dans l'ère des révisions annuelles",
+    "summary": "Faute d'accord pour prolonger le traité commercial entre États-Unis, Mexique et Canada en juillet, Washington lance la consultation publique pour la révision de 2027. Le pacte reste en vigueur, mais sous surveillance permanente.",
+    "geo": [
+      {
+        "name": "Monterrey, Mexique",
+        "label": "Mexique",
+        "coords": [
+          -100.32,
+          25.69
+        ]
+      },
+      {
+        "name": "Toronto, Canada",
+        "label": "Canada",
+        "coords": [
+          -79.38,
+          43.65
+        ]
+      }
+    ],
+    "points": [
+      "L'ACEUM (Accord Canada–États-Unis–Mexique, appelé USMCA en anglais) est le traité de libre-échange qui lie les trois pays ; un réexamen conjoint était prévu le 1er juillet 2026 [1].",
+      "Ce jour-là, les États-Unis ont déclaré ne pas accepter de « renouveler l'accord dans sa forme actuelle » : l'accord reste en vigueur mais est désormais réexaminé chaque année [1].",
+      "Sans renouvellement, l'accord prendra fin le 1er juillet 2036, au terme de sa durée de 16 ans [1].",
+      "Le 5 octobre, le représentant américain au Commerce (USTR) a publié au Journal officiel américain un appel à commentaires pour la révision annuelle de 2027, sur l'application de l'accord, son respect et les mesures à proposer [2][3].",
+      "Les contributions écrites sont attendues jusqu'au 12 janvier 2027 ; la date de l'audition publique n'est pas encore fixée [1].",
+      "Le Mexique est le seul pays à faire avancer formellement des discussions de révision avec Washington, les négociations canadiennes étant suspendues depuis le 22 août [4]."
+    ],
+    "why": [
+      "Le passage à des révisions annuelles crée une incertitude durable : les entreprises qui ont investi au Mexique ou au Canada pour profiter d'un accès privilégié au marché américain ne savent plus si ces règles tiendront jusqu'en 2036 [1][4].",
+      "Cette incertitude pèse sur le « nearshoring », la relocalisation de production près des États-Unis, notamment au Mexique, que l'ACEUM devait encourager. L'USTR demande d'ailleurs des avis sur les conditions d'investissement en Amérique du Nord et sur la sécurité économique régionale [3].",
+      "La révision devient aussi un levier de négociation pour Washington, qui discute en parallèle des baisses de droits de douane sectoriels (acier, automobile) avec Mexico et reste en conflit ouvert avec Ottawa [4]."
+    ],
+    "forMe": "Et moi, dans tout ça ? L'Amérique du Nord est l'un des plus grands marchés du monde, et beaucoup d'entreprises européennes y produisent, notamment au Mexique. Un accord révisé chaque année, c'est moins de visibilité pour elles, donc des investissements plus prudents. À terme, cela peut peser sur les prix de produits fabriqués là-bas, des voitures aux appareils électroniques.",
+    "figures": [
+      {
+        "value": "12 janvier 2027",
+        "label": "Date limite des commentaires publics pour la révision de 2027",
+        "src": 1
+      },
+      {
+        "value": "2036",
+        "label": "Fin de l'accord en l'absence de renouvellement",
+        "src": 1
+      },
+      {
+        "value": "16 ans",
+        "label": "Durée initiale de l'ACEUM",
+        "src": 1
+      }
+    ],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Expeditors",
+        "name": "USTR Requests Public Comments on 2027 USMCA Joint Review (octobre 2026)",
+        "url": "https://info.expeditors.com/newsflash/ustr-requests-public-comments-on-2027-usmca-joint-review"
+      },
+      {
+        "short": "Federal Register",
+        "name": "Request for Public Comments and Notice of Public Hearing Relating to the Operation of the USMCA (5 octobre 2026)",
+        "url": "https://www.federalregister.gov/documents/2026/10/05/2026-20341/request-for-public-comments-and-notice-of-public-hearing-relating-to-the-operation-of-the-agreement"
+      },
+      {
+        "short": "USTR",
+        "name": "USTR Seeks Public Comment on the 2027 Joint Review of USMCA (octobre 2026)",
+        "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/october/ustr-seeks-public-comment-2027-joint-review-usmca"
+      },
+      {
+        "short": "Supply Chain Dive",
+        "name": "USTR initiates next stage of USMCA review (octobre 2026)",
+        "url": "https://supplychaindive.com/news/ustr-initiates-next-stage-of-usmca-review/832285"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-moldavie-ue",
+    "date": "2026-10-05",
+    "region": "Europe",
+    "theme": "geo",
+    "title": "Moldavie : l'UE débloque 157 millions d'euros et salue l'avancée des négociations d'adhésion",
+    "summary": "Lors du 10e Conseil d'association UE-Moldavie à Bruxelles, l'Union a annoncé un nouveau versement à Chisinau et salué l'ouverture de deux premiers blocs de négociations, tout en insistant sur la réforme de la justice.",
+    "geo": [
+      {
+        "name": "Chisinau, Moldavie",
+        "label": "Moldavie",
+        "coords": [
+          28.86,
+          47.01
+        ]
+      }
+    ],
+    "points": [
+      "Le 10e Conseil d'association UE-Moldavie s'est tenu à Bruxelles le 5 octobre 2026, présidé par la cheffe de la diplomatie européenne Kaja Kallas, face au Premier ministre moldave Vasile Tofan [1].",
+      "L'UE a annoncé le versement de 157 millions d'euros au titre de son plan de croissance pour la Moldavie [2].",
+      "Les deux parties ont salué l'ouverture récente des « clusters » 1 (fondamentaux) et 6 (relations extérieures) des négociations d'adhésion [2].",
+      "L'UE a insisté sur la nécessité d'une justice indépendante, notamment via le contrôle (« vetting ») des juges et procureurs [2]."
+    ],
+    "why": [
+      "Ce petit pays coincé entre la Roumanie et l'Ukraine avance pas à pas vers l'Union européenne : les négociations sont découpées en grands blocs thématiques (« clusters »), et deux d'entre eux viennent d'être ouverts [2]. Chaque bloc impose d'aligner les lois moldaves sur les règles européennes.",
+      "L'argent européen est conditionné aux réformes : justice, lutte contre la corruption, administration [3]. Les discussions ont aussi porté sur la sécurité, la résilience énergétique du pays et son intégration progressive au marché intérieur européen [3]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Si la Moldavie rejoint un jour l'UE, une partie du budget européen, auquel la France contribue largement, servira à financer son rattrapage. C'est aussi un enjeu de sécurité à la frontière orientale de l'Europe.",
+    "figures": [
+      {
+        "value": "157 M€",
+        "label": "Versement européen annoncé",
+        "src": 2
+      },
+      {
+        "value": "2",
+        "label": "Blocs de négociation d'adhésion ouverts (1 et 6)",
+        "src": 2
+      },
+      {
+        "value": "10e",
+        "label": "Conseil d'association UE-Moldavie",
+        "src": 1
+      }
+    ],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "SEAE",
+        "name": "EU High Representative Kaja Kallas chairs 10th EU–Moldova Association Council in Brussels (5 octobre 2026)",
+        "url": "https://www.eeas.europa.eu/eeas/eu-high-representative-kaja-kallas-chairs-10th-eu-moldova-association-council-brussels_en"
+      },
+      {
+        "short": "Commission européenne",
+        "name": "The EU and Moldova reiterate their strong partnership and announce the disbursement of €157 million (5 octobre 2026)",
+        "url": "https://enlargement.ec.europa.eu/news/european-union-and-moldova-reiterate-their-strong-partnership-and-announce-disbursement-eur157-2026-10-05_en"
+      },
+      {
+        "short": "DevelopmentAid",
+        "name": "EU disburses €157 million to Moldova under Growth Plan at 10th Association Council (octobre 2026)",
+        "url": "https://www.developmentaid.org/news-stream/post/211176/eu-disburses-e157-million-to-moldova-under-growth-plan-at-10th-association-council"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-05-kirghizistan-sanctions",
+    "date": "2026-10-05",
+    "region": "Asie",
+    "theme": "mix",
+    "title": "Kirghizistan : Bichkek ferme des dizaines d'entreprises pour éviter les sanctions internationales",
+    "summary": "Les autorités kirghizes ont engagé la liquidation de 16 sociétés soupçonnées de servir au contournement de sanctions, et les banques ont fermé les comptes de plus de 220 entreprises.",
+    "geo": [
+      {
+        "name": "Bichkek, Kirghizistan",
+        "label": "Kirghizistan",
+        "coords": [
+          74.59,
+          42.87
+        ]
+      }
+    ],
+    "points": [
+      "Le 2 octobre 2026, après l'examen d'environ 40 entreprises, les dossiers de 16 d'entre elles ont été transmis à la justice en vue de leur liquidation [1].",
+      "La banque ABank a rompu ses relations avec environ 100 entreprises et Eldik Bank a bloqué les comptes d'environ 126 sociétés [1][2].",
+      "Les autorités préparent une « liste noire » de personnes et d'entreprises présentant un risque élevé de sanctions [2].",
+      "Le ministère de l'Économie a par ailleurs lancé la liquidation forcée d'environ 35 autres entités [3]."
+    ],
+    "why": [
+      "Le but affiché est d'empêcher que le système bancaire kirghiz soit utilisé pour contourner des sanctions internationales [1]. Pour un petit pays très dépendant du commerce extérieur, être lui-même visé par des « sanctions secondaires » (des punitions contre ceux qui aident un pays sanctionné à commercer) pourrait couper ses banques du système financier mondial.",
+      "La future liste noire doit permettre de surveiller les échanges et les partenaires commerciaux avant que les transactions n'aient lieu [2]. Les tribunaux doivent encore se prononcer sur les liquidations [1]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Les sanctions décidées par l'Europe et les États-Unis ne valent que si elles ne sont pas contournées via des pays tiers. Ce qui se passe à Bichkek montre comment ces règles s'appliquent jusqu'en Asie centrale, et pourquoi les entreprises françaises doivent vérifier qui sont leurs clients finaux.",
+    "figures": [
+      {
+        "value": "16",
+        "label": "Entreprises envoyées devant la justice pour liquidation",
+        "src": 1
+      },
+      {
+        "value": "220+",
+        "label": "Entreprises dont les comptes ont été fermés",
+        "src": 2
+      },
+      {
+        "value": "35",
+        "label": "Autres entités en liquidation forcée",
+        "src": 3
+      }
+    ],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "24.kg",
+        "name": "Sanctions risks: Operations of 16 companies terminated in Kyrgyzstan (octobre 2026)",
+        "url": "https://24.kg/en/article/sanctions-risks-operations-of-16-companies-terminated-in-kyrgyzstan"
+      },
+      {
+        "short": "Open.kg",
+        "name": "In Kyrgyzstan, accounts of over 220 companies have been closed and a blacklist is being prepared (octobre 2026)",
+        "url": "https://open.kg/en/news/economy/127226-v-kyrgyzstane-zakryli-scheta-svyshe-220-kompanij-i-gotovjat-chernyj-spisok.html"
+      },
+      {
+        "short": "AKIpress",
+        "name": "Kyrgyzstan initiates forced liquidation of 35 companies over high sanctions risks (octobre 2026)",
+        "url": "https://akipress.com/news:923300:Kyrgyzstan_initiates_forced_liquidation_of_35_companies_over_high_sanctions_risks/"
       }
     ]
   },
@@ -2582,6 +3149,67 @@ window.GEOCO.news = [
         "short": "FAO",
         "name": "FAO, Famine conditions confirmed in Sudan's El Fasher and Kadugli",
         "url": "https://www.fao.org/newsroom/detail/famine-conditions-confirmed-in-sudan-fasher-and-kadugli-as-hunger-and-malnutrition-ease-where-conflict-subsides/en"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-04-sri-lanka-fmi",
+    "date": "2026-10-04",
+    "region": "Asie",
+    "theme": "eco",
+    "title": "Sri Lanka : accord avec le FMI pour un nouveau versement de 345 millions de dollars",
+    "summary": "Trois ans après sa faillite, le Sri Lanka a obtenu un accord technique avec le FMI sur la septième revue de son programme d'aide, à condition de présenter un budget 2027 conforme.",
+    "geo": [
+      {
+        "name": "Colombo, Sri Lanka",
+        "label": "Sri Lanka",
+        "coords": [
+          79.86,
+          6.93
+        ]
+      }
+    ],
+    "points": [
+      "Le FMI a annoncé le 4 octobre 2026 un accord au niveau des services sur la septième revue du programme d'aide au Sri Lanka [1].",
+      "Une fois validé par le conseil d'administration du FMI, il débloquera environ 345 millions de dollars, portant l'aide totale versée à environ 2,7 milliards de dollars [1].",
+      "L'activité a progressé de 4,2 % au deuxième trimestre 2026, onzième trimestre consécutif de croissance solide, et l'inflation était de 8 % sur un an en septembre [1].",
+      "Les cinquième et sixième revues avaient été approuvées ensemble le 27 mai 2026, après un report lié au cyclone Ditwah [2]."
+    ],
+    "why": [
+      "Le FMI prête par tranches, chacune conditionnée à des réformes vérifiées lors de « revues ». Pour ce versement, Colombo doit présenter au Parlement un budget 2027 conforme au programme, et ses partenaires doivent confirmer les financements et les progrès de la restructuration de la dette [1].",
+      "Le FMI juge l'économie résiliente, mais cite comme risque l'incertitude sur l'intensité et la durée de la guerre au Moyen-Orient [1], qui renchérit l'énergie importée par l'île."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Sri Lanka est une destination touristique prisée des Français et un fournisseur de thé et de textile. Son redressement montre aussi comment fonctionne le FMI, dont la France est l'un des principaux actionnaires.",
+    "figures": [
+      {
+        "value": "345 M$",
+        "label": "Tranche débloquée après validation du FMI",
+        "src": 1
+      },
+      {
+        "value": "+4,2 %",
+        "label": "Croissance au 2e trimestre 2026",
+        "src": 1
+      },
+      {
+        "value": "8 %",
+        "label": "Inflation sur un an en septembre",
+        "src": 1
+      }
+    ],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "FMI",
+        "name": "IMF Reaches Staff-Level Agreement on the Seventh Review under the EFF with Sri Lanka (4 octobre 2026)",
+        "url": "https://www.imf.org/en/news/articles/2026/10/04/pr26318-sri-lanka-imf-reaches-sla-on-7th-review-under-the-eff"
+      },
+      {
+        "short": "Business News",
+        "name": "IMF Reaches 07th Review Agreement as Sri Lanka Moves Into Next Growth Phase (5 octobre 2026)",
+        "url": "https://businessnews.lk/2026/10/05/sri-lanka-imf-seventh-review-agreement/"
       }
     ]
   },
@@ -2840,6 +3468,80 @@ window.GEOCO.news = [
     ]
   },
   {
+    "id": "2026-10-02-mexique-etats-unis-acier-automobile",
+    "date": "2026-10-02",
+    "region": "Amériques",
+    "theme": "eco",
+    "title": "Le Mexique se rapproche d'un accord avec Washington sur l'acier et l'automobile",
+    "summary": "Mexico négocie presque chaque jour avec les États-Unis pour alléger les droits de douane sur ses voitures, son acier et son aluminium. Un compromis semble proche, mais rien n'est signé.",
+    "geo": [
+      {
+        "name": "Mexico, Mexique",
+        "label": "Mexique",
+        "coords": [
+          -99.13,
+          19.43
+        ]
+      }
+    ],
+    "points": [
+      "Le ministre mexicain de l'Économie Marcelo Ebrard a rencontré le représentant américain au Commerce Jamieson Greer à Milwaukee, en marge de la réunion des ministres du Commerce du G20 (30 septembre–1er octobre) [1][2].",
+      "Le 1er octobre, Ebrard a reconnu que les négociations sur la baisse des droits « section 232 » (taxes américaines justifiées par la sécurité nationale) n'étaient pas terminées, malgré des échanges quasi quotidiens avec Greer [3].",
+      "Le cadre discuté abaisserait de 25 % à 15 % les droits américains sur les véhicules légers venus du Mexique ; comme ce taux ne s'applique qu'à la part non américaine du véhicule, la charge réelle tomberait entre 10 % et 12 % selon des responsables mexicains [3].",
+      "Aujourd'hui, les voitures mexicaines paient 25 % aux États-Unis, contre 15 % pour les voitures européennes, japonaises et coréennes, selon l'association des constructeurs mexicains (AMIA) [2].",
+      "L'acier et l'aluminium mexicains restent taxés à 50 % ; l'ampleur d'une éventuelle baisse n'est pas connue [3].",
+      "Depuis le 24 juillet 2026, un droit supplémentaire de 10 % lié au travail forcé s'applique aux produits mexicains, ceux conformes à l'ACEUM en étant exemptés [4]."
+    ],
+    "why": [
+      "Plus de 80 % des exportations mexicaines partent vers les États-Unis, et l'automobile emploie environ 800 000 personnes au Mexique : ces négociations sont vitales pour l'économie du pays [3].",
+      "Le Mexique veut faire mieux que le Canada, à qui Washington avait proposé un taux nominal de 15 % pouvant descendre vers 7 % avec les remises liées au contenu régional [3]. Mais l'échec de dernière minute de l'accord canadien en août incite à la prudence [3].",
+      "Ces discussions sont liées à la révision de l'ACEUM (Accord Canada–États-Unis–Mexique, le traité de libre-échange nord-américain), dont un quatrième cycle de négociation a glissé à octobre sans date publiée [2]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Mexique est devenu une grande usine pour l'Amérique du Nord, y compris pour des groupes européens de l'automobile et des pièces détachées. Si ses voitures restent plus taxées que les européennes à l'entrée des États-Unis, les constructeurs européens gardent un avantage ; si l'écart se réduit, la concurrence se durcit pour eux sur le marché américain.",
+    "figures": [
+      {
+        "value": "25 % → 15 %",
+        "label": "Baisse envisagée des droits américains sur les véhicules légers mexicains",
+        "src": 3
+      },
+      {
+        "value": "50 %",
+        "label": "Droits américains actuels sur l'acier et l'aluminium mexicains",
+        "src": 3
+      },
+      {
+        "value": "800 000",
+        "label": "Emplois dans l'industrie automobile mexicaine (environ)",
+        "src": 3
+      }
+    ],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Xinhua",
+        "name": "Mexico seeks U.S. steel, auto tariff cuts (2 octobre 2026)",
+        "url": "https://english.news.cn/northamerica/20261002/0ff78693d4604286a8d0bc677a5e48ef/c.html"
+      },
+      {
+        "short": "Latin Times",
+        "name": "Mexico-U.S. Trade Talks Move Forward, but Steel, Autos and Canada Complicate the Deal (octobre 2026)",
+        "url": "https://www.latintimes.com/mexico-us-trade-talks-move-forward-steel-autos-canada-complicate-deal-599955"
+      },
+      {
+        "short": "Mexico Business News",
+        "name": "Mexico Nears US Deal to Cut Auto, Steel and Aluminum Tariffs (octobre 2026)",
+        "url": "https://mexicobusiness.news/automotive/news/mexico-nears-us-deal-cut-auto-steel-and-aluminum-tariffs"
+      },
+      {
+        "short": "Holland & Knight",
+        "name": "Mexico Retains Preferential Access Under USMCA Despite New U.S. Forced Labor Tariffs (juillet 2026)",
+        "url": "https://www.hklaw.com/en/insights/publications/2026/07/mexico-mantiene-acceso-preferencial-bajo-el-tmec"
+      }
+    ]
+  },
+  {
     "id": "2026-10-01-chili-cuivre-production",
     "date": "2026-10-01",
     "region": "Amériques",
@@ -2915,7 +3617,7 @@ window.GEOCO.news = [
         "label": "Zhejiang",
         "coords": [
           122.2,
-          30.0
+          30
         ]
       }
     ],
@@ -3158,6 +3860,283 @@ window.GEOCO.news = [
         "short": "RFE/RL",
         "name": "Radio Free Europe/Radio Liberty, US Pushes To Turn Armenia-Azerbaijan Transit Deal Into Investment Opportunity (septembre 2026)",
         "url": "https://www.rferl.org/a/tripp-armenia-azerbaijan-us-investment-transit-corridor/33863442.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-01-colombie-travail-force-droits-douane",
+    "date": "2026-10-01",
+    "region": "Amériques",
+    "theme": "eco",
+    "title": "La Colombie interdit les produits du travail forcé pour faire baisser les taxes américaines",
+    "summary": "Taxée à 12,5 % par Washington pour ne pas avoir banni les importations issues du travail forcé, la Colombie vient d'adopter cette interdiction et ouvre des discussions techniques avec les États-Unis. Mais la surtaxe reste en place tant que Washington ne décide pas de la lever.",
+    "geo": [
+      {
+        "name": "Bogota, Colombie",
+        "label": "Colombie",
+        "coords": [
+          -74.07,
+          4.71
+        ]
+      }
+    ],
+    "points": [
+      "En mars 2026, les États-Unis ont ouvert des enquêtes sur 60 économies au sujet des importations de biens fabriqués par le travail forcé [1].",
+      "Le 23 juillet, Washington a fixé une surtaxe de 10 % pour les pays ayant déjà interdit ces biens ou s'étant engagés à le faire, et de 12,5 % pour les autres, dont la Colombie [1].",
+      "Le café, la banane, le pétrole et le charbon colombiens sont exclus de cette surtaxe [2].",
+      "Selon l'association d'exportateurs Analdex, la mesure touche environ 30 % des exportations colombiennes vers les États-Unis, soit quelque 5 milliards de dollars, et plus de 1 700 entreprises [1].",
+      "Le 28 septembre, Bogota a signé le décret 1444, qui interdit l'entrée de marchandises produites totalement ou partiellement par le travail forcé [1].",
+      "Des délégués des deux pays ont entamé début octobre une table de travail technique sur cette surtaxe [3]."
+    ],
+    "why": [
+      "Avec ce décret, la Colombie remplit formellement la condition fixée par Washington pour le taux de 10 %, mais les États-Unis n'ont annoncé aucune modification : la baisse dépend d'une décision américaine [1].",
+      "Le pays a été durement frappé en août par un séisme de magnitude 7,4 qui a fait au moins 294 morts ; le nouveau président Abelardo de la Espriella avait alors demandé à Donald Trump de suspendre temporairement ces taxes [4].",
+      "Les États-Unis sont le premier marché d'exportation de la Colombie [2] : l'issue de ces discussions est un test pour les relations entre Bogota et l'administration Trump, qui utilise les droits de douane comme levier sur de nombreux sujets."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le café et les bananes colombiens, que tu trouves aussi en France, sont exclus de la surtaxe américaine : pas d'effet direct sur ton panier. Mais l'histoire montre comment Washington se sert des droits de douane pour imposer ses normes (ici sur le travail forcé) à ses partenaires, une méthode qui concerne aussi l'Europe.",
+    "figures": [
+      {
+        "value": "12,5 %",
+        "label": "Surtaxe américaine actuelle sur une partie des produits colombiens",
+        "src": 1
+      },
+      {
+        "value": "≈ 5 Md$",
+        "label": "Exportations colombiennes vers les États-Unis touchées (estimation Analdex)",
+        "src": 1
+      },
+      {
+        "value": "1 700",
+        "label": "Entreprises colombiennes concernées (plus de)",
+        "src": 1
+      }
+    ],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "La FM",
+        "name": "Colombia ya tiene la norma contra el trabajo forzoso que pedía EE. UU.: ¿qué pasa ahora con el arancel de 12,5%? (septembre 2026)",
+        "url": "https://www.lafm.com.co/economia/decreto-1444-trabajo-forzoso-importaciones-colombia-arancel-estados-unidos-412321"
+      },
+      {
+        "short": "Colombia One",
+        "name": "Colombia-US Trade Negotiations Are Approaching and Could Affect Tariffs (1er octobre 2026)",
+        "url": "https://colombiaone.com/2026/10/01/trade-negotiations-colombia-us-affect-tariffs/"
+      },
+      {
+        "short": "CR Prensa",
+        "name": "Colombia y Estados Unidos inician mesa técnica para resolver arancel a importaciones (1er octobre 2026)",
+        "url": "https://crprensa.com/2026/10/01/colombia-y-estados-unidos-inician-mesa-tecnica-para-resolver-arancel-a-importaciones/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Colombia asks Trump to suspend tariffs as country reels from earthquake (15 août 2026)",
+        "url": "https://www.aljazeera.com/news/2026/8/15/colombia-asks-trump-to-suspend-tariffs-as-country-reels-from-earthquake"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-30-panama-canal-secheresse",
+    "date": "2026-09-30",
+    "region": "Amériques",
+    "theme": "eco",
+    "title": "Canal de Panama : après la sécheresse, un léger desserrement",
+    "summary": "Frappé par une sécheresse liée à El Niño, le canal de Panama a réduit en septembre le nombre de navires autorisés, faisant flamber le prix des passages. Le retour de pluies proches de la normale lui permet d'assouplir un peu ses restrictions.",
+    "geo": [
+      {
+        "name": "Panama, Panama",
+        "label": "Panama",
+        "coords": [
+          -79.52,
+          8.98
+        ]
+      }
+    ],
+    "points": [
+      "Début septembre, le canal a abaissé son plafond de 36 à 34 navires par jour, puis à 32 à partir du 15 septembre [1].",
+      "L'autorité du canal invoquait une baisse de 44 % des apports d'eau et de 34 % des pluies cumulées sur le bassin versant depuis le début de l'année hydrologique [1].",
+      "Les enchères pour obtenir un créneau de passage ont vu leurs prix tripler, et un navire sud-coréen a payé un record de 5,3 millions de dollars le 1er septembre, selon Bloomberg cité par Al Jazeera [2].",
+      "Fin septembre, l'autorité a relevé le tirant d'eau maximal (profondeur d'enfoncement autorisée des navires) à 14,94 mètres dans les grandes écluses Neopanamax [3].",
+      "À partir du 15 octobre, le canal prévoit 33 créneaux quotidiens au total, tout en prévenant que « le déficit en eau persiste » [3].",
+      "Ilya Espino de Marotta a pris la tête du canal le 7 septembre, première femme à ce poste [4]."
+    ],
+    "why": [
+      "Le canal de Panama dépend des pluies qui alimentent son bassin versant, ce qui le rend très vulnérable aux sécheresses comme celle provoquée cette année par El Niño. Le gouvernement a déclaré l'état d'urgence national fin août [1].",
+      "La crise tombe mal : elle survient alors que le détroit d'Ormuz connaît lui aussi des perturbations, ce qui pousse davantage de navires vers les routes alternatives [2]. Selon un analyste de BIMCO, moins de capacité et des enchères plus chères devraient faire monter les tarifs du fret [2].",
+      "Les pluies de septembre, octobre et novembre détermineront si de nouvelles réductions seront nécessaires pendant la saison sèche, de janvier à mars [4]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Une partie des marchandises qui circulent entre l'Asie, la côte est des États-Unis et l'Amérique latine passe par Panama. Quand le canal ralentit, le transport coûte plus cher et ces surcoûts finissent en partie dans le prix de produits importés. Les dérèglements climatiques deviennent ainsi un facteur concret d'inflation sur le commerce mondial.",
+    "figures": [
+      {
+        "value": "−44 %",
+        "label": "Baisse des apports d'eau dans le bassin du canal",
+        "src": 1
+      },
+      {
+        "value": "5,3 M$",
+        "label": "Prix record payé par un navire pour un passage (1er septembre)",
+        "src": 2
+      },
+      {
+        "value": "33",
+        "label": "Créneaux de passage quotidiens prévus à partir du 15 octobre",
+        "src": 3
+      }
+    ],
+    "dossiers": [
+      "routes-maritimes",
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Panama Canal may cut ship traffic further as El Niño strengthens (8 septembre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/9/8/panama-canal-may-cut-ship-traffic-further-as-el-nio-strengthens"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Panama Canal restricts traffic amid Hormuz crisis: Why this matters (3 septembre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/9/3/panama-canal-restricts-traffic-amid-hormuz-crisis-why-this-matters"
+      },
+      {
+        "short": "Ship & Bunker",
+        "name": "Panama Canal Eases Restrictions on Ship Transits (30 septembre 2026)",
+        "url": "https://shipandbunker.com/news/am/235871-panama-canal-eases-restrictions-on-ship-transits"
+      },
+      {
+        "short": "The Rio Times",
+        "name": "Panama Canal Caps Daily Transits as El Niño Threatens Its 2026 Recovery (septembre 2026)",
+        "url": "https://www.riotimesonline.com/panama-canal-economy-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-29-maroc-cheffe-gouvernement",
+    "date": "2026-09-29",
+    "region": "Afrique",
+    "theme": "geo",
+    "title": "Maroc : Fatima Ezzahra El Mansouri, première femme à la tête du gouvernement",
+    "summary": "Après la victoire de son parti aux législatives du 23 septembre, l'ancienne maire de Marrakech a été nommée cheffe du gouvernement par le roi Mohammed VI. Elle doit maintenant bâtir une coalition.",
+    "geo": [
+      {
+        "name": "Rabat, Maroc",
+        "label": "Maroc",
+        "coords": [
+          -6.84,
+          34.02
+        ]
+      }
+    ],
+    "points": [
+      "Le roi Mohammed VI a nommé le 29 septembre 2026 Fatima Ezzahra El Mansouri, du Parti authenticité et modernité (PAM), cheffe du gouvernement [1].",
+      "Le PAM est arrivé en tête des législatives du 23 septembre avec 97 sièges sur 395, sans majorité absolue [2].",
+      "Avocate de formation, elle a été élue maire de Marrakech à 33 ans en 2009 et était ministre de l'Habitat du gouvernement sortant d'Aziz Akhannouch [3].",
+      "Pour obtenir la confiance du Parlement, il lui faut une majorité de 198 sièges [2]."
+    ],
+    "why": [
+      "La Constitution marocaine impose au roi de choisir le chef du gouvernement dans le parti arrivé premier aux législatives [2]. Le PAM, deuxième force de la coalition sortante, a pris la première place après l'effondrement du parti d'Akhannouch [2].",
+      "La nomination est historique : c'est la première femme à occuper ce poste au Maroc [1]. Mais la campagne a aussi été marquée par des accusations de corruption visant le PAM, dont un scandale de trafic de drogue ayant conduit plusieurs cadres en prison [2]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Maroc est l'un des premiers partenaires de la France en Afrique, pour le commerce, le tourisme et l'immigration. La composition du futur gouvernement comptera pour les entreprises françaises installées là-bas et pour les grands chantiers liés à la Coupe du monde 2030.",
+    "figures": [
+      {
+        "value": "97 / 395",
+        "label": "Sièges du PAM à la Chambre des représentants",
+        "src": 2
+      },
+      {
+        "value": "198",
+        "label": "Sièges nécessaires pour une majorité",
+        "src": 2
+      }
+    ],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Médias24",
+        "name": "Officiel. Fatima Ezzahra El Mansouri nommée cheffe du gouvernement (29 septembre 2026)",
+        "url": "https://medias24.com/2026/09/29/officiel-fatima-ezzahra-el-mansouri-nommee-cheffe-du-gouvernement-1767711/"
+      },
+      {
+        "short": "Wikipedia",
+        "name": "2026 Moroccan general election (consulté le 8 octobre 2026)",
+        "url": "https://en.wikipedia.org/wiki/2026_Moroccan_general_election"
+      },
+      {
+        "short": "France 24",
+        "name": "Maroc : Fatima Ezzahra El Mansouri, de la mairie de Marrakech à la tête du gouvernement (30 septembre 2026)",
+        "url": "https://www.france24.com/fr/afrique/20260930-maroc-fatima-ezzahra-el-mansouri-mairie-marrakech-d%C3%A9put%C3%A9e-cheffe-gouvernement-avocate-formation"
+      }
+    ]
+  },
+  {
+    "id": "2026-09-23-paraguay-venezuela-mercosur",
+    "date": "2026-09-23",
+    "region": "Amériques",
+    "theme": "mix",
+    "title": "Le Paraguay plaide pour le retour du Venezuela dans le Mercosur",
+    "summary": "À l'ONU, le président paraguayen Santiago Peña a demandé la réintégration du Venezuela dans le Mercosur, le marché commun sud-américain, à condition d'une vraie transition démocratique. Un virage notable pour un bloc qui vient d'ouvrir ses frontières commerciales à l'Union européenne.",
+    "geo": [
+      {
+        "name": "Asunción, Paraguay",
+        "label": "Paraguay",
+        "coords": [
+          -57.58,
+          -25.26
+        ]
+      }
+    ],
+    "points": [
+      "Le 23 septembre, devant l'Assemblée générale de l'ONU, le président du Paraguay Santiago Peña a appelé à réintégrer le Venezuela dans le Mercosur [1].",
+      "Le Mercosur (« Marché commun du Sud ») est une union douanière qui regroupe notamment le Brésil, l'Argentine, le Paraguay et l'Uruguay ; le Venezuela en est suspendu pour une durée indéterminée [1].",
+      "Peña lie ce retour à une « transition démocratique véritable et durable » au Venezuela, avec des institutions solides [1].",
+      "Avant New York, il s'est rendu à Caracas, renouant le dialogue avec un pays avec lequel le Paraguay avait rompu ses relations diplomatiques en 2025, après l'élection contestée de 2024 [1].",
+      "Le Brésil serait ouvert à une réintégration progressive, mais une telle initiative devrait être portée par le Paraguay, selon une source proche du gouvernement brésilien citée par Reuters [1].",
+      "Côté européen, le volet commercial de l'accord UE-Mercosur s'applique à titre provisoire depuis le 1er mai 2026 [2]."
+    ],
+    "why": [
+      "Le Venezuela avait été suspendu du Mercosur en 2017 pour non-respect des règles du bloc [1]. Que le Paraguay, longtemps l'un des gouvernements les plus hostiles à Caracas, demande aujourd'hui son retour montre que la donne politique a changé au Venezuela, où Delcy Rodríguez est présentée comme présidente par intérim [1].",
+      "Ce débat tombe à un moment clé pour le bloc : l'accord commercial intérimaire avec l'Union européenne est appliqué depuis mai, alors que le Parlement européen a demandé en janvier, par 334 voix contre 324, un avis de la Cour de justice de l'UE sur sa compatibilité avec les traités, ce qui gèle la ratification complète [2]. L'Uruguay, qui préside le Mercosur ce semestre, a fait de la gestion des quotas d'exportation vers l'UE une priorité [3].",
+      "Un éventuel retour du Venezuela ouvrirait la question de son intégration dans les engagements commerciaux pris par le Mercosur, notamment vis-à-vis de l'Europe. À ce stade, il ne s'agit que d'un appel politique, sans calendrier [1]."
+    ],
+    "forMe": "Et moi, dans tout ça ? Le Mercosur est le bloc avec lequel l'Europe a signé le grand accord de libre-échange tant contesté par les agriculteurs français (bœuf, volaille, sucre). Son élargissement ou ses divisions internes pèsent sur la façon dont cet accord sera appliqué, et donc sur la concurrence que subissent les éleveurs français et sur les prix de certains produits dans tes rayons.",
+    "figures": [
+      {
+        "value": "2017",
+        "label": "Année de la suspension du Venezuela du Mercosur",
+        "src": 1
+      },
+      {
+        "value": "1er mai 2026",
+        "label": "Début de l'application provisoire du volet commercial UE-Mercosur",
+        "src": 2
+      },
+      {
+        "value": "334 contre 324",
+        "label": "Vote du Parlement européen pour saisir la Cour de justice de l'UE",
+        "src": 2
+      }
+    ],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Reuters (via SRN News)",
+        "name": "Paraguay calls for Venezuela's return to Mercosur trade bloc (23 septembre 2026)",
+        "url": "https://srnnews.com/paraguay-calls-for-venezuelas-return-to-mercosur-trade-bloc/"
+      },
+      {
+        "short": "Université de Leiden",
+        "name": "The EU-Mercosur agreement: Latest developments, significance, and next steps (février 2026)",
+        "url": "https://www.universiteitleiden.nl/en/news/2026/02/the-eu-mercosur-agreement-latest-developments-significance-and-next-steps"
+      },
+      {
+        "short": "MercoPress",
+        "name": "Uruguay takes over the Mercosur presidency this month, with EU quotas a top priority (12 juin 2026)",
+        "url": "https://en.mercopress.com/2026/06/12/uruguay-takes-over-the-mercosur-presidency-this-month-with-eu-quotas-a-top-priority"
       }
     ]
   }

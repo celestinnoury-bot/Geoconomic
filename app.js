@@ -264,8 +264,8 @@
     const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
     const today = news.length ? news[0].date : null;
     const todays = news.filter((n) => n.date === today);
-    // Sur le globe : les actus des 7 derniers jours (plus de points partout dans le monde).
-    const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 7 * 864e5).toISOString().slice(0, 10) : null;
+    // Sur le globe : toutes les actus des deux dernières semaines (plus de points partout dans le monde).
+    const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 15 * 864e5).toISOString().slice(0, 10) : null;
     const onGlobe = news.filter((n) => n.geo && n.geo.length && (!weekAgo || n.date >= weekAgo));
 
     app.innerHTML = `
@@ -274,7 +274,7 @@
         <div class="globe-overlay">
           <p class="eyebrow">${today ? formatDate(today) : "Géoconomic"}</p>
           <h1 class="headline">Le monde, <span class="grad mix">aujourd'hui.</span></h1>
-          <p class="globe-hint">${onGlobe.length} actus de la semaine. Touche un point lumineux pour comprendre ce qui s'y passe.</p>
+          <p class="globe-hint">${onGlobe.length} actus des deux dernières semaines. Touche un point lumineux pour comprendre ce qui s'y passe.</p>
         </div>
         <div class="globe-fallback">
           ${onGlobe.map((n) => `<a class="tagpill" href="#/actu/${n.id}">${n.geo[0].name} · ${n.title}</a>`).join("")}
