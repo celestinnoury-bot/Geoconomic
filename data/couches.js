@@ -767,810 +767,2411 @@ window.GEOCO.conflits.layers = [
     "url": "https://tchadinfos.com/2026/04/30/classement-mondial-de-la-liberte-de-la-presse-2026-le-tchad-est-93eme-sur-180-pays/"
    }
   ],
-  "empty": "Situation « plutôt bonne » ou « bonne », ou non classé",
+  "empty": "Non classé par RSF",
   "legend": [
    {
+    "v": 5,
+    "label": "Très grave",
+    "color": "#c62828"
+   },
+   {
+    "v": 4,
+    "label": "Difficile",
+    "color": "#ef6c3a"
+   },
+   {
+    "v": 3,
+    "label": "Problématique",
+    "color": "#f2c14e"
+   },
+   {
     "v": 2,
-    "label": "Situation très grave (RSF)",
-    "color": "#d93a3a"
+    "label": "Plutôt bonne",
+    "color": "#7cc47f"
    },
    {
     "v": 1,
-    "label": "Situation difficile (RSF, liste partielle)",
-    "color": "#f0a04b"
+    "label": "Bonne",
+    "color": "#2e9e5b"
    }
   ],
   "countries": {
-   "646": {
-    "v": 2,
-    "name": "Rwanda",
-    "t": "139e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 139e sur 180, en « situation très grave » [1].",
+   "578": {
+    "v": 1,
+    "name": "Norvège",
+    "t": "1e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 1e sur 180 (score 92,72), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "344": {
-    "v": 2,
-    "name": "Hong Kong",
-    "t": "140e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 140e sur 180, en « situation très grave » [1].",
+   "528": {
+    "v": 1,
+    "name": "Pays-Bas",
+    "t": "2e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 2e sur 180 (score 88,92), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "760": {
-    "v": 2,
-    "name": "Syrie",
-    "t": "141e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 141e sur 180, en « situation très grave » [1].",
+   "233": {
+    "v": 1,
+    "name": "Estonie",
+    "t": "3e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 3e sur 180 (score 88,54), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "400": {
-    "v": 2,
-    "name": "Jordanie",
-    "t": "142e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 142e sur 180, en « situation très grave » [1].",
+   "208": {
+    "v": 1,
+    "name": "Danemark",
+    "t": "4e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 4e sur 180 (score 88,47), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "222": {
-    "v": 2,
-    "name": "Salvador",
-    "t": "143e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 143e sur 180, en « situation très grave » [1].",
+   "752": {
+    "v": 1,
+    "name": "Suède",
+    "t": "5e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 5e sur 180 (score 87,61), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "604": {
-    "v": 2,
-    "name": "Pérou",
-    "t": "144e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 144e sur 180, en « situation très grave » [1].",
+   "246": {
+    "v": 1,
+    "name": "Finlande",
+    "t": "6e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 6e sur 180 (score 86,22), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "012": {
-    "v": 2,
-    "name": "Algérie",
-    "t": "145e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 145e sur 180, en « situation très grave » [1].",
+   "372": {
+    "v": 1,
+    "name": "Irlande",
+    "t": "7e sur 180 · bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 7e sur 180 (score 85,93), situation « bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "417": {
+   "756": {
     "v": 2,
-    "name": "Kirghizistan",
-    "t": "146e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 146e sur 180, en « situation très grave » [1].",
+    "name": "Suisse",
+    "t": "8e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 8e sur 180 (score 84,83), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "860": {
+   "442": {
     "v": 2,
-    "name": "Ouzbékistan",
-    "t": "147e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 147e sur 180, en « situation très grave » [1].",
+    "name": "Luxembourg",
+    "t": "9e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 9e sur 180 (score 84,14), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "231": {
+   "620": {
     "v": 2,
-    "name": "Éthiopie",
-    "t": "148e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 148e sur 180, en « situation très grave » [1].",
+    "name": "Portugal",
+    "t": "10e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 10e sur 180 (score 83,71), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "398": {
+   "203": {
     "v": 2,
-    "name": "Kazakhstan",
-    "t": "149e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 149e sur 180, en « situation très grave » [1].",
+    "name": "Tchéquie",
+    "t": "11e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 11e sur 180 (score 83,01), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "064": {
+   "352": {
     "v": 2,
-    "name": "Bhoutan",
-    "t": "150e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 150e sur 180, en « situation très grave » [1].",
+    "name": "Islande",
+    "t": "12e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 12e sur 180 (score 82,77), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "116": {
+   "438": {
     "v": 2,
-    "name": "Cambodge",
-    "t": "151e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 151e sur 180, en « situation très grave » [1].",
+    "name": "Liechtenstein",
+    "t": "13e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 13e sur 180 (score 82,62), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "050": {
+   "276": {
     "v": 2,
-    "name": "Bangladesh",
-    "t": "152e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 152e sur 180, en « situation très grave » [1].",
+    "name": "Allemagne",
+    "t": "14e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 14e sur 180 (score 82,17), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "586": {
+   "440": {
     "v": 2,
-    "name": "Pakistan",
-    "t": "153e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 153e sur 180, en « situation très grave » [1].",
+    "name": "Lituanie",
+    "t": "15e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 15e sur 180 (score 81,34), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "418": {
+   "056": {
     "v": 2,
-    "name": "Laos",
-    "t": "154e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 154e sur 180, en « situation très grave » [1].",
+    "name": "Belgique",
+    "t": "16e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 16e sur 180 (score 81,17), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "762": {
+   "428": {
     "v": 2,
-    "name": "Tadjikistan",
-    "t": "155e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 155e sur 180, en « situation très grave » [1].",
+    "name": "Lettonie",
+    "t": "17e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 17e sur 180 (score 81,0), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "275": {
+   "826": {
     "v": 2,
-    "name": "Palestine",
-    "t": "156e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 156e sur 180, en « situation très grave » [1].",
+    "name": "Royaume-Uni",
+    "t": "18e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 18e sur 180 (score 79,45), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "356": {
+   "040": {
     "v": 2,
-    "name": "Inde",
-    "t": "157e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 157e sur 180, en « situation très grave » [1].",
+    "name": "Autriche",
+    "t": "19e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 19e sur 180 (score 79,43), situation « plutôt bonne » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "784": {
+   "124": {
     "v": 2,
-    "name": "Émirats arabes unis",
-    "t": "158e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 158e sur 180, en « situation très grave » [1].",
+    "name": "Canada",
+    "t": "20e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 20e sur 180 (score 78,76), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "862": {
+   "710": {
     "v": 2,
-    "name": "Venezuela",
-    "t": "159e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 159e sur 180, en « situation très grave » [1].",
+    "name": "Afrique du Sud",
+    "t": "21e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 21e sur 180 (score 77,95), situation « plutôt bonne » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "192": {
+   "554": {
     "v": 2,
-    "name": "Cuba",
-    "t": "160e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 160e sur 180, en « situation très grave » [1].",
+    "name": "Nouvelle-Zélande",
+    "t": "22e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 22e sur 180 (score 77,38), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "729": {
+   "516": {
     "v": 2,
-    "name": "Soudan",
-    "t": "161e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 161e sur 180, en « situation très grave » [1].",
+    "name": "Namibie",
+    "t": "23e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 23e sur 180 (score 76,97), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "368": {
+   "242": {
     "v": 2,
-    "name": "Irak",
-    "t": "162e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 162e sur 180, en « situation très grave » [1].",
+    "name": "Fidji",
+    "t": "24e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 24e sur 180 (score 76,76), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "792": {
+   "250": {
     "v": 2,
-    "name": "Turquie",
-    "t": "163e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 163e sur 180, en « situation très grave » [1].",
+    "name": "France",
+    "t": "25e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 25e sur 180 (score 76,68), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "887": {
+   "388": {
     "v": 2,
-    "name": "Yémen",
-    "t": "164e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 164e sur 180, en « situation très grave » [1].",
+    "name": "Jamaïque",
+    "t": "26e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 26e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "112": {
+   "616": {
     "v": 2,
-    "name": "Biélorussie",
-    "t": "165e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 165e sur 180, en « situation très grave » [1].",
+    "name": "Pologne",
+    "t": "27e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 27e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "104": {
+   "158": {
     "v": 2,
-    "name": "Birmanie",
-    "t": "166e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 166e sur 180, en « situation très grave » [1].",
+    "name": "Taïwan",
+    "t": "28e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 28e sur 180, situation « plutôt bonne » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "262": {
+   "724": {
     "v": 2,
-    "name": "Djibouti",
-    "t": "167e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 167e sur 180, en « situation très grave » [1].",
+    "name": "Espagne",
+    "t": "29e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 29e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "558": {
+   "626": {
     "v": 2,
-    "name": "Nicaragua",
-    "t": "168e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 168e sur 180, en « situation très grave » [1].",
+    "name": "Timor oriental",
+    "t": "30e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 30e sur 180, situation « plutôt bonne » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "818": {
+   "498": {
     "v": 2,
-    "name": "Égypte",
-    "t": "169e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 169e sur 180, en « situation très grave » [1].",
+    "name": "Moldavie",
+    "t": "31e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 31e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "048": {
+   "780": {
     "v": 2,
-    "name": "Bahreïn",
-    "t": "170e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 170e sur 180, en « situation très grave » [1].",
+    "name": "Trinité-et-Tobago",
+    "t": "32e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 32e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "031": {
+   "036": {
     "v": 2,
-    "name": "Azerbaïdjan",
-    "t": "171e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 171e sur 180, en « situation très grave » [1].",
+    "name": "Australie",
+    "t": "33e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 33e sur 180, situation « plutôt bonne » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "643": {
+   "740": {
     "v": 2,
-    "name": "Russie",
-    "t": "172e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 172e sur 180, en « situation très grave » [1].",
+    "name": "Suriname",
+    "t": "34e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 34e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "795": {
+   "690": {
     "v": 2,
-    "name": "Turkménistan",
-    "t": "173e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 173e sur 180, en « situation très grave » [1].",
+    "name": "Seychelles",
+    "t": "35e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 35e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
      }
     ]
    },
-   "704": {
+   "705": {
     "v": 2,
-    "name": "Viêt Nam",
-    "t": "174e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 174e sur 180, en « situation très grave » [1].",
+    "name": "Slovénie",
+    "t": "36e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 36e sur 180, situation « plutôt bonne » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
-   "004": {
+   "703": {
     "v": 2,
-    "name": "Afghanistan",
-    "t": "175e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 175e sur 180, en « situation très grave » [1].",
+    "name": "Slovaquie",
+    "t": "37e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 37e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
-   "682": {
+   "188": {
     "v": 2,
-    "name": "Arabie saoudite",
-    "t": "176e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 176e sur 180, en « situation très grave » [1].",
+    "name": "Costa Rica",
+    "t": "38e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 38e sur 180, situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
-   "364": {
+   "288": {
     "v": 2,
-    "name": "Iran",
-    "t": "177e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 177e sur 180, en « situation très grave » [1].",
+    "name": "Ghana",
+    "t": "39e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 39e sur 180, situation « plutôt bonne » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
-   "156": {
+   "132": {
     "v": 2,
-    "name": "Chine",
-    "t": "178e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 178e sur 180, en « situation très grave » [1].",
+    "name": "Cap-Vert",
+    "t": "40e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 40e sur 180 (score 71,98), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "408": {
+   "499": {
     "v": 2,
-    "name": "Corée du Nord",
-    "t": "179e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 179e sur 180, en « situation très grave » [1].",
+    "name": "Monténégro",
+    "t": "41e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 41e sur 180 (score 71,8), situation « plutôt bonne » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
-   "232": {
+   "480": {
     "v": 2,
-    "name": "Érythrée",
-    "t": "180e sur 180 · situation très grave",
-    "text": "Classement RSF 2026 : 180e sur 180, en « situation très grave » [1].",
+    "name": "Maurice",
+    "t": "42e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 42e sur 180 (score 70,92), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "266": {
+    "v": 2,
+    "name": "Gabon",
+    "t": "43e sur 180 · plutôt bonne",
+    "text": "Classement RSF 2026 de la liberté de la presse : 43e sur 180 (score 70,57), situation « plutôt bonne » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "214": {
+    "v": 3,
+    "name": "République dominicaine",
+    "t": "44e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 44e sur 180 (score 69,73), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "807": {
+    "v": 3,
+    "name": "Macédoine du Nord",
+    "t": "45e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 45e sur 180 (score 69,49), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "270": {
+    "v": 3,
+    "name": "Gambie",
+    "t": "46e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 46e sur 180 (score 69,42), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "410": {
+    "v": 3,
+    "name": "Corée du Sud",
+    "t": "47e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 47e sur 180 (score 69,12), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "858": {
+    "v": 3,
+    "name": "Uruguay",
+    "t": "48e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 48e sur 180 (score 68,72), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "642": {
+    "v": 3,
+    "name": "Roumanie",
+    "t": "49e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 49e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "051": {
+    "v": 3,
+    "name": "Arménie",
+    "t": "50e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 50e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "776": {
+    "v": 3,
+    "name": "Tonga",
+    "t": "51e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 51e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "076": {
+    "v": 3,
+    "name": "Brésil",
+    "t": "52e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 52e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "191": {
+    "v": 3,
+    "name": "Croatie",
+    "t": "53e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 53e sur 180, situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "384": {
+    "v": 3,
+    "name": "Côte d'Ivoire",
+    "t": "54e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 54e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "804": {
+    "v": 3,
+    "name": "Ukraine",
+    "t": "55e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 55e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "380": {
+    "v": 3,
+    "name": "Italie",
+    "t": "56e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 56e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "430": {
+    "v": 3,
+    "name": "Liberia",
+    "t": "58e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 58e sur 180 (score 64,54), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "882": {
+    "v": 3,
+    "name": "Samoa",
+    "t": "59e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 59e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "020": {
+    "v": 3,
+    "name": "Andorre",
+    "t": "60e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 60e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "23degrees",
+      "name": "Graphique « Rangliste der Pressefreiheit 2026 » (source RSF/ROG)",
+      "url": "https://app.23degrees.io/view/iG1lwLhsaMIyMizP-bar-horizontal-rangliste-der-pressefreiheit"
+     }
+    ]
+   },
+   "478": {
+    "v": 3,
+    "name": "Mauritanie",
+    "t": "61e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 61e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "392": {
+    "v": 3,
+    "name": "Japon",
+    "t": "62e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 62e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "072": {
+    "v": 3,
+    "name": "Botswana",
+    "t": "63e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 63e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "840": {
+    "v": 3,
+    "name": "États-Unis",
+    "t": "64e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 64e sur 180 (score 62,61), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "591": {
+    "v": 3,
+    "name": "Panama",
+    "t": "65e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 65e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "084": {
+    "v": 3,
+    "name": "Belize",
+    "t": "66e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 66e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "470": {
+    "v": 3,
+    "name": "Malte",
+    "t": "67e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 67e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "178": {
+    "v": 3,
+    "name": "Congo",
+    "t": "68e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 68e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "454": {
+    "v": 3,
+    "name": "Malawi",
+    "t": "69e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 69e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "152": {
+    "v": 3,
+    "name": "Chili",
+    "t": "70e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 70e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "100": {
+    "v": 3,
+    "name": "Bulgarie",
+    "t": "71e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 71e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "174": {
+    "v": 3,
+    "name": "Comores",
+    "t": "72e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 72e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "598": {
+    "v": 3,
+    "name": "Papouasie-Nouvelle-Guinée",
+    "t": "73e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 73e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "348": {
+    "v": 3,
+    "name": "Hongrie",
+    "t": "74e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 74e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "634": {
+    "v": 3,
+    "name": "Qatar",
+    "t": "75e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 75e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "328": {
+    "v": 3,
+    "name": "Guyana",
+    "t": "76e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 76e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "894": {
+    "v": 3,
+    "name": "Zambie",
+    "t": "77e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 77e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "686": {
+    "v": 3,
+    "name": "Sénégal",
+    "t": "78e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 78e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "694": {
+    "v": 3,
+    "name": "Sierra Leone",
+    "t": "79e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 79e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "196": {
+    "v": 3,
+    "name": "Chypre",
+    "t": "80e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 80e sur 180 (score 56,91), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "140": {
+    "v": 3,
+    "name": "République centrafricaine",
+    "t": "81e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 81e sur 180 (score 56,73), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "008": {
+    "v": 3,
+    "name": "Albanie",
+    "t": "83e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 83e sur 180 (score 56,52), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "496": {
+    "v": 3,
+    "name": "Mongolie",
+    "t": "85e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 85e sur 180 (score 55,79), situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "300": {
+    "v": 3,
+    "name": "Grèce",
+    "t": "86e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 86e sur 180, situation « problématique » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "524": {
+    "v": 3,
+    "name": "Népal",
+    "t": "87e sur 180 · problématique",
+    "text": "Classement RSF 2026 de la liberté de la presse : 87e sur 180, situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "600": {
+    "v": 4,
+    "name": "Paraguay",
+    "t": "88e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 88e sur 180 (score 54,67), situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "426": {
+    "v": 4,
+    "name": "Lesotho",
+    "t": "89e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 89e sur 180 (score 54,37), situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "070": {
+    "v": 4,
+    "name": "Bosnie-Herzégovine",
+    "t": "90e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 90e sur 180 (score 54,29), situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "068": {
+    "v": 4,
+    "name": "Bolivie",
+    "t": "91e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 91e sur 180 (score 54,25), situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
    "764": {
-    "v": 1,
+    "v": 4,
     "name": "Thaïlande",
-    "t": "92e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 92e sur 180, en « situation difficile » [1].",
+    "t": "92e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 92e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "148": {
-    "v": 1,
+    "v": 4,
     "name": "Tchad",
-    "t": "93e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 93e sur 180, en « situation difficile » [1].",
+    "t": "93e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 93e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "226": {
+    "v": 4,
+    "name": "Guinée équatoriale",
+    "t": "94e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 94e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "458": {
-    "v": 1,
+    "v": 4,
     "name": "Malaisie",
-    "t": "95e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 95e sur 180, en « situation difficile » [1].",
+    "t": "95e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 95e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "096": {
-    "v": 1,
+    "v": 4,
     "name": "Brunei",
-    "t": "96e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 96e sur 180, en « situation difficile » [1].",
+    "t": "96e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 96e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "768": {
+    "v": 4,
+    "name": "Togo",
+    "t": "97e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 97e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "032": {
-    "v": 1,
+    "v": 4,
     "name": "Argentine",
-    "t": "98e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 98e sur 180, en « situation difficile » [1].",
+    "t": "98e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 98e sur 180, situation « difficile » [1].",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "508": {
+    "v": 4,
+    "name": "Mozambique",
+    "t": "99e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 99e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "624": {
+    "v": 4,
+    "name": "Guinée-Bissau",
+    "t": "100e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 100e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "748": {
+    "v": 4,
+    "name": "Eswatini",
+    "t": "101e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 101e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "170": {
+    "v": 4,
+    "name": "Colombie",
+    "t": "102e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 102e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "450": {
+    "v": 4,
+    "name": "Madagascar",
+    "t": "103e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 103e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "688": {
-    "v": 1,
+    "v": 4,
     "name": "Serbie",
-    "t": "104e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 104e sur 180, en « situation difficile » [1].",
+    "t": "104e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 104e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "504": {
+    "v": 4,
+    "name": "Maroc",
+    "t": "105e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 105e sur 180 (score 50,55), situation « difficile » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "404": {
+    "v": 4,
+    "name": "Kenya",
+    "t": "106e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 106e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "332": {
+    "v": 4,
+    "name": "Haïti",
+    "t": "107e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 107e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "462": {
+    "v": 4,
+    "name": "Maldives",
+    "t": "108e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 108e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "024": {
+    "v": 4,
+    "name": "Angola",
+    "t": "109e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 109e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "854": {
-    "v": 1,
+    "v": 4,
     "name": "Burkina Faso",
-    "t": "110e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 110e sur 180, en « situation difficile » [1].",
+    "t": "110e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 110e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "324": {
+    "v": 4,
+    "name": "Guinée",
+    "t": "111e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 111e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "566": {
+    "v": 4,
+    "name": "Nigeria",
+    "t": "112e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 112e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "204": {
-    "v": 1,
+    "v": 4,
     "name": "Bénin",
-    "t": "113e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 113e sur 180, en « situation difficile » [1].",
+    "t": "113e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 113e sur 180 (score 47,39), situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
    "608": {
-    "v": 1,
+    "v": 4,
     "name": "Philippines",
-    "t": "114e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 114e sur 180, en « situation difficile » [1].",
+    "t": "114e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 114e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "422": {
-    "v": 1,
+    "v": 4,
     "name": "Liban",
-    "t": "115e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 115e sur 180, en « situation difficile » [1].",
+    "t": "115e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 115e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "376": {
-    "v": 1,
+    "v": 4,
     "name": "Israël",
-    "t": "116e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 116e sur 180, en « situation difficile » [1].",
+    "t": "116e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 116e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "834": {
+    "v": 4,
+    "name": "Tanzanie",
+    "t": "117e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 117e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "728": {
+    "v": 4,
+    "name": "Soudan du Sud",
+    "t": "118e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 118e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "108": {
+    "v": 4,
+    "name": "Burundi",
+    "t": "119e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 119e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "562": {
-    "v": 1,
+    "v": 4,
     "name": "Niger",
-    "t": "120e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 120e sur 180, en « situation difficile » [1].",
+    "t": "120e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 120e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "466": {
-    "v": 1,
+    "v": 4,
     "name": "Mali",
-    "t": "121e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 121e sur 180, en « situation difficile » [1].",
+    "t": "121e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 121e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "484": {
+    "v": 4,
+    "name": "Mexique",
+    "t": "122e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 122e sur 180 (score 45,23), situation « difficile » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    },
    "702": {
-    "v": 1,
+    "v": 4,
     "name": "Singapour",
-    "t": "123e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 123e sur 180, en « situation difficile » [1].",
+    "t": "123e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 123e sur 180 (score 44,57), situation « difficile » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "716": {
+    "v": 4,
+    "name": "Zimbabwe",
+    "t": "124e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 124e sur 180 (score 44,37), situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "218": {
+    "v": 4,
+    "name": "Équateur",
+    "t": "125e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 125e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "706": {
+    "v": 4,
+    "name": "Somalie",
+    "t": "126e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 126e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "512": {
-    "v": 1,
+    "v": 4,
     "name": "Oman",
-    "t": "127e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 127e sur 180, en « situation difficile » [1].",
+    "t": "127e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 127e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "320": {
+    "v": 4,
+    "name": "Guatemala",
+    "t": "128e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 128e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "360": {
-    "v": 1,
+    "v": 4,
     "name": "Indonésie",
-    "t": "129e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 129e sur 180, en « situation difficile » [1].",
+    "t": "129e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 129e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "180": {
+    "v": 4,
+    "name": "RD Congo",
+    "t": "130e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 130e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "800": {
+    "v": 4,
+    "name": "Ouganda",
+    "t": "131e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 131e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "340": {
+    "v": 4,
+    "name": "Honduras",
+    "t": "132e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 132e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "120": {
+    "v": 4,
+    "name": "Cameroun",
+    "t": "133e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 133e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "144": {
+    "v": 4,
+    "name": "Sri Lanka",
+    "t": "134e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 134e sur 180, situation « difficile » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "268": {
-    "v": 1,
+    "v": 4,
     "name": "Géorgie",
-    "t": "135e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 135e sur 180, en « situation difficile » [1].",
+    "t": "135e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 135e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "414": {
+    "v": 4,
+    "name": "Koweït",
+    "t": "136e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 136e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "788": {
-    "v": 1,
+    "v": 4,
     "name": "Tunisie",
-    "t": "137e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 137e sur 180, en « situation difficile » [1].",
+    "t": "137e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 137e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
     "sources": [
      {
-      "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
      }
     ]
    },
    "434": {
-    "v": 1,
+    "v": 4,
     "name": "Libye",
-    "t": "138e sur 180 · situation difficile",
-    "text": "Classement RSF 2026 : 138e sur 180, en « situation difficile » [1].",
+    "t": "138e sur 180 · difficile",
+    "text": "Classement RSF 2026 de la liberté de la presse : 138e sur 180, situation « difficile » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "646": {
+    "v": 5,
+    "name": "Rwanda",
+    "t": "139e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 139e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "344": {
+    "v": 5,
+    "name": "Hong Kong",
+    "t": "140e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 140e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "760": {
+    "v": 5,
+    "name": "Syrie",
+    "t": "141e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 141e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "400": {
+    "v": 5,
+    "name": "Jordanie",
+    "t": "142e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 142e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "222": {
+    "v": 5,
+    "name": "Salvador",
+    "t": "143e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 143e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "604": {
+    "v": 5,
+    "name": "Pérou",
+    "t": "144e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 144e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "012": {
+    "v": 5,
+    "name": "Algérie",
+    "t": "145e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 145e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "417": {
+    "v": 5,
+    "name": "Kirghizistan",
+    "t": "146e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 146e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "860": {
+    "v": 5,
+    "name": "Ouzbékistan",
+    "t": "147e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 147e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "231": {
+    "v": 5,
+    "name": "Éthiopie",
+    "t": "148e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 148e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "398": {
+    "v": 5,
+    "name": "Kazakhstan",
+    "t": "149e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 149e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "064": {
+    "v": 5,
+    "name": "Bhoutan",
+    "t": "150e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 150e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "116": {
+    "v": 5,
+    "name": "Cambodge",
+    "t": "151e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 151e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "050": {
+    "v": 5,
+    "name": "Bangladesh",
+    "t": "152e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 152e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "586": {
+    "v": 5,
+    "name": "Pakistan",
+    "t": "153e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 153e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "418": {
+    "v": 5,
+    "name": "Laos",
+    "t": "154e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 154e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "762": {
+    "v": 5,
+    "name": "Tadjikistan",
+    "t": "155e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 155e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "275": {
+    "v": 5,
+    "name": "Palestine",
+    "t": "156e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 156e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "356": {
+    "v": 5,
+    "name": "Inde",
+    "t": "157e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 157e sur 180 (score 31,96), situation « très grave » [1].",
     "sources": [
      {
       "short": "RSF",
-      "name": "RSF – Classement 2026 : la liberté de la presse au plus bas depuis 25 ans",
-      "url": "https://rsf.org/fr/classement-2026-la-libert%C3%A9-de-la-presse-au-plus-bas-depuis-25-ans"
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "784": {
+    "v": 5,
+    "name": "Émirats arabes unis",
+    "t": "158e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 158e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "862": {
+    "v": 5,
+    "name": "Venezuela",
+    "t": "159e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 159e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "192": {
+    "v": 5,
+    "name": "Cuba",
+    "t": "160e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 160e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "729": {
+    "v": 5,
+    "name": "Soudan",
+    "t": "161e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 161e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "368": {
+    "v": 5,
+    "name": "Irak",
+    "t": "162e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 162e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "792": {
+    "v": 5,
+    "name": "Turquie",
+    "t": "163e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 163e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "887": {
+    "v": 5,
+    "name": "Yémen",
+    "t": "164e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 164e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "112": {
+    "v": 5,
+    "name": "Biélorussie",
+    "t": "165e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 165e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "104": {
+    "v": 5,
+    "name": "Myanmar",
+    "t": "166e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 166e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "262": {
+    "v": 5,
+    "name": "Djibouti",
+    "t": "167e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 167e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "558": {
+    "v": 5,
+    "name": "Nicaragua",
+    "t": "168e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 168e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "818": {
+    "v": 5,
+    "name": "Égypte",
+    "t": "169e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 169e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "048": {
+    "v": 5,
+    "name": "Bahreïn",
+    "t": "170e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 170e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "031": {
+    "v": 5,
+    "name": "Azerbaïdjan",
+    "t": "171e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 171e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "643": {
+    "v": 5,
+    "name": "Russie",
+    "t": "172e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 172e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "795": {
+    "v": 5,
+    "name": "Turkménistan",
+    "t": "173e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 173e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "704": {
+    "v": 5,
+    "name": "Viêt Nam",
+    "t": "174e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 174e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "004": {
+    "v": 5,
+    "name": "Afghanistan",
+    "t": "175e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 175e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "682": {
+    "v": 5,
+    "name": "Arabie saoudite",
+    "t": "176e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 176e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "364": {
+    "v": 5,
+    "name": "Iran",
+    "t": "177e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 177e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "156": {
+    "v": 5,
+    "name": "Chine",
+    "t": "178e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 178e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "408": {
+    "v": 5,
+    "name": "Corée du Nord",
+    "t": "179e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 179e sur 180, situation « très grave » [1]. La catégorie est déduite du rang.",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "232": {
+    "v": 5,
+    "name": "Érythrée",
+    "t": "180e sur 180 · très grave",
+    "text": "Classement RSF 2026 de la liberté de la presse : 180e sur 180, situation « très grave » [1].",
+    "sources": [
+     {
+      "short": "RSF/ROG",
+      "name": "Reporter ohne Grenzen – Rangliste der Pressefreiheit 2026 (PDF, 180 rangs)",
+      "url": "https://media.reporter-ohne-grenzen.de/production/6135/RSF-Rangliste-der-Pressefreiheit-2026-A4.pdf"
+     }
+    ]
+   },
+   "028": {
+    "v": 3,
+    "name": "Antigua-et-Barbuda",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "212": {
+    "v": 3,
+    "name": "Dominique",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "308": {
+    "v": 3,
+    "name": "Grenade",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "659": {
+    "v": 3,
+    "name": "Saint-Kitts-et-Nevis",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "662": {
+    "v": 3,
+    "name": "Sainte-Lucie",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
+     }
+    ]
+   },
+   "670": {
+    "v": 3,
+    "name": "Saint-Vincent-et-les-Grenadines",
+    "t": "57e sur 180 (OECS) · problématique",
+    "text": "RSF classe ensemble les États de la Caraïbe orientale (OECS) : 57e sur 180 (score 64,60), situation « problématique » [1].",
+    "sources": [
+     {
+      "short": "RSF",
+      "name": "RSF – Classement mondial de la liberté de la presse 2026 (page Index, scores globaux)",
+      "url": "https://rsf.org/en/index"
      }
     ]
    }
