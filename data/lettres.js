@@ -8,7 +8,8 @@ window.GEOCO.lettres = [
       "L'Inde relève ses taux pour la première fois en près de quatre ans",
       "Kenya : la banque centrale garde son taux à 8,75 %, l'énergie reste la menace",
       "Brésil : un second tour serré, les marchés réagissent"
-    ]
+    ],
+    "fileDark": "lettres/2026-10-08-sombre.pdf"
   },
   {
     "date": "2026-10-07",
@@ -17,6 +18,7 @@ window.GEOCO.lettres = [
       "La France ouvre ses réserves de gazole pour faire baisser les prix à la pompe",
       "Ormuz : le pétrole repasse, mais la menace iranienne pèse toujours",
       "Droits de douane : le déficit commercial américain au plus haut depuis 2025"
-    ]
+    ],
+    "fileDark": "lettres/2026-10-07-sombre.pdf"
   }
 ];

@@ -33,7 +33,8 @@ const G = ctx.window.GEOCO;
 const news = G.news || [];
 const args = process.argv.slice(2);
 const opt = (k) => { const a = args.find((x) => x.startsWith(`--${k}=`)); return a && a.slice(k.length + 3); };
-const style = opt("style") || "classique";
+// Par défaut : « Le Journal » (lettres/AAAA-MM-JJ.pdf) + version sombre « Keynote » (…-sombre.pdf).
+const style = opt("style") || "journal";
 if (style !== "classique" && !STYLES[style]) { console.error(`Style inconnu : ${style}`); process.exit(1); }
 const day = args.find((x) => /^\d{4}-\d{2}-\d{2}$/.test(x)) || (news[0] && news[0].date);
 if (!day) { console.error("Aucune actu."); process.exit(1); }
@@ -55,7 +56,7 @@ const latest = (G.indicators && G.indicators.latest) || [];
 
 const dateCap = longDate.charAt(0).toUpperCase() + longDate.slice(1);
 const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip, world: ctx.window.GEOCO_WORLD };
-const html = style !== "classique" ? STYLES[style](data) : `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+const classicHtml = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: "Tinos", "Liberation Serif", "Times New Roman", serif; color: #161616; background: #fff; }
@@ -111,41 +112,50 @@ footer { margin-top: 4mm; padding-top: 2.5mm; border-top: .5px solid #161616; fo
 <footer class="sans"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Géoconomic.</span><span>Lettre n° ${esc(day)}</span></footer>
 </div></body></html>`;
 
+const htmlFor = (st) => (st === "classique" ? classicHtml : STYLES[st](data));
 const browser = await chromium.launch(fs.existsSync("/opt/pw-browsers/chromium") ? { executablePath: "/opt/pw-browsers/chromium" } : {});
-const page = await browser.newPage({ viewport: { width: 794, height: 1123 } });
-// La page est écrite à la racine du projet pour que polices et images (assets/…) se chargent.
-const tmp = path.join(ROOT, ".lettre-tmp.html");
-fs.writeFileSync(tmp, html);
-await page.goto("file://" + tmp, { waitUntil: "load" });
-await page.evaluate(() => document.fonts.ready);
-fs.unlinkSync(tmp);
-// Tout doit tenir sur une page : si ça déborde, on réduit légèrement l'ensemble.
 const A4 = 1120;
-const fit = await page.evaluate((max) => {
-  const el = document.getElementById("page");
-  el.style.minHeight = "0";
-  const natural = el.getBoundingClientRect().height;
-  const z = natural > max ? Math.floor((max / natural) * 100) / 100 : 1;
-  el.style.zoom = z;
-  el.style.minHeight = (297 / z) + "mm"; // le pied de page reste en bas de la feuille
-  return z;
-}, A4);
-const h = fit < 1 ? A4 + 1 : A4;
-const out = opt("out") || `lettres/${day}.pdf`;
-fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
-await page.pdf({ path: out, format: "A4", printBackground: true, pageRanges: "1" });
-await browser.close();
+async function render(st, out) {
+  const page = await browser.newPage({ viewport: { width: 794, height: 1123 } });
+  // La page est écrite à la racine du projet pour que polices et images (assets/…) se chargent.
+  const tmp = path.join(ROOT, ".lettre-tmp.html");
+  fs.writeFileSync(tmp, htmlFor(st));
+  await page.goto("file://" + tmp, { waitUntil: "load" });
+  await page.evaluate(() => document.fonts.ready);
+  fs.unlinkSync(tmp);
+  // Tout doit tenir sur une page : si ça déborde, on réduit légèrement l'ensemble.
+  const z = await page.evaluate((max) => {
+    const el = document.getElementById("page");
+    el.style.minHeight = "0";
+    const natural = el.getBoundingClientRect().height;
+    const k = natural > max ? Math.floor((max / natural) * 100) / 100 : 1;
+    el.style.zoom = k;
+    el.style.minHeight = (297 / k) + "mm"; // le pied de page reste en bas de la feuille
+    return k;
+  }, A4);
+  fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
+  await page.pdf({ path: out, format: "A4", printBackground: true, pageRanges: "1" });
+  await page.close();
+  console.log(`Lettre (${st}) prête : ${out}${z < 1 ? " (réduite pour tenir sur une page)" : ""}.`);
+}
 
-if (opt("out")) { console.log(`Lettre (${style}) prête : ${out}.`); process.exit(0); }
+if (opt("out")) {
+  await render(style, opt("out"));
+  await browser.close();
+  process.exit(0);
+}
+await render(style, `lettres/${day}.pdf`);
+if (!opt("style")) await render("keynote", `lettres/${day}-sombre.pdf`);
+await browser.close();
 
 // Liste des lettres (la plus récente en premier).
 const list = fs.readdirSync("lettres").filter((f) => /^\d{4}-\d{2}-\d{2}\.pdf$/.test(f)).sort().reverse();
 const entries = list.map((f) => {
   const d = f.slice(0, 10);
   const titles = news.filter((n) => n.date === d).slice(0, 3).map((n) => n.title);
-  return { date: d, file: `lettres/${f}`, titles };
+  const dark = `lettres/${d}-sombre.pdf`;
+  return Object.assign({ date: d, file: `lettres/${f}`, titles }, fs.existsSync(dark) ? { fileDark: dark } : {});
 });
 fs.writeFileSync("data/lettres.js",
   "// Liste des lettres du matin en PDF, générée par tools/build-lettre.mjs : ne pas modifier à la main.\n" +
   "window.GEOCO = window.GEOCO || {};\nwindow.GEOCO.lettres = " + JSON.stringify(entries, null, 2) + ";\n");
-console.log(`Lettre prête : ${out} (${items.length} actus${h > A4 ? ", réduite pour tenir sur une page" : ""}).`);

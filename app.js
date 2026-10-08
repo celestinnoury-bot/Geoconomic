@@ -567,6 +567,7 @@
         </span>
         <span class="lettre-cta">Télécharger</span>
       </a>
+      ${l.fileDark ? `<a class="more-link lettre-dark" href="${l.fileDark}" download="Geoconomic-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre (PDF) ›</a>` : ""}
       ${lettres.length > 1 ? `<a class="more-link" href="#/lettres">Les lettres précédentes (${lettres.length - 1}) ›</a>` : ""}`;
   }
 
@@ -618,7 +619,8 @@
               <h3>${l.titles[0] || "La lettre du matin"}</h3>
               ${l.titles.length > 1 ? `<p class="summary">Aussi : ${l.titles.slice(1).join(" · ")}</p>` : ""}
               <span class="more">Télécharger ›</span>
-            </a>`).join("") || '<p class="empty">Première lettre bientôt.</p>'}
+            </a>
+            ${l.fileDark ? `<p style="margin:6px 0 0 6px"><a href="${l.fileDark}" download="Geoconomic-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre ›</a></p>` : ""}`).join("") || '<p class="empty">Première lettre bientôt.</p>'}
         </div>
       </section>`;
   }

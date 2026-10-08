@@ -5,8 +5,10 @@ Elle peut être modifiée librement : la mise à jour automatique relit ce fichi
 
 ## Ce qu'on cherche
 
-- **5 à 8 actus** du jour ou de la veille, **économie et géopolitique** (elles sont liées).
-- **Partout dans le monde**, pas seulement l'Occident : au moins une en **Afrique** et une en **Asie**, et autant que possible des pays dont on parle peu.
+- **8 à 10 actus** du jour ou de la veille, **économie et géopolitique** (elles sont liées).
+- **Partout dans le monde**, pas seulement l'Occident : chaque jour au moins une actu en **Afrique**, une en **Asie**, une en **Amérique latine**, une au **Moyen-Orient** et une en **Europe ou Asie centrale**.
+- **De nouveaux pays sur le globe** : au moins **4 actus sur des pays qui n'ont pas eu d'actu depuis 14 jours** (regarder les `geo` des actus existantes). On cherche « sous la surface du glacier » : ce dont les grands médias français parlent peu.
+- **Le dimanche** : en plus, un « tour du monde » de 4 à 6 pays rarement traités (Asie centrale, Pacifique, Caraïbes, Afrique australe, Balkans…).
 - Priorité aux sujets qui ont un **impact concret** : prix (énergie, alimentation), emploi, monnaies, dettes, matières premières (pétrole, gaz, uranium, cobalt, cuivre, terres rares, nickel, or…), commerce, sanctions, conflits qui touchent l'économie.
 - On évite le fait divers et la politique intérieure sans enjeu économique.
 

@@ -794,3 +794,4 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .auteur-text { font-family: var(--serif); font-size: 18px; line-height: 1.55; margin-top: 12px; }
 .auteur .more { display: inline-block; margin-top: 12px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
 @media (max-width: 560px) { .auteur { grid-template-columns: 1fr; } .auteur-photo { width: 72px; height: 72px; } .auteur-photo.initials { font-size: 26px; } }
+.lettre-dark { margin: -4px 0 14px 4px; display: inline-block; }
