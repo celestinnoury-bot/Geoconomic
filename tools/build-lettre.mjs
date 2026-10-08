@@ -1,13 +1,16 @@
 // Fabrique « La lettre du matin » : une page A4 en PDF avec les actus du jour,
 // le chiffre du jour, le point conflits et les derniers chiffres.
-// Usage : node tools/build-lettre.mjs [AAAA-MM-JJ]   (par défaut : la date la plus récente des actus)
-// Sortie : lettres/AAAA-MM-JJ.pdf, et la liste des lettres dans data/lettres.js.
+// Usage : node tools/build-lettre.mjs [AAAA-MM-JJ] [--style=nom] [--out=fichier.pdf]
+//   date  : par défaut, la date la plus récente des actus
+//   style : classique (par défaut), journal, keynote, blanc, magazine, briefing (voir tools/lettre-styles.mjs)
+//   out   : par défaut lettres/AAAA-MM-JJ.pdf (et la liste des lettres est mise à jour dans data/lettres.js)
 // Nécessite Playwright et Chromium (déjà installés dans l'environnement cloud).
 import fs from "fs";
 import vm from "vm";
 import path from "path";
 import { createRequire } from "module";
 import { execSync } from "child_process";
+import { STYLES } from "./lettre-styles.mjs";
 
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 process.chdir(ROOT);
@@ -28,7 +31,11 @@ for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js"]) {
 }
 const G = ctx.window.GEOCO;
 const news = G.news || [];
-const day = process.argv[2] || (news[0] && news[0].date);
+const args = process.argv.slice(2);
+const opt = (k) => { const a = args.find((x) => x.startsWith(`--${k}=`)); return a && a.slice(k.length + 3); };
+const style = opt("style") || "classique";
+if (style !== "classique" && !STYLES[style]) { console.error(`Style inconnu : ${style}`); process.exit(1); }
+const day = args.find((x) => /^\d{4}-\d{2}-\d{2}$/.test(x)) || (news[0] && news[0].date);
 if (!day) { console.error("Aucune actu."); process.exit(1); }
 const todays = news.filter((n) => n.date === day);
 if (!todays.length) { console.error(`Aucune actu le ${day}.`); process.exit(1); }
@@ -46,7 +53,9 @@ const figSrc = fig && fig.src && lead.sources[fig.src - 1];
 const C = G.conflits;
 const latest = (G.indicators && G.indicators.latest) || [];
 
-const html = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
+const dateCap = longDate.charAt(0).toUpperCase() + longDate.slice(1);
+const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip };
+const html = style !== "classique" ? STYLES[style](data) : `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
 body { margin: 0; font-family: "Tinos", "Liberation Serif", "Times New Roman", serif; color: #161616; background: #fff; }
@@ -104,7 +113,12 @@ footer { margin-top: 4mm; padding-top: 2.5mm; border-top: .5px solid #161616; fo
 
 const browser = await chromium.launch(fs.existsSync("/opt/pw-browsers/chromium") ? { executablePath: "/opt/pw-browsers/chromium" } : {});
 const page = await browser.newPage({ viewport: { width: 794, height: 1123 } });
-await page.setContent(html, { waitUntil: "load" });
+// La page est écrite à la racine du projet pour que polices et images (assets/…) se chargent.
+const tmp = path.join(ROOT, ".lettre-tmp.html");
+fs.writeFileSync(tmp, html);
+await page.goto("file://" + tmp, { waitUntil: "load" });
+await page.evaluate(() => document.fonts.ready);
+fs.unlinkSync(tmp);
 // Tout doit tenir sur une page : si ça déborde, on réduit légèrement l'ensemble.
 const A4 = 1120;
 const fit = await page.evaluate((max) => {
@@ -117,10 +131,12 @@ const fit = await page.evaluate((max) => {
   return z;
 }, A4);
 const h = fit < 1 ? A4 + 1 : A4;
-fs.mkdirSync("lettres", { recursive: true });
-const out = `lettres/${day}.pdf`;
+const out = opt("out") || `lettres/${day}.pdf`;
+fs.mkdirSync(path.dirname(path.resolve(out)), { recursive: true });
 await page.pdf({ path: out, format: "A4", printBackground: true, pageRanges: "1" });
 await browser.close();
+
+if (opt("out")) { console.log(`Lettre (${style}) prête : ${out}.`); process.exit(0); }
 
 // Liste des lettres (la plus récente en premier).
 const list = fs.readdirSync("lettres").filter((f) => /^\d{4}-\d{2}-\d{2}\.pdf$/.test(f)).sort().reverse();
