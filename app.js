@@ -235,6 +235,31 @@
       }).join("");
   }
 
+  // Bandeau d'infos défilant, comme à la télévision : dernières actus et derniers chiffres.
+  function tickerHTML() {
+    const items = news.slice(0, 14).map((n) => {
+      const where = (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || n.region || "";
+      return `<a class="tk-item" href="#/actu/${n.id}"><b>${where}</b>${n.title}</a>`;
+    });
+    const nums = ((window.GEOCO.indicators && window.GEOCO.indicators.latest) || []).map((x) =>
+      `<a class="tk-item tk-num" href="${x.link}"><b>${x.value}</b>${x.label}</a>`);
+    // On intercale un chiffre toutes les trois actus.
+    const mixed = [];
+    items.forEach((it, i) => { mixed.push(it); if (i % 3 === 2 && nums.length) mixed.push(nums.shift()); });
+    const run = mixed.join('<span class="tk-sep" aria-hidden="true">•</span>');
+    const secs = Math.max(40, mixed.length * 7);
+    return `
+      <div class="ticker" role="region" aria-label="Les dernières infos">
+        <span class="tk-label">EN CE MOMENT</span>
+        <div class="tk-viewport">
+          <div class="tk-track" style="animation-duration:${secs}s">
+            <div class="tk-run">${run}<span class="tk-sep" aria-hidden="true">•</span></div>
+            <div class="tk-run" aria-hidden="true">${run}<span class="tk-sep">•</span></div>
+          </div>
+        </div>
+      </div>`;
+  }
+
   function renderHome() {
     const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
     const today = news.length ? news[0].date : null;
@@ -256,6 +281,7 @@
         </div>
         <div class="globe-sheet" hidden></div>
         <a class="scroll-hint" href="#/" data-scroll="feed"><span>Toute l'actu</span><span class="arrow" aria-hidden="true">↓</span></a>
+        ${tickerHTML()}
       </section>
 
       <div id="feed"></div>
@@ -356,6 +382,8 @@
       document.getElementById("feed").scrollIntoView({ behavior: "smooth" });
     });
 
+    const tk = app.querySelector(".ticker");
+    if (tk) tk.addEventListener("touchstart", () => tk.classList.toggle("paused"), { passive: true });
     mountHomeGlobe(onGlobe);
   }
 
