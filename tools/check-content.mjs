@@ -100,6 +100,7 @@ const caseIds = new Set();
   if (!ep.title || !/^\d{4}-\d{2}-\d{2}$/.test(ep.date || "")) err(w, "title et date (AAAA-MM-JJ) obligatoires");
   if (ep.audio && !/^https:\/\//.test(ep.audio) && !fs.existsSync(ep.audio)) err(w, `fichier audio introuvable : ${ep.audio}`);
   if (ep.cas && !caseIds.has(ep.cas)) err(w, `étude de cas inconnue « ${ep.cas} »`);
+  (ep.news || []).forEach((id) => { if (!newsIds.has(id)) warn.push(`${w} : lien vers une actu retirée (${id})`); });
 });
 
 // ---- Indicateurs

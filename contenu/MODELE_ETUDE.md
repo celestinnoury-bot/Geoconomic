@@ -2,7 +2,7 @@
 
 La rubrique **Étude de cas** est en tête de la page Actu. Elle a deux parties, toutes deux dans `data/etudes.js` :
 
-1. **Le podcast** (`podcast`) : tes épisodes enregistrés, postés au fur et à mesure.
+1. **Le podcast** (`podcast`) : tes épisodes enregistrés, postés au fur et à mesure. Un épisode peut traiter une **actu du jour** (`news`), une **étude de cas** (`cas`), ou les deux. Il apparaît alors aussi sur la page de l'actu, et la carte de l'actu porte la mention « 🎙️ En podcast ».
 2. **Les études de cas** (`cas`) : tes analyses écrites, qui décortiquent une actu de A à Z.
 
 Le plus récent va **en premier** dans chaque liste. Après chaque ajout, lance `node tools/check-content.mjs`.
@@ -25,9 +25,11 @@ Le plus récent va **en premier** dans chaque liste. Après chaque ajout, lance 
   audio: "assets/podcast/ep01-ormuz.mp3",   // ou une adresse https:// (Spotify, Ausha…)
   summary: "Une ou deux phrases sur ce dont tu parles.",
   cas: "ormuz-plein",               // facultatif : l'étude de cas écrite qui va avec
-  news: ["2026-10-07-ormuz"]        // facultatif : les actus liées
+  news: ["2026-10-07-ormuz"]        // facultatif : les actus traitées dans l'épisode
 }
 ```
+
+Pour un épisode sur l'actu seulement, enlève la ligne `cas` et mets les identifiants des actus dans `news` (l'identifiant est la fin de l'adresse de l'actu, après `#/actu/`).
 
 Si tu n'as pas encore le son, mets `audio: null` : l'épisode s'affiche avec « Audio bientôt disponible ».
 

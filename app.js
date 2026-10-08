@@ -29,7 +29,7 @@
   function newsCard(n) {
     return `
       <a class="news-card ${n.theme} reveal" href="#/actu/${n.id}">
-        <p class="eyebrow">${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}</p>
+        <p class="eyebrow">${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
         <h3>${n.title}</h3>
         <p class="summary">${n.summary}</p>
         <span class="more">Comprendre en 2 min ›</span>
@@ -482,17 +482,25 @@
   }
 
   // ---------- Étude de cas : podcast + études écrites ----------
-  function episodeCard(ep) {
-    const linked = ep.cas && byId(cases, ep.cas);
+  // Un épisode peut traiter une étude de cas et/ou des actus du jour.
+  function episodeCard(ep, opts = {}) {
+    const linkedCase = ep.cas && byId(cases, ep.cas);
+    const linkedNews = (ep.news || []).map((id) => byId(news, id)).filter(Boolean);
+    const kinds = [linkedCase && "Étude de cas", linkedNews.length && "Actu"].filter(Boolean).join(" · ");
+    const links = [
+      linkedCase && !opts.fromCase ? `<a class="more" href="#/etudes/${linkedCase.id}">Lire l'étude de cas ›</a>` : "",
+      ...linkedNews.filter((n) => n.id !== opts.fromNews).map((n) => `<a class="more" href="#/actu/${n.id}">${n.title} ›</a>`)
+    ].filter(Boolean);
     return `
       <article class="episode reveal" id="ep-${ep.id}">
-        <p class="eyebrow">Épisode ${ep.number || ""} · ${formatDate(ep.date)}${ep.duration ? ` · ${ep.duration}` : ""}</p>
+        <p class="eyebrow">🎙️ Épisode ${ep.number || ""}${kinds ? ` · ${kinds}` : ""} · ${formatDate(ep.date)}${ep.duration ? ` · ${ep.duration}` : ""}</p>
         <h3>${ep.title}</h3>
         ${ep.summary ? `<p class="summary">${ep.summary}</p>` : ""}
         ${ep.audio ? `<audio controls preload="none" src="${ep.audio}"></audio>` : `<p class="byline">Audio bientôt disponible.</p>`}
-        ${linked ? `<a class="more" href="#/etudes/${linked.id}">Lire l'étude de cas ›</a>` : ""}
+        ${links.length ? `<div class="episode-links">${links.join("")}</div>` : ""}
       </article>`;
   }
+  const episodesFor = (key, id) => podcast.filter((ep) => key === "cas" ? ep.cas === id : (ep.news || []).includes(id));
 
   function caseCard(c) {
     return `
@@ -508,7 +516,7 @@
     <div class="episode empty-episode reveal">
       <p class="eyebrow">Le podcast</p>
       <h3>Premier épisode bientôt.</h3>
-      <p class="summary">Ici, je décrypte l'actu à voix haute, épisode après épisode.</p>
+      <p class="summary">Ici, je décrypte à voix haute l'actu et mes études de cas, épisode après épisode.</p>
     </div>`;
 
   // Bloc « Étude de cas » en tête de la page Actu. `full` : page complète (#/etudes).
@@ -518,7 +526,7 @@
     return `
       <div class="etudes-grid">
         <div class="etudes-col">
-          <h2 class="subhead reveal">🎙️ Le podcast</h2>
+          <h2 class="subhead reveal">🎙️ Le podcast · actus et études de cas</h2>
           ${eps.length ? eps.map(episodeCard).join("") : podcastEmpty}
           ${!full && podcast.length > 1 ? `<a class="more-link" href="#/etudes">Tous les épisodes (${podcast.length}) ›</a>` : ""}
         </div>
@@ -545,7 +553,7 @@
     const c = byId(cases, id);
     if (!c) return renderNotFound();
     const linkedNews = (c.news || []).map((nid) => byId(news, nid)).filter(Boolean);
-    const eps = podcast.filter((ep) => ep.cas === c.id);
+    const eps = episodesFor("cas", c.id);
     app.innerHTML = `
       <section class="wrap hero">
         <a class="back" href="#/etudes">‹ Étude de cas</a>
@@ -556,7 +564,7 @@
         ${heroImage(c.image)}
       </section>
 
-      ${eps.length ? `<section class="wrap">${eps.map(episodeCard).join("")}</section>` : ""}
+      ${eps.length ? `<section class="wrap">${eps.map((ep) => episodeCard(ep, { fromCase: true })).join("")}</section>` : ""}
 
       ${c.chain && c.chain.length ? `
       <section class="section alt">
@@ -614,6 +622,8 @@
         <p class="lead reveal">${n.summary}</p>
         ${heroImage(n.image)}
       </section>
+
+      ${episodesFor("news", n.id).length ? `<section class="wrap">${episodesFor("news", n.id).map((ep) => episodeCard(ep, { fromNews: n.id })).join("")}</section>` : ""}
 
       <section class="section alt">
         <div class="wrap">

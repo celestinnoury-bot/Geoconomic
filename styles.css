@@ -689,3 +689,6 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
   display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 0 16px;
 }
 @media (max-width: 560px) { .car-stage { height: 420px; min-height: 0; } }
+.episode-links { display: flex; flex-direction: column; gap: 6px; margin-top: 12px; }
+.episode-links .more { margin-top: 0; }
+.pod-badge { color: var(--gold); }
