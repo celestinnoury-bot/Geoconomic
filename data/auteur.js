@@ -6,7 +6,7 @@ window.GEOCO = window.GEOCO || {};
 window.GEOCO.auteur = {
   nom: "Célestin Noury",
   role: "Fondateur de Géoconomic · Étudiant en économie",
-  photo: null,
+  photo: "assets/auteur.jpg",
   cursus: "En 3e année de sciences économiques à l'Université de Montréal (2026-2027), en double diplôme avec l'Université de Strasbourg. Avant cela, deux ans de classe préparatoire aux grandes écoles économie-gestion (CPGE D2) à Strasbourg, en double cursus avec la licence d'économie de l'Université de Strasbourg (2024-2026).",
   texte: [
     "J'ai créé Géoconomic parce que je voulais une application où l'on trouve tout pour comprendre les enjeux économiques et géopolitiques, de façon factuelle.",
