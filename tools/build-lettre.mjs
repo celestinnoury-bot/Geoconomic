@@ -26,7 +26,7 @@ try {
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js"]) {
+for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js", "data/world.js"]) {
   if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const G = ctx.window.GEOCO;
@@ -54,7 +54,7 @@ const C = G.conflits;
 const latest = (G.indicators && G.indicators.latest) || [];
 
 const dateCap = longDate.charAt(0).toUpperCase() + longDate.slice(1);
-const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip };
+const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip, world: ctx.window.GEOCO_WORLD };
 const html = style !== "classique" ? STYLES[style](data) : `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }

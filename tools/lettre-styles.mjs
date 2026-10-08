@@ -34,6 +34,42 @@ const doc = (css, body) => `<!doctype html><html lang="fr"><head><meta charset="
 const srcList = (n) => esc((n.sources || []).map((s) => s.short || s.name).join(", "));
 const kicker = (d, n) => `${esc(d.THEMES[n.theme] || "")}${n.region ? " · " + esc(n.region) : ""}`;
 
+// ---------- Illustrations ----------
+const MM = 3.7795; // pixels par millimètre (96 dpi)
+const coordsOf = (n) => (n.geo && n.geo[0] && n.geo[0].coords) || [10, 30];
+const placeOf = (n) => (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || "";
+const clamp = (v, lo, hi) => Math.min(hi, Math.max(lo, v));
+
+// Image satellite (NASA Blue Marble) recadrée sur le lieu de l'actu, avec un repère.
+// span : nombre de degrés de longitude visibles (plus petit = plus zoomé).
+function sat(n, wmm, hmm, { span = 40, radius = 0, pin = true, num = null, pinColor = "#ff5a3c", cls = "" } = {}) {
+  const [lon, lat] = coordsOf(n);
+  const W = wmm * MM, H = hmm * MM;
+  const Wi = Math.max(W * 360 / span, H * 2 * 1.02), Hi = Wi / 2;
+  const fx = (lon + 180) / 360, fy = (90 - lat) / 180;
+  const bx = clamp(W / 2 - fx * Wi, W - Wi, 0), by = clamp(H / 2 - fy * Hi, H - Hi, 0);
+  const px = fx * Wi + bx, py = fy * Hi + by;
+  const marker = pin ? `<span style="position:absolute;left:${px}px;top:${py}px;width:9px;height:9px;margin:-4.5px 0 0 -4.5px;border-radius:50%;background:${pinColor};box-shadow:0 0 0 3px rgba(255,255,255,.85),0 0 12px 4px ${pinColor}"></span>` : "";
+  const badge = num != null ? `<span style="position:absolute;left:2mm;top:2mm;min-width:5.5mm;height:5.5mm;padding:0 1.2mm;border-radius:3mm;background:rgba(0,0,0,.65);color:#fff;font:700 7.5pt Inter,sans-serif;display:flex;align-items:center;justify-content:center">${num}</span>` : "";
+  return `<div class="sat ${cls}" style="position:relative;overflow:hidden;width:${wmm}mm;height:${hmm}mm;border-radius:${radius}px;background:#0b1a2e url(assets/earth/earth-blue-marble.jpg) no-repeat;background-size:${Wi}px ${Hi}px;background-position:${bx}px ${by}px">${marker}${badge}</div>`;
+}
+
+// Carte du monde (Natural Earth, Mercator) avec un point numéroté par actu.
+function worldMap(d, wmm, { land = "#d9d4c7", bg = "transparent", dot = "#c8402a", text = "#fff", stroke = "none", glow = false } = {}) {
+  const Wd = d.world.w, k = Wd / (2 * Math.PI);
+  const proj = ([lon, lat]) => [Wd / 2 + k * lon * Math.PI / 180, Wd / 2 - k * Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360))];
+  const top = proj([0, 76])[1], bottom = proj([0, -56])[1];
+  const vb = `0 ${top} ${Wd} ${bottom - top}`;
+  const hmm = wmm * (bottom - top) / Wd;
+  const path = d.world.countries.map((c) => c.d).join("");
+  const r = Wd * 0.011;
+  const dots = d.items.map((n, i) => {
+    const [x, y] = proj(coordsOf(n));
+    return `${glow ? `<circle cx="${x}" cy="${y}" r="${r * 2.2}" fill="${dot}" opacity=".25"/>` : ""}<circle cx="${x}" cy="${y}" r="${r}" fill="${dot}" stroke="#fff" stroke-width="${r * 0.18}"/><text x="${x}" y="${y + r * 0.42}" text-anchor="middle" font-family="Inter, sans-serif" font-weight="700" font-size="${r * 1.15}" fill="${text}">${i + 1}</text>`;
+  }).join("");
+  return `<svg width="${wmm}mm" height="${hmm}mm" viewBox="${vb}" style="display:block;background:${bg}"><path d="${path}" fill="${land}" stroke="${stroke}" stroke-width="1"/>${dots}</svg>`;
+}
+
 // ---------------------------------------------------------------------------
 // 1. Le Journal : une de quotidien, colonnes et filets, noir sur blanc.
 function journal(d) {
@@ -51,6 +87,7 @@ body { background: #fff; color: #121212; font-family: "Serif4", serif; }
 .k { font: 700 7pt "Franklin", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #6b6b6b; }
 .lead h1 { font: 700 27pt/1.07 "Serif4", serif; margin: 1.5mm 0 2.5mm; letter-spacing: -.01em; }
 .lead p { font-size: 10.5pt; line-height: 1.45; margin: 0; }
+.cap { font: italic 400 7pt "Serif4", serif; color: #777; margin: 1.2mm 0 2.2mm; }
 .src { font: 400 6.8pt "Franklin", sans-serif; color: #7a7a7a; margin-top: 1.5mm; }
 .side { padding-left: 5mm; }
 .big { font: 700 34pt/1 "Serif4", serif; margin: 2mm 0 1.5mm; }
@@ -74,10 +111,11 @@ td { padding: .9mm 0; border-bottom: .5px solid #ddd; } td.v { text-align: right
 <div class="rule2"></div>
 <div class="bar"><span>${d.items.length} actus · lecture 5 min</span><span>Chaque fait est sourcé</span></div>
 <div class="leadrow">
-  <div class="lead"><div class="k">${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${srcList(lead)}</div></div>
-  <div class="side">${d.fig ? `<div class="k">Le chiffre du jour</div><div class="big">${esc(d.fig.value)}</div><p>${esc(d.fig.label)}</p><div class="src">${d.figSrc ? "Source : " + esc(d.figSrc.short) : ""}</div>` : ""}</div>
+  <div class="lead"><div class="k">${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${sat(lead, 118, 50, { span: 34, num: 1 })}<div class="cap">${esc(placeOf(lead))} vu par satellite. Image : NASA, Blue Marble</div><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${srcList(lead)}</div></div>
+  <div class="side">${d.fig ? `<div class="k">Le chiffre du jour</div><div class="big">${esc(d.fig.value)}</div><p>${esc(d.fig.label)}</p><div class="src">${d.figSrc ? "Source : " + esc(d.figSrc.short) : ""}</div>` : ""}
+    <div class="k" style="margin-top:6mm">Les lieux du jour</div><div style="margin-top:2mm">${worldMap(d, 56, { land: "#dcd7cb", dot: "#121212" })}</div><div class="src">Les numéros renvoient aux actus.</div></div>
 </div>
-<div class="cols" style="grid-template-columns: repeat(${rest.length <= 4 ? Math.max(1, rest.length) : 3}, 1fr)">${rest.map((n, i, a) => { const c = a.length <= 4 ? a.length : 3; return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k">${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${srcList(n)}</div></div>`; }).join("")}</div>
+<div class="cols" style="grid-template-columns: repeat(${rest.length <= 4 ? Math.max(1, rest.length) : 3}, 1fr)">${rest.map((n, i, a) => { const c = a.length <= 4 ? a.length : 3; const cw = (186 - (c - 1) * 8) / c - 1; return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${sat(n, cw, 22, { span: 40, num: i + 2 })}<div class="k" style="margin-top:2mm">${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${srcList(n)}</div></div>`; }).join("")}</div>
 <div class="band">
   ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><p><b>${d.C.barometre.counts.worse}</b> situations s'aggravent, <b>${d.C.barometre.counts.better}</b> s'améliorent, <b>${d.C.barometre.counts.alerts}</b> alertes : ${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
   <div><h3>Les derniers chiffres</h3><table>${d.latest.slice(0, 6).map((x) => `<tr><td>${esc(x.label)} <span style="color:#888">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
@@ -91,24 +129,25 @@ td { padding: .9mm 0; border-bottom: .5px solid #ddd; } td.v { text-align: right
 function keynote(d) {
   const [lead, ...rest] = d.items;
   return doc(`
-body { background: #000; color: #f5f5f7; font-family: "Inter", sans-serif; }
+html, body { background: #000; } body { color: #f5f5f7; font-family: "Inter", sans-serif; }
 .page { padding: 13mm 13mm 10mm; background: #000; }
 .top { display: flex; justify-content: space-between; font: 600 8.5pt "Inter"; color: #86868b; }
 .top b { color: #f5f5f7; font-weight: 700; }
-h1 { font: 800 50pt/1.02 "Inter"; letter-spacing: -.035em; margin: 9mm 0 0; }
+h1 { font: 800 46pt/1.02 "Inter"; letter-spacing: -.035em; margin: 6mm 0 0; }
 .grad { background: linear-gradient(90deg, #5ac8fa, #a78bfa 55%, #ff6b9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { margin-top: 4mm; font: 400 12pt/1.45 "Inter"; color: #a1a1a6; max-width: 150mm; }
-.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 7mm; margin-top: 9mm; align-items: end; }
+.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 7mm; margin-top: 6mm; align-items: end; }
 .k { font: 600 8pt "Inter"; color: #86868b; letter-spacing: .02em; }
 .hero h2 { font: 700 21pt/1.12 "Inter"; letter-spacing: -.02em; margin: 2mm 0; }
 .hero p { font: 400 10pt/1.5 "Inter"; color: #a1a1a6; margin: 0; }
 .stat { font: 800 58pt/1 "Inter"; letter-spacing: -.04em; }
 .statl { font: 500 9.5pt/1.4 "Inter"; color: #a1a1a6; margin-top: 2mm; }
-.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 9mm; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 7mm; }
 .card { background: #1c1c1e; border-radius: 16px; padding: 5mm; }
 .card h3 { font: 700 12pt/1.2 "Inter"; letter-spacing: -.01em; margin: 1.5mm 0 1.5mm; }
 .card p { font: 400 8.6pt/1.45 "Inter"; color: #a1a1a6; margin: 0; }
-.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4mm; margin-top: auto; padding-top: 7mm; }
+.mapnums { display: grid; grid-template-columns: 104mm 1fr; gap: 8mm; margin-top: auto; padding-top: 7mm; align-items: end; }
+.nums { display: grid; grid-template-columns: 1fr; gap: 3mm; }
 .num { border-top: 1px solid #333; padding-top: 3mm; }
 .num b { display: block; font: 800 22pt/1 "Inter"; letter-spacing: -.03em; }
 .num span { display: block; font: 400 8pt/1.35 "Inter"; color: #86868b; margin-top: 1.5mm; }
@@ -118,13 +157,14 @@ h1 { font: 800 50pt/1.02 "Inter"; letter-spacing: -.035em; margin: 9mm 0 0; }
 <div class="top"><span><b>Géoconomic</b> · La lettre du matin</span><span>${esc(d.dateCap)}</span></div>
 <h1>Le monde.<br><svg width="150mm" height="20mm" viewBox="0 0 567 76" style="display:block;margin-top:-1mm"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#5ac8fa"/><stop offset=".55" stop-color="#a78bfa"/><stop offset="1" stop-color="#ff6b9a"/></linearGradient></defs><text x="0" y="62" fill="url(#g)" style="font: 800 66.5px Inter; letter-spacing: -2.3px">Ce matin.</text></svg></h1>
 <div class="lede">${d.items.length} actus qui comptent, expliquées simplement. Chaque fait est sourcé.</div>
+<div style="margin-top:7mm">${sat(lead, 184, 50, { span: 30, radius: 18, num: 1, pinColor: "#a78bfa" })}</div>
 <div class="hero">
   <div><div class="k">${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${srcList(lead)}</div></div>
   ${d.fig ? `<div><div class="stat" style="color:#a78bfa">${esc(d.fig.value)}</div><div class="statl">${esc(d.fig.label)}</div><div class="src">${d.figSrc ? "Source : " + esc(d.figSrc.short) : ""}</div></div>` : "<div></div>"}
 </div>
-<div class="grid">${rest.slice(0, 6).map((n) => `<div class="card"><div class="k">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
-<div class="nums">${d.latest.filter((x, i) => [0, 3, 5].includes(i)).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div>
-<div class="foot"><span>Toutes les actus dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
+<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${sat(n, 80, 18, { span: 40, radius: 10, num: i + 2, pinColor: "#a78bfa" })}<div class="k" style="margin-top:3mm">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
+<div class="mapnums"><div><div class="k" style="margin-bottom:2mm">Le monde, ce matin</div>${worldMap(d, 104, { land: "#2c2c2e", dot: "#a78bfa", glow: true })}</div><div class="nums">${d.latest.filter((x, i) => [0, 3, 5].includes(i)).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
+<div class="foot"><span>Toutes les actus dans l'application Géoconomic. Images : NASA.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
 
@@ -140,13 +180,14 @@ body { background: #fff; color: #1d1d1f; font-family: "Inter", sans-serif; }
 h1 { font: 800 44pt/1.02 "Inter"; letter-spacing: -.035em; margin: 8mm 0 1mm; }
 .sub { font: 500 12pt "Inter"; color: #6e6e73; }
 .list { margin-top: 7mm; }
-.it { display: grid; grid-template-columns: 17mm 1fr; gap: 3mm; padding: 3.6mm 0; border-top: 1px solid #e5e5ea; }
+.it { display: grid; grid-template-columns: 15mm 1fr 36mm; gap: 4mm; padding: 3.4mm 0; border-top: 1px solid #e5e5ea; align-items: start; }
 .no { font: 800 22pt/1 "Inter"; color: #d2d2d7; letter-spacing: -.03em; }
 .k { font: 600 7.5pt "Inter"; color: #0071e3; letter-spacing: .02em; }
 .it h2 { font: 700 13.5pt/1.22 "Inter"; letter-spacing: -.015em; margin: 1mm 0 1.2mm; }
 .it p { font: 400 9.6pt/1.5 "Serif4", serif; color: #424245; margin: 0; }
 .src { font: 400 6.8pt "Inter"; color: #86868b; margin-top: 1.2mm; }
-.nums { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6mm; margin-top: auto; padding-top: 6mm; border-top: 1px solid #1d1d1f; }
+.bottom { display: grid; grid-template-columns: 78mm 1fr; gap: 8mm; margin-top: auto; padding-top: 5mm; border-top: 1px solid #1d1d1f; align-items: center; }
+.nums { display: grid; grid-template-columns: 1fr; gap: 3.5mm; }
 .nums b { display: block; font: 800 24pt/1 "Inter"; letter-spacing: -.03em; color: #1d1d1f; }
 .nums span { display: block; font: 400 8pt/1.35 "Inter"; color: #6e6e73; margin-top: 1.5mm; }
 .foot { margin-top: 6mm; font: 400 7pt "Inter"; color: #86868b; display: flex; justify-content: space-between; }
@@ -154,8 +195,8 @@ h1 { font: 800 44pt/1.02 "Inter"; letter-spacing: -.035em; margin: 8mm 0 1mm; }
 <div class="top"><b>Géoconomic</b><span>La lettre du matin · ${esc(d.dateCap)}</span></div>
 <h1>L'essentiel.</h1>
 <div class="sub">L'économie et la géopolitique, en ${d.items.length} points.</div>
-<div class="list">${d.items.map((n, i) => `<div class="it"><div class="no">${String(i + 1).padStart(2, "0")}</div><div><div class="k">${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${srcList(n)}</div></div></div>`).join("")}</div>
-<div class="nums">${[d.fig && { value: d.fig.value, label: d.fig.label + (d.figSrc ? " · " + d.figSrc.short : "") }, ...d.latest.filter((x, i) => [3, 5].includes(i)).map((x) => ({ value: x.value, label: x.label + " · " + x.source.short }))].filter(Boolean).map((x) => `<div><b>${esc(x.value)}</b><span>${esc(x.label)}</span></div>`).join("")}</div>
+<div class="list">${d.items.map((n, i) => `<div class="it"><div class="no">${String(i + 1).padStart(2, "0")}</div><div><div class="k">${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${srcList(n)}</div></div>${sat(n, 36, 25, { span: 36, radius: 12, pinColor: "#0071e3" })}</div>`).join("")}</div>
+<div class="bottom"><div>${worldMap(d, 78, { land: "#e3e3e8", dot: "#0071e3" })}<div class="src">Les lieux des ${d.items.length} actus du jour.</div></div><div class="nums">${[d.fig && { value: d.fig.value, label: d.fig.label + (d.figSrc ? " · " + d.figSrc.short : "") }, ...d.latest.filter((x, i) => [3, 5].includes(i)).map((x) => ({ value: x.value, label: x.label + " · " + x.source.short }))].filter(Boolean).map((x) => `<div><b>${esc(x.value)}</b><span>${esc(x.label)}</span></div>`).join("")}</div></div>
 <div class="foot"><span>Toutes les actus, expliquées et sourcées, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
@@ -201,10 +242,11 @@ body { background: #fff; color: #111; font-family: "Serif4", serif; }
 </div>
 <div class="inside">
   <h4>Aussi ce matin</h4>
-  <div>${rest.filter((x, i) => i % 2 === 0).map((n) => `<div class="st"><div class="k">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
-  <div>${rest.filter((x, i) => i % 2 === 1).map((n) => `<div class="st"><div class="k">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
+  <div>${rest.map((n, i) => [n, i]).filter(([x, i]) => i % 2 === 0).map(([n, i]) => `<div class="st">${sat(n, 59, 20, { span: 40, num: i + 2 })}<div class="k" style="margin-top:2mm">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
+  <div>${rest.map((n, i) => [n, i]).filter(([x, i]) => i % 2 === 1).map(([n, i]) => `<div class="st">${sat(n, 59, 20, { span: 40, num: i + 2 })}<div class="k" style="margin-top:2mm">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
   <div class="side">${d.fig ? `<div class="k">Le chiffre</div><div class="big">${esc(d.fig.value)}</div><p>${esc(d.fig.label)}</p>` : ""}
-    ${d.C ? `<div class="k" style="margin-top:6mm">Conflits · ${esc(d.C.barometre.month)}</div><p style="margin-top:1.5mm">${d.C.barometre.counts.worse} situations s'aggravent : ${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p>` : ""}</div>
+    ${d.C ? `<div class="k" style="margin-top:6mm">Conflits · ${esc(d.C.barometre.month)}</div><p style="margin-top:1.5mm">${d.C.barometre.counts.worse} situations s'aggravent : ${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p>` : ""}
+    <div class="k" style="margin-top:6mm">Les lieux du jour</div><div style="margin-top:2mm">${worldMap(d, 46, { land: "#e0dbcf", dot: "#b4472a" })}</div></div>
 </div>
 <div class="foot"><span>Image : NASA, Blue Marble. Sources complètes de chaque actu dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
@@ -216,11 +258,11 @@ function briefing(d) {
   const [lead, ...rest] = d.items;
   const wd = d.dateCap.split(" ")[0].toLowerCase();
   return doc(`
-body { background: #fbfaf7; color: #1a1a1a; font-family: "Serif4", serif; }
+html, body { background: #fbfaf7; } body { color: #1a1a1a; font-family: "Serif4", serif; }
 .page { padding: 14mm 0 10mm; align-items: center; background: #fbfaf7; }
 .col { width: 138mm; display: flex; flex-direction: column; flex: 1; }
 .top { display: flex; justify-content: space-between; font: 700 7.5pt "Franklin", sans-serif; letter-spacing: .12em; text-transform: uppercase; border-bottom: 1.5px solid #1a1a1a; padding-bottom: 2mm; }
-h1 { font: 700 30pt/1.05 "Serif4", serif; margin: 7mm 0 2mm; letter-spacing: -.01em; }
+h1 { font: 700 27pt/1.05 "Serif4", serif; margin: 6mm 0 2mm; letter-spacing: -.01em; }
 .hello { font: italic 400 12.5pt/1.5 "Serif4", serif; color: #444; margin: 0 0 4mm; }
 .lead { font-size: 11pt; line-height: 1.55; margin: 0 0 3mm; }
 .lead b, .it b { font-weight: 700; }
@@ -228,6 +270,9 @@ h1 { font: 700 30pt/1.05 "Serif4", serif; margin: 7mm 0 2mm; letter-spacing: -.0
 .it { font-size: 10pt; line-height: 1.52; margin: 0 0 2.6mm; padding-left: 4.5mm; position: relative; }
 .it::before { content: ""; position: absolute; left: 0; top: 2.2mm; width: 1.6mm; height: 1.6mm; background: #1a1a1a; border-radius: 50%; }
 .src { font: 400 6.8pt "Franklin", sans-serif; color: #8a8a8a; }
+.cap { font: italic 400 7.5pt "Serif4", serif; color: #888; margin: 1.2mm 0 3mm; }
+.it2 { display: grid; grid-template-columns: 17mm 1fr; gap: 4mm; align-items: center; margin: 0 0 2.6mm; }
+.it2 p { font-size: 10pt; line-height: 1.5; margin: 0; }
 .box { border-top: .6px solid #1a1a1a; border-bottom: .6px solid #1a1a1a; padding: 3mm 0; margin: 3mm 0; display: grid; grid-template-columns: auto 1fr; gap: 5mm; align-items: center; }
 .box b { font: 700 28pt/1 "Serif4", serif; }
 .box span { font-size: 10pt; line-height: 1.4; }
@@ -237,10 +282,12 @@ h1 { font: 700 30pt/1.05 "Serif4", serif; margin: 7mm 0 2mm; letter-spacing: -.0
 <div class="top"><span>Géoconomic · Le Briefing</span><span>${esc(d.dateCap)}</span></div>
 <h1>${esc(lead.title)}</h1>
 <p class="hello">Bonjour. Voici ce qu'il faut savoir ce ${esc(wd)} matin.</p>
+${sat(lead, 138, 44, { span: 30, radius: 4 })}<div class="cap">${esc(placeOf(lead))}, vu par satellite. Image : NASA, Blue Marble</div>
 <p class="lead">${esc(d.strip(lead.summary))} <span class="src">(${srcList(lead)})</span></p>
 ${d.fig ? `<div class="box"><b>${esc(d.fig.value)}</b><span>${esc(d.fig.label)}${d.figSrc ? ` <span class="src">(${esc(d.figSrc.short)})</span>` : ""}</span></div>` : ""}
 <div class="sec">Ailleurs dans le monde</div>
-${rest.map((n) => `<p class="it"><b>${esc(n.title)}.</b> ${esc(d.strip(n.summary))} <span class="src">(${srcList(n)})</span></p>`).join("")}
+${rest.map((n, i) => `<div class="it2">${sat(n, 17, 17, { span: 30, radius: 999, num: null })}<p><b>${esc(n.title)}.</b> ${esc(d.strip(n.summary))} <span class="src">(${srcList(n)})</span></p></div>`).join("")}
+<div class="sec">Où ça se passe</div>${worldMap(d, 138, { land: "#e6e1d6", dot: "#b4472a" })}
 ${d.C ? `<div class="sec">Le point conflits</div><p class="it"><b>${esc(d.C.barometre.month)} :</b> ${d.C.barometre.counts.worse} situations s'aggravent (${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}), ${d.C.barometre.counts.better} s'améliorent, ${d.C.barometre.counts.alerts} alertes. <span class="src">(CrisisWatch)</span></p>` : ""}
 <div class="sign">Bonne journée, et à demain matin.<br>La rédaction de Géoconomic</div>
 <div class="foot"><span>Chaque actu est expliquée en détail, avec ses sources, dans l'application.</span><span>${esc(d.day)}</span></div>
