@@ -128,6 +128,16 @@ if (C) {
 }
 (indicators.latest || []).forEach((x) => { if (!x.source || !/^https:\/\//.test(x.source.url)) err("derniers chiffres", `« ${x.label} » : source manquante`); });
 
+// ---- Anecdotes « Le saviez-vous ? »
+const anecIds = new Set();
+(ctx.window.GEOCO.anecdotes || []).forEach((a) => {
+  const w = `anecdote ${a.id}`;
+  if (anecIds.has(a.id)) err(w, "id en double");
+  anecIds.add(a.id);
+  if (!a.text || a.text.length > 200) err(w, "texte absent ou trop long pour le bandeau");
+  checkSources(w, [a.source]);
+});
+
 // ---- Indicateurs
 (indicators.list || []).forEach((ind) => {
   Object.entries(ind.values).forEach(([iso, d]) => {
