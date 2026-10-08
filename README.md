@@ -35,6 +35,8 @@ L'appli est organisée en trois grandes parties, accessibles depuis la barre du 
 
 1. **Actu** : l'actualité économique et géopolitique, traitée ensemble parce qu'elles sont liées. Chaque actu a un lieu sur le globe, une région (Europe, Amériques, Moyen-Orient, Afrique, Asie) et des filtres par thème et par région (`data/news.js`).
 2. **Cours** : comprendre les enjeux (inflation, droits de douane, routes maritimes, puces, sanctions, dollar), avec quiz et lexique (`data/content.js`).
+2 ter. **Conflits** : baromètre mensuel CrisisWatch, conflits depuis 1946 (UCDP), zones à surveiller (ACLED), dépenses militaires et ventes d'armes (SIPRI), avec un globe (`data/conflits.js`). Le tableau de bord « Les derniers chiffres » est en haut de l'onglet Chiffres (`latest` dans `data/indicators.js`).
+2 quater. **La lettre du matin** : une page PDF par jour, fabriquée par `node tools/build-lettre.mjs` (`lettres/`, liste dans `data/lettres.js`).
 2 bis. **Étude de cas** (en tête de la page Actu) : le podcast, posté épisode par épisode, et les études de cas écrites (`data/etudes.js`, mode d'emploi dans [`contenu/MODELE_ETUDE.md`](contenu/MODELE_ETUDE.md), fichiers audio dans `assets/podcast/`).
 3. **Articles** : analyses, recherches et Culture G rédigées par l'auteur, signées (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md)).
 
@@ -102,4 +104,5 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 - Images de la Terre : NASA Blue Marble, relief et nuages (domaine public), via le paquet [three-globe](https://github.com/vasturiano/three-globe)
 - Globe 3D : [globe.gl](https://github.com/vasturiano/globe.gl) (licence MIT), basé sur three.js
 - Fonds de carte 2D et contours des pays : Natural Earth (domaine public)
+- Conflits : CrisisWatch (International Crisis Group), UCDP (université d'Uppsala), ACLED et SIPRI, cités page par page (`data/conflits.js`)
 - Indicateurs : FMI (prévisions de croissance), instituts statistiques nationaux via Trading Economics (inflation, chômage)

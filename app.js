@@ -6,6 +6,8 @@
   const culture = window.GEOCO.culture || [];
   const focusList = window.GEOCO.focus || [];
   const etudes = window.GEOCO.etudes || { podcast: [], cas: [] };
+  const conflits = window.GEOCO.conflits || null;
+  const lettres = window.GEOCO.lettres || [];
   const podcast = etudes.podcast || [];
   const cases = etudes.cas || [];
   const app = document.getElementById("app");
@@ -196,6 +198,7 @@
         <div class="wrap">
           <p class="eyebrow reveal">L'actu du jour</p>
           <h2 class="title reveal">Aujourd'hui.</h2>
+          ${lettreCard()}
           ${todays.map(newsCard).join("")}
           <p class="reveal" style="margin-top:20px"><a href="#/actu">Toutes les actus ›</a></p>
         </div>
@@ -437,6 +440,8 @@
         <p class="lead reveal">L'économie et la géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix de ton téléphone. Chaque jour, ce qui compte et pourquoi ça te concerne.</p>
       </section>
 
+      ${lettres.length ? `<section class="wrap lettre-wrap">${lettreCard()}</section>` : ""}
+
       <section class="wrap etudes" aria-labelledby="etudes-title">
         <div class="etudes-head">
           <h2 class="title reveal" id="etudes-title">Étude de cas.</h2>
@@ -479,6 +484,41 @@
       drawList();
     }));
     drawList();
+  }
+
+  // ---------- La lettre du matin (PDF) ----------
+  function lettreCard() {
+    const l = lettres[0];
+    if (!l) return "";
+    return `
+      <a class="lettre-card reveal" href="${l.file}" download="Geoconomic-lettre-${l.date}.pdf" target="_blank" rel="noopener">
+        <span class="lettre-icon" aria-hidden="true">PDF</span>
+        <span class="lettre-body">
+          <span class="lettre-kicker">La lettre du matin · ${formatDate(l.date)}</span>
+          <span class="lettre-title">L'essentiel du jour sur une page, à lire ou à imprimer.</span>
+        </span>
+        <span class="lettre-cta">Télécharger</span>
+      </a>
+      ${lettres.length > 1 ? `<a class="more-link" href="#/lettres">Les lettres précédentes (${lettres.length - 1}) ›</a>` : ""}`;
+  }
+
+  function renderLettres() {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/actu">‹ Actu</a>
+        <p class="eyebrow reveal">Actu</p>
+        <h1 class="title reveal">La lettre du matin.<br><span class="grad mix">Une page, chaque jour.</span></h1>
+        <p class="lead reveal">Chaque matin, l'essentiel de l'actu éco et géopo, le chiffre du jour, le point conflits et les derniers chiffres, sur une seule page en PDF.</p>
+        <div class="lettre-list">
+          ${lettres.map((l) => `
+            <a class="news-card reveal" href="${l.file}" download="Geoconomic-lettre-${l.date}.pdf" target="_blank" rel="noopener">
+              <p class="eyebrow">PDF · ${formatDate(l.date)}</p>
+              <h3>${l.titles[0] || "La lettre du matin"}</h3>
+              ${l.titles.length > 1 ? `<p class="summary">Aussi : ${l.titles.slice(1).join(" · ")}</p>` : ""}
+              <span class="more">Télécharger ›</span>
+            </a>`).join("") || '<p class="empty">Première lettre bientôt.</p>'}
+        </div>
+      </section>`;
   }
 
   // ---------- Étude de cas : podcast + études écrites ----------
@@ -946,6 +986,172 @@
     mountVisuals(c.visuals);
   }
 
+  // Grille de chiffres clés, chacun avec sa source.
+  function statGrid(figures, sources, theme = "geo") {
+    return `<div class="stat-grid">${figures.map((f) => {
+      const src = f.src && sources && sources[f.src - 1];
+      return `<div class="stat reveal"><div class="bigstat grad ${theme}">${f.value}</div><p>${f.label}</p>${src ? `<a class="cite" href="${src.url}" target="_blank" rel="noopener">(${src.short || src.name})</a>` : ""}</div>`;
+    }).join("")}</div>`;
+  }
+
+  // « Les derniers chiffres » : économie, conflits et défense en un coup d'œil.
+  function latestBlock() {
+    const latest = (window.GEOCO.indicators && window.GEOCO.indicators.latest) || [];
+    if (!latest.length) return "";
+    return `
+      <section class="wrap hero latest-hero">
+          <p class="eyebrow reveal">Chiffres · Tableau de bord</p>
+          <h1 class="title reveal">Les derniers chiffres.<br><span class="grad mix">Économie, conflits, défense.</span></h1>
+          <div class="latest-grid">
+            ${latest.map((x) => `
+              <a class="latest reveal ${x.group === "Économie" ? "eco" : "geo"}" href="${x.link}">
+                <span class="latest-group">${x.group}</span>
+                <span class="latest-value">${x.value}</span>
+                <span class="latest-label">${x.label}</span>
+                <span class="latest-meta">${x.date} · ${x.source.short}</span>
+              </a>`).join("")}
+          </div>
+          <p class="viz-cap">Touche un chiffre pour comprendre d'où il vient. Les sources sont citées sur chaque page.</p>
+      </section>`;
+  }
+
+  // ---------- Conflits : guerre, paix et économie de la défense ----------
+  function renderConflits() {
+    const C = conflits;
+    const features = window.GEOCO_COUNTRIES && window.GEOCO_COUNTRIES.features;
+    if (!C || !features) return renderNotFound();
+    const B = C.barometre, U = C.ucdp, A = C.acled, S = C.sipri;
+    const countryRow = (x, kind) => `
+      <button class="conflict-row ${kind} reveal" data-iso="${x.iso}">
+        <span class="conflict-name">${x.name}</span>
+        <span class="conflict-text">${cite(x.text, C.sources)}</span>
+      </button>`;
+
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow reveal">Conflits</p>
+        <h1 class="title reveal">Guerre et paix.<br><span class="grad geo">Ce qui se joue dans le monde.</span></h1>
+        <p class="lead reveal">Les conflits redessinent les routes du pétrole, les prix et les budgets des États. Chaque mois, on fait le point avec quatre sources de référence : CrisisWatch, l'université d'Uppsala, ACLED et le SIPRI.</p>
+      </section>
+
+      <section class="wrap">
+        <div class="ind-stage">
+          <div class="ind-globe" id="conf-globe"></div>
+          <div class="ind-card" id="conf-card" hidden></div>
+        </div>
+        <div class="legend">
+          ${C.map.legend.map((l) => `<span class="legend-item"><i style="background:${l.color}"></i>${l.label}</span>`).join("")}
+        </div>
+        <p class="viz-cap">Touche un pays coloré pour savoir ce qui s'y passe.</p>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">Le baromètre du mois · ${B.month}</p>
+          <h2 class="title reveal">Ce qui s'aggrave.</h2>
+          <div class="baro-counts reveal">
+            <div class="baro worse"><b>${B.counts.worse}</b><span>situations s'aggravent</span></div>
+            <div class="baro better"><b>${B.counts.better}</b><span>s'améliorent</span></div>
+            <div class="baro alert"><b>${B.counts.alerts}</b><span>alertes pour le mois suivant</span></div>
+          </div>
+          <p class="copy reveal">${cite(B.intro, C.sources)}</p>
+          <div class="conflict-list">${B.worse.map((x) => countryRow(x, "worse")).join("")}</div>
+          <h3 class="subhead reveal" style="margin-top:32px">Sous alerte</h3>
+          <div class="conflict-list">${B.alerts.map((x) => countryRow(x, "alert")).join("")}</div>
+          <div class="panel eco reveal" style="margin-top:32px"><p>${B.economy}</p></div>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">Depuis 1946 · Université d'Uppsala</p>
+          <h2 class="title reveal">Un monde plus conflictuel.</h2>
+          <p class="statement reveal">${cite(U.statement, C.sources)}</p>
+          ${statGrid(U.figures, C.sources)}
+          <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([U.chart]) : ""}</div>
+          ${U.text.map((t) => `<p class="copy reveal" style="margin-top:18px">${para(t, C.sources)}</p>`).join("")}
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">À surveiller en 2026 · ACLED</p>
+          <h2 class="title reveal">Les zones à risque.</h2>
+          <p class="copy reveal">${cite(A.intro, C.sources)}</p>
+          <div class="pills reveal" style="margin-top:18px">${A.watchlist.map((w) => `<span class="tagpill">${w}</span>`).join("")}</div>
+          <p class="copy reveal" style="margin-top:18px">${cite(A.note, C.sources)}</p>
+        </div>
+      </section>
+
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">Guerre et économie · SIPRI</p>
+          <h2 class="title reveal">Le prix des armes.</h2>
+          <p class="statement reveal">${cite(S.statement, C.sources)}</p>
+          ${statGrid(S.figures, C.sources, "eco")}
+          <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([S.spendChart]) : ""}</div>
+          ${S.text.map((t) => `<p class="copy reveal" style="margin-top:18px">${para(t, C.sources)}</p>`).join("")}
+          <div class="reveal" style="margin-top:36px">${window.GeocoViz ? window.GeocoViz.html([S.armsChart]) : ""}</div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">Méthode</p>
+          <h2 class="title reveal">D'où viennent ces chiffres.</h2>
+          <div class="method-grid">
+            <div class="method reveal"><b>CrisisWatch</b><span>International Crisis Group</span><p>Le suivi mensuel d'environ 70 situations de crise : ce qui s'aggrave, ce qui s'améliore, les alertes.</p><small>Chaque mois</small></div>
+            <div class="method reveal"><b>UCDP</b><span>Université d'Uppsala</span><p>La base de référence des conflits armés depuis 1946, et des morts événement par événement depuis 1989.</p><small>Chaque année, en juin</small></div>
+            <div class="method reveal"><b>ACLED</b><span>Armed Conflict Location & Event Data</span><p>Combats, attentats et manifestations, recensés un par un dans le monde entier.</p><small>Chaque semaine</small></div>
+            <div class="method reveal"><b>SIPRI</b><span>Institut de Stockholm</span><p>Dépenses militaires depuis 1949, ventes d'armes depuis 1950, arsenaux nucléaires.</p><small>Chaque année, au printemps</small></div>
+          </div>
+        </div>
+      </section>
+
+      ${sourcesBlock(C.sources)}
+    `;
+    if (window.GeocoViz) window.GeocoViz.mountAll([U.chart, S.spendChart, S.armsChart]);
+
+    const card = app.querySelector("#conf-card");
+    const textFor = (iso) => [...B.worse, ...B.alerts].find((x) => x.iso === iso);
+    function showCard(iso) {
+      const d = iso && C.map.countries[iso];
+      if (!d) { card.hidden = true; return; }
+      const more = textFor(iso);
+      const leg = C.map.legend.find((l) => l.v === d.v);
+      card.hidden = false;
+      card.innerHTML = `
+        <button class="sheet-close" aria-label="Fermer">×</button>
+        <p class="eyebrow" style="color:${leg.color}">${leg.label}</p>
+        <h3>${C.map.names[iso] || iso}</h3>
+        <p>${more ? cite(more.text, C.sources) : d.t}</p>`;
+      card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
+    }
+
+    let globe = null;
+    app.querySelectorAll(".conflict-row").forEach((b) => b.addEventListener("click", () => {
+      app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
+      if (globe) globe.selectById(b.dataset.iso); else showCard(b.dataset.iso);
+    }));
+
+    const layer = {
+      unit: "", bins: [1.5, 2.5], empty: "Pas de crise signalée ici ce mois-ci",
+      colors: [...C.map.legend].sort((a, b) => a.v - b.v).map((l) => l.color),
+      values: Object.fromEntries(Object.entries(C.map.countries).map(([iso, d]) => [iso, { v: d.v, t: d.t, d: "" }]))
+    };
+    const names = Object.assign({}, (window.GEOCO.indicators && window.GEOCO.indicators.names) || {}, C.map.names);
+    window.GeocoGlobe.mountIndicators(app.querySelector("#conf-globe"), {
+      features, names,
+      onSelect: (f) => showCard(f && f.id)
+    }).then((g) => {
+      if (!g) { app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"); return; }
+      globe = g;
+      currentGlobe = g;
+      g.setIndicator(layer);
+      g.world.pointOfView({ lat: 22, lng: 45, altitude: 2.2 });
+    }).catch(() => app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"));
+  }
+
   // ---------- Chiffres du monde ----------
   let indicatorId = "inflation";
 
@@ -959,9 +1165,11 @@
     const fmtV = (v) => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
 
     app.innerHTML = `
+      ${latestBlock()}
+
       <section class="wrap hero">
-        <p class="eyebrow reveal">Chiffres</p>
-        <h1 class="title reveal">L'économie mondiale.<br><span class="grad mix">En un coup d'œil.</span></h1>
+        <p class="eyebrow reveal">Chiffres · Le monde</p>
+        <h2 class="title reveal">L'économie mondiale.<br><span class="grad mix">En un coup d'œil.</span></h2>
         <div class="reveal">${segmented(data.list.map((i) => [i.id, i.label]), indicatorId, "ind")}</div>
         <p class="lead" id="ind-explain"></p>
       </section>
@@ -1305,14 +1513,21 @@
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param] = (location.hash || "#/").split("/");
-    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu" }[section] || section;
+    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
+    const activeTab = document.querySelector("[data-tab].active");
+    if (activeTab && activeTab.parentElement.scrollWidth > activeTab.parentElement.clientWidth) {
+      const bar = activeTab.parentElement;
+      bar.scrollLeft = activeTab.offsetLeft - (bar.clientWidth - activeTab.offsetWidth) / 2;
+    }
 
     if (section === "cours" || section === "dossier") param ? renderDossier(param) : renderCoursIndex();
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
     else if (section === "etudes") param ? renderCase(param) : renderEtudesIndex();
     else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param);
+    else if (section === "conflits") renderConflits();
+    else if (section === "lettres") renderLettres();
     else if (section === "focus") renderFocus(param);
     else if (section === "apropos") renderAbout();
     else if (section === "lexique") renderLexique(param);

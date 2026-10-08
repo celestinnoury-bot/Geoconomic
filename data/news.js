@@ -15,6 +15,157 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    id: "2026-10-08-inde-taux",
+    date: "2026-10-08",
+    region: "Asie",
+    theme: "eco",
+    geo: [{ name: "Mumbai (Banque centrale d'Inde)", label: "Inde", coords: [72.88, 19.07] }],
+    title: "L'Inde relève ses taux pour la première fois en près de quatre ans",
+    summary: "La banque centrale indienne passe son taux directeur de 5,25 % à 5,50 % pour contenir l'inflation, alors que le pétrole reste cher.",
+    points: [
+      "Le 7 octobre, la banque centrale d'Inde (RBI) a relevé son taux directeur de 0,25 point, à 5,50 %, sa première hausse en près de quatre ans [1][2].",
+      "Le comité a voté à l'unanimité et adopte une posture de « resserrement calibré » : il serre la vis, mais par petites touches [2].",
+      "Pour l'exercice 2026-2027, la RBI prévoit une croissance de 7,1 % ; selon la presse indienne, les baisses de taux ne sont plus à l'ordre du jour à court terme [1]."
+    ],
+    why: [
+      "Le taux directeur est le prix auquel la banque centrale prête aux banques. En le relevant, elle rend le crédit plus cher : on emprunte et on dépense moins, ce qui freine la hausse des prix.",
+      "L'Inde importe l'essentiel de son pétrole. Quand le baril reste cher, les prix montent et la banque centrale réagit, comme d'autres le font dans le monde. Les analystes cités par la presse y voient une réponse aux risques d'inflation, au pétrole cher et aux pressions sur la monnaie [2]."
+    ],
+    forMe: "Tu ne verras pas l'effet directement, mais l'Inde est l'un des moteurs de la croissance mondiale. Des taux plus élevés là-bas peuvent ralentir un peu sa demande, et la crise énergétique pèse sur beaucoup de pays à la fois.",
+    figures: [
+      { value: "5,50 %", label: "le nouveau taux directeur de la banque centrale d'Inde (contre 5,25 %)", src: 1 },
+      { value: "7,1 %", label: "la croissance prévue par la RBI pour l'exercice 2026-2027", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["inflation-taux"],
+    sources: [
+      { short: "Business Standard", name: "Business Standard, « RBI MPC hikes repo rate by 25 bps to 5.5%, near-term cuts 'off the table' » (7 oct. 2026)", url: "https://www.business-standard.com/finance/news/rbi-mpc-october-2026-repo-rate-hike-inflation-growth-gdp-sanjay-malhotra-126100700222_1.html" },
+      { short: "Upstox", name: "Upstox, « RBI MPC October Meeting 2026 Highlights » (7 oct. 2026)", url: "https://upstox.com/news/market-news/economy/rbi-mpc-meeting-october-7-2026-live-updates-governor-sanjay-malhotra-speech-repo-rate-hike-key-highlights/liveblog-201398/" }
+    ]
+  },
+  {
+    id: "2026-10-08-kenya-taux",
+    date: "2026-10-08",
+    region: "Afrique",
+    theme: "eco",
+    geo: [{ name: "Nairobi", label: "Kenya", coords: [36.82, -1.29] }],
+    title: "Kenya : la banque centrale garde son taux à 8,75 %, l'énergie reste la menace",
+    summary: "Avec une inflation proche du haut de sa cible, la banque centrale kényane ne bouge pas et garde la possibilité de durcir.",
+    points: [
+      "Le 7 octobre, le comité de politique monétaire de la banque centrale du Kenya a laissé son taux directeur à 8,75 % [1][2].",
+      "L'inflation est remontée à 6,8 % en septembre, près du haut de la fourchette visée (2,5 % à 7,5 %) [3].",
+      "La banque centrale table sur une croissance de 5 % et dit garder ses options ouvertes si les pressions sur les prix s'intensifient [2]."
+    ],
+    why: [
+      "Tenir son taux, c'est dire : « ni plus cher, ni moins cher pour le moment ». La banque centrale ne veut pas baisser, car l'inflation approche de sa limite haute, mais elle ne veut pas non plus freiner une économie qui avance.",
+      "Le Kenya importe son carburant : le prix de l'énergie est le principal risque cité. Le dernier changement de taux remonte à février 2026, quand il avait été baissé [2]."
+    ],
+    forMe: "Si tu consommes du thé ou du café kényan, ou si tu as des proches dans la diaspora, c'est le pouvoir d'achat des Kényans qui est en jeu : le carburant cher renchérit transports et alimentation.",
+    figures: [
+      { value: "8,75 %", label: "le taux directeur du Kenya, inchangé", src: 1 },
+      { value: "6,8 %", label: "l'inflation au Kenya en septembre 2026", src: 3 },
+      { value: "5 %", label: "la croissance projetée par la banque centrale", src: 2 }
+    ],
+    culture: [],
+    dossiers: ["inflation-taux"],
+    sources: [
+      { short: "Banque centrale du Kenya", name: "Central Bank of Kenya, « MPC retains the CBR at 8.75 percent » (7 oct. 2026)", url: "https://www.centralbank.go.ke/2026/10/07/mpc-retains-the-cbr-at-8-75-percent-3/" },
+      { short: "People Daily", name: "People Daily, « CBK holds interest rate at 8.75% as Kenya growth forecast rises to 5% »", url: "https://peopledaily.digital/business/cbk-holds-interest-rate-at-8-75-as-kenya-growth-forecast-rises-to-5" },
+      { short: "Rio Times", name: "The Rio Times, « Kenya Holds Interest Rate at 8.75% » (oct. 2026)", url: "https://www.riotimesonline.com/kenya-central-bank-holds-rate-8-75-october-2026" }
+    ]
+  },
+  {
+    id: "2026-10-08-bresil-election",
+    date: "2026-10-08",
+    region: "Amériques",
+    theme: "mix",
+    geo: [{ name: "Brasilia", label: "Brésil", coords: [-47.93, -15.78] }],
+    title: "Brésil : un second tour serré, les marchés réagissent",
+    summary: "Flávio Bolsonaro devance de peu Lula au premier tour de la présidentielle ; le duel final aura lieu le 25 octobre.",
+    points: [
+      "Au premier tour, Flávio Bolsonaro a obtenu 47,03 % des voix et Lula 45,16 % ; aucun n'atteint la majorité, il y aura un second tour [1][3].",
+      "Les marchés brésiliens se sont envolés après le scrutin, puis la Bourse de São Paulo (Ibovespa) a reculé de 0,7 % à 204 302 points lors de la séance suivante [1][2].",
+      "Le dollar reste sous la barre des 5 réais et le second tour est prévu le 25 octobre [1]."
+    ],
+    why: [
+      "Le Brésil est la plus grande économie d'Amérique latine et un géant agricole et minier (soja, minerai de fer, pétrole). Ses choix économiques comptent bien au-delà de ses frontières.",
+      "Les marchés financiers réagissent aux résultats parce que les deux candidats défendent des politiques différentes sur les dépenses de l'État et les impôts. Nous ne prenons pas parti : nous expliquons pourquoi les investisseurs surveillent ce vote de près."
+    ],
+    forMe: "Le Brésil exporte du soja, du café et du minerai de fer. Une secousse sur sa monnaie ou sa Bourse peut jouer sur les prix de certaines matières premières, jusque dans ton assiette.",
+    figures: [
+      { value: "47,03 %", label: "Flávio Bolsonaro au premier tour", src: 1 },
+      { value: "45,16 %", label: "Lula au premier tour", src: 1 },
+      { value: "-0,7 %", label: "l'Ibovespa lors de la séance suivante", src: 2 }
+    ],
+    culture: [],
+    dossiers: ["dollar"],
+    sources: [
+      { short: "Rio Times", name: "The Rio Times, « Latin American Pulse for Wednesday, October 7, 2026 »", url: "https://www.riotimesonline.com/latin-american-pulse-for-wednesday-october-7-2026/" },
+      { short: "Rio Times (Bourse)", name: "The Rio Times, « LatAm Opens After Ibovespa's 0.7% Drop » (8 oct. 2026)", url: "https://www.riotimesonline.com/latam-pre-open-thursday-october-8-2026/" },
+      { short: "Ground News", name: "Ground News, « Brazil election goes to run-off as right-wing Flávio Bolsonaro wins first round »", url: "https://ground.news/article/79efcb62-170d-4be3-b25d-011b374d584f" }
+    ]
+  },
+  {
+    id: "2026-10-08-mozambique-bad",
+    date: "2026-10-08",
+    region: "Afrique",
+    theme: "eco",
+    geo: [{ name: "Maputo", label: "Mozambique", coords: [32.57, -25.97] }],
+    title: "Mozambique : l'économie s'est contractée en 2025, la reprise sera lente",
+    summary: "La Banque africaine de développement estime que le PIB a reculé de 0,2 % en 2025 et ne prévoit qu'un rebond modeste.",
+    points: [
+      "Selon la Banque africaine de développement (BAD), l'économie mozambicaine a reculé de 0,2 % en 2025, après +2,1 % en 2024 [1].",
+      "La BAD prévoit une croissance de 0,5 % en 2026 puis 1,5 % en 2027 [1].",
+      "Elle signale un risque d'inflation lié à la hausse du carburant et des transports, notamment à cause des perturbations dans le détroit d'Ormuz [1]."
+    ],
+    why: [
+      "Quand la croissance est inférieure à celle de la population, chacun s'appauvrit en moyenne. Avec 0,5 % de croissance prévue en 2026, la reprise reste très fragile.",
+      "Le Mozambique est loin du Golfe, mais il subit la crise énergétique : le carburant importé coûte plus cher, et cela se répercute sur le transport des marchandises et sur les prix."
+    ],
+    forMe: "C'est un exemple de ce que la crise d'Ormuz fait à des pays dont on parle peu : le choc touche aussi ceux qui sont très loin de la zone de conflit.",
+    figures: [
+      { value: "-0,2 %", label: "la croissance du Mozambique en 2025 (estimation BAD)", src: 1 },
+      { value: "+0,5 %", label: "la croissance prévue en 2026", src: 1 },
+      { value: "+1,5 %", label: "la croissance prévue en 2027", src: 1 }
+    ],
+    culture: [],
+    dossiers: ["routes-maritimes"],
+    sources: [
+      { short: "BAD", name: "Banque africaine de développement, « Country Focus Report 2026 – Mozambique » (7 oct. 2026)", url: "https://www.afdb.org/en/documents/country-focus-report-2026-mozambique-mobilizing-97343" }
+    ]
+  },
+  {
+    id: "2026-10-08-coree-exports",
+    date: "2026-10-08",
+    region: "Asie",
+    theme: "eco",
+    geo: [{ name: "Séoul", label: "Corée du Sud", coords: [126.98, 37.57] }],
+    title: "Corée du Sud : des exportations record grâce aux puces de l'IA",
+    summary: "Les ventes à l'étranger ont bondi de 83,5 % en septembre, et la Banque mondiale relève sa prévision pour l'Asie de l'Est, tout en alertant sur la dépendance à l'IA.",
+    points: [
+      "En septembre, les exportations sud-coréennes ont atteint un record de 120,9 milliards de dollars, +83,5 % sur un an [1][2].",
+      "Les puces électroniques ont à elles seules rapporté 60,3 milliards de dollars, plus de 260 % de hausse sur un an [1][2].",
+      "La Banque mondiale a relevé à 4,5 % sa prévision de croissance 2026 pour l'Asie de l'Est et le Pacifique, mais prévient que les produits liés à l'IA tirent l'essentiel des exportations de la région [3]."
+    ],
+    why: [
+      "Les puces servent à entraîner et faire tourner l'intelligence artificielle. La Corée du Sud en fabrique une grande part, donc elle profite à plein de cette demande.",
+      "Mais c'est un risque : si tout repose sur un seul produit, un ralentissement de l'IA frapperait fort. C'est ce que souligne la Banque mondiale, qui note que les échanges hors IA sont faibles dans la région [3]."
+    ],
+    forMe: "Les puces coréennes sont dans ton téléphone, ton ordinateur et de plus en plus dans les voitures. Leur prix et leur disponibilité peuvent influencer ce que tu paies pour ces appareils.",
+    figures: [
+      { value: "120,9 Md$", label: "les exportations sud-coréennes en septembre (record)", src: 1 },
+      { value: "+83,5 %", label: "leur hausse sur un an", src: 1 },
+      { value: "4,5 %", label: "la croissance 2026 prévue par la Banque mondiale pour l'Asie de l'Est et le Pacifique", src: 3 }
+    ],
+    culture: [],
+    dossiers: ["semi-conducteurs"],
+    sources: [
+      { short: "Korea Times", name: "The Korea Times, « Korea's Sept. exports hit record $120.9 bil. on robust chip sales » (1er oct. 2026)", url: "https://www.koreatimes.co.kr/economy/20261001/koreas-sept-exports-hit-record-1209-bil-on-robust-chip-sales" },
+      { short: "The Standard", name: "The Standard (Hong Kong), « South Korea's monthly exports top US$120 billion for the first time on record chip sales »", url: "https://www.thestandard.com.hk/finance/article/344355/South-Koreas-monthly-exports-top-US120-billion-for-the-first-time-on-record-chip-sales" },
+      { short: "CNBC", name: "CNBC, « World Bank warns of AI concentration risks as it lifts East Asia and Pacific growth outlook to 4.5% » (6 oct. 2026)", url: "https://www.cnbc.com/2026/10/06/world-bank-east-asia-growth-inflation-ai-exports-.html" }
+    ]
+  },
+  {
     id: "2026-10-07-gazole-reserves",
     date: "2026-10-07",
     region: "Europe",

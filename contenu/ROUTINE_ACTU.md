@@ -43,11 +43,18 @@ Les nouvelles actus se placent **en haut** du tableau. Le globe de l'accueil aff
 - Tutoiement, phrases courtes, aucun mot technique sans explication.
 - Neutre et factuel sur les sujets politiques : on explique, on ne prend pas parti.
 
+## Rubrique Conflits (`data/conflits.js`)
+
+- **Chaque début de mois** (du 1er au 7) : mettre à jour le baromètre avec la dernière édition de CrisisWatch (International Crisis Group) : le mois, le nombre de situations qui s'aggravent, qui s'améliorent et d'alertes, une phrase sourcée par pays, et les couleurs de la carte (`map.countries`).
+- **Une fois par an**, quand les nouvelles données sortent : SIPRI ventes d'armes (mars) et dépenses militaires (avril), UCDP (juin), indice et liste à surveiller d'ACLED (décembre). Mettre à jour les chiffres, les graphiques et le tableau de bord (`latest` dans `data/indicators.js`).
+- Mêmes règles de fiabilité : chaque chiffre avec sa source, rien de mémoire.
+
 ## Avant de publier
 
 1. `node tools/check-content.mjs` doit afficher « Contenu OK ».
-2. Si un chiffre de l'onglet Chiffres (`data/indicators.js`) a été publié officiellement depuis (inflation, chômage), le mettre à jour avec sa date et sa source.
-3. On garde les actus des 14 derniers jours ; les plus anciennes peuvent être retirées.
+2. `node tools/build-lettre.mjs` fabrique la lettre du matin en PDF (`lettres/AAAA-MM-JJ.pdf`) et met à jour `data/lettres.js`. Vérifier qu'elle tient sur une page.
+3. Si un chiffre de l'onglet Chiffres (`data/indicators.js`) a été publié officiellement depuis (inflation, chômage), le mettre à jour avec sa date et sa source.
+4. On garde les actus des 14 derniers jours ; les plus anciennes peuvent être retirées.
 
 ## Publier l'aperçu
 

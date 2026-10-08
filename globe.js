@@ -175,7 +175,7 @@
       .polygonsTransitionDuration(500)
       .polygonLabel((f) => {
         const d = valueOf(f);
-        return `<div class="globe-tip"><strong>${nameOf(f)}</strong>${d ? `<span>${String(d.v).replace(".", ",")} ${ind.unit} · ${d.d}</span>` : "<span>Pas de donnée</span>"}</div>`;
+        return `<div class="globe-tip"><strong>${nameOf(f)}</strong>${d ? `<span>${d.t || `${String(d.v).replace(".", ",")} ${ind.unit} · ${d.d}`}</span>` : `<span>${ind.empty || "Pas de donnée"}</span>`}</div>`;
       })
       .onPolygonHover((f) => {
         hovered = f;

@@ -8,6 +8,17 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.indicators = {
   updated: "2026-10-07",
+
+  // « Les derniers chiffres » : le tableau de bord en haut de l'onglet Chiffres.
+  // Chaque chiffre a sa date et sa source ; `link` mène à la page qui l'explique.
+  latest: [
+    { group: "Économie", value: "3,8 %", label: "Inflation dans la zone euro", date: "septembre 2026", link: "#/chiffres/inflation", source: { short: "Eurostat", url: "https://newsable.asianetnews.com/business/euro-area-inflation-jumps-to-3-8-in-september-driven-by-energy-articleshow-hzzngdy" } },
+    { group: "Économie", value: "> 100 $", label: "Le baril de pétrole Brent", date: "début octobre 2026", link: "#/actu/2026-10-07-ormuz", source: { short: "Gulf News", url: "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305" } },
+    { group: "Économie", value: "3,0 %", label: "Croissance mondiale prévue en 2026", date: "prévision de juillet 2026", link: "#/chiffres/croissance", source: { short: "FMI", url: "https://www.imf.org/en/news/articles/2026/07/08/tr070826-weo-press-briefing-transcript-july-8-2026" } },
+    { group: "Conflits", value: "65", label: "Conflits impliquant des États, un record depuis 1946", date: "année 2025", link: "#/conflits", source: { short: "UCDP", url: "https://www.uu.se/en/press/press-releases/2026/2026-06-09-ucdp-record-number-of-conflicts-between-states" } },
+    { group: "Conflits", value: "5", label: "Situations qui s'aggravent, aucune qui s'améliore", date: "septembre 2026", link: "#/conflits", source: { short: "CrisisWatch", url: "https://www.crisisgroup.org/crisiswatch/september-trends-and-october-alerts-2026" } },
+    { group: "Défense", value: "2 887 Md$", label: "Dépenses militaires mondiales, un record", date: "année 2025", link: "#/conflits", source: { short: "SIPRI", url: "https://www.sipri.org/media/press-release/2026/global-military-spending-rise-continues-european-and-asian-expenditures-surge" } }
+  ],
   // Noms des pays en français (les autres s'affichent avec leur nom anglais Natural Earth).
   names: {
     "840": "États-Unis", "250": "France", "276": "Allemagne", "380": "Italie", "724": "Espagne", "300": "Grèce",

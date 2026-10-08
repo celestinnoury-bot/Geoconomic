@@ -5,7 +5,7 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/focus.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
@@ -102,6 +102,20 @@ const caseIds = new Set();
   if (ep.cas && !caseIds.has(ep.cas)) err(w, `étude de cas inconnue « ${ep.cas} »`);
   (ep.news || []).forEach((id) => { if (!newsIds.has(id)) warn.push(`${w} : lien vers une actu retirée (${id})`); });
 });
+
+// ---- Conflits
+const C = ctx.window.GEOCO.conflits;
+if (C) {
+  const w = "conflits";
+  checkSources(w, C.sources);
+  const B = C.barometre;
+  [B.intro, ...B.worse.map((x) => x.text), ...B.alerts.map((x) => x.text), C.ucdp.statement, ...C.ucdp.text,
+    C.acled.intro, C.acled.note, C.sipri.statement, ...C.sipri.text].forEach((t) => checkCites(w, t, C.sources));
+  [...C.ucdp.figures, ...C.sipri.figures].forEach((f) => { if (f.src && !C.sources[f.src - 1]) err(w, `chiffre « ${f.value} » : src inexistante`); });
+  [...B.worse, ...B.alerts].forEach((x) => { if (!C.map.countries[x.iso]) err(w, `${x.name} (${x.iso}) absent de la carte`); });
+  if (B.counts.worse !== B.worse.length) warn.push(`${w} : ${B.counts.worse} aggravations annoncées, ${B.worse.length} détaillées`);
+}
+(indicators.latest || []).forEach((x) => { if (!x.source || !/^https:\/\//.test(x.source.url)) err("derniers chiffres", `« ${x.label} » : source manquante`); });
 
 // ---- Indicateurs
 (indicators.list || []).forEach((ind) => {

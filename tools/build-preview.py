@@ -8,7 +8,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / ".preview"
 FILES = [
     "styles.css", "app.js", "viz.js", "globe.js",
-    "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/focus.js",
+    "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/lettres.js", "data/focus.js",
     "car3d.js", "assets/models/car-concept.json", "assets/models/car-poster.webp",
     "assets/vendor/three/three.module.min.js", "assets/vendor/three/GLTFLoader.js",
     "assets/vendor/three/OrbitControls.js", "assets/vendor/three/RoomEnvironment.js",
@@ -19,6 +19,8 @@ FILES = [
     "assets/icon-180.png", "assets/icon-192.png", "assets/icon-512.png", "assets/og-image.jpg",
 ]
 
+# Lettres du matin en PDF.
+FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "lettres").glob("*.pdf"))]
 # Épisodes du podcast : tous les fichiers audio de assets/podcast/.
 FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "assets/podcast").glob("*")) if a.suffix.lower() in (".mp3", ".m4a")]
 
