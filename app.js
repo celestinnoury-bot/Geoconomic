@@ -176,7 +176,7 @@
     const today = news.length ? news[0].date : null;
     const todays = news.filter((n) => n.date === today);
     // Sur le globe : les actus des 7 derniers jours (plus de points partout dans le monde).
-    const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 6 * 864e5).toISOString().slice(0, 10) : null;
+    const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 7 * 864e5).toISOString().slice(0, 10) : null;
     const onGlobe = news.filter((n) => n.geo && n.geo.length && (!weekAgo || n.date >= weekAgo));
 
     app.innerHTML = `
@@ -1175,6 +1175,10 @@
         if (globe) globe.selectById(b.dataset.iso); else showCard(b.dataset.iso);
       }));
     }
+    // Les lignes du baromètre montrent toujours la couche « Conflits armés ».
+    app.querySelectorAll(".conflict-list .conflict-row").forEach((b) => b.addEventListener("click", () => {
+      if (confLayer !== "conflits" && C.layers.some((l) => l.id === "conflits")) { confLayer = "conflits"; drawLayer(); }
+    }));
     bindRows(app.querySelectorAll(".conflict-list .conflict-row"));
     app.querySelectorAll("[data-layer]").forEach((b) => b.addEventListener("click", () => { confLayer = b.dataset.layer; drawLayer(); }));
     drawLayer();

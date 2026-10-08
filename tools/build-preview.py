@@ -8,7 +8,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / ".preview"
 FILES = [
     "styles.css", "app.js", "viz.js", "globe.js",
-    "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/lettres.js", "data/focus.js",
+    "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/couches.js", "data/lettres.js", "data/focus.js",
     "car3d.js", "assets/models/car-concept.json", "assets/models/car-poster.webp",
     "assets/vendor/three/three.module.min.js", "assets/vendor/three/GLTFLoader.js",
     "assets/vendor/three/OrbitControls.js", "assets/vendor/three/RoomEnvironment.js",

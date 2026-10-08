@@ -112,7 +112,18 @@ if (C) {
   [B.intro, ...B.worse.map((x) => x.text), ...B.alerts.map((x) => x.text), C.ucdp.statement, ...C.ucdp.text,
     C.acled.intro, C.acled.note, C.sipri.statement, ...C.sipri.text].forEach((t) => checkCites(w, t, C.sources));
   [...C.ucdp.figures, ...C.sipri.figures].forEach((f) => { if (f.src && !C.sources[f.src - 1]) err(w, `chiffre « ${f.value} » : src inexistante`); });
-  [...B.worse, ...B.alerts].forEach((x) => { if (!C.map.countries[x.iso]) err(w, `${x.name} (${x.iso}) absent de la carte`); });
+  const conf = (C.layers || []).find((l) => l.id === "conflits");
+  [...B.worse, ...B.alerts].forEach((x) => { if (conf && !conf.countries[x.iso]) err(w, `${x.name} (${x.iso}) absent de la couche Conflits`); });
+  (C.layers || []).forEach((L) => {
+    if (L.intro) checkCites(`couche ${L.id}`, L.intro, L.sources || C.sources);
+    Object.entries(L.countries).forEach(([iso, d]) => {
+      const wl = `couche ${L.id}, ${d.name || iso}`;
+      if (!/^\d{3}$/.test(iso)) err(wl, "code pays invalide");
+      if (!L.legend.some((l) => l.v === d.v)) err(wl, `niveau ${d.v} absent de la légende`);
+      checkSources(wl, d.sources);
+      checkCites(wl, d.text, d.sources);
+    });
+  });
   if (B.counts.worse !== B.worse.length) warn.push(`${w} : ${B.counts.worse} aggravations annoncées, ${B.worse.length} détaillées`);
 }
 (indicators.latest || []).forEach((x) => { if (!x.source || !/^https:\/\//.test(x.source.url)) err("derniers chiffres", `« ${x.label} » : source manquante`); });
