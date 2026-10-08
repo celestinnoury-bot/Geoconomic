@@ -5,7 +5,7 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/indicators.js", "data/focus.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/focus.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
@@ -81,6 +81,27 @@ culture.forEach((c) => {
   c.sections.flatMap((s) => s.paragraphs).forEach((t) => checkCites(w, t, c.sources));
 });
 
+// ---- Étude de cas : podcast et études écrites
+const etudes = ctx.window.GEOCO.etudes || { podcast: [], cas: [] };
+const caseIds = new Set();
+(etudes.cas || []).forEach((c) => {
+  const w = `étude de cas ${c.id}`;
+  if (caseIds.has(c.id)) err(w, "id en double");
+  caseIds.add(c.id);
+  if (!c.title || !c.hook || !/^\d{4}-\d{2}-\d{2}$/.test(c.date || "")) err(w, "title, hook et date (AAAA-MM-JJ) obligatoires");
+  if (c.theme && !THEMES.has(c.theme)) err(w, `thème inconnu « ${c.theme} »`);
+  checkSources(w, c.sources);
+  [...(c.chain || []).map((x) => x.text), ...(c.sections || []).flatMap((s) => s.paragraphs), ...(c.takeaways || [])]
+    .forEach((t) => checkCites(w, t, c.sources));
+  (c.news || []).forEach((id) => { if (!newsIds.has(id)) warn.push(`${w} : lien vers une actu retirée (${id})`); });
+});
+(etudes.podcast || []).forEach((ep) => {
+  const w = `épisode ${ep.id}`;
+  if (!ep.title || !/^\d{4}-\d{2}-\d{2}$/.test(ep.date || "")) err(w, "title et date (AAAA-MM-JJ) obligatoires");
+  if (ep.audio && !/^https:\/\//.test(ep.audio) && !fs.existsSync(ep.audio)) err(w, `fichier audio introuvable : ${ep.audio}`);
+  if (ep.cas && !caseIds.has(ep.cas)) err(w, `étude de cas inconnue « ${ep.cas} »`);
+});
+
 // ---- Indicateurs
 (indicators.list || []).forEach((ind) => {
   Object.entries(ind.values).forEach(([iso, d]) => {
@@ -114,7 +135,7 @@ focus.forEach((f) => {
 });
 
 const today = news.length ? news[0].date : "—";
-console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles.`);
+console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles, ${(etudes.cas || []).length} études de cas, ${(etudes.podcast || []).length} épisodes.`);
 warn.forEach((w) => console.log("Attention : " + w));
 if (errors.length) {
   errors.forEach((e) => console.error("ERREUR : " + e));

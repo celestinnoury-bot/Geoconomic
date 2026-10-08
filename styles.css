@@ -641,3 +641,38 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .globe-zoom button:hover { background: rgba(0,113,227,.85); }
 .globe-zoom button:focus-visible { outline: 2px solid #2997ff; outline-offset: 2px; }
 .ind-globe .globe-zoom, .globe-zoom.small { bottom: 16px; right: 16px; }
+
+/* ---------- Actu : Étude de cas (podcast + études écrites) ---------- */
+.etudes { padding-top: 8px; padding-bottom: 24px; }
+.etudes-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+.etudes-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; margin-top: 20px; }
+.etudes-col { min-width: 0; }
+.etudes-col .empty { text-align: left; padding: 20px 0; }
+.subhead { font-family: var(--font); font-size: 15px; font-weight: 600; color: var(--muted); letter-spacing: .02em; text-transform: uppercase; margin-bottom: 14px; }
+.more-link { display: inline-block; margin-top: 14px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
+.episode {
+  background: var(--surface); border-radius: 24px; padding: 26px 24px; border: 1px solid var(--hairline);
+}
+.episode + .episode { margin-top: 14px; }
+.episode h3 { font-size: 25px; line-height: 1.15; margin-bottom: 10px; letter-spacing: -.01em; }
+.episode audio { display: block; width: 100%; margin-top: 16px; color-scheme: dark; }
+.episode .more { display: inline-block; margin-top: 14px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
+.empty-episode { border-style: dashed; }
+.actu-days { padding-top: 40px; }
+.chain { list-style: none; margin: 28px 0 0; padding: 0; counter-reset: chain; max-width: 760px; }
+.chain li {
+  position: relative; padding: 0 0 26px 52px; counter-increment: chain;
+}
+.chain li::before {
+  content: counter(chain); position: absolute; left: 0; top: 0; width: 34px; height: 34px; border-radius: 50%;
+  background: var(--gold); color: #000; font: 700 16px/34px var(--font); text-align: center;
+}
+.chain li:not(:last-child)::after {
+  content: ""; position: absolute; left: 16px; top: 40px; bottom: 6px; width: 2px; background: var(--hairline);
+}
+.chain-label { display: block; font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; padding-top: 6px; }
+.chain p { font-family: var(--serif); font-size: 20px; line-height: 1.5; color: var(--text); }
+.takeaways { margin: 8px 0 0; padding-left: 22px; }
+.takeaways li { font-family: var(--serif); font-size: 20px; line-height: 1.45; font-weight: 600; }
+.takeaways li + li { margin-top: 10px; }
+@media (max-width: 760px) { .etudes-grid { grid-template-columns: 1fr; } }

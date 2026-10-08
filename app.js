@@ -5,6 +5,9 @@
   const news = window.GEOCO.news || [];
   const culture = window.GEOCO.culture || [];
   const focusList = window.GEOCO.focus || [];
+  const etudes = window.GEOCO.etudes || { podcast: [], cas: [] };
+  const podcast = etudes.podcast || [];
+  const cases = etudes.cas || [];
   const app = document.getElementById("app");
   const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
 
@@ -432,6 +435,18 @@
         <p class="eyebrow reveal">Actu</p>
         <h1 class="title reveal">L'actu éco et géopo.<br><span class="grad mix">Expliquée.</span></h1>
         <p class="lead reveal">L'économie et la géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix de ton téléphone. Chaque jour, ce qui compte et pourquoi ça te concerne.</p>
+      </section>
+
+      <section class="wrap etudes" aria-labelledby="etudes-title">
+        <div class="etudes-head">
+          <h2 class="title reveal" id="etudes-title">Étude de cas.</h2>
+          <a class="more-link reveal" href="#/etudes">Tout voir ›</a>
+        </div>
+        ${etudesBlock(false)}
+      </section>
+
+      <section class="wrap actu-days">
+        <h2 class="title reveal">L'actu du jour.</h2>
         <div class="filters reveal">
           ${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], actuTheme, "atheme")}
           <div class="chips-row" role="group" aria-label="Filtrer par région">
@@ -464,6 +479,125 @@
       drawList();
     }));
     drawList();
+  }
+
+  // ---------- Étude de cas : podcast + études écrites ----------
+  function episodeCard(ep) {
+    const linked = ep.cas && byId(cases, ep.cas);
+    return `
+      <article class="episode reveal" id="ep-${ep.id}">
+        <p class="eyebrow">Épisode ${ep.number || ""} · ${formatDate(ep.date)}${ep.duration ? ` · ${ep.duration}` : ""}</p>
+        <h3>${ep.title}</h3>
+        ${ep.summary ? `<p class="summary">${ep.summary}</p>` : ""}
+        ${ep.audio ? `<audio controls preload="none" src="${ep.audio}"></audio>` : `<p class="byline">Audio bientôt disponible.</p>`}
+        ${linked ? `<a class="more" href="#/etudes/${linked.id}">Lire l'étude de cas ›</a>` : ""}
+      </article>`;
+  }
+
+  function caseCard(c) {
+    return `
+      <a class="news-card case-card ${c.theme} reveal" href="#/etudes/${c.id}">
+        <p class="eyebrow">Étude de cas · ${formatDate(c.date)}</p>
+        <h3>${c.title}</h3>
+        <p class="summary">${c.hook}</p>
+        ${c.author ? `<p class="byline">Par ${c.author}</p>` : ""}
+      </a>`;
+  }
+
+  const podcastEmpty = `
+    <div class="episode empty-episode reveal">
+      <p class="eyebrow">Le podcast</p>
+      <h3>Premier épisode bientôt.</h3>
+      <p class="summary">Ici, je décrypte l'actu à voix haute, épisode après épisode.</p>
+    </div>`;
+
+  // Bloc « Étude de cas » en tête de la page Actu. `full` : page complète (#/etudes).
+  function etudesBlock(full) {
+    const eps = full ? podcast : podcast.slice(0, 1);
+    const list = full ? cases : cases.slice(0, 2);
+    return `
+      <div class="etudes-grid">
+        <div class="etudes-col">
+          <h2 class="subhead reveal">🎙️ Le podcast</h2>
+          ${eps.length ? eps.map(episodeCard).join("") : podcastEmpty}
+          ${!full && podcast.length > 1 ? `<a class="more-link" href="#/etudes">Tous les épisodes (${podcast.length}) ›</a>` : ""}
+        </div>
+        <div class="etudes-col">
+          <h2 class="subhead reveal">🔎 Les études de cas</h2>
+          ${list.length ? list.map(caseCard).join("") : '<p class="empty">Première étude de cas bientôt.</p>'}
+          ${!full && cases.length > 2 ? `<a class="more-link" href="#/etudes">Toutes les études de cas (${cases.length}) ›</a>` : ""}
+        </div>
+      </div>`;
+  }
+
+  function renderEtudesIndex() {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/actu">‹ Actu</a>
+        <p class="eyebrow reveal">Actu</p>
+        <h1 class="title reveal">Étude de cas.<br><span class="grad mix">Une actu, décortiquée.</span></h1>
+        <p class="lead reveal">On prend un événement et on remonte toute la chaîne : ce qui s'est passé, pourquoi, qui gagne, qui perd, et ce que ça change pour toi. À écouter ou à lire.</p>
+        ${etudesBlock(true)}
+      </section>`;
+  }
+
+  function renderCase(id) {
+    const c = byId(cases, id);
+    if (!c) return renderNotFound();
+    const linkedNews = (c.news || []).map((nid) => byId(news, nid)).filter(Boolean);
+    const eps = podcast.filter((ep) => ep.cas === c.id);
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/etudes">‹ Étude de cas</a>
+        <p class="eyebrow reveal">Étude de cas · ${THEMES[c.theme] || ""}</p>
+        ${c.author ? `<p class="byline reveal">Par ${c.author} · ${formatDate(c.date)}</p>` : ""}
+        <h1 class="title reveal">${c.title}</h1>
+        <p class="lead reveal">${c.hook}</p>
+        ${heroImage(c.image)}
+      </section>
+
+      ${eps.length ? `<section class="wrap">${eps.map(episodeCard).join("")}</section>` : ""}
+
+      ${c.chain && c.chain.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          ${c.question ? `<p class="eyebrow reveal">La question</p><h2 class="title reveal">${c.question}</h2>` : ""}
+          <ol class="chain">
+            ${c.chain.map((st) => `
+              <li class="reveal"><span class="chain-label">${st.label}</span><p>${cite(st.text, c.sources)}</p></li>`).join("")}
+          </ol>
+        </div>
+      </section>` : ""}
+
+      ${(c.sections || []).map((sec, i) => `
+        <section class="section ${i % 2 ? "alt" : ""}">
+          <div class="wrap">
+            <h2 class="title reveal">${sec.title}</h2>
+            ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, c.sources)}</p>`).join("")}
+          </div>
+        </section>
+        ${i === 0 ? visualsBlock(c.visuals) : ""}
+      `).join("")}
+
+      ${c.takeaways && c.takeaways.length ? `
+      <section class="wrap">
+        <div class="panel ${c.theme} reveal">
+          <p class="eyebrow">Ce qu'il faut retenir</p>
+          <ul class="takeaways">${c.takeaways.map((t) => `<li>${cite(t, c.sources)}</li>`).join("")}</ul>
+        </div>
+      </section>` : ""}
+
+      ${linkedNews.length ? `
+      <section class="section alt">
+        <div class="wrap">
+          <h2 class="title reveal">Les actus du dossier.</h2>
+          ${linkedNews.map(newsCard).join("")}
+        </div>
+      </section>` : ""}
+
+      ${sourcesBlock(c.sources)}
+    `;
+    mountVisuals(c.visuals);
   }
 
   function renderNews(id) {
@@ -1151,11 +1285,12 @@
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param] = (location.hash || "#/").split("/");
-    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours" }[section] || section;
+    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
 
     if (section === "cours" || section === "dossier") param ? renderDossier(param) : renderCoursIndex();
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
+    else if (section === "etudes") param ? renderCase(param) : renderEtudesIndex();
     else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param);
     else if (section === "focus") renderFocus(param);

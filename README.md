@@ -35,6 +35,7 @@ L'appli est organisée en trois grandes parties, accessibles depuis la barre du 
 
 1. **Actu** : l'actualité économique et géopolitique, traitée ensemble parce qu'elles sont liées. Chaque actu a un lieu sur le globe, une région (Europe, Amériques, Moyen-Orient, Afrique, Asie) et des filtres par thème et par région (`data/news.js`).
 2. **Cours** : comprendre les enjeux (inflation, droits de douane, routes maritimes, puces, sanctions, dollar), avec quiz et lexique (`data/content.js`).
+2 bis. **Étude de cas** (en tête de la page Actu) : le podcast, posté épisode par épisode, et les études de cas écrites (`data/etudes.js`, mode d'emploi dans [`contenu/MODELE_ETUDE.md`](contenu/MODELE_ETUDE.md), fichiers audio dans `assets/podcast/`).
 3. **Articles** : analyses, recherches et Culture G rédigées par l'auteur, signées (`data/culture.js`, modèle dans [`contenu/MODELE_FICHE.md`](contenu/MODELE_FICHE.md)).
 
 En plus : le **Focus industrie** (`data/focus.js`), chaque semaine une industrie avec un objet 3D, des points cliquables et **« L'enjeu de la semaine »** (`weekly` : la question de la semaine, chiffres, explication et dates « À suivre ») ; et l'onglet **Chiffres** (inflation, chômage, croissance par pays sur un globe, et zooms comme l'emploi en France).
