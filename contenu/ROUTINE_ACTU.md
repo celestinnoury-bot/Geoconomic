@@ -9,6 +9,16 @@ Elle peut être modifiée librement : la mise à jour automatique relit ce fichi
 - **Partout dans le monde**, pas seulement l'Occident : chaque jour au moins une actu en **Afrique**, une en **Asie**, une en **Amérique latine**, une au **Moyen-Orient** et une en **Europe ou Asie centrale**.
 - **De nouveaux pays sur le globe** : au moins **4 actus sur des pays qui n'ont pas eu d'actu depuis 14 jours** (regarder les `geo` des actus existantes). On cherche « sous la surface du glacier » : ce dont les grands médias français parlent peu.
 - **Le dimanche** : en plus, un « tour du monde » de 4 à 6 pays rarement traités (Asie centrale, Pacifique, Caraïbes, Afrique australe, Balkans…).
+- **Le globe change d'un jour à l'autre** : on évite de remettre les mêmes pays que la veille, sauf fait nouveau important. Les points se placent sur la capitale ou le lieu précis (pas toujours Washington ou Pékin).
+
+## Dossiers géopolitiques à suivre
+
+À vérifier régulièrement, et à traiter dès qu'il y a du nouveau (avec sources) :
+- **Amériques** : droits de douane États-Unis–Canada et États-Unis–Mexique, révision de l'accord commercial nord-américain (ACEUM/USMCA), accord UE-Mercosur et tensions au sein du Mercosur, migrations et cartels, canal de Panama, pétrole du Guyana.
+- **Europe** : guerre en Ukraine et son économie, réarmement, énergie, Balkans, Caucase.
+- **Moyen-Orient** : Ormuz et l'Iran, Gaza et la Cisjordanie, Liban, Syrie, Yémen et la mer Rouge.
+- **Afrique** : Sahel, Soudan, Éthiopie-Érythrée, RD Congo, dettes et matières premières.
+- **Asie** : Chine et Taïwan, mer de Chine méridionale, Inde-Pakistan, Birmanie, Corée du Nord.
 - Priorité aux sujets qui ont un **impact concret** : prix (énergie, alimentation), emploi, monnaies, dettes, matières premières (pétrole, gaz, uranium, cobalt, cuivre, terres rares, nickel, or…), commerce, sanctions, conflits qui touchent l'économie.
 - On évite le fait divers et la politique intérieure sans enjeu économique.
 
