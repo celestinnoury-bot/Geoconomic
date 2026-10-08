@@ -5,6 +5,10 @@
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.etudes = {
+  // Offre : chaque lecteur peut écouter gratuitement `freeListens` épisodes de son choix,
+  // ensuite il faut l'abonnement. Un épisode avec `free: true` reste toujours gratuit.
+  offre: { name: "Géoconomic+", freeListens: 2, price: null },
+
   // Exemple d'épisode (à copier) :
   // {
   //   id: "ep01-ormuz",
@@ -15,7 +19,8 @@ window.GEOCO.etudes = {
   //   audio: "assets/podcast/ep01-ormuz.mp3",
   //   summary: "Ce que j'ai compris de la crise d'Ormuz, et pourquoi elle se retrouve à la pompe.",
   //   cas: "ormuz-plein",              // facultatif : l'étude de cas liée
-  //   news: ["2026-10-07-ormuz"]       // facultatif : les actus liées
+  //   news: ["2026-10-07-ormuz"],      // facultatif : les actus liées
+  //   free: true                       // facultatif : épisode toujours gratuit (bande-annonce…)
   // }
   podcast: [],
 

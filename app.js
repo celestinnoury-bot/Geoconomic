@@ -9,6 +9,49 @@
   const conflits = window.GEOCO.conflits || null;
   const lettres = window.GEOCO.lettres || [];
   const podcast = etudes.podcast || [];
+  const offre = etudes.offre || { name: "Géoconomic+", freeListens: 2 };
+
+  // ---------- Podcast : épisodes offerts, puis abonnement ----------
+  // Compté sur l'appareil (pas de compte pour l'instant) : la liste des épisodes déjà écoutés.
+  const LISTEN_KEY = "geoco.podcast.listened";
+  let listened = [];
+  try { listened = JSON.parse(localStorage.getItem(LISTEN_KEY) || "[]"); } catch (e) {}
+  const freeLeft = () => Math.max(0, offre.freeListens - listened.length);
+  const canListen = (ep) => ep.free || listened.includes(ep.id) || freeLeft() > 0;
+  function recordListen(id) {
+    if (listened.includes(id)) return;
+    const ep = podcast.find((e) => e.id === id);
+    if (ep && ep.free) return;
+    listened.push(id);
+    try { localStorage.setItem(LISTEN_KEY, JSON.stringify(listened)); } catch (e) {}
+    refreshLocks();
+  }
+  const lockHTML = () => `
+    <div class="ep-lock">
+      <p><b>🔒 Réservé aux abonnés ${offre.name}.</b> Tu as écouté tes ${offre.freeListens} épisodes offerts.</p>
+      <a class="pill-btn blue" href="#/abonnement">Découvrir ${offre.name}</a>
+    </div>`;
+  function refreshLocks() {
+    document.querySelectorAll(".episode[data-ep]").forEach((el) => {
+      const ep = podcast.find((e) => e.id === el.dataset.ep);
+      const slot = el.querySelector(".ep-audio");
+      if (!ep || !slot || !ep.audio) return;
+      const open = canListen(ep);
+      if (open && !slot.querySelector("audio")) { slot.innerHTML = `<audio controls preload="none" src="${ep.audio}"></audio>`; bindAudio(el); }
+      if (!open && slot.querySelector("audio") && slot.querySelector("audio").paused) slot.innerHTML = lockHTML();
+    });
+    document.querySelectorAll(".free-left").forEach((el) => { el.innerHTML = freeBanner(); });
+  }
+  function bindAudio(root) {
+    (root || document).querySelectorAll(".episode[data-ep] audio").forEach((a) => {
+      if (a.dataset.bound) return;
+      a.dataset.bound = "1";
+      a.addEventListener("play", () => recordListen(a.closest(".episode").dataset.ep));
+    });
+  }
+  const freeBanner = () => podcast.length ? (freeLeft() > 0
+    ? `🎁 ${offre.freeListens} épisodes offerts : il t'en reste <b>${freeLeft()}</b>. Ensuite, <a href="#/abonnement">${offre.name}</a>.`
+    : `Tes épisodes offerts sont écoutés. Tous les épisodes avec <a href="#/abonnement">${offre.name}</a>.`) : "";
   const cases = etudes.cas || [];
   const app = document.getElementById("app");
   const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
@@ -504,6 +547,40 @@
       ${lettres.length > 1 ? `<a class="more-link" href="#/lettres">Les lettres précédentes (${lettres.length - 1}) ›</a>` : ""}`;
   }
 
+  function renderAbonnement() {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/actu">‹ Actu</a>
+        <p class="eyebrow reveal">Abonnement</p>
+        <h1 class="title reveal">${offre.name}.<br><span class="grad mix">Pour aller plus loin.</span></h1>
+        <p class="lead reveal">L'actu, le globe, les cours et la lettre du matin restent gratuits. ${offre.name} débloque tout le reste.</p>
+        <div class="plans">
+          <div class="plan reveal">
+            <p class="eyebrow">Gratuit</p>
+            <p class="plan-price">0 €</p>
+            <ul>
+              <li>L'actu du jour, expliquée et sourcée</li>
+              <li>Le globe, les conflits, les chiffres</li>
+              <li>Les cours et la lettre du matin</li>
+              <li>${offre.freeListens} épisodes du podcast offerts</li>
+            </ul>
+          </div>
+          <div class="plan plan-plus reveal">
+            <p class="eyebrow">${offre.name}</p>
+            <p class="plan-price">${offre.price || "Bientôt"}</p>
+            <ul>
+              <li>Tous les épisodes du podcast, en illimité</li>
+              <li>Les études de cas complètes</li>
+              <li>Les archives de la lettre du matin</li>
+              <li>Bientôt : flashcards et mode Concours</li>
+            </ul>
+            <button class="pill-btn blue" type="button" disabled>Disponible bientôt</button>
+          </div>
+        </div>
+        <p class="viz-cap" style="margin-top:18px">L'abonnement n'est pas encore ouvert : le paiement sera activé au lancement public.</p>
+      </section>`;
+  }
+
   function renderLettres() {
     app.innerHTML = `
       <section class="wrap hero">
@@ -534,11 +611,12 @@
       ...linkedNews.filter((n) => n.id !== opts.fromNews).map((n) => `<a class="more" href="#/actu/${n.id}">${n.title} ›</a>`)
     ].filter(Boolean);
     return `
-      <article class="episode reveal" id="ep-${ep.id}">
+      <article class="episode reveal" id="ep-${ep.id}" data-ep="${ep.id}">
         <p class="eyebrow">🎙️ Épisode ${ep.number || ""}${kinds ? ` · ${kinds}` : ""} · ${formatDate(ep.date)}${ep.duration ? ` · ${ep.duration}` : ""}</p>
         <h3>${ep.title}</h3>
         ${ep.summary ? `<p class="summary">${ep.summary}</p>` : ""}
-        ${ep.audio ? `<audio controls preload="none" src="${ep.audio}"></audio>` : `<p class="byline">Audio bientôt disponible.</p>`}
+        ${ep.free ? `<p class="byline">Épisode gratuit</p>` : ""}
+        <div class="ep-audio">${!ep.audio ? `<p class="byline">Audio bientôt disponible.</p>` : canListen(ep) ? `<audio controls preload="none" src="${ep.audio}"></audio>` : lockHTML()}</div>
         ${links.length ? `<div class="episode-links">${links.join("")}</div>` : ""}
       </article>`;
   }
@@ -569,6 +647,7 @@
       <div class="etudes-grid">
         <div class="etudes-col">
           <h2 class="subhead reveal">🎙️ Le podcast · actus et études de cas</h2>
+          ${podcast.length ? `<p class="free-left reveal">${freeBanner()}</p>` : ""}
           ${eps.length ? eps.map(episodeCard).join("") : podcastEmpty}
           ${!full && podcast.length > 1 ? `<a class="more-link" href="#/etudes">Tous les épisodes (${podcast.length}) ›</a>` : ""}
         </div>
@@ -1556,7 +1635,7 @@
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param] = (location.hash || "#/").split("/");
-    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu" }[section] || section;
+    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu", abonnement: "actu" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
     const activeTab = document.querySelector("[data-tab].active");
     if (activeTab && activeTab.parentElement.scrollWidth > activeTab.parentElement.clientWidth) {
@@ -1571,12 +1650,14 @@
     else if (section === "chiffres") renderChiffres(param);
     else if (section === "conflits") renderConflits();
     else if (section === "lettres") renderLettres();
+    else if (section === "abonnement") renderAbonnement();
     else if (section === "focus") renderFocus(param);
     else if (section === "apropos") renderAbout();
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();
 
+    bindAudio();
     if (!(section === "lexique" && param)) window.scrollTo(0, 0);
     watchReveals();
   }

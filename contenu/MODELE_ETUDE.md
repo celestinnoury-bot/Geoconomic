@@ -5,7 +5,9 @@ La rubrique **Étude de cas** est en tête de la page Actu. Elle a deux parties,
 1. **Le podcast** (`podcast`) : tes épisodes enregistrés, postés au fur et à mesure. Un épisode peut traiter une **actu du jour** (`news`), une **étude de cas** (`cas`), ou les deux. Il apparaît alors aussi sur la page de l'actu, et la carte de l'actu porte la mention « 🎙️ En podcast ».
 2. **Les études de cas** (`cas`) : tes analyses écrites, qui décortiquent une actu de A à Z.
 
-Le plus récent va **en premier** dans chaque liste. Après chaque ajout, lance `node tools/check-content.mjs`.
+Le plus récent va **en premier** dans chaque liste.
+
+**Offre du podcast :** chaque lecteur peut écouter **2 épisodes offerts** au choix (`offre.freeListens` dans `data/etudes.js`), ensuite il faut l'abonnement Géoconomic+ (page `#/abonnement`). Un épisode avec `free: true` reste toujours gratuit (bande-annonce, épisode spécial). Pour l'instant le compteur est gardé sur l'appareil du lecteur : un vrai blocage demandera des comptes et un paiement (au lancement public). Après chaque ajout, lance `node tools/check-content.mjs`.
 
 ---
 
