@@ -1,10 +1,10 @@
 // Voiture 3D du Focus « Automobile » : three.js, chargé seulement sur cette page.
-// Modèle « Car Concept » (Khronos glTF Sample Assets, CC BY 4.0), compressé avec meshopt.
+// Modèle « Car Concept » (Khronos glTF Sample Assets, CC BY 4.0), allégé et quantifié
+// (sans compression meshopt : pas de WebAssembly, pour s'afficher partout).
 import * as THREE from "./assets/vendor/three/three.module.min.js";
 import { GLTFLoader } from "./assets/vendor/three/GLTFLoader.js";
 import { OrbitControls } from "./assets/vendor/three/OrbitControls.js";
 import { RoomEnvironment } from "./assets/vendor/three/RoomEnvironment.js";
-import { MeshoptDecoder } from "./assets/vendor/three/meshopt_decoder.module.js";
 
 // Couleurs de carrosserie proposées (teintes des peintures du modèle).
 const PAINTS = { rouge: 0x7a0c12, nacre: 0xe9e6df, graphite: 0x2b2e33 };
@@ -55,7 +55,6 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   scene.add(shadow);
 
   const loader = new GLTFLoader();
-  loader.setMeshoptDecoder(MeshoptDecoder);
   const gltf = await loader.loadAsync(src);
   const car = gltf.scene;
 
@@ -73,6 +72,17 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   shadow.scale.set(finalSize.x * 1.35, finalSize.z * 1.35, 1);
   shadow.position.y = 0.005;
   controls.target.set(0, finalSize.y * 0.4, 0);
+
+  // Cadrage : sur un écran étroit (téléphone en portrait), on recule la caméra
+  // pour que toute la voiture tienne dans la largeur.
+  const baseDist = camera.position.distanceTo(controls.target);
+  function fitCamera() {
+    const aspect = width() / height();
+    const dist = baseDist * Math.max(1, 1.45 / aspect);
+    const dir = camera.position.clone().sub(controls.target).normalize();
+    camera.position.copy(controls.target).addScaledVector(dir, dist);
+  }
+  fitCamera();
 
   const paintMaterials = new Set();
   const meshesByName = new Map();
@@ -147,6 +157,7 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
     camera.aspect = width() / height();
     camera.updateProjectionMatrix();
     renderer.setSize(width(), height());
+    fitCamera();
   }
   window.addEventListener("resize", onResize);
 

@@ -688,6 +688,7 @@
           <h1 class="title">${f.industry}.<br><span class="grad eco">${f.title}</span></h1>
         </div>
         <div class="car-stage" id="car-stage">
+          ${f.model.poster ? `<img class="car-poster" id="car-poster" src="${f.model.poster}" alt="${f.industry} : la voiture du Focus">` : ""}
           <p class="car-loading" id="car-loading">Chargement de la voiture 3D…</p>
           <div class="car-card" id="car-card" hidden></div>
         </div>
@@ -790,6 +791,7 @@
         const loading = app.querySelector("#car-loading");
         if (loading) loading.remove();
         if (!car || !document.body.contains(stage)) { if (car) car.destroy(); return; }
+        stage.classList.add("car-ready");
         currentGlobe = car;
         app.querySelectorAll("[data-paint]").forEach((b) => b.addEventListener("click", () => {
           app.querySelectorAll("[data-paint]").forEach((x) => x.setAttribute("aria-pressed", x === b));
@@ -797,8 +799,16 @@
         }));
       })
       .catch(() => {
+        // Pas de 3D (appareil trop ancien, WebGL bloqué…) : on garde la photo et on liste les pièces.
         const loading = app.querySelector("#car-loading");
-        if (loading) loading.textContent = "La voiture 3D ne peut pas s'afficher sur cet appareil.";
+        if (loading) loading.remove();
+        if (!document.body.contains(stage)) return;
+        stage.classList.add("car-static");
+        const list = document.createElement("div");
+        list.className = "car-spots-static";
+        list.innerHTML = (f.hotspots || []).map((h, i) => `<button class="chip-btn" type="button" data-spot="${i}">${h.label}</button>`).join("");
+        list.querySelectorAll("[data-spot]").forEach((b) => b.addEventListener("click", () => showSpot(f.hotspots[Number(b.dataset.spot)])));
+        stage.appendChild(list);
       });
   }
 
