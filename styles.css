@@ -782,3 +782,15 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .plan li { font-size: 16px; line-height: 1.5; margin-bottom: 6px; }
 .plan .pill-btn[disabled] { opacity: .6; cursor: default; }
 @media (max-width: 640px) { .plans { grid-template-columns: 1fr; } }
+
+/* ---------- Qui suis-je ? ---------- */
+.auteur { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 22px; align-items: start; background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 26px 24px; }
+.auteur-photo { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; }
+.auteur-photo.initials { display: grid; place-items: center; background: linear-gradient(135deg, #2a6f97, #5b3ea8); color: #fff; font: 700 34px/1 var(--serif); }
+.auteur h3 { font-family: var(--serif); font-size: 28px; line-height: 1.15; }
+.auteur-role { color: var(--gold); font-size: 14px; font-weight: 600; margin-top: 4px; }
+.auteur-cursus { font-size: 15px; color: var(--muted); margin-top: 6px; }
+.auteur-cursus.todo { font-style: italic; border-bottom: 1px dashed var(--hairline); display: inline-block; }
+.auteur-text { font-family: var(--serif); font-size: 18px; line-height: 1.55; margin-top: 12px; }
+.auteur .more { display: inline-block; margin-top: 12px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
+@media (max-width: 560px) { .auteur { grid-template-columns: 1fr; } .auteur-photo { width: 72px; height: 72px; } .auteur-photo.initials { font-size: 26px; } }

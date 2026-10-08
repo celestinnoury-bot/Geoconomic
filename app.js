@@ -8,6 +8,27 @@
   const etudes = window.GEOCO.etudes || { podcast: [], cas: [] };
   const conflits = window.GEOCO.conflits || null;
   const lettres = window.GEOCO.lettres || [];
+  const auteur = window.GEOCO.auteur || null;
+
+  // Pavé « Qui suis-je ? ». compact : version courte pour l'accueil.
+  function auteurBlock(compact) {
+    if (!auteur) return "";
+    const initials = auteur.nom.split(" ").map((w) => w[0]).join("").slice(0, 2);
+    const cursus = auteur.cursus ? `<p class="auteur-cursus">${auteur.cursus}</p>` : `<p class="auteur-cursus todo">Mon parcours : à compléter</p>`;
+    const texte = compact ? auteur.texte.slice(0, 1) : auteur.texte;
+    return `
+      <div class="auteur reveal">
+        ${auteur.photo ? `<img class="auteur-photo" src="${auteur.photo}" alt="${auteur.nom}">` : `<div class="auteur-photo initials" aria-hidden="true">${initials}</div>`}
+        <div class="auteur-body">
+          <p class="eyebrow">Qui suis-je ?</p>
+          <h3>Je suis ${auteur.nom}.</h3>
+          <p class="auteur-role">${auteur.role}</p>
+          ${cursus}
+          ${texte.map((t) => `<p class="auteur-text">${t}</p>`).join("")}
+          ${compact ? `<a class="more" href="#/apropos">En savoir plus ›</a>` : ""}
+        </div>
+      </div>`;
+  }
   const podcast = etudes.podcast || [];
   const offre = etudes.offre || { name: "Géoconomic+", freeListens: 2 };
 
@@ -284,6 +305,8 @@
           <p class="reveal" style="margin-top:20px"><a href="#/articles">Tous les articles ›</a></p>
         </div>
       </section>` : ""}
+
+      ${auteur ? `<section class="section"><div class="wrap">${auteurBlock(true)}</div></section>` : ""}
 
       <section class="section">
         <div class="wrap">
@@ -1586,6 +1609,8 @@
         <h1 class="title">Comprendre le monde.<br><span class="grad mix">Sans jargon.</span></h1>
         <p class="lead">Géoconomic rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
       </section>
+
+      ${auteur ? `<section class="wrap" style="padding-bottom:24px">${auteurBlock(false)}</section>` : ""}
 
       <section class="section alt">
         <div class="wrap">
