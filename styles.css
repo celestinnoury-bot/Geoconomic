@@ -795,3 +795,16 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .auteur .more { display: inline-block; margin-top: 12px; color: var(--blue-text); font-size: 15px; font-weight: 500; }
 @media (max-width: 560px) { .auteur { grid-template-columns: 1fr; } .auteur-photo { width: 110px; height: 110px; } .auteur-photo.initials { font-size: 26px; } }
 .lettre-dark { margin: -4px 0 14px 4px; display: inline-block; }
+
+/* ---------- Articles : proposer un sujet ---------- */
+.idea-box { background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 28px 24px; }
+.idea-form { display: grid; gap: 14px; margin-top: 20px; max-width: 620px; }
+.idea-form label { display: grid; gap: 6px; font-size: 15px; font-weight: 600; }
+.idea-form .opt { color: var(--muted); font-weight: 400; }
+.idea-form input, .idea-form textarea {
+  font: 400 16px/1.4 var(--font); color: var(--text); background: var(--surface-2);
+  border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 14px; width: 100%; box-sizing: border-box;
+}
+.idea-form input:focus, .idea-form textarea:focus { outline: 2px solid var(--blue-text); outline-offset: 1px; }
+.idea-form button { justify-self: start; }
+.idea-form button[disabled] { opacity: .5; cursor: default; }

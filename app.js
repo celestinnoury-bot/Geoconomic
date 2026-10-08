@@ -1034,15 +1034,34 @@
         </div>
       </section>
 
-      <section class="section alt">
+      <section class="section alt" id="idees">
         <div class="wrap">
-          <div class="panel mix reveal">
-            <p class="eyebrow">Écrire un article</p>
-            <p>Une recherche, une analyse, un sujet peu médiatisé ? Écris-le comme tu veux, avec tes sources : il sera mis en forme avec cartes, chiffres et graphiques.</p>
+          <div class="idea-box reveal">
+            <p class="eyebrow">Proposer un sujet</p>
+            <h2 class="title">Des idées de sujets à traiter ?<br><span class="grad mix">Contactez-moi !</span></h2>
+            <p class="copy">Un pays dont on ne parle jamais, une question sur l'actu, un mécanisme économique à expliquer : envoyez-moi votre idée, je lis tout.</p>
+            <form class="idea-form" id="idea-form">
+              <label>Votre prénom <span class="opt">(facultatif)</span><input name="nom" type="text" autocomplete="given-name" maxlength="60"></label>
+              <label>Votre idée de sujet<textarea name="idee" rows="4" required maxlength="1500" placeholder="Ex. : pourquoi le prix du cacao a-t-il explosé en Côte d'Ivoire ?"></textarea></label>
+              <label>Un lien ou une source <span class="opt">(facultatif)</span><input name="lien" type="url" placeholder="https://"></label>
+              <button class="pill-btn blue" type="submit" ${auteur && auteur.contact ? "" : "disabled"}>Envoyer mon idée</button>
+              <p class="viz-cap" id="idea-note">${auteur && auteur.contact ? "Le bouton ouvre votre messagerie avec le message prêt à envoyer." : "Le formulaire sera ouvert très bientôt."}</p>
+            </form>
           </div>
         </div>
       </section>
     `;
+    const form = app.querySelector("#idea-form");
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (!auteur || !auteur.contact) return;
+      const f = new FormData(form);
+      const idee = String(f.get("idee") || "").trim();
+      if (!idee) return;
+      const body = `${idee}\n\n${f.get("lien") ? "Lien : " + f.get("lien") + "\n" : ""}${f.get("nom") ? "— " + f.get("nom") : ""}`;
+      location.href = `mailto:${auteur.contact}?subject=${encodeURIComponent("Idée de sujet pour Géoconomic")}&body=${encodeURIComponent(body)}`;
+      app.querySelector("#idea-note").textContent = "Merci ! Votre messagerie s'ouvre avec le message prêt à envoyer.";
+    });
   }
 
   function renderCulture(id) {
