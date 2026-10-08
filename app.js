@@ -9,6 +9,7 @@
   const conflits = window.GEOCO.conflits || null;
   const lettres = window.GEOCO.lettres || [];
   const auteur = window.GEOCO.auteur || null;
+  const anecdotes = window.GEOCO.anecdotes || [];
 
   // Pavé « Qui suis-je ? ». compact : version courte pour l'accueil.
   function auteurBlock(compact) {
@@ -243,9 +244,20 @@
     });
     const nums = ((window.GEOCO.indicators && window.GEOCO.indicators.latest) || []).map((x) =>
       `<a class="tk-item tk-num" href="${x.link}"><b>${x.value}</b>${x.label}</a>`);
-    // On intercale un chiffre toutes les trois actus.
+    // Anecdotes historiques « Le saviez-vous ? » : une sélection qui change chaque jour.
+    const day = Math.floor(Date.now() / 864e5);
+    const facts = anecdotes.length ? Array.from({ length: Math.min(5, anecdotes.length) }, (_, k) => anecdotes[(day * 5 + k) % anecdotes.length]) : [];
+    const factItems = facts.map((a) => `<a class="tk-item tk-fact" href="#/anecdotes/${a.id}"><b>💡 Le saviez-vous ?</b>${a.text}</a>`);
+    // Après chaque groupe de trois actus : un chiffre, puis une anecdote, en alternance.
     const mixed = [];
-    items.forEach((it, i) => { mixed.push(it); if (i % 3 === 2 && nums.length) mixed.push(nums.shift()); });
+    let turn = 0;
+    items.forEach((it, i) => {
+      mixed.push(it);
+      if (i % 3 === 2) {
+        const extra = (turn++ % 2 === 0 ? nums.shift() : factItems.shift()) || nums.shift() || factItems.shift();
+        if (extra) mixed.push(extra);
+      }
+    });
     const run = mixed.join('<span class="tk-sep" aria-hidden="true">•</span>');
     const secs = Math.max(40, mixed.length * 7);
     return `
@@ -631,6 +643,26 @@
         </div>
         <p class="viz-cap" style="margin-top:18px">L'abonnement n'est pas encore ouvert : le paiement sera activé au lancement public.</p>
       </section>`;
+  }
+
+  function renderAnecdotes(focusId) {
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/">‹ Accueil</a>
+        <p class="eyebrow reveal">Le saviez-vous ?</p>
+        <h1 class="title reveal">L'histoire méconnue.<br><span class="grad geo">De l'économie et du monde.</span></h1>
+        <p class="lead reveal">Des faits historiques peu connus qui éclairent l'actualité d'aujourd'hui. Chacun est vérifié et sourcé.</p>
+        <div class="anec-list">
+          ${anecdotes.map((a) => `
+            <article class="anec reveal${a.id === focusId ? " focus" : ""}" id="a-${a.id}">
+              <p class="eyebrow">${[a.era, a.region].filter(Boolean).join(" · ")}</p>
+              <p class="anec-text">${a.text}</p>
+              ${a.more ? `<p class="summary">${a.more}</p>` : ""}
+              ${a.source ? `<p class="fig-src">Source : <a href="${a.source.url}" target="_blank" rel="noopener">${a.source.name || a.source.short}</a></p>` : ""}
+            </article>`).join("") || '<p class="empty">Bientôt.</p>'}
+        </div>
+      </section>`;
+    if (focusId) setTimeout(() => { const el = document.getElementById("a-" + focusId); if (el) el.scrollIntoView({ block: "center" }); }, 50);
   }
 
   function renderLettres() {
@@ -1732,6 +1764,7 @@
     else if (section === "conflits") renderConflits();
     else if (section === "lettres") renderLettres();
     else if (section === "abonnement") renderAbonnement();
+    else if (section === "anecdotes") renderAnecdotes(param);
     else if (section === "focus") renderFocus(param);
     else if (section === "apropos") renderAbout();
     else if (section === "lexique") renderLexique(param);
@@ -1739,7 +1772,7 @@
     else renderHome();
 
     bindAudio();
-    if (!(section === "lexique" && param)) window.scrollTo(0, 0);
+    if (!((section === "lexique" || section === "anecdotes") && param)) window.scrollTo(0, 0);
     watchReveals();
   }
 
