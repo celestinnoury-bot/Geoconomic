@@ -122,6 +122,7 @@ window.GEOCO.indicators = {
     "275": "Palestine",
     "276": "Allemagne",
     "288": "Ghana",
+    "296": "Kiribati",
     "300": "Grèce",
     "308": "Grenade",
     "320": "Guatemala",
@@ -174,6 +175,7 @@ window.GEOCO.indicators = {
     "508": "Mozambique",
     "512": "Oman",
     "516": "Namibie",
+    "520": "Nauru",
     "524": "Népal",
     "528": "Pays-Bas",
     "533": "Aruba",
@@ -184,6 +186,9 @@ window.GEOCO.indicators = {
     "562": "Niger",
     "566": "Nigeria",
     "578": "Norvège",
+    "583": "Micronésie",
+    "584": "Îles Marshall",
+    "585": "Palaos",
     "586": "Pakistan",
     "591": "Panama",
     "598": "Papouasie-Nouvelle-Guinée",
@@ -199,7 +204,10 @@ window.GEOCO.indicators = {
     "642": "Roumanie",
     "643": "Russie",
     "646": "Rwanda",
+    "659": "Saint-Christophe-et-Niévès",
+    "662": "Sainte-Lucie",
     "670": "Saint-Vincent-et-les-Grenadines",
+    "674": "Saint-Marin",
     "678": "São Tomé-et-Principe",
     "682": "Arabie saoudite",
     "686": "Sénégal",
@@ -230,6 +238,7 @@ window.GEOCO.indicators = {
     "788": "Tunisie",
     "792": "Turquie",
     "795": "Turkménistan",
+    "798": "Tuvalu",
     "800": "Ouganda",
     "804": "Ukraine",
     "807": "Macédoine du Nord",
@@ -2355,104 +2364,989 @@ window.GEOCO.indicators = {
         "#3db7a1",
         "#8de6ce"
       ],
-      "note": "Prévisions du FMI pour 2026 (mise à jour de juillet 2026). Croissance mondiale prévue : 3,0 %. Pour le Mexique, l'Afrique du Sud, l'Argentine et l'Indonésie, ce sont les prévisions d'avril 2026.",
+      "note": "Prévisions de croissance du PIB pour 2026 du Fonds monétaire international (FMI), édition d'avril 2026, et mise à jour de juillet 2026 pour 16 grands pays. Les chiffres par pays viennent de sites qui reprennent les tableaux du FMI ; le FMI publie une nouvelle édition mi-octobre.",
       "sources": [
         {
           "short": "FMI",
-          "name": "FMI, Perspectives de l'économie mondiale, mise à jour de juillet 2026",
-          "url": "https://www.imf.org/en/news/articles/2026/07/08/tr070826-weo-press-briefing-transcript-july-8-2026"
-        },
-        {
-          "short": "Euronews",
-          "name": "Euronews, « IMF forecasts modest growth for Italy, cuts estimates for France and Germany » (8 juil. 2026)",
-          "url": "https://www.euronews.com/business/2026/07/08/economy-imf-forecasts-modest-growth-for-italy-cuts-estimates-for-france-and-germany"
-        },
-        {
-          "short": "FMI (avril)",
-          "name": "FMI, Perspectives de l'économie mondiale, avril 2026",
+          "name": "FMI, Perspectives de l'économie mondiale (WEO), avril 2026 – tableaux statistiques",
           "url": "https://www.imf.org/en/publications/weo/issues/2026/04/14/world-economic-outlook-april-2026"
+        },
+        {
+          "short": "FMI (juil.)",
+          "name": "FMI, Mise à jour des Perspectives de l'économie mondiale, juillet 2026 (8 juillet 2026)",
+          "url": "https://www.imf.org/-/media/files/publications/weo/2026/update/july/english/text.pdf"
+        },
+        {
+          "short": "FMI via Wikipédia",
+          "name": "Wikipedia, List of African countries by GDP growth (données FMI WEO avril 2026, consulté oct. 2026)",
+          "url": "https://en.wikipedia.org/wiki/List_of_African_countries_by_GDP_growth"
+        },
+        {
+          "short": "FMI via Wikipédia",
+          "name": "Wikipedia, List of European countries by GDP growth (données FMI WEO avril 2026, consulté oct. 2026)",
+          "url": "https://en.wikipedia.org/wiki/List_of_European_countries_by_GDP_growth"
+        },
+        {
+          "short": "FMI via Wikipédia",
+          "name": "Wikipedia, List of countries by real GDP growth rate (données FMI WEO avril 2026, consulté oct. 2026)",
+          "url": "https://en.wikipedia.org/wiki/List_of_countries_by_real_GDP_growth_rate"
+        },
+        {
+          "short": "FMI via StatisticsTimes",
+          "name": "StatisticsTimes, Countries by projected GDP growth 2026 (données FMI WEO avril 2026)",
+          "url": "https://statisticstimes.com/economy/countries-by-projected-gdp-growth.php"
+        },
+        {
+          "short": "FMI via Worldometer",
+          "name": "Worldometer, GDP by country in Asia 2026 (données FMI WEO avril 2026)",
+          "url": "https://www.worldometers.info/gdp/gdp-by-country/?region=asia&year=2026&metric=nominal"
         }
       ],
       "values": {
+        "100": {
+          "v": 2.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "104": {
+          "v": 3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "108": {
+          "v": 3.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "112": {
+          "v": 1.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "116": {
+          "v": 4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 1
+        },
+        "120": {
+          "v": 3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
         "124": {
           "v": 1.1,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "132": {
+          "v": 4.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "140": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "144": {
+          "v": 5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 7
+        },
+        "148": {
+          "v": 5.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "152": {
+          "v": 2.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
         },
         "156": {
           "v": 4.6,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "158": {
+          "v": 5.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "170": {
+          "v": 2.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "174": {
+          "v": 4.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "178": {
+          "v": 2.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "180": {
+          "v": 5.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "188": {
+          "v": 3.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "191": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "196": {
+          "v": 3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "203": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "204": {
+          "v": 7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "208": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "212": {
+          "v": 3.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "214": {
+          "v": 3.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "218": {
+          "v": 2.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "222": {
+          "v": 3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "226": {
+          "v": -2.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "231": {
+          "v": 9.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "233": {
+          "v": 1.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "242": {
+          "v": 2.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "246": {
+          "v": 1.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
         },
         "250": {
           "v": 0.6,
-          "d": "prévision 2026",
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
           "s": 2
+        },
+        "262": {
+          "v": 6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "266": {
+          "v": 2.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "268": {
+          "v": 5.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "270": {
+          "v": 5.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "276": {
           "v": 0.7,
-          "d": "prévision 2026",
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
           "s": 2
+        },
+        "288": {
+          "v": 4.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "296": {
+          "v": 4.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "300": {
+          "v": 1.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "308": {
+          "v": 3.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "320": {
+          "v": 3.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "324": {
+          "v": 8.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "328": {
+          "v": 16.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "332": {
+          "v": -1.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "340": {
+          "v": 3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "344": {
+          "v": 2.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "348": {
+          "v": 1.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "352": {
+          "v": 1.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
         },
         "356": {
           "v": 6.4,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
         },
         "360": {
           "v": 5,
-          "d": "prévision 2026 (avril)",
-          "s": 3
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "364": {
+          "v": -6.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "368": {
+          "v": -6.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "372": {
+          "v": 2.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "376": {
+          "v": 3.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
         },
         "380": {
           "v": 0.5,
-          "d": "prévision 2026",
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
           "s": 2
+        },
+        "384": {
+          "v": 6.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "388": {
+          "v": -1.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
         },
         "392": {
           "v": 0.6,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "398": {
+          "v": 4.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "400": {
+          "v": 2.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "404": {
+          "v": 4.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "410": {
+          "v": 1.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "414": {
+          "v": -0.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "417": {
+          "v": 6.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "418": {
+          "v": 4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "426": {
+          "v": 1.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "428": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "430": {
+          "v": 5.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "434": {
+          "v": 6.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "440": {
+          "v": 2.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "442": {
+          "v": 1.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "450": {
+          "v": 3.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "454": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "458": {
+          "v": 4.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "462": {
+          "v": 3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "466": {
+          "v": 5.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "470": {
+          "v": 3.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "478": {
+          "v": 4.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "480": {
+          "v": 3.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "484": {
-          "v": 1.6,
-          "d": "prévision 2026 (avril)",
+          "v": 1.2,
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "496": {
+          "v": 5.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "498": {
+          "v": 1.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "499": {
+          "v": 2.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "504": {
+          "v": 4.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "508": {
+          "v": 0.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "512": {
+          "v": 3.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "516": {
+          "v": 2.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "520": {
+          "v": 2.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "524": {
+          "v": 3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "528": {
+          "v": 1.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "533": {
+          "v": 2.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "548": {
+          "v": 3.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "554": {
+          "v": 2.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "558": {
+          "v": 3.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "562": {
+          "v": 6.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
           "s": 3
         },
         "566": {
           "v": 4.1,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "578": {
+          "v": 1.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "583": {
+          "v": 0.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "584": {
+          "v": 3.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "585": {
+          "v": 3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "586": {
+          "v": 3.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "591": {
+          "v": 3.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "598": {
+          "v": 3.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "600": {
+          "v": 4.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "604": {
+          "v": 2.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "608": {
+          "v": 4.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "616": {
+          "v": 3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "620": {
+          "v": 1.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "624": {
+          "v": 4.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "626": {
+          "v": 4.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "630": {
+          "v": -0.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "634": {
+          "v": -8.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "642": {
+          "v": 0.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
         },
         "643": {
           "v": 1.1,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "646": {
+          "v": 7.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "659": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "662": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "670": {
+          "v": 3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "674": {
+          "v": 1.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "678": {
+          "v": 3.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "682": {
           "v": 1.7,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "686": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "688": {
+          "v": 2.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "690": {
+          "v": 1.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "694": {
+          "v": 4.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "702": {
+          "v": 3.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "703": {
+          "v": 0.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "704": {
+          "v": 7.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "705": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "706": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "710": {
-          "v": 1,
-          "d": "prévision 2026 (avril)",
+          "v": 1.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "716": {
+          "v": 5,
+          "d": "prévision 2026 (FMI, avril 2026)",
           "s": 3
         },
         "724": {
           "v": 2.1,
-          "d": "prévision 2026",
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
           "s": 2
+        },
+        "728": {
+          "v": 4.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "729": {
+          "v": 0.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "740": {
+          "v": 3.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "748": {
+          "v": 4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "752": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "756": {
+          "v": 1.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "762": {
+          "v": 6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "764": {
+          "v": 1.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "768": {
+          "v": 5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "776": {
+          "v": 2.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "780": {
+          "v": 0.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "784": {
+          "v": 3.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "788": {
+          "v": 2.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "792": {
+          "v": 2.9,
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "795": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "798": {
+          "v": 2.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "800": {
+          "v": 7.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "804": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "807": {
+          "v": 3.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "818": {
+          "v": 4.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "826": {
           "v": 1,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "834": {
+          "v": 5.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
         },
         "840": {
           "v": 2.3,
-          "d": "prévision 2026"
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
         },
-        "076": {
-          "v": 2.4,
-          "d": "prévision 2026"
+        "854": {
+          "v": 4.9,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "858": {
+          "v": 1.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "860": {
+          "v": 6.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "862": {
+          "v": 4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "882": {
+          "v": 3.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "887": {
+          "v": 0.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "894": {
+          "v": 4.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "008": {
+          "v": 3.4,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "012": {
+          "v": 3.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "020": {
+          "v": 2.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "024": {
+          "v": 2.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 3
+        },
+        "028": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "031": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
         },
         "032": {
           "v": 3.5,
-          "d": "prévision 2026 (avril)",
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 1
+        },
+        "036": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "040": {
+          "v": 0.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "044": {
+          "v": 2.1,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "048": {
+          "v": -0.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 6
+        },
+        "050": {
+          "v": 4.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "051": {
+          "v": 5.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "052": {
+          "v": 2.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "056": {
+          "v": 0.7,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "064": {
+          "v": 7.5,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "068": {
+          "v": -3.3,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "070": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 4
+        },
+        "072": {
+          "v": 4.8,
+          "d": "prévision 2026 (FMI, avril 2026)",
           "s": 3
+        },
+        "076": {
+          "v": 2.4,
+          "d": "prévision 2026 (FMI, mise à jour de juillet 2026)",
+          "s": 2
+        },
+        "084": {
+          "v": 2.2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "090": {
+          "v": 2,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
+        },
+        "096": {
+          "v": 2.6,
+          "d": "prévision 2026 (FMI, avril 2026)",
+          "s": 5
         }
       }
     }
