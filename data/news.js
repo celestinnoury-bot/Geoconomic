@@ -71,7 +71,7 @@ window.GEOCO.news = [
     ]
   },
   {
-    "id": "2026-10-09-pérou-taux",
+    "id": "2026-10-09-perou-taux",
     "date": "2026-10-09",
     "region": "Amériques",
     "theme": "eco",

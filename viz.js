@@ -180,7 +180,7 @@
 
   // `signed: true` affiche le signe (+ / −), utile pour les soldes (créations moins destructions).
   function fmt(v, spec) {
-    const txt = Math.abs(v).toLocaleString("fr-FR", { minimumFractionDigits: spec.decimals ?? 1, maximumFractionDigits: spec.decimals ?? 1 });
+    const txt = Math.abs(v).toLocaleString(window.GeocoI18n ? window.GeocoI18n.locale : "fr-FR", { minimumFractionDigits: spec.decimals ?? 1, maximumFractionDigits: spec.decimals ?? 1 });
     const sign = v < 0 ? "−" : spec.signed && v > 0 ? "+" : "";
     return sign + txt + (spec.suffix || "");
   }
@@ -212,7 +212,7 @@
         yMax = niceMax(hi);
         ticks = 4;
       }
-      const tickText = (v) => (v < 0 ? "−" : "") + Math.abs(v).toLocaleString("fr-FR") + (spec.suffix || "");
+      const tickText = (v) => (v < 0 ? "−" : "") + Math.abs(v).toLocaleString(window.GeocoI18n ? window.GeocoI18n.locale : "fr-FR") + (spec.suffix || "");
       const longest = Math.max(tickText(yMin).length, tickText(yMax).length);
       const m = { t: 24, r: 16, b: 28, l: Math.max(40, longest * 6.5 + 12) };
       const iw = W - m.l - m.r, ih = H - m.t - m.b;

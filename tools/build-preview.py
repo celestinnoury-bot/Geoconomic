@@ -7,7 +7,7 @@ import re, shutil, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / ".preview"
 FILES = [
-    "styles.css", "app.js", "viz.js", "globe.js",
+    "styles.css", "i18n.js", "app.js", "viz.js", "globe.js", "data/iso2.js",
     "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/couches.js", "data/lettres.js", "data/auteur.js", "data/anecdotes.js", "data/focus.js",
     "car3d.js", "assets/models/car-concept.json", "assets/models/car-poster.webp",
     "assets/vendor/three/three.module.min.js", "assets/vendor/three/GLTFLoader.js",
@@ -19,6 +19,8 @@ FILES = [
     "assets/icon-180.png", "assets/icon-192.png", "assets/icon-512.png", "assets/og-image.jpg", "assets/auteur.jpg",
 ]
 
+# Traductions (anglais, espagnol…).
+FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "data/i18n").glob("*.js"))]
 # Lettres du matin en PDF.
 FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "lettres").glob("*.pdf"))]
 # Épisodes du podcast : tous les fichiers audio de assets/podcast/.

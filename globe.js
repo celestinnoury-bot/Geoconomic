@@ -256,7 +256,7 @@
     mountIndicators,
     classOf,
     // container : élément qui reçoit le globe ; onOpen(place) : appelé quand on touche un lieu.
-    async mount(container, news, { onOpen } = {}) {
+    async mount(container, news, { onOpen, region } = {}) {
       if (!webglOK()) { container.classList.add("no-webgl"); return null; }
       await loadLib();
       if (!document.body.contains(container)) return null;
@@ -311,10 +311,12 @@
       addZoom(world, container, controls);
       controls.enableDamping = true;
 
-      // Point de vue de départ : le Golfe et l'Europe, là où se concentre l'actu.
-      // Sur un écran étroit (téléphone), on recule pour voir toute la Terre.
+            // Sur un écran étroit (téléphone), on recule pour voir toute la Terre.
       const homeAlt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 0.9 ? 3.4 : 2.3);
-      world.pointOfView({ lat: 28, lng: 20, altitude: homeAlt() });
+      // Le globe s'ouvre sur la région du lecteur.
+      const VIEWS = { "Europe": [38, 15], "Amériques": [12, -72], "Moyen-Orient": [27, 42], "Afrique": [6, 18], "Asie": [24, 100] };
+      const [homeLat, homeLng] = VIEWS[region] || [28, 20];
+      world.pointOfView({ lat: homeLat, lng: homeLng, altitude: homeAlt() });
 
       function focus(p) {
         controls.autoRotate = false;
@@ -355,7 +357,7 @@
         places,
         focus,
         reset() {
-          world.pointOfView({ lat: 28, lng: 20, altitude: homeAlt() }, 1400);
+          world.pointOfView({ lat: homeLat, lng: homeLng, altitude: homeAlt() }, 1400);
           controls.autoRotate = true;
         },
         destroy() {

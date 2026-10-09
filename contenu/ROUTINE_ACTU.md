@@ -68,6 +68,17 @@ Les nouvelles actus se placent **en haut** du tableau. Le globe de l'accueil aff
 3. Si un chiffre de l'onglet Chiffres (`data/indicators.js`) a été publié officiellement depuis (inflation, chômage), le mettre à jour avec sa date et sa source.
 4. On garde les actus des 14 derniers jours ; les plus anciennes peuvent être retirées.
 
+## Traductions
+
+L'appli s'affiche dans la langue du téléphone (français, anglais, espagnol, allemand, italien, portugais). Les actus sont traduites en **anglais et en espagnol** :
+
+1. `node tools/i18n-build.mjs --missing=en > /tmp/a-traduire.json` liste les textes pas encore traduits (en général, les actus du jour).
+2. Traduire chaque valeur (mêmes clés, mêmes [n], ton neutre, « you » / « tú », nombres au format de la langue) et enregistrer le résultat dans `contenu/traductions/en/contenu-AAAA-MM-JJ.json` ; idem pour `es`.
+3. `node tools/i18n-build.mjs` régénère `data/i18n/*.js` (les traductions des actus retirées sont écartées automatiquement).
+4. Les textes de l'interface sont dans `contenu/traductions/<langue>/ui.json` : en cas de nouveau bouton ou titre, ajouter sa traduction.
+
+Une actu non traduite s'affiche en français : ce n'est pas bloquant, mais `check-content` le signale.
+
 ## Publier l'aperçu
 
 Aperçu privé de l'appli : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT

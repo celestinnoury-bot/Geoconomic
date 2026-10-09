@@ -41,6 +41,7 @@ let prevDate = "9999-99-99";
 news.forEach((n, i) => {
   const w = `news[${i}] ${n.id || "?"}`;
   if (!n.id) err(w, "id manquant");
+  if (n.id && !/^[a-z0-9-]+$/.test(n.id)) err(w, "id : seulement minuscules sans accent, chiffres et tirets");
   if (newsIds.has(n.id)) err(w, "id en double");
   newsIds.add(n.id);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(n.date || "")) err(w, "date au format AAAA-MM-JJ obligatoire");
@@ -173,6 +174,16 @@ focus.forEach((f) => {
 const today = news.length ? news[0].date : "—";
 console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles, ${(etudes.cas || []).length} études de cas, ${(etudes.podcast || []).length} épisodes.`);
 warn.forEach((w) => console.log("Attention : " + w));
+// Traductions : les textes pas encore traduits s'affichent en français (signalé, pas bloquant).
+try {
+  const { execFileSync } = await import("child_process");
+  for (const lang of ["en", "es"]) {
+    if (!fs.existsSync(`contenu/traductions/${lang}`)) continue;
+    const todo = Object.keys(JSON.parse(execFileSync("node", ["tools/i18n-build.mjs", `--missing=${lang}`], { maxBuffer: 64e6 }).toString()));
+    if (todo.length) console.log(`À traduire (${lang}) : ${todo.length} textes, dont ${[...new Set(todo.map((k) => k.split(".").slice(0, 2).join(".")))].slice(0, 5).join(", ")}… (voir contenu/ROUTINE_ACTU.md)`);
+  }
+} catch (e) { console.log("Traductions non vérifiées : " + e.message); }
+
 if (errors.length) {
   errors.forEach((e) => console.error("ERREUR : " + e));
   process.exit(1);

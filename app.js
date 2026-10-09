@@ -1,6 +1,21 @@
 (function () {
   "use strict";
 
+  // Langue et région du lecteur (i18n.js). Le contenu traduit remplace le français avant tout affichage.
+  const I18N = window.GeocoI18n || { lang: "fr", locale: "fr-FR", region: "Europe", REGIONS: [], LANGS: { fr: "Français" }, t: (s) => s, applyContent() {}, countryName: (i, f) => f, watch() {}, setLang() {}, setRegion() {}, regionName: (r) => r };
+  const LOCALE = I18N.locale;
+  const unitSep = I18N.lang === "en" ? "" : " ";
+  I18N.applyContent(window.GEOCO);
+  if (I18N.lang !== "fr") {
+    const ind = window.GEOCO.indicators;
+    if (ind && ind.names) {
+      ind.namesFr = Object.assign({}, ind.names); // pour la recherche : « Allemagne » trouve aussi « Germany »
+      Object.keys(ind.names).forEach((iso) => { ind.names[iso] = I18N.countryName(iso, ind.names[iso]); });
+    }
+    ((window.GEOCO.conflits && window.GEOCO.conflits.layers) || []).forEach((L) =>
+      Object.entries(L.countries).forEach(([iso, d]) => { d.name = I18N.countryName(iso, d.name); }));
+  }
+
   const { dossiers, glossary } = window.GEOCO;
   const news = window.GEOCO.news || [];
   const culture = window.GEOCO.culture || [];
@@ -91,12 +106,16 @@
   let homeFilter = "all";
 
   const formatDate = (iso) =>
-    new Date(iso + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+    new Date(iso + "T12:00:00").toLocaleDateString(LOCALE, { weekday: "long", day: "numeric", month: "long", year: "numeric" });
+
+  // Les actus de la région du lecteur passent en premier (à date égale).
+  const isNear = (n) => n.region === I18N.region;
+  const nearFirst = (list) => list.map((n, i) => [n, i]).sort((a, b) => (b[0].date > a[0].date) - (b[0].date < a[0].date) || isNear(b[0]) - isNear(a[0]) || a[1] - b[1]).map((x) => x[0]);
 
   function newsCard(n) {
     return `
-      <a class="news-card ${n.theme} reveal" href="#/actu/${n.id}">
-        <p class="eyebrow">${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
+      <a class="news-card ${n.theme} reveal${isNear(n) ? " near" : ""}" href="#/actu/${n.id}">
+        <p class="eyebrow">${isNear(n) ? `<span class="near-badge">📍 Près de chez toi</span> · ` : ""}${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
         <h3>${n.title}</h3>
         <p class="summary">${n.summary}</p>
         <span class="more">Comprendre en 2 min ›</span>
@@ -238,7 +257,7 @@
 
   // Bandeau d'infos défilant, comme à la télévision : dernières actus et derniers chiffres.
   function tickerHTML() {
-    const items = news.slice(0, 14).map((n) => {
+    const items = nearFirst(news.slice(0, 14)).map((n) => {
       const where = (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || n.region || "";
       return `<a class="tk-item" href="#/actu/${n.id}"><b>${where}</b>${n.title}</a>`;
     });
@@ -275,7 +294,7 @@
   function renderHome() {
     const readCount = dossiers.filter((d) => readSet.has(d.id)).length;
     const today = news.length ? news[0].date : null;
-    const todays = news.filter((n) => n.date === today);
+    const todays = nearFirst(news.filter((n) => n.date === today));
     // Sur le globe : toutes les actus des deux dernières semaines (plus de points partout dans le monde).
     const weekAgo = today ? new Date(new Date(today + "T12:00:00") - 15 * 864e5).toISOString().slice(0, 10) : null;
     const onGlobe = news.filter((n) => n.geo && n.geo.length && (!weekAgo || n.date >= weekAgo));
@@ -302,6 +321,7 @@
         <div class="wrap">
           <p class="eyebrow reveal">L'actu du jour</p>
           <h2 class="title reveal">Aujourd'hui.</h2>
+          <p class="near-note reveal">📍 En premier : les actus de ta région, <b>${I18N.regionName(I18N.region)}</b>. <a href="#/reglages">Changer</a></p>
           ${lettreCard()}
           ${todays.map(newsCard).join("")}
           <p class="reveal" style="margin-top:20px"><a href="#/actu">Toutes les actus ›</a></p>
@@ -433,7 +453,7 @@
         </div>
         ${place.items.map(({ news: n, place: where }) => `
           <a class="sheet-item" href="#/actu/${n.id}">
-            <p class="sheet-place">${multi ? `${where} · ` : ""}${new Date(n.date + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
+            <p class="sheet-place">${multi ? `${where} · ` : ""}${new Date(n.date + "T12:00:00").toLocaleDateString(LOCALE, { weekday: "long", day: "numeric", month: "long" })}</p>
             <h3>${n.title}</h3>
             <p class="summary">${n.summary}</p>
             <span class="more">Lire l'article ›</span>
@@ -444,7 +464,7 @@
     }
 
     try {
-      currentGlobe = await window.GeocoGlobe.mount(el, items, { onOpen: openSheet });
+      currentGlobe = await window.GeocoGlobe.mount(el, items, { onOpen: openSheet, region: I18N.region });
     } catch (e) {
       currentGlobe = null;
     }
@@ -591,7 +611,7 @@
       app.querySelector("#actu-list").innerHTML = days.map((day) => `
         <div class="day">
           <p class="eyebrow">${formatDate(day)} · ${list.filter((n) => n.date === day).length} actus</p>
-          ${list.filter((n) => n.date === day).map(newsCard).join("")}
+          ${nearFirst(list.filter((n) => n.date === day)).map(newsCard).join("")}
         </div>`).join("") || '<p class="empty">Aucune actu pour ce filtre.</p>';
       app.querySelectorAll("#actu-list .reveal").forEach((el) => el.classList.add("in"));
     }
@@ -1224,7 +1244,7 @@ function statGrid(figures, sources, theme = "geo") {
 
   // ---------- Conflits : guerre, paix et économie de la défense ----------
   let confLayer = "conflits";
-  function renderConflits() {
+  function renderConflits(layerParam, pays) {
     const C = conflits;
     const features = window.GEOCO_COUNTRIES && window.GEOCO_COUNTRIES.features;
     if (!C || !features) return renderNotFound();
@@ -1235,6 +1255,7 @@ function statGrid(figures, sources, theme = "geo") {
         countries: Object.fromEntries(Object.entries(C.map.countries).map(([iso, d]) => [iso, Object.assign({ name: C.map.names[iso] }, d,
           { text: ((B.worse.concat(B.alerts)).find((x) => x.iso === iso) || {}).text || d.t })])) }];
     }
+    if (layerParam && C.layers && C.layers.some((l) => l.id === layerParam)) confLayer = layerParam;
     const countryRow = (x, kind) => `
       <button class="conflict-row ${kind} reveal" data-iso="${x.iso}">
         <span class="conflict-name">${x.name}</span>
@@ -1368,7 +1389,7 @@ function statGrid(figures, sources, theme = "geo") {
       app.querySelectorAll("[data-layer]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.layer === L.id));
       app.querySelector("#layer-intro").innerHTML = cite(L.intro || "", L.sources || C.sources);
       app.querySelector("#conf-legend").innerHTML = L.legend.map((l) => `<span class="legend-item"><i style="background:${l.color}"></i>${l.label}</span>`).join("");
-      const rows = Object.entries(L.countries).sort((a, b) => b[1].v - a[1].v || (a[1].name || "").localeCompare(b[1].name || "", "fr"));
+      const rows = Object.entries(L.countries).sort((a, b) => b[1].v - a[1].v || (a[1].name || "").localeCompare(b[1].name || "", LOCALE));
       app.querySelector("#layer-count").textContent = `Voir la liste des ${rows.length} pays`;
       app.querySelector("#layer-rows").innerHTML = rows.map(([iso, d]) => {
         const leg = L.legend.find((l) => l.v === d.v) || L.legend[0];
@@ -1392,6 +1413,7 @@ function statGrid(figures, sources, theme = "geo") {
     bindRows(app.querySelectorAll(".conflict-list .conflict-row"));
     app.querySelectorAll("[data-layer]").forEach((b) => b.addEventListener("click", () => { confLayer = b.dataset.layer; drawLayer(); }));
     drawLayer();
+    if (pays && layerOf().countries[pays]) showCard(pays);
 
     window.GeocoGlobe.mountIndicators(app.querySelector("#conf-globe"), {
       features, names,
@@ -1402,20 +1424,21 @@ function statGrid(figures, sources, theme = "geo") {
       currentGlobe = g;
       g.setIndicator(layerInd(layerOf()));
       g.world.pointOfView({ lat: 22, lng: 35, altitude: 2.3 });
+      if (pays) { showStage(); g.selectById(pays); }
     }).catch(() => app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"));
   }
 
   // ---------- Chiffres du monde ----------
   let indicatorId = "inflation";
 
-  function renderChiffres(param) {
+  function renderChiffres(param, pays) {
     const data = window.GEOCO.indicators;
     const features = window.GEOCO_COUNTRIES && window.GEOCO_COUNTRIES.features;
     if (!data || !features) return renderNotFound();
     if (param && data.list.some((i) => i.id === param)) indicatorId = param;
     const names = data.names || {};
     const nameOf = (id) => names[id] || (features.find((f) => f.id === id) || { properties: { name: id } }).properties.name;
-    const fmtV = (v) => v.toLocaleString("fr-FR", { maximumFractionDigits: 1 });
+    const fmtV = (v) => v.toLocaleString(LOCALE, { maximumFractionDigits: 1 });
 
     app.innerHTML = `
       ${latestBlock()}
@@ -1479,7 +1502,7 @@ function statGrid(figures, sources, theme = "geo") {
         <button class="sheet-close" aria-label="Fermer">×</button>
         <p class="eyebrow">${ind.label}</p>
         <h3>${name}</h3>
-        ${d ? `<div class="bigstat grad mix">${fmtV(d.v)} ${ind.unit}</div><p class="ind-date">${d.d}</p>` : `<p class="ind-date">Pas de donnée pour l'instant.</p>`}
+        ${d ? `<div class="bigstat grad mix">${fmtV(d.v)}${unitSep}${ind.unit}</div><p class="ind-date">${d.d}</p>` : `<p class="ind-date">Pas de donnée pour l'instant.</p>`}
         ${(data.focus || []).filter((z) => z.country === id).map((z) => `<a class="more focus-link" href="#/chiffres" data-focus="${z.id}">${z.eyebrow} ›</a>`).join("")}`;
       card.querySelectorAll("[data-focus]").forEach((a) => a.addEventListener("click", (e) => {
         e.preventDefault();
@@ -1497,7 +1520,7 @@ function statGrid(figures, sources, theme = "geo") {
       const edges = [null, ...ind.bins, null];
       app.querySelector("#legend").innerHTML = ind.colors.map((c, i) => {
         const lo = edges[i], hi = edges[i + 1];
-        const label = lo == null ? `< ${fmtV(hi)} %` : hi == null ? `≥ ${fmtV(lo)} %` : `${fmtV(lo)}–${fmtV(hi)} %`;
+        const label = lo == null ? `< ${fmtV(hi)}${unitSep}%` : hi == null ? `≥ ${fmtV(lo)}${unitSep}%` : `${fmtV(lo)}–${fmtV(hi)}${unitSep}%`;
         return `<span class="legend-item"><i style="background:${c}"></i>${label}</span>`;
       }).join("") + `<span class="legend-item"><i class="none"></i>Pas de donnée</span>`;
 
@@ -1511,7 +1534,7 @@ function statGrid(figures, sources, theme = "geo") {
         <button class="rank-row" data-iso="${r.id}">
           <span class="rank-name">${r.name}</span>
           <span class="rank-bar"><i style="width:${Math.min(100, Math.max(2, (r.v / max) * 100))}%;background:${ind.colors[window.GeocoGlobe.classOf(r.v, ind.bins)]}"></i></span>
-          <span class="rank-val">${fmtV(r.v)} %<small>${r.d}</small></span>
+          <span class="rank-val">${fmtV(r.v)}${unitSep}%<small>${r.d}</small></span>
         </button>`).join("");
       app.querySelectorAll(".rank-row").forEach((b) => b.addEventListener("click", () => {
         showStage();
@@ -1532,6 +1555,7 @@ function statGrid(figures, sources, theme = "geo") {
     }));
 
     draw();
+    if (pays) { const ind = data.list.find((i) => i.id === indicatorId); showCard(pays, ind.values[pays], nameOf(pays)); }
 
     window.GeocoGlobe.mountIndicators(app.querySelector("#ind-globe"), {
       features, names,
@@ -1541,12 +1565,13 @@ function statGrid(figures, sources, theme = "geo") {
       globe = g;
       currentGlobe = g;
       g.setIndicator(data.list.find((i) => i.id === indicatorId));
+      if (pays) { showStage(); g.selectById(pays); }
     }).catch(() => app.querySelector(".ind-stage") && app.querySelector(".ind-stage").classList.add("no-webgl"));
   }
 
   // ---------- Lexique ----------
   function renderLexique(focusId) {
-    const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, "fr"));
+    const sorted = [...glossary].sort((a, b) => a.term.localeCompare(b.term, LOCALE));
     const normalize = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
 
     app.innerHTML = `
@@ -1762,6 +1787,149 @@ function statGrid(figures, sources, theme = "geo") {
     `;
   }
 
+  // ---------- Recherche ----------
+  // Cherche dans tout le contenu (dans la langue affichée) : actus, pays, cours, articles, lexique…
+  // Sans accents ni majuscules ; tous les mots tapés doivent apparaître.
+  const fold = (x) => String(x || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s*\[\d+\]/g, "").replace(/[’'`«»"]/g, " ");
+  const plain = (x) => String(x || "").replace(/\s*\[\d+\]/g, "");
+  const flat = (x) => (Array.isArray(x) ? x.map(flat).join(" ") : x && typeof x === "object" ? Object.values(x).map(flat).join(" ") : typeof x === "string" ? x : "");
+  let searchIndex = null;
+  function buildSearchIndex() {
+    const E = [];
+    const add = (kind, title, sub, href, body, extra) => E.push(Object.assign({ kind, title, sub, href, t: fold(title), h: fold(title + " " + body) }, extra));
+    news.forEach((n) => add("news", n.title, n.summary, `#/actu/${n.id}`,
+      [n.summary, flat(n.points), flat(n.why), n.forMe, n.region, flat((n.geo || []).map((g) => [g.name, g.label])), flat((n.figures || []).map((f) => f.label))].join(" "), { date: n.date, n }));
+    dossiers.forEach((d) => add("cours", d.title, d.hook, `#/cours/${d.id}`, [d.hook, flat(d.tldr), flat(d.sections)].join(" ")));
+    culture.forEach((c) => add("articles", c.title, c.hook, `#/articles/${c.id}`, [c.hook, flat(c.sections)].join(" ")));
+    cases.forEach((c) => add("etudes", c.title, c.hook, `#/etudes/${c.id}`, [c.hook, c.question, flat(c.chain), flat(c.sections)].join(" ")));
+    focusList.forEach((f) => add("focus", f.title, f.hook, `#/focus/${f.id}`, [f.industry, f.hook, flat(f.sections), flat(f.weekly)].join(" ")));
+    glossary.forEach((g) => add("lexique", g.term, g.def, `#/lexique/${g.id}`, [g.def, g.example].join(" ")));
+    anecdotes.forEach((a) => add("anecdotes", plain(a.text), a.more, `#/anecdotes/${a.id}`, [a.more, a.region].join(" ")));
+    // Pays : nom affiché (et nom français, pour chercher « Allemagne » même en anglais).
+    const I = window.GEOCO.indicators || {};
+    const names = Object.assign({}, I.names || {});
+    ((conflits && conflits.layers) || []).forEach((L) => Object.entries(L.countries).forEach(([iso, d]) => { if (!names[iso] && d.name) names[iso] = d.name; }));
+    const fr = I.namesFr || {};
+    Object.entries(names).forEach(([iso, name]) => E.push({ kind: "pays", iso, title: name, t: fold(name), alt: fr[iso] && fr[iso] !== name ? fold(fr[iso]) : "" }));
+    return E;
+  }
+  function searchAll(q) {
+    if (!searchIndex) searchIndex = buildSearchIndex();
+    const toks = fold(q).split(/[^a-z0-9%]+/).filter((x) => x.length > 1 || /\d/.test(x));
+    if (!toks.length) return null;
+    const res = {};
+    searchIndex.forEach((e) => {
+      let score = 0;
+      if (e.kind === "pays") {
+        // Pays : chaque mot tapé doit être le début d'un mot du nom (« mar » → Maroc, pas Danemark).
+        const words = (e.t + " " + (e.alt || "")).split(/[^a-z0-9]+/);
+        if (!toks.every((tk) => words.some((w) => w.startsWith(tk)))) return;
+        score = e.t === toks.join(" ") ? 100 : 50 - e.t.length / 10;
+      } else {
+        if (!toks.every((tk) => e.h.includes(tk))) return;
+        score = toks.reduce((k, tk) => k + (e.t.includes(tk) ? 5 : 1), 0);
+        if (e.date) score += e.date.replace(/-/g, "") / 1e8;
+      }
+      (res[e.kind] = res[e.kind] || []).push([score, e]);
+    });
+    Object.keys(res).forEach((k) => { res[k] = res[k].sort((a, b) => b[0] - a[0]).map((x) => x[1]); });
+    return res;
+  }
+  // Fiche d'un pays : ses chiffres, les couches de Conflits et ses actus.
+  function countryCard(e) {
+    const I = window.GEOCO.indicators || {};
+    const fmt = (v) => v.toLocaleString(LOCALE, { maximumFractionDigits: 1 });
+    const figs = (I.list || []).filter((ind) => ind.values[e.iso]).map((ind) => {
+      const d = ind.values[e.iso];
+      return `<a class="cc-fig" href="#/chiffres/${ind.id}/${e.iso}"><b>${fmt(d.v)}${unitSep}${ind.unit}</b><span>${ind.label} · ${d.d}</span></a>`;
+    });
+    const layers = ((conflits && conflits.layers) || []).filter((L) => L.countries[e.iso]).map((L) =>
+      `<a class="cc-fig" href="#/conflits/${L.id}/${e.iso}"><b>${L.countries[e.iso].t}</b><span>${L.label}</span></a>`);
+    const nm = fold(e.title);
+    const related = news.filter((n) => (n.geo || []).some((g) => fold(g.label) === nm || fold(g.name) === nm) || fold(n.title).includes(nm));
+    return `
+      <div class="country-card">
+        <h3>${e.title}</h3>
+        ${figs.length || layers.length ? `<div class="cc-figs">${figs.join("")}${layers.join("")}</div>` : `<p class="row-sub">Pas encore de chiffres pour ce pays.</p>`}
+        ${related.length ? `<p class="cc-news-title">${related.length} actu${related.length > 1 ? "s" : ""}</p>${related.slice(0, 3).map((n) => `<a class="cc-news" href="#/actu/${n.id}">${n.title}</a>`).join("")}` : ""}
+      </div>`;
+  }
+  function renderSearch(q) {
+    const recentPlaces = [...new Set(news.slice(0, 30).map((n) => n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)).filter(Boolean))].slice(0, 7);
+    const ideas = recentPlaces.concat(glossary.slice(0, 5).map((g) => g.term));
+    app.innerHTML = `
+      <section class="wrap hero search-hero">
+        <p class="eyebrow">Recherche</p>
+        <h1 class="title">Chercher une info.</h1>
+        <form class="search-box" role="search" onsubmit="return false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+          <input type="search" id="search-input" placeholder="Un pays, un sujet, un mot…" aria-label="Rechercher" autocomplete="off" enterkeyhint="search" value="${q.replace(/"/g, "&quot;")}">
+        </form>
+        <div class="chips-row search-ideas" aria-label="Idées de recherche">${ideas.map((x) => `<button class="chip-btn" data-q="${x.replace(/"/g, "&quot;")}">${x}</button>`).join("")}</div>
+      </section>
+      <section class="wrap search-results" id="search-results" aria-live="polite"></section>`;
+    const input = app.querySelector("#search-input");
+    const out = app.querySelector("#search-results");
+    const GROUPS = [["pays", "Pays"], ["news", "Actus"], ["etudes", "Études de cas"], ["cours", "Cours"], ["articles", "Articles"], ["focus", "Focus"], ["lexique", "Lexique"], ["anecdotes", "Le saviez-vous ?"]];
+    const LIMIT = { pays: 3, news: 12 };
+    function draw() {
+      const val = input.value.trim();
+      try { history.replaceState(null, "", "#/recherche" + (val ? "/" + encodeURIComponent(val) : "")); } catch (e) {}
+      const res = searchAll(val);
+      if (!res) { out.innerHTML = ""; return; }
+      const total = Object.values(res).reduce((k, l) => k + l.length, 0);
+      if (!total) { out.innerHTML = `<p class="empty">Aucun résultat. Essaie un autre mot, ou le nom d'un pays.</p>`; return; }
+      out.innerHTML = `<p class="search-count">${total} résultat${total > 1 ? "s" : ""}</p>` + GROUPS.filter(([k]) => res[k]).map(([k, label]) => {
+        const list = res[k], lim = LIMIT[k] || 6;
+        const item = (e) => k === "pays" ? countryCard(e) : k === "news" ? newsCard(e.n) : `
+          <a class="row" href="${e.href}"><div class="row-main"><div class="row-title">${e.title}</div>${e.sub ? `<div class="row-sub">${plain(e.sub).slice(0, 160)}${plain(e.sub).length > 160 ? "…" : ""}</div>` : ""}</div><span class="chev" aria-hidden="true">›</span></a>`;
+        const wrap = (html) => (k === "pays" || k === "news" ? html : `<div class="group">${html}</div>`);
+        return `
+          <div class="search-group">
+            <h2 class="search-h">${label} <span>${list.length}</span></h2>
+            ${wrap(list.slice(0, lim).map(item).join(""))}
+            ${list.length > lim ? `<div class="search-more" hidden>${wrap(list.slice(lim).map(item).join(""))}</div><button class="more-btn" data-more>Voir les ${list.length - lim} autres</button>` : ""}
+          </div>`;
+      }).join("");
+      out.querySelectorAll(".reveal").forEach((el) => el.classList.add("in"));
+      out.querySelectorAll("[data-more]").forEach((b) => b.addEventListener("click", () => { b.previousElementSibling.hidden = false; b.remove(); }));
+    }
+    let timer = null;
+    input.addEventListener("input", () => { clearTimeout(timer); timer = setTimeout(draw, 120); });
+    app.querySelectorAll("[data-q]").forEach((b) => b.addEventListener("click", () => { input.value = b.dataset.q; draw(); input.focus(); }));
+    draw();
+    // Sur ordinateur, on peut taper tout de suite ; sur téléphone, pas de clavier qui surgit sans qu'on le demande.
+    if (!q && !matchMedia("(pointer: coarse)").matches) input.focus();
+  }
+
+  // ---------- Langue et région ----------
+  function renderSettings() {
+    const L = I18N.LANGS || {};
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow">Réglages</p>
+        <h1 class="title">Langue et région.</h1>
+        <p class="lead">Par défaut, Géoconomic s'affiche dans la langue de ton téléphone et met en avant les actus de ta région, d'après ton fuseau horaire. Aucune localisation n'est demandée.</p>
+      </section>
+      <section class="wrap settings">
+        <h2 class="search-h">Langue</h2>
+        <div class="chips-row" role="group" aria-label="Langue">
+          ${Object.entries(L).map(([k, name]) => `<button class="chip-btn" data-lang="${k}" aria-pressed="${I18N.lang === k}" lang="${k}">${name}</button>`).join("")}
+        </div>
+        ${I18N.lang !== "fr" && !(window.GEOCO_I18N && window.GEOCO_I18N.content) ? `<p class="row-sub settings-note">Les menus sont traduits ; les articles sont encore en français.</p>` : ""}
+        <h2 class="search-h">Ma région</h2>
+        <p class="row-sub">Ses actus passent en premier, et le globe s'ouvre sur elle.</p>
+        <div class="chips-row" role="group" aria-label="Région">
+          ${(I18N.REGIONS || []).map((r) => `<button class="chip-btn" data-region="${r}" aria-pressed="${I18N.region === r}">${r}</button>`).join("")}
+        </div>
+      </section>`;
+    app.querySelectorAll("[data-lang]").forEach((b) => b.addEventListener("click", () => I18N.setLang(b.dataset.lang)));
+    app.querySelectorAll("[data-region]").forEach((b) => b.addEventListener("click", () => {
+      I18N.setRegion(b.dataset.region);
+      app.querySelectorAll("[data-region]").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    }));
+  }
+
   function renderNotFound() {
     app.innerHTML = `<section class="wrap hero"><p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p></section>`;
   }
@@ -1769,7 +1937,7 @@ function statGrid(figures, sources, theme = "geo") {
   // ---------- Routeur ----------
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
-    const [, section, param] = (location.hash || "#/").split("/");
+    const [, section, param, extra] = (location.hash || "#/").split("/").map((s) => { try { return decodeURIComponent(s); } catch (e) { return s; } });
     const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu", abonnement: "actu" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
     const activeTab = document.querySelector("[data-tab].active");
@@ -1782,8 +1950,10 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
     else if (section === "etudes") param ? renderCase(param) : renderEtudesIndex();
     else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
-    else if (section === "chiffres") renderChiffres(param);
-    else if (section === "conflits") renderConflits();
+    else if (section === "chiffres") renderChiffres(param, extra);
+    else if (section === "conflits") renderConflits(param, extra);
+    else if (section === "recherche") renderSearch(param || "");
+    else if (section === "reglages") renderSettings();
     else if (section === "lettres") renderLettres();
     else if (section === "abonnement") renderAbonnement();
     else if (section === "anecdotes") renderAnecdotes(param);
@@ -1795,11 +1965,17 @@ function statGrid(figures, sources, theme = "geo") {
 
     bindAudio();
     if (!((section === "lexique" || section === "anecdotes") && param)) window.scrollTo(0, 0);
+    document.querySelector(".nav-search") && document.querySelector(".nav-search").classList.toggle("active", section === "recherche");
     watchReveals();
   }
 
   window.addEventListener("hashchange", route);
   route();
+  I18N.watch();
+  // « / » ouvre la recherche (ordinateur).
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) { e.preventDefault(); location.hash = "#/recherche"; }
+  });
 
   // ---------- Mode hors-ligne (PWA) ----------
   if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
