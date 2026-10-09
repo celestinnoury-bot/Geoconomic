@@ -849,3 +849,4 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .globe-hero .globe { bottom: calc(52px + env(safe-area-inset-bottom)); }
 .globe-hero .scroll-hint { left: 20px; transform: none; bottom: calc(56px + env(safe-area-inset-bottom)); padding: 8px 14px; font-size: 14px; }
 @media (max-width: 560px) { .globe-hero .scroll-hint { display: none; } }
+.ticker.stuck { position: fixed; bottom: auto; left: 12px; right: 12px; max-width: 980px; margin: 0 auto; border-radius: 14px; overflow: hidden; border: 1px solid var(--hairline); z-index: 49; padding-bottom: 0; height: 40px; }

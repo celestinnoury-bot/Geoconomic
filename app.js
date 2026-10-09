@@ -395,7 +395,21 @@
     });
 
     const tk = app.querySelector(".ticker");
-    if (tk) tk.addEventListener("touchstart", () => tk.classList.toggle("paused"), { passive: true });
+    if (tk) {
+      tk.addEventListener("touchstart", () => tk.classList.toggle("paused"), { passive: true });
+      // Quand on descend vers les actus, le bandeau reste accroché en haut, sous la barre de menu.
+      const hero = app.querySelector(".globe-hero");
+      const stick = () => {
+        if (!document.body.contains(tk)) return window.removeEventListener("scroll", stick);
+        const nav = document.querySelector(".navbar-inner");
+        const top = nav ? nav.getBoundingClientRect().bottom + 6 : 0;
+        const stuck = hero.getBoundingClientRect().bottom - tk.offsetHeight <= top;
+        tk.classList.toggle("stuck", stuck);
+        tk.style.top = stuck ? top + "px" : "";
+      };
+      window.addEventListener("scroll", stick, { passive: true });
+      stick();
+    }
     mountHomeGlobe(onGlobe);
   }
 
