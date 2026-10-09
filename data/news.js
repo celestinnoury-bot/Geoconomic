@@ -15,6 +15,425 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-09-thailande-inflation",
+    "date": "2026-10-09",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Bangkok",
+        "label": "Thaïlande",
+        "coords": [
+          100.5,
+          13.75
+        ]
+      }
+    ],
+    "title": "Thaïlande : l'inflation grimpe à 2,82 %, tirée par l'énergie",
+    "summary": "Les prix thaïlandais montent un peu plus vite en septembre, surtout à cause du carburant. La banque centrale, elle, ne bouge pas.",
+    "points": [
+      "En septembre, l'inflation thaïlandaise est passée à 2,82 % sur un an, contre 2,53 % en août, un peu moins que les 3,10 % attendus par les marchés [1].",
+      "L'énergie explique à elle seule 1,85 point de cette hausse, soit plus de 60 % de l'accélération [1].",
+      "Le ministère du Commerce s'attend à une nouvelle hausse au dernier trimestre et table sur 1,8 % à 2,2 % sur l'année [1]. La banque centrale garde son taux à 1 % depuis sa baisse de février, alors que celles de Corée du Sud, d'Indonésie et des Philippines ont déjà relevé les leurs [2]."
+    ],
+    "why": [
+      "L'inflation, c'est la hausse générale des prix. Quand le pétrole est cher, tout ce qui se transporte coûte plus cher : carburant, nourriture, billets.",
+      "La Thaïlande est dans une situation à part : sa croissance reste faible, donc sa banque centrale hésite à relever ses taux et risquer de la freiner encore. D'autres pays d'Asie ont fait le choix inverse."
+    ],
+    "forMe": "Si tu pars en Thaïlande, les prix locaux montent un peu, mais le pays reste dans sa zone de confort (entre 1 et 3 %). Le vrai signal est ailleurs : le pétrole cher touche aussi les économies asiatiques qui fabriquent ce que tu achètes.",
+    "figures": [
+      {
+        "value": "2,82 %",
+        "label": "l'inflation en Thaïlande en septembre 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "1 %",
+        "label": "le taux directeur de la banque centrale, inchangé depuis février",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "The Nation",
+        "name": "The Nation (Thaïlande), « Fuel and fresh food lift Thai September inflation to 2.82% as 2026 forecast narrows to 1.8–2.2% »",
+        "url": "https://www.nationthailand.com/business/economy/40071923"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star, « Thai central bank keeps key interest rate unchanged » (26 août 2026)",
+        "url": "https://www.thestar.com.my/business/business-news/2026/08/26/thai-central-bank-keeps-key-interest-rate-unchanged"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-pérou-taux",
+    "date": "2026-10-09",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Lima",
+        "label": "Pérou",
+        "coords": [
+          -77.04,
+          -12.05
+        ]
+      }
+    ],
+    "title": "Pérou : la banque centrale garde son taux à 4,25 %, l'inflation dépasse la cible",
+    "summary": "À Lima, les prix montent plus vite que ce que vise la banque centrale. Elle choisit pourtant de ne pas relever son taux.",
+    "points": [
+      "La banque centrale du Pérou a maintenu son taux directeur à 4,25 % [1].",
+      "À Lima, l'inflation a atteint 4,55 % en septembre, au-dessus de la fourchette visée par la banque, de 1 % à 3 % [1].",
+      "La Bourse de Lima était fermée le 8 octobre pour un jour férié (bataille d'Angamos) [1]."
+    ],
+    "why": [
+      "Une banque centrale a un objectif : ici, des prix qui montent de 1 à 3 % par an. Quand l'inflation dépasse cette zone, elle peut relever son taux pour freiner le crédit. Là, elle attend et observe.",
+      "Le pétrole au-dessus de 100 dollars le baril pèse sur les prix de nombreux pays d'Amérique latine importateurs de carburant [2]."
+    ],
+    "forMe": "Tu n'es pas touché directement, mais le Pérou fait partie des pays où la hausse du coût de la vie s'installe à cause de l'énergie : un signe de plus que le choc pétrolier se diffuse partout.",
+    "figures": [
+      {
+        "value": "4,25 %",
+        "label": "le taux directeur de la banque centrale du Pérou",
+        "src": 1
+      },
+      {
+        "value": "4,55 %",
+        "label": "l'inflation à Lima en septembre 2026 (cible : 1 à 3 %)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Latin American Pulse for Thursday, October 8, 2026 »",
+        "url": "https://riotimesonline.com/latin-american-pulse-for-thursday-october-8-2026"
+      },
+      {
+        "short": "Rio Times (ouverture)",
+        "name": "The Rio Times, « Mexican Peso Slides 1.2% as LatAm Opens » (9 oct. 2026)",
+        "url": "https://www.riotimesonline.com/latam-pre-open-friday-october-9-2026"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-colombie-inflation",
+    "date": "2026-10-09",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Bogotá",
+        "label": "Colombie",
+        "coords": [
+          -74.07,
+          4.71
+        ]
+      }
+    ],
+    "title": "Colombie : l'inflation atteint 6,29 % en septembre",
+    "summary": "Les prix colombiens ont augmenté de plus de 6 % en un an, ce qui devient la principale inquiétude du pays.",
+    "points": [
+      "La Colombie a publié mercredi son inflation de septembre : 6,29 % sur un an [1].",
+      "Les analystes de la région y voient la première inquiétude économique du pays [1].",
+      "Le baril de Brent, au-dessus de 100 dollars, soutient le Mexique et la Colombie, mais pèse sur les importateurs de carburant comme le Brésil [2]."
+    ],
+    "why": [
+      "Plus de 6 %, c'est un coût de la vie qui grimpe vite : ton salaire peut perdre du pouvoir d'achat si on ne l'augmente pas autant.",
+      "Pour un pays qui vend du pétrole, un baril cher rapporte des devises, mais n'empêche pas les prix intérieurs de monter."
+    ],
+    "forMe": "L'inflation colombienne ne change pas directement tes prix en France : c'est un repère pour voir que la poussée des prix de l'énergie touche aussi l'Amérique latine.",
+    "figures": [
+      {
+        "value": "6,29 %",
+        "label": "l'inflation en Colombie sur un an, en septembre 2026",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Latin American Pulse for Thursday, October 8, 2026 »",
+        "url": "https://riotimesonline.com/latin-american-pulse-for-thursday-october-8-2026"
+      },
+      {
+        "short": "Rio Times (ouverture)",
+        "name": "The Rio Times, « Mexican Peso Slides 1.2% as LatAm Opens » (9 oct. 2026)",
+        "url": "https://www.riotimesonline.com/latam-pre-open-friday-october-9-2026"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-uemoa-croissance",
+    "date": "2026-10-09",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Dakar (siège de la BCEAO)",
+        "label": "UEMOA",
+        "coords": [
+          -17.44,
+          14.69
+        ]
+      }
+    ],
+    "title": "UEMOA : la croissance se maintient à 6 % au deuxième trimestre",
+    "summary": "Les huit pays d'Afrique de l'Ouest qui partagent le franc CFA continuent de croître vite, à peine moins que le trimestre précédent.",
+    "points": [
+      "Au deuxième trimestre 2026, l'UEMOA a enregistré une croissance de 6 %, en léger ralentissement par rapport aux 6,1 % du trimestre précédent [1].",
+      "Les résultats ont été présentés à Dakar le 2 octobre [1]."
+    ],
+    "why": [
+      "L'UEMOA est l'union économique de plusieurs pays d'Afrique de l'Ouest qui partagent une même monnaie, le franc CFA. Une croissance de 6 % est élevée comparée à l'Europe.",
+      "Cela ne veut pas dire que chaque habitant s'enrichit au même rythme : la population augmente vite aussi."
+    ],
+    "forMe": "Une zone qui croît à ce rythme devient un partenaire commercial de plus en plus important pour la France et l'Europe, qui en sont des clients et fournisseurs historiques.",
+    "figures": [
+      {
+        "value": "6 %",
+        "label": "la croissance de l'UEMOA au 2e trimestre 2026 (6,1 % au trimestre précédent)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Africa24",
+        "name": "Africa24, « Afrique : la croissance se maintient à 6 % à fin juin 2026 dans l'UEMOA »",
+        "url": "https://africa24tv.com/afrique-la-croissance-se-maintient-a-6-a-fin-juin-2026-dans-lumeoa/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-georgie-inflation",
+    "date": "2026-10-09",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Tbilissi",
+        "label": "Géorgie",
+        "coords": [
+          44.79,
+          41.72
+        ]
+      }
+    ],
+    "title": "Géorgie : l'inflation reste à 5,6 %, portée par les transports",
+    "summary": "Les prix géorgiens montent toujours aussi vite en septembre : les transports coûtent près d'un cinquième de plus qu'il y a un an.",
+    "points": [
+      "En Géorgie, l'inflation annuelle est restée à 5,6 % en septembre 2026, comme en août [1].",
+      "Sur un mois, les prix ont augmenté de 0,4 % [1].",
+      "Les transports sont le principal moteur : +18,7 % sur un an contre +15,2 % en août, alors que les prix de l'alimentation ralentissent (+3,4 % contre +5,0 %) [1]."
+    ],
+    "why": [
+      "La Géorgie, au bord de la mer Noire, est un petit pays de transit entre l'Europe et l'Asie. Quand le carburant monte, ses transports le ressentent tout de suite.",
+      "Que l'alimentation ralentisse est une bonne nouvelle pour les ménages, mais les transports la compensent."
+    ],
+    "forMe": "Tu en entends peu parler, mais la Géorgie illustre un effet très concret du pétrole cher : se déplacer et transporter des marchandises coûte nettement plus cher, partout.",
+    "figures": [
+      {
+        "value": "5,6 %",
+        "label": "l'inflation annuelle en Géorgie, septembre 2026",
+        "src": 1
+      },
+      {
+        "value": "+18,7 %",
+        "label": "la hausse des prix des transports sur un an",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Trading Economics",
+        "name": "Trading Economics, « Georgia Inflation Holds Steady in September »",
+        "url": "https://tradingeconomics.com/georgia/inflation-cpi/news/589036"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-islande-taux",
+    "date": "2026-10-09",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Reykjavik",
+        "label": "Islande",
+        "coords": [
+          -21.94,
+          64.15
+        ]
+      }
+    ],
+    "title": "Islande : la banque centrale garde son taux à 8 %, l'inflation monte à 5,9 %",
+    "summary": "Même avec un taux très élevé, les prix islandais accélèrent : c'est leur plus haut niveau depuis deux ans.",
+    "points": [
+      "Le 7 octobre, la banque centrale d'Islande a maintenu son taux directeur à 8 % [1].",
+      "L'inflation atteint 5,9 %, son plus haut niveau en deux ans [1].",
+      "Tous les membres du comité de politique monétaire ont voté pour garder ce taux, en invoquant l'incertitude sur l'économie mondiale et le marché du travail [1]."
+    ],
+    "why": [
+      "Un taux de 8 % est très élevé en Europe. Pourtant, il ne suffit pas à faire reculer les prix : la banque centrale garde donc une politique stricte plutôt que de la desserrer.",
+      "C'est un exemple de ce que vivent beaucoup de petites économies ouvertes : elles dépendent des prix mondiaux de l'énergie et ne peuvent pas les contrôler."
+    ],
+    "forMe": "Si tu voyages en Islande, tout y est déjà cher, et ça continue de grimper. Pour les Islandais, emprunter pour acheter un logement coûte très cher.",
+    "figures": [
+      {
+        "value": "8 %",
+        "label": "le taux directeur de la banque centrale d'Islande",
+        "src": 1
+      },
+      {
+        "value": "5,9 %",
+        "label": "l'inflation, la plus haute depuis deux ans",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Iceland Review",
+        "name": "Iceland Review, « Iceland Holds Key Interest Rate at 8% in October 2026 »",
+        "url": "https://www.icelandreview.com/news/iceland-interest-rate-8-percent-october-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-roumanie-banque-mondiale",
+    "date": "2026-10-09",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Bucarest",
+        "label": "Roumanie",
+        "coords": [
+          26.1,
+          44.43
+        ]
+      }
+    ],
+    "title": "Roumanie : l'économie devrait reculer d'environ 0,5 % en 2026",
+    "summary": "La Banque mondiale voit l'Europe de l'Est ralentir. La Roumanie, qui doit réduire ses déficits, est la plus touchée.",
+    "points": [
+      "Selon un compte rendu du 8 octobre de la prévision de la Banque mondiale, la Roumanie devrait se contracter d'environ 0,5 %, à cause des économies budgétaires et du coût de l'énergie [1].",
+      "La Pologne tient mieux, avec environ 3,6 % de croissance portée par l'investissement public (défense, infrastructures) et les fonds européens [1].",
+      "La Roumanie et la Hongrie seraient les seuls pays d'Europe centrale et orientale à réduire leur déficit public l'an prochain [2]."
+    ],
+    "why": [
+      "Un déficit, c'est quand un État dépense plus qu'il ne gagne. Le réduire est utile à long terme, mais cela freine l'économie à court terme : moins de dépenses publiques, moins de commandes, moins d'emplois.",
+      "L'énergie chère aggrave le problème, car elle renchérit la production sans que l'État puisse compenser."
+    ],
+    "forMe": "La Roumanie fait partie de l'Union européenne : quand un pays membre ralentit, c'est un signe que le choc de l'énergie ne touche pas toute l'Europe de la même façon.",
+    "figures": [
+      {
+        "value": "−0,5 %",
+        "label": "la contraction attendue de l'économie roumaine",
+        "src": 1
+      },
+      {
+        "value": "3,6 %",
+        "label": "la croissance de la Pologne selon le même compte rendu",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Montenapo Daily",
+        "name": "Montenapo Daily, « Banca Mondiale : l'Europa orientale e l'Asia centrale rallentano nel 2026 » (8 oct. 2026)",
+        "url": "https://montenapodaily.com/en/2026/10/08/banca-mondiale-leuropa-orientale-e-lasia-centrale-rallentano-nel-2026"
+      },
+      {
+        "short": "FXStreet",
+        "name": "FXStreet (ING), « Fiscal discipline varies across CEE » (8 oct. 2026)",
+        "url": "https://fxstreet.com/analysis/fiscal-discipline-varies-across-cee-202610080619"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-09-egypte-banque-mondiale",
+    "date": "2026-10-09",
+    "region": "Moyen-Orient",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Le Caire",
+        "label": "Égypte",
+        "coords": [
+          31.24,
+          30.04
+        ]
+      }
+    ],
+    "title": "Égypte : l'une des rares économies de la région qui devrait croître",
+    "summary": "Alors que le Moyen-Orient se contracte à cause de la guerre en Iran, la Banque mondiale prévoit environ 5,1 % de croissance pour l'Égypte.",
+    "points": [
+      "La Banque mondiale prévoit une contraction de 2,1 % pour la région Moyen-Orient et Afrique du Nord en 2026, et de 4,3 % en moyenne pour les pays du Golfe [1].",
+      "L'Égypte fait exception : elle devrait croître de 5,1 % [1].",
+      "L'inflation urbaine égyptienne a ralenti à 14,5 % en août, contre 14,9 % en juillet [2]."
+    ],
+    "why": [
+      "La guerre autour de l'Iran et la fermeture d'Ormuz ont fait chuter la production de pétrole du Golfe. L'Égypte, qui n'est pas un grand exportateur, est moins exposée, et profite de certains flux comme le canal de Suez.",
+      "Une croissance forte avec une inflation encore élevée, c'est une économie qui avance, mais dont les habitants sentent toujours le prix des produits de base."
+    ],
+    "forMe": "L'Égypte est un pays clé pour les routes maritimes vers l'Europe et une destination de vacances populaire : sa stabilité économique compte pour les voyages comme pour les prix du transport.",
+    "figures": [
+      {
+        "value": "5,1 %",
+        "label": "la croissance prévue de l'Égypte par la Banque mondiale",
+        "src": 1
+      },
+      {
+        "value": "14,5 %",
+        "label": "l'inflation urbaine en Égypte en août 2026",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes",
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "The National",
+        "name": "The National, « World Bank says Middle East economy to contract 2.1% in 2026 on Iran war » (6 oct. 2026)",
+        "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
+      },
+      {
+        "short": "Trading Economics",
+        "name": "Trading Economics, « Egypt Inflation Rate Below Forecasts » (août 2026)",
+        "url": "https://tradingeconomics.com/egypt/inflation-cpi/news/582605"
+      }
+    ]
+  },
+  {
     "id": "2026-10-08-inde-taux",
     "date": "2026-10-08",
     "region": "Asie",
@@ -4068,75 +4487,6 @@ window.GEOCO.news = [
         "short": "France 24",
         "name": "Maroc : Fatima Ezzahra El Mansouri, de la mairie de Marrakech à la tête du gouvernement (30 septembre 2026)",
         "url": "https://www.france24.com/fr/afrique/20260930-maroc-fatima-ezzahra-el-mansouri-mairie-marrakech-d%C3%A9put%C3%A9e-cheffe-gouvernement-avocate-formation"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-23-paraguay-venezuela-mercosur",
-    "date": "2026-09-23",
-    "region": "Amériques",
-    "theme": "mix",
-    "title": "Le Paraguay plaide pour le retour du Venezuela dans le Mercosur",
-    "summary": "À l'ONU, le président paraguayen Santiago Peña a demandé la réintégration du Venezuela dans le Mercosur, le marché commun sud-américain, à condition d'une vraie transition démocratique. Un virage notable pour un bloc qui vient d'ouvrir ses frontières commerciales à l'Union européenne.",
-    "geo": [
-      {
-        "name": "Asunción, Paraguay",
-        "label": "Paraguay",
-        "coords": [
-          -57.58,
-          -25.26
-        ]
-      }
-    ],
-    "points": [
-      "Le 23 septembre, devant l'Assemblée générale de l'ONU, le président du Paraguay Santiago Peña a appelé à réintégrer le Venezuela dans le Mercosur [1].",
-      "Le Mercosur (« Marché commun du Sud ») est une union douanière qui regroupe notamment le Brésil, l'Argentine, le Paraguay et l'Uruguay ; le Venezuela en est suspendu pour une durée indéterminée [1].",
-      "Peña lie ce retour à une « transition démocratique véritable et durable » au Venezuela, avec des institutions solides [1].",
-      "Avant New York, il s'est rendu à Caracas, renouant le dialogue avec un pays avec lequel le Paraguay avait rompu ses relations diplomatiques en 2025, après l'élection contestée de 2024 [1].",
-      "Le Brésil serait ouvert à une réintégration progressive, mais une telle initiative devrait être portée par le Paraguay, selon une source proche du gouvernement brésilien citée par Reuters [1].",
-      "Côté européen, le volet commercial de l'accord UE-Mercosur s'applique à titre provisoire depuis le 1er mai 2026 [2]."
-    ],
-    "why": [
-      "Le Venezuela avait été suspendu du Mercosur en 2017 pour non-respect des règles du bloc [1]. Que le Paraguay, longtemps l'un des gouvernements les plus hostiles à Caracas, demande aujourd'hui son retour montre que la donne politique a changé au Venezuela, où Delcy Rodríguez est présentée comme présidente par intérim [1].",
-      "Ce débat tombe à un moment clé pour le bloc : l'accord commercial intérimaire avec l'Union européenne est appliqué depuis mai, alors que le Parlement européen a demandé en janvier, par 334 voix contre 324, un avis de la Cour de justice de l'UE sur sa compatibilité avec les traités, ce qui gèle la ratification complète [2]. L'Uruguay, qui préside le Mercosur ce semestre, a fait de la gestion des quotas d'exportation vers l'UE une priorité [3].",
-      "Un éventuel retour du Venezuela ouvrirait la question de son intégration dans les engagements commerciaux pris par le Mercosur, notamment vis-à-vis de l'Europe. À ce stade, il ne s'agit que d'un appel politique, sans calendrier [1]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Mercosur est le bloc avec lequel l'Europe a signé le grand accord de libre-échange tant contesté par les agriculteurs français (bœuf, volaille, sucre). Son élargissement ou ses divisions internes pèsent sur la façon dont cet accord sera appliqué, et donc sur la concurrence que subissent les éleveurs français et sur les prix de certains produits dans tes rayons.",
-    "figures": [
-      {
-        "value": "2017",
-        "label": "Année de la suspension du Venezuela du Mercosur",
-        "src": 1
-      },
-      {
-        "value": "1er mai 2026",
-        "label": "Début de l'application provisoire du volet commercial UE-Mercosur",
-        "src": 2
-      },
-      {
-        "value": "334 contre 324",
-        "label": "Vote du Parlement européen pour saisir la Cour de justice de l'UE",
-        "src": 2
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "Reuters (via SRN News)",
-        "name": "Paraguay calls for Venezuela's return to Mercosur trade bloc (23 septembre 2026)",
-        "url": "https://srnnews.com/paraguay-calls-for-venezuelas-return-to-mercosur-trade-bloc/"
-      },
-      {
-        "short": "Université de Leiden",
-        "name": "The EU-Mercosur agreement: Latest developments, significance, and next steps (février 2026)",
-        "url": "https://www.universiteitleiden.nl/en/news/2026/02/the-eu-mercosur-agreement-latest-developments-significance-and-next-steps"
-      },
-      {
-        "short": "MercoPress",
-        "name": "Uruguay takes over the Mercosur presidency this month, with EU quotas a top priority (12 juin 2026)",
-        "url": "https://en.mercopress.com/2026/06/12/uruguay-takes-over-the-mercosur-presidency-this-month-with-eu-quotas-a-top-priority"
       }
     ]
   }

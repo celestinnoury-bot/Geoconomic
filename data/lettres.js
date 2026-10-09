@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-09",
+    "file": "lettres/2026-10-09.pdf",
+    "titles": [
+      "Thaïlande : l'inflation grimpe à 2,82 %, tirée par l'énergie",
+      "Pérou : la banque centrale garde son taux à 4,25 %, l'inflation dépasse la cible",
+      "Colombie : l'inflation atteint 6,29 % en septembre"
+    ],
+    "fileDark": "lettres/2026-10-09-sombre.pdf"
+  },
+  {
     "date": "2026-10-08",
     "file": "lettres/2026-10-08.pdf",
     "titles": [

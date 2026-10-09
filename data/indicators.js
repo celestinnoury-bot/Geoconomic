@@ -7,7 +7,7 @@
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.indicators = {
-  "updated": "2026-10-08",
+  "updated": "2026-10-09",
   "latest": [
     {
       "group": "Économie",
@@ -610,7 +610,7 @@ window.GEOCO.indicators = {
         },
         "268": {
           "v": 5.6,
-          "d": "août 2026",
+          "d": "sept. 2026",
           "s": 1
         },
         "270": {
