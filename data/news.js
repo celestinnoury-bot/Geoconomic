@@ -348,7 +348,7 @@ window.GEOCO.news = [
       "Un déficit, c'est quand un État dépense plus qu'il ne gagne. Le réduire est utile à long terme, mais cela freine l'économie à court terme : moins de dépenses publiques, moins de commandes, moins d'emplois.",
       "L'énergie chère aggrave le problème, car elle renchérit la production sans que l'État puisse compenser."
     ],
-    "forMe": "La Roumanie fait partie de l'Union européenne : quand un pays membre ralentit, c'est un signe que le choc de l'énergie ne touche pas toute l'Europe de la même façon.",
+    "forMe": "La Roumanie fait partie de l'Union européenne : quand un pays membre ralentit, la conjoncture n'est pas la même partout en Europe, et ce que tu lis sur « l'économie européenne » cache de grands écarts entre pays.",
     "figures": [
       {
         "value": "−0,5 %",
