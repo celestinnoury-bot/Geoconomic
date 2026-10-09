@@ -481,6 +481,7 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
   border-radius: 32px; overflow: hidden;
   background: radial-gradient(70% 70% at 50% 50%, #0b1a33 0%, #000 75%);
 }
+.ind-stage { scroll-margin-top: 96px; scroll-margin-bottom: 12px; }
 .ind-globe { position: absolute; inset: 0; cursor: grab; z-index: 0; }
 .ind-card {
   position: absolute; left: 12px; right: 12px; bottom: 12px; max-width: 360px;

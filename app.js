@@ -1186,7 +1186,15 @@
   }
 
   // Grille de chiffres clés, chacun avec sa source.
-  function statGrid(figures, sources, theme = "geo") {
+  // Ramène le globe à l'écran seulement s'il n'y est pas déjà en entier (sinon la page ne bouge pas).
+function showStage() {
+  const st = document.querySelector(".ind-stage");
+  if (!st) return;
+  const r = st.getBoundingClientRect();
+  if (r.top < 60 || r.bottom > window.innerHeight) st.scrollIntoView({ behavior: "smooth", block: "nearest" });
+}
+
+function statGrid(figures, sources, theme = "geo") {
     return `<div class="stat-grid">${figures.map((f) => {
       const src = f.src && sources && sources[f.src - 1];
       return `<div class="stat reveal"><div class="bigstat grad ${theme}">${f.value}</div><p>${f.label}</p>${src ? `<a class="cite" href="${src.url}" target="_blank" rel="noopener">(${src.short || src.name})</a>` : ""}</div>`;
@@ -1373,7 +1381,7 @@
     function bindRows(list) {
       list.forEach((b) => b.addEventListener("click", (e) => {
         if (e.target.closest("a")) return;
-        app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
+        showStage();
         if (globe) globe.selectById(b.dataset.iso); else showCard(b.dataset.iso);
       }));
     }
@@ -1506,7 +1514,7 @@
           <span class="rank-val">${fmtV(r.v)} %<small>${r.d}</small></span>
         </button>`).join("");
       app.querySelectorAll(".rank-row").forEach((b) => b.addEventListener("click", () => {
-        app.querySelector(".ind-stage").scrollIntoView({ behavior: "smooth", block: "center" });
+        showStage();
         if (globe) globe.selectById(b.dataset.iso);
         else showCard(b.dataset.iso, ind.values[b.dataset.iso], nameOf(b.dataset.iso));
       }));

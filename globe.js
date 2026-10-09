@@ -133,6 +133,20 @@
     return { lng: (minX + maxX) / 2, lat: (minY + maxY) / 2 };
   }
 
+  // Le point (lng, lat) est-il dans le pays ? (test du rayon, trous compris)
+  function inRing(ring, x, y) {
+    let inside = false;
+    for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+      const [xi, yi] = ring[i], [xj, yj] = ring[j];
+      if ((yi > y) !== (yj > y) && x < ((xj - xi) * (y - yi)) / (yj - yi) + xi) inside = !inside;
+    }
+    return inside;
+  }
+  function contains(feature, x, y) {
+    const polys = feature.geometry.type === "Polygon" ? [feature.geometry.coordinates] : feature.geometry.coordinates;
+    return polys.some((p) => inRing(p[0], x, y) && !p.slice(1).some((h) => inRing(h, x, y)));
+  }
+
   async function mountIndicators(container, { features, names, onSelect }) {
     if (!webglOK()) { container.classList.add("no-webgl"); return null; }
     await loadLib();
@@ -183,8 +197,27 @@
         // Nouvelles fonctions = globe.gl recalcule couleurs et hauteurs.
         world.polygonAltitude((x) => altitude(x)).polygonCapColor((x) => capColor(x));
       })
-      .onPolygonClick((f) => select(f));
+      ;
 
+    // Toucher / clic : globe.gl choisit le pays « survolé » mémorisé, qui n'est pas à jour au
+    // moment d'un toucher (on obtenait le pays précédent). On cherche donc nous-mêmes le pays
+    // exactement sous le doigt, et seulement si le geste est un vrai toucher (pas une rotation).
+    let down = null;
+    container.addEventListener("pointerdown", (e) => {
+      down = e.isPrimary ? { x: e.clientX, y: e.clientY, t: Date.now() } : null;
+    }, { capture: true });
+    container.addEventListener("pointerup", (e) => {
+      if (!down || !e.isPrimary || e.target.closest(".globe-zoom")) return;
+      const moved = Math.hypot(e.clientX - down.x, e.clientY - down.y);
+      const quick = Date.now() - down.t < 600;
+      down = null;
+      if (moved > 10 || !quick) return;
+      const r = container.getBoundingClientRect();
+      const g = world.toGlobeCoords(e.clientX - r.left, e.clientY - r.top);
+      if (!g) return;
+      const f = features.find((x) => contains(x, g.lng, g.lat));
+      if (f) { hovered = null; select(f); }
+    }, { capture: true });
 
     const controls = world.controls();
     controls.autoRotate = true;
@@ -192,7 +225,11 @@
     addZoom(world, container, controls);
     world.pointOfView({ lat: 25, lng: 15, altitude: 2.4 });
 
-    function refresh() { world.polygonsData(features.slice()); }
+    // Recalcule couleurs et hauteurs sans reconstruire tous les pays (plus fluide).
+    function refresh() {
+      world.polygonAltitude((x) => altitude(x)).polygonCapColor((x) => capColor(x))
+        .polygonSideColor((x) => (valueOf(x) ? capColor(x) + "b3" : "rgba(52,57,68,.6)"));
+    }
     function select(f, fly = true) {
       selected = f;
       controls.autoRotate = false;
