@@ -11,6 +11,22 @@ Elle peut être modifiée librement : la mise à jour automatique relit ce fichi
 - **Le dimanche** : en plus, un « tour du monde » de 4 à 6 pays rarement traités (Asie centrale, Pacifique, Caraïbes, Afrique australe, Balkans…).
 - **Le globe change d'un jour à l'autre** : on évite de remettre les mêmes pays que la veille, sauf fait nouveau important. Les points se placent sur la capitale ou le lieu précis (pas toujours Washington ou Pékin).
 
+## Des faits marquants, pas des statistiques (le plus important après la fiabilité)
+
+Le lecteur doit apprendre quelque chose qu'il aurait envie de **raconter à table**. Une actu, c'est **un fait nouveau qui change quelque chose** : une décision, un accord, une rupture, une découverte, une crise, un record surprenant. Pas seulement « le chiffre du mois est sorti ».
+
+- **Deux actus « chiffres » au plus par jour** : publication d'inflation, décision de taux d'une banque centrale, prévision de croissance (FMI, Banque mondiale…). Et seulement si le chiffre est vraiment frappant (record, retournement, crise) ou qu'il touche un grand pays. « L'inflation de X passe de 5,2 % à 5,6 % » ne suffit pas.
+- **Au moins 6 actus « faits »**, en variant les catégories (pas deux fois la même dans la journée si possible) :
+  - **diplomatie et alliances** : accords, ruptures, sommets, visites qui changent quelque chose ;
+  - **conflits et sécurité**, avec leurs effets économiques (routes, prix, sanctions) ;
+  - **ressources et énergie** : mines, pétrole, gaz, eau, terres rares, nationalisations, découvertes ;
+  - **routes et infrastructures** : ports, canaux, chemins de fer, câbles sous-marins, oléoducs, barrages ;
+  - **technologie et industrie** : puces, IA, voitures électriques, usines, rachats géants ;
+  - **société et économie** : élections à enjeu économique, migrations, manifestations, alimentation, chocs climatiques.
+- **Le test avant d'ajouter une actu** : « Qu'est-ce qui a changé aujourd'hui, et pourquoi c'est surprenant ou important ? » Si la réponse tient en « un chiffre a un peu bougé », on cherche autre chose.
+- **Le titre donne envie de lire** : il dit le fait le plus frappant, sans jargon (« La Guinée exporte son premier fer de Simandou et bouscule l'Australie » plutôt que « Guinée : hausse des exportations »).
+- **Une actu sur les taux, l'inflation, les droits de douane, les détroits, les puces, les sanctions ou le dollar** : mettre l'id du cours lié dans `dossiers` (l'appli affiche en haut de l'actu un lien « Le cours pour comprendre »).
+
 ## Dossiers géopolitiques à suivre
 
 À vérifier régulièrement, et à traiter dès qu'il y a du nouveau (avec sources) :

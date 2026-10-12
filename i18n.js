@@ -125,6 +125,8 @@
       }).join("");
       patterns.push({ re: new RegExp("^" + src + "$"), names, out: v });
     }
+    // Les formules les plus précises d'abord (« Le cours pour comprendre · {n} min » avant « {a} · {b} »).
+    patterns.sort((x, y) => y.re.source.replace(/\(\.\+\?\)/g, "").length - x.re.source.replace(/\(\.\+\?\)/g, "").length);
   }
   function translate(text) {
     if (lang === "fr") return null;

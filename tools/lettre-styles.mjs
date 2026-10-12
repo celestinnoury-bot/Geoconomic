@@ -90,6 +90,18 @@ function dayFigure(d) {
   const s = best.f.src && best.n.sources[best.f.src - 1];
   return { value: best.f.value, label: best.f.label, src: s && (s.short || s.name), place: (best.n.geo && best.n.geo[0] && (best.n.geo[0].label || best.n.geo[0].name)) || "" };
 }
+// Renvoi vers le cours de l'appli qui explique le mécanisme (taux, douane, détroits…).
+const COURSE_SHORT = { "inflation-taux": "Inflation et taux d'intérêt", "droits-de-douane": "Droits de douane", "routes-maritimes": "Les détroits stratégiques",
+  "semi-conducteurs": "Les puces électroniques", sanctions: "Les sanctions économiques", dollar: "La domination du dollar" };
+const RATE_RE = /taux directeur|banque centrale|inflation/i;
+function courseOf(n) {
+  const ids = (n.dossiers || []).slice();
+  if (RATE_RE.test(n.title + " " + n.summary) && !ids.includes("inflation-taux")) ids.unshift("inflation-taux");
+  const id = RATE_RE.test(n.title) ? "inflation-taux" : ids[0];
+  return id && COURSE_SHORT[id] ? COURSE_SHORT[id] : "";
+}
+const courseLine = (n, color) => courseOf(n) ? `<div style="font:600 6.8pt 'Franklin','Inter',sans-serif;color:${color};margin-top:1.2mm">→ Pour comprendre : le cours « ${esc(courseOf(n))} » dans l'appli</div>` : "";
+
 // Les derniers chiffres, sans répéter ce que dit déjà le point conflits.
 const latestRows = (d) => d.latest.filter((x) => !(d.C && /crisiswatch/i.test(x.source.short || ""))).slice(0, 5);
 // « Et toi, dans tout ça ? » : la première phrase de ce que l'actu change pour le lecteur.
@@ -150,14 +162,14 @@ td { padding: 1mm 0; border-bottom: .5px solid #d8cfbd; vertical-align: top; } t
 <div class="rule2"></div>
 <div class="bar"><span>${d.items.length} actus · lecture 5 min</span><span>Chaque fait est sourcé</span></div>
 <div class="leadrow">
-  <div class="lead"><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${leadPanel(d, lead, 119, 40, P)}<p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div></div>
+  <div class="lead"><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${leadPanel(d, lead, 119, 40, P)}<p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div>${courseLine(lead, "#b5452c")}</div>
   <div class="side">
     ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="big">${esc(df.value)}</div><p>${esc(df.label)}</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
     ${firstWhy(d, lead) ? `<div><div class="k">Et toi, dans tout ça ?</div><p class="quote">${esc(firstWhy(d, lead))}</p></div>` : ""}
     <div><div class="k" style="margin-bottom:2mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div>
   </div>
 </div>
-<div class="cols">${rest.map((n, i) => `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${illustration(plan[i], d, n, "100%", 21, P, i + 1)}<div class="k" style="margin-top:2.2mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${esc(sourcesOf(n))}</div></div>`).join("")}</div>
+<div class="cols">${rest.map((n, i) => `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${illustration(plan[i], d, n, "100%", 21, P, i + 1)}<div class="k" style="margin-top:2.2mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${esc(sourcesOf(n))}</div>${courseLine(n, "#b5452c")}</div>`).join("")}</div>
 <div class="band">
   ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><div class="counts"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
   <div><h3>Les derniers chiffres</h3><table>${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
@@ -209,7 +221,7 @@ h1 { font: 800 46pt/1.02 "Inter"; letter-spacing: -.035em; margin: 6mm 0 0; }
   <div><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div></div>
   ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="stat" style="color:#ff6b9a">${esc(df.value)}</div><div class="statl">${esc(df.label)}</div>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : "<div></div>"}
 </div>
-<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${illustration(plan[i], d, n, "100%", 24, P, i + 1)}<div class="k" style="margin-top:3mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
+<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${illustration(plan[i], d, n, "100%", 24, P, i + 1)}<div class="k" style="margin-top:3mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p>${courseLine(n, "#a78bfa")}</div>`).join("")}</div>
 <div class="bottom"><div><div class="k" style="margin-bottom:3mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
 <div class="foot"><span>Toutes les actus dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);

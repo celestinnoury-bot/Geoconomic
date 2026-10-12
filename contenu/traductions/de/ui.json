@@ -311,7 +311,14 @@
   "T1 {y}": "Q1 {y}",
   "T2 {y}": "Q2 {y}",
   "T3 {y}": "Q3 {y}",
-  "T4 {y}": "Q4 {y}"
+  "T4 {y}": "Q4 {y}",
+  "Le cours pour comprendre · {n} min": "Die Lektion zum Verstehen · {n} Min.",
+  "C'est quoi un taux directeur, et pourquoi la banque centrale le change ?": "Was ist ein Leitzins, und warum ändert die Zentralbank ihn?",
+  "Les droits de douane : qui paie vraiment ?": "Zölle: Wer zahlt wirklich?",
+  "Pourquoi quelques détroits tiennent toute l'économie mondiale ?": "Warum hängt die ganze Weltwirtschaft an ein paar Meerengen?",
+  "Pourquoi les puces électroniques sont devenues un enjeu de puissance ?": "Warum sind Mikrochips zur Machtfrage geworden?",
+  "Les sanctions économiques, ça marche vraiment ?": "Wirken Wirtschaftssanktionen wirklich?",
+  "Pourquoi le dollar domine le monde ?": "Warum beherrscht der Dollar die Welt?"
  },
  "months": {
   "janvier": "Januar",

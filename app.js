@@ -848,11 +848,47 @@
     mountVisuals(c.visuals);
   }
 
+  // Les cours liés à une actu : ceux choisis par la rédaction, plus ceux que son sujet appelle
+  // (une actu sur les taux renvoie toujours au cours sur l'inflation et les taux, etc.).
+  const COURSE_TOPICS = [
+    ["inflation-taux", /taux directeur|taux d.interet|banque centrale|inflation|politique monetaire|central bank|interest rate|policy rate|banco central|tipos? de interes|tasa de interes/],
+    ["droits-de-douane", /droits? de douane|tarifs? douanier|protectionnisme|tariffs?\b|aranceles?/],
+    ["routes-maritimes", /ormuz|suez|malacca|bab el-mandeb|mer rouge|canal de panama|detroit/],
+    ["semi-conducteurs", /semi-conducteur|puces? electronique|tsmc/],
+    ["sanctions", /sanction|embargo/],
+    ["dollar", /monnaie de reserve|devalu|taux de change|\bdevises?\b/],
+  ];
+  // Une question d'accroche par cours, pour donner envie de cliquer.
+  const COURSE_HOOK = {
+    "inflation-taux": "C'est quoi un taux directeur, et pourquoi la banque centrale le change ?",
+    "droits-de-douane": "Les droits de douane : qui paie vraiment ?",
+    "routes-maritimes": "Pourquoi quelques détroits tiennent toute l'économie mondiale ?",
+    "semi-conducteurs": "Pourquoi les puces électroniques sont devenues un enjeu de puissance ?",
+    "sanctions": "Les sanctions économiques, ça marche vraiment ?",
+    "dollar": "Pourquoi le dollar domine le monde ?",
+  };
+  function coursesFor(n) {
+    const text = fold([n.title, n.summary, ...(n.points || [])].join(" "));
+    const auto = COURSE_TOPICS.filter(([, re]) => re.test(text)).map(([id]) => id);
+    return [...new Set([...auto, ...(n.dossiers || [])])].map((x) => byId(dossiers, x)).filter(Boolean);
+  }
+  function learnCard(d) {
+    return `
+      <a class="learn-card ${d.theme} reveal" href="#/cours/${d.id}">
+        <span class="learn-icon" aria-hidden="true">📘</span>
+        <span class="learn-body">
+          <span class="learn-kicker">Le cours pour comprendre · ${d.minutes} min</span>
+          <span class="learn-title">${COURSE_HOOK[d.id] || d.title}</span>
+        </span>
+        <span class="chev" aria-hidden="true">›</span>
+      </a>`;
+  }
+
   function renderNews(id) {
     const n = byId(news, id);
     if (!n) return renderNotFound();
     const cult = (n.culture || []).map((c) => byId(culture, c)).filter(Boolean);
-    const doss = (n.dossiers || []).map((x) => byId(dossiers, x)).filter(Boolean);
+    const doss = coursesFor(n);
 
     app.innerHTML = `
       <section class="wrap hero">
@@ -860,6 +896,7 @@
         <p class="eyebrow reveal">${formatDate(n.date)} · ${THEMES[n.theme]}</p>
         <h1 class="title reveal">${n.title}</h1>
         <p class="lead reveal">${n.summary}</p>
+        ${doss[0] ? learnCard(doss[0]) : ""}
         ${heroImage(n.image)}
       </section>
 

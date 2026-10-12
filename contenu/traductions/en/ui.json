@@ -310,7 +310,14 @@
   "T1 {y}": "Q1 {y}",
   "T2 {y}": "Q2 {y}",
   "T3 {y}": "Q3 {y}",
-  "T4 {y}": "Q4 {y}"
+  "T4 {y}": "Q4 {y}",
+  "Le cours pour comprendre · {n} min": "The lesson to understand it · {n} min",
+  "C'est quoi un taux directeur, et pourquoi la banque centrale le change ?": "What is a policy rate, and why does the central bank change it?",
+  "Les droits de douane : qui paie vraiment ?": "Tariffs: who really pays?",
+  "Pourquoi quelques détroits tiennent toute l'économie mondiale ?": "Why do a few straits hold up the whole world economy?",
+  "Pourquoi les puces électroniques sont devenues un enjeu de puissance ?": "Why have microchips become a matter of power?",
+  "Les sanctions économiques, ça marche vraiment ?": "Do economic sanctions really work?",
+  "Pourquoi le dollar domine le monde ?": "Why does the dollar dominate the world?"
  },
  "months": {
   "janvier": "Jan.",

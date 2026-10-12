@@ -307,7 +307,14 @@
   "{x} sur 180": "{x} de 180",
   "Les menus sont traduits ; les articles sont encore en français.": "Os menus estão traduzidos; os artigos ainda estão em francês.",
   "prévision {y} (FMI, avril {z})": "previsão {y} (FMI, abril {z})",
-  "prévision {y} (FMI, mise à jour de juillet {z})": "previsão {y} (FMI, atualização de julho {z})"
+  "prévision {y} (FMI, mise à jour de juillet {z})": "previsão {y} (FMI, atualização de julho {z})",
+  "Le cours pour comprendre · {n} min": "A aula para entender · {n} min",
+  "C'est quoi un taux directeur, et pourquoi la banque centrale le change ?": "O que é uma taxa básica de juros e por que o banco central a muda?",
+  "Les droits de douane : qui paie vraiment ?": "As tarifas alfandegárias: quem paga de verdade?",
+  "Pourquoi quelques détroits tiennent toute l'économie mondiale ?": "Por que alguns estreitos sustentam toda a economia mundial?",
+  "Pourquoi les puces électroniques sont devenues un enjeu de puissance ?": "Por que os chips viraram uma questão de poder?",
+  "Les sanctions économiques, ça marche vraiment ?": "As sanções econômicas funcionam mesmo?",
+  "Pourquoi le dollar domine le monde ?": "Por que o dólar domina o mundo?"
  },
  "months": {
   "janvier": "janeiro",
