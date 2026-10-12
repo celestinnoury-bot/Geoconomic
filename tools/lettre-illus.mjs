@@ -151,6 +151,62 @@ export function shapeBlock(d, n, wmm, hmm, P) {
     <div style="font:${P.placeFont};color:${P.ink};margin-top:.6mm">${esc(place)}</div></div></div>`;
 }
 
+// ---------- Style presse (moins « appli », plus quotidien) ----------
+// Petit graphique de journal : libellé à gauche, barre fine, valeur, et la source en dessous.
+export function pressChart(n, P, { noSource = false } = {}) {
+  const f = canBars(n);
+  if (!f) return "";
+  const max = Math.max(...f.map((o) => Math.abs(o.p.v)), 0.001);
+  const src = (() => { const s = n.sources && n.sources[(f[0].x.src || 1) - 1]; return s ? (s.short || s.name).replace(/\s*\(.*?\)\s*$/, "") : ""; })();
+  return `<div style="border-top:1.5px solid ${P.ink};padding-top:1.6mm">
+    ${f.map((o) => `<div style="display:grid;grid-template-columns:1fr 34%;gap:2mm;align-items:center;padding:1mm 0;border-bottom:.4px solid ${P.rule}">
+      <div style="font:400 7.2pt/1.25 ${P.sans};color:${P.ink}">${esc(short(o.x.label, 70))}</div>
+      <div style="display:flex;align-items:center;gap:1.5mm"><div style="height:2.6mm;flex:none;width:${Math.max(3, (Math.abs(o.p.v) / max) * 62)}%;background:${o.p.v < 0 ? P.neg : P.barInk}"></div><b style="font:700 7.6pt ${P.sans};white-space:nowrap">${esc(o.x.value)}</b></div>
+    </div>`).join("")}
+    ${src && !noSource ? `<div style="font:italic 400 6.4pt ${P.serif};color:${P.muted};margin-top:1mm">Source : ${esc(src)}</div>` : ""}</div>`;
+}
+// Grand chiffre à la manière d'un quotidien : filet, nombre, légende. Pas de fond de couleur.
+export function pressNumber(fig, P) {
+  return `<div style="border-top:1.5px solid ${P.ink};padding-top:1.4mm">
+    <div style="font:700 22pt/1 ${P.serif};letter-spacing:-.01em;white-space:nowrap;color:${P.ink}">${esc(fig.value)}</div>
+    <div style="font:italic 400 7.6pt/1.3 ${P.serif};color:${P.muted};margin-top:1mm">${esc(fig.label)}</div></div>`;
+}
+// Petite carte de situation : la silhouette du pays en gris, avec une légende.
+export function pressShape(d, n, P) {
+  const place = (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || "";
+  return `<div style="display:flex;align-items:center;gap:3mm;border-top:1.5px solid ${P.ink};padding-top:1.6mm">
+    ${silhouette(d, n, 17, 15, P)}
+    <div style="font:italic 400 7.4pt/1.3 ${P.serif};color:${P.muted}">${esc(place)}${n.region ? `, ${esc(n.region)}` : ""}</div></div>`;
+}
+// Répartition : graphique, chiffre, silhouette, ou rien (une brève n'a pas toujours d'image).
+// Jamais deux fois la même à la suite ; deux silhouettes au plus.
+export function planPress(d, items) {
+  const LIMIT = { chart: 3, number: 3, shape: 2, none: 2 };
+  const used = {};
+  let last = null;
+  return items.map((n, i) => {
+    const ok = { chart: !!canBars(n), number: !!(n.figures && n.figures[0]), shape: hasShape(d, n), none: true };
+    const order = ["chart", "none", "number", "shape"];
+    const rot = order.slice(i % 4).concat(order.slice(0, i % 4));
+    const pick = rot.find((k) => ok[k] && k !== last && (used[k] || 0) < LIMIT[k]) || "none";
+    used[pick] = (used[pick] || 0) + 1;
+    last = pick;
+    return pick;
+  });
+}
+export function pressIllustration(kind, d, n, P) {
+  if (kind === "chart") return pressChart(n, P);
+  if (kind === "number") return pressNumber(n.figures[0], P);
+  if (kind === "shape") return pressShape(d, n, P);
+  return "";
+}
+// Lieu en tête d'article, comme dans la presse : « BANGKOK — ».
+export function dateline(n) {
+  const g = n.geo && n.geo[0];
+  if (!g) return "";
+  return String(g.name || g.label).split(/[,(]/)[0].trim().toUpperCase();
+}
+
 // Choisit une illustration différente pour chaque actu : pas deux fois de suite la même,
 // et au plus deux silhouettes et deux grands chiffres par lettre.
 export function planIllustrations(d, items) {

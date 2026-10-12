@@ -26,7 +26,7 @@ try {
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js", "data/world.js", "data/iso2.js"]) {
+for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js", "data/world.js", "data/iso2.js", "data/anecdotes.js"]) {
   if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const G = ctx.window.GEOCO;
@@ -56,7 +56,11 @@ const latest = (G.indicators && G.indicators.latest) || [];
 
 const dateCap = longDate.charAt(0).toUpperCase() + longDate.slice(1);
 const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip, world: ctx.window.GEOCO_WORLD,
-  names: (G.indicators && G.indicators.names) || {}, iso2: ctx.window.GEOCO_ISO2 || {} };
+  names: (G.indicators && G.indicators.names) || {}, iso2: ctx.window.GEOCO_ISO2 || {},
+  // « Le saviez-vous ? » : une anecdote différente chaque jour.
+  anecdote: (() => { const A = G.anecdotes || []; return A.length ? A[Math.floor(Date.parse(day + "T12:00:00Z") / 864e5) % A.length] : null; })(),
+  // Numéro de l'édition : compté depuis la première lettre (7 octobre 2026).
+  number: Math.max(1, Math.round((Date.parse(day) - Date.parse("2026-10-07")) / 864e5) + 1) };
 const classicHtml = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
@@ -129,14 +133,15 @@ async function render(st, out) {
   // (sinon une bande blanche apparaît à droite). La hauteur change avec la largeur : on ajuste en quelques passes.
   const z = await page.evaluate((max) => {
     const el = document.getElementById("page");
+    // Hauteur une fois réduite d'un facteur k (la page est élargie de 1/k avant la mesure).
+    const heightAt = (k) => { el.style.zoom = 1; el.style.width = (210 / k) + "mm"; el.style.minHeight = "0"; return el.getBoundingClientRect().height * k; };
     let k = 1;
-    for (let pass = 0; pass < 6; pass++) {
-      el.style.zoom = 1;
-      el.style.width = (210 / k) + "mm";
-      el.style.minHeight = "0";
-      const natural = el.getBoundingClientRect().height * k;
-      if (natural <= max + 0.5) break;
-      k = Math.floor(k * (max / natural) * 1000) / 1000;
+    if (heightAt(1) > max) {
+      // Le plus grand k qui tient sur la page, par dichotomie.
+      let lo = 0.5, hi = 1;
+      for (let i = 0; i < 12; i++) { const mid = (lo + hi) / 2; if (heightAt(mid) <= max) lo = mid; else hi = mid; }
+      k = lo;
+      heightAt(k);
     }
     el.style.zoom = k;
     el.style.minHeight = (297 / k) + "mm"; // le pied de page reste en bas de la feuille

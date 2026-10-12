@@ -30,7 +30,8 @@ body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .page { width: 210mm; min-height: 297mm; display: flex; flex-direction: column; }
 `;
 
-import { parseFig, topicOf, icon, hasShape, silhouette, figBlock, canBars, bars, picto, planIllustrations, illustration, regionStrip, sourcesOf } from "./lettre-illus.mjs";
+import { parseFig, topicOf, icon, hasShape, silhouette, figBlock, canBars, bars, picto, planIllustrations, illustration, regionStrip, sourcesOf,
+  pressChart, pressNumber, pressShape, planPress, pressIllustration, dateline } from "./lettre-illus.mjs";
 
 const doc = (css, body) => `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>${FONTS}${css}</style></head><body>${body}</body></html>`;
 const srcList = (n) => esc((n.sources || []).map((s) => s.short || s.name).join(", "));
@@ -112,15 +113,20 @@ const firstWhy = (d, n) => {
 };
 
 // ---------------------------------------------------------------------------
-// 1. Le Journal : une de quotidien sur papier journal, colonnes et filets, illustrations variées.
+// 1. Le Journal : une de quotidien sur papier journal. Texte justifié, lettrine, lieux en tête
+// d'article, petits graphiques de presse ; certaines brèves sans image, comme dans un vrai journal.
 function journal(d) {
   const [lead, ...rest] = d.items;
-  const P = { ink: "#161412", muted: "#6f685d", panel: "#ebe4d4", shape: "#2a2622", radius: 0, onColor: "#fffaf0",
-    accents: ["#b5452c", "#2f6670", "#c79a3a", "#4f5a8a", "#6b7d4f"], bar: ["#b5452c", "#2f6670", "#c79a3a"], neg: "#8c2f1f",
-    sans: "'Franklin', sans-serif", bigFont: "700 28pt 'Serif4', serif", placeFont: "700 11pt/1.15 'Serif4', serif" };
-  const plan = planIllustrations(d, rest);
+  const P = { ink: "#161412", muted: "#6f685d", rule: "#d3c9b6", shape: "#9a9183", barInk: "#2b2723", neg: "#a3402a",
+    sans: "'Franklin', sans-serif", serif: "'Serif4', serif" };
+  const plan = planPress(d, rest);
   const c = rest.length <= 4 ? Math.max(1, rest.length) : 3;
   const df = dayFigure(d);
+  const pts = (lead.points || []).slice(0, 2).map((t) => esc(d.strip(t)));
+  const leadArt = canBars(lead) ? pressChart(lead, P, { noSource: true }) : hasShape(d, lead) ? pressShape(d, lead, P) : "";
+  const an = d.anecdote;
+  const seenCourse = new Set();
+  const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="also">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   return doc(`
 html, body { background: #f7f3ea; } body { color: ${P.ink}; font-family: "Serif4", serif; }
 .page { padding: 10mm 12mm 9mm; background: #f7f3ea; }
@@ -129,23 +135,30 @@ html, body { background: #f7f3ea; } body { color: ${P.ink}; font-family: "Serif4
 .tag { text-align: center; font: italic 400 10pt "Serif4", serif; color: #4a443b; }
 .rule2 { border-top: 2.5px solid ${P.ink}; border-bottom: .6px solid ${P.ink}; height: 3px; margin: 3mm 0 1.6mm; }
 .bar { display: flex; justify-content: space-between; font: 600 7.5pt "Franklin", sans-serif; color: #3d3831; padding-bottom: 1.6mm; border-bottom: .6px solid ${P.ink}; }
-.leadrow { display: grid; grid-template-columns: 124mm 1fr; margin-top: 4mm; border-bottom: .6px solid ${P.ink}; padding-bottom: 4mm; }
-.lead { padding-right: 5mm; border-right: .6px solid #c9bfa9; }
-.k { font: 700 7pt "Franklin", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: ${P.muted}; }
-.lead h1 { font: 700 26pt/1.07 "Serif4", serif; margin: 1.5mm 0 3mm; letter-spacing: -.01em; }
-.lead p { font-size: 10.5pt; line-height: 1.45; margin: 3mm 0 0; }
+.leadrow { display: grid; grid-template-columns: 128mm 1fr; margin-top: 4mm; border-bottom: .6px solid ${P.ink}; padding-bottom: 4mm; }
+.lead { padding-right: 5mm; border-right: .6px solid ${P.rule}; }
+.k { font: 700 7pt "Franklin", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #a3402a; }
+.k.gray { color: ${P.muted}; }
+.lead h1 { font: 700 27pt/1.06 "Serif4", serif; margin: 1.5mm 0 2mm; letter-spacing: -.01em; }
+.deck { font: italic 400 12pt/1.4 "Serif4", serif; color: #3b362f; margin: 0 0 3mm; }
+.body { column-count: 2; column-gap: 5mm; column-rule: .5px solid ${P.rule}; font-size: 9.6pt; line-height: 1.45; text-align: justify; hyphens: auto; }
+.body p { margin: 0 0 1.6mm; }
+.dl { font: 700 7.6pt "Franklin", sans-serif; letter-spacing: .05em; }
+.art { margin-top: 2.5mm; }
 .src { font: 400 6.8pt "Franklin", sans-serif; color: #857c6e; margin-top: 1.5mm; }
-.side { padding-left: 5mm; display: flex; flex-direction: column; gap: 5mm; }
-.big { font: 700 34pt/1 "Serif4", serif; margin: 2mm 0 1.5mm; white-space: nowrap; color: #b5452c; }
-.side p { font-size: 9.5pt; line-height: 1.4; margin: 0; }
-.quote { font: italic 600 11pt/1.35 "Serif4", serif; border-left: 3px solid #b5452c; padding-left: 3mm; margin: 1.5mm 0 0; }
+.also { font: italic 400 7.6pt/1.3 "Serif4", serif; color: #5a5348; margin-top: 1.2mm; }
+.side { padding-left: 5mm; display: flex; flex-direction: column; gap: 4.5mm; }
+.side h4 { font: 800 7pt "Franklin", sans-serif; letter-spacing: .1em; text-transform: uppercase; margin: 0; padding-bottom: 1.2mm; border-bottom: 1.5px solid ${P.ink}; }
+.big { font: 700 32pt/1 "Serif4", serif; margin: 2mm 0 1.2mm; white-space: nowrap; }
+.side p { font-size: 9.2pt; line-height: 1.4; margin: 0; }
+.quote { font: italic 400 10.5pt/1.4 "Serif4", serif; margin-top: 1.8mm !important; }
 .cols { display: grid; grid-template-columns: repeat(${c}, 1fr); margin-top: 4mm; row-gap: 3mm; }
-.story { padding: 0 4mm 2mm; border-left: .6px solid #c9bfa9; }
+.story { padding: 0 4mm 2mm; border-left: .6px solid ${P.rule}; }
 .story.first { border-left: 0; padding-left: 0; }
 .story.last { padding-right: 0; }
-.story h2 { font: 700 12.5pt/1.15 "Serif4", serif; margin: 1.2mm 0 1.5mm; }
-.story p { font-size: 9.1pt; line-height: 1.42; margin: 0; }
-.no { font: 800 7pt "Franklin", sans-serif; color: #b5452c; margin-right: 1.2mm; }
+.story h2 { font: 700 12.5pt/1.15 "Serif4", serif; margin: 1.2mm 0 1.8mm; }
+.story p { font-size: 9.1pt; line-height: 1.42; margin: 0; text-align: justify; hyphens: auto; }
+.story .art { margin: 0 0 2mm; }
 .band { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6mm; margin-top: auto; padding-top: 3.5mm; border-top: 2px solid ${P.ink}; }
 .band h3 { font: 800 7.5pt "Franklin", sans-serif; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 2mm; }
 .band p { font-size: 9pt; line-height: 1.4; margin: 0; }
@@ -153,28 +166,31 @@ html, body { background: #f7f3ea; } body { color: ${P.ink}; font-family: "Serif4
 .counts div { font: 400 7pt "Franklin", sans-serif; color: ${P.muted}; }
 .counts b { display: block; font: 700 18pt/1 "Serif4", serif; color: ${P.ink}; }
 table { width: 100%; border-collapse: collapse; font: 400 7.8pt "Franklin", sans-serif; }
-td { padding: 1mm 0; border-bottom: .5px solid #d8cfbd; vertical-align: top; } td.v { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 3mm; }
+td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; } td.v { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 3mm; }
 .foot { margin-top: 3mm; padding-top: 2mm; border-top: .6px solid ${P.ink}; display: flex; justify-content: space-between; font: 400 7pt "Franklin", sans-serif; color: #5c554a; }
 `, `<div class="page" id="page">
-<div class="top"><span>${esc(d.dateCap)}</span><span>Édition du matin</span></div>
+<div class="top"><span>${esc(d.dateCap)}</span><span>Édition du matin · N° ${d.number}</span></div>
 <div class="mast">Géoconomic</div>
 <div class="tag">L'économie et la géopolitique, expliquées chaque matin</div>
 <div class="rule2"></div>
-<div class="bar"><span>${d.items.length} actus · lecture 5 min</span><span>Chaque fait est sourcé</span></div>
+<div class="bar"><span>${d.items.length} actus</span><span>Toutes les sources sont dans l'application</span></div>
 <div class="leadrow">
-  <div class="lead"><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${leadPanel(d, lead, 119, 40, P)}<p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div>${courseLine(lead, "#b5452c")}</div>
+  <div class="lead"><div class="k">${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1><p class="deck">${esc(d.strip(lead.summary))}</p>
+    <div class="body">${pts.map((t, i) => `<p>${i === 0 && dateline(lead) ? `<span class="dl">${esc(dateline(lead))} —</span> ` : ""}${t}</p>`).join("")}</div>
+    ${leadArt ? `<div class="art">${leadArt}</div>` : ""}
+    <div class="src">Sources : ${esc(sourcesOf(lead))}</div>${read(lead)}</div>
   <div class="side">
-    ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="big">${esc(df.value)}</div><p>${esc(df.label)}</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
-    ${firstWhy(d, lead) ? `<div><div class="k">Et toi, dans tout ça ?</div><p class="quote">${esc(firstWhy(d, lead))}</p></div>` : ""}
-    <div><div class="k" style="margin-bottom:2mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div>
+    ${df ? `<div><h4>Le chiffre du jour</h4><div class="big">${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
+    ${firstWhy(d, lead) ? `<div><h4>Et toi, dans tout ça ?</h4><p class="quote">${esc(firstWhy(d, lead))}</p></div>` : ""}
+    ${an ? `<div><h4>Le saviez-vous ?</h4><p style="margin-top:1.8mm">${esc(an.text)}</p><div class="src">${esc(an.era || "")}${an.source ? ` · ${esc(an.source.short || an.source.name)}` : ""}</div></div>` : ""}
   </div>
 </div>
-<div class="cols">${rest.map((n, i) => `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${illustration(plan[i], d, n, "100%", 21, P, i + 1)}<div class="k" style="margin-top:2.2mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${esc(sourcesOf(n))}</div>${courseLine(n, "#b5452c")}</div>`).join("")}</div>
+<div class="cols">${rest.map((n, i) => { const art = pressIllustration(plan[i], d, n, P); return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k gray">${kicker(d, n)}</div><h2>${esc(n.title)}</h2>${art ? `<div class="art">${art}</div>` : ""}<p>${dateline(n) ? `<span class="dl">${esc(dateline(n))} —</span> ` : ""}${esc(d.strip(n.summary))}${n.points && n.points[0] && d.strip(n.points[0]).length < 260 ? " " + esc(d.strip(n.points[0])) : ""}</p><div class="src">${esc(sourcesOf(n))}</div>${read(n)}</div>`; }).join("")}</div>
 <div class="band">
   ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><div class="counts"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
   <div><h3>Les derniers chiffres</h3><table>${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
 </div>
-<div class="foot"><span>Toutes les actus, expliquées et sourcées, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
+<div class="foot"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
 
@@ -182,10 +198,12 @@ td { padding: 1mm 0; border-bottom: .5px solid #d8cfbd; vertical-align: top; } t
 // 2. Keynote : la version sombre, très grands titres, cartes arrondies, illustrations variées.
 function keynote(d) {
   const [lead, ...rest] = d.items;
-  const P = { ink: "#f5f5f7", muted: "#98989d", panel: "#2c2c2e", shape: "#a78bfa", radius: 12, onColor: "#fff",
-    accents: ["#5e5ce6", "#30b0c7", "#ff6b9a", "#ff9f0a", "#34c759"], bar: ["#5ac8fa", "#a78bfa", "#ff6b9a"], neg: "#ff453a",
-    sans: "'Inter', sans-serif", bigFont: "800 28pt 'Inter', sans-serif", placeFont: "700 11pt/1.15 'Inter', sans-serif" };
-  const plan = planIllustrations(d, rest);
+  const P = { ink: "#f5f5f7", muted: "#98989d", rule: "#3a3a3c", shape: "#8e8e93", barInk: "#f5f5f7", neg: "#ff6961",
+    sans: "'Inter', sans-serif", serif: "'Inter', sans-serif" };
+  const plan = planPress(d, rest);
+  const an = d.anecdote;
+  const seenCourse = new Set();
+  const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="src" style="color:#a1a1a6">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   const df = dayFigure(d);
   return doc(`
 html, body { background: #000; } body { color: #f5f5f7; font-family: "Inter", sans-serif; }
@@ -214,15 +232,14 @@ h1 { font: 800 46pt/1.02 "Inter"; letter-spacing: -.035em; margin: 6mm 0 0; }
 .foot { margin-top: auto; padding-top: 6mm; font: 400 7pt "Inter"; color: #6e6e73; display: flex; justify-content: space-between; }
 `, `<div class="page" id="page">
 <div class="top"><span><b>Géoconomic</b> · La lettre du matin</span><span>${esc(d.dateCap)}</span></div>
-<h1>Le monde.<br><svg width="150mm" height="20mm" viewBox="0 0 567 76" style="display:block;margin-top:-1mm"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#5ac8fa"/><stop offset=".55" stop-color="#a78bfa"/><stop offset="1" stop-color="#ff6b9a"/></linearGradient></defs><text x="0" y="62" fill="url(#g)" style="font: 800 66.5px Inter; letter-spacing: -2.3px">Ce matin.</text></svg></h1>
-<div class="lede">${d.items.length} actus qui comptent, expliquées simplement. Chaque fait est sourcé.</div>
-<div style="margin-top:6mm">${leadPanel(d, lead, 184, 42, P)}</div>
+<h1>Le monde.<br><span style="color:#6e6e73">Ce matin.</span></h1>
+<div class="lede">${d.items.length} actus, expliquées simplement. Toutes les sources sont dans l'application.</div>
 <div class="hero">
-  <div><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div></div>
-  ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="stat" style="color:#ff6b9a">${esc(df.value)}</div><div class="statl">${esc(df.label)}</div>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : "<div></div>"}
+  <div><div class="k">${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p>${canBars(lead) ? `<div style="margin-top:3mm">${pressChart(lead, P, { noSource: true })}</div>` : ""}<div class="src">Sources : ${esc(sourcesOf(lead))}</div>${read(lead)}</div>
+  ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="stat">${esc(df.value)}</div><div class="statl">${esc(df.label)}</div>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : "<div></div>"}
 </div>
-<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${illustration(plan[i], d, n, "100%", 24, P, i + 1)}<div class="k" style="margin-top:3mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p>${courseLine(n, "#a78bfa")}</div>`).join("")}</div>
-<div class="bottom"><div><div class="k" style="margin-bottom:3mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
+<div class="grid">${rest.slice(0, 6).map((n, i) => { const art = pressIllustration(plan[i], d, n, P); return `<div class="card"><div class="k">${kicker(d, n)}</div><h3>${esc(n.title)}</h3>${art ? `<div style="margin:2mm 0 2.5mm">${art}</div>` : ""}<p>${dateline(n) ? `<b style="color:#f5f5f7;font-weight:600">${esc(dateline(n))} —</b> ` : ""}${esc(d.strip(n.summary))}</p>${read(n)}</div>`; }).join("")}</div>
+<div class="bottom"><div>${an ? `<div class="k" style="margin-bottom:2mm">Le saviez-vous ?</div><p style="font:400 10pt/1.5 Inter;color:#f5f5f7;margin:0">${esc(an.text)}</p><div class="src">${esc(an.era || "")}${an.source ? " · " + esc(an.source.short || an.source.name) : ""}</div>` : ""}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b>${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
 <div class="foot"><span>Toutes les actus dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
