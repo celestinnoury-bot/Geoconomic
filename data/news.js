@@ -15,6 +15,852 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-12-ouzbekistan-inflation",
+    "date": "2026-10-12",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Tachkent",
+        "label": "Ouzbékistan",
+        "coords": [
+          69.24,
+          41.3
+        ]
+      }
+    ],
+    "title": "Ouzbékistan : l'inflation ralentit à 6,4 %, la banque centrale garde son taux à 14 %",
+    "summary": "Les prix montent moins vite qu'il y a un an en Ouzbékistan. La banque centrale reste prudente et ne baisse pas encore ses taux.",
+    "points": [
+      "En septembre, l'inflation ouzbèke est de 6,4 % sur un an, contre 8 % un an plus tôt [1].",
+      "Hors fruits et légumes, elle atteint 6,8 % sur un an [1].",
+      "Le 16 septembre, la banque centrale a gardé son taux directeur à 14 % ; elle veut ramener l'inflation à 5 % d'ici fin 2027, et son prochain rendez-vous est le 28 octobre [2]."
+    ],
+    "why": [
+      "L'inflation, c'est la hausse générale des prix. Un taux directeur élevé, comme ici 14 %, rend le crédit cher et freine les prix. Tant que l'inflation reste au-dessus de la cible de 5 %, la banque centrale ne veut pas relâcher.",
+      "L'Ouzbékistan est un pays d'Asie centrale. Tant que les prix montent plus vite que la cible, la banque centrale garde un taux élevé, ce qui rend les crédits chers pour les entreprises."
+    ],
+    "forMe": "Tu n'es pas touché directement. Mais c'est un exemple de pays qui lutte contre la hausse des prix avec des taux très hauts, une recette que beaucoup d'économies émergentes utilisent.",
+    "figures": [
+      {
+        "value": "6,4 %",
+        "label": "l'inflation en Ouzbékistan en septembre 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "14 %",
+        "label": "le taux directeur, inchangé depuis le 16 septembre",
+        "src": 2
+      },
+      {
+        "value": "5 %",
+        "label": "la cible d'inflation, visée pour fin 2027",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Daryo",
+        "name": "Daryo, « Uzbekistan's annual inflation slows to 6.4% in September, down from 8% in 2025 » (6 oct. 2026)",
+        "url": "https://daryo.uz/en/2026/10/06/uzbekistans-annual-inflation-slows-to-6-4-in-september-down-from-8-in-2025/"
+      },
+      {
+        "short": "Daryo",
+        "name": "Daryo, « Uzbekistan's central bank keeps key rate unchanged at 14% as inflation slows » (16 sept. 2026)",
+        "url": "https://daryo.uz/en/2026/09/16/uzbekistans-central-bank-keeps-key-rate-unchanged-at-14-as-inflation-slows/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-mongolie-taux",
+    "date": "2026-10-12",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Oulan-Bator",
+        "label": "Mongolie",
+        "coords": [
+          106.92,
+          47.92
+        ]
+      }
+    ],
+    "title": "Mongolie : taux maintenu à 12,5 % face à une inflation à plus de 12 %",
+    "summary": "Les prix mongols montent à un rythme très élevé, tirés par le carburant et l'alimentation. La banque centrale fait une pause après avoir relevé son taux en août.",
+    "points": [
+      "La banque centrale de Mongolie a gardé son taux directeur à 12,5 % à sa réunion de septembre, après l'avoir relevé de 0,5 point en août [1].",
+      "L'inflation s'est établie à 12,5 % en août, après un pic à 13 % en juillet ; l'inflation de fond (sans les prix les plus volatils) est de 6,8 % [1].",
+      "La banque centrale s'attend à une baisse progressive à partir du deuxième trimestre 2027 et cite comme risques le carburant et l'alimentation liés au conflit au Moyen-Orient, ainsi que les finances publiques [1]."
+    ],
+    "why": [
+      "Quand l'écart est grand entre l'inflation totale (12,5 %) et l'inflation de fond (6,8 %), c'est que quelques produits très chers tirent tout vers le haut, ici le carburant et la nourriture.",
+      "La Mongolie importe l'essentiel de son carburant : un baril cher se répercute vite dans les prix du quotidien. C'est un pays sans accès à la mer, pris entre la Chine et la Russie."
+    ],
+    "forMe": "Tu ne le verras pas dans ton quotidien. Mais ça montre que la flambée du pétrole venue du Golfe touche jusqu'au cœur de l'Asie, loin de tout port.",
+    "figures": [
+      {
+        "value": "12,5 %",
+        "label": "le taux directeur de la Mongolie, maintenu en septembre",
+        "src": 1
+      },
+      {
+        "value": "12,5 %",
+        "label": "l'inflation en août 2026, après 13 % en juillet",
+        "src": 1
+      },
+      {
+        "value": "6,8 %",
+        "label": "l'inflation de fond en août",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Trading Economics",
+        "name": "Trading Economics, « Mongolia Holds Key Policy Rate at 12.5% »",
+        "url": "https://tradingeconomics.com/mongolia/interest-rate/news/584555"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-ouganda-shilling",
+    "date": "2026-10-12",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Kampala",
+        "label": "Ouganda",
+        "coords": [
+          32.58,
+          0.35
+        ]
+      }
+    ],
+    "title": "Ouganda : le shilling tombe à un plus bas historique, au-dessus de 4 000 pour un dollar",
+    "summary": "La monnaie ougandaise n'a jamais valu aussi peu. Les importateurs de carburant achètent des dollars, et la banque centrale laisse faire.",
+    "points": [
+      "Début octobre, le shilling ougandais a dépassé 4 000 pour un dollar, son niveau le plus bas jamais enregistré ; il atteignait 4 025 en début de séance lundi [1][2].",
+      "Il a perdu environ 10 % depuis janvier, la deuxième plus mauvaise performance d'Afrique cette année après le cedi du Ghana [1].",
+      "Les cambistes pointent les achats de dollars par les industriels, les importateurs d'énergie et les commerçants qui préparent les importations de fin d'année, dans un contexte de pétrole cher. La banque centrale n'est pas intervenue et dit que la valeur de la monnaie dépend de l'offre et de la demande [2]."
+    ],
+    "why": [
+      "Une monnaie qui baisse rend tout ce qu'on importe plus cher. L'Ouganda doit acheter son carburant en dollars : plus le dollar est cher, plus l'essence, le transport et la nourriture coûtent en shillings.",
+      "La banque centrale pourrait vendre des dollars pour freiner la chute, mais elle garde ses réserves et laisse le marché décider. C'est un choix : ne pas dépenser ses réserves, au risque de voir les prix monter."
+    ],
+    "forMe": "Tu ne paies pas en shillings. Mais l'Ouganda exporte du café et de l'or, et une monnaie faible change les prix qu'il peut proposer. Ça concerne aussi les Ougandais de la diaspora qui envoient de l'argent au pays.",
+    "figures": [
+      {
+        "value": "4 025",
+        "label": "shillings pour un dollar, un record, en début de séance lundi",
+        "src": 1
+      },
+      {
+        "value": "−10 %",
+        "label": "la baisse du shilling depuis le début de l'année",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "dollar"
+    ],
+    "sources": [
+      {
+        "short": "Market Briefs",
+        "name": "Market Briefs, « Ugandan shilling sinks to record low as dollar demand builds »",
+        "url": "https://www.briefs.co/news/ugandan-shilling-sinks-to-record-low-as-dollar-demand-builds/"
+      },
+      {
+        "short": "Daily Monitor",
+        "name": "Daily Monitor (Ouganda), « Shilling hits record low as seasonal demand piles pressure »",
+        "url": "https://www.monitor.co.ug/uganda/news/national/shilling-hits-record-low-as-seasonal-demand-piles-pressure-5620526"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-uruguay-inflation",
+    "date": "2026-10-12",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Montevideo",
+        "label": "Uruguay",
+        "coords": [
+          -56.19,
+          -34.9
+        ]
+      }
+    ],
+    "title": "Uruguay : l'inflation remonte à 4,68 %, un peu au-dessus de la cible",
+    "summary": "Les prix uruguayens montent un peu plus vite en septembre, portés par l'alimentation, mais restent dans la zone tolérée par la banque centrale.",
+    "points": [
+      "L'institut de statistiques a publié le 5 octobre l'inflation de septembre : 4,68 % sur un an, contre 4,55 % en août [1].",
+      "La cible de la banque centrale est de 4,5 %, avec une zone de tolérance de 3 % à 6 % ; le chiffre est donc au-dessus de la cible mais dans la zone [1].",
+      "Sur le mois, les prix ont monté de 0,54 %, surtout à cause des tomates, des oignons et de la viande ; l'inflation de fond est de 4,47 % [1]."
+    ],
+    "why": [
+      "Une banque centrale vise un niveau de hausse des prix. Ici, l'alimentation (légumes, viande) a pesé sur l'indice : quand ces produits montent, ça se voit tout de suite dans le chiffre.",
+      "L'Uruguay est un petit pays d'Amérique du Sud. Sa banque centrale utilise les taux d'intérêt, pas le contrôle des prix, pour garder l'inflation près de la cible."
+    ],
+    "forMe": "Si tu manges du bœuf sud-américain, le prix qu'il atteint chez nous dépend en partie de ce qui se passe sur ces marchés. L'Uruguay est l'un des grands exportateurs de viande de la région.",
+    "figures": [
+      {
+        "value": "4,68 %",
+        "label": "l'inflation en Uruguay en septembre 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "4,5 %",
+        "label": "la cible de la banque centrale (zone de tolérance : 3 % à 6 %)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Montevideo Portal",
+        "name": "Montevideo Portal, « Inflación interanual subió al 4,68 % en setiembre, por encima de la meta del BCU »",
+        "url": "https://www.montevideo.com.uy/Noticias/Inflacion-interanual-subio-al-4-68-en-setiembre-por-encima-de-la-meta-del-BCU-uc977605"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-bulgarie-inflation",
+    "date": "2026-10-12",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Sofia",
+        "label": "Bulgarie",
+        "coords": [
+          23.32,
+          42.7
+        ]
+      }
+    ],
+    "title": "Bulgarie : l'inflation monte à 5,6 %, bien au-dessus de la zone euro",
+    "summary": "Dans un pays qui a adopté l'euro, les prix grimpent plus vite que dans la zone euro dans son ensemble.",
+    "points": [
+      "Selon l'estimation d'Eurostat, l'inflation bulgare est de 5,6 % sur un an en septembre, contre 5,1 % en août [1][2].",
+      "Dans l'ensemble de la zone euro, elle est de 3,8 % en septembre [1]."
+    ],
+    "why": [
+      "Entrer dans la zone euro, c'est utiliser la même monnaie et la même banque centrale que l'Allemagne ou la France. La Bulgarie ne peut donc plus relever seule ses taux pour freiner les prix.",
+      "Quand l'inflation d'un pays reste bien plus haute que celle de la zone, c'est un test pour la confiance des habitants dans la nouvelle monnaie."
+    ],
+    "forMe": "La Bulgarie est une destination de vacances prisée et un pays où des entreprises françaises ont des sites. Là-bas, le coût de la vie monte plus vite que chez toi.",
+    "figures": [
+      {
+        "value": "5,6 %",
+        "label": "l'inflation en Bulgarie en septembre 2026 (estimation)",
+        "src": 1
+      },
+      {
+        "value": "3,8 %",
+        "label": "l'inflation dans la zone euro, même mois",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Eurostat",
+        "name": "Eurostat, « Euro area annual inflation up to 3.8 % » (2 oct. 2026)",
+        "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-02102026-ap"
+      },
+      {
+        "short": "Trading Economics",
+        "name": "Trading Economics, « Inflation Rate – Countries – List (Europe) »",
+        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=europe"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-hongrie-inflation",
+    "date": "2026-10-12",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Budapest",
+        "label": "Hongrie",
+        "coords": [
+          19.04,
+          47.5
+        ]
+      }
+    ],
+    "title": "Hongrie : l'inflation remonte à 1,6 % et la cible va baisser à 2,5 % en 2028",
+    "summary": "La Hongrie a l'une des inflations les plus basses de la région, mais elle repart à la hausse. Le gouvernement veut aussi abaisser son objectif.",
+    "points": [
+      "L'inflation hongroise est de 1,6 % sur un an en septembre, contre 1,3 % en août [1].",
+      "Selon l'analyse de FXStreet, la Hongrie va abaisser sa cible d'inflation à 2,5 % à partir de 2028 [2]."
+    ],
+    "why": [
+      "Une cible d'inflation plus basse, c'est une promesse plus ferme : les prix devront monter moins vite à l'avenir.",
+      "La Hongrie reste hors de la zone euro et garde sa monnaie, le forint. Les hausses de l'énergie y pèsent sur les prix, même si le chiffre reste modeste."
+    ],
+    "forMe": "Si tu voyages à Budapest, les prix y restent stables pour l'instant. Mais la hausse de l'énergie touche aussi les usines automobiles hongroises, qui travaillent pour les marques européennes.",
+    "figures": [
+      {
+        "value": "1,6 %",
+        "label": "l'inflation en Hongrie en septembre 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "2,5 %",
+        "label": "la cible d'inflation prévue à partir de 2028",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Trading Economics",
+        "name": "Trading Economics, « Hungary Inflation Rate »",
+        "url": "https://tradingeconomics.com/hungary/inflation-cpi"
+      },
+      {
+        "short": "FXStreet",
+        "name": "FXStreet, « CEE: Hungary to lower inflation target to 2.5% from 2028 » (23 sept. 2026)",
+        "url": "https://www.fxstreet.com/analysis/cee-hungary-to-lower-inflation-target-to-25-from-2028-202609230552"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-arabie-houthis-aeroports",
+    "date": "2026-10-12",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Riyad",
+        "label": "Arabie saoudite",
+        "coords": [
+          46.72,
+          24.71
+        ]
+      }
+    ],
+    "title": "Arabie saoudite : quatre jours de frappes houthies sur les aéroports clouent des centaines de vols",
+    "summary": "Les rebelles houthis du Yémen visent les aéroports saoudiens, dont celui de Riyad. Le risque pour le pétrole du Golfe fait réagir les marchés.",
+    "points": [
+      "Selon Enterprise (citant Reuters), quatre jours de frappes houthies sur des aéroports saoudiens ont fait trois morts et cloué au sol des centaines de vols [1].",
+      "Les Houthis disent avoir tiré un missile sur l'aéroport international Roi-Khaled de Riyad, un jour après une attaque sur le même aéroport qui avait fait un mort. La coalition affirme avoir intercepté deux missiles au-dessus de la capitale ; des débris ont touché une école maternelle et une clinique [1].",
+      "Fin septembre déjà, le pétrole avait bondi après des attaques revendiquées par les Houthis contre des sites saoudiens [2]. Début octobre, le Brent dépassait 102 dollars le baril [3]."
+    ],
+    "why": [
+      "Les Houthis sont un groupe armé du Yémen, soutenu par l'Iran. Frapper les aéroports d'un pays, c'est viser sa vie économique : voyageurs, fret, image pour les investisseurs.",
+      "L'Arabie saoudite est un des plus gros producteurs de pétrole au monde. Chaque attaque sur ses sites fait craindre pour l'approvisionnement, et les prix réagissent même si la production n'est pas touchée."
+    ],
+    "forMe": "Quand le pétrole monte, l'essence et le gazole montent aussi à la pompe en France, avec quelques semaines de décalage. Si tu prévois un voyage avec escale dans le Golfe, regarde aussi l'état du trafic aérien.",
+    "figures": [
+      {
+        "value": "3",
+        "label": "morts en quatre jours de frappes sur des aéroports saoudiens",
+        "src": 1
+      },
+      {
+        "value": "> 102 $",
+        "label": "le baril de Brent le 5 octobre",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Enterprise",
+        "name": "Enterprise (Égypte), « Four days of Houthi strikes on Saudi airports kill three and ground hundreds of flights » (9 oct. 2026)",
+        "url": "https://enterpriseam.com/menaplus/2026/10/09/four-days-of-houthi-strikes-on-saudi-airports-kill-three-and-ground-hundreds-of-flights/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Oil prices jump after Yemen's Houthis claim attacks on Saudi facilities » (25 sept. 2026)",
+        "url": "https://aljazeera.com/economy/2026/9/25/oil-prices-jump-after-yemens-houthis-claim-attacks-on-saudi-facilities"
+      },
+      {
+        "short": "Gulf News",
+        "name": "Gulf News, « Oil prices split as Brent tops $102 » (5 oct. 2026)",
+        "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-azerbaidjan-banque-mondiale",
+    "date": "2026-10-11",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Bakou",
+        "label": "Azerbaïdjan",
+        "coords": [
+          49.87,
+          40.41
+        ]
+      }
+    ],
+    "title": "Azerbaïdjan : la Banque mondiale ramène sa prévision de croissance à 1,2 %",
+    "summary": "Le pays du Caucase, qui vit du pétrole et du gaz, va croître moins que prévu en 2026. Le déclin des champs pétroliers pèse, et l'État dépense moins pour ses chantiers.",
+    "points": [
+      "Dans sa mise à jour d'octobre, la Banque mondiale prévoit une croissance de 1,2 % en 2026 pour l'Azerbaïdjan, puis 1,8 % en 2027 et 1,9 % en 2028 [1].",
+      "Elle explique ce ralentissement par le déclin structurel du secteur pétrolier et par une activité hors pétrole plus faible qu'attendu, après des coupes dans les dépenses d'investissement de l'État [1].",
+      "C'est une baisse par rapport à avril, où la banque tablait sur 2 % pour 2026 [2]. La banque centrale azerbaïdjanaise, elle, prévoyait 1,1 % en mai [1]."
+    ],
+    "why": [
+      "Un pays qui dépend du pétrole voit ses revenus fondre quand ses puits produisent moins. L'Azerbaïdjan essaie donc de faire grandir les autres secteurs (commerce, construction, services), mais cela prend du temps.",
+      "Le pays est aussi une pièce du puzzle énergétique européen : il envoie du gaz vers l'Europe par gazoduc. Son économie compte donc au-delà du Caucase."
+    ],
+    "forMe": "Ça ne change pas ton quotidien tout de suite. Mais c'est un rappel : le gaz qui chauffe une partie de l'Europe vient de pays dont l'économie est fragile et très dépendante de cette seule ressource.",
+    "figures": [
+      {
+        "value": "1,2 %",
+        "label": "la croissance prévue en 2026 pour l'Azerbaïdjan, selon la Banque mondiale",
+        "src": 1
+      },
+      {
+        "value": "2 %",
+        "label": "la prévision de la même banque en avril",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Trend",
+        "name": "Trend.az, « World Bank forecasts Azerbaijan's GDP to grow in 2027-28 » (6 octobre 2026)",
+        "url": "https://www.trend.az/azerbaijan/4231517.html"
+      },
+      {
+        "short": "Caliber.az",
+        "name": "Caliber.az, « World Bank raises Azerbaijan's growth forecast for 2026-2027 »",
+        "url": "https://caliber.az/en/post/world-bank-raises-azerbaijan-s-growth-forecast-for-2026-2027"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-angola-banque-mondiale",
+    "date": "2026-10-11",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Luanda",
+        "label": "Angola",
+        "coords": [
+          13.23,
+          -8.84
+        ]
+      }
+    ],
+    "title": "Angola : le pétrole cher fait grimper la croissance prévue à 4,5 %",
+    "summary": "La Banque mondiale relève nettement sa prévision pour l'Angola. Le pays exporte du pétrole, donc il profite de la hausse des prix plutôt que d'en souffrir.",
+    "points": [
+      "La Banque mondiale a relevé sa prévision de croissance de l'Angola pour 2026 à 4,5 %, contre 3,1 % en 2025. Elle attend ensuite 3,3 % en 2027 et 3,1 % en 2028 [1].",
+      "Elle met cette hausse sur le compte des exportations de pétrole et de prix du brut élevés [1].",
+      "Le pays est moins exposé que d'autres au choc énergétique lié au conflit au Moyen-Orient, car il vend du pétrole au lieu d'en acheter [1]. La banque attend une inflation en baisse, à 10,3 % cette année [1]."
+    ],
+    "why": [
+      "Quand le pétrole monte, les pays qui en achètent paient plus cher, et ceux qui en vendent encaissent plus. L'Angola est dans le deuxième camp : son budget dépend en grande partie du brut.",
+      "Même avec 4,5 %, une inflation à plus de 10 % reste lourde pour les habitants : les prix montent vite, donc le pouvoir d'achat ne suit pas toujours la croissance."
+    ],
+    "forMe": "Le plein de ta voiture coûte plus cher, mais pour certains pays producteurs, c'est une bonne nouvelle. Le même événement fait des gagnants et des perdants selon que le pays vend ou achète du pétrole.",
+    "figures": [
+      {
+        "value": "4,5 %",
+        "label": "la croissance prévue en Angola en 2026",
+        "src": 1
+      },
+      {
+        "value": "10,3 %",
+        "label": "l'inflation attendue en Angola cette année",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Ver Angola",
+        "name": "Ver Angola, « Economic dynamism prompts World Bank to revise upward forecast for Angola » (octobre 2026)",
+        "url": "https://www.verangola.net/va/en/102026/Economy/50341/Economic-dynamism-prompts-World-Bank-to-revise-upward-forecast-for-Angola.htm"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-mongolie-bad",
+    "date": "2026-10-11",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Oulan-Bator",
+        "label": "Mongolie",
+        "coords": [
+          106.92,
+          47.92
+        ]
+      }
+    ],
+    "title": "Mongolie : la Banque asiatique de développement prévoit 1,3 milliard de dollars d'ici 2027",
+    "summary": "Le patron de la banque est venu à Oulan-Bator. Trois prêts de 455 millions de dollars au total ont été signés pour la santé, l'école et les catastrophes naturelles.",
+    "points": [
+      "Le président de la Banque asiatique de développement (BAD), Masato Kanda, a annoncé une enveloppe prévue de 1,3 milliard de dollars pour la Mongolie d'ici 2027, lors d'une visite début octobre [1].",
+      "Trois accords de prêt ont été signés, pour 455 millions de dollars en tout : 225 millions pour les services de santé des provinces, 130 millions pour l'éducation en période de difficultés économiques, et 100 millions pour mieux faire face aux catastrophes [1].",
+      "Il a aussi rencontré le président mongol et le ministre des Finances, et rendu visite à une famille d'éleveurs à environ 54 kilomètres de la capitale [1]."
+    ],
+    "why": [
+      "La Mongolie est un grand pays peu peuplé, coincé entre la Russie et la Chine. Elle compte sur des partenaires financiers extérieurs pour moderniser ses services publics.",
+      "Les 1,3 milliard sont un plan jusqu'en 2027, pas un virement déjà fait : seuls les 455 millions sont signés pour l'instant."
+    ],
+    "forMe": "Pas d'effet direct sur ton portefeuille. Mais c'est un exemple de la façon dont les banques de développement financent écoles, hôpitaux et prévention des catastrophes dans des pays que les médias évoquent rarement.",
+    "figures": [
+      {
+        "value": "1,3 Md $",
+        "label": "l'enveloppe prévue pour la Mongolie d'ici 2027",
+        "src": 1
+      },
+      {
+        "value": "455 M$",
+        "label": "les trois prêts signés pendant la visite",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "BAD",
+        "name": "Banque asiatique de développement, « ADB President Announces $1.3 Billion Planned Financing for Mongolia » (1er octobre 2026)",
+        "url": "https://www.adb.org/news/adb-president-announces-1-3-billion-planned-financing-mongolia"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-oman-sp-croissance",
+    "date": "2026-10-11",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Mascate",
+        "label": "Oman",
+        "coords": [
+          58.41,
+          23.59
+        ]
+      }
+    ],
+    "title": "Oman : le pays qui exporte sans passer par Ormuz voit sa croissance prévue à 3,5 %",
+    "summary": "L'agence S&P relève fortement sa prévision pour Oman. Ses ports donnent sur la mer d'Arabie, pas sur le détroit bloqué.",
+    "points": [
+      "L'agence S&P Global Ratings a relevé sa prévision de croissance d'Oman pour 2026 à 3,5 %, contre 1,6 % auparavant, et confirmé la note du pays à BBB- avec une perspective stable [1][2].",
+      "Une grande partie des infrastructures d'export de brut, de gaz naturel liquéfié et de produits raffinés d'Oman donne directement sur le golfe d'Oman ou la mer d'Arabie, ce qui réduit sa dépendance au passage par Ormuz [1].",
+      "S&P attend une production moyenne de 1,1 million de barils par jour en 2026. Elle prévient que ses prévisions seraient revues à la baisse si l'Iran intensifiait ses attaques contre les infrastructures omanaises [1][2]."
+    ],
+    "why": [
+      "Le détroit d'Ormuz est le goulet par lequel passe une grande partie du pétrole du Golfe. Quand il est bloqué, les pays qui n'ont pas d'autre sortie perdent leurs revenus.",
+      "Oman a la chance de la géographie. À titre de comparaison, un sondage Reuters de juillet voyait le Koweït et le Qatar, entièrement dépendants d'Ormuz, se contracter de 8,1 % cette année [3]."
+    ],
+    "forMe": "Quand une route maritime se ferme, le pétrole et le gaz coûtent plus cher partout. Les pays qui ont une autre sortie, comme Oman, deviennent des fournisseurs plus précieux pour les acheteurs, dont l'Europe.",
+    "figures": [
+      {
+        "value": "3,5 %",
+        "label": "la croissance prévue d'Oman en 2026, contre 1,6 % avant la révision",
+        "src": 1
+      },
+      {
+        "value": "1,1 M",
+        "label": "barils de pétrole par jour attendus en moyenne en 2026",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "The National",
+        "name": "The National, « Oman's economy to grow 3.5% in 2026 on favourable trade logistics, S&P says » (26 septembre 2026)",
+        "url": "https://www.thenationalnews.com/business/economy/2026/09/26/omans-economy-to-grow-35-in-2026-on-favourable-trade-logistics-sp-says/"
+      },
+      {
+        "short": "Muscat Daily",
+        "name": "Muscat Daily, « S&P affirms Oman rating, lifts growth forecast to 3.5% » (26 septembre 2026)",
+        "url": "https://www.muscatdaily.com/2026/09/26/sp-affirms-oman-rating-lifts-growth-forecast-to-3-5/"
+      },
+      {
+        "short": "Enterprise",
+        "name": "Enterprise, « Oman, KSA stay insulated from Hormuz shutdown as Kuwait, Qatar contract sharply » (22 juillet 2026)",
+        "url": "https://enterpriseam.com/menaplus/2026/07/22/oman-ksa-stay-insulated-from-hormuz-shutdown-as-kuwait-qatar-contract-sharply/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-ouzbekistan-envois-argent",
+    "date": "2026-10-11",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Tachkent",
+        "label": "Ouzbékistan",
+        "coords": [
+          69.24,
+          41.3
+        ]
+      }
+    ],
+    "title": "Ouzbékistan : les migrants ont envoyé 9,3 milliards de dollars en six mois",
+    "summary": "L'argent envoyé par les Ouzbeks qui travaillent à l'étranger pèse lourd dans l'économie du pays. Il vient de plus en plus du Royaume-Uni et de l'Union européenne.",
+    "points": [
+      "Selon la banque centrale, les virements venus de l'étranger vers l'Ouzbékistan ont atteint 9,3 milliards de dollars de janvier à juin 2026, soit 13 % de plus qu'un an plus tôt [1].",
+      "Les envois depuis le Royaume-Uni ont bondi de 62 %, ceux depuis l'Union européenne de 27 % et ceux depuis les États-Unis de 19 % [1].",
+      "Les virements de carte à carte ont progressé de 32 % pour atteindre 4,8 milliards de dollars, soit un peu plus de la moitié du total [2]."
+    ],
+    "why": [
+      "Beaucoup d'Ouzbeks partent travailler à l'étranger et envoient de l'argent à leur famille. Pour le pays, c'est une source de devises très importante, qui fait vivre des millions de foyers.",
+      "Le fait que les envois progressent vite depuis le Royaume-Uni et l'Union européenne montre que les Ouzbeks partent travailler dans un plus grand nombre de pays."
+    ],
+    "forMe": "Si tu envoies ou reçois de l'argent d'un proche à l'étranger, tu fais partie de ce mouvement mondial : ces envois pèsent souvent plus que l'aide officielle au développement dans de nombreux pays.",
+    "figures": [
+      {
+        "value": "9,3 Md $",
+        "label": "les envois vers l'Ouzbékistan de janvier à juin 2026",
+        "src": 1
+      },
+      {
+        "value": "+13 %",
+        "label": "la hausse par rapport au premier semestre 2025",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "dollar"
+    ],
+    "sources": [
+      {
+        "short": "Banque centrale d'Ouzbékistan",
+        "name": "Banque centrale d'Ouzbékistan, communiqué sur les virements transfrontaliers (janvier-juin 2026)",
+        "url": "https://cbu.uz/en/press_center/releases/4359624/"
+      },
+      {
+        "short": "Daryo",
+        "name": "Daryo, « Remittances to Uzbekistan rise 13% to $9.3bn in 1H26 » (15 août 2026)",
+        "url": "https://daryo.uz/en/2026/08/15/remittances-to-uzbekistan-rise-13-to-93bn-in-1h26/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-uruguay-recul-pib",
+    "date": "2026-10-11",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Montevideo",
+        "label": "Uruguay",
+        "coords": [
+          -56.19,
+          -34.9
+        ]
+      }
+    ],
+    "title": "Uruguay : l'économie recule de 0,8 % au deuxième trimestre, la sécheresse en cause",
+    "summary": "Le petit pays d'Amérique du Sud, souvent cité pour sa stabilité, voit son activité reculer. L'agriculture a souffert du manque d'eau.",
+    "points": [
+      "La banque centrale uruguayenne indique que l'activité a baissé de 0,8 % au deuxième trimestre 2026 par rapport au trimestre précédent, et de 0,5 % sur un an [1].",
+      "La forte baisse de l'agriculture est attribuée à la sécheresse qui a touché les cultures d'été lors de la dernière récolte [1].",
+      "Le ministère de l'Économie garde une prévision de croissance de 1,6 % pour 2026, déjà réduite depuis 2,2 %, tandis que la médiane des analystes privés tombe à 1 % [1][2]."
+    ],
+    "why": [
+      "Quand un pays vit beaucoup de ses exportations agricoles, la météo pèse directement sur son économie : moins de récolte, c'est moins de ventes et moins de croissance.",
+      "L'écart entre la prévision du gouvernement et celle des analystes montre qu'il reste de l'incertitude sur la suite de l'année."
+    ],
+    "forMe": "L'Uruguay exporte de la viande, du soja et des produits laitiers. Une mauvaise récolte là-bas peut un jour se voir sur certains prix à l'étranger, même si l'effet est modeste pour toi.",
+    "figures": [
+      {
+        "value": "−0,8 %",
+        "label": "l'activité uruguayenne au 2e trimestre 2026, sur trois mois",
+        "src": 1
+      },
+      {
+        "value": "1,6 %",
+        "label": "la prévision de croissance 2026 du gouvernement, réduite depuis 2,2 %",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "La República",
+        "name": "La República, « Economía uruguaya cayó 0,8 % en el segundo trimestre del año y complica la meta de crecimiento »",
+        "url": "https://www.larepublica.co/globoeconomia/economia-uruguaya-cayo-0-8-en-el-segundo-trimestre-del-ano-y-complica-la-meta-de-crecimiento-4482864"
+      },
+      {
+        "short": "La República (2)",
+        "name": "La República, « Nuevos datos sugieren que la economía uruguaya se frenó en el segundo trimestre »",
+        "url": "https://www.larepublica.co/globoeconomia/nuevos-datos-sugieren-que-la-economia-uruguaya-se-freno-en-el-segundo-trimestre-4473702"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-honduras-inflation-taux",
+    "date": "2026-10-11",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Tegucigalpa",
+        "label": "Honduras",
+        "coords": [
+          -87.2,
+          14.07
+        ]
+      }
+    ],
+    "title": "Honduras : inflation à 6,2 %, la banque centrale relève son taux",
+    "summary": "Honduras a l'inflation la plus élevée d'Amérique centrale. Sa banque centrale a augmenté son taux directeur de 0,25 point.",
+    "points": [
+      "En août 2026, l'inflation du Honduras a atteint 6,20 % sur un an, la plus haute de la région, devant la République dominicaine (5,13 %) et le Guatemala (3,37 %) [1]. Le Costa Rica est le cas inverse : ses prix ont baissé de 0,17 % sur un an [1].",
+      "Le 18 septembre, la banque centrale du Honduras a relevé son taux directeur de 5,75 % à 6 %, avec effet le 21 septembre. Son objectif d'inflation est de 4 % [2].",
+      "Elle cite la hausse du pétrole et des prix alimentaires dans le monde, aggravée par les conflits et les droits de douane. Elle présente la mesure comme préventive [2]."
+    ],
+    "why": [
+      "Un taux directeur plus haut rend le crédit plus cher : les prêts aux ménages et aux entreprises coûtent plus, ce qui freine la hausse des prix mais aussi l'activité.",
+      "Le contraste avec le Costa Rica, voisin où les prix baissent, montre que l'inflation n'est pas la même partout, même dans une petite région."
+    ],
+    "forMe": "Le pétrole cher ne touche pas que l'Europe : il pousse les prix vers le haut dans des pays aux revenus bien plus modestes, où l'essence et la nourriture pèsent plus lourd dans le budget.",
+    "figures": [
+      {
+        "value": "6,20 %",
+        "label": "l'inflation du Honduras en août 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "6 %",
+        "label": "le nouveau taux directeur, contre 5,75 % avant",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "elDinero",
+        "name": "elDinero, « Honduras y República Dominicana a la cabeza por inflación en agosto 2026 »",
+        "url": "https://eldinero.com.do/381726/honduras-y-republica-dominica-a-la-cabeza-por-inflacion-en-agosto-2026/"
+      },
+      {
+        "short": "El Heraldo",
+        "name": "El Heraldo, « BCH sube Tasa de Política Monetaria de 5.75% a 6% para bajar inflación »",
+        "url": "https://elheraldo.hn/economia/bch-sube-tasa-de-politica-monetaria-de-575-a-6-para-bajar-inflacion-AG32075995"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-11-pologne-croatie-inflation",
+    "date": "2026-10-11",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Varsovie",
+        "label": "Pologne",
+        "coords": [
+          21.01,
+          52.23
+        ]
+      },
+      {
+        "name": "Zagreb",
+        "label": "Croatie",
+        "coords": [
+          15.98,
+          45.81
+        ]
+      }
+    ],
+    "title": "Pologne et Croatie : l'inflation remonte en septembre, tirée par les carburants",
+    "summary": "En Pologne, les prix grimpent de 4,0 % sur un an. En Croatie, l'estimation rapide donne 4,7 %. Dans les deux cas, l'énergie est en cause.",
+    "points": [
+      "En Pologne, l'inflation est passée à 4,0 % sur un an en septembre. Les carburants pour le transport privé ont augmenté de 36,1 %, et l'électricité, le gaz et les autres combustibles de 4,9 % [1].",
+      "En Croatie, l'estimation rapide de l'inflation de septembre est de 4,7 % sur un an [1]. Elle était de 4,2 % en août, et la hausse vient surtout de l'énergie, en hausse de 20,5 % [2].",
+      "Le plus haut récent croate remonte à mai, avec 5,2 % [2]. Attention : l'estimation rapide peut être corrigée quand le chiffre définitif sort."
+    ],
+    "why": [
+      "L'inflation est la hausse générale des prix. Quand le carburant devient beaucoup plus cher, tout ce qui se transporte augmente aussi, et la hausse s'étend peu à peu au reste.",
+      "La Croatie, membre de la zone euro, et la Pologne, qui garde sa monnaie, ont des banques centrales différentes. Mais elles subissent le même choc venu de l'énergie."
+    ],
+    "forMe": "Si tu pars en vacances en Croatie ou en Pologne, les prix locaux sont plus élevés qu'il y a un an. Le chiffre rappelle aussi que le carburant cher touche toute l'Europe, pas seulement la France.",
+    "figures": [
+      {
+        "value": "4,0 %",
+        "label": "l'inflation en Pologne en septembre 2026, sur un an",
+        "src": 1
+      },
+      {
+        "value": "4,7 %",
+        "label": "l'estimation rapide de l'inflation en Croatie, en septembre",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "FXStreet",
+        "name": "FXStreet, « Energy prices push inflation higher » (5 octobre 2026)",
+        "url": "https://www.fxstreet.com/analysis/energy-prices-push-inflation-higher-202610050553"
+      },
+      {
+        "short": "RTTNews",
+        "name": "RTTNews, inflation en Croatie, estimation rapide de septembre 2026",
+        "url": "https://www.rttnews.com/story.aspx?Id=3696106"
+      }
+    ]
+  },
+  {
     "id": "2026-10-09-thailande-inflation",
     "date": "2026-10-09",
     "region": "Asie",

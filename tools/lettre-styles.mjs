@@ -30,6 +30,8 @@ body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 .page { width: 210mm; min-height: 297mm; display: flex; flex-direction: column; }
 `;
 
+import { parseFig, topicOf, icon, hasShape, silhouette, figBlock, canBars, bars, picto, planIllustrations, illustration, regionStrip, sourcesOf } from "./lettre-illus.mjs";
+
 const doc = (css, body) => `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>${FONTS}${css}</style></head><body>${body}</body></html>`;
 const srcList = (n) => esc((n.sources || []).map((s) => s.short || s.name).join(", "));
 const kicker = (d, n) => `${esc(d.THEMES[n.theme] || "")}${n.region ? " · " + esc(n.region) : ""}`;
@@ -71,39 +73,76 @@ function worldMap(d, wmm, { land = "#d9d4c7", bg = "transparent", dot = "#c8402a
 }
 
 // ---------------------------------------------------------------------------
-// 1. Le Journal : une de quotidien, colonnes et filets, noir sur blanc.
+// Illustrations partagées par le Journal et sa version sombre (voir lettre-illus.mjs).
+// Panneau de l'actu principale : silhouette du pays (ou pictogramme) + ses chiffres.
+function leadPanel(d, n, wmm, hmm, P) {
+  const left = hasShape(d, n) ? `<div style="flex:none;width:${wmm * 0.36}mm;height:${hmm}mm;background:${P.panel};border-radius:${P.radius}px;display:flex;align-items:center;justify-content:center">${silhouette(d, n, wmm * 0.3, hmm - 8, P)}</div>`
+    : `<div style="flex:none;width:${wmm * 0.36}mm;height:${hmm}mm;background:${P.accents[0]};border-radius:${P.radius}px;display:flex;align-items:center;justify-content:center">${icon(topicOf(n)[0], `${hmm * 0.45}mm`, P.onColor, 1.4)}</div>`;
+  const right = canBars(n) ? bars(n, "100%", hmm, P) : n.figures && n.figures[0] ? figBlock(n.figures[0], "100%", hmm, P, P.accents[1]) : picto(n, "100%", hmm, P, P.accents[1]);
+  return `<div style="display:flex;gap:3mm;width:100%"><div style="flex:none">${left}</div><div style="flex:1;min-width:0">${right}</div></div>`;
+}
+// Le chiffre du jour : le plus frappant des autres actus (un signe + ou −, sinon le plus grand).
+function dayFigure(d) {
+  const all = d.items.slice(1).flatMap((n) => (n.figures || []).map((f) => ({ f, n, p: parseFig(f.value) })));
+  const signed = all.find((o) => /^[+\-−]/.test(String(o.f.value).trim()));
+  const best = signed || all.filter((o) => o.p).sort((a, b) => Math.abs(b.p.v) - Math.abs(a.p.v))[0] || all[0];
+  if (!best) return d.fig ? { value: d.fig.value, label: d.fig.label, src: d.figSrc && d.figSrc.short } : null;
+  const s = best.f.src && best.n.sources[best.f.src - 1];
+  return { value: best.f.value, label: best.f.label, src: s && (s.short || s.name), place: (best.n.geo && best.n.geo[0] && (best.n.geo[0].label || best.n.geo[0].name)) || "" };
+}
+// Les derniers chiffres, sans répéter ce que dit déjà le point conflits.
+const latestRows = (d) => d.latest.filter((x) => !(d.C && /crisiswatch/i.test(x.source.short || ""))).slice(0, 5);
+// « Et toi, dans tout ça ? » : la première phrase de ce que l'actu change pour le lecteur.
+// (deux phrases si la première est trop courte pour dire quelque chose).
+const firstWhy = (d, n) => {
+  const parts = d.strip(n.forMe || (n.why || [])[0] || "").split(/(?<=[.!?])\s/);
+  return parts[0] && parts[0].length < 70 && parts[1] ? parts[0] + " " + parts[1] : parts[0] || "";
+};
+
+// ---------------------------------------------------------------------------
+// 1. Le Journal : une de quotidien sur papier journal, colonnes et filets, illustrations variées.
 function journal(d) {
   const [lead, ...rest] = d.items;
+  const P = { ink: "#161412", muted: "#6f685d", panel: "#ebe4d4", shape: "#2a2622", radius: 0, onColor: "#fffaf0",
+    accents: ["#b5452c", "#2f6670", "#c79a3a", "#4f5a8a", "#6b7d4f"], bar: ["#b5452c", "#2f6670", "#c79a3a"], neg: "#8c2f1f",
+    sans: "'Franklin', sans-serif", bigFont: "700 28pt 'Serif4', serif", placeFont: "700 11pt/1.15 'Serif4', serif" };
+  const plan = planIllustrations(d, rest);
+  const c = rest.length <= 4 ? Math.max(1, rest.length) : 3;
+  const df = dayFigure(d);
   return doc(`
-body { background: #fff; color: #121212; font-family: "Serif4", serif; }
-.page { padding: 10mm 12mm 9mm; }
-.top { display: flex; justify-content: space-between; font: 600 7.5pt "Franklin", sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #333; }
+html, body { background: #f7f3ea; } body { color: ${P.ink}; font-family: "Serif4", serif; }
+.page { padding: 10mm 12mm 9mm; background: #f7f3ea; }
+.top { display: flex; justify-content: space-between; font: 600 7.5pt "Franklin", sans-serif; letter-spacing: .06em; text-transform: uppercase; color: #3d3831; }
 .mast { text-align: center; font: 900 50pt/1 "Playfair", serif; letter-spacing: -.01em; margin: 3mm 0 1.5mm; }
-.tag { text-align: center; font: italic 400 10pt "Serif4", serif; color: #444; }
-.rule2 { border-top: 2.5px solid #121212; border-bottom: .6px solid #121212; height: 3px; margin: 3mm 0 1.6mm; }
-.bar { display: flex; justify-content: space-between; font: 600 7.5pt "Franklin", sans-serif; color: #333; padding-bottom: 1.6mm; border-bottom: .6px solid #121212; }
-.leadrow { display: grid; grid-template-columns: 2fr 1fr; gap: 0; margin-top: 4mm; border-bottom: .6px solid #121212; padding-bottom: 4mm; }
-.lead { padding-right: 5mm; border-right: .6px solid #bbb; }
-.k { font: 700 7pt "Franklin", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #6b6b6b; }
-.lead h1 { font: 700 27pt/1.07 "Serif4", serif; margin: 1.5mm 0 2.5mm; letter-spacing: -.01em; }
-.lead p { font-size: 10.5pt; line-height: 1.45; margin: 0; }
-.cap { font: italic 400 7pt "Serif4", serif; color: #777; margin: 1.2mm 0 2.2mm; }
-.src { font: 400 6.8pt "Franklin", sans-serif; color: #7a7a7a; margin-top: 1.5mm; }
-.side { padding-left: 5mm; }
-.big { font: 700 34pt/1 "Serif4", serif; margin: 2mm 0 1.5mm; }
+.tag { text-align: center; font: italic 400 10pt "Serif4", serif; color: #4a443b; }
+.rule2 { border-top: 2.5px solid ${P.ink}; border-bottom: .6px solid ${P.ink}; height: 3px; margin: 3mm 0 1.6mm; }
+.bar { display: flex; justify-content: space-between; font: 600 7.5pt "Franklin", sans-serif; color: #3d3831; padding-bottom: 1.6mm; border-bottom: .6px solid ${P.ink}; }
+.leadrow { display: grid; grid-template-columns: 124mm 1fr; margin-top: 4mm; border-bottom: .6px solid ${P.ink}; padding-bottom: 4mm; }
+.lead { padding-right: 5mm; border-right: .6px solid #c9bfa9; }
+.k { font: 700 7pt "Franklin", sans-serif; letter-spacing: .09em; text-transform: uppercase; color: ${P.muted}; }
+.lead h1 { font: 700 26pt/1.07 "Serif4", serif; margin: 1.5mm 0 3mm; letter-spacing: -.01em; }
+.lead p { font-size: 10.5pt; line-height: 1.45; margin: 3mm 0 0; }
+.src { font: 400 6.8pt "Franklin", sans-serif; color: #857c6e; margin-top: 1.5mm; }
+.side { padding-left: 5mm; display: flex; flex-direction: column; gap: 5mm; }
+.big { font: 700 34pt/1 "Serif4", serif; margin: 2mm 0 1.5mm; white-space: nowrap; color: #b5452c; }
 .side p { font-size: 9.5pt; line-height: 1.4; margin: 0; }
-.cols { display: grid; margin-top: 4mm; }
-.story { padding: 0 4mm 3.5mm; border-left: .6px solid #bbb; }
+.quote { font: italic 600 11pt/1.35 "Serif4", serif; border-left: 3px solid #b5452c; padding-left: 3mm; margin: 1.5mm 0 0; }
+.cols { display: grid; grid-template-columns: repeat(${c}, 1fr); margin-top: 4mm; row-gap: 3mm; }
+.story { padding: 0 4mm 2mm; border-left: .6px solid #c9bfa9; }
 .story.first { border-left: 0; padding-left: 0; }
 .story.last { padding-right: 0; }
-.story h2 { font: 700 13pt/1.15 "Serif4", serif; margin: 1.2mm 0 1.5mm; }
-.story p { font-size: 9.2pt; line-height: 1.42; margin: 0; }
-.band { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6mm; margin-top: auto; padding-top: 3.5mm; border-top: 2px solid #121212; }
+.story h2 { font: 700 12.5pt/1.15 "Serif4", serif; margin: 1.2mm 0 1.5mm; }
+.story p { font-size: 9.1pt; line-height: 1.42; margin: 0; }
+.no { font: 800 7pt "Franklin", sans-serif; color: #b5452c; margin-right: 1.2mm; }
+.band { display: grid; grid-template-columns: 1fr 1.4fr; gap: 6mm; margin-top: auto; padding-top: 3.5mm; border-top: 2px solid ${P.ink}; }
 .band h3 { font: 800 7.5pt "Franklin", sans-serif; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 2mm; }
 .band p { font-size: 9pt; line-height: 1.4; margin: 0; }
+.counts { display: flex; gap: 4mm; margin-bottom: 2mm; }
+.counts div { font: 400 7pt "Franklin", sans-serif; color: ${P.muted}; }
+.counts b { display: block; font: 700 18pt/1 "Serif4", serif; color: ${P.ink}; }
 table { width: 100%; border-collapse: collapse; font: 400 7.8pt "Franklin", sans-serif; }
-td { padding: .9mm 0; border-bottom: .5px solid #ddd; } td.v { text-align: right; font-weight: 700; }
-.foot { margin-top: 3mm; padding-top: 2mm; border-top: .6px solid #121212; display: flex; justify-content: space-between; font: 400 7pt "Franklin", sans-serif; color: #555; }
+td { padding: 1mm 0; border-bottom: .5px solid #d8cfbd; vertical-align: top; } td.v { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 3mm; }
+.foot { margin-top: 3mm; padding-top: 2mm; border-top: .6px solid ${P.ink}; display: flex; justify-content: space-between; font: 400 7pt "Franklin", sans-serif; color: #5c554a; }
 `, `<div class="page" id="page">
 <div class="top"><span>${esc(d.dateCap)}</span><span>Édition du matin</span></div>
 <div class="mast">Géoconomic</div>
@@ -111,60 +150,68 @@ td { padding: .9mm 0; border-bottom: .5px solid #ddd; } td.v { text-align: right
 <div class="rule2"></div>
 <div class="bar"><span>${d.items.length} actus · lecture 5 min</span><span>Chaque fait est sourcé</span></div>
 <div class="leadrow">
-  <div class="lead"><div class="k">${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${sat(lead, 118, 50, { span: 34, num: 1 })}<div class="cap">${esc(placeOf(lead))} vu par satellite. Image : NASA, Blue Marble</div><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${srcList(lead)}</div></div>
-  <div class="side">${d.fig ? `<div class="k">Le chiffre du jour</div><div class="big">${esc(d.fig.value)}</div><p>${esc(d.fig.label)}</p><div class="src">${d.figSrc ? "Source : " + esc(d.figSrc.short) : ""}</div>` : ""}
-    <div class="k" style="margin-top:6mm">Les lieux du jour</div><div style="margin-top:2mm">${worldMap(d, 56, { land: "#dcd7cb", dot: "#121212" })}</div><div class="src">Les numéros renvoient aux actus.</div></div>
+  <div class="lead"><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1>${leadPanel(d, lead, 119, 40, P)}<p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div></div>
+  <div class="side">
+    ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="big">${esc(df.value)}</div><p>${esc(df.label)}</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
+    ${firstWhy(d, lead) ? `<div><div class="k">Et toi, dans tout ça ?</div><p class="quote">${esc(firstWhy(d, lead))}</p></div>` : ""}
+    <div><div class="k" style="margin-bottom:2mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div>
+  </div>
 </div>
-<div class="cols" style="grid-template-columns: repeat(${rest.length <= 4 ? Math.max(1, rest.length) : 3}, 1fr)">${rest.map((n, i, a) => { const c = a.length <= 4 ? a.length : 3; const cw = (186 - (c - 1) * 8) / c - 1; return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${sat(n, cw, 22, { span: 40, num: i + 2 })}<div class="k" style="margin-top:2mm">${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${srcList(n)}</div></div>`; }).join("")}</div>
+<div class="cols">${rest.map((n, i) => `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}">${illustration(plan[i], d, n, "100%", 21, P, i + 1)}<div class="k" style="margin-top:2.2mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h2>${esc(n.title)}</h2><p>${esc(d.strip(n.summary))}</p><div class="src">${esc(sourcesOf(n))}</div></div>`).join("")}</div>
 <div class="band">
-  ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><p><b>${d.C.barometre.counts.worse}</b> situations s'aggravent, <b>${d.C.barometre.counts.better}</b> s'améliorent, <b>${d.C.barometre.counts.alerts}</b> alertes : ${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
-  <div><h3>Les derniers chiffres</h3><table>${d.latest.slice(0, 6).map((x) => `<tr><td>${esc(x.label)} <span style="color:#888">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
+  ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><div class="counts"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
+  <div><h3>Les derniers chiffres</h3><table>${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
 </div>
 <div class="foot"><span>Toutes les actus, expliquées et sourcées, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
 
 // ---------------------------------------------------------------------------
-// 2. Keynote : fond noir, très grands titres, dégradés, cartes arrondies.
+// 2. Keynote : la version sombre, très grands titres, cartes arrondies, illustrations variées.
 function keynote(d) {
   const [lead, ...rest] = d.items;
+  const P = { ink: "#f5f5f7", muted: "#98989d", panel: "#2c2c2e", shape: "#a78bfa", radius: 12, onColor: "#fff",
+    accents: ["#5e5ce6", "#30b0c7", "#ff6b9a", "#ff9f0a", "#34c759"], bar: ["#5ac8fa", "#a78bfa", "#ff6b9a"], neg: "#ff453a",
+    sans: "'Inter', sans-serif", bigFont: "800 28pt 'Inter', sans-serif", placeFont: "700 11pt/1.15 'Inter', sans-serif" };
+  const plan = planIllustrations(d, rest);
+  const df = dayFigure(d);
   return doc(`
 html, body { background: #000; } body { color: #f5f5f7; font-family: "Inter", sans-serif; }
 .page { padding: 13mm 13mm 10mm; background: #000; }
 .top { display: flex; justify-content: space-between; font: 600 8.5pt "Inter"; color: #86868b; }
 .top b { color: #f5f5f7; font-weight: 700; }
 h1 { font: 800 46pt/1.02 "Inter"; letter-spacing: -.035em; margin: 6mm 0 0; }
-.grad { background: linear-gradient(90deg, #5ac8fa, #a78bfa 55%, #ff6b9a); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { margin-top: 4mm; font: 400 12pt/1.45 "Inter"; color: #a1a1a6; max-width: 150mm; }
-.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 7mm; margin-top: 6mm; align-items: end; }
+.hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 7mm; margin-top: 5mm; align-items: end; }
 .k { font: 600 8pt "Inter"; color: #86868b; letter-spacing: .02em; }
+.no { color: #a78bfa; font-weight: 800; margin-right: 1.5mm; }
 .hero h2 { font: 700 21pt/1.12 "Inter"; letter-spacing: -.02em; margin: 2mm 0; }
 .hero p { font: 400 10pt/1.5 "Inter"; color: #a1a1a6; margin: 0; }
-.stat { font: 800 58pt/1 "Inter"; letter-spacing: -.04em; }
+.stat { font: 800 52pt/1 "Inter"; letter-spacing: -.04em; white-space: nowrap; }
 .statl { font: 500 9.5pt/1.4 "Inter"; color: #a1a1a6; margin-top: 2mm; }
 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-top: 7mm; }
 .card { background: #1c1c1e; border-radius: 16px; padding: 5mm; }
 .card h3 { font: 700 12pt/1.2 "Inter"; letter-spacing: -.01em; margin: 1.5mm 0 1.5mm; }
 .card p { font: 400 8.6pt/1.45 "Inter"; color: #a1a1a6; margin: 0; }
-.mapnums { display: grid; grid-template-columns: 104mm 1fr; gap: 8mm; margin-top: auto; padding-top: 7mm; align-items: end; }
+.bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 8mm; margin-top: 8mm; align-items: end; }
 .nums { display: grid; grid-template-columns: 1fr; gap: 3mm; }
 .num { border-top: 1px solid #333; padding-top: 3mm; }
-.num b { display: block; font: 800 22pt/1 "Inter"; letter-spacing: -.03em; }
+.num b { display: block; font: 800 20pt/1 "Inter"; letter-spacing: -.03em; white-space: nowrap; }
 .num span { display: block; font: 400 8pt/1.35 "Inter"; color: #86868b; margin-top: 1.5mm; }
 .src { font: 400 6.8pt "Inter"; color: #6e6e73; margin-top: 2mm; }
-.foot { margin-top: 6mm; font: 400 7pt "Inter"; color: #6e6e73; display: flex; justify-content: space-between; }
+.foot { margin-top: auto; padding-top: 6mm; font: 400 7pt "Inter"; color: #6e6e73; display: flex; justify-content: space-between; }
 `, `<div class="page" id="page">
 <div class="top"><span><b>Géoconomic</b> · La lettre du matin</span><span>${esc(d.dateCap)}</span></div>
 <h1>Le monde.<br><svg width="150mm" height="20mm" viewBox="0 0 567 76" style="display:block;margin-top:-1mm"><defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#5ac8fa"/><stop offset=".55" stop-color="#a78bfa"/><stop offset="1" stop-color="#ff6b9a"/></linearGradient></defs><text x="0" y="62" fill="url(#g)" style="font: 800 66.5px Inter; letter-spacing: -2.3px">Ce matin.</text></svg></h1>
 <div class="lede">${d.items.length} actus qui comptent, expliquées simplement. Chaque fait est sourcé.</div>
-<div style="margin-top:7mm">${sat(lead, 184, 50, { span: 30, radius: 18, num: 1, pinColor: "#a78bfa" })}</div>
+<div style="margin-top:6mm">${leadPanel(d, lead, 184, 42, P)}</div>
 <div class="hero">
-  <div><div class="k">${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${srcList(lead)}</div></div>
-  ${d.fig ? `<div><div class="stat" style="color:#a78bfa">${esc(d.fig.value)}</div><div class="statl">${esc(d.fig.label)}</div><div class="src">${d.figSrc ? "Source : " + esc(d.figSrc.short) : ""}</div></div>` : "<div></div>"}
+  <div><div class="k"><span class="no">1</span>${kicker(d, lead)}</div><h2>${esc(lead.title)}</h2><p>${esc(d.strip(lead.summary))}</p><div class="src">Sources : ${esc(sourcesOf(lead))}</div></div>
+  ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="stat" style="color:#ff6b9a">${esc(df.value)}</div><div class="statl">${esc(df.label)}</div>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : "<div></div>"}
 </div>
-<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${sat(n, 80, 18, { span: 40, radius: 10, num: i + 2, pinColor: "#a78bfa" })}<div class="k" style="margin-top:3mm">${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
-<div class="mapnums"><div><div class="k" style="margin-bottom:2mm">Le monde, ce matin</div>${worldMap(d, 104, { land: "#2c2c2e", dot: "#a78bfa", glow: true })}</div><div class="nums">${d.latest.filter((x, i) => [0, 3, 5].includes(i)).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
-<div class="foot"><span>Toutes les actus dans l'application Géoconomic. Images : NASA.</span><span>${esc(d.day)}</span></div>
+<div class="grid">${rest.slice(0, 6).map((n, i) => `<div class="card">${illustration(plan[i], d, n, "100%", 24, P, i + 1)}<div class="k" style="margin-top:3mm"><span class="no">${i + 2}</span>${kicker(d, n)}</div><h3>${esc(n.title)}</h3><p>${esc(d.strip(n.summary))}</p></div>`).join("")}</div>
+<div class="bottom"><div><div class="k" style="margin-bottom:3mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", P)}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b style="color:${["#5ac8fa", "#a78bfa", "#ff6b9a"][i]}">${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
+<div class="foot"><span>Toutes les actus dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
 

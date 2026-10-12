@@ -2,6 +2,36 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-12",
+    "file": "lettres/2026-10-12.pdf",
+    "titles": [
+      "Ouzbékistan : l'inflation ralentit à 6,4 %, la banque centrale garde son taux à 14 %",
+      "Mongolie : taux maintenu à 12,5 % face à une inflation à plus de 12 %",
+      "Ouganda : le shilling tombe à un plus bas historique, au-dessus de 4 000 pour un dollar"
+    ],
+    "fileDark": "lettres/2026-10-12-sombre.pdf"
+  },
+  {
+    "date": "2026-10-11",
+    "file": "lettres/2026-10-11.pdf",
+    "titles": [
+      "Azerbaïdjan : la Banque mondiale ramène sa prévision de croissance à 1,2 %",
+      "Angola : le pétrole cher fait grimper la croissance prévue à 4,5 %",
+      "Mongolie : la Banque asiatique de développement prévoit 1,3 milliard de dollars d'ici 2027"
+    ],
+    "fileDark": "lettres/2026-10-11-sombre.pdf"
+  },
+  {
+    "date": "2026-10-10",
+    "file": "lettres/2026-10-10.pdf",
+    "titles": [
+      "Ghana : l'inflation remonte à 5,2 %, mais reste loin de son niveau de l'an dernier",
+      "Jordanie : la guerre en Iran vide les hôtels de Pétra et alourdit la facture d'énergie",
+      "Pologne : l'inflation grimpe à 4 % et la banque centrale hésite à relever ses taux"
+    ],
+    "fileDark": "lettres/2026-10-10-sombre.pdf"
+  },
+  {
     "date": "2026-10-09",
     "file": "lettres/2026-10-09.pdf",
     "titles": [

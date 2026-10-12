@@ -26,7 +26,7 @@ try {
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js", "data/world.js"]) {
+for (const f of ["data/news.js", "data/indicators.js", "data/conflits.js", "data/world.js", "data/iso2.js"]) {
   if (fs.existsSync(f)) vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const G = ctx.window.GEOCO;
@@ -55,7 +55,8 @@ const C = G.conflits;
 const latest = (G.indicators && G.indicators.latest) || [];
 
 const dateCap = longDate.charAt(0).toUpperCase() + longDate.slice(1);
-const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip, world: ctx.window.GEOCO_WORLD };
+const data = { day, dateCap, items, fig, figSrc, C, latest, THEMES, strip, world: ctx.window.GEOCO_WORLD,
+  names: (G.indicators && G.indicators.names) || {}, iso2: ctx.window.GEOCO_ISO2 || {} };
 const classicHtml = `<!doctype html><html lang="fr"><head><meta charset="utf-8"><style>
 @page { size: A4; margin: 0; }
 * { box-sizing: border-box; }
@@ -124,11 +125,19 @@ async function render(st, out) {
   await page.evaluate(() => document.fonts.ready);
   fs.unlinkSync(tmp);
   // Tout doit tenir sur une page : si ça déborde, on réduit légèrement l'ensemble.
+  // On élargit la page d'autant qu'on la réduit : elle garde toute la largeur de la feuille
+  // (sinon une bande blanche apparaît à droite). La hauteur change avec la largeur : on ajuste en quelques passes.
   const z = await page.evaluate((max) => {
     const el = document.getElementById("page");
-    el.style.minHeight = "0";
-    const natural = el.getBoundingClientRect().height;
-    const k = natural > max ? Math.floor((max / natural) * 100) / 100 : 1;
+    let k = 1;
+    for (let pass = 0; pass < 6; pass++) {
+      el.style.zoom = 1;
+      el.style.width = (210 / k) + "mm";
+      el.style.minHeight = "0";
+      const natural = el.getBoundingClientRect().height * k;
+      if (natural <= max + 0.5) break;
+      k = Math.floor(k * (max / natural) * 1000) / 1000;
+    }
     el.style.zoom = k;
     el.style.minHeight = (297 / k) + "mm"; // le pied de page reste en bas de la feuille
     return k;
@@ -149,10 +158,14 @@ if (!opt("style")) await render("keynote", `lettres/${day}-sombre.pdf`);
 await browser.close();
 
 // Liste des lettres (la plus récente en premier).
+// Titres déjà connus (gardés quand les actus d'un jour ne sont plus dans data/news.js).
+const known = {};
+try { const c = { window: {} }; vm.createContext(c); vm.runInContext(fs.readFileSync("data/lettres.js", "utf8"), c); (c.window.GEOCO.lettres || []).forEach((l) => { known[l.date] = l.titles; }); } catch (e) {}
 const list = fs.readdirSync("lettres").filter((f) => /^\d{4}-\d{2}-\d{2}\.pdf$/.test(f)).sort().reverse();
 const entries = list.map((f) => {
   const d = f.slice(0, 10);
-  const titles = news.filter((n) => n.date === d).slice(0, 3).map((n) => n.title);
+  const fresh = news.filter((n) => n.date === d).slice(0, 3).map((n) => n.title);
+  const titles = fresh.length ? fresh : known[d] || [];
   const dark = `lettres/${d}-sombre.pdf`;
   return Object.assign({ date: d, file: `lettres/${f}`, titles }, fs.existsSync(dark) ? { fileDark: dark } : {});
 });
