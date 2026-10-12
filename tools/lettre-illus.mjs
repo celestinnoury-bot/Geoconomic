@@ -115,7 +115,8 @@ export function figBlock(fig, wmm, hmm, P, color) {
 // Barres comparant les chiffres de l'actu (mêmes unités).
 export function canBars(n) {
   const f = (n.figures || []).map((x) => ({ x, p: parseFig(x.value) })).filter((o) => o.p);
-  return f.length >= 2 && f.every((o) => o.p.unit === f[0].p.unit) ? f.slice(0, 3) : null;
+  // Seulement des chiffres comparables : même unité, et une vraie unité (%, €, $), pas une année ni un compte.
+  return f.length >= 2 && f[0].p.unit && f.every((o) => o.p.unit === f[0].p.unit) ? f.slice(0, 3) : null;
 }
 const short = (s, k = 46) => { s = String(s).replace(/\s*\(.*?\)\s*/g, " ").trim(); return s.length > k ? s.slice(0, k - 1).replace(/\s+\S*$/, "") + "…" : s; };
 export function bars(n, wmm, hmm, P) {

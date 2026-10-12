@@ -15,6 +15,427 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-12-ormuz-navette-petroliere",
+    "date": "2026-10-12",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Fujaïrah",
+        "label": "Émirats arabes unis",
+        "coords": [
+          56.34,
+          25.12
+        ]
+      },
+      {
+        "name": "Détroit d'Ormuz",
+        "label": "Iran",
+        "coords": [
+          56.25,
+          26.57
+        ]
+      }
+    ],
+    "title": "Ormuz : l'Iran menace la « navette » secrète qui fait sortir le pétrole du Golfe",
+    "summary": "Pour contourner le détroit d'Ormuz bloqué, les Émirats font passer leur pétrole sur de petits pétroliers qui font l'aller-retour. Téhéran annonce qu'il en fait désormais une cible.",
+    "points": [
+      "Dimanche soir, le responsable iranien Mohsen Rezaï a déclaré que la « navette » pétrolière organisée par les États-Unis et les Émirats arabes unis à travers le détroit d'Ormuz était désormais une cible explicite de l'Iran. Il affirme que l'Iran frappe déjà cinq ou six de ces navires chaque nuit depuis des semaines, ce qui n'a pas été vérifié de façon indépendante [1].",
+      "La veille, les attaques autour du détroit avaient repris de plus belle, alors que la médiation pour arrêter la guerre contre l'Iran est bloquée ; l'armée américaine a diffusé une vidéo d'un avion de chasse bombardant un cargo sous pavillon panaméen dans le golfe d'Oman pour faire respecter son blocus des ports iraniens [2].",
+      "Le système : depuis avril, le groupe pétrolier émirati ADNOC utilise des pétroliers « navettes » qui emportent le brut jusqu'au golfe d'Oman, où il est transféré sur de gros tankers ; environ 2,5 millions de barils par jour devaient passer ainsi en septembre, soit près de 40 % des volumes qui franchissent encore Ormuz [3]. Chaque rotation coûterait 30 à 40 millions de dollars, soit 15 à 20 dollars de plus par baril avant assurance [4]."
+    ],
+    "why": [
+      "Le détroit d'Ormuz est la porte de sortie du pétrole du Golfe : avant la guerre, environ un cinquième du pétrole et du gaz mondiaux y passait, et il est en grande partie fermé depuis les frappes américaines et israéliennes sur l'Iran du 28 février [1].",
+      "La « navette » est une parade inventée pour continuer à exporter malgré tout. En la désignant comme cible, l'Iran vise le dernier tuyau qui fonctionne encore. Si ce système s'arrête, une partie de l'offre mondiale de pétrole disparaît à nouveau du marché.",
+      "Cette histoire montre aussi qu'une guerre peut se jouer sur la logistique : des petits bateaux, des transferts en pleine mer, des primes d'assurance. Chaque étape ajoute un coût que l'acheteur final finit par payer."
+    ],
+    "forMe": "Le prix de l'essence en France dépend du prix mondial du pétrole. Si l'Iran réussit à couper cette navette, le baril peut remonter, et le plein avec, quelques semaines plus tard. Même si rien ne se passe, ce détour coûteux fait déjà partie du prix que tu paies.",
+    "figures": [
+      {
+        "value": "2,5 millions de barils/jour",
+        "label": "pétrole transféré via les navettes du golfe d'Oman en septembre (estimation Kpler)",
+        "src": 3
+      },
+      {
+        "value": "30 à 40 millions $",
+        "label": "coût estimé d'une rotation de navette",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes",
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Iran sets crosshairs on ‘US-UAE’ oil shuttle out of Strait of Hormuz » (12 oct. 2026)",
+        "url": "https://www.aljazeera.com/economy/2026/10/12/iran-sets-crosshairs-on-us-uae-oil-shuttle-out-of-strait-of-hormuz"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Hormuz attacks intensify as efforts to end war on Iran stall » (11 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall"
+      },
+      {
+        "short": "gCaptain / Reuters",
+        "name": "gCaptain (chronique Reuters de Ron Bousso), « Hormuz Shuttles Keep Oil Flowing, But At a High Cost » (21 sept. 2026)",
+        "url": "https://gcaptain.com/hormuz-shuttles-keep-oil-flowing-but-at-a-high-cost/"
+      },
+      {
+        "short": "Seoul Economic Daily",
+        "name": "Seoul Economic Daily, « Gulf Producers Pay $40 Million for Risky Hormuz Shuttle Runs » (6 oct. 2026)",
+        "url": "https://en.sedaily.com/international/2026/10/06/gulf-producers-pay-40-million-for-risky-hormuz-shuttle-runs"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-algerie-maroc-61-arrestations",
+    "date": "2026-10-12",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Oran",
+        "label": "Algérie",
+        "coords": [
+          -0.64,
+          35.7
+        ]
+      }
+    ],
+    "title": "Algérie : 61 Marocains arrêtés pour un « sabotage », la guerre froide du Maghreb s'envenime",
+    "summary": "Alger affirme avoir démantelé un réseau de 61 Marocains entrés clandestinement pour commettre des sabotages. Aucune cible ni arme n'a été présentée, et la frontière entre les deux voisins est fermée depuis 1994.",
+    "points": [
+      "La police algérienne a annoncé dimanche l'arrestation de 61 Marocains, dont un ancien militaire, soupçonnés de préparer des « actes de sabotage » ; selon elle, ils sont arrivés à Tunis en avion, puis sont entrés clandestinement en Algérie par les forêts et montagnes d'El Kala avant de rejoindre Oran [1].",
+      "La police dit avoir saisi des passeports marocains et de l'argent en dirhams et en euros, mais le communiqué ne précise ni les cibles visées ni la nature des actions prévues, et ne mentionne pas d'armes [1]. Des médias marocains mettent en doute les preuves [4].",
+      "En août déjà, l'Algérie avait annoncé l'arrestation de quatre Marocains accusés de vouloir saboter ses élections législatives du 2 juillet ; la frontière terrestre est fermée depuis 1994 et Alger a rompu ses relations diplomatiques avec Rabat en 2021 [2]. Plusieurs analyses évoquent un rôle des Émirats arabes unis, sans preuve publiée, alors qu'Alger a aussi rompu avec Abou Dhabi le 10 septembre [3]."
+    ],
+    "why": [
+      "L'Algérie et le Maroc, les deux poids lourds du Maghreb, sont en guerre froide depuis des décennies, surtout à cause du Sahara occidental, un territoire que le Maroc contrôle en grande partie et que l'Algérie veut voir devenir indépendant [2].",
+      "Cette rivalité coûte cher : les deux pays ne commercent presque pas entre eux, et l'Algérie a cessé en 2021 de faire passer son gaz par le Maroc vers l'Espagne, en laissant expirer le contrat du gazoduc Maghreb-Europe [5].",
+      "Une affaire de « sabotage » sans détails publics ajoute de la tension au moment où l'Algérie se brouille aussi avec les Émirats. Le risque : des expulsions, des représailles, et encore moins de chances de coopération régionale."
+    ],
+    "forMe": "La France entretient des liens forts avec les deux pays, et des millions de personnes en France ont des familles des deux côtés. Quand Alger et Rabat se fâchent, Paris est souvent pris entre deux feux, y compris sur le gaz algérien et les questions de visas.",
+    "figures": [
+      {
+        "value": "61",
+        "label": "Marocains arrêtés en Algérie, selon la police algérienne",
+        "src": 1
+      },
+      {
+        "value": "1994",
+        "label": "année de fermeture de la frontière terrestre entre l'Algérie et le Maroc",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "La Libre / AFP",
+        "name": "La Libre Belgique (dépêche AFP), « Algérie: arrestation de 61 Marocains soupçonnés de préparer des \"actes de sabotage\" » (11 oct. 2026)",
+        "url": "https://www.lalibre.be/dernieres-depeches/2026/10/11/algerie-arrestation-de-61-marocains-soupconnes-de-preparer-des-actes-de-sabotage-7VZD4FLASBDQPOIV5JM7PHCYXE/"
+      },
+      {
+        "short": "Morocco World News",
+        "name": "Morocco World News, « Algeria Claims Arrest of 61 Moroccans Over Suspicions of ‘Sabotage’ » (oct. 2026)",
+        "url": "https://www.moroccoworldnews.com/2026/10/341699/algeria-claims-arrest-of-61-moroccans-over-suspicions-of-sabotage/"
+      },
+      {
+        "short": "Afrik.com",
+        "name": "Afrik.com, « 61 Marocains arrêtés à Oran : la question du commanditaire » (oct. 2026)",
+        "url": "https://www.afrik.com/sabotage-dejoue-a-oran-de-rabat-a-abou-dhabi-la-question-du-commanditaire"
+      },
+      {
+        "short": "Hespress",
+        "name": "Hespress, « Algeria arrests 61 Moroccans over alleged sabotage plot as questions surround evidence » (oct. 2026)",
+        "url": "https://en.hespress.com/147180-algeria-arrests-61-moroccans-over-alleged-sabotage-plot-as-questions-surround-evidence.html"
+      },
+      {
+        "short": "Morocco World News",
+        "name": "Morocco World News, « End of Maghreb-Europe Pipeline Contract Will Have No Immediate Impact on Morocco » (nov. 2021)",
+        "url": "https://www.moroccoworldnews.com/2021/11/345279/end-of-maghreb-europe-pipeline-contract-will-have-no-immediate-impact-on-morocco"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-malaisie-brume-indonesie",
+    "date": "2026-10-12",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Johor Bahru",
+        "label": "Malaisie",
+        "coords": [
+          103.76,
+          1.49
+        ]
+      },
+      {
+        "name": "Kalimantan central",
+        "label": "Indonésie",
+        "coords": [
+          113.92,
+          -2.21
+        ]
+      }
+    ],
+    "title": "Brume toxique : plus de 600 000 élèves privés d'école en Malaisie à cause des feux indonésiens",
+    "summary": "Les incendies de forêts et de tourbières en Indonésie envoient une fumée épaisse sur la Malaisie et Singapour. Les voisins mettent la pression sur Jakarta.",
+    "points": [
+      "L'État malaisien de Johor, voisin de Singapour, a prolongé la fermeture de toutes ses écoles du 12 au 16 octobre, car l'indice de pollution de l'air reste bloqué entre 170 et 180, un niveau jugé mauvais pour la santé [2]. Lors de la première fermeture, cela concernait 1 198 écoles et 617 258 élèves [3].",
+      "L'Indonésie fait face à une pression croissante pour punir les pollueurs et accepter davantage d'aide étrangère contre les feux de forêts et de tourbières à Kalimantan et Sumatra ; à Singapour, une aide publique contre la brume entre en vigueur le 13 octobre après une hausse des passages aux urgences [1].",
+      "Jakarta dit avoir mobilisé 60 000 personnes contre les feux, tandis que la Malaisie a proposé un avion, trois hélicoptères et 52 agents et attend toujours la réponse indonésienne [4]. Le nombre de foyers d'incendie a encore augmenté, à 909, selon un décompte publié le 12 octobre [6]."
+    ],
+    "why": [
+      "La fumée ne connaît pas les frontières : des feux allumés en Indonésie ferment des écoles en Malaisie et remplissent les urgences à Singapour. Selon Bloomberg, l'épisode s'annonce comme le pire depuis plus de dix ans, et les foyers repérés par satellite en septembre étaient au plus haut depuis 2015 [5].",
+      "Ces feux sont souvent liés au brûlis, une technique qui consiste à brûler la végétation pour défricher des terres agricoles, par exemple pour des plantations [1]. Les tourbières, des sols gorgés de matière végétale, brûlent longtemps et dégagent énormément de fumée et de CO2.",
+      "C'est un test pour l'ASEAN, le club des pays d'Asie du Sud-Est : la Malaisie réclame une réunion d'urgence des ministres de l'Environnement, mais l'Indonésie tient à garder la main sur sa propre crise."
+    ],
+    "forMe": "Tu ne respires pas cette fumée, mais tu consommes peut-être des produits liés à ces terres : huile de palme, papier, bois. Cette crise rappelle que la déforestation à l'autre bout du monde a des effets très concrets sur la santé de millions de personnes et sur le climat de tous.",
+    "figures": [
+      {
+        "value": "617 258",
+        "label": "élèves touchés par la fermeture des écoles de Johor",
+        "src": 3
+      },
+      {
+        "value": "60 000",
+        "label": "personnes mobilisées par l'Indonésie contre les incendies",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Star / Jakarta Post",
+        "name": "The Star (article du Jakarta Post), « Pressure intensifies on Indonesia as regional haze worsens » (12 oct. 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/12/pressure-intensifies-on-indonesia-as-regional-haze-worsens"
+      },
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « Johor extends school closures until Oct 16 as haze worsens » (11 oct. 2026)",
+        "url": "https://www.malaymail.com/news/malaysia/2026/10/11/johor-extends-school-closures-until-oct-16-as-haze-worsens/238614"
+      },
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « Haze: All Johor schools to close for two days starting tomorrow by Regent's decree over unhealthy API » (7 oct. 2026)",
+        "url": "https://www.malaymail.com/news/malaysia/2026/10/07/haze-all-johor-schools-to-close-for-two-days-starting-tomorrow-by-regents-decree-over-unhealthy-api/238152"
+      },
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « Malaysia, Indonesia in high-level contact over haze as Jakarta deploys 60,000 to fight fires » (11 oct. 2026)",
+        "url": "https://www.malaymail.com/amp/news/malaysia/2026/10/11/malaysia-indonesia-in-high-level-contact-over-haze-as-jakarta-deploys-60000-to-fight-fires-says-indonesian-minister/238683"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Why Haze Crisis Hitting Indonesia, Malaysia, Singapore Is So Bad This Year » (9 oct. 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-09/why-haze-crisis-hitting-indonesia-malaysia-singapore-is-so-bad-this-year"
+      },
+      {
+        "short": "Media Selangor",
+        "name": "Media Selangor, « Forest fires continue to plague Indonesia as regional haze concerns persist » (12 oct. 2026)",
+        "url": "https://mediaselangor.com/en/2026/10/400730"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-mexique-ouragan-simon-ports",
+    "date": "2026-10-12",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Manzanillo",
+        "label": "Mexique",
+        "coords": [
+          -104.32,
+          19.05
+        ]
+      }
+    ],
+    "title": "Ouragan Simon : le Mexique ferme neuf ports, dont sa grande porte vers l'Asie",
+    "summary": "Face à un puissant ouragan sur la côte Pacifique, la Marine mexicaine a fermé Manzanillo, le premier port à conteneurs du pays. Les échanges avec l'Asie sont à l'arrêt.",
+    "points": [
+      "Dimanche 11 octobre, la Marine mexicaine a fermé neuf ports du Pacifique, dont Manzanillo et Lázaro Cárdenas, au passage de l'ouragan Simon ; 579 personnes ont été mises à l'abri dans les États de Jalisco, Colima et Nayarit [1].",
+      "Les principaux terminaux à conteneurs de Manzanillo, dont Contecon, SSA Marine et Hutchison Ports, avaient déjà suspendu leurs opérations et reporté les rendez-vous de chargement au lundi 12 octobre [3]. Les aéroports de Puerto Vallarta et de Manzanillo ont aussi été fermés [5].",
+      "L'œil de l'ouragan est resté au large et Simon s'est affaibli, mais sa pluie et sa houle ont suffi à fermer les plus grands ports du Pacifique mexicain ; aucun décès n'était signalé lundi matin [2]."
+    ],
+    "why": [
+      "Manzanillo est le premier port à conteneurs du Mexique et sa principale porte d'entrée pour les marchandises venues d'Asie [2]. En 2025, il a traité près de 3,9 millions de conteneurs « équivalent vingt pieds » (EVP, l'unité de mesure des boîtes métalliques du commerce mondial) [4].",
+      "Quand un tel port s'arrête même deux ou trois jours, des navires attendent au large, des pièces n'arrivent pas dans les usines et les retards se propagent. Le Mexique est devenu un atelier clé pour l'industrie américaine, notamment automobile.",
+      "Avec des océans plus chauds, les ouragans intenses deviennent plus fréquents. Les ports, souvent construits en bord de mer exposé, sont en première ligne."
+    ],
+    "forMe": "L'impact direct pour toi est faible : Manzanillo sert surtout le commerce entre l'Asie et l'Amérique du Nord. Mais cette histoire montre à quel point nos objets dépendent de quelques grands ports, et qu'une seule tempête peut gripper une chaîne d'approvisionnement à l'autre bout du monde.",
+    "figures": [
+      {
+        "value": "9",
+        "label": "ports du Pacifique fermés par la Marine mexicaine",
+        "src": 1
+      },
+      {
+        "value": "3,9 millions",
+        "label": "conteneurs (EVP) traités par Manzanillo en 2025",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Hurricane Simon: Manzanillo Port Shut, 579 Moved to Safety » (11-12 oct. 2026)",
+        "url": "https://www.riotimesonline.com/mexico-hurricane-simon-ports-closed-evacuations-2026/"
+      },
+      {
+        "short": "HNGN",
+        "name": "HNGN, « Hurricane Simon Crawls Past Jalisco Offshore, Shutting Mexico's Biggest Pacific Ports » (12 oct. 2026)",
+        "url": "https://www.hngn.com/articles/273488/20261012/hurricane-simon-crawls-past-jalisco-offshore-shutting-mexicos-biggest-pacific-ports.htm"
+      },
+      {
+        "short": "DataPortuaria",
+        "name": "DataPortuaria, « Hurricane Simon Halts Operations at Manzanillo Terminals » (oct. 2026)",
+        "url": "https://dataportuaria.com/en/mexico/logistics/hurricane-simon-halts-operations-at-manzanillo-terminals-9153a9"
+      },
+      {
+        "short": "Cluster Industrial",
+        "name": "Cluster Industrial, « Manzanillo cierra 2025 como líder portuario con casi 4 millones de TEUs » (janv. 2026)",
+        "url": "https://clusterindustrial.com.mx/manzanillo-cierra-2025-como-lider-portuario-con-casi-4-millones-de-teus/"
+      },
+      {
+        "short": "Infobae",
+        "name": "Infobae, « Cerrados los aeropuertos mexicanos de Puerto Vallarta y Manzanillo ante el huracán Simón » (11 oct. 2026)",
+        "url": "https://www.infobae.com/america/agencias/2026/10/11/cerrados-los-aeropuertos-mexicanos-de-puerto-vallarta-y-manzanillo-ante-el-huracan-simon/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-bresil-paris-sportifs-interdits",
+    "date": "2026-10-12",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Rio de Janeiro (Maracanã)",
+        "label": "Brésil",
+        "coords": [
+          -43.23,
+          -22.91
+        ]
+      }
+    ],
+    "title": "Brésil : Lula interdit les paris sportifs, Flamengo et Fluminense jouent avec un slogan de protestation",
+    "summary": "Au Brésil, les paris sportifs en ligne sont interdits depuis le 6 octobre. Au derby de Rio, les deux clubs ont remplacé leur sponsor par « Interdire n'est pas protéger ».",
+    "points": [
+      "Dimanche 11 octobre, au stade Maracanã, Flamengo et Fluminense ont remplacé sur leur maillot le logo de leur ancien sponsor de paris (Betano et Superbet) par le slogan « Proibir não é proteger » (« Interdire n'est pas protéger »), contre la mesure provisoire 1.394/2026 qui interdit les paris sportifs à cote fixe [1].",
+      "Signé par Lula le 25 septembre, ce texte a bloqué les nouveaux dépôts et fait fermer les sites et applications de paris le 6 octobre ; le Congrès doit l'approuver dans les 120 jours pour qu'il reste en vigueur [3]. Les fédérations de football de São Paulo et de Rio ont parlé d'un « coup fatal pour le football brésilien », et Lula a répondu que les clubs « devront se débrouiller » [4].",
+      "Le derby a eu lieu deux semaines avant le second tour de l'élection présidentielle du 25 octobre, ce qui transforme ce match en moment politique [2]."
+    ],
+    "why": [
+      "Le gouvernement justifie l'interdiction par l'addiction au jeu et le surendettement des familles : selon le ministère des Finances, les ménages brésiliens dépensent environ 60 milliards de reais par an en paris en ligne, alors que le secteur rapporte environ 10 milliards de reais d'impôts [3].",
+      "Les opérateurs répondent que l'interdiction va pousser plus de 30 millions de parieurs vers des sites illégaux, sans protection ni impôts [3]. Le football, lui, perd d'un coup ses plus gros sponsors.",
+      "C'est un vrai choix de société, en pleine campagne : protéger les ménages ou défendre une industrie qui finance le sport. La décision finale reviendra au Congrès."
+    ],
+    "forMe": "En France, les paris sportifs en ligne sont autorisés et encadrés par l'Autorité nationale des jeux (ANJ), et leurs publicités sont partout pendant les matchs. Le Brésil montre qu'un pays peut décider de tout arrêter d'un coup : un débat qui pourrait un jour arriver chez nous.",
+    "figures": [
+      {
+        "value": "60 milliards de reais",
+        "label": "dépensés chaque année par les ménages brésiliens en paris en ligne (estimation du ministère des Finances)",
+        "src": 3
+      },
+      {
+        "value": "30 millions",
+        "label": "parieurs qui risquent de partir vers des sites illégaux, selon l'association de l'industrie ANJL",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Inside World Football",
+        "name": "Inside World Football, « Flu-Fla derby sees ‘Proibir não é proteger’ shirt protest over Brazil's betting ban » (12 oct. 2026)",
+        "url": "https://www.insideworldfootball.com/2026/10/12/flu-fla-derby-sees-proibir-nao-e-proteger-shirt-protest-over-brazils-betting-ban"
+      },
+      {
+        "short": "Latin Times",
+        "name": "Latin Times, « Fla-Flu Protest: Lula's Sudden Betting Ban Put Brazil's Football Season on a Collision Course With the Election » (oct. 2026)",
+        "url": "https://www.latintimes.com/fla-flu-protest-lulas-sudden-betting-ban-put-brazils-football-season-collision-course-600064"
+      },
+      {
+        "short": "Reuters / US News",
+        "name": "Reuters via US News, « Brazil's Lula Bans Online Betting, Unveils Debt Relief Plan as Reelection Race Tightens » (25 sept. 2026)",
+        "url": "https://www.usnews.com/news/world/articles/2026-09-25/brazils-lula-bans-online-betting-operations-as-reelection-race-tightens"
+      },
+      {
+        "short": "Reuters / Investing.com",
+        "name": "Reuters via Investing.com, « Brazilian soccer teams cry foul at Lula's online betting ban » (30 sept. 2026)",
+        "url": "https://www.investing.com/news/stock-market-news/brazilian-soccer-teams-cry-foul-at-lulas-online-betting-ban-4925519"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-12-danemark-robots-supermarche",
+    "date": "2026-10-12",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Copenhague",
+        "label": "Danemark",
+        "coords": [
+          12.57,
+          55.68
+        ]
+      }
+    ],
+    "title": "Danemark : des robots humanoïdes apprennent à remplir les rayons du supermarché la nuit",
+    "summary": "Un supermarché près de Copenhague teste des robots à forme humaine pour réassortir les rayons. Objectif : qu'ils travaillent seuls la nuit dès début 2027.",
+    "points": [
+      "Le groupe danois Salling teste des robots humanoïdes dans un supermarché Føtex près de Copenhague ; ils sont développés par la start-up danoise Hive Robots sur une base fabriquée par le chinois Unitree [1].",
+      "L'entraînement a commencé en juin 2026 : des opérateurs humains guident chaque mouvement pour que l'intelligence artificielle apprenne à saisir et ranger les produits, avec l'objectif d'un réassort autonome, surtout la nuit, d'ici début 2027 [1].",
+      "Selon Føtex, ses employés passent 40 à 50 % de leur temps à remplir les rayons ; mais les robots restent plus lents que les humains, et la loi danoise devrait changer avant qu'ils puissent travailler seuls au milieu des clients [2]."
+    ],
+    "why": [
+      "Après les usines, les robots humanoïdes commencent à entrer dans des métiers de service du quotidien. Remplir les rayons est une tâche répétitive et pénible, que les supermarchés ont du mal à faire assurer la nuit.",
+      "Plus tard, ces robots pourraient aussi vérifier les dates de péremption, repérer les rayons vides ou les produits mal rangés [2]. Le groupe Salling compte plus de 2 000 magasins dans six pays européens, donc un succès pourrait vite se diffuser [1].",
+      "L'expérience montre aussi une dépendance : le « corps » du robot est chinois, seule l'intelligence logicielle est européenne. C'est un enjeu de souveraineté industrielle."
+    ],
+    "forMe": "Les emplois de mise en rayon sont souvent des jobs étudiants ou des premiers emplois. Si ces robots marchent, ces postes pourraient changer, avec moins de tâches physiques et plus de surveillance de machines. Rien n'est prêt avant 2027, mais c'est une tendance à suivre.",
+    "figures": [
+      {
+        "value": "40 à 50 %",
+        "label": "du temps des employés de Føtex passé à remplir les rayons",
+        "src": 2
+      },
+      {
+        "value": "2 000",
+        "label": "magasins du groupe Salling dans six pays européens",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Euronews",
+        "name": "Euronews, « Denmark tests humanoid robots in supermarkets to help to ease staff workload at night » (11 oct. 2026)",
+        "url": "https://www.euronews.com/video/2026/10/11/denmark-tests-humanoid-robots-in-supermarkets-to-help-to-ease-staff-workload-at-night"
+      },
+      {
+        "short": "Euro Weekly News",
+        "name": "Euro Weekly News, « Humanoid robots enter Danish supermarkets to transform night shifts forever » (12 oct. 2026)",
+        "url": "https://euroweeklynews.com/2026/10/12/humanoid-robots-enter-danish-supermarkets-to-transform-night-shifts-forever/"
+      }
+    ]
+  },
+  {
     "id": "2026-10-12-ouzbekistan-inflation",
     "date": "2026-10-12",
     "region": "Asie",
@@ -76,62 +497,6 @@ window.GEOCO.news = [
     ]
   },
   {
-    "id": "2026-10-12-mongolie-taux",
-    "date": "2026-10-12",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Oulan-Bator",
-        "label": "Mongolie",
-        "coords": [
-          106.92,
-          47.92
-        ]
-      }
-    ],
-    "title": "Mongolie : taux maintenu à 12,5 % face à une inflation à plus de 12 %",
-    "summary": "Les prix mongols montent à un rythme très élevé, tirés par le carburant et l'alimentation. La banque centrale fait une pause après avoir relevé son taux en août.",
-    "points": [
-      "La banque centrale de Mongolie a gardé son taux directeur à 12,5 % à sa réunion de septembre, après l'avoir relevé de 0,5 point en août [1].",
-      "L'inflation s'est établie à 12,5 % en août, après un pic à 13 % en juillet ; l'inflation de fond (sans les prix les plus volatils) est de 6,8 % [1].",
-      "La banque centrale s'attend à une baisse progressive à partir du deuxième trimestre 2027 et cite comme risques le carburant et l'alimentation liés au conflit au Moyen-Orient, ainsi que les finances publiques [1]."
-    ],
-    "why": [
-      "Quand l'écart est grand entre l'inflation totale (12,5 %) et l'inflation de fond (6,8 %), c'est que quelques produits très chers tirent tout vers le haut, ici le carburant et la nourriture.",
-      "La Mongolie importe l'essentiel de son carburant : un baril cher se répercute vite dans les prix du quotidien. C'est un pays sans accès à la mer, pris entre la Chine et la Russie."
-    ],
-    "forMe": "Tu ne le verras pas dans ton quotidien. Mais ça montre que la flambée du pétrole venue du Golfe touche jusqu'au cœur de l'Asie, loin de tout port.",
-    "figures": [
-      {
-        "value": "12,5 %",
-        "label": "le taux directeur de la Mongolie, maintenu en septembre",
-        "src": 1
-      },
-      {
-        "value": "12,5 %",
-        "label": "l'inflation en août 2026, après 13 % en juillet",
-        "src": 1
-      },
-      {
-        "value": "6,8 %",
-        "label": "l'inflation de fond en août",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, « Mongolia Holds Key Policy Rate at 12.5% »",
-        "url": "https://tradingeconomics.com/mongolia/interest-rate/news/584555"
-      }
-    ]
-  },
-  {
     "id": "2026-10-12-ouganda-shilling",
     "date": "2026-10-12",
     "region": "Afrique",
@@ -184,167 +549,6 @@ window.GEOCO.news = [
         "short": "Daily Monitor",
         "name": "Daily Monitor (Ouganda), « Shilling hits record low as seasonal demand piles pressure »",
         "url": "https://www.monitor.co.ug/uganda/news/national/shilling-hits-record-low-as-seasonal-demand-piles-pressure-5620526"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-uruguay-inflation",
-    "date": "2026-10-12",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Montevideo",
-        "label": "Uruguay",
-        "coords": [
-          -56.19,
-          -34.9
-        ]
-      }
-    ],
-    "title": "Uruguay : l'inflation remonte à 4,68 %, un peu au-dessus de la cible",
-    "summary": "Les prix uruguayens montent un peu plus vite en septembre, portés par l'alimentation, mais restent dans la zone tolérée par la banque centrale.",
-    "points": [
-      "L'institut de statistiques a publié le 5 octobre l'inflation de septembre : 4,68 % sur un an, contre 4,55 % en août [1].",
-      "La cible de la banque centrale est de 4,5 %, avec une zone de tolérance de 3 % à 6 % ; le chiffre est donc au-dessus de la cible mais dans la zone [1].",
-      "Sur le mois, les prix ont monté de 0,54 %, surtout à cause des tomates, des oignons et de la viande ; l'inflation de fond est de 4,47 % [1]."
-    ],
-    "why": [
-      "Une banque centrale vise un niveau de hausse des prix. Ici, l'alimentation (légumes, viande) a pesé sur l'indice : quand ces produits montent, ça se voit tout de suite dans le chiffre.",
-      "L'Uruguay est un petit pays d'Amérique du Sud. Sa banque centrale utilise les taux d'intérêt, pas le contrôle des prix, pour garder l'inflation près de la cible."
-    ],
-    "forMe": "Si tu manges du bœuf sud-américain, le prix qu'il atteint chez nous dépend en partie de ce qui se passe sur ces marchés. L'Uruguay est l'un des grands exportateurs de viande de la région.",
-    "figures": [
-      {
-        "value": "4,68 %",
-        "label": "l'inflation en Uruguay en septembre 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "4,5 %",
-        "label": "la cible de la banque centrale (zone de tolérance : 3 % à 6 %)",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Montevideo Portal",
-        "name": "Montevideo Portal, « Inflación interanual subió al 4,68 % en setiembre, por encima de la meta del BCU »",
-        "url": "https://www.montevideo.com.uy/Noticias/Inflacion-interanual-subio-al-4-68-en-setiembre-por-encima-de-la-meta-del-BCU-uc977605"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-bulgarie-inflation",
-    "date": "2026-10-12",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Sofia",
-        "label": "Bulgarie",
-        "coords": [
-          23.32,
-          42.7
-        ]
-      }
-    ],
-    "title": "Bulgarie : l'inflation monte à 5,6 %, bien au-dessus de la zone euro",
-    "summary": "Dans un pays qui a adopté l'euro, les prix grimpent plus vite que dans la zone euro dans son ensemble.",
-    "points": [
-      "Selon l'estimation d'Eurostat, l'inflation bulgare est de 5,6 % sur un an en septembre, contre 5,1 % en août [1][2].",
-      "Dans l'ensemble de la zone euro, elle est de 3,8 % en septembre [1]."
-    ],
-    "why": [
-      "Entrer dans la zone euro, c'est utiliser la même monnaie et la même banque centrale que l'Allemagne ou la France. La Bulgarie ne peut donc plus relever seule ses taux pour freiner les prix.",
-      "Quand l'inflation d'un pays reste bien plus haute que celle de la zone, c'est un test pour la confiance des habitants dans la nouvelle monnaie."
-    ],
-    "forMe": "La Bulgarie est une destination de vacances prisée et un pays où des entreprises françaises ont des sites. Là-bas, le coût de la vie monte plus vite que chez toi.",
-    "figures": [
-      {
-        "value": "5,6 %",
-        "label": "l'inflation en Bulgarie en septembre 2026 (estimation)",
-        "src": 1
-      },
-      {
-        "value": "3,8 %",
-        "label": "l'inflation dans la zone euro, même mois",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Eurostat",
-        "name": "Eurostat, « Euro area annual inflation up to 3.8 % » (2 oct. 2026)",
-        "url": "https://ec.europa.eu/eurostat/web/products-euro-indicators/w/2-02102026-ap"
-      },
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, « Inflation Rate – Countries – List (Europe) »",
-        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=europe"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-hongrie-inflation",
-    "date": "2026-10-12",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Budapest",
-        "label": "Hongrie",
-        "coords": [
-          19.04,
-          47.5
-        ]
-      }
-    ],
-    "title": "Hongrie : l'inflation remonte à 1,6 % et la cible va baisser à 2,5 % en 2028",
-    "summary": "La Hongrie a l'une des inflations les plus basses de la région, mais elle repart à la hausse. Le gouvernement veut aussi abaisser son objectif.",
-    "points": [
-      "L'inflation hongroise est de 1,6 % sur un an en septembre, contre 1,3 % en août [1].",
-      "Selon l'analyse de FXStreet, la Hongrie va abaisser sa cible d'inflation à 2,5 % à partir de 2028 [2]."
-    ],
-    "why": [
-      "Une cible d'inflation plus basse, c'est une promesse plus ferme : les prix devront monter moins vite à l'avenir.",
-      "La Hongrie reste hors de la zone euro et garde sa monnaie, le forint. Les hausses de l'énergie y pèsent sur les prix, même si le chiffre reste modeste."
-    ],
-    "forMe": "Si tu voyages à Budapest, les prix y restent stables pour l'instant. Mais la hausse de l'énergie touche aussi les usines automobiles hongroises, qui travaillent pour les marques européennes.",
-    "figures": [
-      {
-        "value": "1,6 %",
-        "label": "l'inflation en Hongrie en septembre 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "2,5 %",
-        "label": "la cible d'inflation prévue à partir de 2028",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, « Hungary Inflation Rate »",
-        "url": "https://tradingeconomics.com/hungary/inflation-cpi"
-      },
-      {
-        "short": "FXStreet",
-        "name": "FXStreet, « CEE: Hungary to lower inflation target to 2.5% from 2028 » (23 sept. 2026)",
-        "url": "https://www.fxstreet.com/analysis/cee-hungary-to-lower-inflation-target-to-25-from-2028-202609230552"
       }
     ]
   },

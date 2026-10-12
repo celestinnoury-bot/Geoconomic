@@ -5,9 +5,9 @@ window.GEOCO.lettres = [
     "date": "2026-10-12",
     "file": "lettres/2026-10-12.pdf",
     "titles": [
-      "Ouzbékistan : l'inflation ralentit à 6,4 %, la banque centrale garde son taux à 14 %",
-      "Mongolie : taux maintenu à 12,5 % face à une inflation à plus de 12 %",
-      "Ouganda : le shilling tombe à un plus bas historique, au-dessus de 4 000 pour un dollar"
+      "Ormuz : l'Iran menace la « navette » secrète qui fait sortir le pétrole du Golfe",
+      "Algérie : 61 Marocains arrêtés pour un « sabotage », la guerre froide du Maghreb s'envenime",
+      "Brume toxique : plus de 600 000 élèves privés d'école en Malaisie à cause des feux indonésiens"
     ],
     "fileDark": "lettres/2026-10-12-sombre.pdf"
   },
