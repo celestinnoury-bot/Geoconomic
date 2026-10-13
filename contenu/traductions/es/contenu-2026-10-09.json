@@ -1974,7 +1974,7 @@
  "auteur.nom": "Célestin Noury",
  "auteur.role": "Fundador de Géoconomic · Estudiante de economía",
  "auteur.cursus": "Antiguo alumno de las clases preparatorias de economía y gestión (CPGE D2) en Estrasburgo, donde estudié macroeconomía y microeconomía. Termino mi licenciatura de economía de intercambio en la Universidad de Montreal (2026-2027).",
- "auteur.texte.1": "Mis estudios me enseñaron el rigor científico: ser lógico, razonar de forma racional, partir de los hechos. Ese es el espíritu de Géoconomic: geopolítica, sí; opiniones políticas, no.",
+ "auteur.texte.1": "Aquí, cada cifra tiene su fuente, cada tema se explica de forma sencilla, y también se habla de temas menos cubiertos: lo que ocurre en África, en Asia, en América Latina.",
  "indicators.latest.0.label": "Inflación en la zona del euro",
  "indicators.latest.1.label": "El barril de petróleo Brent",
  "indicators.latest.2.label": "Crecimiento mundial previsto en 2026",
@@ -2396,8 +2396,7 @@
  "conflits.layers.2.countries.004.name": "Afganistán",
  "conflits.layers.2.countries.004.t": "Mujeres y niñas",
  "conflits.layers.2.countries.004.text": "Mujeres y niñas: El relator especial de la ONU sobre Afganistán y el grupo de trabajo de la ONU sobre la discriminación contra las mujeres concluyeron en 2025 que las violaciones masivas y sistemáticas de los derechos de las mujeres y las niñas por parte de los talibanes constituyen una persecución por motivos de género y un marco institucionalizado de «apartheid de género»; los talibanes rechazan estas conclusiones [1][2].",
- "auteur.texte.0": "En la prépa aprendía macro y micro, pero cuando leía la actualidad no siempre entendía los desafíos económicos y geopolíticos que había detrás. Así que creé Géoconomic, para informarme de otra manera y seguir también la actualidad poco tratada, la que rara vez llega a los titulares.",
- "auteur.texte.2": "Aquí, cada cifra tiene su fuente, cada tema se explica de forma sencilla, y también se habla de temas menos cubiertos: lo que ocurre en África, en Asia, en América Latina.",
- "offre.name": "Géoconomic+",
- "auteur.texte.3": "El objetivo: que cada uno pueda formarse su propia opinión, con los hechos en la mano."
+ "auteur.texte.0": "Creé Géoconomic como prolongación de mis estudios. La prépa y la licenciatura me enseñaron el rigor científico: ser lógico, razonar de forma racional, partir de los hechos. Quise aplicar este método a la actualidad económica y geopolítica, incluida la que rara vez llega a los titulares. Geopolítica, sí; opiniones políticas, no.",
+ "auteur.texte.2": "El objetivo: que cada uno pueda formarse su propia opinión, con los hechos en la mano.",
+ "offre.name": "Géoconomic+"
 }
