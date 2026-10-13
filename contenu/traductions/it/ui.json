@@ -206,7 +206,6 @@
   "Réglages": "Impostazioni",
   "s'améliorent": "migliorano",
   "S'entraîner.": "Allenarsi.",
-  "Sans jargon.": "Senza paroloni.",
   "Sans le jargon.": "Senza il gergo.",
   "Ses actus passent en premier, et le globe s'ouvre sur elle.": "Le sue news vengono per prime, e il globo si apre su di lei.",
   "situations s'aggravent": "situazioni peggiorano",
@@ -301,7 +300,6 @@
   "{n} épisodes du podcast offerts": "{n} episodi del podcast gratuiti",
   "Le baromètre du mois · {m}": "Il barometro del mese · {m}",
   "Source : {x}": "Fonte: {x}",
-  "Je suis {x}.": "Io sono {x}.",
   "{n} actu": "{n} news",
   "Ses chiffres : {x}": "I suoi numeri: {x}",
   "{x} sur 180": "{x} su 180",
@@ -371,7 +369,9 @@
   "Ouverture au lancement": "Apre al lancio",
   "Carte bancaire demandée à l'inscription, rien n'est prélevé pendant {n} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.": "Carta richiesta all'iscrizione, nessun addebito per {n} mesi. Ricevi un promemoria 7 giorni prima della fine della prova. Disdici quando vuoi.",
   "⭐ Membre fondateur": "⭐ Membro fondatore",
-  "Membres fondateurs": "Membri fondatori"
+  "Membres fondateurs": "Membri fondatori",
+  "Le monde, sous une autre facette.": "Il mondo, da un'altra prospettiva.",
+  "L'économie qui nous fait comprendre le monde.": "L'economia che ci fa capire il mondo."
  },
  "months": {
   "janvier": "gennaio",

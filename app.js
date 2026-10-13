@@ -37,10 +37,12 @@
         ${auteur.photo ? `<img class="auteur-photo" src="${auteur.photo}" alt="${auteur.nom}">` : `<div class="auteur-photo initials" aria-hidden="true">${initials}</div>`}
         <div class="auteur-body">
           <p class="eyebrow">Qui suis-je ?</p>
-          <h3>Je suis ${auteur.nom}.</h3>
-          <p class="auteur-role">${auteur.role}</p>
-          ${cursus}
           ${texte.map((t) => `<p class="auteur-text">${t}</p>`).join("")}
+          <div class="auteur-sign">
+            <p class="auteur-name">${auteur.nom}</p>
+            <p class="auteur-role">${auteur.role}</p>
+            ${cursus}
+          </div>
           ${compact ? `<a class="more" href="#/apropos">En savoir plus ›</a>` : ""}
         </div>
       </div>`;
@@ -2027,7 +2029,7 @@ function statGrid(figures, sources, theme = "geo") {
     app.innerHTML = `
       <section class="wrap hero">
         <p class="eyebrow">À propos</p>
-        <h1 class="title">Comprendre le monde.<br><span class="grad mix">Sans jargon.</span></h1>
+        <h1 class="title">Le monde, sous une autre facette.<br><span class="grad mix">L'économie qui nous fait comprendre le monde.</span></h1>
         <p class="lead">Géoconomic rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
       </section>
 

@@ -206,7 +206,6 @@
   "Réglages": "Einstellungen",
   "s'améliorent": "verbessern sich",
   "S'entraîner.": "Üben.",
-  "Sans jargon.": "Ohne Fachchinesisch.",
   "Sans le jargon.": "Ohne das Fachchinesisch.",
   "Ses actus passent en premier, et le globe s'ouvre sur elle.": "Ihre News kommen zuerst, und der Globus öffnet sich auf ihr.",
   "situations s'aggravent": "Situationen verschärfen sich",
@@ -301,7 +300,6 @@
   "{n} épisodes du podcast offerts": "{n} Podcast-Folgen gratis",
   "Le baromètre du mois · {m}": "Das Barometer des Monats · {m}",
   "Source : {x}": "Quelle: {x}",
-  "Je suis {x}.": "Ich bin {x}.",
   "{n} actu": "{n} News",
   "Ses chiffres : {x}": "Ihre Zahlen: {x}",
   "{x} sur 180": "{x} von 180",
@@ -375,7 +373,9 @@
   "Ouverture au lancement": "Öffnet zum Start",
   "Carte bancaire demandée à l'inscription, rien n'est prélevé pendant {n} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.": "Karte bei der Anmeldung nötig, {n} Monate wird nichts abgebucht. 7 Tage vor Ende der Testphase bekommst du eine Erinnerung. Jederzeit kündbar.",
   "⭐ Membre fondateur": "⭐ Gründungsmitglied",
-  "Membres fondateurs": "Gründungsmitglieder"
+  "Membres fondateurs": "Gründungsmitglieder",
+  "Le monde, sous une autre facette.": "Die Welt, von einer anderen Seite.",
+  "L'économie qui nous fait comprendre le monde.": "Die Wirtschaft, die uns die Welt verstehen lässt."
  },
  "months": {
   "janvier": "Januar",

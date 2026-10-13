@@ -788,7 +788,9 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .auteur { display: grid; grid-template-columns: 120px minmax(0, 1fr); gap: 22px; align-items: start; background: var(--surface); border: 1px solid var(--hairline); border-radius: 24px; padding: 26px 24px; }
 .auteur-photo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; }
 .auteur-photo.initials { display: grid; place-items: center; background: linear-gradient(135deg, #2a6f97, #5b3ea8); color: #fff; font: 700 34px/1 var(--serif); }
-.auteur h3 { font-family: var(--serif); font-size: 28px; line-height: 1.15; }
+.auteur .auteur-text:first-of-type { margin-top: 6px; }
+.auteur-sign { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--hairline); }
+.auteur-name { font-family: var(--serif); font-size: 20px; font-weight: 700; line-height: 1.2; }
 .auteur-role { color: var(--gold); font-size: 14px; font-weight: 600; margin-top: 4px; }
 .auteur-cursus { font-size: 15px; color: var(--muted); margin-top: 6px; }
 .auteur-cursus.todo { font-style: italic; border-bottom: 1px dashed var(--hairline); display: inline-block; }
