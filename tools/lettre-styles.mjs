@@ -109,16 +109,20 @@ const latestRows = (d) => d.latest.filter((x) => !(d.C && /crisiswatch/i.test(x.
 // ---------------------------------------------------------------------------
 // 1. Le Journal : une de quotidien sur papier journal. Texte justifié, lettrine, lieux en tête
 // d'article, petits graphiques de presse ; certaines brèves sans image, comme dans un vrai journal.
-function journal(d) {
+// color = true : la version couleur (encadrés de chiffres colorés, silhouettes, actus par région),
+// qui alterne avec la version noir et blanc d'un jour à l'autre (voir build-lettre.mjs).
+function journal(d, { color = false } = {}) {
   const [lead, ...rest] = d.items;
   const P = { ink: "#161412", muted: "#6f685d", rule: "#cfc4ae", shape: "#2a2622", barInk: "#2b2723", neg: "#a3402a", panel: "#ebe4d4",
     accents: ["#b5452c", "#2f6670"], bar: ["#b5452c", "#2f6670", "#c79a3a"], regionColors: ["#b5452c", "#2f6670", "#c79a3a", "#4f5a8a", "#6b7d4f"],
     sans: "'Franklin', sans-serif", serif: "'Serif4', serif" };
   const plan = planPress(d, rest);
+  const shapes = shapePlan(d, rest);
   const c = rest.length <= 4 ? Math.max(1, rest.length) : 3;
   const df = dayFigure(d);
   const pts = (lead.points || []).slice(0, 2).map((t) => esc(d.strip(t)));
-  const leadArt = canBars(lead) ? pressChart(lead, P, { noSource: true }) : hasShape(d, lead) ? pressShape(d, lead, P) : "";
+  const leadArt = color ? figuresPanel(d, lead, P, { shape: true, big: true })
+    : canBars(lead) ? pressChart(lead, P, { noSource: true }) : hasShape(d, lead) ? pressShape(d, lead, P) : "";
   const seenCourse = new Set();
   const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="also">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   return doc(`
@@ -177,11 +181,12 @@ td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; }
     ${leadArt ? `<div class="art">${leadArt}</div>` : ""}
     <div class="src">Sources : ${esc(sourcesOf(lead))}</div>${read(lead)}</div>
   <div class="side">
-    ${df ? `<div><h4>Le chiffre du jour</h4><div class="big">${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
+    ${df ? `<div><h4>Le chiffre du jour</h4><div class="big"${color ? ' style="color:#b5452c"' : ""}>${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
+    ${color ? `<div><h4>Les actus du jour, par région</h4><div style="margin-top:2mm">${regionStrip(d.items, "100%", Object.assign({}, P, { accents: P.regionColors, radius: 0 }))}</div></div>` : ""}
     ${d.C ? `<div><h4>Le point conflits · ${esc(d.C.barometre.month)}</h4><div class="counts" style="margin-top:2mm"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : ""}
   </div>
 </div>
-<div class="cols">${rest.map((n, i) => { const art = pressIllustration(plan[i], d, n, P); return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k gray">${kicker(d, n)}</div><h2>${esc(n.title)}</h2>${art ? `<div class="art">${art}</div>` : ""}<p>${dateline(n) ? `<span class="dl">${esc(dateline(n))} —</span> ` : ""}${esc(d.strip(n.summary))}${n.points && n.points[0] && d.strip(n.points[0]).length < 260 ? " " + esc(d.strip(n.points[0])) : ""}</p><div class="src">${esc(sourcesOf(n))}</div>${read(n)}</div>`; }).join("")}</div>
+<div class="cols">${rest.map((n, i) => { const art = color ? figuresPanel(d, n, P, { shape: shapes[i] }) : pressIllustration(plan[i], d, n, P); return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k gray">${kicker(d, n)}</div><h2>${esc(n.title)}</h2>${art ? `<div class="art">${art}</div>` : ""}<p>${dateline(n) ? `<span class="dl">${esc(dateline(n))} —</span> ` : ""}${esc(d.strip(n.summary))}${n.points && n.points[0] && d.strip(n.points[0]).length < 260 ? " " + esc(d.strip(n.points[0])) : ""}</p><div class="src">${esc(sourcesOf(n))}</div>${read(n)}</div>`; }).join("")}</div>
 <div class="band1"><div><h3>Les derniers chiffres</h3><table style="margin-top:1mm">${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div></div>
 <div class="foot"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
@@ -363,10 +368,12 @@ ${d.C ? `<div class="sec">Le point conflits</div><p class="it"><b>${esc(d.C.baro
 </div></div>`);
 }
 
-export const STYLES = { journal, keynote, blanc, magazine, briefing };
+const journalCouleur = (d) => journal(d, { color: true });
+export const STYLES = { journal, "journal-couleur": journalCouleur, keynote, blanc, magazine, briefing };
 export const STYLE_NAMES = {
   classique: "Classique",
   journal: "Le Journal",
+  "journal-couleur": "Le Journal (couleur)",
   keynote: "Keynote",
   blanc: "Édition blanche",
   magazine: "Le Magazine",
