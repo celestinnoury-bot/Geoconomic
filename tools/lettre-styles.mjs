@@ -113,7 +113,8 @@ const latestRows = (d) => d.latest.filter((x) => !(d.C && /crisiswatch/i.test(x.
 // qui alterne avec la version noir et blanc d'un jour à l'autre (voir build-lettre.mjs).
 function journal(d, { color = false } = {}) {
   const [lead, ...rest] = d.items;
-  const P = { ink: "#161412", muted: "#6f685d", rule: "#cfc4ae", shape: "#2a2622", barInk: "#2b2723", neg: "#a3402a", panel: "#ebe4d4",
+  const P = { ink: "#161412", muted: "#6f685d", rule: "#cfc4ae", shape: "#3a352f", barInk: "#2b2723", neg: "#8c2f1f", panel: "#ebe4d4",
+    accent: "#b5452c", dot: "#d2452b",
     accents: ["#b5452c", "#2f6670"], bar: ["#b5452c", "#2f6670", "#c79a3a"], regionColors: ["#b5452c", "#2f6670", "#c79a3a", "#4f5a8a", "#6b7d4f"],
     sans: "'Franklin', sans-serif", serif: "'Serif4', serif" };
   const plan = planPress(d, rest);
@@ -121,8 +122,10 @@ function journal(d, { color = false } = {}) {
   const c = rest.length <= 4 ? Math.max(1, rest.length) : 3;
   const df = dayFigure(d);
   const pts = (lead.points || []).slice(0, 2).map((t) => esc(d.strip(t)));
+  // L'actu principale : la carte de situation (pays + repère + chiffre clé) et, si possible, le graphique.
   const leadArt = color ? figuresPanel(d, lead, P, { shape: true, big: true })
-    : canBars(lead) ? pressChart(lead, P, { noSource: true }) : hasShape(d, lead) ? pressShape(d, lead, P) : "";
+    : [hasShape(d, lead) ? pressShape(d, lead, P, { big: true }) : "", canBars(lead) ? pressChart(lead, P, { noSource: true }) : !hasShape(d, lead) && lead.figures && lead.figures[0] ? pressNumber(lead.figures[0], P, lead.figures[1]) : ""]
+      .filter(Boolean).map((x) => `<div style="flex:1;min-width:0">${x}</div>`).join("");
   const seenCourse = new Set();
   const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="also">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   return doc(`
@@ -178,12 +181,12 @@ td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; }
 <div class="leadrow">
   <div class="lead"><div class="k">${kicker(d, lead)}</div><h1>${esc(lead.title)}</h1><p class="deck">${esc(d.strip(lead.summary))}</p>
     <div class="body">${pts.map((t, i) => `<p>${i === 0 && dateline(lead) ? `<span class="dl">${esc(dateline(lead))} —</span> ` : ""}${t}</p>`).join("")}</div>
-    ${leadArt ? `<div class="art">${leadArt}</div>` : ""}
+    ${leadArt ? `<div class="art" style="display:flex;gap:5mm;align-items:flex-start">${leadArt}</div>` : ""}
     <div class="src">Sources : ${esc(sourcesOf(lead))}</div>${read(lead)}</div>
   <div class="side">
-    ${df ? `<div><h4>Le chiffre du jour</h4><div class="big"${color ? ' style="color:#b5452c"' : ""}>${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
-    ${color ? `<div><h4>Les actus du jour, par région</h4><div style="margin-top:2mm">${regionStrip(d.items, "100%", Object.assign({}, P, { accents: P.regionColors, radius: 0 }))}</div></div>` : ""}
-    ${d.C ? `<div><h4>Le point conflits · ${esc(d.C.barometre.month)}</h4><div class="counts" style="margin-top:2mm"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : ""}
+    ${df ? `<div><h4>Le chiffre du jour</h4><div class="big" style="color:${P.accent}">${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
+    ${true ? `<div><h4>Les actus du jour, par région</h4><div style="margin-top:2mm">${regionStrip(d.items, "100%", Object.assign({}, P, { accents: P.regionColors, radius: 0 }))}</div></div>` : ""}
+    ${d.C ? `<div><h4>Le point conflits · ${esc(d.C.barometre.month)}</h4><div class="counts" style="margin-top:2mm"><div><b style="color:${P.accent}">${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : ""}
   </div>
 </div>
 <div class="cols">${rest.map((n, i) => { const art = color ? figuresPanel(d, n, P, { shape: shapes[i] }) : pressIllustration(plan[i], d, n, P); return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k gray">${kicker(d, n)}</div><h2>${esc(n.title)}</h2>${art ? `<div class="art">${art}</div>` : ""}<p>${dateline(n) ? `<span class="dl">${esc(dateline(n))} —</span> ` : ""}${esc(d.strip(n.summary))}${n.points && n.points[0] && d.strip(n.points[0]).length < 260 ? " " + esc(d.strip(n.points[0])) : ""}</p><div class="src">${esc(sourcesOf(n))}</div>${read(n)}</div>`; }).join("")}</div>
@@ -197,6 +200,7 @@ td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; }
 function keynote(d) {
   const [lead, ...rest] = d.items;
   const P = { ink: "#f5f5f7", muted: "#98989d", rule: "#3a3a3c", shape: "#c7c7cc", barInk: "#f5f5f7", neg: "#ff6961", panel: "#2c2c2e",
+    accent: "#ff9f0a", dot: "#ff453a",
     accents: ["#ff9f0a", "#64d2ff"], bar: ["#64d2ff", "#bf5af2", "#ff9f0a"],
     sans: "'Inter', sans-serif", serif: "'Inter', sans-serif" };
   const plan = planPress(d, rest);

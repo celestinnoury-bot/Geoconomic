@@ -102,7 +102,16 @@ export function silhouette(d, n, wmm, hmm, P) {
   const pad = Math.max(x1 - x0, y1 - y0) * 0.12;
   const vb = `${x0 - pad} ${y0 - pad} ${x1 - x0 + 2 * pad} ${y1 - y0 + 2 * pad}`;
   const sw = Math.max(x1 - x0, y1 - y0) / 140;
-  return `<svg width="${wmm}mm" height="${hmm}mm" viewBox="${vb}" preserveAspectRatio="xMidYMid meet" style="display:block"><path d="${c.d}" fill="${P.shape}" stroke="${P.shapeStroke || "none"}" stroke-width="${sw}"/></svg>`;
+  // Repère du lieu (même projection Mercator que le fond de carte, largeur d.world.w).
+  let dot = "";
+  const g = n.geo && n.geo[0];
+  if (P.dot && g && g.coords) {
+    const Wd = d.world.w, k = Wd / (2 * Math.PI), [lon, lat] = g.coords;
+    const x = Wd / 2 + k * lon * Math.PI / 180, y = Wd / 2 - k * Math.log(Math.tan(Math.PI / 4 + lat * Math.PI / 360));
+    const r = Math.max(x1 - x0, y1 - y0) * 0.055;
+    if (x > x0 - pad && x < x1 + pad && y > y0 - pad && y < y1 + pad) dot = `<circle cx="${x}" cy="${y}" r="${r * 1.9}" fill="${P.dot}" opacity=".25"/><circle cx="${x}" cy="${y}" r="${r}" fill="${P.dot}" stroke="#fff" stroke-width="${r * 0.35}"/>`;
+  }
+  return `<svg width="${wmm}mm" height="${hmm}mm" viewBox="${vb}" preserveAspectRatio="xMidYMid meet" style="display:block"><path d="${c.d}" fill="${P.shape}" stroke="${P.shapeStroke || "none"}" stroke-width="${sw}"/>${dot}</svg>`;
 }
 
 // ---------- Les blocs illustrés ----------
@@ -160,36 +169,39 @@ export function pressChart(n, P, { noSource = false } = {}) {
   const max = Math.max(...f.map((o) => Math.abs(o.p.v)), 0.001);
   const src = (() => { const s = n.sources && n.sources[(f[0].x.src || 1) - 1]; return s ? (s.short || s.name).replace(/\s*\(.*?\)\s*$/, "") : ""; })();
   return `<div style="border-top:1.5px solid ${P.ink};padding-top:1.6mm">
-    ${f.map((o) => `<div style="display:grid;grid-template-columns:1fr 34%;gap:2mm;align-items:center;padding:1mm 0;border-bottom:.4px solid ${P.rule}">
+    ${f.map((o, i) => `<div style="display:grid;grid-template-columns:1fr 34%;gap:2mm;align-items:center;padding:1mm 0;border-bottom:.4px solid ${P.rule}">
       <div style="font:400 7.2pt/1.25 ${P.sans};color:${P.ink}">${esc(short(o.x.label, 70))}</div>
-      <div style="display:flex;align-items:center;gap:1.5mm"><div style="height:2.6mm;flex:none;width:${Math.max(3, (Math.abs(o.p.v) / max) * 62)}%;background:${o.p.v < 0 ? P.neg : P.barInk}"></div><b style="font:700 7.6pt ${P.sans};white-space:nowrap">${esc(o.x.value)}</b></div>
+      <div style="display:flex;align-items:center;gap:1.5mm"><div style="height:2.6mm;flex:none;width:${Math.max(3, (Math.abs(o.p.v) / max) * 62)}%;background:${o.p.v < 0 ? P.neg : (P.bar && P.bar[i % P.bar.length]) || P.barInk}"></div><b style="font:700 7.6pt ${P.sans};white-space:nowrap">${esc(o.x.value)}</b></div>
     </div>`).join("")}
     ${src && !noSource ? `<div style="font:italic 400 6.4pt ${P.serif};color:${P.muted};margin-top:1mm">Source : ${esc(src)}</div>` : ""}</div>`;
 }
 // Grand chiffre à la manière d'un quotidien : filet, nombre, légende. Pas de fond de couleur.
-export function pressNumber(fig, P) {
-  return `<div style="border-top:1.5px solid ${P.ink};padding-top:1.4mm">
-    <div style="font:700 22pt/1 ${P.serif};letter-spacing:-.01em;white-space:nowrap;color:${P.ink}">${esc(fig.value)}</div>
-    <div style="font:italic 400 7.6pt/1.3 ${P.serif};color:${P.muted};margin-top:1mm">${esc(fig.label)}</div></div>`;
+export function pressNumber(fig, P, second = null) {
+  const one = (f, main) => `<div style="min-width:0"><div style="font:700 ${main ? 22 : 15}pt/1 ${P.serif};letter-spacing:-.01em;white-space:nowrap;color:${main ? P.accent || P.ink : P.ink}">${esc(f.value)}</div>
+    <div style="font:italic 400 7.4pt/1.3 ${P.serif};color:${P.muted};margin-top:1mm">${esc(f.label)}</div></div>`;
+  return `<div style="border-top:1.5px solid ${P.ink};padding-top:1.4mm;display:grid;grid-template-columns:${second ? "1.15fr 1fr" : "1fr"};gap:4mm;align-items:end">${one(fig, true)}${second ? one(second, false) : ""}</div>`;
 }
 // Petite carte de situation : la silhouette du pays en gris, avec une légende.
-export function pressShape(d, n, P) {
+export function pressShape(d, n, P, { big = false } = {}) {
   const place = (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || "";
-  return `<div style="display:flex;align-items:center;gap:3mm;border-top:1.5px solid ${P.ink};padding-top:1.6mm">
-    ${silhouette(d, n, 17, 15, P)}
-    <div style="font:italic 400 7.4pt/1.3 ${P.serif};color:${P.muted}">${esc(place)}${n.region ? `, ${esc(n.region)}` : ""}</div></div>`;
+  const f = n.figures && n.figures[0];
+  return `<div style="display:flex;align-items:center;gap:3.5mm;border-top:1.5px solid ${P.ink};padding-top:1.6mm">
+    <div style="flex:none">${silhouette(d, n, big ? 30 : 19, big ? 26 : 16, P)}<div style="font:italic 400 6.6pt ${P.serif};color:${P.muted};text-align:center;margin-top:.5mm">${esc(place)}</div></div>
+    ${f ? `<div style="min-width:0"><div style="font:700 ${big ? 22 : 17}pt/1 ${P.serif};color:${P.accent || P.ink};white-space:nowrap">${esc(f.value)}</div><div style="font:italic 400 7.4pt/1.3 ${P.serif};color:${P.muted};margin-top:1mm">${esc(f.label)}</div></div>` : ""}</div>`;
 }
-// Répartition : graphique, chiffre, silhouette, ou rien (une brève n'a pas toujours d'image).
-// Jamais deux fois la même à la suite ; deux silhouettes au plus.
+// Répartition : graphique, chiffres ou silhouette ; chaque actu a son illustration.
+// Jamais deux fois la même à la suite ; trois silhouettes au plus.
 export function planPress(d, items) {
-  const LIMIT = { chart: 3, number: 3, shape: 2, none: 2 };
+  const LIMIT = { chart: 5, number: 6, shape: 3, none: 9 };
   const used = {};
   let last = null;
   return items.map((n, i) => {
     const ok = { chart: !!canBars(n), number: !!(n.figures && n.figures[0]), shape: hasShape(d, n), none: true };
-    const order = ["chart", "none", "number", "shape"];
-    const rot = order.slice(i % 4).concat(order.slice(0, i % 4));
-    const pick = rot.find((k) => ok[k] && k !== last && (used[k] || 0) < LIMIT[k]) || "none";
+    const order = ["chart", "number", "shape"];
+    const rot = order.slice(i % 3).concat(order.slice(0, i % 3), ["none"]);
+    // Mieux vaut deux illustrations du même type à la suite qu'une actu sans rien.
+    const pick = rot.find((k) => k !== "none" && ok[k] && k !== last && (used[k] || 0) < LIMIT[k])
+      || rot.find((k) => k !== "none" && ok[k] && (used[k] || 0) < LIMIT[k]) || "none";
     used[pick] = (used[pick] || 0) + 1;
     last = pick;
     return pick;
@@ -197,7 +209,7 @@ export function planPress(d, items) {
 }
 export function pressIllustration(kind, d, n, P) {
   if (kind === "chart") return pressChart(n, P);
-  if (kind === "number") return pressNumber(n.figures[0], P);
+  if (kind === "number") return pressNumber(n.figures[0], P, n.figures[1] && String(n.figures[1].value).length < 14 ? n.figures[1] : null);
   if (kind === "shape") return pressShape(d, n, P);
   return "";
 }

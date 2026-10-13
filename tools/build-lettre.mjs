@@ -1,7 +1,6 @@
 // Fabrique « La lettre du matin » : une page A4 en PDF avec les actus du jour,
 // le chiffre du jour, le point conflits et les derniers chiffres.
 // Usage : node tools/build-lettre.mjs [AAAA-MM-JJ] [--style=nom] [--out=fichier.pdf]
-//   Sans --style : « Le Journal » alterne chaque jour entre noir et blanc et couleur, plus la version sombre.
 //   date  : par défaut, la date la plus récente des actus
 //   style : classique (par défaut), journal, keynote, blanc, magazine, briefing (voir tools/lettre-styles.mjs)
 //   out   : par défaut lettres/AAAA-MM-JJ.pdf (et la liste des lettres est mise à jour dans data/lettres.js)
@@ -35,8 +34,8 @@ const news = G.news || [];
 const args = process.argv.slice(2);
 const opt = (k) => { const a = args.find((x) => x.startsWith(`--${k}=`)); return a && a.slice(k.length + 3); };
 // Par défaut : « Le Journal » (lettres/AAAA-MM-JJ.pdf) + version sombre « Keynote » (…-sombre.pdf).
-// Par défaut, « Le Journal » alterne d'un jour à l'autre : noir et blanc, puis couleur.
-const style = opt("style") || "auto";
+// Par défaut : « Le Journal » (lettres/AAAA-MM-JJ.pdf) et sa version sombre (…-sombre.pdf).
+const style = opt("style") || "journal";
 if (style !== "classique" && style !== "auto" && !STYLES[style]) { console.error(`Style inconnu : ${style}`); process.exit(1); }
 const day = args.find((x) => /^\d{4}-\d{2}-\d{2}$/.test(x)) || (news[0] && news[0].date);
 if (!day) { console.error("Aucune actu."); process.exit(1); }
