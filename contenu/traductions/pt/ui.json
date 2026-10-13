@@ -345,7 +345,19 @@
   "jusqu'au {d}": "até {d}",
   "🔒 PDF · {d}": "🔒 PDF · {d}",
   "Bientôt disponible": "Em breve",
-  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "As notícias, o globo, as aulas e a carta da manhã continuam gratuitos. O Géoconomic+ libera todo o resto."
+  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "As notícias, o globo, as aulas e a carta da manhã continuam gratuitos. O Géoconomic+ libera todo o resto.",
+  "La suite est réservée aux abonnés.": "O restante é para assinantes.",
+  "Ce cours fait partie des cours d'approfondissement. Les cours pour débuter restent gratuits.": "Esta é uma aula de aprofundamento. As aulas para iniciantes continuam gratuitas.",
+  "Le quiz de ce cours d'approfondissement est réservé aux abonnés.": "O quiz desta aula de aprofundamento é para assinantes.",
+  "La dernière étude de cas est gratuite ; les précédentes sont dans les archives des abonnés.": "O estudo de caso mais recente é gratuito; os anteriores estão no arquivo dos assinantes.",
+  "Le Focus de la semaine est gratuit ; les Focus précédents sont dans les archives des abonnés.": "O Focus da semana é gratuito; os anteriores estão no arquivo dos assinantes.",
+  "Découvrir {x} · {p} / mois": "Conheça o {x} · {p} / mês",
+  "J'ai un code": "Tenho um código",
+  "Les cours d'approfondissement et leurs quiz": "As aulas de aprofundamento e seus quizzes",
+  "Les archives : Focus industrie, études de cas, lettres du matin": "O arquivo: Focus de setor, estudos de caso, cartas da manhã",
+  "Les cours pour débuter et la lettre du matin": "As aulas para iniciantes e a carta da manhã",
+  "Le Focus de la semaine et la dernière étude de cas": "O Focus da semana e o estudo de caso mais recente",
+  "🔒 {x}": "🔒 {x}"
  },
  "months": {
   "janvier": "janeiro",

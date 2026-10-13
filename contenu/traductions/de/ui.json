@@ -349,7 +349,19 @@
   "jusqu'au {d}": "bis {d}",
   "🔒 PDF · {d}": "🔒 PDF · {d}",
   "Bientôt disponible": "Bald verfügbar",
-  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "News, Globus, Lektionen und der Morgenbrief bleiben kostenlos. Géoconomic+ schaltet alles andere frei."
+  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "News, Globus, Lektionen und der Morgenbrief bleiben kostenlos. Géoconomic+ schaltet alles andere frei.",
+  "La suite est réservée aux abonnés.": "Der Rest ist Abonnenten vorbehalten.",
+  "Ce cours fait partie des cours d'approfondissement. Les cours pour débuter restent gratuits.": "Dies ist eine Vertiefungslektion. Einsteigerlektionen bleiben kostenlos.",
+  "Le quiz de ce cours d'approfondissement est réservé aux abonnés.": "Das Quiz dieser Vertiefungslektion ist Abonnenten vorbehalten.",
+  "La dernière étude de cas est gratuite ; les précédentes sont dans les archives des abonnés.": "Die neueste Fallstudie ist gratis; ältere liegen im Abonnentenarchiv.",
+  "Le Focus de la semaine est gratuit ; les Focus précédents sont dans les archives des abonnés.": "Der Fokus der Woche ist gratis; frühere liegen im Abonnentenarchiv.",
+  "Découvrir {x} · {p} / mois": "{x} entdecken · {p} / Monat",
+  "J'ai un code": "Ich habe einen Code",
+  "Les cours d'approfondissement et leurs quiz": "Vertiefungslektionen und ihre Quizze",
+  "Les archives : Focus industrie, études de cas, lettres du matin": "Das Archiv: Branchen-Fokus, Fallstudien, Morgenbriefe",
+  "Les cours pour débuter et la lettre du matin": "Einsteigerlektionen und der Morgenbrief",
+  "Le Focus de la semaine et la dernière étude de cas": "Der Fokus der Woche und die neueste Fallstudie",
+  "🔒 {x}": "🔒 {x}"
  },
  "months": {
   "janvier": "Januar",

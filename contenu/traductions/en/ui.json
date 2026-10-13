@@ -348,7 +348,19 @@
   "jusqu'au {d}": "until {d}",
   "🔒 PDF · {d}": "🔒 PDF · {d}",
   "Bientôt disponible": "Coming soon",
-  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "The news, the globe, the lessons and the Morning Letter stay free. Géoconomic+ unlocks everything else."
+  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "The news, the globe, the lessons and the Morning Letter stay free. Géoconomic+ unlocks everything else.",
+  "La suite est réservée aux abonnés.": "The rest is for subscribers.",
+  "Ce cours fait partie des cours d'approfondissement. Les cours pour débuter restent gratuits.": "This is one of the in-depth lessons. Beginner lessons stay free.",
+  "Le quiz de ce cours d'approfondissement est réservé aux abonnés.": "The quiz for this in-depth lesson is for subscribers.",
+  "La dernière étude de cas est gratuite ; les précédentes sont dans les archives des abonnés.": "The latest case study is free; earlier ones are in the subscribers' archive.",
+  "Le Focus de la semaine est gratuit ; les Focus précédents sont dans les archives des abonnés.": "This week's Focus is free; earlier ones are in the subscribers' archive.",
+  "Découvrir {x} · {p} / mois": "Discover {x} · {p} / month",
+  "J'ai un code": "I have a code",
+  "Les cours d'approfondissement et leurs quiz": "In-depth lessons and their quizzes",
+  "Les archives : Focus industrie, études de cas, lettres du matin": "The archive: industry Focus, case studies, morning letters",
+  "Les cours pour débuter et la lettre du matin": "Beginner lessons and the Morning Letter",
+  "Le Focus de la semaine et la dernière étude de cas": "This week's Focus and the latest case study",
+  "🔒 {x}": "🔒 {x}"
  },
  "months": {
   "janvier": "Jan.",

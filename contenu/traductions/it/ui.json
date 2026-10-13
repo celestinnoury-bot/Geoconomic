@@ -345,7 +345,19 @@
   "jusqu'au {d}": "fino al {d}",
   "🔒 PDF · {d}": "🔒 PDF · {d}",
   "Bientôt disponible": "Presto disponibile",
-  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "Le notizie, il globo, le lezioni e la lettera del mattino restano gratuiti. Géoconomic+ sblocca tutto il resto."
+  "L'actu, le globe, les cours et la lettre du matin restent gratuits. Géoconomic+ débloque tout le reste.": "Le notizie, il globo, le lezioni e la lettera del mattino restano gratuiti. Géoconomic+ sblocca tutto il resto.",
+  "La suite est réservée aux abonnés.": "Il resto è riservato agli abbonati.",
+  "Ce cours fait partie des cours d'approfondissement. Les cours pour débuter restent gratuits.": "Questa è una lezione di approfondimento. Le lezioni per principianti restano gratuite.",
+  "Le quiz de ce cours d'approfondissement est réservé aux abonnés.": "Il quiz di questa lezione di approfondimento è per gli abbonati.",
+  "La dernière étude de cas est gratuite ; les précédentes sont dans les archives des abonnés.": "L'ultimo caso di studio è gratuito; i precedenti sono nell'archivio degli abbonati.",
+  "Le Focus de la semaine est gratuit ; les Focus précédents sont dans les archives des abonnés.": "Il Focus della settimana è gratuito; i precedenti sono nell'archivio degli abbonati.",
+  "Découvrir {x} · {p} / mois": "Scopri {x} · {p} / mese",
+  "J'ai un code": "Ho un codice",
+  "Les cours d'approfondissement et leurs quiz": "Le lezioni di approfondimento e i loro quiz",
+  "Les archives : Focus industrie, études de cas, lettres du matin": "L'archivio: Focus industria, casi di studio, lettere del mattino",
+  "Les cours pour débuter et la lettre du matin": "Le lezioni per principianti e la lettera del mattino",
+  "Le Focus de la semaine et la dernière étude de cas": "Il Focus della settimana e l'ultimo caso di studio",
+  "🔒 {x}": "🔒 {x}"
  },
  "months": {
   "janvier": "gennaio",

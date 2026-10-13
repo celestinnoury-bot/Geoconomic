@@ -75,6 +75,29 @@
   const hashMail = (m) => sha256("mail:" + String(m).trim().toLowerCase());
   const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
 
+  // Ce qui est réservé à Géoconomic+ : les cours d'approfondissement (plus: true dans data/content.js)
+  // et les archives (tous les Focus et études de cas sauf le plus récent). Un aperçu reste gratuit.
+  const plusCourse = (d) => !!(d && d.plus);
+  const courseLocked = (d) => plusCourse(d) && !isPlus();
+  const latestCase = () => [...(window.GEOCO.etudes && window.GEOCO.etudes.cas || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
+  const caseLocked = (c) => !isPlus() && latestCase() && c.id !== latestCase().id;
+  const focusLocked = (f) => !isPlus() && (window.GEOCO.focus || [])[0] !== f;
+  const plusTag = () => `<span class="plus-tag">🔒 ${offre.name}</span>`;
+  function paywall(why) {
+    return `
+      <section class="wrap">
+        <div class="paywall reveal">
+          <p class="eyebrow">🔒 ${offre.name}</p>
+          <h2>La suite est réservée aux abonnés.</h2>
+          <p>${why}</p>
+          <div class="actions">
+            <a class="pill-btn blue lg" href="#/abonnement">Découvrir ${offre.name} · ${euros(PLUS.prix.mensuel)} / mois</a>
+            <a class="pill-btn outline lg" href="#/abonnement">J'ai un code</a>
+          </div>
+        </div>
+      </section>`;
+  }
+
   const freeLeft = () => Math.max(0, offre.freeListens - listened.length);
   const canListen = (ep) => isPlus() || ep.free || listened.includes(ep.id) || freeLeft() > 0;
   function recordListen(id) {
@@ -265,7 +288,7 @@
         return `
         <a class="tile ${d.theme}" href="#/cours/${d.id}">
           <div>
-            <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}</p>
+            <p class="eyebrow">${THEMES[d.theme]} · ${d.minutes} min${readSet.has(d.id) ? ' · <span class="done">Lu</span>' : ""}${courseLocked(d) ? " · " + plusTag() : ""}</p>
             <h3>${d.title}</h3>
           </div>
           <div>
@@ -509,6 +532,23 @@
   function renderDossier(id) {
     const d = byId(dossiers, id);
     if (!d) return renderNotFound();
+    if (courseLocked(d)) {
+      app.innerHTML = `
+        <section class="wrap hero">
+          <a class="back" href="#/cours">‹ Cours</a>
+          <p class="eyebrow reveal">${THEMES[d.theme]} · ${d.minutes} min · ${d.level} · ${plusTag()}</p>
+          <h1 class="title reveal">${d.title}</h1>
+          <p class="lead reveal">${d.hook}</p>
+        </section>
+        <section class="section alt">
+          <div class="wrap">
+            <p class="eyebrow reveal">L'essentiel en 30 secondes</p>
+            ${d.tldr.map((t) => `<p class="statement reveal">${cite(t, d.sources)}</p>`).join("")}
+          </div>
+        </section>
+        ${paywall("Ce cours fait partie des cours d'approfondissement. Les cours pour débuter restent gratuits.")}`;
+      return;
+    }
     const terms = d.terms.map((t) => byId(glossary, t)).filter(Boolean);
 
     app.innerHTML = `
@@ -674,9 +714,9 @@
       : `<button class="pill-btn blue" type="button" disabled>Bientôt disponible</button>`;
     const perks = `
       <ul>
+        <li>Les cours d'approfondissement et leurs quiz</li>
         <li>Tous les épisodes du podcast, en illimité</li>
-        <li>Les études de cas complètes</li>
-        <li>Les archives de la lettre du matin</li>
+        <li>Les archives : Focus industrie, études de cas, lettres du matin</li>
         <li>Bientôt : flashcards et mode Concours</li>
       </ul>`;
     app.innerHTML = `
@@ -693,7 +733,8 @@
             <ul>
               <li>L'actu du jour, expliquée et sourcée</li>
               <li>Le globe, les conflits, les chiffres</li>
-              <li>Les cours et la lettre du matin</li>
+              <li>Les cours pour débuter et la lettre du matin</li>
+              <li>Le Focus de la semaine et la dernière étude de cas</li>
               <li>${offre.freeListens} épisodes du podcast offerts</li>
             </ul>
           </div>
@@ -839,7 +880,7 @@
   function caseCard(c) {
     return `
       <a class="news-card case-card ${c.theme} reveal" href="#/etudes/${c.id}">
-        <p class="eyebrow">Étude de cas · ${formatDate(c.date)}</p>
+        <p class="eyebrow">Étude de cas · ${formatDate(c.date)}${caseLocked(c) ? " · " + plusTag() : ""}</p>
         <h3>${c.title}</h3>
         <p class="summary">${c.hook}</p>
         ${c.author ? `<p class="byline">Par ${c.author}</p>` : ""}
@@ -887,6 +928,18 @@
   function renderCase(id) {
     const c = byId(cases, id);
     if (!c) return renderNotFound();
+    if (caseLocked(c)) {
+      app.innerHTML = `
+        <section class="wrap hero">
+          <a class="back" href="#/etudes">‹ Étude de cas</a>
+          <p class="eyebrow reveal">Étude de cas · ${THEMES[c.theme] || ""} · ${plusTag()}</p>
+          <h1 class="title reveal">${c.title}</h1>
+          <p class="lead reveal">${c.hook}</p>
+          ${c.question ? `<p class="statement reveal">${c.question}</p>` : ""}
+        </section>
+        ${paywall("La dernière étude de cas est gratuite ; les précédentes sont dans les archives des abonnés.")}`;
+      return;
+    }
     const linkedNews = (c.news || []).map((nid) => byId(news, nid)).filter(Boolean);
     const eps = episodesFor("cas", c.id);
     app.innerHTML = `
@@ -972,7 +1025,7 @@
       <a class="learn-card ${d.theme} reveal" href="#/cours/${d.id}">
         <span class="learn-icon" aria-hidden="true">📘</span>
         <span class="learn-body">
-          <span class="learn-kicker">Le cours pour comprendre · ${d.minutes} min</span>
+          <span class="learn-kicker">Le cours pour comprendre · ${d.minutes} min${courseLocked(d) ? " · " + plusTag() : ""}</span>
           <span class="learn-title">${COURSE_HOOK[d.id] || d.title}</span>
         </span>
         <span class="chev" aria-hidden="true">›</span>
@@ -1061,6 +1114,17 @@
   function renderFocus(id) {
     const f = id ? byId(focusList, id) : focusList[0];
     if (!f) return renderNotFound();
+    if (focusLocked(f)) {
+      app.innerHTML = `
+        <section class="wrap hero">
+          <a class="back" href="#/focus">‹ Focus</a>
+          <p class="eyebrow reveal">Focus industrie · ${f.week} · ${plusTag()}</p>
+          <h1 class="title reveal">${f.industry}.<br><span class="grad eco">${f.title}</span></h1>
+          <p class="lead reveal">${f.hook}</p>
+        </section>
+        ${paywall("Le Focus de la semaine est gratuit ; les Focus précédents sont dans les archives des abonnés.")}`;
+      return;
+    }
     const others = focusList.filter((x) => x !== f);
 
     app.innerHTML = `
@@ -1138,7 +1202,7 @@
         <div class="wrap">
           <h2 class="title reveal">Les autres focus.</h2>
           <div class="group reveal">
-            ${others.map((o) => `<a class="row" href="#/focus/${o.id}"><div class="row-main"><div class="row-title">${o.industry} : ${o.title}</div><div class="row-sub">${o.week}</div></div><span class="chev" aria-hidden="true">›</span></a>`).join("")}
+            ${others.map((o) => `<a class="row" href="#/focus/${o.id}"><div class="row-main"><div class="row-title">${o.industry} : ${o.title}</div><div class="row-sub">${o.week}${focusLocked(o) ? " · " + plusTag() : ""}</div></div><span class="chev" aria-hidden="true">›</span></a>`).join("")}
           </div>
         </div>
       </section>` : ""}
@@ -1214,7 +1278,7 @@
             ${dossiers.map((d) => `
               <a class="row" href="#/cours/${d.id}">
                 <span class="dot ${d.theme}"></span>
-                <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}</div></div>
+                <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${THEMES[d.theme]} · ${d.minutes} min · ${d.level}${courseLocked(d) ? " · " + plusTag() : ""}</div></div>
                 ${readSet.has(d.id) ? '<span class="check">Lu</span>' : ""}
                 <span class="chev" aria-hidden="true">›</span>
               </a>`).join("")}
@@ -1764,7 +1828,7 @@ function statGrid(figures, sources, theme = "geo") {
           ${dossiers.map((d) => `
             <a class="row" href="#/quiz/${d.id}">
               <span class="dot ${d.theme}"></span>
-              <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${d.quiz.length} questions</div></div>
+              <div class="row-main"><div class="row-title">${d.title}</div><div class="row-sub">${d.quiz.length} questions${courseLocked(d) ? " · " + plusTag() : ""}</div></div>
               <span class="chev" aria-hidden="true">›</span>
             </a>`).join("")}
         </div>
@@ -1791,13 +1855,14 @@ function statGrid(figures, sources, theme = "geo") {
       backHref = "#/focus/" + f.id;
       theme = "eco";
     } else if (id === "tout") {
-      questions = shuffle(dossiers.flatMap((d) => d.quiz));
+      questions = shuffle(dossiers.filter((d) => !courseLocked(d)).flatMap((d) => d.quiz));
       title = "Le grand quiz";
       backHref = "#/quiz";
       theme = "mix";
     } else {
       const d = byId(dossiers, id);
       if (!d) return renderNotFound();
+      if (courseLocked(d)) { app.innerHTML = `<section class="wrap hero"><a class="back" href="#/quiz">‹ Quiz</a><h1 class="title">${d.title}</h1></section>${paywall("Le quiz de ce cours d'approfondissement est réservé aux abonnés.")}`; return; }
       questions = d.quiz;
       title = d.title;
       backHref = "#/cours/" + d.id;

@@ -2,6 +2,20 @@
 
 **Prix** : 3,99 €/mois ou 39,99 €/an (2 mois offerts). Ils se règlent dans `data/plus.js` (`prix`).
 
+## Ce qui est gratuit, ce qui est réservé
+
+| Gratuit | Géoconomic+ |
+|---|---|
+| L'actu, le globe, les chiffres, les conflits | |
+| Les cours pour débuter | Les cours d'approfondissement et leurs quiz (`plus: true` dans `data/content.js`) |
+| Le Focus industrie le plus récent | Les Focus précédents (archives) |
+| La dernière étude de cas | Les études de cas précédentes (archives) |
+| Les 7 dernières lettres du matin | Les lettres plus anciennes |
+| 2 épisodes du podcast | Tous les épisodes |
+
+Un contenu réservé garde un aperçu gratuit (l'accroche, l'essentiel en 30 secondes) pour donner envie.
+Pour rendre un cours payant ou gratuit : ajouter ou retirer `plus: true` sur ce cours dans `data/content.js`.
+
 ## Offrir l'accès
 
 Tout se fait avec `tools/plus.mjs`, dans le terminal, à la racine du projet :

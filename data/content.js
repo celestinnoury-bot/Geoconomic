@@ -261,6 +261,7 @@ window.GEOCO = {
 
     {
       id: "semi-conducteurs",
+      plus: true, // cours d'approfondissement : réservé à Géoconomic+
       emoji: "💾",
       theme: "mix",
       title: "Puces électroniques : pourquoi Taïwan est au cœur du monde",
@@ -342,6 +343,7 @@ window.GEOCO = {
 
     {
       id: "sanctions",
+      plus: true, // cours d'approfondissement : réservé à Géoconomic+
       emoji: "🔒",
       theme: "geo",
       title: "Sanctions économiques : faire la guerre sans armes ?",
@@ -414,6 +416,7 @@ window.GEOCO = {
 
     {
       id: "dollar",
+      plus: true, // cours d'approfondissement : réservé à Géoconomic+
       emoji: "💵",
       theme: "eco",
       title: "Pourquoi le dollar domine le monde",
