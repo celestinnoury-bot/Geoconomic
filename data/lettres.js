@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-13",
+    "file": "lettres/2026-10-13.pdf",
+    "titles": [
+      "Privée de pétrole par Washington, Cuba se couvre de panneaux solaires chinois",
+      "L'Afrique lance sa propre agence de notation pour juger ses dettes autrement",
+      "Nigeria : OPay, la fintech passée du déficit au profit, vise la Bourse de New York"
+    ],
+    "fileDark": "lettres/2026-10-13-sombre.pdf"
+  },
+  {
     "date": "2026-10-12",
     "file": "lettres/2026-10-12.pdf",
     "titles": [

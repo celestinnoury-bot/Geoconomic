@@ -15,6 +15,487 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-13-cuba-solaire-blocus",
+    "date": "2026-10-13",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "La Havane",
+        "label": "Cuba",
+        "coords": [
+          -82.37,
+          23.13
+        ]
+      }
+    ],
+    "title": "Privée de pétrole par Washington, Cuba se couvre de panneaux solaires chinois",
+    "summary": "Avec le blocus pétrolier américain, Cuba n'a plus assez de carburant pour ses centrales. L'île mise sur le soleil, avec l'aide de la Chine, mais le solaire ne couvre pas encore ses besoins.",
+    "points": [
+      "Selon des données du centre de recherche Ember, les exportations chinoises de panneaux solaires vers Cuba seraient passées d'environ 3 millions de dollars en 2023 à 117 millions en 2025 [1].",
+      "Un accord avec la Chine prévoit 92 parcs solaires dans le pays d'ici 2028 ; environ 50 fonctionnaient déjà à la mi-2026, et Cuba s'est engagée à atteindre au moins 24 % d'énergies renouvelables d'ici 2030 [1]. Le solaire fournirait environ 10 % de l'électricité, contre près de 3 % en 2024 [1].",
+      "Cette course au solaire répond à un décret signé le 29 janvier 2026 par Donald Trump, qui ouvre la voie à des droits de douane contre les pays qui fournissent du pétrole à Cuba [3]. Cuba a aussi réduit les transports et les horaires des écoles et des lieux de travail [2]."
+    ],
+    "why": [
+      "Quand un pays ne peut plus acheter son carburant, il doit produire son énergie lui-même. Cuba le fait avec les moyens qu'elle a : des panneaux chinois bon marché, installés à toute vitesse.",
+      "Mais les parcs sont petits et dispersés dans l'île, le soleil ne brille pas tous les jours et le stockage manque : les experts estiment que le solaire ne peut pas encore couvrir les pics de consommation, et le pays dépend toujours largement des énergies fossiles [1].",
+      "C'est aussi un exemple de la façon dont une sanction américaine peut pousser un pays vers la Chine : Pékin fournit les panneaux, Washington coupe le pétrole."
+    ],
+    "forMe": "Cuba est un cas extrême, mais il montre ce qui arrive quand l'énergie devient une arme : chacun cherche une source qu'il contrôle. Le même raisonnement pousse l'Europe à miser sur le solaire et l'éolien, et il explique pourquoi la Chine vend tant de panneaux dans le monde.",
+    "figures": [
+      {
+        "value": "3 → 117 millions $",
+        "label": "panneaux solaires chinois exportés vers Cuba, de 2023 à 2025 (Ember)",
+        "src": 1
+      },
+      {
+        "value": "92",
+        "label": "parcs solaires prévus à Cuba d'ici 2028, environ 50 déjà en service à la mi-2026",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions",
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "CTV News",
+        "name": "CTV News, « As the US starves it of oil, Cuba is pulling off one of the fastest solar revolutions on the planet with China's help »",
+        "url": "https://www.ctvnews.ca/world/article/as-the-us-starves-it-of-oil-cuba-is-pulling-off-one-of-the-fastest-solar-revolutions-on-the-planet-with-chinas-help/"
+      },
+      {
+        "short": "Mezha",
+        "name": "Mezha, « US oil blockade pushes Cuba to accelerate solar rollout with Chinese backing »",
+        "url": "https://mezha.net/eng/news/5130cea3_us_oil_blockade/"
+      },
+      {
+        "short": "PBS NewsHour",
+        "name": "PBS NewsHour, « Trump threatens tariffs on any country that sells oil to Cuba, putting pressure on Mexico » (30 janv. 2026)",
+        "url": "https://www.pbs.org/newshour/amp/politics/trump-threatens-tariffs-on-any-country-that-sells-oil-to-cuba-putting-pressure-on-mexico"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-afrique-agence-notation",
+    "date": "2026-10-13",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Port-Louis",
+        "label": "Maurice",
+        "coords": [
+          57.5,
+          -20.16
+        ]
+      }
+    ],
+    "title": "L'Afrique lance sa propre agence de notation pour juger ses dettes autrement",
+    "summary": "Inaugurée à Maurice le 7 octobre, l'Agence de notation de crédit africaine veut contester les notes des géants occidentaux, qui, selon les États africains, leur coûtent trop cher en intérêts.",
+    "points": [
+      "L'Africa Credit Rating Agency (AfCRA) a été inaugurée le mercredi 7 octobre 2026 à Balaclava, au nord de Port-Louis, à Maurice, où se trouve son siège [1].",
+      "Elle doit donner des avis de crédit sur des États, des entreprises, des collectivités et des institutions, en se concentrant surtout sur les dettes en monnaie locale ; elle n'appartiendra pas aux gouvernements africains [1].",
+      "Les gouvernements africains reprochent aux agences existantes d'imposer une « prime de préjugé » qui renchérit leurs emprunts ; le Ghana et la Zambie disent que des dégradations de note ont aggravé leurs crises de dette [1]. Le président de la Commission de l'Union africaine, Mahmoud Ali Youssouf, a prévenu qu'il ne fallait pas attendre de baisse immédiate du coût de l'argent [1]."
+    ],
+    "why": [
+      "La note d'une agence décide du taux auquel un pays peut emprunter : plus la note est basse, plus les intérêts sont élevés. Pour des pays déjà endettés, quelques points de pourcentage pèsent lourd.",
+      "L'idée de l'AfCRA est de proposer un autre regard, plus proche du terrain. La difficulté sera de convaincre les investisseurs : une agence n'a de valeur que si ses notes sont crues par ceux qui prêtent.",
+      "Le lancement suit une dispute publique entre le Mécanisme africain d'évaluation par les pairs et l'agence Fitch, après la dégradation de la banque Afreximbank ; Fitch défend sa méthode [1]."
+    ],
+    "forMe": "Les notes des agences influencent les taux de la dette de tous les pays, y compris la France. Voir l'Afrique créer la sienne montre que ce pouvoir, longtemps réservé à quelques entreprises occidentales, est de plus en plus contesté.",
+    "figures": [
+      {
+        "value": "7 octobre 2026",
+        "label": "inauguration de l'agence à Maurice, après un an de retard sur le calendrier prévu",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Business Day",
+        "name": "Business Day, « Africa launches credit ratings agency to tackle risk bias » (8 oct. 2026)",
+        "url": "https://www.businessday.co.za/economy/2026-10-08-africa-launches-credit-ratings-agency-to-tackle-risk-bias/"
+      },
+      {
+        "short": "Semafor",
+        "name": "Semafor, « Africa's first credit rating agency set to launch » (7 oct. 2026)",
+        "url": "https://www.semafor.com/article/10/07/2026/africas-first-credit-rating-agency-set-to-launch"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-nigeria-opay-bourse-new-york",
+    "date": "2026-10-13",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Lagos",
+        "label": "Nigeria",
+        "coords": [
+          3.38,
+          6.52
+        ]
+      }
+    ],
+    "title": "Nigeria : OPay, la fintech passée du déficit au profit, vise la Bourse de New York",
+    "summary": "Le paiement mobile OPay a déposé son dossier d'introduction à New York le 9 octobre. Il montre des bénéfices en hausse, mais aussi des risques sur ses placements.",
+    "points": [
+      "OPay a déposé le 9 octobre auprès du régulateur américain (SEC) un dossier d'introduction en Bourse (formulaire F-1) pour coter ses actions à New York sous le code OPAY, avec une valorisation visée d'environ 4 milliards de dollars ; aucune date de cotation n'est confirmée [1][2].",
+      "Selon ce dossier, le bénéfice net atteint 90,9 millions de dollars au premier semestre 2026, contre 21,7 millions un an plus tôt, pour 467,1 millions de dollars de revenus [2]. En 2025, la société a gagné 72,47 millions de dollars, après une perte de 50,98 millions en 2024 [3].",
+      "Le dossier signale aussi un portefeuille de placements à court terme de 532,9 millions de dollars au 30 juin 2026, qui comporte des risques de liquidité et de contrepartie [1]."
+    ],
+    "why": [
+      "OPay est l'une des applications qui remplacent la banque pour des millions de Nigérians : paiements, transferts, petits prêts. Son entrée à New York serait un signal fort pour la finance africaine.",
+      "Mais ces chiffres viennent d'un dossier de la société elle-même et de la presse, et le bénéfice net diffère de la perte attribuée aux actionnaires ordinaires à cause d'éléments non monétaires [3]. Les investisseurs vont donc regarder de près."
+    ],
+    "forMe": "Quand une application de paiement née à Lagos peut lever des milliards à New York, cela montre que la finance mobile africaine pèse désormais dans l'économie mondiale. C'est le même mouvement que celui des paiements par téléphone qui ont grandi en Chine ou en Inde.",
+    "figures": [
+      {
+        "value": "90,9 millions $",
+        "label": "bénéfice net d'OPay au premier semestre 2026",
+        "src": 2
+      },
+      {
+        "value": "≈ 4 milliards $",
+        "label": "valorisation visée à New York",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « OPay discloses $532.9 million short-term investment portfolio ahead of US IPO » (11 oct. 2026)",
+        "url": "https://nairametrics.com/2026/10/11/opay-discloses-532-9-million-short-term-investment-portfolio-ahead-of-us-ipo/"
+      },
+      {
+        "short": "EdgeX",
+        "name": "EdgeX News, « OPay Reports $90.9 Million Six-Month Profit as It Files for US IPO »",
+        "url": "https://pro.edgex.exchange/en-US/news/article/opay-nyse-listing-90-9-million-profit"
+      },
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « OPay swings to profit in FY2025 as revenue surges 161% to $536.3 million » (13 août 2026)",
+        "url": "https://nairametrics.com/2026/08/13/opay-swings-to-profit-in-fy2025-as-revenue-surges-161-to-536-3-million"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-turquie-bulgarie-chemin-de-fer",
+    "date": "2026-10-13",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Kapıkule (frontière bulgare)",
+        "label": "Turquie",
+        "coords": [
+          26.36,
+          41.72
+        ]
+      }
+    ],
+    "title": "Un train neuf jusqu'à la frontière bulgare : l'Europe a payé 275 millions d'euros pour ouvrir la route vers l'Asie centrale",
+    "summary": "La Turquie a inauguré le 9 octobre un tronçon de voie ferrée vers la Bulgarie, financé en partie par l'Union européenne. Il doit fluidifier le « corridor du milieu » entre l'Europe et l'Asie centrale.",
+    "points": [
+      "Le 9 octobre, le président turc Recep Tayyip Erdoğan et la commissaire européenne à l'élargissement Marta Kos ont inauguré le tronçon Çerkezköy–Kapıkule, d'environ 153 km, qui fait partie de la ligne Halkalı–Kapıkule vers la frontière avec la Bulgarie [1][2].",
+      "L'Union européenne a apporté une subvention de 275 millions d'euros, via son instrument d'aide aux pays candidats (IPA II) ; la Commission parle du plus grand projet d'infrastructure à ce jour de la coopération UE-Turquie [1]. La subvention avait été annoncée en 2019 [3].",
+      "La Commission en attend une réduction des temps de transit sur le « corridor du milieu », la route de marchandises entre l'Europe et l'Asie centrale via le Caucase ; l'Astana Times parle d'une meilleure capacité de fret à l'ouest de ce corridor [2]."
+    ],
+    "why": [
+      "Le corridor du milieu est la route de marchandises qui relie l'Asie centrale à l'Europe en traversant la mer Caspienne, le Caucase puis la Turquie. Chaque maillon trop lent freine tout le reste.",
+      "La Commission présente cette ligne comme le premier résultat concret de son programme de connexions avec l'Asie centrale par le Caucase du Sud [2].",
+      "Les chiffres varient selon les sources : la longueur annoncée va de 153 à 189 km selon le tronçon pris en compte, et le coût total n'est pas toujours le même [1][3]."
+    ],
+    "forMe": "Quand une route plus rapide s'ouvre entre l'Asie et l'Europe, c'est le prix et le délai de livraison de certains produits qui peuvent changer. La Turquie, déjà un pays-clé du commerce entre les deux continents, y gagne encore en poids face à Bruxelles.",
+    "figures": [
+      {
+        "value": "275 millions €",
+        "label": "subvention de l'Union européenne pour la ligne",
+        "src": 1
+      },
+      {
+        "value": "≈ 153 km",
+        "label": "longueur du tronçon Çerkezköy–Kapıkule inauguré",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Commission européenne (EEAS)",
+        "name": "EEAS, « Commissioner Kos attends inauguration of key railway project at the border between Türkiye and Bulgaria »",
+        "url": "https://www.eeas.europa.eu/delegations/turkiye/commissioner-kos-attends-inauguration-key-railway-project-border-between-turkiye-and-bulgaria_en"
+      },
+      {
+        "short": "Astana Times",
+        "name": "The Astana Times, « Türkiye Opens EU-Backed Railway Link to Boost Europe-Central Asia Connectivity » (oct. 2026)",
+        "url": "https://astanatimes.com/2026/10/turkiye-opens-eu-backed-railway-link-to-boost-europe-central-asia-connectivity/"
+      },
+      {
+        "short": "Turkish Minute",
+        "name": "Turkish Minute, « EU grants Turkey €275 million to build railway from Istanbul to Bulgarian border » (11 juin 2019)",
+        "url": "https://turkishminute.com/2019/06/11/eu-grants-turkey-e275-million-to-build-railway-from-istanbul-to-bulgarian-border/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-kazakhstan-cable-caspienne",
+    "date": "2026-10-13",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Aktau",
+        "label": "Kazakhstan",
+        "coords": [
+          51.17,
+          43.65
+        ]
+      },
+      {
+        "name": "Sumqayit",
+        "label": "Azerbaïdjan",
+        "coords": [
+          49.67,
+          40.59
+        ]
+      }
+    ],
+    "title": "Un câble internet au fond de la mer Caspienne relie le Kazakhstan à l'Azerbaïdjan",
+    "summary": "Le câble est posé entre Aktau et Sumqayit. Il doit offrir une capacité de plus de 400 térabits par seconde, mais sa date de mise en service reste floue.",
+    "points": [
+      "Le Kazakhstan et l'Azerbaïdjan ont fini de poser le câble de fibre optique sur le fond de la mer Caspienne ; il a atteint la côte kazakhe début août 2026, et les travaux se poursuivent à terre [1].",
+      "Il est conçu pour plus de 400 térabits par seconde et exploité par la société commune CaspiLink B.V. ; sa longueur est donnée à 380 km côté azerbaïdjanais et 390 km côté kazakh [1].",
+      "Selon le ministre kazakh de l'Intelligence artificielle et du Développement numérique, il doit entrer en service en octobre 2026 [2], alors que JAM News parle d'une exploitation commerciale d'ici la fin de l'année [3]."
+    ],
+    "why": [
+      "Internet passe par des câbles. Relier les deux rives de la Caspienne ouvre une nouvelle voie directe entre l'Asie centrale et le Caucase.",
+      "Des analystes y voient un changement de la géographie numérique de l'Eurasie [3].",
+      "Il faut rester prudent : au moment des dernières informations, la mise en service n'était pas confirmée."
+    ],
+    "forMe": "Les services que tu utilises (vidéo, cloud, jeux) transitent par des câbles de ce type. Plus il y en a, plus le réseau est solide en cas de panne.",
+    "figures": [
+      {
+        "value": "400 Tbit/s",
+        "label": "capacité prévue du câble transcaspien",
+        "src": 1
+      },
+      {
+        "value": "≈ 380 km",
+        "label": "longueur du câble, côté azerbaïdjanais",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Telecom Review Asia",
+        "name": "Telecom Review Asia, « Trans-Caspian Fiber-Optic Cable Successfully Installed »",
+        "url": "https://www.telecomreviewasia.com/news/industry-news/29988-trans-caspian-fiber-optic-cable-successfully-installed/"
+      },
+      {
+        "short": "Caspian Post",
+        "name": "Caspian Post, « Trans-Caspian Fiber-Optic Link Between Kazakhstan and Azerbaijan Nears Launch »",
+        "url": "https://caspianpost.com/kazakhstan/trans-caspian-fiber-optic-link-between-kazakhstan-and-azerbaijan-nears-launch"
+      },
+      {
+        "short": "JAM News",
+        "name": "JAM News, « First digital bridge beneath Caspian Sea: How Sumqayit-Aktau cable reshapes Eurasia's geostrategic landscape »",
+        "url": "https://jam-news.net/first-digital-bridge-beneath-caspian-sea-how-sumqayit-aktau-cable-reshapes-eurasias-geostrategic-landscape/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-arabie-forum-energie-riyad",
+    "date": "2026-10-13",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Riyad",
+        "label": "Arabie saoudite",
+        "coords": [
+          46.68,
+          24.71
+        ]
+      }
+    ],
+    "title": "Riyad réunit les ministres de l'énergie du monde malgré les bombes sur son aéroport",
+    "summary": "Le Forum international de l'énergie s'est tenu à Riyad le 11 octobre, alors que l'aéroport de la ville venait d'être visé. L'Égypte et l'Arabie ont signé un accord sur le pétrole et le gaz.",
+    "points": [
+      "La 17e réunion ministérielle du Forum international de l'énergie (IEF17) s'est tenue le dimanche 11 octobre à Riyad, sur le thème « Sécurité énergétique et objectifs communs dans une ère nouvelle » ; elle ouvrait une semaine de l'énergie qui comprend aussi le Congrès mondial du pétrole [1][2].",
+      "Selon un compte rendu irakien, la conférence s'est tenue malgré des bombardements sur l'aéroport international King Khalid de Riyad, que les responsables saoudiens attribuent aux Houthis du Yémen, et elle a salué l'annonce du retour des États-Unis au Forum [2].",
+      "À l'issue de la réunion, le ministre égyptien du Pétrole, Karim Badawi, et le ministre saoudien de l'Énergie, le prince Abdulaziz ben Salmane, ont signé un protocole d'accord sur le commerce, le transport, le stockage et la distribution de pétrole brut, de produits pétroliers et de gaz [3]."
+    ],
+    "why": [
+      "Quand le détroit d'Ormuz est menacé, la question n'est plus seulement le prix du pétrole mais sa sécurité : par où il passe, qui peut le protéger, qui peut le stocker.",
+      "Que la réunion ait lieu malgré les attaques montre que l'Arabie saoudite veut se présenter comme un pôle stable de l'énergie mondiale. Le retour annoncé des États-Unis dans l'enceinte la renforce, mais il repose sur un seul compte rendu, à confirmer."
+    ],
+    "forMe": "Les décisions prises dans ces réunions pèsent sur le prix du carburant et du gaz en France. Les accords entre pays producteurs et pays consommateurs sont la face discrète de ce qui se joue aussi dans le détroit d'Ormuz.",
+    "figures": [
+      {
+        "value": "11 octobre",
+        "label": "date de la réunion ministérielle IEF17 à Riyad",
+        "src": 1
+      },
+      {
+        "value": "11–13 octobre",
+        "label": "semaine de l'énergie à Riyad (Congrès mondial du pétrole, ministériel Énergie propre)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Asharq Al-Awsat",
+        "name": "Asharq Al-Awsat, « Riyadh Kicks off Energy Week with Ministerial Meeting on Supply Security, Market Stability »",
+        "url": "https://english.aawsat.com/node/5328271"
+      },
+      {
+        "short": "Iraqi News",
+        "name": "Iraqi News, « Iraq attends Riyadh energy summit as Saudi minister declares city capital of energy security » (11 oct. 2026)",
+        "url": "https://www.iraqinews.com/iraq/iraq-attends-riyadh-energy-summit-as-saudi-minister-declares-city-capital-of-energy-security/"
+      },
+      {
+        "short": "Egypt Oil & Gas",
+        "name": "Egypt Oil & Gas, « Egypt, Saudi Arabia Sign MoU to Expand Cooperation in Oil, Gas »",
+        "url": "https://egyptoil-gas.com/news/egypt-saudi-arabia-sign-mou-to-expand-cooperation-in-oil-gas/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-cambodge-croissance-tourisme",
+    "date": "2026-10-13",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Phnom Penh",
+        "label": "Cambodge",
+        "coords": [
+          104.92,
+          11.56
+        ]
+      }
+    ],
+    "title": "Cambodge : les touristes désertent et la croissance tombe à 3,5 %",
+    "summary": "La Banque mondiale a abaissé le 6 octobre sa prévision pour le Cambodge. Moins de visiteurs étrangers et un carburant plus cher pèsent sur les ménages.",
+    "points": [
+      "Le 6 octobre, la Banque mondiale a ramené sa prévision de croissance du Cambodge pour 2026 à 3,5 %, contre 5,3 % l'an dernier ; elle l'avait fixée à 3,9 % en avril et 4,3 % en janvier [1][3]. Elle cite la chute des arrivées de touristes étrangers, la baisse des envois d'argent des migrants et la hausse des prix du pétrole [1].",
+      "Les arrivées de touristes auraient reculé de 44 % à 2,25 millions sur les huit premiers mois de 2026, ce que la presse relie aux arnaques en ligne, aux tensions à la frontière avec la Thaïlande et aux conflits en Asie de l'Ouest [2].",
+      "Fin septembre, le FMI prévoyait 3 % de croissance et 5,6 % d'inflation pour 2026 ; la Banque mondiale attend un rebond à 4 % en 2027 puis 5 % en 2028 [1][2]."
+    ],
+    "why": [
+      "Le Cambodge vit en grande partie du tourisme et de l'habillement. Quand les visiteurs reviennent moins, ce sont les hôtels, les restaurants et les petits commerces qui souffrent.",
+      "Les exportations de vêtements, chaussures et articles de voyage résistent : elles ont progressé de 7,2 % sur un an, à 11,76 milliards de dollars sur huit mois [2]. L'économie ne s'effondre pas, mais elle repose sur peu de moteurs.",
+      "Le scénario de reprise suppose que les prix de l'énergie se calment et que le tourisme revienne [1]."
+    ],
+    "forMe": "Si tu portes un vêtement fabriqué au Cambodge, c'est l'un des produits qui continue à tenir l'économie du pays. Et l'idée qu'une crise de l'énergie à l'autre bout du monde fasse reculer le tourisme en Asie du Sud-Est te touche si tu voyages.",
+    "figures": [
+      {
+        "value": "3,5 %",
+        "label": "croissance prévue en 2026 par la Banque mondiale (5,3 % en 2025)",
+        "src": 1
+      },
+      {
+        "value": "− 44 %",
+        "label": "arrivées de touristes, huit premiers mois de 2026 (selon la presse)",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Star",
+        "name": "The Star, « World Bank cuts Cambodia's 2026 growth forecast to 3.5% amid tourism slump, high fuel costs » (7 oct. 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/07/world-bank-cuts-cambodia039s-2026-growth-forecast-to-35-amid-tourism-slump-high-fuel-costs"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star, « Cambodia's economic growth projected to slow to 3% in 2026 amid rising costs: IMF » (30 sept. 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/30/cambodia039s-economic-growth-projected-to-slow-to-3-in-2026-amid-rising-costs-imf"
+      },
+      {
+        "short": "Vietstock",
+        "name": "Vietstock, « WB moderates Cambodia's 2026 GDP growth forecast to 3.9% » (avril 2026)",
+        "url": "https://en.vietstock.vn/2026/04/wb-moderates-cambodias-2026-gdp-growth-forecast-to-39-52000-630357.htm"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-13-panama-seisme-canal",
+    "date": "2026-10-13",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Tonosí",
+        "label": "Panama",
+        "coords": [
+          -80.44,
+          7.4
+        ]
+      }
+    ],
+    "title": "Séisme de 7,7 au Panama : le canal tient bon, mais les pertes pourraient atteindre 10 % du PIB",
+    "summary": "Un tremblement de terre a frappé le sud du pays vendredi 9 octobre. La grande voie du commerce mondial n'a pas été interrompue, mais le pays a subi des coupures et des fermetures.",
+    "points": [
+      "Un séisme de magnitude 7,7 a frappé le sud du Panama le vendredi 9 octobre, à environ 12,6 km de profondeur, selon l'USGS (l'institut géologique américain) ; des alertes au tsunami ont été émises pour la côte Pacifique de plusieurs pays d'Amérique centrale et du Sud [1][3].",
+      "L'Autorité du canal a indiqué que le canal fonctionnait normalement et que les navires passaient sans interruption ; environ 90 navires attendaient aux deux extrémités, selon des données LSEG, ce qui suggère un trafic ralenti plutôt qu'arrêté [1].",
+      "L'électricité a été coupée dans six provinces et l'aéroport international de Tocumen a suspendu ses vols avant de rouvrir [2]. L'USGS estime que les pertes économiques pourraient représenter de 1 % à 10 % du PIB du Panama [1]."
+    ],
+    "why": [
+      "Le canal de Panama voit passer une partie du commerce mondial. Un séisme aussi violent aurait pu l'arrêter ; ce n'est pas le cas, ce qui rassure les armateurs.",
+      "Reste le choc pour le pays lui-même : bâtiments abîmés, courant coupé, vols suspendus. La fourchette de l'USGS est très large, de 1 % à 10 % du PIB, ce qui montre l'incertitude sur l'ampleur réelle des dégâts.",
+      "Les premières informations restent partielles : aucun bilan officiel des dégâts n'était publié."
+    ],
+    "forMe": "Beaucoup de produits que tu achètes (voitures, électronique, énergie) passent par le canal. S'il avait fermé, les délais et les prix auraient pu monter ; son bon fonctionnement évite pour l'instant un nouvel embouteillage mondial.",
+    "figures": [
+      {
+        "value": "7,7",
+        "label": "magnitude du séisme du 9 octobre (USGS)",
+        "src": 1
+      },
+      {
+        "value": "1 à 10 % du PIB",
+        "label": "pertes économiques possibles, estimation de l'USGS",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "KSL / Reuters",
+        "name": "KSL, « Powerful quake hits Panama, damages homes; canal operations normal »",
+        "url": "https://www.ksl.com/article/51634589/76-magnitude-earthquake-felt-in-panama--usgs"
+      },
+      {
+        "short": "KSL / Reuters",
+        "name": "KSL, « Strong Panama quake damages buildings, disrupts power and air travel »",
+        "url": "https://www.ksl.com/article/51634588/strong-panama-quake-damages-buildings-disrupts-power-and-air-travel"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Panama earthquake: Tsunami warnings issued after magnitude 7.7 quake » (9 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/9/tsunami-warnings-across-latin-america-after-7-7-magnitude-earthquake-hits"
+      }
+    ]
+  },
+  {
     "id": "2026-10-12-ormuz-navette-petroliere",
     "date": "2026-10-12",
     "region": "Moyen-Orient",
