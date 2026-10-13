@@ -37,10 +37,10 @@
         ${auteur.photo ? `<img class="auteur-photo" src="${auteur.photo}" alt="${auteur.nom}">` : `<div class="auteur-photo initials" aria-hidden="true">${initials}</div>`}
         <div class="auteur-body">
           <p class="eyebrow">Qui suis-je ?</p>
+          ${cursus}
           ${texte.map((t) => `<p class="auteur-text">${t}</p>`).join("")}
           <div class="auteur-sign">
             <p class="auteur-name">${auteur.nom}</p>
-            ${cursus}
             <p class="auteur-role">${auteur.role}</p>
           </div>
           ${compact ? `<a class="more" href="#/apropos">En savoir plus ›</a>` : ""}
