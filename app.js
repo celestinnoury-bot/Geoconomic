@@ -465,7 +465,41 @@
 
     const tk = app.querySelector(".ticker");
     if (tk) {
-      tk.addEventListener("touchstart", () => tk.classList.toggle("paused"), { passive: true });
+      // Défilement automatique qu'on peut reprendre au doigt : on fait glisser le bandeau dans
+      // les deux sens pour relire une info, on touche une info pour l'ouvrir ; il repart tout seul ensuite.
+      const vp = tk.querySelector(".tk-viewport");
+      const run = tk.querySelector(".tk-run");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let pos = 0, last = 0, holdUntil = 0, hover = false;
+      const SPEED = 45; // pixels par seconde
+      const hold = (ms) => { holdUntil = performance.now() + ms; };
+      // Deux copies des infos à la suite : arrivé au bout d'une copie (dans un sens ou dans l'autre), on saute d'une copie.
+      const wrap = () => {
+        const w = run.offsetWidth;
+        if (w && vp.scrollLeft >= w) vp.scrollLeft -= w;
+        else if (w && vp.scrollLeft <= 0) vp.scrollLeft += w;
+      };
+      vp.addEventListener("pointerdown", () => hold(4000), { passive: true });
+      vp.addEventListener("touchstart", () => hold(4000), { passive: true });
+      vp.addEventListener("touchend", () => hold(2500), { passive: true });
+      vp.addEventListener("wheel", () => hold(2500), { passive: true });
+      // Un défilement qui ne vient pas de l'animation (écart avec la position prévue) vient du doigt.
+      vp.addEventListener("scroll", () => { if (Math.abs(vp.scrollLeft - pos) > 3) { hold(2500); wrap(); pos = vp.scrollLeft; } }, { passive: true });
+      tk.addEventListener("mouseenter", () => { hover = true; });
+      tk.addEventListener("mouseleave", () => { hover = false; });
+      const step = (t) => {
+        if (!document.body.contains(tk)) return;
+        const dt = last ? Math.min(0.1, (t - last) / 1000) : 0;
+        last = t;
+        if (!reduce && !hover && t > holdUntil && !document.hidden) {
+          pos += SPEED * dt;
+          const w = run.offsetWidth;
+          if (w && pos >= w) pos -= w;
+          vp.scrollLeft = pos;
+        }
+        requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
       // Quand on descend vers les actus, le bandeau reste accroché en haut, sous la barre de menu.
       const hero = app.querySelector(".globe-hero");
       const stick = () => {
