@@ -40,8 +40,8 @@
           ${texte.map((t) => `<p class="auteur-text">${t}</p>`).join("")}
           <div class="auteur-sign">
             <p class="auteur-name">${auteur.nom}</p>
-            <p class="auteur-role">${auteur.role}</p>
             ${cursus}
+            <p class="auteur-role">${auteur.role}</p>
           </div>
           ${compact ? `<a class="more" href="#/apropos">En savoir plus ›</a>` : ""}
         </div>
