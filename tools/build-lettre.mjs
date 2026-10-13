@@ -46,8 +46,8 @@ const strip = (s) => String(s).replace(/\s*\[\d+\]/g, "");
 const THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
 const longDate = new Date(day + "T12:00:00").toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
 
-// Les actus : jusqu'à 7, dans l'ordre du fichier (la rédaction met les plus importantes en premier).
-const items = todays.slice(0, 7);
+// Les actus : jusqu'à 9, dans l'ordre du fichier (la rédaction met les plus importantes en premier).
+const items = todays.slice(0, 9);
 const lead = items[0];
 const fig = (lead.figures || [])[0];
 const figSrc = fig && fig.src && lead.sources[fig.src - 1];

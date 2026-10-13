@@ -253,3 +253,35 @@ export function sourcesOf(n) {
   const seen = new Set();
   return (n.sources || []).map((s) => (s.short || s.name).replace(/\s*\(.*?\)\s*$/, "").trim()).filter((s) => !seen.has(s) && seen.add(s)).join(", ");
 }
+
+// ---------- Encadré « en chiffres » : les chiffres de l'actu et leur note ----------
+// Chaque actu a son encadré : des barres quand les chiffres se comparent (même unité),
+// sinon un ou deux grands chiffres avec leur explication ; la silhouette du pays en appoint.
+export function figuresPanel(d, n, P, { shape = false, big = false } = {}) {
+  const figs = (n.figures || []).slice(0, 2);
+  const note = (t, lines = 3) => `<div style="font:400 ${big ? 7.6 : 7}pt/1.3 ${P.sans};color:${P.muted};margin-top:.8mm;display:-webkit-box;-webkit-line-clamp:${lines};-webkit-box-orient:vertical;overflow:hidden">${esc(t)}</div>`;
+  const sil = shape && hasShape(d, n) ? `<div style="flex:none;display:flex;align-items:center">${silhouette(d, n, big ? 34 : 15, big ? 30 : 14, P)}</div>` : "";
+  let inner = "";
+  const cb = canBars(n);
+  if (cb) {
+    const rows = cb.slice(0, big ? 3 : 2);
+    const max = Math.max(...rows.map((o) => Math.abs(o.p.v)), 0.001);
+    inner = `<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:${big ? 2.4 : 1.8}mm">${rows.map((o, i) => `<div>
+      <div style="display:flex;align-items:center;gap:2mm"><div style="height:${big ? 4.2 : 3.4}mm;width:${Math.max(4, (Math.abs(o.p.v) / max) * 70)}%;background:${o.p.v < 0 ? P.neg : P.bar[i % P.bar.length]}"></div>
+      <b style="font:700 ${big ? 11 : 9}pt ${P.sans};white-space:nowrap;color:${P.ink}">${esc(o.x.value)}</b></div>${note(o.x.label, 2)}</div>`).join("")}</div>`;
+  } else if (figs.length) {
+    inner = `<div style="flex:1;min-width:0;display:grid;grid-template-columns:repeat(${figs.length},1fr);gap:3mm">${figs.map((f, i) => {
+      const len = String(f.value).length;
+      const size = (big ? 24 : 17) * (len > 14 ? 0.62 : len > 9 ? 0.78 : 1);
+      return `<div style="min-width:0${i ? `;border-left:.6px solid ${P.rule};padding-left:3mm` : ""}"><div style="font:700 ${size}pt/1.05 ${P.serif};color:${P.accents[i % P.accents.length]};letter-spacing:-.01em">${esc(f.value)}</div>${note(f.label)}</div>`;
+    }).join("")}</div>`;
+  }
+  if (!inner && !sil) return "";
+  if (!inner) inner = `<div style="font:italic 400 8pt ${P.serif};color:${P.muted}">${esc((n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || "")}</div>`;
+  return `<div style="display:flex;gap:3mm;align-items:center;background:${P.panel};padding:${big ? "3.5mm 4mm" : "2.4mm 3mm"}">${sil}${inner}</div>`;
+}
+// Les silhouettes vont aux actus qui n'ont qu'un chiffre (place libre), trois au plus par lettre.
+export function shapePlan(d, items, max = 3) {
+  let k = 0;
+  return items.map((n) => { const ok = !canBars(n) && (n.figures || []).length < 2 && hasShape(d, n) && k < max; if (ok) k++; return ok; });
+}
