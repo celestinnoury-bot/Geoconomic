@@ -105,12 +105,6 @@ const courseLine = (n, color) => courseOf(n) ? `<div style="font:600 6.8pt 'Fran
 
 // Les derniers chiffres, sans répéter ce que dit déjà le point conflits.
 const latestRows = (d) => d.latest.filter((x) => !(d.C && /crisiswatch/i.test(x.source.short || ""))).slice(0, 5);
-// « Et toi, dans tout ça ? » : la première phrase de ce que l'actu change pour le lecteur.
-// (deux phrases si la première est trop courte pour dire quelque chose).
-const firstWhy = (d, n) => {
-  const parts = d.strip(n.forMe || (n.why || [])[0] || "").split(/(?<=[.!?])\s/);
-  return parts[0] && parts[0].length < 70 && parts[1] ? parts[0] + " " + parts[1] : parts[0] || "";
-};
 
 // ---------------------------------------------------------------------------
 // 1. Le Journal : une de quotidien sur papier journal. Texte justifié, lettrine, lieux en tête
@@ -125,7 +119,6 @@ function journal(d) {
   const df = dayFigure(d);
   const pts = (lead.points || []).slice(0, 2).map((t) => esc(d.strip(t)));
   const leadArt = figuresPanel(d, lead, P, { shape: true, big: true });
-  const an = d.anecdote;
   const seenCourse = new Set();
   const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="also">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   return doc(`
@@ -168,7 +161,7 @@ html, body { background: #f7f3ea; } body { color: ${P.ink}; font-family: "Serif4
 .counts b { display: block; font: 700 18pt/1 "Serif4", serif; color: ${P.ink}; }
 table { width: 100%; border-collapse: collapse; font: 400 7.8pt "Franklin", sans-serif; }
 td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; } td.v { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 3mm; }
-.foot { margin-top: 3mm; padding-top: 2mm; border-top: .6px solid ${P.ink}; display: flex; justify-content: space-between; font: 400 7pt "Franklin", sans-serif; color: #5c554a; }
+.foot { margin-top: auto; padding-top: 2mm; border-top: .6px solid ${P.ink}; display: flex; justify-content: space-between; font: 400 7pt "Franklin", sans-serif; color: #5c554a; }
 `, `<div class="page" id="page">
 <div class="top"><span>${esc(d.dateCap)}</span><span>Édition du matin · N° ${d.number}</span></div>
 <div class="mast">Géoconomic</div>
@@ -182,16 +175,12 @@ td { padding: 1mm 0; border-bottom: .5px solid ${P.rule}; vertical-align: top; }
     <div class="src">Sources : ${esc(sourcesOf(lead))}</div>${read(lead)}</div>
   <div class="side">
     ${df ? `<div><h4>Le chiffre du jour</h4><div class="big">${esc(df.value)}</div><p>${esc(df.label)}${df.place ? ` (${esc(df.place)})` : ""}.</p>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : ""}
-    ${firstWhy(d, lead) ? `<div><h4>Et toi, dans tout ça ?</h4><p class="quote">${esc(firstWhy(d, lead))}</p></div>` : ""}
     <div><h4>Les actus du jour, par région</h4><div style="margin-top:2mm">${regionStrip(d.items, "100%", Object.assign({}, P, { accents: P.regionColors, radius: 0 }))}</div></div>
-    ${an ? `<div><h4>Le saviez-vous ?</h4><p style="margin-top:1.8mm">${esc(an.text)}</p><div class="src">${esc(an.era || "")}${an.source ? ` · ${esc(an.source.short || an.source.name)}` : ""}</div></div>` : ""}
+    ${d.C ? `<div><h4>Le point conflits · ${esc(d.C.barometre.month)}</h4><div class="counts" style="margin-top:2mm"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : ""}
+    <div><h4>Les derniers chiffres</h4><table style="margin-top:1mm">${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
   </div>
 </div>
 <div class="cols">${rest.map((n, i) => { const art = figuresPanel(d, n, P, { shape: shapes[i] }); return `<div class="story${i % c === 0 ? " first" : ""}${i % c === c - 1 ? " last" : ""}"><div class="k gray">${kicker(d, n)}</div><h2>${esc(n.title)}</h2>${art ? `<div class="art">${art}</div>` : ""}<p>${dateline(n) ? `<span class="dl">${esc(dateline(n))} —</span> ` : ""}${esc(d.strip(n.summary))}${n.points && n.points[0] && d.strip(n.points[0]).length < 260 ? " " + esc(d.strip(n.points[0])) : ""}</p><div class="src">${esc(sourcesOf(n))}</div>${read(n)}</div>`; }).join("")}</div>
-<div class="band">
-  ${d.C ? `<div><h3>Le point conflits · ${esc(d.C.barometre.month)}</h3><div class="counts"><div><b>${d.C.barometre.counts.worse}</b>s'aggravent</div><div><b>${d.C.barometre.counts.better}</b>s'améliorent</div><div><b>${d.C.barometre.counts.alerts}</b>alertes</div></div><p>${esc(d.C.barometre.worse.map((x) => x.name).join(", "))}.</p><div class="src">Source : CrisisWatch</div></div>` : "<div></div>"}
-  <div><h3>Les derniers chiffres</h3><table>${latestRows(d).map((x) => `<tr><td>${esc(x.label)} <span style="color:#8a8173">· ${esc(x.date)}, ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>
-</div>
 <div class="foot"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
@@ -204,7 +193,6 @@ function keynote(d) {
     accents: ["#ff9f0a", "#64d2ff"], bar: ["#64d2ff", "#bf5af2", "#ff9f0a"],
     sans: "'Inter', sans-serif", serif: "'Inter', sans-serif" };
   const shapes = shapePlan(d, rest);
-  const an = d.anecdote;
   const seenCourse = new Set();
   const read = (n) => { const k = courseOf(n); if (!k || seenCourse.has(k)) return ""; seenCourse.add(k); return `<div class="src" style="color:#a1a1a6">Pour comprendre, le cours « ${esc(k)} » dans l'application.</div>`; };
   const df = dayFigure(d);
@@ -242,7 +230,7 @@ h1 { font: 800 46pt/1.02 "Inter"; letter-spacing: -.035em; margin: 6mm 0 0; }
   ${df ? `<div><div class="k">Le chiffre du jour${df.place ? " · " + esc(df.place) : ""}</div><div class="stat">${esc(df.value)}</div><div class="statl">${esc(df.label)}</div>${df.src ? `<div class="src">Source : ${esc(df.src)}</div>` : ""}</div>` : "<div></div>"}
 </div>
 <div class="grid">${rest.map((n, i) => { const art = figuresPanel(d, n, P, { shape: shapes[i] }); return `<div class="card"><div class="k">${kicker(d, n)}</div><h3>${esc(n.title)}</h3>${art ? `<div style="margin:2mm 0 2.5mm">${art}</div>` : ""}<p>${dateline(n) ? `<b style="color:#f5f5f7;font-weight:600">${esc(dateline(n))} —</b> ` : ""}${esc(d.strip(n.summary))}</p>${read(n)}</div>`; }).join("")}</div>
-<div class="bottom"><div>${an ? `<div class="k" style="margin-bottom:2mm">Le saviez-vous ?</div><p style="font:400 10pt/1.5 Inter;color:#f5f5f7;margin:0">${esc(an.text)}</p><div class="src">${esc(an.era || "")}${an.source ? " · " + esc(an.source.short || an.source.name) : ""}</div>` : ""}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b>${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
+<div class="bottom"><div><div class="k" style="margin-bottom:3mm">Les actus du jour, par région</div>${regionStrip(d.items, "100%", Object.assign({}, P, { accents: ["#64d2ff", "#bf5af2", "#ff9f0a", "#30d158", "#ff6961"], radius: 4 }))}</div><div class="nums">${latestRows(d).filter((x, i) => i < 3).map((x, i) => `<div class="num"><b>${esc(x.value)}</b><span>${esc(x.label)} · ${esc(x.source.short)}</span></div>`).join("")}</div></div>
 <div class="foot"><span>Toutes les actus dans l'application Géoconomic.</span><span>${esc(d.day)}</span></div>
 </div>`);
 }
