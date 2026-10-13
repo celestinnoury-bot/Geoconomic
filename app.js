@@ -53,8 +53,30 @@
   const LISTEN_KEY = "geoco.podcast.listened";
   let listened = [];
   try { listened = JSON.parse(localStorage.getItem(LISTEN_KEY) || "[]"); } catch (e) {}
+  // ---------- Géoconomic+ (prototype) ----------
+  // Accès mémorisé sur l'appareil après un code offert ou l'e-mail d'un proche invité (data/plus.js).
+  // Le jour où le paiement et les comptes sont branchés, c'est le serveur qui dira qui est abonné.
+  const PLUS = window.GEOCO.plus || { prix: { mensuel: 3.99, annuel: 39.99 }, paiement: {}, codes: [], invites: [] };
+  const PLUS_KEY = "geoco.plus";
+  let plusState = null;
+  try { plusState = JSON.parse(localStorage.getItem(PLUS_KEY) || "null"); } catch (e) {}
+  const today = () => new Date().toISOString().slice(0, 10);
+  const isPlus = () => !!(plusState && (!plusState.jusqua || plusState.jusqua >= today()));
+  function setPlus(state) {
+    plusState = state;
+    try { state ? localStorage.setItem(PLUS_KEY, JSON.stringify(state)) : localStorage.removeItem(PLUS_KEY); } catch (e) {}
+  }
+  async function sha256(text) {
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+    return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+  }
+  // Même règle que tools/plus.mjs.
+  const hashCode = (c) => sha256("code:" + String(c).trim().toUpperCase().replace(/\s+/g, ""));
+  const hashMail = (m) => sha256("mail:" + String(m).trim().toLowerCase());
+  const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
+
   const freeLeft = () => Math.max(0, offre.freeListens - listened.length);
-  const canListen = (ep) => ep.free || listened.includes(ep.id) || freeLeft() > 0;
+  const canListen = (ep) => isPlus() || ep.free || listened.includes(ep.id) || freeLeft() > 0;
   function recordListen(id) {
     if (listened.includes(id)) return;
     const ep = podcast.find((e) => e.id === id);
@@ -86,7 +108,7 @@
       a.addEventListener("play", () => recordListen(a.closest(".episode").dataset.ep));
     });
   }
-  const freeBanner = () => podcast.length ? (freeLeft() > 0
+  const freeBanner = () => podcast.length ? (isPlus() ? `✓ ${offre.name} actif : tous les épisodes sont ouverts.` : freeLeft() > 0
     ? `🎁 ${offre.freeListens} épisodes offerts : il t'en reste <b>${freeLeft()}</b>. Ensuite, <a href="#/abonnement">${offre.name}</a>.`
     : `Tes épisodes offerts sont écoutés. Tous les épisodes avec <a href="#/abonnement">${offre.name}</a>.`) : "";
   const cases = etudes.cas || [];
@@ -646,13 +668,25 @@
   }
 
   function renderAbonnement() {
+    const yearSave = Math.round((PLUS.prix.mensuel * 12 - PLUS.prix.annuel) / PLUS.prix.mensuel);
+    const buy = (k) => PLUS.paiement && PLUS.paiement[k]
+      ? `<a class="pill-btn blue" href="${PLUS.paiement[k]}" target="_blank" rel="noopener">S'abonner</a>`
+      : `<button class="pill-btn blue" type="button" disabled>Bientôt disponible</button>`;
+    const perks = `
+      <ul>
+        <li>Tous les épisodes du podcast, en illimité</li>
+        <li>Les études de cas complètes</li>
+        <li>Les archives de la lettre du matin</li>
+        <li>Bientôt : flashcards et mode Concours</li>
+      </ul>`;
     app.innerHTML = `
       <section class="wrap hero">
         <a class="back" href="#/actu">‹ Actu</a>
         <p class="eyebrow reveal">Abonnement</p>
         <h1 class="title reveal">${offre.name}.<br><span class="grad mix">Pour aller plus loin.</span></h1>
         <p class="lead reveal">L'actu, le globe, les cours et la lettre du matin restent gratuits. ${offre.name} débloque tout le reste.</p>
-        <div class="plans">
+        <div id="plus-status"></div>
+        <div class="plans plans-3">
           <div class="plan reveal">
             <p class="eyebrow">Gratuit</p>
             <p class="plan-price">0 €</p>
@@ -664,19 +698,74 @@
             </ul>
           </div>
           <div class="plan plan-plus reveal">
-            <p class="eyebrow">${offre.name}</p>
-            <p class="plan-price">${offre.price || "Bientôt"}</p>
-            <ul>
-              <li>Tous les épisodes du podcast, en illimité</li>
-              <li>Les études de cas complètes</li>
-              <li>Les archives de la lettre du matin</li>
-              <li>Bientôt : flashcards et mode Concours</li>
-            </ul>
-            <button class="pill-btn blue" type="button" disabled>Disponible bientôt</button>
+            <p class="eyebrow">${offre.name} · Mensuel</p>
+            <p class="plan-price">${euros(PLUS.prix.mensuel)}<small> / mois</small></p>
+            <p class="plan-note">Sans engagement, résiliable à tout moment.</p>
+            ${perks}
+            ${buy("mensuel")}
+          </div>
+          <div class="plan plan-plus plan-best reveal">
+            <p class="plan-badge">${yearSave} mois offerts</p>
+            <p class="eyebrow">${offre.name} · Annuel</p>
+            <p class="plan-price">${euros(PLUS.prix.annuel)}<small> / an</small></p>
+            <p class="plan-note">Soit ${euros(PLUS.prix.annuel / 12)} par mois.</p>
+            ${perks}
+            ${buy("annuel")}
           </div>
         </div>
-        <p class="viz-cap" style="margin-top:18px">L'abonnement n'est pas encore ouvert : le paiement sera activé au lancement public.</p>
+        ${PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel) ? "" : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
+
+        <div class="grid-2 plus-access">
+          <form class="panel geo reveal" id="code-form" autocomplete="off">
+            <p class="eyebrow">Tu as un code ?</p>
+            <p>Un code offert débloque ${offre.name} sans carte bancaire.</p>
+            <div class="plus-field"><input id="code-input" type="text" placeholder="Ex. : CODE2026" aria-label="Code" autocapitalize="characters" spellcheck="false"><button class="pill-btn blue" type="submit">Valider</button></div>
+            <p class="plus-msg" id="code-msg" aria-live="polite"></p>
+          </form>
+          <form class="panel mix reveal" id="mail-form" autocomplete="off">
+            <p class="eyebrow">Tu es un proche invité ?</p>
+            <p>Entre l'adresse e-mail à laquelle tu as été invité.</p>
+            <div class="plus-field"><input id="mail-input" type="email" placeholder="prenom@exemple.fr" aria-label="Adresse e-mail" spellcheck="false"><button class="pill-btn blue" type="submit">Valider</button></div>
+            <p class="plus-msg" id="mail-msg" aria-live="polite"></p>
+          </form>
+        </div>
       </section>`;
+
+    const status = app.querySelector("#plus-status");
+    function drawStatus() {
+      status.innerHTML = isPlus() ? `
+        <div class="plus-active reveal in">
+          <span aria-hidden="true">✓</span>
+          <div><b>${offre.name} est actif sur cet appareil.</b><br><span>${plusState.label}${plusState.jusqua ? ` · jusqu'au ${formatDate(plusState.jusqua)}` : ""}</span></div>
+          <button class="more-btn" type="button" id="plus-off">Désactiver</button>
+        </div>` : "";
+      const off = status.querySelector("#plus-off");
+      if (off) off.addEventListener("click", () => { setPlus(null); drawStatus(); refreshLocks(); });
+    }
+    drawStatus();
+
+    async function check(form, input, msg, find, ok, ko) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const v = input.value.trim();
+        if (!v) return;
+        const hit = await find(v);
+        if (hit && (!hit.jusqua || hit.jusqua >= today())) {
+          setPlus({ via: ok, label: hit.label, jusqua: hit.jusqua || null });
+          msg.textContent = "Bienvenue ! Tout est débloqué.";
+          msg.className = "plus-msg good";
+          drawStatus();
+          refreshLocks();
+        } else {
+          msg.textContent = hit ? "Ce code a expiré." : ko;
+          msg.className = "plus-msg bad";
+        }
+      });
+    }
+    check(app.querySelector("#code-form"), app.querySelector("#code-input"), app.querySelector("#code-msg"),
+      async (v) => { const h = await hashCode(v); return (PLUS.codes || []).find((c) => c.h === h); }, "code", "Ce code n'existe pas.");
+    check(app.querySelector("#mail-form"), app.querySelector("#mail-input"), app.querySelector("#mail-msg"),
+      async (v) => { const h = await hashMail(v); return (PLUS.invites || []).find((c) => c.h === h); }, "invite", "Cette adresse n'est pas sur la liste des invités.");
   }
 
   function renderAnecdotes(focusId) {
@@ -706,8 +795,14 @@
         <p class="eyebrow reveal">Actu</p>
         <h1 class="title reveal">La lettre du matin.<br><span class="grad mix">Une page, chaque jour.</span></h1>
         <p class="lead reveal">Chaque matin, l'essentiel de l'actu éco et géopo, le chiffre du jour, le point conflits et les derniers chiffres, sur une seule page en PDF.</p>
+        <p class="viz-cap reveal">Les 7 dernières lettres sont gratuites ; les plus anciennes sont dans ${offre.name}.</p>
         <div class="lettre-list">
-          ${lettres.map((l) => `
+          ${lettres.map((l, i) => i >= 7 && !isPlus() ? `
+            <a class="news-card reveal locked" href="#/abonnement">
+              <p class="eyebrow">🔒 PDF · ${formatDate(l.date)}</p>
+              <h3>${l.titles[0] || "La lettre du matin"}</h3>
+              <span class="more">Les archives sont réservées aux abonnés ${offre.name} ›</span>
+            </a>` : `
             <a class="news-card reveal" href="${l.file}" download="Geoconomic-lettre-${l.date}.pdf" target="_blank" rel="noopener">
               <p class="eyebrow">PDF · ${formatDate(l.date)}</p>
               <h3>${l.titles[0] || "La lettre du matin"}</h3>
