@@ -360,7 +360,10 @@
   "Les archives : Focus industrie, études de cas, lettres du matin": "The archive: industry Focus, case studies, morning letters",
   "Les cours pour débuter et la lettre du matin": "Beginner lessons and the Morning Letter",
   "Le Focus de la semaine et la dernière étude de cas": "This week's Focus and the latest case study",
-  "🔒 {x}": "🔒 {x}"
+  "🔒 {x}": "🔒 {x}",
+  "Un article sur deux est réservé aux abonnés. Les autres restent gratuits.": "One article in two is for subscribers. The others stay free.",
+  "Un article de presse sur deux, en entier": "Every other press article, in full",
+  "Un article de presse sur deux": "Every other press article"
  },
  "months": {
   "janvier": "Jan.",

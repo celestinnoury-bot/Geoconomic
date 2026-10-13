@@ -82,6 +82,10 @@
   const latestCase = () => [...(window.GEOCO.etudes && window.GEOCO.etudes.cas || [])].sort((a, b) => (b.date || "").localeCompare(a.date || ""))[0];
   const caseLocked = (c) => !isPlus() && latestCase() && c.id !== latestCase().id;
   const focusLocked = (f) => !isPlus() && (window.GEOCO.focus || [])[0] !== f;
+  // Articles : un sur deux réservé (le 1er de la liste gratuit, le 2e réservé…), sauf si l'article
+  // précise lui-même plus: true ou plus: false dans data/culture.js.
+  const articlePlus = (c) => { if (typeof c.plus === "boolean") return c.plus; const i = (window.GEOCO.culture || []).indexOf(c); return i % 2 === 1; };
+  const articleLocked = (c) => articlePlus(c) && !isPlus();
   const plusTag = () => `<span class="plus-tag">🔒 ${offre.name}</span>`;
   function paywall(why) {
     return `
@@ -171,7 +175,7 @@
     return `
       <a class="tile ${c.theme}" href="#/articles/${c.id}">
         <div>
-          <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
+          <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}${articleLocked(c) ? " · " + plusTag() : ""}</p>
           <h3>${c.title}</h3>
         </div>
         <p class="stat-label">${c.hook}</p>
@@ -716,6 +720,7 @@
       <ul>
         <li>Les cours d'approfondissement et leurs quiz</li>
         <li>Tous les épisodes du podcast, en illimité</li>
+        <li>Un article de presse sur deux, en entier</li>
         <li>Les archives : Focus industrie, études de cas, lettres du matin</li>
         <li>Bientôt : flashcards et mode Concours</li>
       </ul>`;
@@ -734,6 +739,7 @@
               <li>L'actu du jour, expliquée et sourcée</li>
               <li>Le globe, les conflits, les chiffres</li>
               <li>Les cours pour débuter et la lettre du matin</li>
+              <li>Un article de presse sur deux</li>
               <li>Le Focus de la semaine et la dernière étude de cas</li>
               <li>${offre.freeListens} épisodes du podcast offerts</li>
             </ul>
@@ -1316,7 +1322,7 @@
         <div class="article-list">
           ${culture.map((c) => `
             <a class="news-card ${c.theme} reveal" href="#/articles/${c.id}">
-              <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
+              <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}${articleLocked(c) ? " · " + plusTag() : ""}</p>
               <h3>${c.title}</h3>
               <p class="summary">${c.hook}</p>
               ${c.author ? `<p class="byline">Par ${c.author}</p>` : ""}
@@ -1357,6 +1363,26 @@
   function renderCulture(id) {
     const c = byId(culture, id);
     if (!c) return renderNotFound();
+    if (articleLocked(c)) {
+      const first = c.sections[0];
+      app.innerHTML = `
+        <section class="wrap hero">
+          <a class="back" href="#/articles">‹ Articles</a>
+          <p class="eyebrow reveal">${c.kind || "Article"} · ${THEMES[c.theme]} · ${plusTag()}</p>
+          ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
+          <h1 class="title reveal">${c.title}</h1>
+          <p class="lead reveal">${c.hook}</p>
+        </section>
+        ${first ? `
+        <section class="section alt">
+          <div class="wrap">
+            <h2 class="title reveal">${first.title}</h2>
+            <p class="copy reveal">${para(first.paragraphs[0], c.sources)}</p>
+          </div>
+        </section>` : ""}
+        ${paywall("Un article sur deux est réservé aux abonnés. Les autres restent gratuits.")}`;
+      return;
+    }
     const linked = news.filter((n) => (n.culture || []).includes(c.id));
 
     app.innerHTML = `

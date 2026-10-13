@@ -361,7 +361,10 @@
   "Les archives : Focus industrie, études de cas, lettres du matin": "Das Archiv: Branchen-Fokus, Fallstudien, Morgenbriefe",
   "Les cours pour débuter et la lettre du matin": "Einsteigerlektionen und der Morgenbrief",
   "Le Focus de la semaine et la dernière étude de cas": "Der Fokus der Woche und die neueste Fallstudie",
-  "🔒 {x}": "🔒 {x}"
+  "🔒 {x}": "🔒 {x}",
+  "Un article sur deux est réservé aux abonnés. Les autres restent gratuits.": "Jeder zweite Artikel ist Abonnenten vorbehalten. Die anderen bleiben kostenlos.",
+  "Un article de presse sur deux, en entier": "Jeder zweite Presseartikel, vollständig",
+  "Un article de presse sur deux": "Jeder zweite Presseartikel"
  },
  "months": {
   "janvier": "Januar",

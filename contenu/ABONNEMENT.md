@@ -10,6 +10,7 @@
 | Les cours pour débuter | Les cours d'approfondissement et leurs quiz (`plus: true` dans `data/content.js`) |
 | Le Focus industrie le plus récent | Les Focus précédents (archives) |
 | La dernière étude de cas | Les études de cas précédentes (archives) |
+| Un article sur deux (1er, 3e, 5e… de la liste) | L'autre article sur deux (2e, 4e…) ; `plus: true` ou `plus: false` dans `data/culture.js` pour choisir soi-même |
 | Les 7 dernières lettres du matin | Les lettres plus anciennes |
 | 2 épisodes du podcast | Tous les épisodes |
 

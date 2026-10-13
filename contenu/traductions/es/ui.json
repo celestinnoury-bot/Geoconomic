@@ -356,7 +356,10 @@
   "Les archives : Focus industrie, études de cas, lettres du matin": "El archivo: Focus de industria, estudios de caso, cartas matinales",
   "Les cours pour débuter et la lettre du matin": "Los cursos para empezar y la carta matinal",
   "Le Focus de la semaine et la dernière étude de cas": "El Focus de la semana y el último estudio de caso",
-  "🔒 {x}": "🔒 {x}"
+  "🔒 {x}": "🔒 {x}",
+  "Un article sur deux est réservé aux abonnés. Les autres restent gratuits.": "Uno de cada dos artículos es para suscriptores. Los demás siguen siendo gratuitos.",
+  "Un article de presse sur deux, en entier": "Uno de cada dos artículos, completo",
+  "Un article de presse sur deux": "Uno de cada dos artículos"
  },
  "months": {
   "janvier": "enero",
