@@ -11,8 +11,8 @@ window.GEOCO.auteur = {
   contact: "",
   cursus: "Ancien élève de classe préparatoire économie-gestion (CPGE D2) à Strasbourg, où j'ai étudié la macroéconomie et la microéconomie. Je termine ma licence d'économie en échange à l'Université de Montréal (2026-2027).",
   texte: [
-    "En prépa, j'apprenais la macro et la micro, mais quand je lisais l'actualité, je ne comprenais pas toujours les enjeux économiques et géopolitiques derrière. Alors j'ai créé Géoconomic, pour m'informer autrement et aller chercher les nouvelles sous la surface de l'iceberg.",
-    "Ici, chaque chiffre est sourcé, chaque sujet est expliqué simplement, et on parle aussi de ce que les grands médias laissent de côté : ce qui se passe en Afrique, en Asie, en Amérique latine.",
+    "En prépa, j'apprenais la macro et la micro, mais quand je lisais l'actualité, je ne comprenais pas toujours les enjeux économiques et géopolitiques derrière. Alors j'ai créé Géoconomic, pour m'informer autrement et suivre aussi l'actualité peu traitée, celle qui fait rarement les gros titres.",
+    "Ici, chaque chiffre est sourcé, chaque sujet est expliqué simplement, et on parle aussi des sujets moins couverts : ce qui se passe en Afrique, en Asie, en Amérique latine.",
     "L'objectif : que chacun puisse se faire son propre avis, avec les faits en main."
   ]
 };
