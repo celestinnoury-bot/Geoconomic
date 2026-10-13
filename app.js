@@ -745,6 +745,28 @@
       ${lettres.length > 1 ? `<a class="more-link" href="#/lettres">Les lettres précédentes (${lettres.length - 1}) ›</a>` : ""}`;
   }
 
+  // Offre « Membres fondateurs » : les premiers abonnés (data/plus.js, fondateurs).
+  function founderCard() {
+    const F = PLUS.fondateurs;
+    if (!F || !F.ouvert) return "";
+    const taken = F.places - F.restantes;
+    const full = F.restantes <= 0;
+    return `
+      <div class="founder reveal">
+        <div class="founder-head">
+          <p class="eyebrow">⭐ Membres fondateurs · les ${F.places} premiers</p>
+          <p class="founder-left">${full ? "Complet" : `${F.restantes} place${F.restantes > 1 ? "s" : ""} restante${F.restantes > 1 ? "s" : ""}`}</p>
+        </div>
+        <h2>${F.essaiMois} mois offerts, puis ${euros(F.prix)} par mois à vie.</h2>
+        <p class="founder-sub">Au lieu de ${euros(PLUS.prix.mensuel)}, tant que tu restes abonné. Avec le badge « Membre fondateur » et ton avis sur les prochaines rubriques.</p>
+        <div class="founder-bar" role="img" aria-label="${taken} places prises sur ${F.places}"><i style="width:${Math.min(100, (taken / F.places) * 100)}%"></i></div>
+        ${full ? "" : F.paiement
+          ? `<a class="pill-btn blue lg" href="${F.paiement}" target="_blank" rel="noopener">Devenir membre fondateur</a>`
+          : `<button class="pill-btn blue lg" type="button" disabled>Ouverture au lancement</button>`}
+        <p class="founder-small">Carte bancaire demandée à l'inscription, rien n'est prélevé pendant ${F.essaiMois} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.</p>
+      </div>`;
+  }
+
   function renderAbonnement() {
     const yearSave = Math.round((PLUS.prix.mensuel * 12 - PLUS.prix.annuel) / PLUS.prix.mensuel);
     const buy = (k) => PLUS.paiement && PLUS.paiement[k]
@@ -765,6 +787,7 @@
         <h1 class="title reveal">${offre.name}.<br><span class="grad mix">Pour aller plus loin.</span></h1>
         <p class="lead reveal">L'actu, le globe, les cours et la lettre du matin restent gratuits. ${offre.name} débloque tout le reste.</p>
         <div id="plus-status"></div>
+        ${founderCard()}
         <div class="plans plans-3">
           <div class="plan reveal">
             <p class="eyebrow">Gratuit</p>
@@ -817,7 +840,7 @@
       status.innerHTML = isPlus() ? `
         <div class="plus-active reveal in">
           <span aria-hidden="true">✓</span>
-          <div><b>${offre.name} est actif sur cet appareil.</b><br><span>${plusState.label}${plusState.jusqua ? ` · jusqu'au ${formatDate(plusState.jusqua)}` : ""}</span></div>
+          <div><b>${offre.name} est actif sur cet appareil.</b>${plusState.fondateur ? ` <span class="founder-badge">⭐ Membre fondateur</span>` : ""}<br><span>${plusState.label}${plusState.jusqua ? ` · jusqu'au ${formatDate(plusState.jusqua)}` : ""}</span></div>
           <button class="more-btn" type="button" id="plus-off">Désactiver</button>
         </div>` : "";
       const off = status.querySelector("#plus-off");
@@ -832,7 +855,13 @@
         if (!v) return;
         const hit = await find(v);
         if (hit && (!hit.jusqua || hit.jusqua >= today())) {
-          setPlus({ via: ok, label: hit.label, jusqua: hit.jusqua || null });
+          // Code fondateur : l'essai dure le nombre de mois prévu, à partir d'aujourd'hui.
+          let until = hit.jusqua || null;
+          if (hit.fondateur) {
+            const d = new Date(); d.setMonth(d.getMonth() + ((PLUS.fondateurs && PLUS.fondateurs.essaiMois) || 2));
+            until = d.toISOString().slice(0, 10);
+          }
+          setPlus({ via: ok, label: hit.label, jusqua: until, fondateur: !!hit.fondateur });
           msg.textContent = "Bienvenue ! Tout est débloqué.";
           msg.className = "plus-msg good";
           drawStatus();

@@ -15,7 +15,20 @@ window.GEOCO.plus = {
     {
       "h": "3ee4c3396b877c3cb00b156f0528d6ac02be410172722a8b7ae951613ba9d6a0",
       "label": "Famille et amis"
+    },
+    {
+      "h": "c1ebc97807c26a287a9ba9e8b69b3e2b9c6bdc35f8ff3560e1df9a253a2bda55",
+      "label": "Membres fondateurs",
+      "fondateur": true
     }
   ],
-  "invites": []
+  "invites": [],
+  "fondateurs": {
+    "places": 100,
+    "restantes": 100,
+    "essaiMois": 2,
+    "prix": 2.99,
+    "paiement": "",
+    "ouvert": true
+  }
 };

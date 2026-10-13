@@ -364,7 +364,18 @@
   "🔒 {x}": "🔒 {x}",
   "Un article sur deux est réservé aux abonnés. Les autres restent gratuits.": "Jeder zweite Artikel ist Abonnenten vorbehalten. Die anderen bleiben kostenlos.",
   "Un article de presse sur deux, en entier": "Jeder zweite Presseartikel, vollständig",
-  "Un article de presse sur deux": "Jeder zweite Presseartikel"
+  "Un article de presse sur deux": "Jeder zweite Presseartikel",
+  "⭐ Membres fondateurs · les {n} premiers": "⭐ Gründungsmitglieder · die ersten {n}",
+  "{n} places restantes": "Noch {n} Plätze",
+  "{n} place restante": "Noch {n} Platz",
+  "Complet": "Ausgebucht",
+  "{n} mois offerts, puis {p} par mois à vie.": "{n} Monate gratis, dann {p} pro Monat auf Lebenszeit.",
+  "Au lieu de {p}, tant que tu restes abonné. Avec le badge « Membre fondateur » et ton avis sur les prochaines rubriques.": "Statt {p}, solange du abonniert bleibst. Mit dem Abzeichen „Gründungsmitglied“ und deiner Meinung zu den nächsten Rubriken.",
+  "Devenir membre fondateur": "Gründungsmitglied werden",
+  "Ouverture au lancement": "Öffnet zum Start",
+  "Carte bancaire demandée à l'inscription, rien n'est prélevé pendant {n} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.": "Karte bei der Anmeldung nötig, {n} Monate wird nichts abgebucht. 7 Tage vor Ende der Testphase bekommst du eine Erinnerung. Jederzeit kündbar.",
+  "⭐ Membre fondateur": "⭐ Gründungsmitglied",
+  "Membres fondateurs": "Gründungsmitglieder"
  },
  "months": {
   "janvier": "Januar",

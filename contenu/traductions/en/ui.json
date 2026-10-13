@@ -363,7 +363,18 @@
   "🔒 {x}": "🔒 {x}",
   "Un article sur deux est réservé aux abonnés. Les autres restent gratuits.": "One article in two is for subscribers. The others stay free.",
   "Un article de presse sur deux, en entier": "Every other press article, in full",
-  "Un article de presse sur deux": "Every other press article"
+  "Un article de presse sur deux": "Every other press article",
+  "⭐ Membres fondateurs · les {n} premiers": "⭐ Founding members · the first {n}",
+  "{n} places restantes": "{n} spots left",
+  "{n} place restante": "{n} spot left",
+  "Complet": "Full",
+  "{n} mois offerts, puis {p} par mois à vie.": "{n} months free, then {p} a month for life.",
+  "Au lieu de {p}, tant que tu restes abonné. Avec le badge « Membre fondateur » et ton avis sur les prochaines rubriques.": "Instead of {p}, as long as you stay subscribed. With the \"Founding member\" badge and a say in the next sections.",
+  "Devenir membre fondateur": "Become a founding member",
+  "Ouverture au lancement": "Opens at launch",
+  "Carte bancaire demandée à l'inscription, rien n'est prélevé pendant {n} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.": "Card required at sign-up, nothing is charged for {n} months. You get a reminder 7 days before the trial ends. Cancel anytime.",
+  "⭐ Membre fondateur": "⭐ Founding member",
+  "Membres fondateurs": "Founding members"
  },
  "months": {
   "janvier": "Jan.",
