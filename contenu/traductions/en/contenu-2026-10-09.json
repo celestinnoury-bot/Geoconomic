@@ -1973,8 +1973,8 @@
  "conflits.layers.2.countries.795.text": "The US Commission on International Religious Freedom (USCIRF) recommends designating it a \"country of particular concern\" in its 2026 report, for severe violations of religious freedom [1].",
  "auteur.nom": "Célestin Noury",
  "auteur.role": "Founder of Géoconomic · Economics student",
- "auteur.cursus": "In the 3rd year of an economics degree at the Université de Montréal (2026-2027), on a double-degree programme with the University of Strasbourg. Before that, two years of preparatory classes for the grandes écoles in economics and management (CPGE D2) in Strasbourg, alongside the economics bachelor's degree at the University of Strasbourg (2024-2026).",
- "auteur.texte.1": "Here, every figure is sourced, every topic is explained simply, and we also talk about what the major media leave aside: what is happening in Africa, Asia and Latin America, beneath the surface of the news.",
+ "auteur.cursus": "Former student of the economics and management preparatory classes (CPGE D2) in Strasbourg, where I studied macroeconomics and microeconomics. I am finishing my economics degree on exchange at the Université de Montréal (2026-2027).",
+ "auteur.texte.1": "Here, every figure is sourced, every topic is explained simply, and we also talk about what the major media leave aside: what is happening in Africa, Asia and Latin America.",
  "indicators.latest.0.label": "Inflation in the eurozone",
  "indicators.latest.1.label": "A barrel of Brent crude oil",
  "indicators.latest.2.label": "Global growth forecast for 2026",
@@ -2396,7 +2396,7 @@
  "conflits.layers.2.countries.004.name": "Afghanistan",
  "conflits.layers.2.countries.004.t": "Women and girls",
  "conflits.layers.2.countries.004.text": "Women and girls: The UN Special Rapporteur on Afghanistan and the UN Working Group on discrimination against women concluded in 2025 that the Taliban's massive and systematic violations of the rights of women and girls constitute gender-based persecution and an institutionalised framework of \"gender apartheid\"; the Taliban reject these conclusions [1][2].",
- "auteur.texte.0": "I created Géoconomic because I wanted an app where you can find everything you need to understand economic and geopolitical issues, in a factual way.",
+ "auteur.texte.0": "In prépa, I was learning macro and micro, but when I read the news I didn't always understand the economic and geopolitical stakes behind it. So I created Géoconomic, to keep informed differently and find the news beneath the tip of the iceberg.",
  "auteur.texte.2": "The goal: for everyone to be able to form their own opinion, with the facts in hand.",
  "offre.name": "Géoconomic+"
 }
