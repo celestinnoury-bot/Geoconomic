@@ -159,6 +159,10 @@ focus.forEach((f) => {
   if (!f.model || !f.model.src || !f.model.credit) err(w, "modèle 3D et crédit obligatoires");
   else if (!fs.existsSync(f.model.src)) err(w, `modèle introuvable : ${f.model.src}`);
   [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).flatMap((h) => [h.text, h.eco, h.geo].filter(Boolean))].forEach((t) => checkCites(w, t, f.sources));
+  ((f.chain && f.chain.steps) || []).forEach((st) => {
+    checkCites(`${w} (chaîne : ${st.id})`, st.text, f.sources);
+    (st.links || []).forEach(([kind, id]) => { if (kind === "actu" && !newsIds.has(id)) err(`${w} (chaîne)`, `actu liée inconnue : ${id}`); });
+  });
   (f.pastWeekly || []).forEach((pw, k) => {
     const ww = `${w} (enjeu passé ${k + 1})`;
     if (!pw.week) err(ww, "`week` manquant (ex. « Semaine du 5 octobre 2026 »)");

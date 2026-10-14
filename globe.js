@@ -252,8 +252,90 @@
     };
   }
 
+  // Chaîne de production : flux animés (flèches lumineuses) entre lieux, étape par étape.
+  // steps : [{ id, color, places: [{ name, coords }], flows: [[[lng, lat], [lng, lat]], …] }]
+  async function mountFlows(container, steps) {
+    if (!webglOK()) { container.classList.add("no-webgl"); return null; }
+    await loadLib();
+    if (!document.body.contains(container)) return null;
+    const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
+    let active = null; // null = toutes les étapes
+    const visible = () => steps.filter((s) => !active || s.id === active);
+    const arcs = () => visible().flatMap((s) => s.flows.map(([a, b]) => ({ startLng: a[0], startLat: a[1], endLng: b[0], endLat: b[1], color: s.color })));
+    const places = () => {
+      const seen = new Map();
+      visible().forEach((s) => s.places.forEach((p) => { if (!seen.has(p.name)) seen.set(p.name, { name: p.name, lng: p.coords[0], lat: p.coords[1], color: s.color }); }));
+      return [...seen.values()];
+    };
+    // Points d'arrivée : une onde y signale chaque flux qui arrive.
+    const arrivals = () => arcs().map((a) => ({ lat: a.endLat, lng: a.endLng, color: a.color }));
+
+    const world = new window.Globe(container, { animateIn: true })
+      .backgroundColor("rgba(0,0,0,0)")
+      .globeImageUrl(TEX.earth)
+      .bumpImageUrl(TEX.bump)
+      .showAtmosphere(true)
+      .atmosphereColor("#5aa9ff")
+      .atmosphereAltitude(0.18)
+      .width(container.clientWidth)
+      .height(container.clientHeight)
+      .arcColor((a) => [rgba(a.color, 0.55), rgba(a.color, 1)])
+      .arcStroke(1.6)
+      .arcAltitudeAutoScale(0.45)
+      .arcDashLength(0.4)
+      .arcDashGap(0.08)
+      .arcDashInitialGap(() => Math.random())
+      .arcDashAnimateTime(2200)
+      .arcsTransitionDuration(600)
+      .ringLat("lat").ringLng("lng")
+      .ringColor((r) => (t) => rgba(r.color, (1 - t) * 0.9))
+      .ringMaxRadius(4.5)
+      .ringPropagationSpeed(2.4)
+      .ringRepeatPeriod(1100)
+      .htmlLat("lat").htmlLng("lng").htmlAltitude(0.012)
+      .htmlElement((p) => {
+        const el = document.createElement("div");
+        el.className = "flow-pin";
+        el.style.setProperty("--c", p.color);
+        el.innerHTML = `<span class="flow-dot"></span><span class="flow-label">${p.name}</span>`;
+        return el;
+      });
+    function refresh() {
+      world.arcsData(arcs()).ringsData(arrivals()).htmlElementsData(places());
+    }
+    refresh();
+    const controls = world.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.5;
+    addZoom(world, container, controls);
+    const alt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 0.9 ? 3.2 : 2.3);
+    world.pointOfView({ lat: 20, lng: 60, altitude: alt() });
+    // Centre de la vue sur les lieux de l'étape choisie.
+    function show(id) {
+      active = id || null;
+      refresh();
+      // Cadrage sur les lieux de l'étape et sur l'arrivée de ses flèches.
+      const pts = [...places(), ...arcs().map((a) => ({ lat: a.endLat, lng: a.endLng }))];
+      if (id && pts.length) {
+        controls.autoRotate = false;
+        const lat = pts.reduce((t, p) => t + p.lat, 0) / pts.length;
+        const x = pts.reduce((t, p) => t + Math.cos((p.lng * Math.PI) / 180), 0), y = pts.reduce((t, p) => t + Math.sin((p.lng * Math.PI) / 180), 0);
+        const lng = (Math.atan2(y, x) * 180) / Math.PI;
+        const spread = Math.max(...pts.map((p) => Math.abs(((p.lng - lng + 540) % 360) - 180)));
+        world.pointOfView({ lat: Math.max(-40, Math.min(50, lat)), lng, altitude: alt() * (spread > 90 ? 1.3 : spread < 25 ? 0.75 : 1) }, 1200);
+      } else controls.autoRotate = true;
+    }
+    const onResize = () => {
+      if (!document.body.contains(container)) return window.removeEventListener("resize", onResize);
+      world.width(container.clientWidth).height(container.clientHeight);
+    };
+    window.addEventListener("resize", onResize);
+    return { world, show, destroy() { try { world.pauseAnimation(); world.renderer().dispose(); } catch (e) {} } };
+  }
+
   window.GeocoGlobe = {
     mountIndicators,
+    mountFlows,
     classOf,
     // container : élément qui reçoit le globe ; onOpen(place) : appelé quand on touche un lieu.
     async mount(container, news, { onOpen, region } = {}) {

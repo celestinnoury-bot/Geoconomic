@@ -387,7 +387,10 @@
   "Cette semaine": "Esta semana",
   "Semaines passées": "Semanas pasadas",
   "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Los retos de las semanas pasadas se guardarán aquí, semana tras semana.",
-  "Archives : les enjeux des semaines passées ›": "Archivo: los retos de las semanas pasadas ›"
+  "Archives : les enjeux des semaines passées ›": "Archivo: los retos de las semanas pasadas ›",
+  "La chaîne de production": "La cadena de producción",
+  "Étape {n} · {x}": "Etapa {n} · {x}",
+  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Se muestran todas las etapas. Toca una etapa para seguir sus flujos."
  },
  "months": {
   "janvier": "enero",

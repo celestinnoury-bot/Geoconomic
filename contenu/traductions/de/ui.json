@@ -392,7 +392,10 @@
   "Cette semaine": "Diese Woche",
   "Semaines passées": "Vergangene Wochen",
   "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Die Themen der vergangenen Wochen werden hier Woche für Woche abgelegt.",
-  "Archives : les enjeux des semaines passées ›": "Archiv: die Themen der vergangenen Wochen ›"
+  "Archives : les enjeux des semaines passées ›": "Archiv: die Themen der vergangenen Wochen ›",
+  "La chaîne de production": "Die Lieferkette",
+  "Étape {n} · {x}": "Schritt {n} · {x}",
+  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Alle Schritte werden angezeigt. Tippe auf einen Schritt, um seine Ströme zu verfolgen."
  },
  "months": {
   "janvier": "Januar",

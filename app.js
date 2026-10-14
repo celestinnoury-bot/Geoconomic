@@ -1261,6 +1261,53 @@
       </section>`;
   }
 
+  // Schéma « De la mine au client » : étapes cliquables reliées par des flèches + globe aux flux animés.
+  function chainBlock(f) {
+    const c = f.chain;
+    if (!c) return "";
+    return `
+      <section class="section supply">
+        <div class="wrap">
+          <p class="eyebrow reveal">La chaîne de production</p>
+          <h2 class="title reveal">${c.title}</h2>
+          <p class="lead reveal">${c.intro}</p>
+          <ol class="chain-steps reveal" role="tablist">
+            ${c.steps.map((s, i) => `<li><button type="button" class="chain-step" data-step="${s.id}" style="--c:${s.color}" aria-pressed="false"><span class="chain-n">${i + 1}</span><span class="chain-name">${s.label}</span></button></li>`).join("")}
+          </ol>
+          <div class="chain-globe-wrap reveal">
+            <div class="chain-globe" id="chain-globe"></div>
+            <div class="chain-card" id="chain-card"></div>
+          </div>
+        </div>
+      </section>`;
+  }
+  function mountChain(f) {
+    const c = f.chain;
+    const el = app.querySelector("#chain-globe");
+    if (!c || !el || !window.GeocoGlobe) return;
+    const card = app.querySelector("#chain-card");
+    let flows = null;
+    function select(id) {
+      const s = c.steps.find((x) => x.id === id);
+      app.querySelectorAll(".chain-step").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.step === id)));
+      card.innerHTML = s ? `
+        <p class="eyebrow" style="color:${s.color}">Étape ${c.steps.indexOf(s) + 1} · ${s.label}</p>
+        <h3>${s.title}</h3>
+        <p>${cite(s.text, f.sources)}</p>
+        ${s.links && s.links.length ? `<div class="pills">${s.links.map(focusLink).join("")}</div>` : ""}` :
+        `<p class="chain-all">Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.</p>`;
+      if (flows) flows.show(s ? id : null);
+    }
+    app.querySelectorAll(".chain-step").forEach((b) => b.addEventListener("click", () => select(b.getAttribute("aria-pressed") === "true" ? null : b.dataset.step)));
+    select(null);
+    // Le globe ne se charge qu'à l'approche de la section (économise la batterie).
+    const start = () => window.GeocoGlobe.mountFlows(el, c.steps).then((g) => { flows = g; const on = app.querySelector('.chain-step[aria-pressed="true"]'); if (g && on) g.show(on.dataset.step); });
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); start(); } }, { rootMargin: "300px" });
+      io.observe(el);
+    } else start();
+  }
+
   function renderFocus(id) {
     const f = id ? byId(focusList, id) : focusList[0];
     if (!f) return renderNotFound();
@@ -1321,7 +1368,7 @@
           </div>
         </section>
         ${i === 1 ? visualsBlock([f.chart].filter(Boolean)) : ""}
-        ${i === 3 ? visualsBlock([f.map].filter(Boolean), true) : ""}
+        ${i === 3 ? chainBlock(f) + visualsBlock([f.map].filter(Boolean), true) : ""}
       `).join("")}
 
       <section class="wrap">
@@ -1359,6 +1406,7 @@
 
     bindFigures(f.figures, "eco", f.sources);
     mountVisuals([f.chart, f.map].filter(Boolean));
+    mountChain(f);
 
     const stage = app.querySelector("#car-stage");
     const card = app.querySelector("#car-card");

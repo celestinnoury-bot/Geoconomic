@@ -1019,3 +1019,45 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 /* Sur téléphone, la fiche d'une pièce laisse voir la voiture au-dessus. */
 @media (max-width: 600px) { .car-card { max-height: 46%; padding: 12px 14px; } .car-card h3 { font-size: 18px; } .car-card .spot-facet p { font-size: 15px; } }
 .car-error { position: absolute; left: 12px; right: 12px; top: 8px; z-index: 2; margin: 0; text-align: center; font-size: 12px; color: rgba(233,251,255,.6); }
+/* ---------- Focus : chaîne de production ---------- */
+.chain-steps { list-style: none; margin: 24px 0 16px; padding: 0; display: flex; gap: 0; align-items: stretch; }
+.chain-steps li { flex: 1 1 0; display: flex; align-items: center; min-width: 0; padding: 0; margin: 0; }
+.chain-steps li::marker { content: none; }
+.chain-steps li::before { content: none; }
+.chain-steps li + li::before {
+  content: ""; flex: none; width: 14px; height: 12px; margin: 0 1px;
+  background: linear-gradient(90deg, rgba(91,231,255,.15), rgba(91,231,255,.8));
+  clip-path: polygon(0 35%, 60% 35%, 60% 0, 100% 50%, 60% 100%, 60% 65%, 0 65%);
+}
+.chain-step {
+  flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px 4px;
+  background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.12); border-radius: 14px; color: var(--text);
+  font-family: var(--font); cursor: pointer; transition: border-color .25s, background .25s, transform .25s var(--ease);
+}
+.chain-step:hover { border-color: var(--c); }
+.chain-step[aria-pressed="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 16%, transparent); transform: translateY(-2px); box-shadow: 0 0 18px color-mix(in srgb, var(--c) 35%, transparent); }
+.chain-n {
+  width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 14px;
+  color: #000; background: var(--c); box-shadow: 0 0 12px var(--c);
+}
+.chain-name { font-size: 13px; font-weight: 600; text-align: center; max-width: 100%; overflow-wrap: anywhere; line-height: 1.15; }
+.chain-globe-wrap { position: relative; }
+.chain-globe { position: relative; height: min(70vh, 560px); min-height: 360px; border-radius: 22px; overflow: hidden; background: radial-gradient(70% 70% at 50% 50%, #0b1a2e, #000 75%); }
+.chain-card {
+  margin-top: 12px; background: var(--surface); border: 1px solid var(--hairline); border-radius: 18px; padding: 16px 18px;
+}
+.chain-card h3 { font-size: 20px; margin: 4px 0 8px; }
+.chain-card p { font-family: var(--serif); font-size: 17px; line-height: 1.5; color: var(--muted); margin: 0; }
+.chain-card .eyebrow { font-family: var(--font); font-size: 13px; }
+.chain-card .pills { margin-top: 12px; }
+.chain-all { font-style: italic; }
+.flow-pin { display: flex; align-items: center; gap: 6px; transform: translate(-5px, -50%); pointer-events: none; }
+.flow-dot { width: 9px; height: 9px; border-radius: 50%; background: #fff; box-shadow: 0 0 6px 2px var(--c); flex: none; }
+.flow-label { color: #fff; font: 600 11px/1 var(--font); white-space: nowrap; background: rgba(0,0,0,.55); border: 1px solid color-mix(in srgb, var(--c) 60%, transparent); border-radius: 4px; padding: 3px 6px; }
+@media (max-width: 560px) {
+  .chain-steps li + li::before { width: 8px; margin: 0; }
+  .chain-step { padding: 9px 1px; border-radius: 12px; }
+  .chain-name { font-size: 10.5px; letter-spacing: -.01em; }
+  .chain-n { width: 24px; height: 24px; font-size: 12px; }
+  .flow-label { font-size: 9px; padding: 2px 4px; }
+}

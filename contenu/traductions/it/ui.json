@@ -388,7 +388,10 @@
   "Cette semaine": "Questa settimana",
   "Semaines passées": "Settimane passate",
   "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Le sfide delle settimane passate saranno raccolte qui, settimana dopo settimana.",
-  "Archives : les enjeux des semaines passées ›": "Archivio: le sfide delle settimane passate ›"
+  "Archives : les enjeux des semaines passées ›": "Archivio: le sfide delle settimane passate ›",
+  "La chaîne de production": "La catena di produzione",
+  "Étape {n} · {x}": "Fase {n} · {x}",
+  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Sono mostrate tutte le fasi. Tocca una fase per seguirne i flussi."
  },
  "months": {
   "janvier": "gennaio",

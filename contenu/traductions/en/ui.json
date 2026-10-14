@@ -391,7 +391,10 @@
   "Cette semaine": "This week",
   "Semaines passées": "Past weeks",
   "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Past weeks' issues will be stored here, week after week.",
-  "Archives : les enjeux des semaines passées ›": "Archive: past weeks' key issues ›"
+  "Archives : les enjeux des semaines passées ›": "Archive: past weeks' key issues ›",
+  "La chaîne de production": "The supply chain",
+  "Étape {n} · {x}": "Step {n} · {x}",
+  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "All steps are shown. Tap a step to follow its flows."
  },
  "months": {
   "janvier": "Jan.",

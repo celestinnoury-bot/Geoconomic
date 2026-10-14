@@ -131,6 +131,59 @@ window.GEOCO.focus = [
       data: [["2020", 3.0], ["2021", 6.6], ["2022", 10.5], ["2023", 14.0], ["2024", 17.3], ["2025", 20.0], ["2026 (p)", 23.0]],
       source: "Agence internationale de l'énergie, Global EV Outlook 2025 et 2026 (2025 : « plus de 20 millions » ; 2026 : prévision)"
     },
+    // Schéma de la chaîne de production (avant la carte) : étapes, lieux et flux affichés en 3D sur un globe.
+    // `flows` : [départ, arrivée] en [longitude, latitude] ; `places` : lieux marqués à cette étape.
+    chain: {
+      title: "De la mine au client : la chaîne de la voiture électrique",
+      intro: "Schéma simplifié des grands flux. Touche une étape : ses flèches s'allument sur le globe.",
+      steps: [
+        {
+          id: "mines", label: "Extraire", color: "#f5a524",
+          title: "Les métaux sortent de terre",
+          text: "Lithium du désert d'Atacama au Chili, cobalt de RD Congo (premier producteur mondial), nickel d'Indonésie, minerai de fer de Guinée, caoutchouc de Thaïlande. Une grande partie part vers les usines de batteries, surtout en Chine.",
+          links: [["actu", "2026-10-07-rdc-cobalt", "Le cobalt de RD Congo"], ["actu", "2026-10-07-indonesie-nickel", "Le nickel d'Indonésie"], ["actu", "2026-10-07-guinee-simandou", "Simandou, la montagne de fer"]],
+          places: [
+            { name: "Atacama (lithium)", coords: [-68.2, -23.5] }, { name: "Kolwezi (cobalt)", coords: [25.47, -10.71] },
+            { name: "Sulawesi (nickel)", coords: [121.9, -2.8] }, { name: "Simandou (fer)", coords: [8.9, 8.6] },
+            { name: "Thaïlande (caoutchouc)", coords: [100.5, 13.7] }
+          ],
+          flows: [[[-68.2, -23.5], [119.55, 26.66]], [[25.47, -10.71], [119.55, 26.66]], [[121.9, -2.8], [119.55, 26.66]]]
+        },
+        {
+          id: "batteries", label: "Batteries", color: "#e5484d",
+          title: "Raffiner les métaux et fabriquer les batteries",
+          text: "La Chine domine le raffinage des terres rares et fabrique la plupart des batteries : en 2025, les fabricants chinois ont fourni environ 70 % des batteries des véhicules électriques du monde, avec en tête CATL (39 %) et BYD (16 %) [5].",
+          places: [{ name: "Ningde (CATL)", coords: [119.55, 26.66] }, { name: "Shenzhen (BYD)", coords: [114.06, 22.54] }],
+          flows: [[[119.55, 26.66], [10.78, 52.42]], [[119.55, 26.66], [-97.62, 30.22]], [[119.55, 26.66], [114.06, 22.54]]]
+        },
+        {
+          id: "puces", label: "Puces", color: "#8e6bd8",
+          title: "Les puces, le cerveau de la voiture",
+          text: "Écran, aide à la conduite, gestion de la batterie : une voiture moderne contient des centaines de puces. Les plus avancées viennent surtout de Taïwan, au cœur des tensions avec la Chine.",
+          links: [["cours", "semi-conducteurs", "Cours : pourquoi Taïwan est au cœur du monde"]],
+          places: [{ name: "Hsinchu (Taïwan)", coords: [120.97, 24.8] }],
+          flows: [[[120.97, 24.8], [114.06, 22.54]], [[120.97, 24.8], [10.78, 52.42]], [[120.97, 24.8], [-97.62, 30.22]]]
+        },
+        {
+          id: "usines", label: "Assembler", color: "#5be7ff",
+          title: "Assembler la voiture",
+          text: "Les grandes usines : BYD à Shenzhen, devenu en 2025 le premier vendeur mondial de voitures 100 % électriques [3], Tesla au Texas, Volkswagen à Wolfsburg, Renault à Douai, où sont assemblées les Renault 5 et 4 électriques.",
+          places: [
+            { name: "Shenzhen (BYD)", coords: [114.06, 22.54] }, { name: "Austin (Tesla)", coords: [-97.62, 30.22] },
+            { name: "Wolfsburg (Volkswagen)", coords: [10.78, 52.42] }, { name: "Douai (Renault)", coords: [3.08, 50.37] }
+          ],
+          flows: []
+        },
+        {
+          id: "export", label: "Exporter", color: "#30a46c",
+          title: "Exporter… et payer les droits de douane",
+          text: "Les voitures électriques chinoises vendues dans l'Union européenne paient de 7,8 % à 35,3 % de taxe en plus du droit de douane normal de 10 % [6]. Les États-Unis taxent les voitures importées à 25 %, et à 15 % celles de l'Union européenne, du Japon et de la Corée du Sud [7].",
+          links: [["cours", "droits-de-douane", "Cours : les droits de douane"]],
+          places: [{ name: "Union européenne", coords: [4.35, 50.85] }, { name: "États-Unis", coords: [-95, 38] }],
+          flows: [[[114.06, 22.54], [4.35, 50.85]], [[10.78, 52.42], [-95, 38]], [[137.15, 35.08], [-95, 38]], [[129.31, 35.54], [-95, 38]]]
+        }
+      ]
+    },
     map: {
       kind: "map",
       title: "La carte de la voiture électrique",
