@@ -101,6 +101,32 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   }
   setPaint("rouge");
 
+  // Vol de caméra : au toucher d'un point, la caméra glisse vers la pièce ; « resetView » revient à la vue d'ensemble.
+  const home = { target: controls.target.clone(), dir: camera.position.clone().sub(controls.target).normalize() };
+  let flight = null;
+  function startFlight(target, position) {
+    flight = { t0: performance.now(), dur: 900, fromT: controls.target.clone(), fromP: camera.position.clone(), toT: target, toP: position };
+  }
+  function flyTo(p) {
+    const center = new THREE.Vector3(0, finalSize.y * 0.4, 0);
+    const out = p.clone().sub(center).setY(0);
+    if (out.lengthSq() < 1e-6) out.copy(home.dir).setY(0);
+    out.normalize();
+    const dir = out.multiplyScalar(0.9).add(new THREE.Vector3(0, 0.45, 0)).normalize();
+    const target = center.clone().lerp(p, 0.6);
+    // La fiche s'ouvre en bas : on vise un peu sous la pièce pour qu'elle reste visible au-dessus.
+    const look = target.clone().add(new THREE.Vector3(0, -finalSize.y * (width() < 600 ? 0.55 : 0.2), 0));
+    startFlight(look, target.clone().addScaledVector(dir, camera.position.distanceTo(controls.target) * 0.85));
+  }
+  function resetView() {
+    const dist = baseDist * Math.max(1, 1.45 / (width() / height()));
+    const dir = camera.position.clone().sub(controls.target).setY(0).normalize().multiplyScalar(0.94).add(new THREE.Vector3(0, 0.33, 0)).normalize();
+    startFlight(home.target.clone(), home.target.clone().addScaledVector(dir, dist));
+    layer.querySelectorAll(".car-spot").forEach((s) => s.classList.remove("active"));
+  }
+  // Le premier geste fait disparaître l'indication « Glisse pour faire tourner ».
+  renderer.domElement.addEventListener("pointerdown", () => { flight = null; container.classList.add("car-touched"); }, { passive: true });
+
   // Points d'intérêt : on les place au centre de la pièce nommée, avec un décalage éventuel.
   const layer = document.createElement("div");
   layer.className = "car-hotspots";
@@ -115,10 +141,11 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
     el.className = "car-spot";
     el.type = "button";
     el.setAttribute("aria-label", h.label);
-    el.innerHTML = `<span class="car-spot-dot">+</span><span class="car-spot-label">${h.label}</span>`;
+    el.innerHTML = `<span class="car-spot-dot"><span class="car-spot-core"></span><span class="car-spot-ring"></span></span><span class="car-spot-line"></span><span class="car-spot-label">${h.label}</span>`;
     el.addEventListener("click", () => {
       controls.autoRotate = false;
       layer.querySelectorAll(".car-spot").forEach((s) => s.classList.toggle("active", s === el));
+      flyTo(pos);
       if (onHotspot) onHotspot(h);
     });
     layer.appendChild(el);
@@ -147,6 +174,13 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   function loop() {
     if (!running) return;
     if (!document.body.contains(container)) return destroy();
+    if (flight) {
+      const k = Math.min(1, (performance.now() - flight.t0) / flight.dur);
+      const e = 1 - Math.pow(1 - k, 3);
+      controls.target.lerpVectors(flight.fromT, flight.toT, e);
+      camera.position.lerpVectors(flight.fromP, flight.toP, e);
+      if (k >= 1) flight = null;
+    }
     controls.update();
     renderer.render(scene, camera);
     placeSpots();
@@ -173,6 +207,7 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
 
   return {
     setPaint,
+    resetView,
     pause() { running = false; cancelAnimationFrame(raf); },
     resume() { if (!running) { running = true; loop(); } },
     destroy,

@@ -1207,6 +1207,7 @@
         <div class="car-stage" id="car-stage">
           ${f.model.poster ? `<img class="car-poster" id="car-poster" src="${f.model.poster}" alt="${f.industry} : la voiture du Focus">` : ""}
           <p class="car-loading" id="car-loading">Chargement de la voiture 3D…</p>
+          <p class="car-hint" id="car-hint" aria-hidden="true"><span class="car-hint-icon">⟲</span> Glisse pour faire tourner · touche un point</p>
           <div class="car-card" id="car-card" hidden></div>
         </div>
         <div class="wrap focus-controls">
@@ -1297,10 +1298,15 @@
         <button class="sheet-close" aria-label="Fermer">×</button>
         <p class="eyebrow">${h.label}</p>
         <h3>${h.title}</h3>
-        <p>${cite(h.text, f.sources)}</p>
+        ${h.eco || h.geo ? `
+        <div class="spot-facets">
+          ${h.eco ? `<div class="spot-facet eco"><span class="spot-facet-tag">Économie</span><p>${cite(h.eco, f.sources)}</p></div>` : ""}
+          ${h.geo ? `<div class="spot-facet geo"><span class="spot-facet-tag">Géopolitique</span><p>${cite(h.geo, f.sources)}</p></div>` : ""}
+        </div>` : `<p>${cite(h.text, f.sources)}</p>`}
         ${h.links && h.links.length ? `<div class="pills">${h.links.map(focusLink).join("")}</div>` : ""}`;
-      card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; });
+      card.querySelector(".sheet-close").addEventListener("click", () => { card.hidden = true; if (carView) carView.resetView(); });
     }
+    let carView = null;
 
     import("./car3d.js")
       .then((m) => m.mountCar(stage, { src: f.model.src, hotspots: f.hotspots, onHotspot: showSpot }))
@@ -1310,6 +1316,7 @@
         if (!car || !document.body.contains(stage)) { if (car) car.destroy(); return; }
         stage.classList.add("car-ready");
         currentGlobe = car;
+        carView = car;
         app.querySelectorAll("[data-paint]").forEach((b) => b.addEventListener("click", () => {
           app.querySelectorAll("[data-paint]").forEach((x) => x.setAttribute("aria-pressed", x === b));
           car.setPaint(b.dataset.paint);

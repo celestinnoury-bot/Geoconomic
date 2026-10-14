@@ -4,7 +4,8 @@
 // `model` : modèle 3D (glTF) et crédit obligatoire.
 // `hotspots` : points cliquables sur l'objet 3D. `at` = position [largeur, hauteur, longueur] en fractions
 //              de la voiture (0 à 1 ; longueur 1 = l'avant), ou `part` = nom d'une pièce du modèle
-//              (+ `offset` éventuel, en demi-longueurs de voiture). `links` = actus ou cours liés.
+//              (+ `offset` éventuel, en demi-longueurs de voiture). `eco` / `geo` = ce que la pièce dit
+//              de l'économie et de la géopolitique. `links` = actus ou cours liés.
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.focus = [
@@ -45,31 +46,36 @@ window.GEOCO.focus = [
       {
         id: "batterie", label: "Batterie", at: [0.5, 0.18, 0.5],
         title: "La batterie, le cœur (et le coût) de l'électrique",
-        text: "C'est la pièce la plus chère d'une voiture électrique. Elle contient du lithium, du nickel, du cobalt et du graphite. En 2025, les fabricants chinois ont fourni environ 70 % des batteries installées dans les véhicules électriques du monde, avec en tête CATL (39 %) et BYD (16 %) [5].",
+        eco: "C'est la pièce la plus chère d'une voiture électrique. Elle contient du lithium, du nickel, du cobalt et du graphite.",
+        geo: "En 2025, les fabricants chinois ont fourni environ 70 % des batteries installées dans les véhicules électriques du monde, avec en tête CATL (39 %) et BYD (16 %) [5].",
         links: [["actu", "2026-10-07-rdc-cobalt", "Le cobalt de RD Congo"], ["actu", "2026-10-07-indonesie-nickel", "Le nickel d'Indonésie"]]
       },
       {
         id: "moteur", label: "Moteur", at: [0.5, 0.5, 0.8],
         title: "Le moteur électrique et ses aimants",
-        text: "La plupart des moteurs électriques utilisent des aimants très puissants, fabriqués avec des terres rares comme le néodyme. La Chine domine leur raffinage : c'est l'un de ses principaux moyens de pression sur les constructeurs du monde entier.",
+        eco: "La plupart des moteurs électriques utilisent des aimants très puissants, fabriqués avec des terres rares comme le néodyme.",
+        geo: "La Chine domine leur raffinage : c'est l'un de ses principaux moyens de pression sur les constructeurs du monde entier.",
         links: [["actu", "2026-10-07-chine-terres-rares", "Terres rares : l'échéance du 10 novembre"]]
       },
       {
         id: "puces", label: "Puces", at: [0.32, 0.6, 0.57],
         title: "Une voiture, c'est un ordinateur sur roues",
-        text: "Écran, aide à la conduite, gestion de la batterie : une voiture moderne contient des centaines de puces. En 2021, la pénurie de semi-conducteurs a arrêté des usines automobiles dans le monde entier.",
+        eco: "Écran, aide à la conduite, gestion de la batterie : une voiture moderne contient des centaines de puces.",
+        geo: "En 2021, la pénurie de semi-conducteurs a arrêté des usines automobiles dans le monde entier.",
         links: [["cours", "semi-conducteurs", "Cours : pourquoi Taïwan est au cœur du monde"]]
       },
       {
         id: "carrosserie", label: "Carrosserie", at: [0.5, 0.86, 0.42],
         title: "Acier et aluminium",
-        text: "La carrosserie et le châssis sont surtout faits d'acier et d'aluminium. L'acier vient du minerai de fer, dont de nouveaux géants apparaissent, comme le gisement de Simandou en Guinée. Ces métaux sont aussi visés par les droits de douane américains.",
+        eco: "La carrosserie et le châssis sont surtout faits d'acier et d'aluminium. Ces métaux sont aussi visés par les droits de douane américains.",
+        geo: "L'acier vient du minerai de fer, dont de nouveaux géants apparaissent, comme le gisement de Simandou en Guinée.",
         links: [["actu", "2026-10-07-guinee-simandou", "Simandou, la montagne de fer"], ["cours", "droits-de-douane", "Cours : les droits de douane"]]
       },
       {
         id: "pneus", label: "Pneus", at: [0.98, 0.24, 0.24],
         title: "Le caoutchouc naturel",
-        text: "Les pneus contiennent beaucoup de caoutchouc naturel, issu de l'hévéa, un arbre cultivé surtout en Asie du Sud-Est. La Thaïlande en est le premier producteur mondial. Une sécheresse ou une maladie des plantations là-bas peut se retrouver dans le prix de tes pneus.",
+        eco: "Les pneus contiennent beaucoup de caoutchouc naturel, issu de l'hévéa. Une sécheresse ou une maladie des plantations peut se retrouver dans le prix de tes pneus.",
+        geo: "L'hévéa est cultivé surtout en Asie du Sud-Est. La Thaïlande en est le premier producteur mondial.",
         links: []
       }
     ],

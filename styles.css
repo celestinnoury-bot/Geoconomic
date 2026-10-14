@@ -569,26 +569,65 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .car-stage canvas { display: block; position: relative; z-index: 0; }
 .car-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 15px; margin: 0; }
 .car-hotspots { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
+/* Points lumineux façon hologramme : noyau cyan, anneau en pointillés qui tourne, onde qui s'élargit. */
 .car-spot {
+  --spot: #5be7ff;
   position: absolute; left: 0; top: 0; pointer-events: auto;
-  display: flex; align-items: center; gap: 8px; margin: -15px 0 0 -15px; padding: 0;
+  display: flex; align-items: center; gap: 0; margin: -18px 0 0 -18px; padding: 0;
   background: none; border: 0; cursor: pointer; font-family: var(--font);
-  transition: opacity .3s var(--ease);
+  transition: opacity .3s var(--ease); -webkit-tap-highlight-color: transparent;
 }
-.car-spot-dot {
-  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
-  background: rgba(255,255,255,.18); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,.5); color: #fff; font-size: 18px; line-height: 1;
-  box-shadow: 0 0 0 0 rgba(245,200,107,.6); animation: spotPulse 2.4s ease-out infinite;
+.car-spot-dot { position: relative; width: 36px; height: 36px; display: grid; place-items: center; flex: none; }
+.car-spot-core {
+  width: 12px; height: 12px; border-radius: 50%; background: #e9fbff;
+  box-shadow: 0 0 6px 2px var(--spot), 0 0 18px 6px rgba(91,231,255,.45);
+  transition: transform .25s var(--ease), background .25s;
 }
+.car-spot-dot::before {
+  content: ""; position: absolute; inset: 6px; border-radius: 50%;
+  border: 1px solid rgba(91,231,255,.9); animation: spotWave 2.2s ease-out infinite;
+}
+.car-spot-ring {
+  position: absolute; inset: 0; border-radius: 50%;
+  border: 1.5px dashed rgba(91,231,255,.75); animation: spotSpin 8s linear infinite;
+}
+.car-spot-line { width: 18px; height: 1px; background: linear-gradient(90deg, rgba(91,231,255,.9), rgba(91,231,255,.15)); flex: none; }
 .car-spot-label {
-  color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap;
-  background: rgba(20,20,22,.6); border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 4px 10px;
+  color: #e9fbff; font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap;
+  background: rgba(6,18,24,.62); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+  border: 1px solid rgba(91,231,255,.45); border-radius: 4px; padding: 4px 8px;
+  box-shadow: 0 0 12px rgba(91,231,255,.18), inset 0 0 8px rgba(91,231,255,.08);
 }
-.car-spot.active .car-spot-dot { background: var(--gold); color: #000; border-color: var(--gold); }
-.car-spot.behind { opacity: .25; }
-@keyframes spotPulse { 0% { box-shadow: 0 0 0 0 rgba(245,200,107,.55); } 100% { box-shadow: 0 0 0 14px rgba(245,200,107,0); } }
-@media (prefers-reduced-motion: reduce) { .car-spot-dot { animation: none; } }
+.car-spot:hover .car-spot-core, .car-spot:focus-visible .car-spot-core { transform: scale(1.3); }
+.car-spot.active { --spot: var(--gold); }
+.car-spot.active .car-spot-core { background: #fff6dc; box-shadow: 0 0 6px 2px var(--gold), 0 0 22px 8px rgba(245,200,107,.5); }
+.car-spot.active .car-spot-ring, .car-spot.active .car-spot-dot::before { border-color: rgba(245,200,107,.9); }
+.car-spot.active .car-spot-line { background: linear-gradient(90deg, rgba(245,200,107,.9), rgba(245,200,107,.15)); }
+.car-spot.active .car-spot-label { border-color: rgba(245,200,107,.7); color: #fff6dc; }
+.car-spot.behind { opacity: .22; }
+.car-spot.behind .car-spot-label, .car-spot.behind .car-spot-line { opacity: 0; }
+@keyframes spotWave { 0% { transform: scale(.6); opacity: .9; } 100% { transform: scale(2.1); opacity: 0; } }
+@keyframes spotSpin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .car-spot-ring, .car-spot-dot::before { animation: none; } }
+@media (max-width: 560px) { .car-spot-label { font-size: 10px; padding: 3px 6px; } .car-spot-line { width: 10px; } }
+/* Indication de geste, effacée au premier toucher. */
+.car-hint {
+  position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); z-index: 1; margin: 0; pointer-events: none;
+  color: rgba(233,251,255,.85); font-size: 13px; letter-spacing: .04em; white-space: nowrap;
+  background: rgba(6,18,24,.55); border: 1px solid rgba(91,231,255,.3); border-radius: 999px; padding: 6px 14px;
+  opacity: 0; transition: opacity .5s var(--ease);
+}
+.car-stage.car-ready .car-hint { opacity: 1; }
+.car-stage.car-touched .car-hint, .car-stage:has(.car-card:not([hidden])) .car-hint { opacity: 0; }
+.car-hint-icon { display: inline-block; color: #5be7ff; animation: spotSpin 3s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .car-hint-icon { animation: none; } }
+/* Fiche d'une pièce : économie et géopolitique. */
+.spot-facets { display: grid; gap: 10px; margin-top: 4px; }
+.spot-facet { border-left: 2px solid var(--spot-c, #5be7ff); padding: 2px 0 2px 12px; }
+.spot-facet.eco { --spot-c: #5be7ff; }
+.spot-facet.geo { --spot-c: var(--gold); }
+.spot-facet-tag { display: block; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--spot-c); margin-bottom: 2px; }
+.car-card .spot-facet p { font-size: 16px; color: var(--text, #f5f5f7); opacity: .88; margin: 0; }
 .car-card {
   position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; max-width: 440px; max-height: 70%; overflow-y: auto;
   background: rgba(28,28,30,.82); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%);
@@ -971,3 +1010,5 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .founder-badge { display: inline-block; margin-left: 6px; padding: 2px 8px; border-radius: 999px; background: var(--gold); color: #1b1300; font-size: 12px; font-weight: 700; }
 @media (max-width: 480px) { .founder { padding: 22px 18px; } .founder h2 { font-size: 25px; } }
 .plus-active .founder-badge { color: #1b1300; }
+/* Sur téléphone, la fiche d'une pièce laisse voir la voiture au-dessus. */
+@media (max-width: 600px) { .car-card { max-height: 46%; padding: 12px 14px; } .car-card h3 { font-size: 18px; } .car-card .spot-facet p { font-size: 15px; } }

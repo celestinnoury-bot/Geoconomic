@@ -158,7 +158,7 @@ focus.forEach((f) => {
   checkSources(w, f.sources);
   if (!f.model || !f.model.src || !f.model.credit) err(w, "modèle 3D et crédit obligatoires");
   else if (!fs.existsSync(f.model.src)) err(w, `modèle introuvable : ${f.model.src}`);
-  [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).map((h) => h.text)].forEach((t) => checkCites(w, t, f.sources));
+  [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).flatMap((h) => [h.text, h.eco, h.geo].filter(Boolean))].forEach((t) => checkCites(w, t, f.sources));
   if (f.weekly) {
     [...f.weekly.paragraphs, ...(f.weekly.toWatch || []).map((x) => x.text)].forEach((t) => checkCites(`${w} (enjeu)`, t, f.sources));
     (f.weekly.figures || []).forEach((x) => { if (x.src && !f.sources[x.src - 1]) err(`${w} (enjeu)`, `chiffre « ${x.value} » : src inexistante`); });
