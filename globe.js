@@ -254,17 +254,33 @@
 
   // Chaîne de production : flux animés (flèches lumineuses) entre lieux, étape par étape.
   // steps : [{ id, color, places: [{ name, coords }], flows: [[[lng, lat], [lng, lat]], …] }]
-  async function mountFlows(container, steps) {
+  // Modes : "key" = l'essentiel (`essentials` : les grands mouvements, peu d'étiquettes), "all" = tout,
+  // ou l'id d'une étape. essentials : [{ from, to, color, label, at: "from" | "to" }].
+  async function mountFlows(container, steps, { essentials = [] } = {}) {
     if (!webglOK()) { container.classList.add("no-webgl"); return null; }
     await loadLib();
     if (!document.body.contains(container)) return null;
     const rgba = (hex, a) => { const n = parseInt(hex.slice(1), 16); return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`; };
-    let active = null; // null = toutes les étapes
-    const visible = () => steps.filter((s) => !active || s.id === active);
-    const arcs = () => visible().flatMap((s) => s.flows.map(([a, b]) => ({ startLng: a[0], startLat: a[1], endLng: b[0], endLat: b[1], color: s.color })));
+    let active = essentials.length ? "key" : "all";
+    const visible = () => steps.filter((s) => active === "all" || s.id === active);
+    const arcs = () => active === "key"
+      ? essentials.map((e) => ({ startLng: e.from[0], startLat: e.from[1], endLng: e.to[0], endLat: e.to[1], color: e.color, w: 2.4 }))
+      : visible().flatMap((s) => s.flows.map(([a, b]) => ({ startLng: a[0], startLat: a[1], endLng: b[0], endLat: b[1], color: s.color, w: 1.6 })));
     const places = () => {
       const seen = new Map();
-      visible().forEach((s) => s.places.forEach((p) => { if (!seen.has(p.name)) seen.set(p.name, { name: p.name, lng: p.coords[0], lat: p.coords[1], color: s.color }); }));
+      const add = (name, [lng, lat], color, key) => { const k = key || name; if (!seen.has(k)) seen.set(k, { name, lng, lat, color }); };
+      if (active === "key") {
+        // L'essentiel : une étiquette courte par grand mouvement, les autres bouts sont de simples points.
+        essentials.forEach((e) => {
+          const at = e.at === "from" ? e.from : e.to, other = e.at === "from" ? e.to : e.from;
+          add(e.label || "", at, e.color, e.label ? null : at.join());
+          add("", other, e.color, other.join());
+        });
+        // Un point sans nom ne doit pas masquer un point nommé au même endroit.
+        const named = new Set([...seen.values()].filter((p) => p.name).map((p) => `${p.lng},${p.lat}`));
+        return [...seen.values()].filter((p) => p.name || !named.has(`${p.lng},${p.lat}`));
+      }
+      visible().forEach((s) => s.places.forEach((p) => add(p.name, p.coords, s.color)));
       return [...seen.values()];
     };
     // Points d'arrivée : une onde y signale chaque flux qui arrive.
@@ -280,7 +296,7 @@
       .width(container.clientWidth)
       .height(container.clientHeight)
       .arcColor((a) => [rgba(a.color, 0.55), rgba(a.color, 1)])
-      .arcStroke(1.6)
+      .arcStroke((a) => a.w)
       .arcAltitudeAutoScale(0.45)
       .arcDashLength(0.4)
       .arcDashGap(0.08)
@@ -298,7 +314,7 @@
         const el = document.createElement("div");
         el.className = "flow-pin";
         el.style.setProperty("--c", p.color);
-        el.innerHTML = `<span class="flow-dot"></span><span class="flow-label">${p.name}</span>`;
+        el.innerHTML = `<span class="flow-dot"></span>${p.name ? `<span class="flow-label">${p.name}</span>` : ""}`;
         return el;
       });
     function refresh() {
@@ -313,18 +329,18 @@
     world.pointOfView({ lat: 25, lng: 60, altitude: alt() });
     // Centre de la vue sur les lieux de l'étape choisie.
     function show(id) {
-      active = id || null;
+      active = id || "all";
       refresh();
       // Cadrage sur les lieux de l'étape et sur l'arrivée de ses flèches.
       const pts = [...places(), ...arcs().map((a) => ({ lat: a.endLat, lng: a.endLng }))];
-      if (id && pts.length) {
+      if (id && id !== "all" && id !== "key" && pts.length) {
         controls.autoRotate = false;
         const lat = pts.reduce((t, p) => t + p.lat, 0) / pts.length;
         const x = pts.reduce((t, p) => t + Math.cos((p.lng * Math.PI) / 180), 0), y = pts.reduce((t, p) => t + Math.sin((p.lng * Math.PI) / 180), 0);
         const lng = (Math.atan2(y, x) * 180) / Math.PI;
         const spread = Math.max(...pts.map((p) => Math.abs(((p.lng - lng + 540) % 360) - 180)));
         world.pointOfView({ lat: Math.max(-40, Math.min(50, lat)), lng, altitude: alt() * (spread > 90 ? 1.3 : spread < 25 ? 0.75 : 1) }, 1200);
-      } else controls.autoRotate = true;
+      } else { controls.autoRotate = true; world.pointOfView({ lat: 25, lng: 60, altitude: alt() * (id === "key" ? 1.05 : 1) }, 1200); }
     }
     const onResize = () => {
       if (!document.body.contains(container)) return window.removeEventListener("resize", onResize);

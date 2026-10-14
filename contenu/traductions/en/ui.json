@@ -395,7 +395,11 @@
   "La chaîne de production": "The supply chain",
   "Étape {n} · {x}": "Step {n} · {x}",
   "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "All steps are shown. Tap a step to follow its flows.",
-  "Concurrence": "Competition"
+  "Concurrence": "Competition",
+  "L'essentiel": "The essentials",
+  "Tout voir": "Show everything",
+  "▶ Visite guidée": "▶ Guided tour",
+  "■ Arrêter la visite": "■ Stop the tour"
  },
  "months": {
   "janvier": "Jan.",

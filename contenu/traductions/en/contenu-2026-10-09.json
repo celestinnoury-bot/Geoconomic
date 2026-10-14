@@ -2510,5 +2510,13 @@
  "focus.automobile.chain.steps.5.places.1.name": "Moscow",
  "focus.automobile.chain.steps.5.places.2.name": "Yokohama",
  "focus.automobile.chain.steps.5.places.3.name": "Mombasa (Kenya)",
- "focus.automobile.chain.steps.5.places.4.name": "Dar es Salaam (Tanzania)"
+ "focus.automobile.chain.steps.5.places.4.name": "Dar es Salaam (Tanzania)",
+ "focus.automobile.chain.keyIntro": "The big movements of the electric car: metals head to Chinese battery plants, Chinese cars to Mexico, Russia and the Gulf, Mexican parts to the United States, Japanese used cars to Africa.",
+ "focus.automobile.chain.essentials.0.label": "China: 70% of batteries",
+ "focus.automobile.chain.essentials.3.label": "Chips from Taiwan",
+ "focus.automobile.chain.essentials.4.label": "Mexico: 625,000",
+ "focus.automobile.chain.essentials.5.label": "Russia: 583,000",
+ "focus.automobile.chain.essentials.6.label": "UAE: 572,000",
+ "focus.automobile.chain.essentials.7.label": "United States: 44% of parts",
+ "focus.automobile.chain.essentials.8.label": "Kenya: Japanese used cars"
 }

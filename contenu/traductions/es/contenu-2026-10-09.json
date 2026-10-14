@@ -2510,5 +2510,13 @@
  "focus.automobile.chain.steps.5.places.1.name": "Moscú",
  "focus.automobile.chain.steps.5.places.2.name": "Yokohama",
  "focus.automobile.chain.steps.5.places.3.name": "Mombasa (Kenia)",
- "focus.automobile.chain.steps.5.places.4.name": "Dar es Salaam (Tanzania)"
+ "focus.automobile.chain.steps.5.places.4.name": "Dar es Salaam (Tanzania)",
+ "focus.automobile.chain.keyIntro": "Los grandes movimientos del coche eléctrico: los metales van a las fábricas chinas de baterías, los coches chinos a México, Rusia y el Golfo, las piezas mexicanas a Estados Unidos, los usados japoneses a África.",
+ "focus.automobile.chain.essentials.0.label": "China: 70 % de las baterías",
+ "focus.automobile.chain.essentials.3.label": "Chips de Taiwán",
+ "focus.automobile.chain.essentials.4.label": "México: 625.000",
+ "focus.automobile.chain.essentials.5.label": "Rusia: 583.000",
+ "focus.automobile.chain.essentials.6.label": "Emiratos: 572.000",
+ "focus.automobile.chain.essentials.7.label": "Estados Unidos: 44 % de las piezas",
+ "focus.automobile.chain.essentials.8.label": "Kenia: usados japoneses"
 }

@@ -1318,6 +1318,11 @@
           <p class="eyebrow reveal">La chaîne de production</p>
           <h2 class="title reveal">${c.title}</h2>
           <p class="lead reveal">${c.intro}</p>
+          <div class="chain-modes reveal">
+            <button type="button" class="chain-mode" data-mode="key" aria-pressed="true">L'essentiel</button>
+            <button type="button" class="chain-mode" data-mode="all" aria-pressed="false">Tout voir</button>
+            <button type="button" class="chain-mode tour" data-tour aria-pressed="false">▶ Visite guidée</button>
+          </div>
           <ol class="chain-steps reveal" role="tablist">
             ${c.steps.map((s, i) => `<li><button type="button" class="chain-step" data-step="${s.id}" style="--c:${s.color}" aria-pressed="false"><span class="chain-n">${i + 1}</span><span class="chain-name">${s.label}</span></button></li>`).join("")}
           </ol>
@@ -1333,22 +1338,50 @@
     const el = app.querySelector("#chain-globe");
     if (!c || !el || !window.GeocoGlobe) return;
     const card = app.querySelector("#chain-card");
-    let flows = null;
+    const hasKey = !!(c.essentials && c.essentials.length);
+    let flows = null, view = hasKey ? "key" : "all", tour = null;
+    // view : "key" (l'essentiel), "all" (tout voir) ou l'id d'une étape.
     function select(id) {
+      view = id;
       const s = c.steps.find((x) => x.id === id);
       app.querySelectorAll(".chain-step").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.step === id)));
+      app.querySelectorAll(".chain-mode[data-mode]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.mode === id)));
       card.innerHTML = s ? `
         <p class="eyebrow" style="color:${s.color}">Étape ${c.steps.indexOf(s) + 1} · ${s.label}</p>
         <h3>${s.title}</h3>
         <p>${cite(s.text, f.sources)}</p>
         ${s.links && s.links.length ? `<div class="pills">${s.links.map(focusLink).join("")}</div>` : ""}` :
+        id === "key" ? `<p class="eyebrow">L'essentiel</p><p>${c.keyIntro || ""}</p>` :
         `<p class="chain-all">Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.</p>`;
-      if (flows) flows.show(s ? id : null);
+      if (flows) flows.show(id);
     }
-    app.querySelectorAll(".chain-step").forEach((b) => b.addEventListener("click", () => select(b.getAttribute("aria-pressed") === "true" ? null : b.dataset.step)));
-    select(null);
+    function stopTour() {
+      if (!tour) return;
+      clearInterval(tour); tour = null;
+      const b = app.querySelector("[data-tour]");
+      if (b) { b.setAttribute("aria-pressed", "false"); b.textContent = I18N.t("▶ Visite guidée"); }
+    }
+    function startTour() {
+      let i = 0;
+      const b = app.querySelector("[data-tour]");
+      b.setAttribute("aria-pressed", "true"); b.textContent = I18N.t("■ Arrêter la visite");
+      select(c.steps[0].id);
+      tour = setInterval(() => {
+        if (!document.body.contains(el)) return stopTour();
+        i++;
+        if (i >= c.steps.length) { stopTour(); select(hasKey ? "key" : "all"); return; }
+        select(c.steps[i].id);
+      }, 6500);
+    }
+    app.querySelectorAll(".chain-step").forEach((b) => b.addEventListener("click", () => { stopTour(); select(b.getAttribute("aria-pressed") === "true" ? (hasKey ? "key" : "all") : b.dataset.step); }));
+    app.querySelectorAll(".chain-mode[data-mode]").forEach((b) => b.addEventListener("click", () => { stopTour(); select(b.dataset.mode); }));
+    const tb = app.querySelector("[data-tour]");
+    if (tb) tb.addEventListener("click", () => (tour ? stopTour() : startTour()));
+    el.addEventListener("pointerdown", stopTour);
+    if (!hasKey) { const kb = app.querySelector('.chain-mode[data-mode="key"]'); if (kb) kb.remove(); }
+    select(view);
     // Le globe ne se charge qu'à l'approche de la section (économise la batterie).
-    const start = () => window.GeocoGlobe.mountFlows(el, c.steps).then((g) => { flows = g; const on = app.querySelector('.chain-step[aria-pressed="true"]'); if (g && on) g.show(on.dataset.step); });
+    const start = () => window.GeocoGlobe.mountFlows(el, c.steps, { essentials: c.essentials || [] }).then((g) => { flows = g; if (g) g.show(view); });
     if ("IntersectionObserver" in window) {
       const io = new IntersectionObserver((es) => { if (es.some((e) => e.isIntersecting)) { io.disconnect(); start(); } }, { rootMargin: "300px" });
       io.observe(el);

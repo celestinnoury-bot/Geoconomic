@@ -396,7 +396,11 @@
   "La chaîne de production": "Die Lieferkette",
   "Étape {n} · {x}": "Schritt {n} · {x}",
   "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Alle Schritte werden angezeigt. Tippe auf einen Schritt, um seine Ströme zu verfolgen.",
-  "Concurrence": "Wettbewerb"
+  "Concurrence": "Wettbewerb",
+  "L'essentiel": "Das Wichtigste",
+  "Tout voir": "Alles zeigen",
+  "▶ Visite guidée": "▶ Geführte Tour",
+  "■ Arrêter la visite": "■ Tour beenden"
  },
  "months": {
   "janvier": "Januar",

@@ -136,6 +136,19 @@ window.GEOCO.focus = [
     chain: {
       title: "De la mine au client : la chaîne de la voiture électrique",
       intro: "Schéma simplifié des grands flux. Touche une étape : ses flèches s'allument sur le globe.",
+      // « L'essentiel » : les grands mouvements, une étiquette courte chacun (at = bout où elle s'affiche).
+      keyIntro: "Les grands mouvements de la voiture électrique : les métaux filent vers les usines de batteries chinoises, les voitures chinoises vers le Mexique, la Russie et le Golfe, les pièces mexicaines vers les États-Unis, les occasions japonaises vers l'Afrique.",
+      essentials: [
+        { from: [25.47, -10.71], to: [119.55, 26.66], color: "#f5a524", label: "Chine : 70 % des batteries", at: "to" },
+        { from: [-68.2, -23.5], to: [119.55, 26.66], color: "#f5a524" },
+        { from: [121.9, -2.8], to: [119.55, 26.66], color: "#f5a524" },
+        { from: [120.97, 24.8], to: [10.78, 52.42], color: "#8e6bd8", label: "Puces de Taïwan", at: "from" },
+        { from: [121.47, 31.23], to: [-99.13, 19.43], color: "#30a46c", label: "Mexique : 625 000", at: "to" },
+        { from: [121.47, 31.23], to: [37.62, 55.75], color: "#30a46c", label: "Russie : 583 000", at: "to" },
+        { from: [121.47, 31.23], to: [55.27, 25.2], color: "#30a46c", label: "Émirats : 572 000", at: "to" },
+        { from: [-100.31, 25.67], to: [-83.05, 42.33], color: "#5be7ff", label: "États-Unis : 44 % des pièces", at: "to" },
+        { from: [139.64, 35.44], to: [39.67, -4.04], color: "#c08cff", label: "Kenya : occasions japonaises", at: "to" }
+      ],
       steps: [
         {
           id: "mines", label: "Extraire", color: "#f5a524",

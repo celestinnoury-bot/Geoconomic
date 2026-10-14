@@ -1097,3 +1097,14 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .rival-track span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #5be7ff, #ff5c6c); }
 .rival-origin { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
 .rival-text { font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--muted); margin: 0; }
+.chain-modes { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+.chain-mode {
+  font: 600 14px/1 var(--font); color: var(--text); padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14);
+}
+.chain-mode[aria-pressed="true"] { border-color: #5be7ff; background: rgba(91,231,255,.14); box-shadow: 0 0 14px rgba(91,231,255,.25); }
+.chain-mode.tour { border-color: rgba(245,200,107,.5); color: #f5c86b; }
+.chain-mode.tour[aria-pressed="true"] { background: rgba(245,200,107,.14); border-color: #f5c86b; box-shadow: 0 0 14px rgba(245,200,107,.3); }
+.chain-steps { margin-top: 14px; }
+.chain-globe .globe-zoom { right: auto; left: 12px; bottom: 12px; flex-direction: row; }
+.chain-globe .globe-zoom button { width: 36px; height: 36px; }

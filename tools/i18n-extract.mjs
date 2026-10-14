@@ -18,7 +18,7 @@ const G = ctx.window.GEOCO;
 // Clés jamais traduites : identifiants, dates, liens, coordonnées, et les sources (titres d'origine).
 export const SKIP = new Set(["id", "date", "theme", "region", "url", "coords", "dossiers", "culture", "news", "src", "sources",
   "link", "audio", "file", "fileDark", "photo", "cas", "icon", "color", "iso", "era", "source", "slug", "answer", "correct", "related", "see",
-  "kind", "type", "highlight", "terms", "poster", "part",
+  "kind", "type", "highlight", "terms", "poster", "part", "at",
   // Chiffres et Conflits : valeurs, couleurs et codes pays ne se traduisent pas.
   "s", "v", "d", "bins", "colors", "country", "contact", "names", "values", "freeListens", "price", "podcast", "counts"]);
 // Listes d'éléments repérés par leur id.

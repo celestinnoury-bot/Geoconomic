@@ -392,7 +392,11 @@
   "La chaîne de production": "La catena di produzione",
   "Étape {n} · {x}": "Fase {n} · {x}",
   "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Sono mostrate tutte le fasi. Tocca una fase per seguirne i flussi.",
-  "Concurrence": "Concorrenza"
+  "Concurrence": "Concorrenza",
+  "L'essentiel": "L'essenziale",
+  "Tout voir": "Mostra tutto",
+  "▶ Visite guidée": "▶ Visita guidata",
+  "■ Arrêter la visite": "■ Ferma la visita"
  },
  "months": {
   "janvier": "gennaio",
