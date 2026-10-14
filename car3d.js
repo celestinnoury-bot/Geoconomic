@@ -11,7 +11,7 @@ const PAINTS = { rouge: 0x7a0c12, nacre: 0xe9e6df, graphite: 0x2b2e33 };
 // Pièces masquées : plaque d'immatriculation et emblème du volant portent des logos.
 const HIDDEN = ["License Plate", "InteriorSteeringEmblem"];
 
-export async function mountCar(container, { src, hotspots = [], onHotspot } = {}) {
+export async function mountCar(container, { src, hotspots = [], onHotspot, onProgress } = {}) {
   const width = () => container.clientWidth;
   const height = () => container.clientHeight;
 
@@ -55,7 +55,7 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   scene.add(shadow);
 
   const loader = new GLTFLoader();
-  const gltf = await loader.loadAsync(src);
+  const gltf = await loader.loadAsync(src, (e) => { if (onProgress && e.total) onProgress(e.loaded / e.total); });
   const car = gltf.scene;
 
   // Centrer la voiture, la poser au sol et la mettre à l'échelle (≈ 4,5 m de long).

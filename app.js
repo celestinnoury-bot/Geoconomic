@@ -1379,7 +1379,8 @@
     let carView = null;
 
     import("./car3d.js")
-      .then((m) => m.mountCar(stage, { src: f.model.src, hotspots: f.hotspots, onHotspot: showSpot }))
+      .then((m) => m.mountCar(stage, { src: f.model.src, hotspots: f.hotspots, onHotspot: showSpot,
+        onProgress: (r) => { const l = app.querySelector("#car-loading"); if (l) l.textContent = I18N.t("Chargement de la voiture 3D…") + " " + Math.round(r * 100) + " %"; } }))
       .then((car) => {
         const loading = app.querySelector("#car-loading");
         if (loading) loading.remove();

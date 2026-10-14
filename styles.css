@@ -573,7 +573,7 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 }
 .car-stage:active { cursor: grabbing; }
 .car-stage canvas { display: block; position: relative; z-index: 0; }
-.car-loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-size: 15px; margin: 0; }
+.car-loading { position: absolute; left: 0; right: 0; bottom: 14px; z-index: 2; text-align: center; color: rgba(233,251,255,.85); font-size: 14px; margin: 0; pointer-events: none; }
 .car-hotspots { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 /* Points lumineux façon hologramme : noyau cyan, anneau en pointillés qui tourne, onde qui s'élargit. */
 .car-spot {
