@@ -294,6 +294,7 @@
       .ringRepeatPeriod(1100)
       .htmlLat("lat").htmlLng("lng").htmlAltitude(0.012)
       .htmlElement((p) => {
+        // Élément de taille nulle : son centre est exactement le lieu ; le point et l'étiquette en partent.
         const el = document.createElement("div");
         el.className = "flow-pin";
         el.style.setProperty("--c", p.color);
@@ -308,8 +309,8 @@
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5;
     addZoom(world, container, controls);
-    const alt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 0.9 ? 3.2 : 2.3);
-    world.pointOfView({ lat: 20, lng: 60, altitude: alt() });
+    const alt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 1.1 ? 2.25 : 2.1);
+    world.pointOfView({ lat: 25, lng: 60, altitude: alt() });
     // Centre de la vue sur les lieux de l'étape choisie.
     function show(id) {
       active = id || null;

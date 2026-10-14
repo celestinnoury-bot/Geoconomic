@@ -176,11 +176,35 @@ window.GEOCO.focus = [
         },
         {
           id: "export", label: "Exporter", color: "#30a46c",
-          title: "Exporter… et payer les droits de douane",
-          text: "Les voitures électriques chinoises vendues dans l'Union européenne paient de 7,8 % à 35,3 % de taxe en plus du droit de douane normal de 10 % [6]. Les États-Unis taxent les voitures importées à 25 %, et à 15 % celles de l'Union européenne, du Japon et de la Corée du Sud [7].",
+          title: "Exporter… surtout hors d'Europe",
+          text: "En 2025, les premiers clients des voitures chinoises ne sont pas européens : Mexique (625 000), Russie (583 000), Émirats arabes unis (572 000), Brésil (322 000), Arabie saoudite (302 000), Philippines (257 000), Kazakhstan (212 000) [33]. En Afrique du Sud, les marques chinoises ont pris 16,8 % du marché, contre 11,2 % un an plus tôt [34]. En Asie du Sud-Est, elles font 63 % des ventes de voitures électriques [35]. Et en Europe, les voitures électriques chinoises paient de 7,8 % à 35,3 % de taxe en plus des 10 % de droit de douane [6].",
           links: [["cours", "droits-de-douane", "Cours : les droits de douane"]],
-          places: [{ name: "Union européenne", coords: [4.35, 50.85] }, { name: "États-Unis", coords: [-95, 38] }],
-          flows: [[[114.06, 22.54], [4.35, 50.85]], [[10.78, 52.42], [-95, 38]], [[137.15, 35.08], [-95, 38]], [[129.31, 35.54], [-95, 38]]]
+          places: [
+            { name: "Mexique", coords: [-99.13, 19.43] }, { name: "Russie", coords: [37.62, 55.75] },
+            { name: "Émirats", coords: [55.27, 25.2] }, { name: "Brésil", coords: [-46.63, -23.55] },
+            { name: "Arabie saoudite", coords: [46.72, 24.71] }, { name: "Philippines", coords: [120.98, 14.6] },
+            { name: "Kazakhstan", coords: [76.89, 43.24] }, { name: "Afrique du Sud", coords: [28.05, -26.2] },
+            { name: "Union européenne", coords: [4.4, 51.22] }
+          ],
+          flows: [
+            [[121.47, 31.23], [-99.13, 19.43]], [[121.47, 31.23], [37.62, 55.75]], [[121.47, 31.23], [55.27, 25.2]],
+            [[121.47, 31.23], [-46.63, -23.55]], [[121.47, 31.23], [46.72, 24.71]], [[121.47, 31.23], [120.98, 14.6]],
+            [[121.47, 31.23], [76.89, 43.24]], [[121.47, 31.23], [28.05, -26.2]], [[121.47, 31.23], [4.4, 51.22]]
+          ]
+        },
+        {
+          id: "ombre", label: "Hors radar", color: "#c08cff",
+          title: "Les routes dont on parle peu",
+          text: "Des voitures neuves chinoises sont immatriculées un instant en Chine puis exportées comme « occasions zéro kilomètre », surtout vers la Russie, l'Asie centrale et le Moyen-Orient : environ 6 % des exportations chinoises de 2024 [36]. Les droits de douane étant plus bas au Kirghizistan qu'en Russie, le pays est devenu depuis 2022 le deuxième fournisseur de voitures de la Russie, derrière la Chine [37]. Plus au sud, l'Afrique de l'Est roule japonais d'occasion : 94 % des voitures d'occasion importées au Kenya venaient du Japon (12 mois jusqu'à juin 2023) [38].",
+          places: [
+            { name: "Bichkek (Kirghizistan)", coords: [74.59, 42.87] }, { name: "Moscou", coords: [37.62, 55.75] },
+            { name: "Yokohama", coords: [139.64, 35.44] }, { name: "Mombasa (Kenya)", coords: [39.67, -4.04] },
+            { name: "Dar es Salaam (Tanzanie)", coords: [39.28, -6.79] }
+          ],
+          flows: [
+            [[121.47, 31.23], [74.59, 42.87]], [[74.59, 42.87], [37.62, 55.75]],
+            [[139.64, 35.44], [39.67, -4.04]], [[139.64, 35.44], [39.28, -6.79]]
+          ]
         }
       ]
     },
@@ -213,7 +237,9 @@ window.GEOCO.focus = [
             { name: "Slovaquie → Europe", from: [17.11, 48.15], to: [8.68, 50.11], text: "La Slovaquie fabrique plus de voitures par habitant que tout autre pays : près de 1,1 million de véhicules en 2025, soit 196 pour 1 000 habitants, contre 22 en Chine. Volkswagen, Stellantis, Kia et Jaguar Land Rover y ont leurs usines [19]." },
             { name: "Maroc → Europe", from: [-5.81, 35.76], to: [2.35, 48.86], text: "Le Maroc a produit un million de voitures en 2025 : Renault à Tanger, Stellantis à Kénitra. À 14 km de l'Europe, le pays est devenu une base d'assemblage tournée vers l'exportation [18]." },
             { name: "Allemagne → monde", from: [10.78, 52.42], to: [-74.0, 40.71], text: "Plus de trois voitures sur quatre produites en Allemagne partent à l'étranger : 3,17 millions de voitures exportées en 2025, pour une production de 4,15 millions [20][21]." },
-            { name: "Chine → monde", from: [121.47, 31.23], to: [4.4, 51.22], text: "La Chine a exporté 7,1 millions de véhicules en 2025 (+21 %), dont 2,6 millions électriques ou hybrides rechargeables, deux fois plus qu'en 2024 [22]." }
+            { name: "Chine → monde", from: [121.47, 31.23], to: [-99.13, 19.43], text: "La Chine a exporté 7,1 millions de véhicules en 2025 (+21 %), dont 2,6 millions électriques ou hybrides rechargeables, deux fois plus qu'en 2024 [22]. Premier client : le Mexique, devant la Russie et les Émirats [33]." },
+            { name: "Kirghizistan → Russie", from: [74.59, 42.87], to: [37.62, 55.75], color: "#c08cff", text: "Droits de douane plus bas qu'en Russie : depuis 2022, le Kirghizistan est devenu le deuxième fournisseur de voitures de la Russie, derrière la Chine. Une route de réexportation dont on parle peu [37]." },
+            { name: "Japon → Afrique de l'Est", from: [139.64, 35.44], to: [39.67, -4.04], color: "#c08cff", text: "L'Afrique de l'Est roule japonais d'occasion : 94 % des voitures d'occasion importées au Kenya venaient du Japon (12 mois jusqu'à juin 2023) [38]." }
           ]
         },
         {
@@ -312,7 +338,13 @@ window.GEOCO.focus = [
       { short: "What Car?", name: "What Car?, « New BYD Dolphin Surf vs Citroën e-C3 vs Renault 5 »", url: "https://www.whatcar.com/news/new-byd-dolphin-surf-versus-citroen-e-c3-and-renault-5-video/n27830" },
       { short: "Netzwelt", name: "Netzwelt, « E-Auto für 7.000 Euro: Günstigster BYD wurde gerade noch günstiger »", url: "https://www.netzwelt.de/news/240923-e-auto-7000-euro-guenstigste-byd-wurde-gerade-noch-guenstiger.html" },
       { short: "Electrek", name: "Electrek, « BYD's cheapest EV heads to Europe with new name and more » (19 mars 2025)", url: "https://electrek.co/2025/03/19/byds-cheapest-ev-heads-to-europe-with-new-name-and-more/" },
-      { short: "Best Selling Cars Blog", name: "Best Selling Cars Blog, « Europe June 2026: Tesla (+50.6%), Chinese (+130.8%) pull market up 12.9% » (juil. 2026)", url: "https://bestsellingcarsblog.com/2026/07/europe-june-2026-tesla-50-6-chinese-130-8-pull-market-up-12-9/" }
+      { short: "Best Selling Cars Blog", name: "Best Selling Cars Blog, « Europe June 2026: Tesla (+50.6%), Chinese (+130.8%) pull market up 12.9% » (juil. 2026)", url: "https://bestsellingcarsblog.com/2026/07/europe-june-2026-tesla-50-6-chinese-130-8-pull-market-up-12-9/" },
+      { short: "Battery-Tech (CPCA)", name: "Battery-Tech, « China's 2025 Vehicle Exports Surge 30% Led by NEVs », d'après l'association chinoise des voitures particulières (CPCA)", url: "https://battery-tech.net/battery-markets-news/chinas-2025-vehicle-exports-surge-30-led-by-nevs/" },
+      { short: "Reuters", name: "Reuters, « Chinese automakers gain ground in South Africa as competitive pricing spurs demand » (mai 2026), d'après Naamsa", url: "https://www.ajot.com/news/chinese-automakers-gain-ground-in-south-africa-as-competitive-pricing-spurs-demand" },
+      { short: "Counterpoint", name: "Counterpoint Research, « Southeast Asia electric vehicle market Q2 2025 »", url: "https://counterpointresearch.com/cn/insights/sea-electric-vehicle-market-q2-2025" },
+      { short: "Kun.uz", name: "Kun.uz, « The grey market loophole: how China's 'zero-kilometer' cars reach Central Asia » (25 juin 2025)", url: "https://live.kun.uz/en/news/2025/06/25/the-grey-market-loophole-how-chinas-zero-kilometer-cars-reach-central-asia" },
+      { short: "Carnegie", name: "Carnegie Endowment, « China, Central Asia and electric cars » (août 2025)", url: "https://carnegieendowment.org/russia-eurasia/politika/2025/08/china-central-asia-electric-cars?lang=en" },
+      { short: "Business Daily", name: "Business Daily Africa, « Kenya buys 94pc of used vehicles from Japan »", url: "https://www.businessdailyafrica.com/bd/markets/market-news/kenya-buys-94pc-of-used-vehicles-from-japan--4336552" }
     ]
   }
 ];
