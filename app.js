@@ -1393,8 +1393,9 @@
           car.setPaint(b.dataset.paint);
         }));
       })
-      .catch(() => {
+      .catch((err) => {
         // Pas de 3D (appareil trop ancien, WebGL bloqué…) : on garde la photo et on liste les pièces.
+        console.error("Voiture 3D :", err);
         const loading = app.querySelector("#car-loading");
         if (loading) loading.remove();
         if (!document.body.contains(stage)) return;
@@ -1404,6 +1405,10 @@
         list.innerHTML = (f.hotspots || []).map((h, i) => `<button class="chip-btn" type="button" data-spot="${i}">${h.label}</button>`).join("");
         list.querySelectorAll("[data-spot]").forEach((b) => b.addEventListener("click", () => showSpot(f.hotspots[Number(b.dataset.spot)])));
         stage.appendChild(list);
+        const why = document.createElement("p");
+        why.className = "car-error";
+        why.textContent = "3D indisponible sur cet appareil (" + String((err && (err.message || err.type)) || err).slice(0, 160) + ")";
+        stage.appendChild(why);
       });
   }
 

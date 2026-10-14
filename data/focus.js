@@ -16,7 +16,7 @@ window.GEOCO.focus = [
     title: "La voiture électrique, nouvelle bataille mondiale.",
     hook: "Une voiture, c'est des métaux d'Afrique et d'Asie, des puces de Taïwan, des batteries chinoises et des millions d'emplois en Europe. Fais-la tourner, touche ses pièces : chacune raconte un morceau de géopolitique.",
     model: {
-      src: "assets/models/supra-gt300.json",
+      src: "assets/models/supra/supra-gt300.json",
       poster: "assets/models/supra-poster.webp",
       credit: "Modèle 3D « Toyota GR Supra GT300 » de vecarz (Sketchfab), licence CC BY 4.0. Allégé pour le web."
     },

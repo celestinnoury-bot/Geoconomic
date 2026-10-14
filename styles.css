@@ -1018,3 +1018,4 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .plus-active .founder-badge { color: #1b1300; }
 /* Sur téléphone, la fiche d'une pièce laisse voir la voiture au-dessus. */
 @media (max-width: 600px) { .car-card { max-height: 46%; padding: 12px 14px; } .car-card h3 { font-size: 18px; } .car-card .spot-facet p { font-size: 15px; } }
+.car-error { position: absolute; left: 12px; right: 12px; top: 8px; z-index: 2; margin: 0; text-align: center; font-size: 12px; color: rgba(233,251,255,.6); }

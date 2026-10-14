@@ -9,7 +9,7 @@ OUT = ROOT / ".preview"
 FILES = [
     "styles.css", "i18n.js", "app.js", "viz.js", "globe.js", "data/iso2.js",
     "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/plus.js", "data/indicators.js", "data/conflits.js", "data/couches.js", "data/lettres.js", "data/auteur.js", "data/anecdotes.js", "data/focus.js",
-    "car3d.js", "assets/models/supra-gt300.json", "assets/models/supra-poster.webp",
+    "car3d.js", "assets/models/supra-poster.webp",
     "assets/vendor/three/three.module.min.js", "assets/vendor/three/GLTFLoader.js",
     "assets/vendor/three/OrbitControls.js", "assets/vendor/three/RoomEnvironment.js",
     "assets/vendor/three/BufferGeometryUtils.js",
@@ -19,6 +19,8 @@ FILES = [
     "assets/icon-180.png", "assets/icon-192.png", "assets/icon-512.png", "assets/og-image.jpg", "assets/auteur.jpg",
 ]
 
+# Voiture 3D du Focus : modèle, géométrie (.bin) et textures.
+FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "assets/models/supra").glob("*"))]
 # Traductions (anglais, espagnol…).
 FILES += [str(a.relative_to(ROOT)) for a in sorted((ROOT / "data/i18n").glob("*.js"))]
 # Lettres du matin en PDF.
