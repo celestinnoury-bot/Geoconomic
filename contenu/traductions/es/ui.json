@@ -371,7 +371,22 @@
   "Membres fondateurs": "Miembros fundadores",
   "Le monde, sous une autre facette.": "El mundo, desde otra faceta.",
   "L'économie qui nous fait comprendre le monde.": "La economía que nos hace comprender el mundo.",
-  "Glisse pour faire tourner · touche un point": "Desliza para girar · toca un punto"
+  "Glisse pour faire tourner · touche un point": "Desliza para girar · toca un punto",
+  "Les enjeux des semaines passées": "Los retos de las semanas pasadas",
+  "Les enjeux des semaines passées.": "Los retos de las semanas pasadas.",
+  "Chaque semaine, l'enjeu précédent est rangé dans les archives": "Cada semana, el reto anterior pasa al archivo",
+  "{n} enjeu archivé": "{n} reto archivado",
+  "{n} enjeux archivés": "{n} retos archivados",
+  "‹ Enjeux passés": "‹ Retos pasados",
+  "Focus {a} · {b}": "Focus {a} · {b}",
+  "Enjeu · Focus {a} · {b}": "Reto · Focus {a} · {b}",
+  "Le Focus {x}": "El Focus {x}",
+  "L'enjeu de la semaine est gratuit ; les enjeux des semaines passées sont dans les archives des abonnés.": "El reto de la semana es gratuito; los de las semanas pasadas están en el archivo de los suscriptores.",
+  "Archives": "Archivo",
+  "Chaque semaine, le Focus pose une question d'actualité. Retrouve ici celles des semaines précédentes, avec leurs chiffres et leurs sources.": "Cada semana, el Focus plantea una pregunta de actualidad. Aquí encontrarás las de las semanas anteriores, con sus cifras y fuentes.",
+  "Cette semaine": "Esta semana",
+  "Semaines passées": "Semanas pasadas",
+  "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Los retos de las semanas pasadas se guardarán aquí, semana tras semana."
  },
  "months": {
   "janvier": "enero",

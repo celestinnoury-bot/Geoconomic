@@ -1182,6 +1182,85 @@
     return `<a class="tagpill" href="${href}">${label} ›</a>`;
   }
 
+  // « L'enjeu de la semaine » : bloc partagé par la page Focus et les archives.
+  function weeklyBlock(f, w, week) {
+    return `
+      <section class="section alt weekly">
+        <div class="wrap">
+          <p class="eyebrow reveal weekly-label">${w.label || "L'enjeu de la semaine"} · ${week}</p>
+          <h2 class="title reveal">${w.question}</h2>
+          <div class="weekly-figs reveal">
+            ${(w.figures || []).map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
+          </div>
+          ${w.paragraphs.map((p) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>`).join("")}
+          ${w.toWatch && w.toWatch.length ? `
+          <div class="towatch reveal">
+            <p class="eyebrow">À suivre</p>
+            <ol>
+              ${w.toWatch.map((x) => `<li><span class="towatch-when">${x.when}</span><span class="towatch-what">${cite(x.text, f.sources)}</span></li>`).join("")}
+            </ol>
+          </div>` : ""}
+        </div>
+      </section>`;
+  }
+
+  // Archives des enjeux : les enjeux passés de chaque Focus (`pastWeekly`), puis l'enjeu des Focus
+  // précédents. L'enjeu en cours (Focus le plus récent) n'y figure pas. Index 0 = `weekly`, k = pastWeekly[k-1].
+  function archivedEnjeux() {
+    const out = [];
+    focusList.forEach((f, fi) => {
+      if (f.weekly && fi > 0) out.push({ f, w: f.weekly, week: f.week, key: `${f.id}/0` });
+      (f.pastWeekly || []).forEach((w, k) => out.push({ f, w, week: w.week, key: `${f.id}/${k + 1}` }));
+    });
+    return out;
+  }
+  const enjeuLocked = () => !isPlus();
+
+  function renderEnjeux(fid, idx) {
+    const list = archivedEnjeux();
+    if (fid) {
+      const e = list.find((x) => x.key === `${fid}/${idx}`);
+      if (!e) return renderNotFound();
+      app.innerHTML = `
+        <section class="wrap hero">
+          <a class="back" href="#/enjeux">‹ Enjeux passés</a>
+          <p class="eyebrow reveal">Focus ${e.f.industry} · ${e.week}${enjeuLocked() ? " · " + plusTag() : ""}</p>
+          <h1 class="title reveal">${e.w.question}</h1>
+        </section>
+        ${enjeuLocked() ? paywall("L'enjeu de la semaine est gratuit ; les enjeux des semaines passées sont dans les archives des abonnés.") : `
+        ${weeklyBlock(e.f, e.w, e.week)}
+        <section class="wrap" style="padding-bottom:8px">
+          <a class="row reveal" href="#/focus/${e.f.id}"><div class="row-main"><div class="row-title">Le Focus ${e.f.industry}</div><div class="row-sub">${e.f.title}</div></div><span class="chev" aria-hidden="true">›</span></a>
+        </section>
+        ${sourcesBlock(e.f.sources)}`}`;
+      return;
+    }
+    const cur = focusList[0];
+    app.innerHTML = `
+      <section class="wrap hero">
+        <a class="back" href="#/focus">‹ Focus</a>
+        <p class="eyebrow reveal">Archives</p>
+        <h1 class="title reveal">Les enjeux des semaines passées.</h1>
+        <p class="lead reveal">Chaque semaine, le Focus pose une question d'actualité. Retrouve ici celles des semaines précédentes, avec leurs chiffres et leurs sources.</p>
+      </section>
+      ${cur && cur.weekly ? `
+      <section class="wrap">
+        <p class="eyebrow reveal">Cette semaine</p>
+        <div class="group reveal">
+          <a class="row" href="#/focus/${cur.id}"><div class="row-main"><div class="row-title">${cur.weekly.question}</div><div class="row-sub">Focus ${cur.industry} · ${cur.week}</div></div><span class="chev" aria-hidden="true">›</span></a>
+        </div>
+      </section>` : ""}
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">Semaines passées</p>
+          ${list.length ? `
+          <div class="group reveal">
+            ${list.map((e) => `<a class="row" href="#/enjeux/${e.key}"><div class="row-main"><div class="row-title">${e.w.question}</div><div class="row-sub">Focus ${e.f.industry} · ${e.week}${enjeuLocked() ? " · " + plusTag() : ""}</div></div><span class="chev" aria-hidden="true">›</span></a>`).join("")}
+          </div>` : `<p class="copy reveal">Les enjeux des semaines passées seront rangés ici, semaine après semaine.</p>`}
+        </div>
+      </section>`;
+  }
+
   function renderFocus(id) {
     const f = id ? byId(focusList, id) : focusList[0];
     if (!f) return renderNotFound();
@@ -1222,24 +1301,14 @@
         </div>
       </section>
 
-      ${f.weekly ? `
-      <section class="section alt weekly">
-        <div class="wrap">
-          <p class="eyebrow reveal weekly-label">${f.weekly.label} · ${f.week}</p>
-          <h2 class="title reveal">${f.weekly.question}</h2>
-          <div class="weekly-figs reveal">
-            ${f.weekly.figures.map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
-          </div>
-          ${f.weekly.paragraphs.map((p) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>`).join("")}
-          ${f.weekly.toWatch && f.weekly.toWatch.length ? `
-          <div class="towatch reveal">
-            <p class="eyebrow">À suivre</p>
-            <ol>
-              ${f.weekly.toWatch.map((w) => `<li><span class="towatch-when">${w.when}</span><span class="towatch-what">${cite(w.text, f.sources)}</span></li>`).join("")}
-            </ol>
-          </div>` : ""}
-        </div>
-      </section>` : ""}
+      ${f.weekly ? weeklyBlock(f, f.weekly, f.week) : ""}
+      ${archivedEnjeux().length ? `
+      <section class="wrap" style="padding-bottom:8px">
+        <a class="row enjeux-link reveal" href="#/enjeux"><div class="row-main"><div class="row-title">Les enjeux des semaines passées</div><div class="row-sub">${archivedEnjeux().length} enjeu${archivedEnjeux().length > 1 ? "x" : ""} archivé${archivedEnjeux().length > 1 ? "s" : ""}</div></div><span class="chev" aria-hidden="true">›</span></a>
+      </section>` : `
+      <section class="wrap" style="padding-bottom:8px">
+        <a class="row enjeux-link reveal" href="#/enjeux"><div class="row-main"><div class="row-title">Les enjeux des semaines passées</div><div class="row-sub">Chaque semaine, l'enjeu précédent est rangé dans les archives</div></div><span class="chev" aria-hidden="true">›</span></a>
+      </section>`}
 
       ${figuresBlock(f.figures)}
 
@@ -2098,6 +2167,7 @@ function statGrid(figures, sources, theme = "geo") {
     culture.forEach((c) => add("articles", c.title, c.hook, `#/articles/${c.id}`, [c.hook, flat(c.sections)].join(" ")));
     cases.forEach((c) => add("etudes", c.title, c.hook, `#/etudes/${c.id}`, [c.hook, c.question, flat(c.chain), flat(c.sections)].join(" ")));
     focusList.forEach((f) => add("focus", f.title, f.hook, `#/focus/${f.id}`, [f.industry, f.hook, flat(f.sections), flat(f.weekly)].join(" ")));
+    archivedEnjeux().forEach((e) => add("focus", e.w.question, `Enjeu · Focus ${e.f.industry} · ${e.week}`, `#/enjeux/${e.key}`, flat(e.w)));
     glossary.forEach((g) => add("lexique", g.term, g.def, `#/lexique/${g.id}`, [g.def, g.example].join(" ")));
     anecdotes.forEach((a) => add("anecdotes", plain(a.text), a.more, `#/anecdotes/${a.id}`, [a.more, a.region].join(" ")));
     // Pays : nom affiché (et nom français, pour chercher « Allemagne » même en anglais).
@@ -2233,7 +2303,7 @@ function statGrid(figures, sources, theme = "geo") {
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
     const [, section, param, extra] = (location.hash || "#/").split("/").map((s) => { try { return decodeURIComponent(s); } catch (e) { return s; } });
-    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu", abonnement: "actu" }[section] || section;
+    const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu", abonnement: "actu", enjeux: "focus" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
     const activeTab = document.querySelector("[data-tab].active");
     if (activeTab && activeTab.parentElement.scrollWidth > activeTab.parentElement.clientWidth) {
@@ -2253,6 +2323,7 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "abonnement") renderAbonnement();
     else if (section === "anecdotes") renderAnecdotes(param);
     else if (section === "focus") renderFocus(param);
+    else if (section === "enjeux") renderEnjeux(param, extra);
     else if (section === "apropos") renderAbout();
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();

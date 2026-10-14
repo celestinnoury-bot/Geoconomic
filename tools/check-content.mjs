@@ -159,6 +159,13 @@ focus.forEach((f) => {
   if (!f.model || !f.model.src || !f.model.credit) err(w, "modèle 3D et crédit obligatoires");
   else if (!fs.existsSync(f.model.src)) err(w, `modèle introuvable : ${f.model.src}`);
   [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).flatMap((h) => [h.text, h.eco, h.geo].filter(Boolean))].forEach((t) => checkCites(w, t, f.sources));
+  (f.pastWeekly || []).forEach((pw, k) => {
+    const ww = `${w} (enjeu passé ${k + 1})`;
+    if (!pw.week) err(ww, "`week` manquant (ex. « Semaine du 5 octobre 2026 »)");
+    if (!pw.question || !Array.isArray(pw.paragraphs)) err(ww, "`question` et `paragraphs` obligatoires");
+    [...(pw.paragraphs || []), ...(pw.toWatch || []).map((x) => x.text)].forEach((t) => checkCites(ww, t, f.sources));
+    (pw.figures || []).forEach((x) => { if (x.src && !f.sources[x.src - 1]) err(ww, `chiffre « ${x.value} » : src inexistante`); });
+  });
   if (f.weekly) {
     [...f.weekly.paragraphs, ...(f.weekly.toWatch || []).map((x) => x.text)].forEach((t) => checkCites(`${w} (enjeu)`, t, f.sources));
     (f.weekly.figures || []).forEach((x) => { if (x.src && !f.sources[x.src - 1]) err(`${w} (enjeu)`, `chiffre « ${x.value} » : src inexistante`); });

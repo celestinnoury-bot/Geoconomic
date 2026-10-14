@@ -376,7 +376,22 @@
   "Membres fondateurs": "Gründungsmitglieder",
   "Le monde, sous une autre facette.": "Die Welt, von einer anderen Seite.",
   "L'économie qui nous fait comprendre le monde.": "Die Wirtschaft, die uns die Welt verstehen lässt.",
-  "Glisse pour faire tourner · touche un point": "Zum Drehen ziehen · Punkt antippen"
+  "Glisse pour faire tourner · touche un point": "Zum Drehen ziehen · Punkt antippen",
+  "Les enjeux des semaines passées": "Die Themen der vergangenen Wochen",
+  "Les enjeux des semaines passées.": "Die Themen der vergangenen Wochen.",
+  "Chaque semaine, l'enjeu précédent est rangé dans les archives": "Jede Woche wandert das vorherige Thema ins Archiv",
+  "{n} enjeu archivé": "{n} archiviertes Thema",
+  "{n} enjeux archivés": "{n} archivierte Themen",
+  "‹ Enjeux passés": "‹ Frühere Themen",
+  "Focus {a} · {b}": "Fokus {a} · {b}",
+  "Enjeu · Focus {a} · {b}": "Thema · Fokus {a} · {b}",
+  "Le Focus {x}": "Der Fokus {x}",
+  "L'enjeu de la semaine est gratuit ; les enjeux des semaines passées sont dans les archives des abonnés.": "Das Thema der Woche ist kostenlos; frühere Themen sind im Archiv für Abonnenten.",
+  "Archives": "Archiv",
+  "Chaque semaine, le Focus pose une question d'actualité. Retrouve ici celles des semaines précédentes, avec leurs chiffres et leurs sources.": "Jede Woche stellt der Fokus eine aktuelle Frage. Hier findest du die der vergangenen Wochen, mit Zahlen und Quellen.",
+  "Cette semaine": "Diese Woche",
+  "Semaines passées": "Vergangene Wochen",
+  "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Die Themen der vergangenen Wochen werden hier Woche für Woche abgelegt."
  },
  "months": {
   "janvier": "Januar",

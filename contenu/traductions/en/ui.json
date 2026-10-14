@@ -375,7 +375,22 @@
   "Membres fondateurs": "Founding members",
   "Le monde, sous une autre facette.": "The world, from another angle.",
   "L'économie qui nous fait comprendre le monde.": "Economics that helps us understand the world.",
-  "Glisse pour faire tourner · touche un point": "Drag to spin · tap a point"
+  "Glisse pour faire tourner · touche un point": "Drag to spin · tap a point",
+  "Les enjeux des semaines passées": "Past weeks' key issues",
+  "Les enjeux des semaines passées.": "Past weeks' key issues.",
+  "Chaque semaine, l'enjeu précédent est rangé dans les archives": "Each week, the previous issue is moved to the archive",
+  "{n} enjeu archivé": "{n} archived issue",
+  "{n} enjeux archivés": "{n} archived issues",
+  "‹ Enjeux passés": "‹ Past issues",
+  "Focus {a} · {b}": "{a} Focus · {b}",
+  "Enjeu · Focus {a} · {b}": "Issue · {a} Focus · {b}",
+  "Le Focus {x}": "The {x} Focus",
+  "L'enjeu de la semaine est gratuit ; les enjeux des semaines passées sont dans les archives des abonnés.": "This week's issue is free; past weeks' issues are in the subscribers' archive.",
+  "Archives": "Archive",
+  "Chaque semaine, le Focus pose une question d'actualité. Retrouve ici celles des semaines précédentes, avec leurs chiffres et leurs sources.": "Each week, the Focus asks a topical question. Find the previous weeks' questions here, with their figures and sources.",
+  "Cette semaine": "This week",
+  "Semaines passées": "Past weeks",
+  "Les enjeux des semaines passées seront rangés ici, semaine après semaine.": "Past weeks' issues will be stored here, week after week."
  },
  "months": {
   "janvier": "Jan.",

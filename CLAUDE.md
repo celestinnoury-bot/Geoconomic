@@ -19,7 +19,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - `globe.js` : globe.gl. Accueil (`mount`, repères d'actus, vue sur la région du lecteur) et choroplèthes (`mountIndicators` ;
   le toucher choisit le pays sous le doigt via `toGlobeCoords`, pas le « survol » de globe.gl).
 - Pages : accueil (globe + bandeau défilant qu'on peut faire glisser), Actu, Focus (Toyota Supra GT300 en 3D de vecarz, CC BY 4.0 : `assets/models/supra-gt300.json`, converti de l'USDZ avec usd-core puis gltf-transform weld/simplify/quantize), Conflits (3 couches), Cours,
-  Articles, Chiffres, Recherche (`#/recherche`), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
+  Articles, Chiffres, Recherche (`#/recherche`), Enjeux passés (`#/enjeux`, depuis `pastWeekly` de data/focus.js), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
 - Liens directs : `#/chiffres/<indicateur>/<pays ISO num>`, `#/conflits/<couche>/<pays>`.
 
 ## Contenu et règles éditoriales
@@ -48,7 +48,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 ## Géoconomic+ (prototype d'abonnement)
 
 - 3,99 €/mois ou 39,99 €/an ; offre « Membres fondateurs » (100 premiers : 2 mois offerts puis 2,99 €/mois à vie).
-- Réservé : cours d'approfondissement (`plus: true` dans `data/content.js`), archives (Focus et études de cas sauf le plus récent,
+- Réservé : cours d'approfondissement (`plus: true` dans `data/content.js`), archives (Focus et études de cas sauf le plus récent, enjeux des semaines passées,
   lettres au-delà des 7 dernières), un article sur deux, podcast au-delà de 2 épisodes. Toujours un aperçu gratuit.
 - Codes et proches invités : `node tools/plus.mjs …` (empreintes SHA-256 dans `data/plus.js`). Codes : FAMILLE2026, FONDATEUR2026.
 - Paiement et comptes pas encore branchés : voir `contenu/ABONNEMENT.md`.

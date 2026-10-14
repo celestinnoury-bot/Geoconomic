@@ -21,6 +21,8 @@ window.GEOCO.focus = [
       credit: "Modèle 3D « Toyota GR Supra GT300 » de vecarz (Sketchfab), licence CC BY 4.0. Allégé pour le web."
     },
     // « L'enjeu de la semaine » : l'angle d'actualité du focus, à renouveler chaque semaine.
+    // Pour le renouveler : déplacer l'enjeu actuel en tête de `pastWeekly` (en lui ajoutant `week`),
+    // puis écrire le nouveau ici et mettre à jour `week` plus haut. Les anciens enjeux vont dans « Enjeux passés » (#/enjeux).
     weekly: {
       label: "L'enjeu de la semaine",
       question: "Trop de clients, pas assez de batteries : l'Europe peut-elle rattraper la Chine ?",
@@ -42,6 +44,8 @@ window.GEOCO.focus = [
         { when: "À venir", text: "Vote reporté du Parlement européen sur l'assouplissement de l'objectif 2035 [8]." }
       ]
     },
+    // Enjeux des semaines passées, le plus récent en premier : { week, question, paragraphs, figures, toWatch }.
+    pastWeekly: [],
     hotspots: [
       {
         id: "batterie", label: "Batterie", at: [0.5, 0.18, 0.5],
