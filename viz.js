@@ -33,18 +33,19 @@
     return [(W - w) / 2, top - (w / aspect - h) / 2, w, w / aspect];
   };
 
+  // Une carte peut avoir des couches (`layers`) : chacune a ses lieux (`points`), ses flux fléchés
+  // (`flows` : { from, to, name, text, color }) et son texte d'introduction. Sans `layers`, la carte
+  // n'a qu'une couche : la carte elle-même.
   function mapHTML(spec, uid) {
-    const pts = spec.points || [];
+    const layers = spec.layers || null;
     return `
       <figure class="viz map-viz" id="${uid}">
+        ${layers ? `<div class="map-layers" role="tablist">${layers.map((l, i) => `<button type="button" class="map-layer-btn" data-layer="${i}" aria-pressed="${i === 0}" style="--c:${l.color || "var(--gold)"}">${l.icon ? `<span aria-hidden="true">${l.icon}</span> ` : ""}${esc(l.label)}</button>`).join("")}</div>` : ""}
         <div class="map-stage">
           <svg class="map-svg" role="img" aria-label="${esc(spec.title)}"></svg>
           <svg class="pin-layer"></svg>
         </div>
-        ${pts.length ? `<div class="map-controls"><div class="segmented" role="group" aria-label="Lieux">
-          ${spec.world !== false ? `<button data-pt="-1" aria-pressed="true">Vue d'ensemble</button>` : ""}
-          ${pts.map((p, i) => `<button data-pt="${i}" aria-pressed="${spec.world === false && i === 0}">${esc(p.name)}</button>`).join("")}
-        </div></div>` : ""}
+        <div class="map-controls"></div>
         <div class="map-info" aria-live="polite"></div>
         <figcaption class="viz-cap">${esc(spec.title)} · <span>Fond de carte : Natural Earth.</span>${spec.source ? ` Source : ${spec.source}` : ""}</figcaption>
       </figure>`;
@@ -57,6 +58,7 @@
     const layer = root.querySelector(".pin-layer");
     const info = root.querySelector(".map-info");
     const stage = root.querySelector(".map-stage");
+    const controls = root.querySelector(".map-controls");
     const aspect = spec.aspect || 4 / 3;
     stage.style.aspectRatio = String(aspect);
     const hi = new Set(spec.highlight || []);
@@ -71,31 +73,73 @@
     });
     svg.appendChild(g);
 
-    // Points
-    const pts = (spec.points || []).map((pt, i) => {
-      const [x, y] = project(pt.coords);
-      const grp = document.createElementNS(NS, "g");
-      grp.setAttribute("class", "pin");
-      grp.setAttribute("tabindex", "0");
-      grp.setAttribute("role", "button");
-      grp.setAttribute("aria-label", pt.name);
-      const halo = document.createElementNS(NS, "circle");
-      halo.setAttribute("class", "pin-halo");
-      const dot = document.createElementNS(NS, "circle");
-      dot.setAttribute("class", "pin-dot");
-      const label = document.createElementNS(NS, "text");
-      label.setAttribute("class", "pin-label");
-      label.textContent = pt.name;
-      [halo, dot, label].forEach((el) => grp.appendChild(el));
-      layer.appendChild(grp);
-      grp.addEventListener("click", () => select(i));
-      grp.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i); } });
-      return { x, y, halo, dot, label, grp };
-    });
+    let cur = spec.layers ? spec.layers[0] : spec;
+    let pts = [], flows = [];
+    const home = () => (cur.view || spec.view) ? frameFor((cur.view || spec.view).center, (cur.view || spec.view).span, aspect) : WORLD_FRAME(aspect);
+    const items = () => [...(cur.points || []).map((p) => ({ kind: "pt", p })), ...(cur.flows || []).map((f) => ({ kind: "flow", p: f }))];
+
+    // Construit les repères et les flux de la couche affichée.
+    function build() {
+      layer.innerHTML = "";
+      const defs = document.createElementNS(NS, "defs");
+      layer.appendChild(defs);
+      flows = (cur.flows || []).map((f, i) => {
+        const color = f.color || cur.color || "#5be7ff";
+        const mk = document.createElementNS(NS, "marker");
+        const id = `${root.id}-arrow-${i}`;
+        mk.setAttribute("id", id); mk.setAttribute("viewBox", "0 0 10 10"); mk.setAttribute("refX", "8"); mk.setAttribute("refY", "5");
+        mk.setAttribute("markerWidth", "7"); mk.setAttribute("markerHeight", "7"); mk.setAttribute("orient", "auto-start-reverse");
+        mk.innerHTML = `<path d="M0,0 L10,5 L0,10 z" fill="${color}"/>`;
+        defs.appendChild(mk);
+        const grp = document.createElementNS(NS, "g");
+        grp.setAttribute("class", "flow");
+        grp.setAttribute("tabindex", "0");
+        grp.setAttribute("role", "button");
+        grp.setAttribute("aria-label", f.name);
+        grp.style.setProperty("--c", color);
+        const glow = document.createElementNS(NS, "path"); glow.setAttribute("class", "flow-glow");
+        const line = document.createElementNS(NS, "path"); line.setAttribute("class", "flow-line"); line.setAttribute("marker-end", `url(#${id})`);
+        const dash = document.createElementNS(NS, "path"); dash.setAttribute("class", "flow-dash");
+        const hit = document.createElementNS(NS, "path"); hit.setAttribute("class", "flow-hit");
+        [glow, line, dash, hit].forEach((el) => grp.appendChild(el));
+        layer.appendChild(grp);
+        const k = (cur.points || []).length + i;
+        grp.addEventListener("click", () => select(k));
+        grp.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(k); } });
+        return { f, a: project(f.from), b: project(f.to), grp, paths: [glow, line, dash, hit] };
+      });
+      pts = (cur.points || []).map((pt, i) => {
+        const [x, y] = project(pt.coords);
+        const grp = document.createElementNS(NS, "g");
+        grp.setAttribute("class", "pin");
+        grp.setAttribute("tabindex", "0");
+        grp.setAttribute("role", "button");
+        grp.setAttribute("aria-label", pt.name);
+        if (pt.color || cur.color) grp.style.setProperty("--pin", pt.color || cur.color);
+        const halo = document.createElementNS(NS, "circle");
+        halo.setAttribute("class", "pin-halo");
+        const dot = document.createElementNS(NS, "circle");
+        dot.setAttribute("class", "pin-dot");
+        const label = document.createElementNS(NS, "text");
+        label.setAttribute("class", "pin-label");
+        label.textContent = pt.name;
+        [halo, dot, label].forEach((el) => grp.appendChild(el));
+        layer.appendChild(grp);
+        grp.addEventListener("click", () => select(i));
+        grp.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(i); } });
+        return { x, y, halo, dot, label, grp };
+      });
+      const list = items();
+      controls.innerHTML = list.length ? `<div class="segmented map-chips" role="group" aria-label="Lieux">
+          ${spec.world !== false ? `<button data-pt="-1" aria-pressed="true">Vue d'ensemble</button>` : ""}
+          ${list.map((it, i) => `<button data-pt="${i}" aria-pressed="${spec.world === false && i === 0}"${it.kind === "flow" ? ` class="chip-flow" style="--c:${it.p.color || cur.color || "#5be7ff"}"` : ""}>${it.kind === "flow" ? "➜ " : ""}${esc(it.p.name)}</button>`).join("")}
+        </div>` : "";
+      controls.querySelectorAll("[data-pt]").forEach((b) => b.addEventListener("click", () => select(Number(b.dataset.pt))));
+    }
 
     let vb = spec.world === false && spec.points?.length
       ? frameFor(spec.points[0].coords, spec.points[0].zoom || 20, aspect)
-      : spec.view ? frameFor(spec.view.center, spec.view.span, aspect) : WORLD_FRAME(aspect);
+      : home();
     let anim = null;
 
     // Les repères sont dessinés sur un calque en pixels écran, pour garder un texte net à tout niveau de zoom.
@@ -103,10 +147,20 @@
       svg.setAttribute("viewBox", vb.map((v) => v.toFixed(2)).join(" "));
       const W = stage.clientWidth || 360, H = stage.clientHeight || W / aspect;
       layer.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      const toScreen = ([x, y]) => [((x - vb[0]) / vb[2]) * W, ((y - vb[1]) / vb[3]) * H];
+      // Flux : arc courbé du départ à l'arrivée, flèche au bout.
+      flows.forEach((fl) => {
+        const [x1, y1] = toScreen(fl.a), [x2, y2] = toScreen(fl.b);
+        const dx = x2 - x1, dy = y2 - y1, len = Math.hypot(dx, dy) || 1;
+        const bend = Math.min(0.28 * len, 120);
+        const cx = (x1 + x2) / 2 + (dy / len) * bend * (dx >= 0 ? -1 : 1), cy = (y1 + y2) / 2 - Math.abs(dx / len) * bend;
+        const d = `M${x1.toFixed(1)},${y1.toFixed(1)} Q${cx.toFixed(1)},${cy.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`;
+        fl.paths.forEach((p) => p.setAttribute("d", d));
+      });
       const placed = [];
       // Le lieu sélectionné passe en premier : son étiquette est toujours affichée.
       [...pts].sort((a, b) => b.grp.classList.contains("active") - a.grp.classList.contains("active")).forEach((p) => {
-        const sx = ((p.x - vb[0]) / vb[2]) * W, sy = ((p.y - vb[1]) / vb[3]) * H;
+        const [sx, sy] = toScreen([p.x, p.y]);
         p.dot.setAttribute("cx", sx); p.dot.setAttribute("cy", sy); p.dot.setAttribute("r", 5);
         p.halo.setAttribute("cx", sx); p.halo.setAttribute("cy", sy); p.halo.setAttribute("r", 14);
         // Étiquette à gauche du point si elle déborderait à droite.
@@ -142,23 +196,41 @@
       anim = requestAnimationFrame(step);
     }
 
-    function select(i) {
-      root.querySelectorAll("[data-pt]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.pt === String(i)));
-      pts.forEach((p, j) => p.grp.classList.toggle("active", j === i));
-      if (i < 0) {
-        info.innerHTML = spec.intro ? `<p class="fade">${spec.intro}</p>` : "";
-        goTo(spec.view ? frameFor(spec.view.center, spec.view.span, aspect) : WORLD_FRAME(aspect));
-        return;
-      }
-      const pt = spec.points[i];
-      info.innerHTML = `<div class="fade"><h4>${esc(pt.name)}</h4><p>${pt.text}</p></div>`;
-      goTo(frameFor(pt.coords, pt.zoom || 20, aspect));
+    // Cadre qui contient les deux bouts d'un flux.
+    function frameForFlow(f) {
+      const [x1, y1] = project(f.from), [x2, y2] = project(f.to);
+      const pad = 1.5, w0 = Math.abs(x2 - x1), h0 = Math.abs(y2 - y1);
+      const w = Math.max(w0 * pad, h0 * pad * aspect, (12 / 360) * world.w);
+      return [(x1 + x2) / 2 - w / 2, (y1 + y2) / 2 - w / aspect / 2 - 0.08 * w / aspect, w, w / aspect];
     }
 
-    root.querySelectorAll("[data-pt]").forEach((b) => b.addEventListener("click", () => select(Number(b.dataset.pt))));
+    function select(i) {
+      controls.querySelectorAll("[data-pt]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.pt === String(i)));
+      const np = (cur.points || []).length;
+      pts.forEach((p, j) => p.grp.classList.toggle("active", j === i));
+      flows.forEach((fl, j) => { fl.grp.classList.toggle("active", np + j === i); fl.grp.classList.toggle("dim", i >= np && np + j !== i); });
+      if (i < 0) {
+        info.innerHTML = cur.intro ? `<p class="fade">${cur.intro}</p>` : "";
+        goTo(home());
+        return;
+      }
+      const it = items()[i];
+      info.innerHTML = `<div class="fade"><h4>${it.kind === "flow" ? "➜ " : ""}${esc(it.p.name)}</h4><p>${it.p.text}</p></div>`;
+      goTo(it.kind === "flow" ? frameForFlow(it.p) : frameFor(it.p.coords, it.p.zoom || 20, aspect));
+    }
+
+    function setLayer(k) {
+      cur = spec.layers[k];
+      root.querySelectorAll("[data-layer]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.layer === String(k))));
+      build(); draw();
+      select(-1);
+    }
+    root.querySelectorAll("[data-layer]").forEach((b) => b.addEventListener("click", () => setLayer(Number(b.dataset.layer))));
+
+    build();
     draw();
     if (spec.world === false && spec.points?.length) select(0);
-    else info.innerHTML = spec.intro ? `<p>${spec.intro}</p>` : "";
+    else info.innerHTML = cur.intro ? `<p>${cur.intro}</p>` : "";
     const onResize = () => { if (!root.isConnected) return window.removeEventListener("resize", onResize); draw(); };
     window.addEventListener("resize", onResize);
   }

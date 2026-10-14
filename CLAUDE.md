@@ -19,7 +19,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - `globe.js` : globe.gl. Accueil (`mount`, repères d'actus, vue sur la région du lecteur) et choroplèthes (`mountIndicators` ;
   le toucher choisit le pays sous le doigt via `toGlobeCoords`, pas le « survol » de globe.gl).
 - Pages : accueil (globe + bandeau défilant qu'on peut faire glisser), Actu, Focus (Toyota Supra GT300 en 3D de vecarz, CC BY 4.0 : `assets/models/supra/` (json + géométrie binaire « -geo.wasm » (l'aperçu refuse .bin) + textures webp, fichiers séparés : les data:/blob: sont bloqués dans l'aperçu), converti de l'USDZ avec usd-core puis gltf-transform weld/simplify/quantize), Conflits (3 couches), Cours,
-  Articles, Chiffres, Recherche (`#/recherche`), Focus : schéma « De la mine au client » (`chain` dans data/focus.js, globe aux flux animés `mountFlows` de globe.js) avant la carte ; Enjeux passés (`#/enjeux`, depuis `pastWeekly` de data/focus.js), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
+  Articles, Chiffres, Recherche (`#/recherche`), Focus : schéma « De la mine au client » (`chain` dans data/focus.js, globe aux flux animés `mountFlows` de globe.js) avant la carte ; carte à couches (`map.layers` : lieux, `flows` fléchés, concurrence ; viz.js) et « face-à-face » (`rivals`) ; Enjeux passés (`#/enjeux`, depuis `pastWeekly` de data/focus.js), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
 - Liens directs : `#/chiffres/<indicateur>/<pays ISO num>`, `#/conflits/<couche>/<pays>`.
 
 ## Contenu et règles éditoriales

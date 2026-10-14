@@ -395,7 +395,8 @@
   "Archives : les enjeux des semaines passées ›": "Archiv: die Themen der vergangenen Wochen ›",
   "La chaîne de production": "Die Lieferkette",
   "Étape {n} · {x}": "Schritt {n} · {x}",
-  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Alle Schritte werden angezeigt. Tippe auf einen Schritt, um seine Ströme zu verfolgen."
+  "Toutes les étapes sont affichées. Touche une étape pour suivre ses flux.": "Alle Schritte werden angezeigt. Tippe auf einen Schritt, um seine Ströme zu verfolgen.",
+  "Concurrence": "Wettbewerb"
  },
  "months": {
   "janvier": "Januar",

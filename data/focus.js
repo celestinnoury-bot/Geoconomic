@@ -184,21 +184,86 @@ window.GEOCO.focus = [
         }
       ]
     },
+    // Carte à couches : usines et mines, flux de pièces et de voitures, concurrence entre marchés.
+    // `flows` : { name, from, to, text } (coordonnées [longitude, latitude]). Les [n] renvoient à `sources`.
     map: {
       kind: "map",
       title: "La carte de la voiture électrique",
-      intro: "Usines géantes et mines stratégiques. Touche un lieu pour zoomer.",
-      points: [
-        { name: "Shenzhen", coords: [114.06, 22.54], zoom: 14, text: "Siège de BYD, devenu en 2025 le premier vendeur mondial de voitures 100 % électriques." },
-        { name: "Ningde", coords: [119.55, 26.66], zoom: 14, text: "Siège de CATL, le premier fabricant mondial de batteries pour voitures électriques (environ 39 % du marché en 2025)." },
-        { name: "Austin", coords: [-97.62, 30.22], zoom: 14, text: "La « Gigafactory Texas » de Tesla, l'une des plus grandes usines automobiles du monde." },
-        { name: "Wolfsburg", coords: [10.78, 52.42], zoom: 12, text: "Siège de Volkswagen, premier constructeur européen, confronté à la concurrence chinoise." },
-        { name: "Douai", coords: [3.08, 50.37], zoom: 12, text: "Le pôle « ElectriCity » de Renault, où sont assemblées la Renault 5 et la Renault 4 électriques." },
-        { name: "Kolwezi", coords: [25.47, -10.71], zoom: 14, text: "Cœur de la production de cobalt en RD Congo, premier producteur mondial de ce métal des batteries." },
-        { name: "Sulawesi", coords: [121.9, -2.8], zoom: 14, text: "Île indonésienne du nickel, transformé sur place dans des usines souvent financées par des capitaux chinois." },
-        { name: "Atacama", coords: [-68.2, -23.5], zoom: 14, text: "Le désert chilien abrite d'immenses réserves de lithium, extrait de saumures dans les salars." }
+      layers: [
+        {
+          id: "sites", label: "Usines et mines", color: "#f5c86b",
+          intro: "Usines géantes et mines stratégiques. Touche un lieu pour zoomer.",
+          points: [
+            { name: "Shenzhen", coords: [114.06, 22.54], zoom: 14, text: "Siège de BYD, devenu en 2025 le premier vendeur mondial de voitures 100 % électriques [3]." },
+            { name: "Ningde", coords: [119.55, 26.66], zoom: 14, text: "Siège de CATL, le premier fabricant mondial de batteries pour voitures électriques (environ 39 % du marché en 2025) [5]." },
+            { name: "Austin", coords: [-97.62, 30.22], zoom: 14, text: "La « Gigafactory Texas » de Tesla, l'une des plus grandes usines automobiles du monde." },
+            { name: "Wolfsburg", coords: [10.78, 52.42], zoom: 12, text: "Siège de Volkswagen, premier constructeur européen, confronté à la concurrence chinoise." },
+            { name: "Douai", coords: [3.08, 50.37], zoom: 12, text: "Le pôle « ElectriCity » de Renault, où sont assemblées la Renault 5 et la Renault 4 électriques [10]." },
+            { name: "Kolwezi", coords: [25.47, -10.71], zoom: 14, text: "Cœur de la production de cobalt en RD Congo, premier producteur mondial de ce métal des batteries." },
+            { name: "Sulawesi", coords: [121.9, -2.8], zoom: 14, text: "Île indonésienne du nickel, transformé sur place dans des usines souvent financées par des capitaux chinois." },
+            { name: "Atacama", coords: [-68.2, -23.5], zoom: 14, text: "Le désert chilien abrite d'immenses réserves de lithium, extrait de saumures dans les salars." }
+          ]
+        },
+        {
+          id: "flux", label: "Flux de pièces", color: "#5be7ff",
+          intro: "Une voiture traverse plusieurs frontières avant d'être vendue. Ces flux montrent qui fournit qui. Touche une flèche.",
+          view: { center: [20, 30], span: 300 },
+          flows: [
+            { name: "Mexique → États-Unis", from: [-100.31, 25.67], to: [-83.05, 42.33], text: "Le Mexique est le premier fournisseur de pièces automobiles des États-Unis : de janvier à octobre 2025, il a fourni 43,8 % de leurs importations de pièces, un record selon l'association mexicaine des pièces automobiles (INA) [17]." },
+            { name: "Slovaquie → Europe", from: [17.11, 48.15], to: [8.68, 50.11], text: "La Slovaquie fabrique plus de voitures par habitant que tout autre pays : près de 1,1 million de véhicules en 2025, soit 196 pour 1 000 habitants, contre 22 en Chine. Volkswagen, Stellantis, Kia et Jaguar Land Rover y ont leurs usines [19]." },
+            { name: "Maroc → Europe", from: [-5.81, 35.76], to: [2.35, 48.86], text: "Le Maroc a produit un million de voitures en 2025 : Renault à Tanger, Stellantis à Kénitra. À 14 km de l'Europe, le pays est devenu une base d'assemblage tournée vers l'exportation [18]." },
+            { name: "Allemagne → monde", from: [10.78, 52.42], to: [-74.0, 40.71], text: "Plus de trois voitures sur quatre produites en Allemagne partent à l'étranger : 3,17 millions de voitures exportées en 2025, pour une production de 4,15 millions [20][21]." },
+            { name: "Chine → monde", from: [121.47, 31.23], to: [4.4, 51.22], text: "La Chine a exporté 7,1 millions de véhicules en 2025 (+21 %), dont 2,6 millions électriques ou hybrides rechargeables, deux fois plus qu'en 2024 [22]." }
+          ]
+        },
+        {
+          id: "concurrence", label: "Concurrence", color: "#ff5c6c",
+          intro: "Pour éviter les taxes européennes, les constructeurs chinois viennent produire sur place. En Chine, la guerre des prix pousse à exporter. Touche un lieu.",
+          view: { center: [30, 30], span: 260 },
+          points: [
+            { name: "Szeged (BYD)", coords: [20.15, 46.25], zoom: 18, text: "Première usine européenne de BYD, en Hongrie. Elle doit lancer la production en série au 4e trimestre 2026, avec la petite Dolphin Surf, pour vendre en Europe sans payer les droits de douane sur les voitures chinoises [23]." },
+            { name: "Manisa (BYD)", coords: [27.43, 38.61], zoom: 18, text: "Le projet d'usine de BYD en Turquie a été mis en pause en 2026 : la Hongrie reste sa priorité en Europe [23]." },
+            { name: "Saragosse (Leapmotor)", coords: [-1.17, 41.77], zoom: 18, text: "Stellantis, allié au chinois Leapmotor, va assembler le SUV électrique B10 dans son usine de Figueruelas, près de Saragosse : la première grande usine Leapmotor hors de Chine [24]." },
+            { name: "Barcelone (Chery)", coords: [2.15, 41.35], zoom: 18, text: "Dans l'ancienne usine Nissan de Barcelone, Chery assemble des modèles Omoda et Jaecoo sous la marque espagnole Ebro [25]." },
+            { name: "Camaçari (BYD)", coords: [-38.32, -12.7], zoom: 18, text: "Au Brésil, BYD produit depuis juillet 2025 dans l'ancienne usine Ford de Camaçari, à Bahia [26]." },
+            { name: "Union européenne", coords: [4.35, 50.85], zoom: 30, text: "Les marques chinoises ont doublé leur part du marché européen : environ 6 % des immatriculations de janvier à avril 2026, contre 3,2 % un an plus tôt [27]." },
+            { name: "Chine : la guerre des prix", coords: [116.4, 39.9], zoom: 40, text: "Les usines chinoises peuvent produire 55,5 millions de véhicules par an, près des deux tiers des 91,7 millions de voitures vendues dans le monde. Le prix moyen d'une voiture y a baissé de 19 % en deux ans : trop d'usines, pas assez d'acheteurs, d'où la course à l'export [28]." }
+          ]
+        }
       ],
-      source: "Sites des entreprises ; SNE Research ; presse spécialisée"
+      source: "Sites des entreprises ; SNE Research ; INA ; VDA ; CAAM ; presse spécialisée (voir les sources)"
+    },
+    // « Face-à-face » : des voitures du même segment, qui visent les mêmes clients.
+    rivals: {
+      title: "Même segment, mêmes clients : le face-à-face",
+      intro: "Sur un même marché, des voitures venues de pays différents se disputent les mêmes acheteurs. Comparer leurs prix montre où se joue la concurrence.",
+      groups: [
+        {
+          title: "Les petites électriques",
+          concept: "Concurrence dans une même branche",
+          text: "Trois citadines électriques, trois pays d'origine, une même cible : les acheteurs qui veulent une électrique abordable. Prix catalogue au Royaume-Uni comparés par What Car? [29].",
+          unit: "£", items: [
+            { name: "BYD Dolphin Surf", origin: "Chine", value: 18650, label: "dès 18 650 £" },
+            { name: "Citroën ë-C3 Max", origin: "France (Stellantis)", value: 23795, label: "23 795 £" },
+            { name: "Renault 5 Urban Range Techno", origin: "France (Renault)", value: 24995, label: "24 995 £" }
+          ]
+        },
+        {
+          title: "La même voiture, deux prix",
+          concept: "Discrimination par les prix entre marchés",
+          text: "La BYD Seagull vendue en Chine et la Dolphin Surf vendue en Europe sont la même petite voiture, mais la version européenne est plus grande et plus puissante. Normes plus strictes, transport, taxes et marges : en Europe, elle coûte environ trois fois plus cher [30][31].",
+          unit: "€", items: [
+            { name: "BYD Seagull (Chine)", origin: "56 800 yuans", value: 7000, label: "≈ 7 000 €" },
+            { name: "BYD Dolphin Surf (Europe)", origin: "prix de lancement", value: 22990, label: "22 990 €" }
+          ]
+        },
+        {
+          title: "Le choc des leaders",
+          concept: "Un marché disputé",
+          text: "Le Tesla Model Y reste l'électrique la plus vendue en Europe en 2026, avec plus de 34 000 ventes en juin, son meilleur mois depuis mars 2023 [32]. Mais BYD avance vite : ses ventes européennes ont bondi de 270 % en 2025, à près de 188 000 voitures [23].",
+          unit: "", items: []
+        }
+      ]
     },
     forMe: "Si tu achètes une voiture dans les prochaines années, son prix dépendra autant des décisions de Bruxelles, Pékin et Washington que de la technologie. Et si tu travailles dans l'industrie, la bataille de l'électrique, c'est aussi celle de l'emploi en Europe.",
     quiz: [
@@ -231,7 +296,23 @@ window.GEOCO.focus = [
       { short: "Automobile Propre", name: "Automobile Propre, « Stellantis va mettre plusieurs usines françaises à l'arrêt faute de batteries pour ses modèles électriques »", url: "https://www.automobile-propre.com/articles/stellantis-va-mettre-plusieurs-usines-francaises-a-larret-faute-de-batteries-pour-ses-modeles-electriques/" },
       { short: "L'Automobiliste", name: "L'Automobiliste, « La voiture électrique explose en Europe avec un record historique » (5 oct. 2026), d'après Transport & Environment", url: "https://lautomobiliste.fr/05/10/2026/voiture-electrique-explose-europe-record-historique/" },
       { short: "RSE Magazine", name: "RSE Magazine, « Voiture électrique : l'Europe franchit un cap historique en 2026 »", url: "https://www.rse-magazine.com/voiture-electrique-leurope-franchit-un-cap-historique-en-2026/" },
-      { short: "Boursorama", name: "Boursorama, « Trois usines françaises de Stellantis au chômage partiel en octobre » (29 sept. 2026)", url: "https://www.boursorama.com/bourse/actualites/trois-usines-francaises-de-stellantis-au-chomage-partiel-en-octobre-ee5cb3d3341f1bd725eb0425f8c70024" }
+      { short: "Boursorama", name: "Boursorama, « Trois usines françaises de Stellantis au chômage partiel en octobre » (29 sept. 2026)", url: "https://www.boursorama.com/bourse/actualites/trois-usines-francaises-de-stellantis-au-chomage-partiel-en-octobre-ee5cb3d3341f1bd725eb0425f8c70024" },
+      { short: "Mexico Business News", name: "Mexico Business News, « Mexico Leads US Auto Parts Imports » (2025), d'après l'INA", url: "https://mexicobusiness.news/automotive/news/mexico-leads-us-auto-parts-imports-4625-share-2025" },
+      { short: "AGBI", name: "AGBI, « Morocco hits 2025 production target of one million cars » (déc. 2025)", url: "https://www.agbi.com/manufacturing/2025/12/morocco-hits-2025-production-target-of-one-million-cars/" },
+      { short: "ICE", name: "Agence italienne pour le commerce extérieur (ICE), note sur l'industrie automobile slovaque (mars 2026)", url: "https://www.ice.it/it/news/notizie-dal-mondo/300364" },
+      { short: "VDA", name: "VDA (constructeurs allemands), « Passenger car production in 2025 slightly above previous year's level » (janv. 2026)", url: "https://www.vda.de/en/press/press-releases/2026/260106_Passenger-car-production-in-2025-slightly-above-previous-year-s-level" },
+      { short: "Eurometal", name: "Eurometal (Kallanish), « Electric vehicles increase German production share in 2025 »", url: "https://eurometal.net/electric-vehicles-increase-german-production-share-in-2025/" },
+      { short: "AP", name: "Associated Press, « China's car exports surged in 2025, but domestic demand slowed » (janv. 2026), d'après la CAAM", url: "https://abcnews.go.com/Business/wireStory/chinas-car-exports-surged-2025-domestic-demand-slowed-129193352" },
+      { short: "EV Wire", name: "EV Wire, « BYD Hungary plant Q4 2026 production, Turkey update » (juin 2026)", url: "https://evwire.com/p/byd-hungary-plant-q4-2026-production-turkey-update" },
+      { short: "New Mobility", name: "New Mobility, « Stellantis confirms Leapmotor B10 production in Zaragoza » (4 mars 2026)", url: "https://newmobility.news/2026/03/04/stellantis-confirms-leapmotor-b10-production-in-zaragoza/" },
+      { short: "ClubAlfa", name: "ClubAlfa, « Stellantis hits the brakes in Spain: can Chinese EVs save the day? » (2026)", url: "https://www.clubalfa.it/en/stellantis-hits-the-brakes-in-spain-can-chinese-evs-save-the-day-42680" },
+      { short: "Ford Authority", name: "Ford Authority, « BYD production at former Ford plant in Brazil has begun » (juil. 2025)", url: "https://fordauthority.com/2025/07/byd-production-at-former-ford-plant-in-brazil-has-begun/" },
+      { short: "Euronews", name: "Euronews, « Chinese carmakers double EU market share as EVs drive sales growth » (27 mai 2026), d'après l'ACEA", url: "https://www.euronews.com/business/2026/05/27/chinese-carmakers-double-eu-market-share-as-evs-drive-sales-growth" },
+      { short: "The Economist", name: "The Economist, « Chinese EV makers outpace BMW and Mercedes as brutal price war reshapes car industry » (repris par The Nightly)", url: "https://thenightly.com.au/business/the-economist-chinese-ev-makers-outpace-bmw-and-mercedes-as-brutal-price-war-reshapes-car-industry-c-20034651" },
+      { short: "What Car?", name: "What Car?, « New BYD Dolphin Surf vs Citroën e-C3 vs Renault 5 »", url: "https://www.whatcar.com/news/new-byd-dolphin-surf-versus-citroen-e-c3-and-renault-5-video/n27830" },
+      { short: "Netzwelt", name: "Netzwelt, « E-Auto für 7.000 Euro: Günstigster BYD wurde gerade noch günstiger »", url: "https://www.netzwelt.de/news/240923-e-auto-7000-euro-guenstigste-byd-wurde-gerade-noch-guenstiger.html" },
+      { short: "Electrek", name: "Electrek, « BYD's cheapest EV heads to Europe with new name and more » (19 mars 2025)", url: "https://electrek.co/2025/03/19/byds-cheapest-ev-heads-to-europe-with-new-name-and-more/" },
+      { short: "Best Selling Cars Blog", name: "Best Selling Cars Blog, « Europe June 2026: Tesla (+50.6%), Chinese (+130.8%) pull market up 12.9% » (juil. 2026)", url: "https://bestsellingcarsblog.com/2026/07/europe-june-2026-tesla-50-6-chinese-130-8-pull-market-up-12-9/" }
     ]
   }
 ];

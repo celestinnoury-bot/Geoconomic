@@ -159,6 +159,8 @@ focus.forEach((f) => {
   if (!f.model || !f.model.src || !f.model.credit) err(w, "modèle 3D et crédit obligatoires");
   else if (!fs.existsSync(f.model.src)) err(w, `modèle introuvable : ${f.model.src}`);
   [...f.sections.flatMap((s) => s.paragraphs), ...(f.hotspots || []).flatMap((h) => [h.text, h.eco, h.geo].filter(Boolean))].forEach((t) => checkCites(w, t, f.sources));
+  const mapTexts = f.map ? [...(f.map.points || []), ...(f.map.layers || []).flatMap((l) => [...(l.points || []), ...(l.flows || [])])].map((x) => x.text) : [];
+  [...mapTexts, ...((f.rivals && f.rivals.groups) || []).map((g) => g.text)].forEach((t) => checkCites(`${w} (carte / face-à-face)`, t, f.sources));
   ((f.chain && f.chain.steps) || []).forEach((st) => {
     checkCites(`${w} (chaîne : ${st.id})`, st.text, f.sources);
     (st.links || []).forEach(([kind, id]) => { if (kind === "actu" && !newsIds.has(id)) err(`${w} (chaîne)`, `actu liée inconnue : ${id}`); });

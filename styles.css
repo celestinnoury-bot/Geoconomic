@@ -347,8 +347,8 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .map-svg .land { fill: #2a2d33; stroke: #42464e; stroke-width: .6; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .map-svg .land.hi { fill: #3d3424; stroke: #6b5a39; }
 .pin { cursor: pointer; outline: none; }
-.pin-dot { fill: var(--gold); stroke: #05080d; }
-.pin-halo { fill: var(--gold); opacity: .18; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
+.pin-dot { fill: var(--pin, var(--gold)); stroke: #05080d; }
+.pin-halo { fill: var(--pin, var(--gold)); opacity: .18; transform-box: fill-box; transform-origin: center; animation: pulse 2.4s ease-out infinite; }
 .pin.active .pin-halo { opacity: .35; }
 .pin-label { fill: var(--text); font-family: var(--font); font-weight: 600; paint-order: stroke; stroke: #05080d; stroke-width: 3px; stroke-linejoin: round; pointer-events: none; }
 .pin:focus-visible .pin-dot { stroke: var(--blue-text); }
@@ -1061,3 +1061,34 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
   .chain-n { width: 24px; height: 24px; font-size: 12px; }
   .flow-label { font-size: 9px; padding: 2px 4px; }
 }
+/* ---------- Cartes à couches : onglets et flux fléchés ---------- */
+.map-layers { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+.map-layer-btn {
+  font: 600 14px/1 var(--font); color: var(--text); padding: 9px 14px; border-radius: 999px; cursor: pointer;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); transition: border-color .2s, background .2s;
+}
+.map-layer-btn[aria-pressed="true"] { border-color: var(--c); background: color-mix(in srgb, var(--c) 18%, transparent); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 30%, transparent); }
+.flow { cursor: pointer; outline: none; pointer-events: auto; transition: opacity .3s; }
+.flow path { fill: none; }
+.flow-glow { stroke: var(--c); stroke-width: 7; opacity: .14; }
+.flow-line { stroke: var(--c); stroke-width: 2; opacity: .75; }
+.flow-dash { stroke: #fff; stroke-width: 2; stroke-dasharray: 3 14; stroke-linecap: round; opacity: .85; animation: flowRun 1.4s linear infinite; }
+.flow-hit { stroke: transparent; stroke-width: 18; }
+.flow.active .flow-line { opacity: 1; stroke-width: 3; }
+.flow.active .flow-glow { opacity: .3; }
+.flow.dim { opacity: .25; }
+@keyframes flowRun { to { stroke-dashoffset: -17; } }
+@media (prefers-reduced-motion: reduce) { .flow-dash { animation: none; } }
+.map-chips .chip-flow { border-color: color-mix(in srgb, var(--c) 55%, transparent); }
+/* ---------- Focus : face-à-face entre concurrents ---------- */
+.rivals-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 24px; }
+.rival-card { background: var(--surface); border: 1px solid var(--hairline); border-radius: 22px; padding: 20px; }
+.rival-concept { font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #ff5c6c; margin: 0 0 6px; }
+.rival-card h3 { font-size: 21px; margin: 0 0 14px; }
+.rival-bars { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 12px; }
+.rival-row { display: flex; justify-content: space-between; gap: 10px; font-size: 14px; font-weight: 600; }
+.rival-val { font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rival-track { height: 8px; border-radius: 99px; background: rgba(255,255,255,.08); margin-top: 6px; overflow: hidden; }
+.rival-track span { display: block; height: 100%; border-radius: 99px; background: linear-gradient(90deg, #5be7ff, #ff5c6c); }
+.rival-origin { display: block; font-size: 12px; color: var(--muted); margin-top: 4px; }
+.rival-text { font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--muted); margin: 0; }

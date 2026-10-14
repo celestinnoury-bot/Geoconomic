@@ -1261,6 +1261,53 @@
       </section>`;
   }
 
+  // Carte du Focus : les [n] des textes deviennent des liens vers les sources (même objet à chaque appel).
+  const focusMaps = new WeakMap();
+  function focusMap(f) {
+    if (!f.map) return null;
+    if (!focusMaps.has(f)) {
+      const withCites = (list) => (list || []).map((x) => ({ ...x, text: cite(x.text, f.sources) }));
+      const m = { ...f.map };
+      if (m.points) m.points = withCites(m.points);
+      if (m.layers) m.layers = m.layers.map((l) => ({ ...l, points: withCites(l.points), flows: withCites(l.flows) }));
+      focusMaps.set(f, m);
+    }
+    return focusMaps.get(f);
+  }
+
+  // « Face-à-face » : modèles concurrents d'un même segment, avec leurs prix en barres.
+  function rivalsBlock(f) {
+    const r = f.rivals;
+    if (!r) return "";
+    const nf = (v) => v.toLocaleString(LOCALE);
+    return `
+      <section class="section rivals">
+        <div class="wrap">
+          <p class="eyebrow reveal">Concurrence</p>
+          <h2 class="title reveal">${r.title}</h2>
+          <p class="lead reveal">${r.intro}</p>
+          <div class="rivals-grid">
+            ${r.groups.map((g) => {
+              const max = Math.max(1, ...g.items.map((x) => x.value));
+              return `
+              <article class="rival-card reveal">
+                <p class="rival-concept">${g.concept}</p>
+                <h3>${g.title}</h3>
+                ${g.items.length ? `<ul class="rival-bars">
+                  ${g.items.map((x) => `<li>
+                    <div class="rival-row"><span class="rival-name">${x.name}</span><span class="rival-val">${x.label || nf(x.value) + " " + g.unit}</span></div>
+                    <div class="rival-track"><span style="width:${Math.max(4, (x.value / max) * 100).toFixed(1)}%"></span></div>
+                    <span class="rival-origin">${x.origin}</span>
+                  </li>`).join("")}
+                </ul>` : ""}
+                <p class="rival-text">${cite(g.text, f.sources)}</p>
+              </article>`;
+            }).join("")}
+          </div>
+        </div>
+      </section>`;
+  }
+
   // Schéma « De la mine au client » : étapes cliquables reliées par des flèches + globe aux flux animés.
   function chainBlock(f) {
     const c = f.chain;
@@ -1368,7 +1415,7 @@
           </div>
         </section>
         ${i === 1 ? visualsBlock([f.chart].filter(Boolean)) : ""}
-        ${i === 3 ? chainBlock(f) + visualsBlock([f.map].filter(Boolean), true) : ""}
+        ${i === 3 ? chainBlock(f) + visualsBlock([focusMap(f)].filter(Boolean), true) + rivalsBlock(f) : ""}
       `).join("")}
 
       <section class="wrap">
@@ -1405,7 +1452,7 @@
     `;
 
     bindFigures(f.figures, "eco", f.sources);
-    mountVisuals([f.chart, f.map].filter(Boolean));
+    mountVisuals([f.chart, focusMap(f)].filter(Boolean));
     mountChain(f);
 
     const stage = app.querySelector("#car-stage");
