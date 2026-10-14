@@ -15,6 +15,472 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-14-botswana-de-beers",
+    "date": "2026-10-14",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Gaborone",
+        "label": "Botswana",
+        "coords": [
+          25.91,
+          -24.65
+        ]
+      }
+    ],
+    "title": "Diamants : le Botswana s'apprête à peser plus lourd dans De Beers, le géant que son propriétaire veut vendre",
+    "summary": "Selon Bloomberg, le Botswana serait près de monter de 15 % à environ 25 % du capital de De Beers. L'accord n'est pas signé, mais il lèverait un obstacle majeur à la vente du groupe.",
+    "points": [
+      "Le Botswana et le Global Diamond Consortium (GDC) seraient près d'un accord qui ferait passer la part de l'État dans De Beers de 15 % à environ 25 %, selon des sources citées par Bloomberg ; rien n'est encore signé, et les termes précis restent flous [1][2].",
+      "Le GDC, mené par l'ancien patron de De Beers Gareth Penny, a été choisi en juillet comme candidat préféré pour racheter De Beers à Anglo American, qui en détient environ 85 % [2].",
+      "Le GDC compte aussi la Namibie et l'Angola : les trois États réunis auraient moins de 50 %, et des investisseurs privés garderaient le contrôle, alors que le président botswanais Duma Boko avait dit vouloir une majorité [1]."
+    ],
+    "why": [
+      "Le diamant fait vivre le Botswana : la part que l'État détient dans De Beers pèse donc bien plus qu'un simple placement. Tant que le pays n'était pas d'accord, la vente du groupe restait bloquée [2].",
+      "Si l'accord se confirme, le Botswana n'obtiendrait pas le contrôle qu'il réclamait, mais une place plus grande à la table. Ce serait aussi un rare cas où trois pays africains producteurs s'allient pour racheter ensemble un géant mondial de leur propre ressource [1]."
+    ],
+    "forMe": "Les bagues et les bijoux en diamant que tu vois en vitrine passent presque tous par De Beers. Qui possède ce groupe influence l'offre de diamants, donc leur prix, et décide de la part qui reste dans les pays producteurs.",
+    "figures": [
+      {
+        "value": "15 % → ~25 %",
+        "label": "part du Botswana dans De Beers, selon Bloomberg (pas encore signé)",
+        "src": 1
+      },
+      {
+        "value": "~85 %",
+        "label": "part d'Anglo American dans De Beers, vendeur",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Moneyweb",
+        "name": "Moneyweb, « Botswana said to near agreement on size of its De Beers stake »",
+        "url": "https://www.moneyweb.co.za/news/companies-and-deals/botswana-said-to-near-agreement-on-size-of-its-de-beers-stake/"
+      },
+      {
+        "short": "bne IntelliNews",
+        "name": "bne IntelliNews, « Botswana reportedly nears deal for 25% De Beers stake as Anglo American sale advances »",
+        "url": "https://www.intellinews.com/botswana-reportedly-nears-deal-for-25-de-beers-stake-as-anglo-american-sale-advances-475658/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-coree-puces-chute-bourse",
+    "date": "2026-10-14",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Séoul",
+        "label": "Corée du Sud",
+        "coords": [
+          126.98,
+          37.57
+        ]
+      }
+    ],
+    "title": "Séoul : la Bourse s'effondre de plus de 5 % en une séance, à cause d'un fabricant chinois de mémoires",
+    "summary": "Le Kospi a perdu 5,5 % mardi. Les investisseurs craignent qu'un concurrent chinois de Samsung et SK hynix fasse baisser les prix des puces mémoire.",
+    "points": [
+      "Le Kospi, l'indice de la Bourse de Séoul, a clôturé mardi 13 octobre à 6 035,35 points, en baisse de 5,46 %, après avoir perdu jusqu'à 7,41 % en séance [1][2].",
+      "La chute a suivi l'annonce du chinois CXMT, qui prévoit de lancer d'ici la fin de l'année une mémoire DRAM pour serveurs d'un nouveau type ; les analystes y voient un risque de pression sur les prix pour les fabricants sud-coréens [1].",
+      "Les investisseurs étrangers ont vendu pour 4 530 milliards de wons (environ 3,4 milliards de dollars) d'actions, et l'indice a perdu près de 14 % en cinq séances [1]."
+    ],
+    "why": [
+      "La Corée du Sud vit en grande partie de ses puces mémoire : Samsung et SK hynix pèsent très lourd à la Bourse. Quand la crainte d'un rival chinois apparaît, tout l'indice vacille [1].",
+      "Les États-Unis ont longtemps cherché à freiner la Chine sur les puces. Cette séance montre que Pékin avance quand même dans la mémoire, et que les marchés le prennent au sérieux. Le recul de l'enthousiasme pour l'IA et un pétrole proche d'un plus haut de deux semaines ont aussi joué, selon la presse [1]."
+    ],
+    "forMe": "Les puces mémoire sont dans ton téléphone, ton ordinateur et les serveurs de l'IA. Si un nouveau fabricant fait baisser leurs prix, tes appareils peuvent coûter moins cher à terme, mais l'économie d'un pays comme la Corée du Sud en souffre.",
+    "figures": [
+      {
+        "value": "−5,46 %",
+        "label": "chute du Kospi le 13 octobre, à 6 035,35 points",
+        "src": 1
+      },
+      {
+        "value": "3,4 Md$",
+        "label": "actions vendues par les investisseurs étrangers en une séance",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "semi-conducteurs"
+    ],
+    "sources": [
+      {
+        "short": "KED Global",
+        "name": "KED Global, « Kospi tumbles as chip rout deepens, briefly breaking below 6,000 »",
+        "url": "https://www.kedglobal.com/korean-stock-market/newsView/ked202610130001"
+      },
+      {
+        "short": "Ajupress",
+        "name": "Ajupress, « KOSPI plunges over 5% as foreign selloff batters chip giants »",
+        "url": "https://www.ajupress.com/view/20261013171446394"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-chine-sanctions-belize-paraguay",
+    "date": "2026-10-14",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Asunción",
+        "label": "Paraguay",
+        "coords": [
+          -57.58,
+          -25.28
+        ]
+      },
+      {
+        "name": "Belmopan",
+        "label": "Belize",
+        "coords": [
+          -88.77,
+          17.25
+        ]
+      }
+    ],
+    "title": "Pékin sanctionne deux ministres d'Amérique latine parce que leurs pays gardent Taïwan comme allié",
+    "summary": "La Chine a visé le ministre de la Communication du Paraguay et le ministre des Affaires étrangères du Belize. Washington dénonce de la « coercition ».",
+    "points": [
+      "Lundi 12 octobre, la Chine a sanctionné Gustavo Villate, ministre paraguayen de la Communication, et Francis Fonseca, chef de la diplomatie du Belize : leurs avoirs en Chine sont gelés, ils sont interdits d'entrée à Hong Kong et Macao, et les Chinois ne peuvent plus traiter avec eux [1].",
+      "Pékin accuse certains « politiciens anti-chinois » de pousser leur pays à garder des relations diplomatiques avec Taïwan [1].",
+      "Le département d'État américain a répondu que Washington s'oppose à la « coercition » de la Chine contre des pays de l'hémisphère ; Taïwan parle de « répression transnationale » [1][2]."
+    ],
+    "why": [
+      "Paraguay et Belize font partie des 12 seuls pays qui reconnaissent encore officiellement Taïwan [1]. Pékin leur envoie un message : garder Taïwan a un prix, y compris pour leurs dirigeants.",
+      "C'est une façon de faire pression sans droits de douane ni armée, en visant des personnes. Elle s'ajoute à la rivalité entre Washington et Pékin pour influencer l'Amérique latine."
+    ],
+    "forMe": "Ce genre de bras de fer décide qui construit les ports, les routes et les réseaux 5G d'un pays. Plus la Chine et les États-Unis se disputent l'Amérique latine, plus les entreprises européennes doivent choisir leurs partenaires avec prudence.",
+    "figures": [
+      {
+        "value": "12",
+        "label": "pays seulement ont encore des relations diplomatiques officielles avec Taïwan, dont le Paraguay et le Belize",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « China sanctions Paraguay, Belize ministers over Taiwan ties » (12 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/12/china-sanctions-paraguay-belize-ministers-over-taiwan-ties"
+      },
+      {
+        "short": "US News",
+        "name": "US News, « US says it opposes Chinese \"coercion\" after Belize, Paraguay ministers sanctioned »",
+        "url": "https://www.usnews.com/news/world/articles/2026-10-12/us-says-it-opposes-chinese-coercion-after-belize-paraguay-ministers-sanctioned"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-ukraine-treve-energetique",
+    "date": "2026-10-14",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Kiev",
+        "label": "Ukraine",
+        "coords": [
+          30.52,
+          50.45
+        ]
+      }
+    ],
+    "title": "Trump annonce une « trêve de l'énergie » en Ukraine, mais les frappes continuent",
+    "summary": "Donald Trump dit qu'un cessez-le-feu sur l'énergie est en vigueur. Kiev affirme que la Russie a déjà frappé au moins six sites énergétiques depuis, et l'Europe doute.",
+    "points": [
+      "Dimanche 11 octobre, Trump a annoncé sur Truth Social un « cessez-le-feu énergétique » ; Volodymyr Zelensky dit que les forces russes ont frappé au moins six installations énergétiques ukrainiennes depuis, et Trump reconnaît des violations des deux côtés [1].",
+      "Le Kremlin dit que des discussions sont en cours, mais rejette la proposition de Zelensky d'une trêve de 60 jours pour organiser des élections [1][3].",
+      "L'annonce est venue deux jours après un assouplissement temporaire des sanctions américaines sur le diesel russe ; le chancelier allemand Friedrich Merz maintient les sanctions, et l'UE a ajouté 1 600 personnes et entités à sa liste [3]. Berlin et Kiev jugent la trêve trop étroite : elle devrait aussi protéger le réseau électrique ukrainien [2]."
+    ],
+    "why": [
+      "Les raffineries et les centrales sont devenues des cibles : les frapper fait monter les prix du carburant et plonge des villes dans le noir. Une trêve sur l'énergie serait donc utile à tout le monde, si elle tenait [1].",
+      "Mais elle montre aussi un désaccord entre Washington, qui assouplit des sanctions, et l'Europe, qui les durcit. Les deux camps ne parlent pas de la même chose : Trump vise surtout les raffineries, Kiev et Berlin veulent aussi protéger l'électricité [2][3]."
+    ],
+    "forMe": "Le diesel et le gaz que tu paies dépendent aussi de ce que la guerre fait aux raffineries. Une vraie trêve pourrait calmer les prix ; une trêve de façade, non.",
+    "figures": [
+      {
+        "value": "6",
+        "label": "installations énergétiques ukrainiennes frappées depuis l'annonce, selon Kiev",
+        "src": 1
+      },
+      {
+        "value": "1 600",
+        "label": "personnes et entités ajoutées à la liste de sanctions de l'UE",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Trump insists energy ceasefire holds as Ukraine reports new Russian strikes » (13 oct. 2026)",
+        "url": "https://www.aljazeera.com/economy/2026/10/13/trump-insists-energy-ceasefire-holds-as-ukraine-reports-new-russian-strikes"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Germany and Ukraine See Trump's Refinery Energy Truce As Too Narrow » (13 oct. 2026)",
+        "url": "https://www.bloomberg.com/news/newsletters/2026-10-13/germany-and-ukraine-see-trump-s-refinery-energy-truce-as-too-narrow"
+      },
+      {
+        "short": "Euronews",
+        "name": "Euronews, « No respite for Ukraine despite Trump's energy truce announcement » (13 oct. 2026)",
+        "url": "https://www.euronews.com/2026/10/13/no-respite-for-ukraine-despite-trumps-energy-truce-announcement"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-wang-yi-bakou-balkans",
+    "date": "2026-10-14",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Bakou",
+        "label": "Azerbaïdjan",
+        "coords": [
+          49.87,
+          40.41
+        ]
+      },
+      {
+        "name": "Podgorica",
+        "label": "Monténégro",
+        "coords": [
+          19.26,
+          42.44
+        ]
+      }
+    ],
+    "title": "Le grand diplomate chinois part pour Bakou puis les Balkans, jusqu'au Monténégro",
+    "summary": "Wang Yi assiste au sommet de la CICA à Bakou, puis visite la Croatie, le Monténégro et la Bulgarie du 14 au 20 octobre. Pékin cherche des appuis sur la route de l'Europe.",
+    "points": [
+      "Le ministère chinois des Affaires étrangères a annoncé le 12 octobre que Wang Yi représentera Xi Jinping au 7e sommet de la CICA à Bakou, le 15 octobre, dans un voyage qui court du 14 au 20 octobre [1][2].",
+      "Il visitera aussi la Croatie, le Monténégro et la Bulgarie ; c'est sa première visite officielle en Azerbaïdjan depuis sept ans [2].",
+      "Selon le South China Morning Post, ce serait la première visite d'un chef de la diplomatie chinoise au Monténégro depuis l'indépendance du pays il y a vingt ans, une information que je n'ai pas pu recouper [3]. La porte-parole chinoise cite l'autoroute Nord-Sud du Monténégro comme projet phare commun [1]."
+    ],
+    "why": [
+      "La CICA réunit 28 pays d'Asie, dont la Chine, l'Inde, l'Iran, la Russie et la Turquie [2]. Bakou, sur la route entre la Chine et l'Europe, est un lieu clé pour Pékin.",
+      "Les Balkans sont à l'entrée de l'Union européenne. Y envoyer son ministre, c'est montrer qu'on peut financer des routes et des chantiers là où l'UE hésite, ce qui inquiète certains Européens."
+    ],
+    "forMe": "Les routes, les ports et les voies ferrées que la Chine finance autour de l'Europe décident par où passeront demain les marchandises que tu achètes en ligne.",
+    "figures": [
+      {
+        "value": "28",
+        "label": "pays membres de la CICA, dont la Chine, l'Inde, l'Iran, la Russie et la Turquie",
+        "src": 2
+      },
+      {
+        "value": "7 ans",
+        "label": "depuis la dernière visite officielle de Wang Yi en Azerbaïdjan",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Ambassade de Chine",
+        "name": "Ambassade de Chine, « Wang Yi to Attend CICA Summit... and Visit Azerbaijan, Croatia, Montenegro and Bulgaria » (12 oct. 2026)",
+        "url": "https://ki.china-embassy.gov.cn/eng/zgywx/202610/t20261012_12038574.htm"
+      },
+      {
+        "short": "Anadolu",
+        "name": "Anadolu, « China's top diplomat to visit Azerbaijan, Croatia, Montenegro, Bulgaria, attend CICA summit in Baku »",
+        "url": "https://aa.com.tr/en/asia-pacific/china-s-top-diplomat-to-visit-azerbaijan-croatia-montenegro-bulgaria-attend-cica-summit-in-baku/4086246"
+      },
+      {
+        "short": "SCMP via ua.news",
+        "name": "South China Morning Post (relayé par ua.news), « Wang Yi to visit Azerbaijan and three Balkan countries »",
+        "url": "https://ua.news/en/world/van-yi-vidvidaie-azerbaidzhan-i-tri-balkanski-krayini-south-china-morning-post"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-gazoduc-asie-centrale-explosion",
+    "date": "2026-10-14",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Volchkovo, région de Penza",
+        "label": "Russie",
+        "coords": [
+          45,
+          53.2
+        ]
+      }
+    ],
+    "title": "Une explosion touche le gazoduc qui relie l'Asie centrale à la Russie, avec des flammes de 70 mètres",
+    "summary": "Le gazoduc « Asie centrale–Centre » a explosé mardi dans la région de Penza, en Russie. Il a été fermé ; la cause est inconnue et l'information n'est pas vérifiée de façon indépendante.",
+    "points": [
+      "Une explosion a touché mardi 13 octobre le gazoduc « Asie centrale–Centre » près du village de Volchkovo, dans la région de Penza ; les flammes ont atteint environ 70 mètres et la conduite a été coupée [1][2].",
+      "D'après les premières informations, il n'y a ni mort ni blessé ; la cause est inconnue et aucun délai de reprise n'est annoncé [1][2].",
+      "Le réseau relie le Turkménistan, l'Ouzbékistan et le Kazakhstan à la Russie ; depuis octobre 2023, une partie sert à acheminer du gaz russe vers l'Ouzbékistan via le Kazakhstan [1]. L'alerte initiale vient de la filiale de Gazprom Transgaz Saratov, citée par Kommersant ; elle n'est pas vérifiée de façon indépendante [1][3]."
+    ],
+    "why": [
+      "Ce gazoduc est un fil qui relie trois pays d'Asie centrale à la Russie. Si la conduite reste fermée, le gaz qui y circule doit être remplacé ou réduit [1].",
+      "Reste la question de la cause : accident, sabotage ou autre. Les sources que j'ai pu consulter ne la donnent pas, et il vaut mieux attendre les enquêtes avant de conclure [1][3]."
+    ],
+    "forMe": "Le gaz passe par de longs tuyaux que la guerre et les tensions rendent fragiles. Chaque incident sur ces conduites rappelle que l'énergie dépend de routes que personne ne contrôle entièrement.",
+    "figures": [
+      {
+        "value": "70 m",
+        "label": "hauteur des flammes après l'explosion près de Volchkovo",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Caspian Post",
+        "name": "Caspian Post, « Explosion Hits Central Asia–Center Gas Pipeline in Russia's Penza »",
+        "url": "https://caspianpost.com/central-asia/explosion-hits-central-asia-center-gas-pipeline-in-russia-s-penza"
+      },
+      {
+        "short": "1news.az",
+        "name": "1news.az, « Explosion hits the Central Asia–Center gas pipeline in Russia » (13 oct. 2026)",
+        "url": "https://1news.az/en/news/20261013162505730-Explosion-hits-the-Central-Asia-Center-gas-pipeline-in-Russia"
+      },
+      {
+        "short": "EADaily",
+        "name": "EADaily, « Mash: Explosion on a gas pipeline from Russia to Kazakhstan and Uzbekistan » (13 oct. 2026)",
+        "url": "https://eadaily.com/en/news/2026/10/13/mash-explosion-on-a-gas-pipeline-from-russia-to-kazakhstan-and-uzbekistan"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-liban-mission-ue-armee",
+    "date": "2026-10-14",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Beyrouth",
+        "label": "Liban",
+        "coords": [
+          35.5,
+          33.89
+        ]
+      }
+    ],
+    "title": "L'Union européenne va former l'armée libanaise, alors que les casques bleus préparent leur départ",
+    "summary": "Lundi, les ministres européens des Affaires étrangères ont créé une mission de trois ans pour conseiller et entraîner l'armée et les forces de sécurité du Liban.",
+    "points": [
+      "Le lundi 12 octobre, les ministres des Affaires étrangères de l'UE ont créé une mission d'appui au Liban, avec un premier mandat de trois ans, à la fois civile et militaire [1][2].",
+      "Le volet militaire conseillera et formera l'armée libanaise sur la sécurité des frontières et de la mer ; le volet civil formera les forces de sécurité intérieure, notamment contre la cybercriminalité et la contrebande [1][2].",
+      "Selon Kaja Kallas, plus de dix États membres sont prêts à y contribuer ; la mission ne remplace pas la force de l'ONU, la FINUL, dont le mandat s'achève en décembre [1][2]."
+    ],
+    "why": [
+      "Quand les casques bleus partiront, quelqu'un devra aider l'armée libanaise à tenir le sud du pays. L'UE veut y avoir sa place plutôt que de laisser le vide [1].",
+      "Le calendrier reste flou : il faut encore de la planification, et les sources ne s'accordent pas sur la date de début. Le nombre de soldats et de pays n'est pas fixé [1][2]."
+    ],
+    "forMe": "Un Liban qui tient son territoire coûte moins cher en réfugiés et en crises à l'Europe voisine. C'est le calcul derrière cet envoi.",
+    "figures": [
+      {
+        "value": "3 ans",
+        "label": "durée du premier mandat de la mission européenne",
+        "src": 2
+      },
+      {
+        "value": "> 10",
+        "label": "États de l'UE prêts à y contribuer, selon Kaja Kallas",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Euronews",
+        "name": "Euronews, « EU agrees new security mission in Lebanon as UN peacekeepers prepare to leave » (12 oct. 2026)",
+        "url": "https://www.euronews.com/2026/10/12/eu-agrees-new-security-mission-in-lebanon-as-un-peacekeepers-prepare-to-leave"
+      },
+      {
+        "short": "Asharq Al-Awsat",
+        "name": "Asharq Al-Awsat, « EU Establishes New Lebanon Support Mission »",
+        "url": "https://english.aawsat.com/arab-world/5328942-eu-establishes-new-lebanon-support-mission"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-14-ormuz-navires-touches",
+    "date": "2026-10-14",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Détroit d'Ormuz",
+        "label": "Ormuz",
+        "coords": [
+          56.5,
+          26.5
+        ]
+      }
+    ],
+    "title": "Ormuz : un porte-conteneurs et un pétrolier touchés par des projectiles, pendant que Washington escorte le pétrole",
+    "summary": "Deux navires ont été touchés mardi dans le détroit, sans que l'auteur soit connu. Les États-Unis disent avoir aidé à faire passer plus de 19 millions de barils la veille.",
+    "points": [
+      "L'agence britannique de sécurité maritime UKMTO a signalé mardi 13 octobre qu'un porte-conteneurs avait été touché par un projectile inconnu dans le détroit d'Ormuz ; une autre alerte faisait état d'un pétrolier touché [1][2].",
+      "Le commandement américain CENTCOM affirme avoir aidé ses partenaires du Golfe à faire passer plus de 19 millions de barils de brut lundi 12 octobre, et rejette la prétention des Gardiens de la révolution iraniens de contrôler le détroit [3].",
+      "Selon l'Iran, la réponse américaine à sa proposition pour rouvrir le détroit est « insuffisante » ; Washington veut parler du nucléaire dès le début, Téhéran veut d'abord rouvrir Ormuz [4]."
+    ],
+    "why": [
+      "Le détroit d'Ormuz est la porte de sortie du pétrole du Golfe. Tant que des navires y sont touchés, les assureurs et les armateurs hésitent, et les prix de l'énergie restent tendus.",
+      "Le chiffre de 19 millions de barils vient de l'armée américaine elle-même et n'est pas vérifié de façon indépendante [3]. L'auteur des tirs sur les navires n'est pas identifié dans les sources consultées [1][2]."
+    ],
+    "forMe": "Quand le pétrole peine à sortir du Golfe, ça se voit à la pompe et sur les prix de l'électricité en Europe, comme ces derniers mois.",
+    "figures": [
+      {
+        "value": "19 millions",
+        "label": "de barils escortés lundi par les États-Unis, selon CENTCOM (non vérifié)",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Deccan Herald",
+        "name": "Deccan Herald, « Container ship hit by projectile within Hormuz strait, UKMTO says »",
+        "url": "https://www.deccanherald.com/world/middle-east/container-ship-hit-by-projectile-within-hormuz-strait-ukmto-says-4181778"
+      },
+      {
+        "short": "MarineLink",
+        "name": "MarineLink, « Tanker Hit by Projectile in Strait of Hormuz, UKMTO Reports »",
+        "url": "https://www.marinelink.com/news/tanker-hit-projectile-strait-hormuz-ukmto-543118"
+      },
+      {
+        "short": "Jerusalem Post",
+        "name": "Jerusalem Post, « Live updates » (13 oct. 2026)",
+        "url": "https://jpost.com/middle-east/iran-news/2026-10-13/live-updates-911493"
+      },
+      {
+        "short": "Iran International",
+        "name": "Iran International, « Iran says US response on reopening Hormuz insufficient » (direct)",
+        "url": "https://www.iranintl.com/en/liveblog/202610105959"
+      }
+    ]
+  },
+  {
     "id": "2026-10-13-cuba-solaire-blocus",
     "date": "2026-10-13",
     "region": "Amériques",
@@ -5959,65 +6425,6 @@ window.GEOCO.news = [
         "short": "The Rio Times",
         "name": "Panama Canal Caps Daily Transits as El Niño Threatens Its 2026 Recovery (septembre 2026)",
         "url": "https://www.riotimesonline.com/panama-canal-economy-2026/"
-      }
-    ]
-  },
-  {
-    "id": "2026-09-29-maroc-cheffe-gouvernement",
-    "date": "2026-09-29",
-    "region": "Afrique",
-    "theme": "geo",
-    "title": "Maroc : Fatima Ezzahra El Mansouri, première femme à la tête du gouvernement",
-    "summary": "Après la victoire de son parti aux législatives du 23 septembre, l'ancienne maire de Marrakech a été nommée cheffe du gouvernement par le roi Mohammed VI. Elle doit maintenant bâtir une coalition.",
-    "geo": [
-      {
-        "name": "Rabat, Maroc",
-        "label": "Maroc",
-        "coords": [
-          -6.84,
-          34.02
-        ]
-      }
-    ],
-    "points": [
-      "Le roi Mohammed VI a nommé le 29 septembre 2026 Fatima Ezzahra El Mansouri, du Parti authenticité et modernité (PAM), cheffe du gouvernement [1].",
-      "Le PAM est arrivé en tête des législatives du 23 septembre avec 97 sièges sur 395, sans majorité absolue [2].",
-      "Avocate de formation, elle a été élue maire de Marrakech à 33 ans en 2009 et était ministre de l'Habitat du gouvernement sortant d'Aziz Akhannouch [3].",
-      "Pour obtenir la confiance du Parlement, il lui faut une majorité de 198 sièges [2]."
-    ],
-    "why": [
-      "La Constitution marocaine impose au roi de choisir le chef du gouvernement dans le parti arrivé premier aux législatives [2]. Le PAM, deuxième force de la coalition sortante, a pris la première place après l'effondrement du parti d'Akhannouch [2].",
-      "La nomination est historique : c'est la première femme à occuper ce poste au Maroc [1]. Mais la campagne a aussi été marquée par des accusations de corruption visant le PAM, dont un scandale de trafic de drogue ayant conduit plusieurs cadres en prison [2]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Maroc est l'un des premiers partenaires de la France en Afrique, pour le commerce, le tourisme et l'immigration. La composition du futur gouvernement comptera pour les entreprises françaises installées là-bas et pour les grands chantiers liés à la Coupe du monde 2030.",
-    "figures": [
-      {
-        "value": "97 / 395",
-        "label": "Sièges du PAM à la Chambre des représentants",
-        "src": 2
-      },
-      {
-        "value": "198",
-        "label": "Sièges nécessaires pour une majorité",
-        "src": 2
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Médias24",
-        "name": "Officiel. Fatima Ezzahra El Mansouri nommée cheffe du gouvernement (29 septembre 2026)",
-        "url": "https://medias24.com/2026/09/29/officiel-fatima-ezzahra-el-mansouri-nommee-cheffe-du-gouvernement-1767711/"
-      },
-      {
-        "short": "Wikipedia",
-        "name": "2026 Moroccan general election (consulté le 8 octobre 2026)",
-        "url": "https://en.wikipedia.org/wiki/2026_Moroccan_general_election"
-      },
-      {
-        "short": "France 24",
-        "name": "Maroc : Fatima Ezzahra El Mansouri, de la mairie de Marrakech à la tête du gouvernement (30 septembre 2026)",
-        "url": "https://www.france24.com/fr/afrique/20260930-maroc-fatima-ezzahra-el-mansouri-mairie-marrakech-d%C3%A9put%C3%A9e-cheffe-gouvernement-avocate-formation"
       }
     ]
   }

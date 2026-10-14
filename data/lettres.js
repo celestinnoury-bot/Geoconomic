@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-14",
+    "file": "lettres/2026-10-14.pdf",
+    "titles": [
+      "Diamants : le Botswana s'apprête à peser plus lourd dans De Beers, le géant que son propriétaire veut vendre",
+      "Séoul : la Bourse s'effondre de plus de 5 % en une séance, à cause d'un fabricant chinois de mémoires",
+      "Pékin sanctionne deux ministres d'Amérique latine parce que leurs pays gardent Taïwan comme allié"
+    ],
+    "fileDark": "lettres/2026-10-14-sombre.pdf"
+  },
+  {
     "date": "2026-10-13",
     "file": "lettres/2026-10-13.pdf",
     "titles": [
