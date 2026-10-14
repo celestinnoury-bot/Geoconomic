@@ -18,7 +18,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - `index.html` charge `i18n.js`, les données `data/*.js` (`window.GEOCO.*`), puis `viz.js`, `globe.js`, `app.js` (routeur par `#/…`).
 - `globe.js` : globe.gl. Accueil (`mount`, repères d'actus, vue sur la région du lecteur) et choroplèthes (`mountIndicators` ;
   le toucher choisit le pays sous le doigt via `toGlobeCoords`, pas le « survol » de globe.gl).
-- Pages : accueil (globe + bandeau défilant qu'on peut faire glisser), Actu, Focus (voiture 3D), Conflits (3 couches), Cours,
+- Pages : accueil (globe + bandeau défilant qu'on peut faire glisser), Actu, Focus (Toyota Supra GT300 en 3D de vecarz, CC BY 4.0 : `assets/models/supra-gt300.json`, converti de l'USDZ avec usd-core puis gltf-transform weld/simplify/quantize), Conflits (3 couches), Cours,
   Articles, Chiffres, Recherche (`#/recherche`), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
 - Liens directs : `#/chiffres/<indicateur>/<pays ISO num>`, `#/conflits/<couche>/<pays>`.
 
@@ -58,4 +58,3 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
 - Adresse e-mail pro pour le formulaire d'idées (`data/auteur.js`, `contact` vide).
 - Hébergement public, prestataire de paiement, statut micro-entreprise.
-- Supra MK5 en 3D (plus tard, fichiers sur son Drive).

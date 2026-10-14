@@ -2,8 +2,9 @@
 // Le plus récent en premier. Même système de sources que les actus : [n] renvoie à `sources`.
 //
 // `model` : modèle 3D (glTF) et crédit obligatoire.
-// `hotspots` : points cliquables sur l'objet 3D. `part` = nom de la pièce dans le modèle,
-//              `offset` = décalage [x, y, z] (en demi-longueurs de voiture), `links` = actus ou cours liés.
+// `hotspots` : points cliquables sur l'objet 3D. `at` = position [largeur, hauteur, longueur] en fractions
+//              de la voiture (0 à 1 ; longueur 1 = l'avant), ou `part` = nom d'une pièce du modèle
+//              (+ `offset` éventuel, en demi-longueurs de voiture). `links` = actus ou cours liés.
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.focus = [
@@ -14,11 +15,10 @@ window.GEOCO.focus = [
     title: "La voiture électrique, nouvelle bataille mondiale.",
     hook: "Une voiture, c'est des métaux d'Afrique et d'Asie, des puces de Taïwan, des batteries chinoises et des millions d'emplois en Europe. Fais-la tourner, touche ses pièces : chacune raconte un morceau de géopolitique.",
     model: {
-      src: "assets/models/car-concept.json",
-      poster: "assets/models/car-poster.webp",
-      credit: "Modèle 3D « Car Concept » d'Eric Chadwick (Darmstadt Graphics Group), d'après un modèle de Unity Fan, licence CC BY 4.0, Khronos glTF Sample Assets."
+      src: "assets/models/supra-gt300.json",
+      poster: "assets/models/supra-poster.webp",
+      credit: "Modèle 3D « Toyota GR Supra GT300 » de vecarz (Sketchfab), licence CC BY 4.0. Allégé pour le web."
     },
-    paints: [["rouge", "Rouge"], ["nacre", "Nacré"], ["graphite", "Graphite"]],
     // « L'enjeu de la semaine » : l'angle d'actualité du focus, à renouveler chaque semaine.
     weekly: {
       label: "L'enjeu de la semaine",
@@ -43,31 +43,31 @@ window.GEOCO.focus = [
     },
     hotspots: [
       {
-        id: "batterie", label: "Batterie", part: "InteriorFloor", offset: [0, -0.05, 0],
+        id: "batterie", label: "Batterie", at: [0.5, 0.18, 0.5],
         title: "La batterie, le cœur (et le coût) de l'électrique",
         text: "C'est la pièce la plus chère d'une voiture électrique. Elle contient du lithium, du nickel, du cobalt et du graphite. En 2025, les fabricants chinois ont fourni environ 70 % des batteries installées dans les véhicules électriques du monde, avec en tête CATL (39 %) et BYD (16 %) [5].",
         links: [["actu", "2026-10-07-rdc-cobalt", "Le cobalt de RD Congo"], ["actu", "2026-10-07-indonesie-nickel", "Le nickel d'Indonésie"]]
       },
       {
-        id: "moteur", label: "Moteur", part: "Engine",
+        id: "moteur", label: "Moteur", at: [0.5, 0.5, 0.8],
         title: "Le moteur électrique et ses aimants",
         text: "La plupart des moteurs électriques utilisent des aimants très puissants, fabriqués avec des terres rares comme le néodyme. La Chine domine leur raffinage : c'est l'un de ses principaux moyens de pression sur les constructeurs du monde entier.",
         links: [["actu", "2026-10-07-chine-terres-rares", "Terres rares : l'échéance du 10 novembre"]]
       },
       {
-        id: "puces", label: "Puces", part: "InteriorDashMid", offset: [0, 0.16, 0],
+        id: "puces", label: "Puces", at: [0.32, 0.6, 0.57],
         title: "Une voiture, c'est un ordinateur sur roues",
         text: "Écran, aide à la conduite, gestion de la batterie : une voiture moderne contient des centaines de puces. En 2021, la pénurie de semi-conducteurs a arrêté des usines automobiles dans le monde entier.",
         links: [["cours", "semi-conducteurs", "Cours : pourquoi Taïwan est au cœur du monde"]]
       },
       {
-        id: "carrosserie", label: "Carrosserie", part: "BodyRoofPanel", offset: [0, 0.06, 0],
+        id: "carrosserie", label: "Carrosserie", at: [0.5, 0.86, 0.42],
         title: "Acier et aluminium",
         text: "La carrosserie et le châssis sont surtout faits d'acier et d'aluminium. L'acier vient du minerai de fer, dont de nouveaux géants apparaissent, comme le gisement de Simandou en Guinée. Ces métaux sont aussi visés par les droits de douane américains.",
         links: [["actu", "2026-10-07-guinee-simandou", "Simandou, la montagne de fer"], ["cours", "droits-de-douane", "Cours : les droits de douane"]]
       },
       {
-        id: "pneus", label: "Pneus", part: "WheelRear",
+        id: "pneus", label: "Pneus", at: [0.98, 0.24, 0.24],
         title: "Le caoutchouc naturel",
         text: "Les pneus contiennent beaucoup de caoutchouc naturel, issu de l'hévéa, un arbre cultivé surtout en Asie du Sud-Est. La Thaïlande en est le premier producteur mondial. Une sécheresse ou une maladie des plantations là-bas peut se retrouver dans le prix de tes pneus.",
         links: []

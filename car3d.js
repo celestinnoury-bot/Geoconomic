@@ -1,5 +1,5 @@
 // Voiture 3D du Focus « Automobile » : three.js, chargé seulement sur cette page.
-// Modèle « Car Concept » (Khronos glTF Sample Assets, CC BY 4.0), allégé et quantifié
+// Modèle choisi dans data/focus.js (glTF), allégé et quantifié
 // (sans compression meshopt : pas de WebAssembly, pour s'afficher partout).
 import * as THREE from "./assets/vendor/three/three.module.min.js";
 import { GLTFLoader } from "./assets/vendor/three/GLTFLoader.js";
@@ -108,7 +108,8 @@ export async function mountCar(container, { src, hotspots = [], onHotspot } = {}
   const spots = hotspots.map((h) => {
     const mesh = h.part && [...meshesByName.values()].find((m) => m.name === h.part || m.name.startsWith(h.part));
     const pos = new THREE.Vector3();
-    if (mesh) new THREE.Box3().setFromObject(mesh).getCenter(pos);
+    if (h.at) pos.set(...h.at).multiply(finalSize).add(finalBox.min);
+    else if (mesh) new THREE.Box3().setFromObject(mesh).getCenter(pos);
     if (h.offset) pos.add(new THREE.Vector3(...h.offset).multiplyScalar(finalSize.x / 2));
     const el = document.createElement("button");
     el.className = "car-spot";
