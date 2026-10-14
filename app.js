@@ -1282,6 +1282,7 @@
         <div class="focus-head wrap">
           <p class="eyebrow">Focus industrie · ${f.week}</p>
           <h1 class="title">${f.industry}.<br><span class="grad eco">${f.title}</span></h1>
+          <a class="enjeux-pill" href="#/enjeux"><span aria-hidden="true">🗂</span> Archives : les enjeux des semaines passées ›</a>
         </div>
         <div class="car-stage" id="car-stage">
           ${f.model.poster ? `<img class="car-poster" id="car-poster" src="${f.model.poster}" alt="${f.industry} : la voiture du Focus">` : ""}

@@ -561,6 +561,12 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .focus-hero { padding-top: 40px; background: radial-gradient(80% 60% at 50% 60%, #2a1712 0%, #000 72%); }
 .focus-head { padding-top: 24px; }
 .focus-head .title { margin-bottom: 0; }
+.enjeux-pill {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; padding: 8px 14px; border-radius: 999px;
+  font-size: 14px; font-weight: 600; color: #e9fbff; text-decoration: none;
+  background: rgba(6,18,24,.6); border: 1px solid rgba(91,231,255,.4); box-shadow: 0 0 12px rgba(91,231,255,.12);
+}
+.enjeux-pill:hover { border-color: rgba(91,231,255,.8); }
 .car-stage {
   position: relative; width: 100%; height: min(62vh, 560px); min-height: 320px; overflow: hidden;
   cursor: grab; touch-action: pan-y;
