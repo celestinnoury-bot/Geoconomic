@@ -1,0 +1,610 @@
+<title>Géoconomic Nations</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+/* Layout : une console de chef d'État, un plateau isométrique au centre, le conseil (événements) à droite. Thème unique sombre, assorti à l'appli. */
+:root {
+  --night: #070b12;
+  --panel: #0f1622;
+  --panel-2: #172234;
+  --line: rgba(140, 190, 255, .16);
+  --ink: #eef3fa;
+  --dim: #8796ab;
+  --brass: #f5c86b;
+  --signal: #64d2ff;
+  --ok: #3ddc84;
+  --bad: #ff6b5e;
+  --rare: #64d2ff;
+  --epic: #c08cff;
+  --legend: #f5c86b;
+  --display: "Chakra Petch", "Avenir Next Condensed", system-ui, sans-serif;
+  --body: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--night); color: var(--ink); }
+body { font-family: var(--body); font-size: 15px; line-height: 1.5;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 0 48px;
+  background:
+    radial-gradient(60% 40% at 50% 0%, rgba(100,210,255,.10), transparent 70%),
+    linear-gradient(rgba(100,210,255,.035) 1px, transparent 1px) 0 0 / 40px 40px,
+    linear-gradient(90deg, rgba(100,210,255,.035) 1px, transparent 1px) 0 0 / 40px 40px,
+    var(--night); }
+.wrap { max-width: 1120px; margin: 0 auto; }
+h1, h2, h3 { font-family: var(--display); letter-spacing: .01em; text-wrap: balance; margin: 0; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+.mono { font-family: var(--mono); }
+.label { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+
+header.top { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px; padding-block: 28px 18px; }
+header.top h1 { font-size: clamp(30px, 5vw, 46px); line-height: 1; }
+header.top h1 span { color: var(--brass); }
+header.top p { margin: 8px 0 0; color: var(--dim); max-width: 560px; }
+.proto-tag { font-family: var(--mono); font-size: 11px; color: var(--brass); border: 1px solid rgba(245,200,107,.4); border-radius: 4px; padding: 4px 8px; }
+
+nav.tabs { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; border-bottom: 1px solid var(--line); margin-bottom: 22px; }
+nav.tabs button { flex: none; background: none; border: 0; border-bottom: 2px solid transparent; padding: 10px 14px; cursor: pointer; color: var(--dim); font-family: var(--display); font-weight: 600; font-size: 15px; }
+nav.tabs button[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--brass); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; border-radius: 10px; padding: 10px 16px; cursor: pointer; font-weight: 700; border: 1px solid var(--line); background: var(--panel-2); }
+.btn.primary { background: var(--brass); color: #1b1404; border-color: transparent; }
+.btn.signal { background: transparent; border-color: rgba(100,210,255,.5); color: var(--signal); }
+.btn:disabled { opacity: .45; cursor: default; }
+
+/* ----- Tirage du dirigeant ----- */
+.draw { display: grid; justify-items: center; gap: 18px; padding-block: 20px 10px; text-align: center; }
+.draw p { color: var(--dim); max-width: 520px; margin: 0; }
+.envelope { width: 210px; height: 290px; border-radius: 16px; border: 0; cursor: pointer; position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #1d2b44, #0a101b 60%), var(--panel); box-shadow: 0 20px 60px rgba(0,0,0,.6), inset 0 0 0 1px rgba(245,200,107,.35); }
+.envelope::before { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 35%, rgba(245,200,107,.25) 50%, transparent 65%); background-size: 250% 100%; animation: shine 2.4s linear infinite; }
+.envelope .seal { position: absolute; left: 50%; top: 50%; width: 74px; height: 74px; margin: -37px 0 0 -37px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-weight: 700; font-size: 28px; color: #1b1404; background: radial-gradient(circle at 35% 30%, #ffe2a0, var(--brass) 60%, #b98a2c); box-shadow: 0 0 30px rgba(245,200,107,.5); }
+.envelope small { position: absolute; bottom: 18px; left: 0; right: 0; font-family: var(--mono); font-size: 11px; color: var(--brass); letter-spacing: .1em; }
+.envelope.opening { animation: open .7s ease-in forwards; }
+@keyframes shine { from { background-position: 150% 0; } to { background-position: -100% 0; } }
+@keyframes open { 40% { transform: scale(1.06) rotate(-2deg); } to { transform: scale(1.3); opacity: 0; filter: brightness(2.5); } }
+
+.leader { width: min(300px, 100%); border-radius: 16px; padding: 16px; text-align: left; position: relative; overflow: hidden;
+  background: linear-gradient(170deg, var(--panel-2), var(--panel)); border: 1.5px solid var(--c, var(--line)); box-shadow: 0 0 40px color-mix(in srgb, var(--c, #000) 35%, transparent); animation: rise .6s cubic-bezier(.2,.9,.3,1.2) both; }
+.leader.r-rare { --c: var(--rare); } .leader.r-epique { --c: var(--epic); } .leader.r-legendaire { --c: var(--legend); }
+.leader .portrait { height: 120px; border-radius: 10px; display: grid; place-items: center; font-family: var(--display); font-size: 46px; font-weight: 700; color: var(--c); background: repeating-linear-gradient(135deg, rgba(255,255,255,.03) 0 6px, transparent 6px 12px), #0a111c; letter-spacing: .04em; }
+.leader h3 { font-size: 22px; margin-top: 12px; }
+.leader .meta { font-family: var(--mono); font-size: 11.5px; color: var(--dim); }
+.leader .rar { position: absolute; top: 24px; right: 24px; font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--c); background: rgba(0,0,0,.55); padding: 3px 7px; border-radius: 4px; }
+.leader .doctrine { margin-top: 10px; padding: 10px; border-radius: 10px; background: rgba(255,255,255,.04); font-size: 13.5px; }
+.leader .doctrine b { color: var(--c); display: block; font-size: 12px; font-family: var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+@keyframes rise { from { transform: translateY(30px) scale(.9); opacity: 0; } }
+.name-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; }
+.name-row input { background: var(--panel); border: 1px solid var(--line); color: var(--ink); border-radius: 10px; padding: 10px 12px; font: inherit; min-width: 0; width: 220px; }
+
+/* ----- Partie ----- */
+.hud { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; margin-bottom: 14px; }
+.res { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; min-width: 0; }
+.res .v { font-family: var(--display); font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.res .d { font-family: var(--mono); font-size: 11px; color: var(--dim); }
+.res.score .v { color: var(--brass); }
+.res .bump { color: var(--ok); } .res .drop { color: var(--bad); }
+@media (max-width: 640px) { .hud { grid-template-columns: repeat(3, minmax(0, 1fr)); } .res.score { grid-column: span 2; } }
+
+.game { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 860px) { .game { grid-template-columns: 1fr; } }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px; min-width: 0; }
+.panel h2 { font-size: 19px; }
+.panel-head { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; margin-bottom: 10px; }
+
+.board-wrap { height: 330px; display: grid; place-items: center; overflow: hidden; perspective: 1400px; border-radius: 12px; background: radial-gradient(60% 60% at 50% 50%, rgba(61,220,132,.07), transparent 70%); }
+.board { display: grid; grid-template-columns: repeat(5, 54px); grid-template-rows: repeat(5, 54px); gap: 4px; transform: rotateX(56deg) rotateZ(45deg); transform-style: preserve-3d; }
+.tile { position: relative; transform-style: preserve-3d; border: 0; border-radius: 6px; cursor: pointer; background: #24432f; box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 6px 0 #142619; transition: transform .15s; }
+.tile:nth-child(odd) { background: #284a33; }
+.tile:hover, .tile.sel { transform: translateZ(6px); box-shadow: inset 0 0 0 2px var(--brass), 0 6px 0 #142619; }
+.tile .b { position: absolute; left: 50%; top: 50%; font-size: 30px; line-height: 1; transform: translate(-50%, -78%) rotateZ(-45deg) rotateX(-56deg); filter: drop-shadow(0 4px 2px rgba(0,0,0,.5)); pointer-events: none; }
+.tile .lvl { position: absolute; right: 2px; bottom: 2px; font-family: var(--mono); font-size: 9px; color: var(--brass); }
+.tile.new .b { animation: pop .5s cubic-bezier(.2,1.6,.4,1); }
+@keyframes pop { from { transform: translate(-50%, -78%) rotateZ(-45deg) rotateX(-56deg) scale(0); } }
+@media (max-width: 420px) { .board { grid-template-columns: repeat(5, 44px); grid-template-rows: repeat(5, 44px); } .tile .b { font-size: 24px; } .board-wrap { height: 280px; } }
+
+.shop { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; margin-top: 12px; }
+.item { text-align: left; border-radius: 12px; padding: 10px; cursor: pointer; background: var(--panel-2); border: 1px solid var(--line); min-width: 0; }
+.item[aria-pressed="true"] { border-color: var(--brass); box-shadow: 0 0 0 1px var(--brass); }
+.item:disabled { opacity: .45; cursor: default; }
+.item .top { display: flex; justify-content: space-between; gap: 6px; font-weight: 700; }
+.item .cost { font-family: var(--mono); font-size: 11px; color: var(--brass); white-space: nowrap; }
+.item .eff { font-size: 12px; color: var(--dim); margin-top: 2px; }
+.item .lock { font-size: 11.5px; color: var(--signal); margin-top: 4px; font-family: var(--mono); }
+.hint { font-size: 13px; color: var(--dim); margin: 10px 0 0; }
+
+.year { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 14px; }
+.event { border-radius: 14px; padding: 14px; background: linear-gradient(180deg, rgba(255,107,94,.10), transparent), var(--panel-2); border: 1px solid rgba(255,107,94,.35); }
+.event .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: .1em; color: var(--bad); text-transform: uppercase; }
+.event h3 { font-size: 20px; margin: 4px 0 6px; }
+.event p { margin: 0 0 10px; color: #c9d3e1; }
+.choices { display: grid; gap: 8px; }
+.choice { text-align: left; border-radius: 10px; padding: 10px 12px; cursor: pointer; background: var(--panel); border: 1px solid var(--line); }
+.choice:hover:not(:disabled) { border-color: var(--signal); }
+.choice.right { border-color: var(--ok); background: rgba(61,220,132,.10); }
+.choice.wrong { border-color: var(--bad); background: rgba(255,107,94,.10); }
+.explain { margin-top: 10px; padding: 10px 12px; border-radius: 10px; background: rgba(100,210,255,.07); border-left: 2px solid var(--signal); font-size: 14px; }
+.calm { color: var(--dim); font-size: 14px; }
+
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 8px; margin-top: 10px; }
+.kcard { border-radius: 10px; padding: 9px; background: #0a111c; border: 1px solid var(--c, var(--line)); min-width: 0; }
+.kcard.r-rare { --c: var(--rare); } .kcard.r-epique { --c: var(--epic); } .kcard.r-legendaire { --c: var(--legend); }
+.kcard .t { font-weight: 700; font-size: 13.5px; line-height: 1.2; }
+.kcard .e { font-size: 11.5px; color: var(--dim); margin-top: 3px; }
+.kcard .r { font-family: var(--mono); font-size: 9.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--c, var(--dim)); }
+.kcard.off { opacity: .35; border-style: dashed; }
+.kcard.fresh { animation: rise .5s cubic-bezier(.2,.9,.3,1.2); box-shadow: 0 0 24px color-mix(in srgb, var(--c, #fff) 45%, transparent); }
+.log { font-family: var(--mono); font-size: 12px; color: var(--dim); max-height: 140px; overflow-y: auto; margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 3px; }
+.log b { color: var(--ink); font-weight: 600; }
+
+/* ----- Sommet ----- */
+.summit { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 860px) { .summit { grid-template-columns: 1fr; } }
+.rank { list-style: none; margin: 10px 0 0; padding: 0; display: grid; gap: 6px; counter-reset: r; }
+.rank li { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px 12px; border-radius: 10px; background: var(--panel-2); counter-increment: r; }
+.rank li::before { content: counter(r); font-family: var(--display); font-weight: 700; font-size: 18px; color: var(--dim); }
+.rank li:nth-child(1)::before { color: var(--legend); }
+.rank li.me { box-shadow: inset 0 0 0 1px var(--brass); }
+.rank .n { font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .s { font-size: 12px; color: var(--dim); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rank .sc { font-family: var(--display); font-weight: 700; color: var(--brass); font-variant-numeric: tabular-nums; }
+.bars { display: grid; gap: 8px; margin-top: 10px; }
+.bar { position: relative; border-radius: 10px; overflow: hidden; background: var(--panel-2); padding: 10px 12px; }
+.bar span.fill { position: absolute; inset: 0 auto 0 0; background: rgba(100,210,255,.16); transition: width .6s; }
+.bar.right span.fill { background: rgba(61,220,132,.18); }
+.bar div { position: relative; display: flex; justify-content: space-between; gap: 10px; }
+.bar b { font-family: var(--mono); }
+.empty { color: var(--dim); font-size: 14px; padding: 12px; border: 1px dashed var(--line); border-radius: 10px; }
+
+/* ----- Idées ----- */
+.opinion { display: grid; gap: 10px; max-width: 760px; margin-bottom: 26px; }
+.opinion p { margin: 0; color: #c9d3e1; }
+.ideas { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+.idea { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.idea h3 { font-size: 19px; }
+.idea p { margin: 0; color: var(--dim); font-size: 14px; }
+.phone { border-radius: 22px; border: 1px solid rgba(255,255,255,.14); background: #05080d; padding: 14px 12px; display: grid; gap: 8px; min-height: 250px; }
+.phone .bar-top { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 10px; color: var(--dim); }
+.mock-row { border-radius: 10px; background: var(--panel-2); padding: 9px 10px; font-size: 13px; }
+.mock-row.hl { border: 1px solid var(--brass); }
+.mock-row small { display: block; color: var(--dim); font-size: 11px; }
+.mock-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.mock-grid span { aspect-ratio: 1; border-radius: 8px; background: #24432f; display: grid; place-items: center; font-size: 20px; }
+.pill { display: inline-block; font-family: var(--mono); font-size: 10.5px; padding: 2px 7px; border-radius: 99px; border: 1px solid var(--line); color: var(--dim); }
+.note { font-size: 12.5px; color: var(--dim); margin-top: 22px; }
+
+.toast { position: fixed; left: 50%; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); transform: translate(-50%, 20px); opacity: 0; transition: all .3s; background: var(--panel-2); border: 1px solid var(--brass); border-radius: 12px; padding: 10px 14px; font-weight: 600; z-index: 10; max-width: calc(100% - 32px); }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Géoconomic <span>Nations</span></h1>
+      <p>Tire un dirigeant du passé, construis ton pays, affronte les aléas de l'économie. Ici, on ne gagne pas par la force : on gagne en comprenant.</p>
+    </div>
+    <span class="proto-tag">PROTOTYPE · v0.1</span>
+  </header>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-jeu" aria-selected="true" data-tab="jeu">Mon pays</button>
+    <button role="tab" id="tab-sommet" aria-selected="false" data-tab="sommet">Le Sommet · multijoueur</button>
+    <button role="tab" id="tab-idees" aria-selected="false" data-tab="idees">Mon avis et d'autres idées</button>
+  </nav>
+
+  <section id="view-jeu"></section>
+  <section id="view-sommet" hidden></section>
+  <section id="view-idees" hidden></section>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+  // ---------------- Données du prototype ----------------
+  // Les effets des dirigeants sont des simplifications de jeu, pas des jugements sur leur action.
+  const LEADERS = [
+    { id: "roosevelt", name: "Franklin D. Roosevelt", country: "États-Unis", years: "1933-1945", r: "legendaire", init: "FDR",
+      doctrine: "New Deal", text: "Grands travaux pour sortir de la Grande Dépression.", effect: "Bâtiments 25 % moins chers.", fx: { costMul: 0.75 } },
+    { id: "deng", name: "Deng Xiaoping", country: "Chine", years: "1978-1992", r: "legendaire", init: "DXP",
+      doctrine: "Réforme et ouverture", text: "Zones économiques spéciales ouvertes aux investisseurs étrangers.", effect: "Ports et usines rapportent 40 % de plus.", fx: { tradeMul: 1.4 } },
+    { id: "lky", name: "Lee Kuan Yew", country: "Singapour", years: "1959-1990", r: "epique", init: "LKY",
+      doctrine: "Port et compétences", text: "Une petite île devenue plaque tournante du commerce.", effect: "Port +50 %, écoles +1 savoir.", fx: { portMul: 1.5, schoolBonus: 1 } },
+    { id: "degaulle", name: "Charles de Gaulle", country: "France", years: "1959-1969", r: "epique", init: "CDG",
+      doctrine: "Indépendance énergétique", text: "Programme nucléaire civil et grands projets industriels.", effect: "Chocs pétroliers deux fois moins graves.", fx: { oilShield: 0.5 } },
+    { id: "ataturk", name: "Mustafa Kemal Atatürk", country: "Turquie", years: "1923-1938", r: "epique", init: "MKA",
+      doctrine: "Modernisation", text: "Réforme de l'alphabet et de l'école.", effect: "Écoles +2 savoir.", fx: { schoolBonus: 2 } },
+    { id: "adenauer", name: "Konrad Adenauer", country: "Allemagne de l'Ouest", years: "1949-1963", r: "rare", init: "KA",
+      doctrine: "Reconstruction", text: "Économie sociale de marché et « miracle économique ».", effect: "Usines +25 %.", fx: { factoryMul: 1.25 } },
+    { id: "nehru", name: "Jawaharlal Nehru", country: "Inde", years: "1947-1964", r: "rare", init: "JN",
+      doctrine: "Planification", text: "Plans quinquennaux et instituts de technologie.", effect: "Universités moins chères.", fx: { uniDiscount: 0.6 } },
+    { id: "nyerere", name: "Julius Nyerere", country: "Tanzanie", years: "1961-1985", r: "rare", init: "JKN",
+      doctrine: "Unité nationale", text: "Une langue commune, le swahili, pour unir le pays.", effect: "+1 stabilité par an.", fx: { stabPerYear: 1 } },
+    { id: "thatcher", name: "Margaret Thatcher", country: "Royaume-Uni", years: "1979-1990", r: "rare", init: "MT",
+      doctrine: "Priorité à l'inflation", text: "Lutte contre l'inflation et privatisations.", effect: "Crises d'inflation moins graves, +10 budget au départ.", fx: { inflationShield: 0.5, startBudget: 10 } }
+  ];
+  const RW = { rare: 60, epique: 30, legendaire: 10 };
+  const RNAME = { rare: "Rare", epique: "Épique", legendaire: "Légendaire" };
+
+  const BUILDINGS = [
+    { id: "ecole", name: "École", icon: "🏫", cost: 20, eff: "+2 savoir / an", income: { savoir: 2 }, dev: 2 },
+    { id: "ferme", name: "Ferme", icon: "🌾", cost: 15, eff: "+4 budget, +1 stabilité / an", income: { budget: 4, stab: 1 }, dev: 1 },
+    { id: "port", name: "Port", icon: "⚓", cost: 40, eff: "+12 budget / an, exposé aux crises maritimes", income: { budget: 12 }, dev: 3, trade: true },
+    { id: "usine", name: "Usine", icon: "🏭", cost: 45, eff: "+10 budget / an", income: { budget: 10 }, dev: 4, trade: true },
+    { id: "mine", name: "Mine", icon: "⛏️", cost: 30, eff: "+14 budget / an, prix volatils", income: { budget: 14 }, dev: 2 },
+    { id: "hopital", name: "Hôpital", icon: "🏥", cost: 35, eff: "+3 stabilité / an", income: { stab: 3 }, dev: 3 },
+    { id: "universite", name: "Université", icon: "🎓", cost: 60, eff: "+5 savoir / an", income: { savoir: 5 }, dev: 5, needs: "savoir", needVal: 15 },
+    { id: "banque", name: "Banque centrale", icon: "🏛️", cost: 50, eff: "Amortit les crises monétaires", income: {}, dev: 4, needs: "card", needCard: "taux" },
+    { id: "centrale", name: "Centrale électrique", icon: "⚡", cost: 55, eff: "+6 budget, amortit les chocs pétroliers", income: { budget: 6 }, dev: 5, needs: "card", needCard: "diversifier" }
+  ];
+
+  // Cartes savoir : on les gagne en répondant juste, ou on les tire avec du savoir (le mécanisme de collection).
+  const CARDS = [
+    { id: "taux", name: "Taux directeur", r: "rare", eff: "Débloque la banque centrale." },
+    { id: "diversifier", name: "Diversification énergétique", r: "rare", eff: "Débloque la centrale électrique." },
+    { id: "fonds", name: "Fonds souverain", r: "epique", eff: "Les mines ne font plus chuter la stabilité." },
+    { id: "avantage", name: "Avantage comparatif", r: "epique", eff: "Ports et usines +20 %." },
+    { id: "garantie", name: "Garantie des dépôts", r: "rare", eff: "Paniques bancaires moins graves." },
+    { id: "capital", name: "Capital humain", r: "rare", eff: "Écoles et universités +1 savoir." },
+    { id: "communs", name: "Gestion des communs", r: "epique", eff: "+1 stabilité par ferme." },
+    { id: "destruction", name: "Destruction créatrice", r: "legendaire", eff: "Usines +30 %, +3 développement." },
+    { id: "triangle", name: "Triangle d'incompatibilité", r: "legendaire", eff: "Fuites de capitaux sans dégâts." }
+  ];
+  const DRAW_COST = 12;
+
+  // Aléas : une bonne réponse suit ce que retiennent la plupart des économistes ou l'histoire ; l'explication l'enseigne.
+  const EVENTS = [
+    { id: "inflation", title: "L'inflation atteint 12 %", text: "Les prix flambent, les salaires ne suivent plus. Que fait ta banque centrale ?", kind: "inflation",
+      choices: ["Imprimer de la monnaie pour aider les ménages", "Relever le taux directeur", "Bloquer tous les prix par décret"], right: 1, card: "taux",
+      why: "Relever les taux rend le crédit plus cher : on dépense moins, les prix se calment. Imprimer de la monnaie ajoute de l'inflation, et bloquer les prix crée surtout des pénuries." },
+    { id: "petrole", title: "Le prix du baril quadruple", text: "Un embargo fait exploser le prix du pétrole, comme en 1973. Ta réponse à long terme ?", kind: "oil",
+      choices: ["Diversifier l'énergie (nucléaire, renouvelables, économies)", "Subventionner l'essence sans limite", "Attendre que ça passe"], right: 0, card: "diversifier",
+      why: "Après 1973, beaucoup de pays ont réduit leur dépendance au pétrole. Subventionner sans limite vide le budget, et attendre laisse le pays exposé au prochain choc." },
+    { id: "gisement", title: "Un énorme gisement est découvert", text: "Le sous-sol regorge de minerai. Les recettes vont affluer. Que fais-tu de cet argent ?", kind: "mine",
+      choices: ["Tout dépenser tout de suite", "Placer une partie dans un fonds souverain", "Fermer la mine pour protéger l'industrie"], right: 1, card: "fonds",
+      why: "Les recettes des matières premières sont volatiles et peuvent faire monter la monnaie au détriment de l'industrie (la « maladie hollandaise »). La Norvège, par exemple, met ses revenus pétroliers dans un fonds souverain." },
+    { id: "commerce", title: "Ton voisin taxe tes exportations", text: "Il impose 30 % de droits de douane sur tes produits. Comment réagis-tu ?", kind: "trade",
+      choices: ["Riposter à 100 % sur tout", "Négocier et chercher d'autres clients", "Interdire tout commerce avec lui"], right: 1, card: "avantage",
+      why: "Une escalade de taxes fait souvent baisser le commerce des deux côtés, comme après la loi Hawley-Smoot de 1930. Négocier et diversifier ses clients limite les dégâts." },
+    { id: "banque", title: "Panique dans une grande banque", text: "Les clients font la queue pour retirer leur argent. La panique gagne les autres banques.", kind: "bank",
+      choices: ["Laisser la banque faire faillite", "Garantir les dépôts des épargnants", "Fermer toutes les banques un mois"], right: 1, card: "garantie",
+      why: "Garantir les dépôts arrête la course aux guichets : si l'épargne est protégée, personne n'a besoin de retirer en premier. C'est le rôle des garanties créées après les crises des années 1930." },
+    { id: "secheresse", title: "Sécheresse sur le canal", text: "Le niveau d'eau baisse, moins de navires peuvent passer par tes ports.", kind: "port",
+      choices: ["Investir dans le stockage d'eau et d'autres routes", "Augmenter les taxes portuaires", "Ne rien changer"], right: 0, card: "communs",
+      why: "En 2023, la sécheresse a obligé le canal de Panama à réduire les passages. Gérer l'eau comme une ressource commune et avoir d'autres routes rend le commerce plus solide." },
+    { id: "capitaux", title: "Les capitaux s'enfuient", text: "Ta monnaie est fixée au dollar, les capitaux circulent librement, et tu veux baisser tes taux. Les investisseurs vendent ta monnaie.", kind: "money",
+      choices: ["Tout garder : change fixe, capitaux libres et taux bas", "Renoncer à l'un des trois objectifs", "Interdire le dollar"], right: 1, card: "triangle",
+      why: "C'est le triangle d'incompatibilité : un pays ne peut pas avoir à la fois un change fixe, des capitaux libres et sa propre politique de taux. Il doit en sacrifier un." },
+    { id: "robots", title: "Les robots arrivent dans tes usines", text: "Une nouvelle technologie rend une partie des emplois obsolètes.", kind: "tech",
+      choices: ["Interdire la technologie", "Former les travailleurs aux nouveaux métiers", "Ne rien faire"], right: 1, card: "capital",
+      why: "L'innovation détruit des emplois et en crée d'autres (la « destruction créatrice » de Schumpeter). La formation aide les travailleurs à passer des uns aux autres." }
+  ];
+
+  // ---------------- État ----------------
+  const SAVE = "geoco.nations.v1";
+  const fresh = () => ({ phase: "draw", leader: null, nation: "", year: 1, budget: 60, savoir: 4, stab: 10, tiles: Array(25).fill(null), cards: {}, log: [], event: null, answered: null });
+  let S = fresh();
+  try { const s = JSON.parse(localStorage.getItem(SAVE) || "null"); if (s && s.tiles) S = s; } catch (e) {}
+  const hot = window.claude && window.claude.hot;
+  if (hot && hot.data && hot.data.S) S = hot.data.S;
+  if (hot && hot.snapshot) hot.snapshot(() => ({ S }));
+  const save = () => { try { localStorage.setItem(SAVE, JSON.stringify(S)); } catch (e) {} };
+  const L = () => LEADERS.find((l) => l.id === S.leader) || {};
+  const fx = () => L().fx || {};
+  const has = (c) => !!S.cards[c];
+  const $ = (s, r = document) => r.querySelector(s);
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+  function toast(t) { const e = $("#toast"); e.textContent = t; e.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove("on"), 2600); }
+
+  function costOf(b) { let c = b.cost * (fx().costMul || 1); if (b.id === "universite" && fx().uniDiscount) c *= fx().uniDiscount; return Math.round(c); }
+  function unlocked(b) { if (b.needs === "savoir") return S.savoir >= b.needVal || S.tiles.includes(b.id); if (b.needs === "card") return has(b.needCard); return true; }
+  function income() {
+    const f = fx(); const out = { budget: 0, savoir: 0, stab: f.stabPerYear || 0 };
+    S.tiles.forEach((id) => {
+      if (!id) return; const b = BUILDINGS.find((x) => x.id === id);
+      let bud = b.income.budget || 0;
+      if (b.trade) bud *= (f.tradeMul || 1) * (has("avantage") ? 1.2 : 1);
+      if (id === "port") bud *= f.portMul || 1;
+      if (id === "usine") bud *= (f.factoryMul || 1) * (has("destruction") ? 1.3 : 1);
+      out.budget += bud;
+      let sav = b.income.savoir || 0; if (sav) sav += (id === "ecole" ? (f.schoolBonus || 0) : 0) + (has("capital") ? 1 : 0);
+      out.savoir += sav;
+      out.stab += (b.income.stab || 0) + (id === "ferme" && has("communs") ? 1 : 0);
+    });
+    out.budget = Math.round(out.budget);
+    return out;
+  }
+  function score() {
+    const dev = S.tiles.reduce((t, id) => t + (id ? BUILDINGS.find((b) => b.id === id).dev : 0), 0) + (has("destruction") ? 3 : 0);
+    return Math.max(0, Math.round(dev * 10 + S.stab * 2 + S.savoir + Object.keys(S.cards).length * 15));
+  }
+
+  // ---------------- Vue : jeu ----------------
+  let selected = null, lastBuilt = -1, freshCard = null;
+  function render() {
+    const v = $("#view-jeu");
+    if (S.phase === "draw") return renderDraw(v);
+    const inc = income();
+    v.innerHTML = `
+      <div class="hud">
+        <div class="res"><div class="label">Budget</div><div class="v">${S.budget}</div><div class="d">${inc.budget >= 0 ? "+" : ""}${inc.budget} / an</div></div>
+        <div class="res"><div class="label">Savoir</div><div class="v">${S.savoir}</div><div class="d">+${inc.savoir} / an</div></div>
+        <div class="res"><div class="label">Stabilité</div><div class="v">${S.stab}</div><div class="d">${inc.stab >= 0 ? "+" : ""}${inc.stab} / an</div></div>
+        <div class="res"><div class="label">Année</div><div class="v">${S.year}</div><div class="d">${esc(S.nation)}</div></div>
+        <div class="res score"><div class="label">Indice de développement</div><div class="v">${score()}</div><div class="d">avec ${esc(L().name || "")}</div></div>
+      </div>
+      <div class="game">
+        <div class="panel">
+          <div class="panel-head"><h2>Ton territoire</h2><span class="label">${S.tiles.filter(Boolean).length}/25 parcelles</span></div>
+          <div class="board-wrap"><div class="board" id="board">
+            ${S.tiles.map((id, i) => { const b = id && BUILDINGS.find((x) => x.id === id); return `<button class="tile${i === lastBuilt ? " new" : ""}" data-i="${i}" aria-label="${b ? b.name : "Parcelle libre"}">${b ? `<span class="b">${b.icon}</span>` : ""}</button>`; }).join("")}
+          </div></div>
+          <div class="shop">${BUILDINGS.map((b) => {
+            const ok = unlocked(b), c = costOf(b);
+            return `<button class="item" data-b="${b.id}" aria-pressed="${selected === b.id}" ${ok ? "" : "disabled"}>
+              <div class="top"><span>${b.icon} ${b.name}</span><span class="cost">${c} 💰</span></div>
+              <div class="eff">${b.eff}</div>
+              ${ok ? "" : `<div class="lock">🔒 ${b.needs === "savoir" ? `${b.needVal} savoir requis` : `Carte « ${CARDS.find((x) => x.id === b.needCard).name} »`}</div>`}
+            </button>`; }).join("")}</div>
+          <p class="hint">${selected ? `Touche une parcelle libre pour construire : ${BUILDINGS.find((b) => b.id === selected).name}.` : "Choisis un bâtiment, puis une parcelle. Certains se débloquent avec le savoir ou une carte."}</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>Le conseil</h2><span class="label">Année ${S.year}</span></div>
+          ${S.event ? eventHTML() : `<p class="calm">Pas de crise en cours. Construis, puis passe à l'année suivante : un aléa peut tomber.</p>`}
+          <div class="year">
+            <button class="btn primary" id="next" ${S.event && S.answered == null ? "disabled" : ""}>Année suivante ›</button>
+            <button class="btn signal" id="draw" ${S.savoir < DRAW_COST ? "disabled" : ""}>Tirer une carte · ${DRAW_COST} savoir</button>
+          </div>
+          <div class="panel-head" style="margin-top:16px"><h3 style="font-size:16px">Cartes savoir</h3><span class="label">${Object.keys(S.cards).length}/${CARDS.length}</span></div>
+          <div class="cards">${CARDS.map((c) => `<div class="kcard r-${c.r}${has(c.id) ? "" : " off"}${freshCard === c.id ? " fresh" : ""}"><div class="r">${RNAME[c.r]}${S.cards[c.id] > 1 ? ` · niv. ${S.cards[c.id]}` : ""}</div><div class="t">${has(c.id) ? c.name : "?"}</div><div class="e">${has(c.id) ? c.eff : "Réponds juste ou tire une carte."}</div></div>`).join("")}</div>
+          <ul class="log">${S.log.slice(-6).reverse().map((l) => `<li>${l}</li>`).join("")}</ul>
+          <p class="hint"><button class="btn" id="reset" style="padding:6px 10px;font-size:12px">Nouvelle partie</button></p>
+        </div>
+      </div>`;
+    freshCard = null; lastBuilt = -1;
+    v.querySelectorAll("[data-b]").forEach((b) => b.addEventListener("click", () => { selected = selected === b.dataset.b ? null : b.dataset.b; render(); }));
+    v.querySelectorAll(".tile").forEach((t) => t.addEventListener("click", () => build(+t.dataset.i)));
+    v.querySelectorAll("[data-c]").forEach((b) => b.addEventListener("click", () => answer(+b.dataset.c)));
+    $("#next").addEventListener("click", nextYear);
+    $("#draw").addEventListener("click", drawCard);
+    $("#reset").addEventListener("click", () => { S = fresh(); save(); render(); });
+  }
+
+  function eventHTML() {
+    const e = EVENTS.find((x) => x.id === S.event);
+    return `<div class="event">
+      <div class="kicker">Aléa</div><h3>${e.title}</h3><p>${e.text}</p>
+      <div class="choices">${e.choices.map((c, i) => `<button class="choice${S.answered != null ? (i === e.right ? " right" : i === S.answered ? " wrong" : "") : ""}" data-c="${i}" ${S.answered != null ? "disabled" : ""}>${c}</button>`).join("")}</div>
+      ${S.answered != null ? `<div class="explain">${S.answered === e.right ? "✓ Bonne décision. " : "✗ Mauvaise décision. "}${e.why}</div>` : ""}
+    </div>`;
+  }
+
+  function build(i) {
+    if (!selected) return toast("Choisis d'abord un bâtiment.");
+    if (S.tiles[i]) return toast("Parcelle déjà occupée.");
+    const b = BUILDINGS.find((x) => x.id === selected), c = costOf(b);
+    if (S.budget < c) return toast(`Il manque ${c - S.budget} de budget.`);
+    S.budget -= c; S.tiles[i] = b.id; lastBuilt = i;
+    S.log.push(`An ${S.year} · <b>${b.name}</b> construite`);
+    save(); render(); publishNation();
+  }
+
+  function nextYear() {
+    const inc = income();
+    S.budget += inc.budget; S.savoir += inc.savoir; S.stab = Math.max(0, S.stab + inc.stab);
+    S.year += 1; S.answered = null;
+    S.log.push(`An ${S.year} · +${inc.budget} budget, +${inc.savoir} savoir`);
+    // Un aléa environ deux années sur trois, adapté à ce que le pays a construit.
+    S.event = null;
+    if (S.year > 2 && Math.random() < 0.7) {
+      const pool = EVENTS.filter((e) => (e.kind !== "port" || S.tiles.includes("port")) && (e.kind !== "mine" || !S.tiles.includes("mine") || true));
+      S.event = pool[Math.floor(Math.random() * pool.length)].id;
+    }
+    save(); render(); publishNation();
+  }
+
+  function answer(i) {
+    const e = EVENTS.find((x) => x.id === S.event); const f = fx();
+    S.answered = i;
+    if (i === e.right) {
+      const got = !has(e.card); S.cards[e.card] = (S.cards[e.card] || 0) + 1; freshCard = e.card;
+      S.savoir += 4; S.stab += 2;
+      S.log.push(`An ${S.year} · ✓ ${e.title} : carte <b>${CARDS.find((c) => c.id === e.card).name}</b>${got ? "" : " (niveau +1)"}`);
+      toast(got ? "Nouvelle carte savoir !" : "Carte améliorée !");
+    } else {
+      let dmg = 20;
+      if (e.kind === "oil") dmg *= (f.oilShield || 1) * (S.tiles.includes("centrale") ? 0.5 : 1);
+      if (e.kind === "inflation" || e.kind === "money") dmg *= (f.inflationShield || 1) * (S.tiles.includes("banque") ? 0.5 : 1);
+      if (e.kind === "money" && has("triangle")) dmg = 0;
+      if (e.kind === "bank" && has("garantie")) dmg *= 0.5;
+      dmg = Math.round(dmg);
+      S.budget = Math.max(0, S.budget - dmg); S.stab = Math.max(0, S.stab - 3);
+      S.log.push(`An ${S.year} · ✗ ${e.title} : −${dmg} budget, −3 stabilité`);
+    }
+    save(); render(); publishNation();
+  }
+
+  function drawCard() {
+    if (S.savoir < DRAW_COST) return;
+    S.savoir -= DRAW_COST;
+    const r = pickRarity({ rare: 62, epique: 30, legendaire: 8 });
+    const pool = CARDS.filter((c) => c.r === r);
+    const c = pool[Math.floor(Math.random() * pool.length)];
+    const got = !has(c.id); S.cards[c.id] = (S.cards[c.id] || 0) + 1; freshCard = c.id;
+    S.log.push(`An ${S.year} · Tirage : <b>${c.name}</b> (${RNAME[c.r]})${got ? "" : ", niveau +1"}`);
+    toast(`${RNAME[c.r]} : ${c.name}`);
+    save(); render(); publishNation();
+  }
+  function pickRarity(w) { let x = Math.random() * Object.values(w).reduce((a, b) => a + b, 0); for (const [k, v] of Object.entries(w)) { x -= v; if (x < 0) return k; } return "rare"; }
+
+  function renderDraw(v) {
+    const l = S.leader && L();
+    v.innerHTML = `<div class="draw">
+      ${l ? `
+        <div class="leader r-${l.r}"><span class="rar">${RNAME[l.r]}</span><div class="portrait">${l.init}</div>
+          <h3>${l.name}</h3><div class="meta">${l.country} · ${l.years}</div>
+          <div class="doctrine"><b>${l.doctrine}</b>${l.text}<br><span style="color:var(--ink)">Dans le jeu : ${l.effect}</span></div></div>
+        <div class="name-row"><label class="label" for="nation">Nom de ton pays</label><input id="nation" maxlength="28" placeholder="La République de…" value="${esc(S.nation)}"><button class="btn primary" id="go">Fonder le pays</button></div>
+        <button class="btn" id="redraw">Retirer un dirigeant</button>`
+      : `
+        <p>Chaque partie commence par un tirage : un dirigeant du passé prend la tête de ton pays, avec sa doctrine et son bonus.</p>
+        <button class="envelope" id="env" aria-label="Ouvrir le pli scellé"><span class="seal">G</span><small>PLI SCELLÉ · TOUCHE POUR OUVRIR</small></button>
+        <p class="label">Rare 60 % · Épique 30 % · Légendaire 10 %</p>`}
+    </div>`;
+    const env = $("#env");
+    if (env) env.addEventListener("click", () => { env.classList.add("opening"); setTimeout(() => { const r = pickRarity(RW); const pool = LEADERS.filter((x) => x.r === r); S.leader = pool[Math.floor(Math.random() * pool.length)].id; save(); render(); }, 650); });
+    const go = $("#go");
+    if (go) go.addEventListener("click", () => {
+      S.nation = ($("#nation").value || "").trim().slice(0, 28) || "Ma république";
+      S.phase = "play"; S.budget += fx().startBudget || 0;
+      S.log.push(`An 1 · <b>${esc(S.nation)}</b> fondée, dirigée par ${L().name}`);
+      save(); render(); publishNation();
+    });
+    const re = $("#redraw");
+    if (re) re.addEventListener("click", () => { S.leader = null; render(); });
+  }
+
+  // ---------------- Le Sommet (multijoueur partagé) ----------------
+  // Chaque joueur écrit seulement nations/<son id> ; tout le monde lit le classement et les votes de la crise du jour.
+  let db = null, user = null, me = null, nations = [], unsub = null, sommetMsg = "Connexion au Sommet…";
+  const today = () => new Date().toISOString().slice(0, 10);
+  const dailyEvent = () => EVENTS[today().split("-").reduce((a, x) => a * 31 + +x, 7) % EVENTS.length];
+
+  let lastPub = "";
+  async function publishNation(extra) {
+    if (!db || !me || S.phase !== "play") return;
+    const body = { nation: S.nation, leader: S.leader, score: score(), year: S.year, cards: Object.keys(S.cards).length, updated: Date.now() };
+    const mine = nations.find((n) => n.id === me);
+    if (mine && mine.criseDay) { body.criseDay = mine.criseDay; body.criseChoice = mine.criseChoice; }
+    Object.assign(body, extra || {});
+    const key = JSON.stringify({ ...body, updated: 0 });
+    if (key === lastPub) return;
+    lastPub = key;
+    try { await db.collection("nations").doc(me).set(body); } catch (e) { sommetMsg = "Impossible d'enregistrer ton pays au Sommet (droits insuffisants ?)."; renderSommet(); }
+  }
+
+  async function startSommet() {
+    try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
+    try { user = await window.claude?.use?.("user"); } catch (e) { user = null; }
+    if (!db) { sommetMsg = "Le Sommet a besoin du mode partagé : ouvre cette page sur claude.ai, connecté."; renderSommet(); return; }
+    try { me = user ? await user.id() : null; } catch (e) { me = null; }
+    sommetMsg = "";
+    unsub = db.collection("nations").orderBy("score", "desc").limit(100).onSnapshot((snap) => {
+      nations = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
+      renderSommet();
+    }, () => { sommetMsg = "Le Sommet est momentanément indisponible."; renderSommet(); });
+    publishNation();
+  }
+
+  async function renderSommet() {
+    const v = $("#view-sommet");
+    const ev = dailyEvent();
+    const day = today();
+    const voters = nations.filter((n) => n.criseDay === day && typeof n.criseChoice === "number");
+    const mine = nations.find((n) => n.id === me);
+    const myVote = mine && mine.criseDay === day ? mine.criseChoice : null;
+    let names = {};
+    if (user && nations.length) { try { const ps = await user.profiles(nations.slice(0, 30).map((n) => n.id)); Object.entries(ps || {}).forEach(([id, p]) => { names[id] = (p && p.name) || ""; }); } catch (e) {} }
+    v.innerHTML = `
+      <div class="summit">
+        <div class="panel">
+          <div class="panel-head"><h2>Classement des nations</h2><span class="label">Indice de développement</span></div>
+          ${sommetMsg ? `<p class="empty">${sommetMsg}</p>` : nations.length ? `<ol class="rank" id="rank"></ol>` : `<p class="empty">Aucune nation pour l'instant. Fonde la tienne dans « Mon pays » : elle apparaîtra ici pour tous les joueurs.</p>`}
+          <p class="hint">Partage cette page avec tes amis : chaque pays fondé rejoint le Sommet, en direct.</p>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h2>La crise du jour</h2><span class="label">${day}</span></div>
+          <p class="calm">La même crise pour tous les joueurs, une seule réponse par jour. Ensuite, tu vois ce qu'ont choisi les autres.</p>
+          <div class="event" style="margin-top:10px"><div class="kicker">Pour tous</div><h3>${ev.title}</h3><p>${ev.text}</p>
+            ${myVote == null ? `<div class="choices">${ev.choices.map((c, i) => `<button class="choice" data-v="${i}" ${db && me && S.phase === "play" ? "" : "disabled"}>${c}</button>`).join("")}</div>
+              ${S.phase !== "play" ? `<p class="hint">Fonde d'abord ton pays pour voter.</p>` : ""}`
+            : `<div class="bars">${ev.choices.map((c, i) => { const n = voters.filter((x) => x.criseChoice === i).length, p = voters.length ? Math.round(n / voters.length * 100) : 0; return `<div class="bar${i === ev.right ? " right" : ""}"><span class="fill" style="width:${p}%"></span><div><span>${i === myVote ? "➜ " : ""}${c}</span><b>${p} %</b></div></div>`; }).join("")}</div>
+              <div class="explain">${myVote === ev.right ? "✓ Bonne décision (+5 savoir dans ta partie). " : "✗ "}${ev.why}</div>
+              <p class="hint">${voters.length} joueur(s) ont répondu aujourd'hui.</p>`}
+          </div>
+        </div>
+      </div>`;
+    const rank = $("#rank");
+    if (rank) nations.forEach((n) => {
+      const li = document.createElement("li"); if (n.id === me) li.className = "me";
+      const leader = LEADERS.find((l) => l.id === n.leader);
+      const mid = document.createElement("div");
+      const nn = document.createElement("div"); nn.className = "n"; nn.textContent = String(n.nation || "Nation sans nom").slice(0, 28);
+      const ss = document.createElement("div"); ss.className = "s"; ss.textContent = `${leader ? leader.name : "?"} · an ${n.year || 1} · ${n.cards || 0} cartes${names[n.id] ? " · " + names[n.id] : ""}${n.id === me ? " · toi" : ""}`;
+      mid.append(nn, ss);
+      const sc = document.createElement("span"); sc.className = "sc"; sc.textContent = Number(n.score) || 0;
+      li.append(mid, sc); rank.append(li);
+    });
+    v.querySelectorAll("[data-v]").forEach((b) => b.addEventListener("click", async () => {
+      const i = +b.dataset.v;
+      v.querySelectorAll("[data-v]").forEach((x) => { x.disabled = true; });
+      if (i === ev.right) { S.savoir += 5; save(); }
+      await publishNation({ criseDay: day, criseChoice: i });
+      render();
+    }));
+  }
+
+  // ---------------- Avis et idées ----------------
+  function renderIdees() {
+    $("#view-idees").innerHTML = `
+      <div class="opinion">
+        <h2>Mon avis</h2>
+        <p>L'idée est bonne pour Géoconomic : un jeu de gestion où la connaissance rapporte plus que la force colle à ce que l'appli veut transmettre. Le tirage de dirigeants et de cartes donne l'envie de revenir, comme dans le jeu des pages Wikipédia, et les aléas permettent d'apprendre en se trompant.</p>
+        <p>Deux points d'attention. Les dirigeants doivent être présentés de façon neutre : leurs bonus sont des simplifications de jeu, pas un jugement sur leur politique. Et chaque explication d'aléa devra être sourcée avant la vraie version, comme le reste de l'appli.</p>
+        <p>Le prototype « Mon pays » est jouable ; « Le Sommet » est un vrai multijoueur partagé entre tous ceux qui ouvrent cette page. Voici d'autres mécaniques possibles, en maquettes :</p>
+      </div>
+      <div class="ideas">
+        <article class="idea">
+          <span class="pill">Façon Clash of Clans</span>
+          <h3>Le raid du savoir</h3>
+          <p>Tu « attaques » le pays d'un ami en répondant à des questions sur ses bâtiments : son port, sa mine, sa banque centrale. Chaque bonne réponse lui prend du savoir. Pour te défendre, tu construis des bâtiments plus difficiles à comprendre.</p>
+          <div class="phone"><div class="bar-top"><span>RAID · République de Léa</span><span>3/5</span></div>
+            <div class="mock-grid"><span>⚓</span><span>🏭</span><span>🏛️</span><span>🌾</span><span>⛏️</span><span>🎓</span></div>
+            <div class="mock-row hl">Son port dépend d'un détroit. Lequel transporte ~20 % du pétrole mondial ?<small>Ormuz · Malacca · Gibraltar</small></div>
+            <div class="mock-row">Butin : <b>+12 savoir</b><small>Défense de Léa : 2 bâtiments non percés</small></div></div>
+        </article>
+        <article class="idea">
+          <span class="pill">Lié à l'Album des lieux</span>
+          <h3>Les lieux comme ressources</h3>
+          <p>Les lieux de l'Album (Ormuz, Kolwezi, Veldhoven…) deviennent des cartes jouables : posséder « Malacca » sécurise ton commerce, « Kolwezi » tes batteries. On peut les échanger entre joueurs au Sommet.</p>
+          <div class="phone"><div class="bar-top"><span>MES LIEUX</span><span>Échange</span></div>
+            <div class="mock-row">Détroit de Malacca<small>Passage · Discret · ports +20 %</small></div>
+            <div class="mock-row hl">Proposer : Kolwezi ⇄ Hsinchu<small>à Tom · en attente</small></div>
+            <div class="mock-row">Salar d'Atacama<small>Sous-sol · Discret · batteries +15 %</small></div></div>
+        </article>
+        <article class="idea">
+          <span class="pill">Saison historique</span>
+          <h3>Rejouer l'histoire</h3>
+          <p>Une saison par grande période : 1929, 1973, 2008. Tous les joueurs reçoivent les mêmes aléas, dans l'ordre réel. À la fin, on compare les choix des joueurs à ce qui s'est vraiment passé.</p>
+          <div class="phone"><div class="bar-top"><span>SAISON 1973</span><span>Tour 2/6</span></div>
+            <div class="mock-row hl">Octobre 1973 · embargo pétrolier<small>Ta réponse : diversifier l'énergie</small></div>
+            <div class="mock-row">Ce qu'a fait la France : programme nucléaire<small>58 % des joueurs ont fait pareil</small></div>
+            <div class="mock-row">Prochain tour : 1974, inflation à deux chiffres</div></div>
+        </article>
+        <article class="idea">
+          <span class="pill">Coopératif</span>
+          <h3>Les alliances</h3>
+          <p>Des pays s'allient en union douanière ou monétaire. Avantage : commerce plus fort. Risque : une crise chez un membre touche toute l'alliance. On apprend en jouant pourquoi la zone euro ou le Mercosur existent, et leurs limites.</p>
+          <div class="phone"><div class="bar-top"><span>ALLIANCE DU NORD</span><span>4 pays</span></div>
+            <div class="mock-row">Union douanière<small>Commerce interne +25 %</small></div>
+            <div class="mock-row hl">Alerte : dette élevée chez un membre<small>Voter : aider, ou laisser faire ?</small></div></div>
+        </article>
+      </div>
+      <p class="note">Prototype : chiffres et effets de jeu simplifiés, explications à sourcer avant une vraie version dans l'appli.</p>`;
+  }
+
+  // ---------------- Onglets ----------------
+  document.querySelectorAll("[data-tab]").forEach((b) => b.addEventListener("click", () => {
+    document.querySelectorAll("[data-tab]").forEach((x) => x.setAttribute("aria-selected", x === b));
+    ["jeu", "sommet", "idees"].forEach((t) => { $("#view-" + t).hidden = t !== b.dataset.tab; });
+    if (b.dataset.tab === "sommet") renderSommet();
+  }));
+
+  render(); renderIdees(); renderSommet(); startSommet();
+})();
+</script>

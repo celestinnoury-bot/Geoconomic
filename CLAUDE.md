@@ -53,6 +53,10 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Codes et proches invités : `node tools/plus.mjs …` (empreintes SHA-256 dans `data/plus.js`). Codes : FAMILLE2026, FONDATEUR2026.
 - Paiement et comptes pas encore branchés : voir `contenu/ABONNEMENT.md`.
 
+## Prototypes
+
+- `prototypes/jeu-nation.html` : prototype de jeu « Géoconomic Nations » (tirer un dirigeant du passé, bâtir son pays, aléas économiques à comprendre, cartes savoir, classement et crise du jour partagés au Sommet), publié à part : https://claude.ai/artifact/64FpMtQuNDyXxs1iX6Kk1b (capacités db + user). Pas encore dans l'appli : en attente de l'avis de l'auteur.
+
 ## En attente de l'auteur
 
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
