@@ -5,7 +5,7 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js", "data/cartes.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
@@ -187,6 +187,27 @@ focus.forEach((f) => {
 const today = news.length ? news[0].date : "—";
 console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles, ${(etudes.cas || []).length} études de cas, ${(etudes.podcast || []).length} épisodes.`);
 warn.forEach((w) => console.log("Attention : " + w));
+// ---- L'Album (data/cartes.js)
+{
+  const C = ctx.window.GEOCO.cartes || [], S = ctx.window.GEOCO.cartesSeries || [];
+  const ids = new Set(), seriesIds = new Set(S.map((x) => x.id)), coursIds = new Set((ctx.window.GEOCO.dossiers || []).map((d) => d.id));
+  C.forEach((c) => {
+    const w = `carte ${c.id}`;
+    if (ids.has(c.id)) err(w, "id en double");
+    ids.add(c.id);
+    if (!["principe", "moment", "personnage"].includes(c.famille)) err(w, `famille inconnue « ${c.famille} »`);
+    if (!["commune", "rare", "epique", "legendaire"].includes(c.rarete)) err(w, `rareté inconnue « ${c.rarete} »`);
+    if (!seriesIds.has(c.serie)) err(w, `série inconnue « ${c.serie} »`);
+    (c.cours || []).forEach((d) => { if (!coursIds.has(d)) err(w, `cours inconnu « ${d} »`); });
+    ["influence", "portee", "duree"].forEach((k) => { const v = c.stats && c.stats[k]; if (!(v >= 1 && v <= 99)) err(w, `stat ${k} entre 1 et 99`); });
+    if (!c.title || !c.text || !c.fact || !c.icon) err(w, "titre, texte, fait et icône obligatoires");
+    if (c.defi && (!["influence", "portee", "duree"].includes(c.defi.stat) || !(c.defi.power > 0) || c.defi.power > 297)) err(w, "défi invalide");
+    checkSources(w, [c.source]);
+  });
+  S.forEach((x) => { if (!C.some((c) => c.serie === x.id)) err(`série ${x.id}`, "aucune carte"); });
+  if (C.length && !C.some((c) => c.defi)) err("album", "aucune crise pour le défi du jour");
+}
+
 // Traductions : les textes pas encore traduits s'affichent en français (signalé, pas bloquant).
 try {
   const { execFileSync } = await import("child_process");

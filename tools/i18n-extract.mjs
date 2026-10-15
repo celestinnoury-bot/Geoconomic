@@ -9,7 +9,7 @@ import path from "path";
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), "..");
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["content", "news", "culture", "etudes", "focus", "anecdotes", "indicators", "conflits", "couches", "auteur"]) {
+for (const f of ["content", "news", "culture", "etudes", "focus", "anecdotes", "cartes", "indicators", "conflits", "couches", "auteur"]) {
   const p = path.join(ROOT, "data", f + ".js");
   if (fs.existsSync(p)) vm.runInContext(fs.readFileSync(p, "utf8"), ctx);
 }
@@ -18,11 +18,11 @@ const G = ctx.window.GEOCO;
 // Clés jamais traduites : identifiants, dates, liens, coordonnées, et les sources (titres d'origine).
 export const SKIP = new Set(["id", "date", "theme", "region", "url", "coords", "dossiers", "culture", "news", "src", "sources",
   "link", "audio", "file", "fileDark", "photo", "cas", "icon", "color", "iso", "era", "source", "slug", "answer", "correct", "related", "see",
-  "kind", "type", "highlight", "terms", "poster", "part", "at",
+  "kind", "type", "highlight", "terms", "poster", "part", "at", "famille", "rarete", "serie", "cours", "stat",
   // Chiffres et Conflits : valeurs, couleurs et codes pays ne se traduisent pas.
   "s", "v", "d", "bins", "colors", "country", "contact", "names", "values", "freeListens", "price", "podcast", "counts"]);
 // Listes d'éléments repérés par leur id.
-export const SETS = { news: G.news, dossiers: G.dossiers, glossary: G.glossary, culture: G.culture, anecdotes: G.anecdotes, focus: G.focus, cas: (G.etudes || {}).cas };
+export const SETS = { news: G.news, dossiers: G.dossiers, glossary: G.glossary, culture: G.culture, anecdotes: G.anecdotes, focus: G.focus, cartes: G.cartes, cartesSeries: G.cartesSeries, cas: (G.etudes || {}).cas };
 // Objets uniques (chemins par clé, puis par position dans les listes).
 export const OBJECTS = { indicators: G.indicators, conflits: G.conflits, auteur: G.auteur, offre: (G.etudes || {}).offre };
 
