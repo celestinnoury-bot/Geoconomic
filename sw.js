@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle marche hors connexion.
 // Pense à changer la version quand tu modifies des fichiers, pour forcer la mise à jour.
-const CACHE = "geoconomic-v20";
+const CACHE = "geoconomic-v21";
 const FILES = [
   "./",
   "index.html",
@@ -24,7 +24,6 @@ const FILES = [
   "data/lettres.js",
   "data/auteur.js",
   "data/anecdotes.js",
-  "data/lieux.js",
   "data/iso2.js",
   "manifest.webmanifest",
   "assets/icon.svg",

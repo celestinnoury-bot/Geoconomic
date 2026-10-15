@@ -19,7 +19,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - `globe.js` : globe.gl. Accueil (`mount`, repères d'actus, vue sur la région du lecteur) et choroplèthes (`mountIndicators` ;
   le toucher choisit le pays sous le doigt via `toGlobeCoords`, pas le « survol » de globe.gl).
 - Pages : accueil (globe + bandeau défilant qu'on peut faire glisser), Actu, Focus (Toyota Supra GT300 en 3D de vecarz, CC BY 4.0 : `assets/models/supra/` (json + géométrie binaire « -geo.wasm » (l'aperçu refuse .bin) + textures webp, fichiers séparés : les data:/blob: sont bloqués dans l'aperçu), converti de l'USDZ avec usd-core puis gltf-transform weld/simplify/quantize), Conflits (3 couches), Cours,
-  Articles, Chiffres, Recherche (`#/recherche`), Focus : schéma « De la mine au client » (`chain` dans data/focus.js, globe aux flux animés `mountFlows` de globe.js, modes « L'essentiel » (`essentials`), « Tout voir » et visite guidée) avant la carte ; carte à couches (`map.layers` : lieux, `flows` fléchés, concurrence ; viz.js) et « face-à-face » (`rivals`) ; Enjeux passés (`#/enjeux`, depuis `pastWeekly` de data/focus.js), L'Album des lieux (`#/album`, data/lieux.js : 24 lieux réels peu connus (détroits, ports, mines, usines clés) avec chiffre clé sourcé et vue satellite tirée de la texture du globe ; découverts avec 3 « sondes » par jour sur le globe (`mountAtlas` de globe.js) ou en vrai à moins de 50 km (géolocalisation, tampon « Vu en vrai ») ; 7 routes à compléter qui s'allument sur le globe ; gardé sur l'appareil, échanges prévus avec les comptes, ids à ne jamais changer ; l'auteur ne veut pas de lien avec les actus ni de mécanique « jeu vidéo » générique), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
+  Articles, Chiffres, Recherche (`#/recherche`), Focus : schéma « De la mine au client » (`chain` dans data/focus.js, globe aux flux animés `mountFlows` de globe.js, modes « L'essentiel » (`essentials`), « Tout voir » et visite guidée) avant la carte ; carte à couches (`map.layers` : lieux, `flows` fléchés, concurrence ; viz.js) et « face-à-face » (`rivals`) ; Enjeux passés (`#/enjeux`, depuis `pastWeekly` de data/focus.js), Langue et région (`#/reglages`), Géoconomic+ (`#/abonnement`), lettres, anecdotes.
 - Liens directs : `#/chiffres/<indicateur>/<pays ISO num>`, `#/conflits/<couche>/<pays>`.
 
 ## Contenu et règles éditoriales
@@ -55,7 +55,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 ## Prototypes
 
-- `prototypes/jeu-nation.html` : prototype de jeu « Géoconomic Nations » (tirer un dirigeant du passé, bâtir son pays, aléas économiques à comprendre, cartes savoir, classement et crise du jour partagés au Sommet), publié à part : https://claude.ai/artifact/64FpMtQuNDyXxs1iX6Kk1b (capacités db + user). Pas encore dans l'appli : en attente de l'avis de l'auteur.
+- `prototypes/jeu-nation.html` : prototype de jeu « Géoconomic Nations » (tirer un dirigeant du passé, bâtir son pays, aléas économiques à comprendre, cartes savoir, classement et crise du jour partagés au Sommet), publié à part : https://claude.ai/artifact/64FpMtQuNDyXxs1iX6Kk1b (capacités db + user). Pas dans l'appli. L'auteur a fait retirer toute page « Album » de l'appli (ni cartes à collectionner, ni album des lieux) : ne pas en remettre.
 
 ## En attente de l'auteur
 

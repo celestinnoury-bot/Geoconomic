@@ -5,7 +5,7 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js", "data/lieux.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
@@ -187,26 +187,6 @@ focus.forEach((f) => {
 const today = news.length ? news[0].date : "—";
 console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles, ${(etudes.cas || []).length} études de cas, ${(etudes.podcast || []).length} épisodes.`);
 warn.forEach((w) => console.log("Attention : " + w));
-// ---- L'Album des lieux (data/lieux.js)
-{
-  const L = ctx.window.GEOCO.lieux || [], R = ctx.window.GEOCO.lieuxRoutes || [];
-  const ids = new Set();
-  L.forEach((l) => {
-    const w = `lieu ${l.id}`;
-    if (ids.has(l.id)) err(w, "id en double");
-    ids.add(l.id);
-    if (!["passage", "sous-sol", "centre"].includes(l.famille)) err(w, `famille inconnue « ${l.famille} »`);
-    if (!["connu", "discret", "cache", "secret"].includes(l.rarete)) err(w, `rareté inconnue « ${l.rarete} »`);
-    if (!Array.isArray(l.coords) || Math.abs(l.coords[0]) > 90 || Math.abs(l.coords[1]) > 180) err(w, "coordonnées [lat, lng] invalides");
-    if (!l.name || !l.where || !l.text || !l.fact || !l.key || !l.key.value || !l.key.label) err(w, "nom, lieu, texte, fait et chiffre clé obligatoires");
-    const r = R.find((x) => x.id === l.route);
-    if (!r) err(w, `route inconnue « ${l.route} »`);
-    else if (!r.places.includes(l.id)) err(w, `absent de la liste de la route ${r.id}`);
-    checkSources(w, [l.source]);
-  });
-  R.forEach((r) => r.places.forEach((id) => { if (!ids.has(id)) err(`route ${r.id}`, `lieu inconnu « ${id} »`); }));
-}
-
 // Traductions : les textes pas encore traduits s'affichent en français (signalé, pas bloquant).
 try {
   const { execFileSync } = await import("child_process");

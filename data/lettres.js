@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-15",
+    "file": "lettres/2026-10-15.pdf",
+    "titles": [
+      "La Chine et la Corée du Nord ouvrent enfin leur pont neuf, fermé pendant douze ans",
+      "Qui a fait sauter Nord Stream ? Un ex-soldat ukrainien est jugé à Hambourg",
+      "Soudan : une frappe aérienne sur une mine d'or près de l'Égypte tue 72 personnes, selon une ONG"
+    ],
+    "fileDark": "lettres/2026-10-15-sombre.pdf"
+  },
+  {
     "date": "2026-10-14",
     "file": "lettres/2026-10-14.pdf",
     "titles": [
