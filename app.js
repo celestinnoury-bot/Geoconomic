@@ -1431,7 +1431,6 @@
         </div>
         <div class="wrap focus-controls">
           ${f.paints ? `<div>${segmented(f.paints, f.paints[0][0], "paint")}</div>` : ""}
-          <p class="globe-hint">Fais tourner la voiture et touche ses pièces : chacune raconte un morceau de géopolitique.</p>
         </div>
       </section>
 
