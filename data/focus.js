@@ -30,11 +30,17 @@ window.GEOCO.focus = [
         "Stellantis va arrêter quatre usines françaises en octobre. À Sochaux et à Rennes, la raison est surprenante : il manque des batteries pour les versions « grande autonomie » de ses voitures électriques, alors que les commandes suivent [12][13].",
         "Ces batteries viennent d'ACC, la coentreprise européenne créée par Stellantis, Mercedes-Benz et Saft (filiale de TotalEnergies) justement pour moins dépendre de l'Asie [13]. Elle n'arrive pas encore à suivre le rythme.",
         "Car la demande décolle : entre janvier et août 2026, les ventes de voitures 100 % électriques ont bondi de 45 % dans l'Union européenne, à 1,64 million. Au deuxième trimestre, elles ont même dépassé les voitures à essence pour la première fois, avec 22 % du marché [14][15].",
+        "Ce n'est pas la première fois que la batterie freine la voiture électrique. En 1914, Henry Ford annonçait déjà une Ford T électrique, avec des batteries de Thomas Edison. Trop lentes à charger et trop chères, elles l'ont fait renoncer à la fin de l'année, après 1,5 million de dollars dépensés [40].",
         "Le prix reste le grand frein. Une analyse de France Stratégie, faite avec les prix de 2022, chiffrait le surcoût d'une citadine électrique à environ 16 000 euros à l'achat, contre environ 1 200 euros d'économies par an à l'usage [39].",
         "Et les aides publiques, qui compensaient alors la moitié à la totalité de ce surcoût, profitaient peu aux usines françaises : la plupart des voitures électriques achetées en France étaient fabriquées à l'étranger [39].",
         "L'enjeu est là : l'Europe veut fabriquer ses propres batteries pour garder ses usines et ses emplois. Mais face aux géants chinois, qui produisent environ 70 % des batteries du monde [5], chaque retard laisse la place aux importations."
       ],
-      article: "voiture-electrique-cout",
+      refs: [
+        { p: 3, article: "voiture-champ-de-bataille", part: 1 },
+        { p: 4, article: "voiture-electrique-cout", part: 2 },
+        { p: 5, article: "voiture-electrique-cout", part: 6 }
+      ],
+      articles: ["voiture-champ-de-bataille", "voiture-electrique-cout"],
       figures: [
         { value: "4", label: "usines Stellantis à l'arrêt en octobre", src: 12 },
         { value: "+45 %", label: "de ventes de voitures électriques dans l'UE (janv.-août 2026)", src: 14 },
@@ -361,7 +367,8 @@ window.GEOCO.focus = [
       { short: "Kun.uz", name: "Kun.uz, « The grey market loophole: how China's 'zero-kilometer' cars reach Central Asia » (25 juin 2025)", url: "https://live.kun.uz/en/news/2025/06/25/the-grey-market-loophole-how-chinas-zero-kilometer-cars-reach-central-asia" },
       { short: "Carnegie", name: "Carnegie Endowment, « China, Central Asia and electric cars » (août 2025)", url: "https://carnegieendowment.org/russia-eurasia/politika/2025/08/china-central-asia-electric-cars?lang=en" },
       { short: "Business Daily", name: "Business Daily Africa, « Kenya buys 94pc of used vehicles from Japan »", url: "https://www.businessdailyafrica.com/bd/markets/market-news/kenya-buys-94pc-of-used-vehicles-from-japan--4336552" },
-      { short: "France Stratégie", name: "France Stratégie, « Voiture électrique : à quel coût ? », La Note d'analyse n° 115, novembre 2022", url: "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr" }
+      { short: "France Stratégie", name: "France Stratégie, « Voiture électrique : à quel coût ? », La Note d'analyse n° 115, novembre 2022", url: "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr" },
+      { short: "Fridenson", name: "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026", url: "https://www.cairn.info/resultats_recherche.php?searchTerm=Fridenson+conflits+moteurs+premi%C3%A8re+croissance+industrie+automobile" }
     ]
   }
 ];

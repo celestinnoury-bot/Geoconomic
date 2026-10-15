@@ -1194,7 +1194,8 @@
           <div class="weekly-figs reveal">
             ${(w.figures || []).map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
           </div>
-          ${w.paragraphs.map((p) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>`).join("")}
+          ${w.paragraphs.map((p, i) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>${(w.refs || []).filter((r) => r.p === i).map((r) => { const a = byId(culture, r.article); const sec = a && a.sections[r.part - 1]; return a ? `<a class="weekly-ref reveal" href="#/articles/${a.id}/${r.part}"><span>Lire la suite dans l'article</span><b>${sec ? sec.title : a.title} ›</b></a>` : ""; }).join("")}`).join("")}
+          ${(w.articles || []).map((id) => byId(culture, id)).filter(Boolean).map((a) => `<a class="news-card eco reveal weekly-article" href="#/articles/${a.id}"><p class="eyebrow">Pour aller plus loin · ${a.kind || "Article"}</p><h3>${a.title}</h3><span class="more">Lire l'analyse ›</span></a>`).join("")}
           ${w.article && byId(culture, w.article) ? `<a class="news-card eco reveal weekly-article" href="#/articles/${w.article}"><p class="eyebrow">Pour aller plus loin · ${byId(culture, w.article).kind || "Article"}</p><h3>${byId(culture, w.article).title}</h3><span class="more">Lire l'analyse ›</span></a>` : ""}
           ${w.toWatch && w.toWatch.length ? `
           <div class="towatch reveal">
@@ -1639,7 +1640,7 @@
     });
   }
 
-  function renderCulture(id) {
+  function renderCulture(id, part) {
     const c = byId(culture, id);
     if (!c) return renderNotFound();
     if (articleLocked(c)) {
@@ -1684,13 +1685,22 @@
       </section>` : ""}
 
       ${c.sections.map((sec, i) => `
-        <section class="section ${(i + (c.tldr || c.keyFigures ? 1 : 0)) % 2 === 0 ? "alt" : ""}">
+        <section class="section ${(i + (c.tldr || c.keyFigures ? 1 : 0)) % 2 === 0 ? "alt" : ""}" id="part-${i + 1}">
           <div class="wrap">
+            <p class="part-num reveal">${String(i + 1).padStart(2, "0")} / ${String(c.sections.length).padStart(2, "0")}</p>
             <h2 class="title reveal">${sec.title}</h2>
             ${sec.quote ? `<p class="pull ${c.theme} reveal">${cite(sec.quote, c.sources)}</p>` : ""}
             ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, c.sources)}</p>`).join("")}
+            ${sec.box ? `<aside class="art-box ${sec.box.kind || ""} reveal"><p class="eyebrow">${sec.box.label}</p>${sec.box.title ? `<h3>${sec.box.title}</h3>` : ""}${(Array.isArray(sec.box.text) ? sec.box.text : [sec.box.text]).map((t) => `<p>${cite(t, c.sources)}</p>`).join("")}</aside>` : ""}
           </div>
         </section>
+        ${i === 0 && c.timeline ? `
+        <section class="section timeline-band">
+          <div class="wrap">
+            <p class="eyebrow reveal">${c.timelineTitle || "Les dates clés"}</p>
+            <ol class="art-timeline">${c.timeline.map((t) => `<li class="reveal"><span class="tl-when">${t.when}</span><span class="tl-what">${cite(t.text, c.sources)}</span></li>`).join("")}</ol>
+          </div>
+        </section>` : ""}
         ${i === 0 ? visualsBlock(c.visuals) : ""}
       `).join("")}
 
@@ -2462,7 +2472,7 @@ function statGrid(figures, sources, theme = "geo") {
     if (section === "cours" || section === "dossier") param ? renderDossier(param) : renderCoursIndex();
     else if (section === "actu") param ? renderNews(param) : renderActuIndex();
     else if (section === "etudes") param ? renderCase(param) : renderEtudesIndex();
-    else if (section === "articles" || section === "culture") param ? renderCulture(param) : renderArticlesIndex();
+    else if (section === "articles" || section === "culture") param ? renderCulture(param, extra) : renderArticlesIndex();
     else if (section === "chiffres") renderChiffres(param, extra);
     else if (section === "conflits") renderConflits(param, extra);
     else if (section === "recherche") renderSearch(param || "");
@@ -2479,6 +2489,11 @@ function statGrid(figures, sources, theme = "geo") {
 
     bindAudio();
     if (!((section === "lexique" || section === "anecdotes") && param)) window.scrollTo(0, 0);
+    // Lien direct vers une partie d'article : #/articles/<id>/<n° de partie>.
+    if ((section === "articles" || section === "culture") && param && extra) {
+      const target = document.getElementById("part-" + extra);
+      if (target) setTimeout(() => { target.scrollIntoView({ behavior: "smooth", block: "start" }); target.classList.add("flash"); }, 120);
+    }
     document.querySelector(".nav-search") && document.querySelector(".nav-search").classList.toggle("active", section === "recherche");
     watchReveals();
   }

@@ -1114,3 +1114,27 @@ mark.hl { background: linear-gradient(transparent 62%, rgba(245, 200, 107, .45) 
 .pull { font-size: clamp(24px, 4vw, 34px); line-height: 1.2; font-weight: 700; letter-spacing: -.02em; margin: 18px 0 22px; padding-left: 18px; border-left: 3px solid var(--gold); color: var(--text); max-width: 760px; }
 .pull .cite { font-size: 13px; font-weight: 500; }
 .weekly-article { display: block; margin-top: 28px; }
+
+/* Articles : repères de lecture */
+.part-num { font: 600 12px/1 ui-monospace, Menlo, monospace; letter-spacing: .12em; color: var(--gold); margin: 0 0 10px; }
+.art-box { margin-top: 26px; padding: 18px 20px; border-radius: 18px; background: var(--surface); border: 1px solid rgba(245, 200, 107, .28); max-width: 760px; }
+.art-box .eyebrow { color: var(--gold); font-size: 13px; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 6px; }
+.art-box h3 { font-size: 20px; margin: 0 0 8px; }
+.art-box p { font-size: 16px; line-height: 1.55; color: var(--text); margin: 8px 0 0; }
+.art-box.archive { background: #f3ecdc; border-color: #d9c9a3; }
+.art-box.archive h3, .art-box.archive p { color: #2b2418; font-family: "Tinos", Georgia, serif; }
+.art-box.archive p { font-style: italic; }
+.art-box.archive .eyebrow { color: #8a5a12; }
+.art-box.archive .cite { color: #8a5a12; }
+.timeline-band { background: linear-gradient(180deg, rgba(245, 200, 107, .06), transparent); }
+.art-timeline { list-style: none; margin: 16px 0 0; padding: 0 0 0 18px; border-left: 2px solid rgba(245, 200, 107, .5); display: grid; gap: 18px; max-width: 760px; }
+.art-timeline li { position: relative; display: grid; gap: 2px; }
+.art-timeline li::before { content: ""; position: absolute; left: -25px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(245, 200, 107, .6); }
+.tl-when { font-weight: 700; color: var(--gold); font-size: 15px; }
+.tl-what { color: var(--text); font-size: 16px; line-height: 1.45; }
+.weekly-ref { display: inline-flex; flex-wrap: wrap; gap: 4px 8px; align-items: baseline; margin-top: 10px; padding: 8px 12px; border-radius: 12px; background: rgba(245, 200, 107, .1); border: 1px solid rgba(245, 200, 107, .3); text-decoration: none; font-size: 14px; }
+.weekly-ref span { color: var(--muted); }
+.weekly-ref b { color: var(--gold); font-weight: 600; }
+section.flash { animation: partFlash 1.6s ease-out; }
+@keyframes partFlash { 0% { box-shadow: inset 4px 0 0 var(--gold); } 100% { box-shadow: inset 4px 0 0 transparent; } }
+[id^="part-"] { scroll-margin-top: 90px; }

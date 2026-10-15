@@ -5,7 +5,123 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.culture = [
   {
+    "id": "voiture-champ-de-bataille",
+    "plus": false,
+    "author": "Rédaction Géoconomic",
+    "kind": "Enquête",
+    "theme": "mix",
+    "title": "Voiture électrique : une bataille vieille d'un siècle",
+    "hook": "En 1914, Henry Ford annonçait déjà une Ford T électrique. Prix, aides, normes, pollution : les conflits d'aujourd'hui rejouent ceux qui ont fait naître l'automobile.",
+    "tldr": [
+      "La voiture électrique n'est pas neuve : ==Ford l'a tentée en 1914==, et c'est déjà la batterie qui l'a fait échouer [1][3].",
+      "Dès le début, les constructeurs ont hésité entre ==voitures de luxe très rentables et voitures pour tous==. Le même dilemme pèse aujourd'hui sur l'électrique [1][2].",
+      "Sécurité, prix justes, pollution : ce sont souvent ==les clients, les assureurs et les tribunaux== qui ont forcé l'industrie à changer [1]."
+    ],
+    "keyFigures": [
+      { "value": "1914", "label": "Henry Ford annonce une Ford T électrique", "src": 1 },
+      { "value": "1,5 M$", "label": "dépensés avant d'abandonner le projet, fin 1914", "src": 1 },
+      { "value": "1919", "label": "la justice donne raison aux actionnaires contre Ford", "src": 1 },
+      { "value": "+16 000 €", "label": "le surcoût d'une citadine électrique en 2022", "src": 2 }
+    ],
+    "timelineTitle": "Un siècle de bataille automobile",
+    "timeline": [
+      { "when": "1904", "text": "Ford ouvre son usine de l'avenue Piquette, à Détroit : des ouvriers très qualifiés y montent des voitures chères pour peu de clients [1]." },
+      { "when": "1914", "text": "Projet de Ford T électrique, avec des batteries d'Edison. Abandonné à la fin de l'année [1]." },
+      { "when": "1919", "text": "La Cour suprême du Michigan tranche pour les actionnaires de Ford, qui voulaient leurs dividendes [1]." },
+      { "when": "1959", "text": "Les assureurs américains créent un institut de recherche sur la sécurité routière [1]." },
+      { "when": "1965-1966", "text": "Le livre de Ralph Nader sur les voitures dangereuses sort aux États-Unis, puis en France [1]." },
+      { "when": "2021", "text": "L'électrique ne fait que 10 % des ventes de voitures neuves en France [2]." },
+      { "when": "2035", "text": "Fin prévue des ventes de voitures thermiques neuves dans l'Union européenne [2]." }
+    ],
+    "sections": [
+      {
+        "title": "1914 : la première Ford électrique",
+        "quote": "Avant la Tesla, il y a eu la Ford T électrique.",
+        "paragraphs": [
+          "Au début de 1914, Henry Ford, devenu le premier constructeur automobile du monde, annonce une Ford T électrique. Il réserve un terrain pour l'usine et monte une équipe. Un prix de 500 dollars est même évoqué, presque celui de la version à essence [1][3].",
+          "Les batteries viennent de son ami Thomas Edison. Mais les prototypes ==mettent longtemps à charger, manquent de puissance et coûtent trop cher à produire==. Fin 1914, après 1,5 million de dollars dépensés, Ford abandonne [1][3].",
+          "Un siècle plus tard, la batterie reste le nœud du problème. En 2022, une citadine électrique coûtait environ 16 000 euros de plus à l'achat que son équivalent essence, même si elle faisait économiser environ 1 200 euros par an à l'usage [2]."
+        ],
+        "box": { "label": "Le détail oublié", "title": "Des batteries inventées en France", "text": "Les batteries nickel-fer de la Ford T électrique avaient été inventées en France, puis perfectionnées par Edison avec plusieurs brevets [1]." }
+      },
+      {
+        "title": "Luxe ou masse : le premier conflit",
+        "quote": "« Une entreprise est organisée et dirigée d'abord pour le profit de ses actionnaires. » Cour suprême du Michigan, 1919 [1].",
+        "paragraphs": [
+          "On croit souvent que la voiture pour tous était une évidence. C'est faux : au début, ==les voitures chères pour quelques riches rapportent de très gros dividendes==, et le prix moyen des voitures augmente au lieu de baisser [1].",
+          "Quand Ford veut produire une voiture pour un large public, ses actionnaires s'y opposent. Il doit racheter leurs actions petit à petit. En 1916, les frères Dodge lui font même un procès pour défendre leurs dividendes, et la justice leur donne raison en 1919. En 1920, Ford rachète leurs parts : l'entreprise n'a plus que trois actionnaires, lui, sa femme et son fils [1].",
+          "En Europe, les constructeurs restent longtemps fidèles aux petites séries de luxe, très rentables [1].",
+          "Le même dilemme existe aujourd'hui. En 2022, l'électrique était rentable tout de suite pour un SUV, mais pas pour une citadine achetée par un ménage aux revenus moyens. France Stratégie proposait de ==réserver le bonus aux petites voitures électriques== [2]."
+        ]
+      },
+      {
+        "title": "Des clients qui ne se laissent pas faire",
+        "quote": "Les premières voitures tombaient en panne, cassaient, brûlaient. Les clients ont porté plainte.",
+        "paragraphs": [
+          "Les premières voitures sont souvent défectueuses : elles tombent en panne, cassent, prennent feu, et peuvent blesser. Selon l'historienne Sally Clarke, de nombreux clients américains protestent et vont en justice [1].",
+          "Les procès font boule de neige : les clients attaquent les garagistes, les garagistes attaquent les constructeurs, qui accusent les vendeurs. Peu à peu, ==les tribunaux condamnent à de lourdes amendes== [1].",
+          "Même la mythique Ford T n'était pas parfaite : elle était surtout meilleure que les autres voitures de son prix [1].",
+          "Aujourd'hui, la méfiance des acheteurs prend une autre forme : l'incertitude sur le prix de l'électricité et le nombre de bornes freine les achats, alors même que l'électrique est rentable à l'usage [2]."
+        ],
+        "box": {
+          "kind": "archive",
+          "label": "Document d'archive · 1925",
+          "title": "« Une très mauvaise opération »",
+          "text": [
+            "En 1925, le directeur de l'agence de la Banque de l'Indochine à Tientsin, en Chine, écrit à Paris : sa limousine Renault 18 HP de 1921 part au garage presque tous les mois et consomme 28 litres aux 100 km [1].",
+            "Il demande à la remplacer par une Peugeot 15 HP, qui ne consomme qu'environ 15 litres. Le garage qui lui avait vendu la Renault accepte de la reprendre, pour se faire pardonner [1]."
+          ]
+        }
+      },
+      {
+        "title": "La sécurité, imposée par les usagers",
+        "quote": "La voiture est devenue plus sûre à cause des dégâts qu'elle a causés.",
+        "paragraphs": [
+          "Aux États-Unis, ce sont d'abord ==les assureurs== qui étudient les accidents pour savoir qui est responsable. En 1959, ils créent un institut de recherche sur la sécurité routière [1].",
+          "Les normes de sécurité ne sont pas seulement un outil des industriels pour produire en série : elles sont aussi ==réclamées par les clients et leurs avocats==, pour que la voiture ne soit plus un « cercueil à roulettes » [1].",
+          "En 1965, l'avocat Ralph Nader publie un livre choc sur les voitures dangereuses. Traduit en France en 1966 sous le titre « Ces voitures qui tuent », il est accompagné de notes d'un journaliste qui minimisent le problème pour les voitures françaises, très probablement à la demande des constructeurs, selon l'historien Patrick Fridenson [1]."
+        ]
+      },
+      {
+        "title": "La pollution, un combat venu d'ailleurs",
+        "quote": "Les grands pays de l'automobile ont mené la bataille de la sécurité. Celle de la pollution est venue d'ailleurs.",
+        "paragraphs": [
+          "On sait très tôt que les gaz d'échappement contiennent du monoxyde de carbone mortel. Mais la pollution de l'air des villes ne devient un sujet qu'avec le smog de Los Angeles, dans les années 1950 [1].",
+          "Selon Patrick Fridenson, les premières initiatives contre la pollution automobile ont été lancées ==hors des grandes capitales de l'automobile==, par exemple en Suède [1].",
+          "Le sujet est devenu central : en 2021, les transports pesaient 30 % des émissions de gaz à effet de serre de la France, et c'était le seul secteur au-dessus de son niveau de 1990 [2]."
+        ]
+      },
+      {
+        "title": "Ce que l'histoire dit d'aujourd'hui",
+        "paragraphs": [
+          "Pour l'historien, la voiture a toujours été « technopolitique » : un objet technique façonné par des conflits entre constructeurs, actionnaires, clients, garagistes, assureurs, élus et experts [1].",
+          "Ces conflits se rejouent avec l'électrique : ==qui paiera la transition==, les ménages modestes qui achètent d'occasion et seront touchés par les zones à faibles émissions ? Et ==qui fabriquera les voitures==, alors que la plupart des électriques achetées en France sont produites à l'étranger [2] ?"
+        ]
+      }
+    ],
+    "didYouKnow": "Pour sa « Très Petite Voiture », l'ancêtre de la 2 CV, Citroën a un temps imaginé de demander la suppression du permis de conduire, ou un permis gratuit [1].",
+    "sources": [
+      { "short": "Fridenson", "name": "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026, p. 31-48", "url": "https://www.cairn.info/resultats_recherche.php?searchTerm=Fridenson+conflits+moteurs+premi%C3%A8re+croissance+industrie+automobile" },
+      { "short": "France Stratégie", "name": "Alice Robinet et Maxime Gérardin, « Voiture électrique : à quel coût ? », La Note d'analyse de France Stratégie n° 115, novembre 2022", "url": "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr" },
+      { "short": "Mac's Motor City Garage", "name": "Bill McGuire, « Henry Ford's Electric Model T », 2021", "url": "https://macsmotorcitygarage.com/henry-fords-electric-model-t/" }
+    ],
+    "visuals": [
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "1925 : la Renault qui buvait trop",
+        "subtitle": "Consommation d'essence selon la lettre de la Banque de l'Indochine, en litres aux 100 km",
+        "xLabel": "Voiture",
+        "unit": "Litres aux 100 km",
+        "decimals": 0,
+        "data": [["Renault 18 HP (1921)", 28], ["Peugeot 15 HP", 15]],
+        "source": "Archives Crédit Agricole, fonds Banque de l'Indochine, lettre du 10 juillet 1925, citée par Patrick Fridenson (2026)"
+      }
+    ]
+  },
+  {
     "id": "voiture-electrique-cout",
+    "plus": false,
     "author": "Rédaction Géoconomic",
     "kind": "Étude décryptée",
     "theme": "eco",
