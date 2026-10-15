@@ -261,6 +261,30 @@
   const mountVisuals = (visuals) => window.GeocoViz && window.GeocoViz.mountAll(visuals);
 
   // Photo d'en-tête facultative : { src, alt, credit }.
+  // Curseur de défilement au bord droit du globe et de la voiture : le doigt y fait défiler la page
+  // (au lieu de faire tourner la 3D) ; un toucher saute juste après la zone.
+  const scrollRail = () => `<button type="button" class="scroll-rail" aria-label="Descendre"><span class="rail-thumb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 6l5 5 5-5M7 13l5 5 5-5"/></svg></span></button>`;
+  function updateRails() {
+    document.querySelectorAll(".scroll-rail").forEach((rail) => {
+      const host = rail.parentElement.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, (72 - host.top) / Math.max(1, host.height - 72)));
+      rail.style.setProperty("--rail-p", p.toFixed(3));
+    });
+  }
+  window.addEventListener("scroll", updateRails, { passive: true });
+  document.addEventListener("click", (e) => {
+    const rail = e.target.closest && e.target.closest(".scroll-rail");
+    if (!rail) return;
+    // Animation maison : un scroll « smooth » natif est parfois annulé juste après un toucher.
+    const from = window.scrollY, dist = rail.parentElement.getBoundingClientRect().bottom - 64, t0 = performance.now();
+    const step = (t) => {
+      const k = Math.min(1, (t - t0) / 600);
+      window.scrollTo(0, from + dist * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  });
+
   function heroImage(img) {
     if (!img) return "";
     return `<figure class="hero-img reveal"><img src="${img.src}" alt="${img.alt || ""}" loading="lazy"><figcaption>${img.credit || ""}</figcaption></figure>`;
@@ -372,6 +396,7 @@
           ${onGlobe.map((n) => `<a class="tagpill" href="#/actu/${n.id}">${n.geo[0].name} · ${n.title}</a>`).join("")}
         </div>
         <div class="globe-sheet" hidden></div>
+        ${scrollRail()}
         <a class="scroll-hint" href="#/" data-scroll="feed"><span>Toute l'actu</span><span class="arrow" aria-hidden="true">↓</span></a>
         ${tickerHTML()}
       </section>
@@ -1428,6 +1453,7 @@
           <p class="car-loading" id="car-loading">Chargement de la voiture 3D…</p>
           <p class="car-hint" id="car-hint" aria-hidden="true"><span class="car-hint-icon">⟲</span> Glisse pour faire tourner · touche un point</p>
           <div class="car-card" id="car-card" hidden></div>
+          ${scrollRail()}
         </div>
         <div class="wrap focus-controls">
           ${f.paints ? `<div>${segmented(f.paints, f.paints[0][0], "paint")}</div>` : ""}
@@ -1856,6 +1882,7 @@ function statGrid(figures, sources, theme = "geo") {
         <div class="ind-stage" style="margin-top:18px">
           <div class="ind-globe" id="conf-globe"></div>
           <div class="ind-card" id="conf-card" hidden></div>
+          ${scrollRail()}
         </div>
         <div class="legend" id="conf-legend"></div>
         <p class="viz-cap">Touche un pays coloré pour savoir ce qui s'y passe.</p>
@@ -2035,6 +2062,7 @@ function statGrid(figures, sources, theme = "geo") {
         <div class="ind-stage">
           <div class="ind-globe" id="ind-globe"></div>
           <div class="ind-card" id="ind-card" hidden></div>
+          ${scrollRail()}
         </div>
         <div class="legend" id="legend"></div>
         <p class="viz-cap">Touche un pays pour voir son chiffre. Plus un pays est clair et « haut », plus la valeur est élevée.</p>
@@ -2550,6 +2578,7 @@ function statGrid(figures, sources, theme = "geo") {
 
     bindAudio();
     if (!((section === "lexique" || section === "anecdotes") && param)) window.scrollTo(0, 0);
+    requestAnimationFrame(updateRails);
     // Lien direct vers une partie d'article : #/articles/<id>/<n° de partie>.
     if ((section === "articles" || section === "culture") && param && extra) {
       const target = document.getElementById("part-" + extra);

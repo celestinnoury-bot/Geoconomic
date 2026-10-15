@@ -1197,3 +1197,33 @@ section.flash { animation: partFlash 1.6s ease-out; }
   .art-card.featured .art-cover { height: 100%; aspect-ratio: auto; min-height: 280px; }
   .art-cover.solo { max-width: 760px; }
 }
+
+/* ---------- Curseur de défilement (bord droit du globe et de la voiture) ---------- */
+.scroll-rail {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 46px; z-index: 4;
+  margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
+  touch-action: pan-y; -webkit-user-select: none; user-select: none;
+  --rail-p: 0;
+}
+.scroll-rail::before {
+  content: ""; position: absolute; left: 50%; top: 16%; bottom: 16%; width: 2px; margin-left: -1px; border-radius: 2px;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,.22) 15%, rgba(255,255,255,.22) 85%, transparent);
+}
+.rail-thumb {
+  position: absolute; left: 50%; top: calc(16% + var(--rail-p) * (68% - 58px));
+  width: 30px; height: 58px; margin-left: -15px; border-radius: 999px;
+  display: grid; place-items: center; pointer-events: none;
+  background: rgba(20,22,26,.72); border: 1px solid rgba(255,255,255,.22);
+  -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+  box-shadow: 0 4px 18px rgba(0,0,0,.45);
+  transition: border-color .2s var(--ease), background .2s var(--ease);
+}
+.rail-thumb svg { width: 18px; height: 18px; fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.8s var(--ease) infinite; }
+.scroll-rail:hover .rail-thumb, .scroll-rail:active .rail-thumb { border-color: var(--mint); background: rgba(61,220,151,.18); }
+.scroll-rail:focus-visible { outline: none; }
+.scroll-rail:focus-visible .rail-thumb { outline: 2px solid #2997ff; outline-offset: 2px; }
+.globe-hero .scroll-rail { top: calc(200px + env(safe-area-inset-top)); bottom: calc(60px + env(safe-area-inset-bottom)); }
+.ind-stage .globe-zoom { right: 54px; }
+.globe-hero.sheet-open .scroll-rail { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .rail-thumb svg { animation: none; } }
+.car-card, .ind-card { z-index: 6; }

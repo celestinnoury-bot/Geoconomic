@@ -435,6 +435,7 @@
   "prévision": "forecast",
   "de": "of",
   "{n} parties": "{n} parts",
-  "{n} min de lecture": "{n} min read"
+  "{n} min de lecture": "{n} min read",
+  "Descendre": "Scroll down"
  }
 }
