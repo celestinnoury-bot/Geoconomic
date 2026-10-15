@@ -5,6 +5,92 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.culture = [
   {
+    "id": "voiture-electrique-cout",
+    "author": "Rédaction Géoconomic",
+    "kind": "Étude décryptée",
+    "theme": "eco",
+    "title": "Voiture électrique : pourquoi on n'en achète pas plus, alors qu'elle coûte moins cher à rouler",
+    "hook": "Une note de France Stratégie fait les comptes : plus chère à l'achat, moins chère à l'usage, et des aides publiques qui coûtent cher pour le climat.",
+    "sections": [
+      {
+        "title": "Le décalage : 10 % des ventes, objectif 100 % en 2035",
+        "paragraphs": [
+          "En 2021, les voitures électriques ne représentaient que 10 % des ventes de voitures neuves en France, alors que l'Union européenne prévoit la fin des ventes de voitures thermiques neuves en 2035 [1].",
+          "L'enjeu est climatique : les transports sont le seul secteur dont les émissions de gaz à effet de serre restent au-dessus de leur niveau de 1990, et ils pesaient encore 30 % des émissions françaises en 2021 [1]."
+        ]
+      },
+      {
+        "title": "Plus chère à l'achat, moins chère à l'usage",
+        "paragraphs": [
+          "Pour une citadine (le format d'une Renault Clio), la version électrique coûte environ 16 000 euros de plus à l'achat que la version essence. Mais elle fait économiser environ 1 200 euros par an à l'usage [1].",
+          "Les aides de l'époque (bonus écologique de 6 000 euros, prime à la conversion, aide pour la borne de recharge, malus sur les voitures polluantes) compensaient entre 50 % et 100 % de ce surcoût selon les ménages et les modèles [1].",
+          "Résultat : l'électrique est rentable tout de suite pour un petit modèle acheté par un ménage très modeste, ou pour un SUV familial, quel que soit le ménage. Pour une citadine achetée par un ménage aux revenus moyens ou aisés, il faut environ six ans [1].",
+          "Ces calculs supposent une essence à 1,70 euro le litre et une recharge surtout à domicile, en heures creuses. Sur une borne rapide publique, la recharge coûte trois à quatre fois plus cher [1]."
+        ]
+      },
+      {
+        "title": "Des aides chères pour le climat",
+        "paragraphs": [
+          "Les auteurs rapportent l'argent public dépensé aux émissions de CO2 évitées. Même en supposant que la voiture roule seize ans et plus de 200 000 kilomètres, les aides à l'achat coûtent environ 300 euros par tonne de CO2 évitée [1].",
+          "Et c'est une estimation basse : elle ne compte pas la « dette écologique » de la voiture électrique, c'est-à-dire les émissions plus importantes de sa fabrication, à cause de la batterie [1]."
+        ]
+      },
+      {
+        "title": "Les ménages modestes, angle mort de la transition",
+        "paragraphs": [
+          "Les ménages modestes achètent surtout d'occasion, un marché où l'offre électrique reste rare. En 2019, seulement 0,3 % des voitures des 10 % de ménages les plus modestes étaient électriques [1].",
+          "Or les zones à faibles émissions (ZFE) vont interdire progressivement les voitures les plus anciennes dans les grandes villes : ces ménages risquent d'être obligés de changer de voiture sans en avoir les moyens [1]."
+        ]
+      },
+      {
+        "title": "Ce que proposent les auteurs",
+        "paragraphs": [
+          "Réserver le bonus aux petites voitures électriques, durcir le malus sur les émissions et sur le poids (y compris pour les électriques), aider les ménages modestes avec des formules de location longue durée, et donner de la visibilité sur le prix de l'électricité et le nombre de bornes, car l'incertitude freine les achats [1].",
+          "Ce sont des pistes d'analyse : la note précise qu'elle ne reflète pas forcément la position du gouvernement [1]."
+        ]
+      },
+      {
+        "title": "Et l'industrie française ?",
+        "paragraphs": [
+          "La plupart des voitures électriques achetées en France sont fabriquées à l'étranger : les aides à l'achat profitent donc peu à la production française. Le seul modèle neuf clairement identifié dans l'entrée de gamme était fabriqué en Chine [1].",
+          "En 2019, avant le Covid, la France produisait environ 2,2 millions de véhicules, l'Europe 21,6 millions et la Chine 25,7 millions [1]. Le lien avec le Focus de la semaine : la bataille de la voiture électrique se joue aussi dans les usines."
+        ]
+      }
+    ],
+    "didYouKnow": "Les montants d'aides étudiés datent de juillet 2022 : la note signalait déjà que le bonus écologique devait passer de 6 000 à 5 000 euros dès janvier 2023. Les barèmes ont changé depuis.",
+    "sources": [
+      {
+        "short": "France Stratégie",
+        "name": "Alice Robinet et Maxime Gérardin, « Voiture électrique : à quel coût ? », La Note d'analyse de France Stratégie n° 115, novembre 2022",
+        "url": "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Citadine électrique : ce qui compense le surcoût",
+        "subtitle": "Par rapport à la même voiture à essence (format Renault Clio), en euros",
+        "xLabel": "Poste",
+        "unit": "Euros",
+        "decimals": 0,
+        "data": [["Surcoût", 16000], ["Aides", 8800], ["Usage 6 ans", 7200]],
+        "source": "France Stratégie, note n° 115 (2022). Surcoût à l'achat, aides de 2022, et économies d'usage sur 6 ans : 1 200 € par an multipliés par 6, sans actualisation."
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Où l'on fabrique les voitures",
+        "subtitle": "Véhicules produits en 2019, en millions",
+        "xLabel": "Zone",
+        "unit": "Millions de véhicules",
+        "decimals": 1,
+        "data": [["France", 2.2], ["Amérique", 20.1], ["Europe", 21.6], ["Chine", 25.7]],
+        "source": "France Stratégie, note n° 115 (2022), d'après le CCFA"
+      }
+    ]
+  },
+  {
     id: "reserves-strategiques",
     author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
