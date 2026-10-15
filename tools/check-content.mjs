@@ -5,7 +5,7 @@ import vm from "vm";
 
 const ctx = { window: {} };
 vm.createContext(ctx);
-for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js", "data/cartes.js"]) {
+for (const f of ["data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/indicators.js", "data/conflits.js", "data/focus.js", "data/lieux.js"]) {
   vm.runInContext(fs.readFileSync(f, "utf8"), ctx, { filename: f });
 }
 const { dossiers, glossary, news, culture, indicators } = ctx.window.GEOCO;
@@ -187,25 +187,24 @@ focus.forEach((f) => {
 const today = news.length ? news[0].date : "—";
 console.log(`${news.length} actus (dernière date : ${today}, ${news.filter((n) => n.date === today).length} ce jour-là), ${dossiers.length} cours, ${culture.length} articles, ${(etudes.cas || []).length} études de cas, ${(etudes.podcast || []).length} épisodes.`);
 warn.forEach((w) => console.log("Attention : " + w));
-// ---- L'Album (data/cartes.js)
+// ---- L'Album des lieux (data/lieux.js)
 {
-  const C = ctx.window.GEOCO.cartes || [], S = ctx.window.GEOCO.cartesSeries || [];
-  const ids = new Set(), seriesIds = new Set(S.map((x) => x.id)), coursIds = new Set((ctx.window.GEOCO.dossiers || []).map((d) => d.id));
-  C.forEach((c) => {
-    const w = `carte ${c.id}`;
-    if (ids.has(c.id)) err(w, "id en double");
-    ids.add(c.id);
-    if (!["principe", "moment", "personnage"].includes(c.famille)) err(w, `famille inconnue « ${c.famille} »`);
-    if (!["commune", "rare", "epique", "legendaire"].includes(c.rarete)) err(w, `rareté inconnue « ${c.rarete} »`);
-    if (!seriesIds.has(c.serie)) err(w, `série inconnue « ${c.serie} »`);
-    (c.cours || []).forEach((d) => { if (!coursIds.has(d)) err(w, `cours inconnu « ${d} »`); });
-    ["influence", "portee", "duree"].forEach((k) => { const v = c.stats && c.stats[k]; if (!(v >= 1 && v <= 99)) err(w, `stat ${k} entre 1 et 99`); });
-    if (!c.title || !c.text || !c.fact || !c.icon) err(w, "titre, texte, fait et icône obligatoires");
-    if (c.defi && (!["influence", "portee", "duree"].includes(c.defi.stat) || !(c.defi.power > 0) || c.defi.power > 297)) err(w, "défi invalide");
-    checkSources(w, [c.source]);
+  const L = ctx.window.GEOCO.lieux || [], R = ctx.window.GEOCO.lieuxRoutes || [];
+  const ids = new Set();
+  L.forEach((l) => {
+    const w = `lieu ${l.id}`;
+    if (ids.has(l.id)) err(w, "id en double");
+    ids.add(l.id);
+    if (!["passage", "sous-sol", "centre"].includes(l.famille)) err(w, `famille inconnue « ${l.famille} »`);
+    if (!["connu", "discret", "cache", "secret"].includes(l.rarete)) err(w, `rareté inconnue « ${l.rarete} »`);
+    if (!Array.isArray(l.coords) || Math.abs(l.coords[0]) > 90 || Math.abs(l.coords[1]) > 180) err(w, "coordonnées [lat, lng] invalides");
+    if (!l.name || !l.where || !l.text || !l.fact || !l.key || !l.key.value || !l.key.label) err(w, "nom, lieu, texte, fait et chiffre clé obligatoires");
+    const r = R.find((x) => x.id === l.route);
+    if (!r) err(w, `route inconnue « ${l.route} »`);
+    else if (!r.places.includes(l.id)) err(w, `absent de la liste de la route ${r.id}`);
+    checkSources(w, [l.source]);
   });
-  S.forEach((x) => { if (!C.some((c) => c.serie === x.id)) err(`série ${x.id}`, "aucune carte"); });
-  if (C.length && !C.some((c) => c.defi)) err("album", "aucune crise pour le défi du jour");
+  R.forEach((r) => r.places.forEach((id) => { if (!ids.has(id)) err(`route ${r.id}`, `lieu inconnu « ${id} »`); }));
 }
 
 // Traductions : les textes pas encore traduits s'affichent en français (signalé, pas bloquant).

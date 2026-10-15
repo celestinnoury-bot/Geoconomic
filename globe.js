@@ -350,7 +350,62 @@
     return { world, show, destroy() { try { world.pauseAnimation(); world.renderer().dispose(); } catch (e) {} } };
   }
 
+  // L'Album des lieux : signaux à explorer (lieux pas encore découverts) et lieux découverts,
+  // routes complètes en arcs. onPick(id) quand on touche un point.
+  async function mountAtlas(container, { onPick } = {}) {
+    if (!webglOK()) { container.classList.add("no-webgl"); return null; }
+    await loadLib();
+    if (!document.body.contains(container)) return null;
+    let pins = [], routes = [];
+    const world = new window.Globe(container, { animateIn: true })
+      .backgroundColor("rgba(0,0,0,0)")
+      .globeImageUrl(TEX.earth)
+      .bumpImageUrl(TEX.bump)
+      .showAtmosphere(true)
+      .atmosphereColor("#5aa9ff")
+      .atmosphereAltitude(0.16)
+      .width(container.clientWidth)
+      .height(container.clientHeight)
+      .arcColor(() => ["rgba(245,200,107,.4)", "rgba(245,200,107,1)"])
+      .arcStroke(1.4)
+      .arcAltitudeAutoScale(0.4)
+      .arcDashLength(0.4).arcDashGap(0.1).arcDashAnimateTime(2600)
+      .ringLat("lat").ringLng("lng")
+      .ringColor(() => (t) => `rgba(100,210,255,${(1 - t) * 0.8})`)
+      .ringMaxRadius(3.2).ringPropagationSpeed(1.6).ringRepeatPeriod(1600)
+      .htmlLat("lat").htmlLng("lng").htmlAltitude(0.012)
+      .htmlElement((p) => {
+        const el = document.createElement("button");
+        el.className = "atlas-pin " + (p.found ? "found" : "signal");
+        el.setAttribute("aria-label", p.found ? p.name : "Signal à explorer");
+        el.innerHTML = `<span class="atlas-dot"></span>${p.found ? `<span class="atlas-label">${p.name}</span>` : ""}`;
+        el.addEventListener("click", (e) => { e.stopPropagation(); onPick && onPick(p.id); });
+        return el;
+      });
+    const controls = world.controls();
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.35;
+    addZoom(world, container, controls);
+    const alt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 1.1 ? 2.4 : 2.1);
+    world.pointOfView({ lat: 20, lng: 30, altitude: alt() });
+    container.addEventListener("pointerdown", () => { controls.autoRotate = false; });
+    function update(nextPins, nextRoutes) {
+      pins = nextPins; routes = nextRoutes || [];
+      world.htmlElementsData(pins)
+        .ringsData(pins.filter((p) => !p.found))
+        .arcsData(routes.flatMap((r) => r.slice(1).map((b, i) => ({ startLat: r[i][0], startLng: r[i][1], endLat: b[0], endLng: b[1] }))));
+    }
+    function focus(lat, lng) { controls.autoRotate = false; world.pointOfView({ lat, lng, altitude: 1.1 }, 1400); }
+    const onResize = () => {
+      if (!document.body.contains(container)) return window.removeEventListener("resize", onResize);
+      world.width(container.clientWidth).height(container.clientHeight);
+    };
+    window.addEventListener("resize", onResize);
+    return { world, update, focus, destroy() { try { world.pauseAnimation(); world.renderer().dispose(); } catch (e) {} } };
+  }
+
   window.GeocoGlobe = {
+    mountAtlas,
     mountIndicators,
     mountFlows,
     classOf,

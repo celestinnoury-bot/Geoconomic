@@ -396,16 +396,16 @@
         </div>
       </section>` : ""}
 
-      ${cartes.length ? `
+      ${lieux.length ? `
       <section class="section album-teaser">
         <div class="wrap">
-          <p class="eyebrow reveal">Nouveau · L'Album</p>
-          <h2 class="title reveal">Collectionne l'économie.</h2>
+          <p class="eyebrow reveal">L'Album des lieux</p>
+          <h2 class="title reveal">Les lieux qui font tourner le monde.</h2>
           <a class="album-teaser-card reveal" href="#/album">
-            <div class="album-fan small" aria-hidden="true">${["adam-smith", "bretton-woods", "tragedie-communs"].map((id) => cartes.find((c) => c.id === id)).filter(Boolean).map((c) => cardHTML(c, { noCount: true })).join("")}</div>
+            <div class="album-fan small" aria-hidden="true">${["ormuz", "kolwezi", "veldhoven"].map((id) => lieux.find((l) => l.id === id)).filter(Boolean).map((l) => lieuCard(l)).join("")}</div>
             <div>
-              <p class="summary">Principes, moments historiques et personnages en cartes à collectionner. Ouvre tes paquets du jour et affronte les crises de l'histoire.</p>
-              <span class="more">${packsLeft() ? "Ouvrir mon paquet du jour ›" : "Voir ma collection ›"}</span>
+              <p class="summary">Détroits, mines, ports, usines : des endroits réels dont on parle peu, mais dont tout dépend. Explore le globe pour les collectionner, ou va sur place.</p>
+              <span class="more">${probesLeft() ? "Explorer le globe ›" : "Voir ma collection ›"}</span>
             </div>
           </a>
         </div>
@@ -1123,7 +1123,6 @@
     if (!n) return renderNotFound();
     const cult = (n.culture || []).map((c) => byId(culture, c)).filter(Boolean);
     const doss = coursesFor(n);
-    if (n.date === (news[0] && news[0].date)) albumOnRead(n);
 
     app.innerHTML = `
       <section class="wrap hero">
@@ -2450,130 +2449,66 @@ function statGrid(figures, sources, theme = "geo") {
     app.innerHTML = `<section class="wrap hero"><p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p></section>`;
   }
 
-  // ---------- L'Album : cartes à collectionner (data/cartes.js) ----------
-  // Comme les jeux de cartes tirées de Wikipédia : des paquets à ouvrir chaque jour, des raretés, des séries,
-  // un défi du jour contre une crise de l'histoire et des duels. Tout est gardé sur l'appareil (pas encore de comptes) ;
-  // les échanges entre joueurs viendront avec les comptes (les ids des cartes ne changent jamais).
-  const cartes = window.GEOCO.cartes || [];
-  const cartesSeries = window.GEOCO.cartesSeries || [];
-  const ALBUM_KEY = "geoco.album";
-  const RARITY = {
-    commune: { name: "Commune", weight: 62, dust: 1, cost: 6 },
-    rare: { name: "Rare", weight: 26, dust: 3, cost: 15 },
-    epique: { name: "Épique", weight: 9, dust: 6, cost: 30 },
-    legendaire: { name: "Légendaire", weight: 3, dust: 12, cost: 60 }
-  };
-  const RANKS = Object.keys(RARITY);
-  const FAMILIES = { principe: "Principe éco", moment: "Moment historique", personnage: "Personnage" };
-  const STATS = { influence: "Influence", portee: "Portée", duree: "Durée" };
-  const PACKS_PER_DAY = 2, PACK_SIZE = 4, SERIES_BONUS = 25, DUEL_REWARD = 3, DUEL_REWARDS_PER_DAY = 3;
+  // ---------- L'Album des lieux (data/lieux.js) ----------
+  // Des lieux réels, souvent peu connus, qui font tourner l'économie. On les découvre en explorant le globe
+  // (quelques sondes par jour) ou en vrai, à moins de 50 km (position lue sur le téléphone, jamais envoyée).
+  // Gardé sur l'appareil ; les échanges entre lecteurs viendront avec les comptes (les ids ne changent jamais).
+  const lieux = window.GEOCO.lieux || [];
+  const lieuxRoutes = window.GEOCO.lieuxRoutes || [];
+  const ATLAS_KEY = "geoco.atlas";
+  const PROBES_PER_DAY = 3, WELCOME_PROBES = 2, REAL_KM = 50;
+  const VIS = { connu: "Connu", discret: "Discret", cache: "Caché", secret: "Secret" };
+  const LFAM = { passage: "Passage", "sous-sol": "Sous-sol", centre: "Centre névralgique" };
+  const EARTH = { src: "assets/earth/earth-blue-marble.jpg", w: 4096, h: 2048 };
   const dayKey = () => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`; };
 
-  let album = null;
-  function albumState() {
-    if (!album) {
-      try { album = JSON.parse(localStorage.getItem(ALBUM_KEY) || "null"); } catch (e) {}
-      album = album || {};
-      album.cards = album.cards || {};
-      album.eclats = album.eclats || 0;
+  let atlas = null;
+  function atlasState() {
+    if (!atlas) {
+      try { atlas = JSON.parse(localStorage.getItem(ATLAS_KEY) || "null"); } catch (e) {}
+      atlas = atlas || {};
+      atlas.found = atlas.found || {};
     }
-    // Nouveau jour : les paquets gratuits et les bonus reviennent.
-    if (album.day !== dayKey()) Object.assign(album, { day: dayKey(), opened: 0, bonus: 0, actu: false, defi: false, duels: 0, hint: null });
-    // Premier passage : un paquet de bienvenue en plus.
-    if (!album.started) { album.started = true; album.bonus += 1; albumSave(); }
-    return album;
+    if (atlas.day !== dayKey()) Object.assign(atlas, { day: dayKey(), used: 0, bonus: 0 });
+    if (!atlas.started) { atlas.started = true; atlas.bonus += WELCOME_PROBES; atlasSave(); }
+    return atlas;
   }
-  function albumSave() { try { localStorage.setItem(ALBUM_KEY, JSON.stringify(album)); } catch (e) {} }
-  const packsLeft = () => { const s = albumState(); return Math.max(0, PACKS_PER_DAY + s.bonus - s.opened); };
-  const owned = (id) => albumState().cards[id] || 0;
-  const ownedCards = () => cartes.filter((c) => owned(c.id));
+  function atlasSave() { try { localStorage.setItem(ATLAS_KEY, JSON.stringify(atlas)); } catch (e) {} }
+  const probesLeft = () => { const s = atlasState(); return Math.max(0, PROBES_PER_DAY + s.bonus - s.used); };
+  const isFound = (id) => !!atlasState().found[id];
+  const routeDone = (r) => r.places.every(isFound);
 
-  function toast(html) {
-    const t = document.createElement("div");
-    t.className = "toast";
-    t.innerHTML = html;
-    document.body.appendChild(t);
-    requestAnimationFrame(() => t.classList.add("on"));
-    setTimeout(() => { t.classList.remove("on"); setTimeout(() => t.remove(), 400); }, 4200);
-  }
+  const dms = ([lat, lng]) => {
+    const f = (v, pos, neg) => { const a = Math.abs(v), d = Math.floor(a), m = Math.round((a - d) * 60); return `${d}°${String(m).padStart(2, "0")}′${v >= 0 ? pos : neg}`; };
+    return `${f(lat, "N", "S")} ${f(lng, "E", "O")}`;
+  };
+  const kmBetween = ([a, b], [c, d]) => {
+    const r = Math.PI / 180, x = Math.sin((c - a) * r / 2) ** 2 + Math.cos(a * r) * Math.cos(c * r) * Math.sin((d - b) * r / 2) ** 2;
+    return 12742 * Math.asin(Math.sqrt(x));
+  };
+  // Vue « satellite » : la texture de la Terre du globe, centrée sur le lieu.
+  const satHTML = (l, hidden) => {
+    const x = ((l.coords[1] + 180) / 360) * EARTH.w, y = ((90 - l.coords[0]) / 180) * EARTH.h;
+    return `<span class="sat${hidden ? " hidden" : ""}" aria-hidden="true">
+      <span class="sat-img" style="--x:${x.toFixed(0)};--y:${y.toFixed(0)};background-image:url(${EARTH.src})"></span>
+      <span class="sat-cross"></span><span class="sat-scan"></span>
+      <span class="sat-coord">${hidden ? "??°??′ ??°??′" : dms(l.coords)}</span>
+    </span>`;
+  };
+  const lieuNum = (l) => String(lieux.indexOf(l) + 1).padStart(2, "0");
 
-  // Lire une actu le jour même donne un paquet bonus, avec plus de chances d'y trouver une carte liée au sujet.
-  function albumOnRead(n) {
-    if (!cartes.length) return;
-    const s = albumState();
-    if (s.actu) return;
-    s.actu = true; s.bonus += 1; s.hint = coursesFor(n).map((d) => d.id);
-    albumSave();
-    toast(`🎁 <a href="#/album">Paquet bonus débloqué dans l'Album ›</a>`);
-  }
-
-  function drawRarity(min) {
-    const pool = RANKS.filter((r) => RANKS.indexOf(r) >= RANKS.indexOf(min || "commune"));
-    let x = Math.random() * pool.reduce((a, r) => a + RARITY[r].weight, 0);
-    for (const r of pool) { x -= RARITY[r].weight; if (x < 0) return r; }
-    return pool[pool.length - 1];
-  }
-  // Pas deux fois la même carte dans un paquet (sauf si la rareté n'a plus d'autre carte).
-  function drawCard(rarete, hint, taken) {
-    let pool = cartes.filter((c) => c.rarete === rarete);
-    if (hint && hint.length) {
-      const near = cartes.filter((c) => c.cours.some((x) => hint.includes(x)));
-      if (near.length) pool = near;
-    }
-    const fresh = pool.filter((c) => !(taken || []).includes(c.id));
-    if (fresh.length) pool = fresh;
-    return pool[Math.floor(Math.random() * pool.length)];
-  }
-  // 4 cartes, la dernière au moins rare. La première suit le sujet de l'actu lue (paquet bonus).
-  function openPack() {
-    const s = albumState();
-    if (!packsLeft()) return null;
-    const hint = s.hint;
-    const out = [];
-    for (let i = 0; i < PACK_SIZE; i++) {
-      const taken = out.map((p) => p.card.id);
-      const card = i === 0 && hint ? drawCard(null, hint) : drawCard(drawRarity(i === PACK_SIZE - 1 ? "rare" : null), null, taken);
-      const isNew = !s.cards[card.id];
-      s.cards[card.id] = (s.cards[card.id] || 0) + 1;
-      if (!isNew) s.eclats += RARITY[card.rarete].dust;
-      out.push({ card, isNew });
-    }
-    s.opened += 1; s.hint = null;
-    albumSave();
-    return out;
-  }
-
-  const seriesOf = (id) => cartes.filter((c) => c.serie === id);
-  const seriesDone = () => cartesSeries.filter((se) => seriesOf(se.id).every((c) => owned(c.id))).length;
-
-  function cardHTML(c, opts = {}) {
-    const n = owned(c.id);
-    const hidden = opts.hideLocked && !n;
+  function lieuCard(l, opts = {}) {
+    const f = atlasState().found[l.id];
+    const hidden = !f && !opts.reveal;
     return `
-      <button class="gcard r-${c.rarete} f-${c.famille}${hidden ? " locked" : ""}${opts.big ? " big" : ""}" data-card="${c.id}" aria-label="${hidden ? "Carte à découvrir" : c.title}">
-        <span class="gcard-foil" aria-hidden="true"></span>
-        <span class="gcard-top"><span>${FAMILIES[c.famille]}</span><span class="gcard-rar">${RARITY[c.rarete].name}</span></span>
-        <span class="gcard-art" aria-hidden="true">${hidden ? "?" : c.icon}</span>
-        <span class="gcard-title">${hidden ? "???" : c.title}</span>
-        <span class="gcard-sub">${hidden ? "&nbsp;" : c.sub}</span>
-        <span class="gcard-stats">${Object.entries(STATS).map(([k, label]) => `<span><i>${label}</i><b>${hidden ? "?" : c.stats[k]}</b></span>`).join("")}</span>
-        ${n > 1 && !opts.noCount ? `<span class="gcard-count">×${n}</span>` : ""}
+      <button class="lcard v-${l.rarete}${hidden ? " locked" : ""}${opts.big ? " big" : ""}" data-lieu="${l.id}" aria-label="${hidden ? "Signal à explorer" : l.name}">
+        <span class="lcard-top"><span>${LFAM[l.famille]}</span><span class="lcard-vis">${VIS[l.rarete]}</span></span>
+        ${satHTML(l, hidden)}
+        <span class="lcard-name">${hidden ? "Signal non identifié" : l.name}</span>
+        <span class="lcard-where">${hidden ? "&nbsp;" : l.where}</span>
+        <span class="lcard-key">${hidden ? "<b>?</b>" : `<b>${l.key.value}</b><small>${l.key.label}</small>`}</span>
+        <span class="lcard-code"><span>GEO-${lieuNum(l)}</span>${f && f.real ? `<span class="lcard-real">Vu en vrai</span>` : ""}</span>
       </button>`;
-  }
-
-  // Effet holographique : la carte suit le doigt ou la souris.
-  function bindTilt(root) {
-    root.querySelectorAll(".gcard").forEach((el) => {
-      el.addEventListener("pointermove", (e) => {
-        const r = el.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
-        el.style.setProperty("--mx", (x * 100).toFixed(1) + "%");
-        el.style.setProperty("--my", (y * 100).toFixed(1) + "%");
-        el.style.setProperty("--ry", ((x - 0.5) * 16).toFixed(1) + "deg");
-        el.style.setProperty("--rx", ((0.5 - y) * 16).toFixed(1) + "deg");
-      });
-      el.addEventListener("pointerleave", () => ["--mx", "--my", "--rx", "--ry"].forEach((p) => el.style.removeProperty(p)));
-    });
   }
 
   function overlay(html, cls) {
@@ -2588,259 +2523,159 @@ function statGrid(figures, sources, theme = "geo") {
     return { el: o, close };
   }
 
-  function showCard(id, onChange) {
-    const c = cartes.find((x) => x.id === id);
-    if (!c) return;
-    const n = owned(c.id);
-    const se = cartesSeries.find((x) => x.id === c.serie);
-    const cost = RARITY[c.rarete].cost;
-    const cours = c.cours.map((d) => byId(dossiers, d)).filter(Boolean);
-    const body = n ? `
-        <p class="eyebrow">${FAMILIES[c.famille]} · ${RARITY[c.rarete].name}${n > 1 ? ` · ×${n}` : ""}</p>
-        <h2 class="title">${c.title}</h2>
-        <p class="lead">${c.text}</p>
-        <p class="gfact"><b>Le fait</b> ${c.fact} <a class="gsrc" href="${c.source.url}" target="_blank" rel="noopener">${c.source.short} ↗</a></p>
-        ${se ? `<p class="gserie">Série : <b>${se.name}</b> · ${seriesOf(se.id).filter((x) => owned(x.id)).length}/${seriesOf(se.id).length}</p>` : ""}
-        ${cours.map((d) => `<a class="more" href="#/cours/${d.id}" data-close>Le cours pour comprendre : ${d.title} ›</a>`).join("")}
-        <a class="more" href="${c.source.url}" target="_blank" rel="noopener">Lire la page Wikipédia ↗</a>`
-      : `
-        <p class="eyebrow">${FAMILIES[c.famille]} · ${RARITY[c.rarete].name}</p>
-        <h2 class="title">Carte à découvrir.</h2>
-        <p class="lead">Trouve-la dans un paquet, ou fabrique-la avec tes éclats (gagnés avec les doublons et les duels).</p>
-        <button class="pill-btn blue" id="craft" ${albumState().eclats < cost ? "disabled" : ""}>Fabriquer · ${cost} éclats</button>
-        <p class="gserie">Tu as <b>${albumState().eclats}</b> éclats.</p>`;
+  function showLieu(id, { fresh, real, onGlobe } = {}) {
+    const l = lieux.find((x) => x.id === id);
+    if (!l || !isFound(id)) return;
+    const r = lieuxRoutes.find((x) => x.id === l.route);
+    const [lat, lng] = l.coords;
     const ov = overlay(`
       <button class="album-x" data-close aria-label="Fermer">×</button>
       <div class="gdetail">
-        <div class="gdetail-card">${cardHTML(c, { big: true, hideLocked: true, noCount: true })}</div>
-        <div class="gdetail-body">${body}</div>
+        <div class="gdetail-card">${lieuCard(l, { big: true })}${real ? `<span class="stamp">Vu en vrai<small>${formatDate(dayKey())}</small></span>` : ""}</div>
+        <div class="gdetail-body">
+          <p class="eyebrow">${fresh ? (real ? "Lieu trouvé en vrai" : "Nouveau lieu découvert") : `${LFAM[l.famille]} · ${VIS[l.rarete]}`}</p>
+          <h2 class="title">${l.name}</h2>
+          <p class="lwhere">${l.where} · <span class="mono">${dms(l.coords)}</span></p>
+          <p class="lead">${l.text}</p>
+          <p class="gfact"><b>${l.key.value} ${l.key.label}</b> ${l.fact} <a class="gsrc" href="${l.source.url}" target="_blank" rel="noopener">${l.source.short} ↗</a></p>
+          ${r ? `<p class="gserie">Route : <b>${r.name}</b> · ${r.places.filter(isFound).length}/${r.places.length}</p>` : ""}
+          <div class="ldetail-actions">
+            ${onGlobe ? `<button class="pill-btn outline" data-close data-globe>Voir sur le globe</button>` : ""}
+            <a class="pill-btn outline" href="https://www.openstreetmap.org/?mlat=${lat}&mlon=${lng}#map=9/${lat}/${lng}" target="_blank" rel="noopener">Voir le lieu sur une carte ↗</a>
+          </div>
+        </div>
       </div>`);
-    bindTilt(ov.el);
-    const btn = ov.el.querySelector("#craft");
-    if (btn) btn.addEventListener("click", () => {
-      const s = albumState();
-      if (s.eclats < cost || owned(c.id)) return;
-      s.eclats -= cost; s.cards[c.id] = 1; albumSave();
-      ov.close(); onChange && onChange(); showCard(c.id, onChange);
-    });
+    const g = ov.el.querySelector("[data-globe]");
+    if (g) g.addEventListener("click", () => onGlobe(l));
   }
 
-  // Ouverture d'un paquet : on déchire, puis on retourne les cartes une à une.
-  function packReveal(pulls, onDone) {
-    const best = pulls.reduce((a, p) => Math.max(a, RANKS.indexOf(p.card.rarete)), 0);
+  // Exploration : la sonde zoome sur le signal, puis la fiche du lieu apparaît.
+  function scanReveal(l, done) {
     const ov = overlay(`
-      <div class="pack-stage">
-        <button class="pack r-${RANKS[best]}" id="pack" aria-label="Ouvrir le paquet">
-          <span class="pack-brand">Géoconomic</span>
-          <span class="pack-name">L'Album</span>
-          <span class="pack-tear">Touche pour ouvrir</span>
-        </button>
-        <div class="pack-cards" hidden>
-          ${pulls.map((p, i) => `
-            <div class="flip" data-i="${i}" style="--d:${i * 90}ms">
-              <div class="flip-in">
-                <div class="flip-back" aria-hidden="true"><span>G</span></div>
-                <div class="flip-front">${cardHTML(p.card, { noCount: true })}${p.isNew ? `<span class="gnew">Nouvelle</span>` : `<span class="gdup">+${RARITY[p.card.rarete].dust} éclats</span>`}</div>
-              </div>
-            </div>`).join("")}
-        </div>
-        <div class="pack-actions" hidden>
-          <button class="pill-btn outline" id="flip-all">Tout retourner</button>
-          <button class="pill-btn blue" data-close>Continuer</button>
-        </div>
-      </div>`, "pack-overlay");
-    const el = ov.el;
-    const flip = (f) => {
-      if (f.classList.contains("flipped")) return;
-      f.classList.add("flipped");
-      const r = pulls[+f.dataset.i].card.rarete;
-      if (r === "epique" || r === "legendaire") f.classList.add("burst");
-    };
-    el.querySelector("#pack").addEventListener("click", (e) => {
-      e.currentTarget.classList.add("torn");
-      setTimeout(() => {
-        el.querySelector("#pack").remove();
-        el.querySelector(".pack-cards").hidden = false;
-        el.querySelector(".pack-actions").hidden = false;
-        bindTilt(el);
-      }, 650);
-    });
-    el.querySelectorAll(".flip").forEach((f) => f.addEventListener("click", () => flip(f)));
-    el.querySelector("#flip-all").addEventListener("click", () => el.querySelectorAll(".flip").forEach((f, i) => setTimeout(() => flip(f), i * 160)));
-    const obs = new MutationObserver(() => { if (!el.isConnected) { obs.disconnect(); onDone && onDone(); } });
-    obs.observe(document.body, { childList: true });
+      <div class="scan">
+        <div class="scan-view"><div class="scan-zoom">${satHTML(l, false)}</div><span class="scan-ring"></span></div>
+        <p class="scan-line mono">Signal capté · ${dms(l.coords)}</p>
+        <p class="scan-line dim">Identification du lieu…</p>
+      </div>`, "scan-overlay");
+    setTimeout(() => { ov.close(); done(); }, 2300);
   }
-
-  // Défi du jour : une crise de l'histoire, à affronter avec 3 cartes.
-  const crises = cartes.filter((c) => c.defi);
-  function crisisOfDay() {
-    const k = dayKey().split("-").reduce((a, x) => a * 31 + +x, 7);
-    return crises[k % crises.length];
-  }
-  const teamScore = (team, crisis) => team.reduce((a, c) => a + c.stats[crisis.defi.stat] + (c.serie === crisis.serie ? SERIES_BONUS : 0), 0);
 
   function renderAlbum(param) {
-    const s = albumState();
-    const famFilter = ["principe", "moment", "personnage"].includes(param) ? param : "all";
-    const crisis = crisisOfDay();
-    const mine = ownedCards();
-    const list = cartes.filter((c) => famFilter === "all" || c.famille === famFilter);
-    const showcase = [cartes.find((c) => c.id === "keynes"), cartes.find((c) => c.id === "krach-1929"), cartes.find((c) => c.id === "avantage-comparatif")].filter(Boolean);
+    let fam = ["passage", "sous-sol", "centre"].includes(param) ? param : "all";
     app.innerHTML = `
-      <section class="album-hero">
+      <section class="atlas-hero">
         <div class="wrap">
-          <p class="eyebrow reveal">Nouveau · L'Album</p>
-          <h1 class="headline reveal">Collectionne <span class="grad mix">l'économie.</span></h1>
-          <p class="lead reveal">Principes, moments historiques, personnages : ouvre tes paquets du jour, complète les séries et affronte les crises de l'histoire.</p>
-          <div class="album-fan" aria-hidden="true">${showcase.map((c) => cardHTML(c, { noCount: true })).join("")}</div>
-          <div class="album-counters">
-            <span><b>${mine.length}</b>/${cartes.length} cartes</span>
-            <span><b>${seriesDone()}</b>/${cartesSeries.length} séries</span>
-            <span><b>${s.eclats}</b> éclats</span>
-          </div>
-          <button class="pack-cta" id="open-pack" ${packsLeft() ? "" : "disabled"}>
-            <span class="pack-mini" aria-hidden="true"></span>
-            <span><b>${packsLeft() ? "Ouvrir un paquet" : "Plus de paquet aujourd'hui"}</b><small>${packsLeft()} paquet(s) disponible(s)</small></span>
-          </button>
-          <ul class="album-ways">
-            <li class="${s.actu ? "done" : ""}">📰 <a href="#/actu">Lis une actu du jour</a> : un paquet bonus, avec une carte liée au sujet.</li>
-            <li class="${s.defi ? "done" : ""}">⚔️ Réussis le défi du jour : un paquet bonus.</li>
-            <li>🔁 Doublons et duels gagnés : des éclats pour fabriquer la carte de ton choix.</li>
-          </ul>
+          <p class="eyebrow reveal">L'Album des lieux</p>
+          <h1 class="headline reveal">Les lieux qui font <span class="grad mix">tourner le monde.</span></h1>
+          <p class="lead reveal">Des détroits, des mines, des ports dont on parle peu, mais dont tout dépend. Explore le globe pour les découvrir, ou va sur place.</p>
+          <div class="album-counters" id="atlas-counters"></div>
         </div>
-      </section>
-
-      <section class="section alt">
-        <div class="wrap">
-          <p class="eyebrow reveal">Défi du jour</p>
-          <h2 class="title reveal">${crisis.title}.</h2>
-          <div class="defi">
-            <div class="defi-boss">${cardHTML(crisis, { noCount: true })}</div>
-            <div class="defi-body">
-              <p class="lead">${crisis.defi.text}</p>
-              <p class="defi-rule">Choisis 3 de tes cartes. Il faut <b>${crisis.defi.power}</b> points de <b>${STATS[crisis.defi.stat]}</b>. Une carte de la même série que la crise gagne +${SERIES_BONUS}.</p>
-              ${s.defi ? `<p class="defi-ok">✓ Défi réussi aujourd'hui. Reviens demain pour une nouvelle crise.</p>` : ""}
-              <div class="defi-team" id="defi-team">${[0, 1, 2].map(() => `<span class="slot">+</span>`).join("")}</div>
-              <div class="defi-meter"><span id="defi-bar"></span><b id="defi-score">0</b><i>/ ${crisis.defi.power}</i></div>
-              <button class="pill-btn blue" id="defi-go" disabled>Affronter la crise</button>
-              <p class="defi-result" id="defi-result" aria-live="polite"></p>
-              ${mine.length ? `<div class="defi-pick" id="defi-pick">${mine.map((c) => `<button class="pick" data-pick="${c.id}"><span>${c.icon}</span>${c.title}<b>${c.stats[crisis.defi.stat]}${c.serie === crisis.serie ? ` +${SERIES_BONUS}` : ""}</b></button>`).join("")}</div>`
-                : `<p class="defi-rule">Ouvre ton premier paquet pour avoir des cartes à jouer.</p>`}
-            </div>
-          </div>
+        <div class="atlas-globe-wrap">
+          <div class="atlas-globe" id="atlas-globe"></div>
+          <p class="atlas-hud mono"><span class="hud-dot"></span><span id="probes"></span><span class="hud-sep">·</span><span>Touche un signal pour l'explorer</span></p>
+          <div class="atlas-fallback" id="atlas-fallback"></div>
         </div>
-      </section>
-
-      <section class="section">
         <div class="wrap">
-          <p class="eyebrow reveal">Duel</p>
-          <h2 class="title reveal">Ta carte contre la mienne.</h2>
-          <p class="copy reveal">En 3 manches : tu tires une de tes cartes, tu choisis la qualité sur laquelle jouer, la plus forte gagne. Duel gagné : +${DUEL_REWARD} éclats (3 fois par jour).</p>
-          <div class="duel" id="duel">
-            <button class="pill-btn blue" id="duel-go" ${mine.length ? "" : "disabled"}>Lancer un duel</button>
+          <p class="atlas-msg" id="atlas-msg" aria-live="polite"></p>
+          <div class="atlas-real">
+            <button class="pill-btn blue" id="real-btn">📍 Je suis sur place</button>
+            <p>Passe à moins de ${REAL_KM} km d'un lieu de l'Album : il est à toi, avec le tampon « Vu en vrai ». Ta position reste sur ton téléphone.</p>
           </div>
         </div>
       </section>
 
       <section class="section alt">
-        <div class="wrap">
-          <p class="eyebrow reveal">Ma collection</p>
-          <h2 class="title reveal">${mine.length} cartes sur ${cartes.length}.</h2>
-          <div class="reveal fam-seg">${segmented([["all", "Tout"], ["principe", "Principes"], ["moment", "Moments"], ["personnage", "Personnages"]], famFilter, "fam")}</div>
-          <div class="gcard-grid">${list.map((c) => cardHTML(c, { hideLocked: true })).join("")}</div>
-          <h3 class="album-sub">Les séries</h3>
+        <div class="wrap" id="atlas-collection"></div>
+      </section>`;
+
+    const msg = (t) => { const m = app.querySelector("#atlas-msg"); if (m) m.textContent = t; };
+    let atlasGlobe = null;
+    const pins = () => lieux.map((l) => ({ id: l.id, lat: l.coords[0], lng: l.coords[1], found: isFound(l.id), name: l.name }));
+    const arcs = () => lieuxRoutes.filter((r) => r.arcs && routeDone(r)).map((r) => r.places.map((id) => lieux.find((x) => x.id === id).coords));
+    const toGlobe = (l) => { window.scrollTo({ top: 0, behavior: "smooth" }); atlasGlobe && atlasGlobe.focus(l.coords[0], l.coords[1]); };
+
+    // Tout ce qui change quand on découvre un lieu (le globe reste en place).
+    function paint() {
+      if (!document.body.contains(app.querySelector("#atlas-collection"))) return;
+      const s = atlasState();
+      const found = lieux.filter((l) => isFound(l.id));
+      const real = found.filter((l) => s.found[l.id].real).length;
+      const list = lieux.filter((l) => fam === "all" || l.famille === fam);
+      app.querySelector("#atlas-counters").innerHTML = `
+            <span><b>${found.length}</b>/${lieux.length} lieux</span>
+            <span><b>${lieuxRoutes.filter(routeDone).length}</b>/${lieuxRoutes.length} routes</span>
+            <span><b>${real}</b> vus en vrai</span>`;
+      app.querySelector("#probes").textContent = `${probesLeft()} sonde(s) aujourd'hui`;
+      app.querySelector("#atlas-fallback").innerHTML = lieux.filter((l) => !isFound(l.id)).slice(0, 6).map((l) => `<button class="tagpill" data-signal="${l.id}">📡 Signal ${dms(l.coords)}</button>`).join("");
+      app.querySelector("#atlas-collection").innerHTML = `
+          <p class="eyebrow">Ma collection</p>
+          <h2 class="title">${found.length} lieux sur ${lieux.length}.</h2>
+          <div class="fam-seg">${segmented([["all", "Tout"], ["passage", "Passages"], ["sous-sol", "Sous-sol"], ["centre", "Centres"]], fam, "fam")}</div>
+          <div class="gcard-grid">${list.map((l) => lieuCard(l)).join("")}</div>
+          <h3 class="album-sub">Les routes</h3>
+          <p class="copy">Complète une route : elle s'allume sur le globe.</p>
           <div class="series-list">
-            ${cartesSeries.map((se) => {
-              const all = seriesOf(se.id), got = all.filter((c) => owned(c.id)).length;
-              return `<div class="series${got === all.length ? " done" : ""}">
-                <p><b>${se.name}</b>${got === all.length ? " ✓" : ""}<span>${got}/${all.length}</span></p>
-                <p class="series-text">${se.text}</p>
-                <div class="series-bar"><span style="width:${Math.round(got / all.length * 100)}%"></span></div>
-                <div class="series-icons">${all.map((c) => `<span class="${owned(c.id) ? "" : "off"}" title="${owned(c.id) ? c.title : "?"}">${owned(c.id) ? c.icon : "?"}</span>`).join("")}</div>
+            ${lieuxRoutes.map((r) => {
+              const got = r.places.filter(isFound).length, done = got === r.places.length;
+              return `<div class="series${done ? " done" : ""}">
+                <p><b>${r.name}</b>${done ? " ✓" : ""}<span>${got}/${r.places.length}</span></p>
+                <p class="series-text">${r.text}</p>
+                <div class="series-bar"><span style="width:${Math.round(got / r.places.length * 100)}%"></span></div>
+                <div class="route-stops">${r.places.map((id) => { const l = lieux.find((x) => x.id === id); return `<span class="${isFound(id) ? "" : "off"}">${isFound(id) ? l.name : "?"}</span>`; }).join("<i>→</i>")}</div>
               </div>`;
             }).join("")}
           </div>
-          <p class="album-note">Les statistiques des cartes sont des valeurs de jeu, pas des notes officielles. Chaque fait renvoie à sa page Wikipédia.
-            Bientôt : échanger tes doublons avec les autres lecteurs, quand les comptes Géoconomic seront ouverts.</p>
-        </div>
-      </section>`;
+          <p class="album-note">Chaque chiffre renvoie à sa source. Bientôt : échanger des lieux avec les autres lecteurs, quand les comptes Géoconomic seront ouverts.</p>`;
+      app.querySelectorAll(".gcard-grid .lcard").forEach((b) => b.addEventListener("click", () => {
+        if (isFound(b.dataset.lieu)) showLieu(b.dataset.lieu, { onGlobe: toGlobe });
+        else { msg("Ce lieu est encore un signal : touche-le sur le globe pour l'explorer."); window.scrollTo({ top: 0, behavior: "smooth" }); }
+      }));
+      app.querySelectorAll("[data-signal]").forEach((b) => b.addEventListener("click", () => explore(b.dataset.signal)));
+      app.querySelectorAll("[data-fam]").forEach((b) => b.addEventListener("click", () => { fam = b.dataset.fam; paint(); }));
+      if (atlasGlobe) atlasGlobe.update(pins(), arcs());
+    }
 
-    const rerender = () => { if (/^#\/album/.test(location.hash)) { renderAlbum(param); watchReveals(); } };
-    bindTilt(app);
-    app.querySelectorAll(".gcard-grid .gcard").forEach((b) => b.addEventListener("click", () => showCard(b.dataset.card, rerender)));
-    app.querySelector(".defi-boss .gcard").addEventListener("click", () => owned(crisis.id) && showCard(crisis.id, rerender));
-    app.querySelectorAll("[data-fam]").forEach((b) => b.addEventListener("click", () => { location.hash = b.dataset.fam === "all" ? "#/album" : "#/album/" + b.dataset.fam; }));
-    const open = app.querySelector("#open-pack");
-    open.addEventListener("click", () => { const pulls = openPack(); if (pulls) packReveal(pulls, rerender); });
+    function explore(id) {
+      const l = lieux.find((x) => x.id === id);
+      if (!l) return;
+      if (isFound(id)) return showLieu(id, { onGlobe: toGlobe });
+      if (!probesLeft()) return msg("Plus de sonde aujourd'hui. Reviens demain, ou trouve un lieu en vrai.");
+      const st = atlasState();
+      st.used += 1; st.found[id] = { d: dayKey() }; atlasSave();
+      msg("");
+      scanReveal(l, () => { paint(); showLieu(id, { fresh: true, onGlobe: toGlobe }); });
+    }
 
-    // Défi
-    const team = [];
-    const update = () => {
-      const tEl = app.querySelector("#defi-team");
-      tEl.innerHTML = [0, 1, 2].map((i) => team[i] ? `<span class="slot full">${team[i].icon}<small>${team[i].title}</small></span>` : `<span class="slot">+</span>`).join("");
-      const score = teamScore(team, crisis);
-      app.querySelector("#defi-score").textContent = score;
-      app.querySelector("#defi-bar").style.width = Math.min(100, score / crisis.defi.power * 100) + "%";
-      app.querySelector("#defi-go").disabled = team.length < 3;
-      app.querySelectorAll("[data-pick]").forEach((b) => b.setAttribute("aria-pressed", team.some((c) => c.id === b.dataset.pick)));
-    };
-    app.querySelectorAll("[data-pick]").forEach((b) => b.addEventListener("click", () => {
-      const i = team.findIndex((c) => c.id === b.dataset.pick);
-      if (i >= 0) team.splice(i, 1);
-      else if (team.length < 3) team.push(cartes.find((c) => c.id === b.dataset.pick));
-      app.querySelector("#defi-result").textContent = "";
-      update();
-    }));
-    app.querySelector("#defi-go").addEventListener("click", () => {
-      const score = teamScore(team, crisis), win = score >= crisis.defi.power;
-      const res = app.querySelector("#defi-result");
-      res.className = "defi-result " + (win ? "win" : "lose");
-      if (win && !albumState().defi) {
-        albumState().defi = true; albumState().bonus += 1; albumSave();
-        res.innerHTML = `Crise surmontée : ${score} points ! Un paquet bonus t'attend.`;
-        setTimeout(rerender, 1800);
-      } else res.textContent = win ? `Crise surmontée : ${score} points !` : `Pas assez : ${score} sur ${crisis.defi.power}. Essaie une autre équipe.`;
-    });
-
-    // Duel
-    const duelBox = app.querySelector("#duel");
-    app.querySelector("#duel-go").addEventListener("click", function start() {
-      let round = 0, me = 0, them = 0;
-      const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
-      const next = () => {
-        if (round === 3) {
-          const won = me > them;
-          let reward = "";
-          if (won && albumState().duels < DUEL_REWARDS_PER_DAY) { albumState().duels += 1; albumState().eclats += DUEL_REWARD; albumSave(); reward = ` <span>+${DUEL_REWARD} éclats.</span>`; }
-          duelBox.innerHTML = `<p class="duel-end ${won ? "win" : "lose"}"><span>${won ? "Duel gagné" : me === them ? "Égalité" : "Duel perdu"}</span> · ${me} – ${them}.${reward}</p><button class="pill-btn blue" id="duel-again">Rejouer</button>`;
-          duelBox.querySelector("#duel-again").addEventListener("click", start);
-          return;
+    app.querySelector("#real-btn").addEventListener("click", () => {
+      if (!navigator.geolocation) return msg("Ton appareil ne donne pas sa position.");
+      msg("Recherche de ta position…");
+      navigator.geolocation.getCurrentPosition((pos) => {
+        const me = [pos.coords.latitude, pos.coords.longitude];
+        const near = lieux.map((l) => ({ l, km: kmBetween(me, l.coords) })).sort((a, b) => a.km - b.km)[0];
+        if (near.km <= REAL_KM) {
+          const st = atlasState(), was = st.found[near.l.id];
+          st.found[near.l.id] = { d: (was && was.d) || dayKey(), real: true }; atlasSave();
+          msg(""); paint(); showLieu(near.l.id, { fresh: true, real: true, onGlobe: toGlobe });
+        } else {
+          const km = Math.round(near.km).toLocaleString(LOCALE);
+          msg(isFound(near.l.id) ? `Aucun lieu à moins de ${REAL_KM} km. Le plus proche : ${near.l.name}, à ${km} km.` : `Aucun lieu à moins de ${REAL_KM} km. Le plus proche est encore un signal, à ${km} km.`);
         }
-        round += 1;
-        const mineC = pick(ownedCards()), cpu = pick(cartes);
-        duelBox.innerHTML = `
-          <p class="duel-score">Manche ${round}/3 · Toi ${me} – ${them} Moi</p>
-          <div class="duel-row">
-            <div>${cardHTML(mineC, { noCount: true })}</div>
-            <span class="duel-vs">VS</span>
-            <div class="duel-hidden" id="duel-cpu"><div class="flip"><div class="flip-in"><div class="flip-back"><span>G</span></div><div class="flip-front">${cardHTML(cpu, { noCount: true })}</div></div></div></div>
-          </div>
-          <p class="duel-ask">Sur quelle qualité tu joues ?</p>
-          <div class="duel-stats">${Object.entries(STATS).map(([k, l]) => `<button class="pill-btn outline" data-stat="${k}">${l} · ${mineC.stats[k]}</button>`).join("")}</div>`;
-        bindTilt(duelBox);
-        duelBox.querySelectorAll("[data-stat]").forEach((b) => b.addEventListener("click", () => {
-          const k = b.dataset.stat, a = mineC.stats[k], z = cpu.stats[k];
-          if (a > z) me++; else if (z > a) them++;
-          duelBox.querySelector("#duel-cpu .flip").classList.add("flipped");
-          duelBox.querySelectorAll("[data-stat]").forEach((x) => { x.disabled = true; });
-          duelBox.querySelector(".duel-ask").textContent = a > z ? `Gagné : ${a} contre ${z}.` : z > a ? `Perdu : ${a} contre ${z}.` : `Égalité : ${a} partout.`;
-          setTimeout(next, 1700);
-        }));
-      };
-      next();
+      }, () => msg("Position indisponible : autorise la localisation pour ce site, puis réessaie."), { enableHighAccuracy: false, timeout: 12000, maximumAge: 600000 });
     });
 
-    if (param && cartes.some((c) => c.id === param)) showCard(param, rerender);
+    paint();
+    const box = app.querySelector("#atlas-globe");
+    if (window.GeocoGlobe && GeocoGlobe.mountAtlas) {
+      GeocoGlobe.mountAtlas(box, { onPick: explore }).then((g) => {
+        if (!g) return;
+        if (!document.body.contains(box)) return g.destroy();
+        atlasGlobe = g; currentGlobe = g;
+        g.update(pins(), arcs());
+        const focus = lieux.find((l) => l.id === param && isFound(l.id));
+        if (focus) toGlobe(focus);
+      });
+    }
+    if (param && lieux.some((l) => l.id === param && isFound(l.id))) showLieu(param, { onGlobe: toGlobe });
   }
 
   // ---------- Routeur ----------

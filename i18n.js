@@ -60,7 +60,7 @@
   // ---------- Contenu : remplace les textes français par leur traduction, chemin par chemin ----------
   // Chemin : <liste>.<id>.<clé>.<position>… (news, dossiers…) ou <objet>.<clé>… (indicators, conflits…).
   const LISTS = { news: (G) => G.news, dossiers: (G) => G.dossiers, glossary: (G) => G.glossary, culture: (G) => G.culture,
-    anecdotes: (G) => G.anecdotes, focus: (G) => G.focus, cartes: (G) => G.cartes, cartesSeries: (G) => G.cartesSeries, cas: (G) => G.etudes && G.etudes.cas };
+    anecdotes: (G) => G.anecdotes, focus: (G) => G.focus, lieux: (G) => G.lieux, lieuxRoutes: (G) => G.lieuxRoutes, cas: (G) => G.etudes && G.etudes.cas };
   const OBJECTS = { indicators: (G) => G.indicators, conflits: (G) => G.conflits, auteur: (G) => G.auteur, offre: (G) => G.etudes && G.etudes.offre };
   function applyContent(G) {
     const T = window.GEOCO_I18N;
