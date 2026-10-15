@@ -79,7 +79,8 @@ dossiers.forEach((d) => {
 culture.forEach((c) => {
   const w = `article ${c.id}`;
   checkSources(w, c.sources);
-  c.sections.flatMap((s) => s.paragraphs).forEach((t) => checkCites(w, t, c.sources));
+  [...c.sections.flatMap((s) => [...s.paragraphs, s.quote].filter(Boolean)), ...(c.tldr || [])].forEach((t) => checkCites(w, t, c.sources));
+  (c.keyFigures || []).forEach((f) => { if (!f.value || !f.label || (f.src && !c.sources[f.src - 1])) err(w, `chiffre clé « ${f.label} » incomplet ou source inexistante`); });
 });
 
 // ---- Étude de cas : podcast et études écrites

@@ -11,34 +11,48 @@ window.GEOCO.culture = [
     "theme": "eco",
     "title": "Voiture électrique : pourquoi on n'en achète pas plus, alors qu'elle coûte moins cher à rouler",
     "hook": "Une note de France Stratégie fait les comptes : plus chère à l'achat, moins chère à l'usage, et des aides publiques qui coûtent cher pour le climat.",
+    "tldr": [
+      "La voiture électrique coûte plus cher à l'achat, mais elle est ==moins chère à l'usage==, même avec une électricité chère [1].",
+      "Les aides compensaient ==la moitié à la totalité du surcoût== en 2022, mais elles coûtent cher pour chaque tonne de CO2 évitée [1].",
+      "Les ==ménages modestes==, qui achètent d'occasion, restent les grands oubliés de la transition [1]."
+    ],
+    "keyFigures": [
+      { "value": "10 %", "label": "des voitures neuves vendues en 2021 étaient électriques", "src": 1 },
+      { "value": "+16 000 €", "label": "le surcoût d'une citadine électrique à l'achat", "src": 1 },
+      { "value": "−1 200 €", "label": "par an : ce qu'elle fait économiser à l'usage", "src": 1 },
+      { "value": "300 €", "label": "d'aides publiques par tonne de CO2 évitée", "src": 1 }
+    ],
     "sections": [
       {
         "title": "Le décalage : 10 % des ventes, objectif 100 % en 2035",
         "paragraphs": [
-          "En 2021, les voitures électriques ne représentaient que 10 % des ventes de voitures neuves en France, alors que l'Union européenne prévoit la fin des ventes de voitures thermiques neuves en 2035 [1].",
+          "En 2021, les voitures électriques ne représentaient que ==10 % des ventes== de voitures neuves en France, alors que l'Union européenne prévoit la fin des ventes de voitures thermiques neuves en 2035 [1].",
           "L'enjeu est climatique : les transports sont le seul secteur dont les émissions de gaz à effet de serre restent au-dessus de leur niveau de 1990, et ils pesaient encore 30 % des émissions françaises en 2021 [1]."
         ]
       },
       {
         "title": "Plus chère à l'achat, moins chère à l'usage",
+        "quote": "À l'usage, l'électrique est moins chère que l'essence, même avec des prix élevés de l'électricité [1].",
         "paragraphs": [
-          "Pour une citadine (le format d'une Renault Clio), la version électrique coûte environ 16 000 euros de plus à l'achat que la version essence. Mais elle fait économiser environ 1 200 euros par an à l'usage [1].",
-          "Les aides de l'époque (bonus écologique de 6 000 euros, prime à la conversion, aide pour la borne de recharge, malus sur les voitures polluantes) compensaient entre 50 % et 100 % de ce surcoût selon les ménages et les modèles [1].",
-          "Résultat : l'électrique est rentable tout de suite pour un petit modèle acheté par un ménage très modeste, ou pour un SUV familial, quel que soit le ménage. Pour une citadine achetée par un ménage aux revenus moyens ou aisés, il faut environ six ans [1].",
+          "Pour une citadine (le format d'une Renault Clio), la version électrique coûte ==environ 16 000 euros de plus à l'achat== que la version essence. Mais elle fait économiser ==environ 1 200 euros par an== à l'usage [1].",
+          "Les aides de l'époque (bonus écologique de 6 000 euros, prime à la conversion, aide pour la borne de recharge, malus sur les voitures polluantes) compensaient ==entre 50 % et 100 % de ce surcoût== selon les ménages et les modèles [1].",
+          "Résultat : l'électrique est rentable tout de suite pour un petit modèle acheté par un ménage très modeste, ou pour un SUV familial, quel que soit le ménage. Pour une citadine achetée par un ménage aux revenus moyens ou aisés, il faut ==environ six ans== [1].",
           "Ces calculs supposent une essence à 1,70 euro le litre et une recharge surtout à domicile, en heures creuses. Sur une borne rapide publique, la recharge coûte trois à quatre fois plus cher [1]."
         ]
       },
       {
         "title": "Des aides chères pour le climat",
+        "quote": "300 euros d'argent public pour chaque tonne de CO2 évitée, au minimum [1].",
         "paragraphs": [
-          "Les auteurs rapportent l'argent public dépensé aux émissions de CO2 évitées. Même en supposant que la voiture roule seize ans et plus de 200 000 kilomètres, les aides à l'achat coûtent environ 300 euros par tonne de CO2 évitée [1].",
+          "Les auteurs rapportent l'argent public dépensé aux émissions de CO2 évitées. Même en supposant que la voiture roule seize ans et plus de 200 000 kilomètres, les aides à l'achat coûtent ==environ 300 euros par tonne de CO2 évitée== [1].",
           "Et c'est une estimation basse : elle ne compte pas la « dette écologique » de la voiture électrique, c'est-à-dire les émissions plus importantes de sa fabrication, à cause de la batterie [1]."
         ]
       },
       {
         "title": "Les ménages modestes, angle mort de la transition",
+        "quote": "Ceux qui auront le plus besoin de changer de voiture sont ceux qui ont le moins accès à l'électrique [1].",
         "paragraphs": [
-          "Les ménages modestes achètent surtout d'occasion, un marché où l'offre électrique reste rare. En 2019, seulement 0,3 % des voitures des 10 % de ménages les plus modestes étaient électriques [1].",
+          "Les ménages modestes achètent surtout d'occasion, un marché où l'offre électrique reste rare. En 2019, seulement ==0,3 % des voitures== des 10 % de ménages les plus modestes étaient électriques [1].",
           "Or les zones à faibles émissions (ZFE) vont interdire progressivement les voitures les plus anciennes dans les grandes villes : ces ménages risquent d'être obligés de changer de voiture sans en avoir les moyens [1]."
         ]
       },
@@ -52,7 +66,7 @@ window.GEOCO.culture = [
       {
         "title": "Et l'industrie française ?",
         "paragraphs": [
-          "La plupart des voitures électriques achetées en France sont fabriquées à l'étranger : les aides à l'achat profitent donc peu à la production française. Le seul modèle neuf clairement identifié dans l'entrée de gamme était fabriqué en Chine [1].",
+          "La plupart des voitures électriques achetées en France sont fabriquées à l'étranger : ==les aides à l'achat profitent donc peu à la production française==. Le seul modèle neuf clairement identifié dans l'entrée de gamme était fabriqué en Chine [1].",
           "En 2019, avant le Covid, la France produisait environ 2,2 millions de véhicules, l'Europe 21,6 millions et la Chine 25,7 millions [1]. Le lien avec le Focus de la semaine : la bataille de la voiture électrique se joue aussi dans les usines."
         ]
       }

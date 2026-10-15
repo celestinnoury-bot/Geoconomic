@@ -227,6 +227,8 @@
   function cite(text, sources) {
     // Espaces insécables dans les nombres (« 322 544 ») pour qu'ils ne soient jamais coupés en fin de ligne.
     text = text.replace(/(\d) (?=\d{3}\b)/g, "$1\u00a0");
+    // ==passage== : mis en relief (surligné).
+    text = text.replace(/==(.+?)==/g, '<mark class="hl">$1</mark>');
     return text.replace(/\s*\[(\d+)\]/g, (m, n) => {
       const src = sources && sources[Number(n) - 1];
       if (!src) return "";
@@ -1671,10 +1673,20 @@
         ${heroImage(c.image)}
       </section>
 
+      ${c.tldr || c.keyFigures ? `
+      <section class="section alt">
+        <div class="wrap">
+          ${c.tldr ? `<p class="eyebrow reveal">L'essentiel en 30 secondes</p>
+          ${c.tldr.map((t) => `<p class="statement reveal">${cite(t, c.sources)}</p>`).join("")}` : ""}
+          ${c.keyFigures ? statGrid(c.keyFigures, c.sources, c.theme) : ""}
+        </div>
+      </section>` : ""}
+
       ${c.sections.map((sec, i) => `
-        <section class="section ${i % 2 === 0 ? "alt" : ""}">
+        <section class="section ${(i + (c.tldr || c.keyFigures ? 1 : 0)) % 2 === 0 ? "alt" : ""}">
           <div class="wrap">
             <h2 class="title reveal">${sec.title}</h2>
+            ${sec.quote ? `<p class="pull ${c.theme} reveal">${cite(sec.quote, c.sources)}</p>` : ""}
             ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, c.sources)}</p>`).join("")}
           </div>
         </section>
@@ -2291,7 +2303,7 @@ function statGrid(figures, sources, theme = "geo") {
   // Sans accents ni majuscules ; tous les mots tapés doivent apparaître.
   const fold = (x) => String(x || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\s*\[\d+\]/g, "").replace(/[’'`«»"]/g, " ");
   const plain = (x) => String(x || "").replace(/\s*\[\d+\]/g, "");
-  const flat = (x) => (Array.isArray(x) ? x.map(flat).join(" ") : x && typeof x === "object" ? Object.values(x).map(flat).join(" ") : typeof x === "string" ? x : "");
+  const flat = (x) => (Array.isArray(x) ? x.map(flat).join(" ") : x && typeof x === "object" ? Object.values(x).map(flat).join(" ") : typeof x === "string" ? x.replace(/==/g, "") : "");
   let searchIndex = null;
   function buildSearchIndex() {
     const E = [];
