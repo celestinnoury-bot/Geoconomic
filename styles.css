@@ -1113,3 +1113,4 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 mark.hl { background: linear-gradient(transparent 62%, rgba(245, 200, 107, .45) 62%, rgba(245, 200, 107, .45) 96%, transparent 96%); color: var(--text); padding: 0 .08em; border-radius: 2px; font-weight: 600; }
 .pull { font-size: clamp(24px, 4vw, 34px); line-height: 1.2; font-weight: 700; letter-spacing: -.02em; margin: 18px 0 22px; padding-left: 18px; border-left: 3px solid var(--gold); color: var(--text); max-width: 760px; }
 .pull .cite { font-size: 13px; font-weight: 500; }
+.weekly-article { display: block; margin-top: 28px; }

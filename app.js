@@ -1195,6 +1195,7 @@
             ${(w.figures || []).map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
           </div>
           ${w.paragraphs.map((p) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>`).join("")}
+          ${w.article && byId(culture, w.article) ? `<a class="news-card eco reveal weekly-article" href="#/articles/${w.article}"><p class="eyebrow">Pour aller plus loin · ${byId(culture, w.article).kind || "Article"}</p><h3>${byId(culture, w.article).title}</h3><span class="more">Lire l'analyse ›</span></a>` : ""}
           ${w.toWatch && w.toWatch.length ? `
           <div class="towatch reveal">
             <p class="eyebrow">À suivre</p>

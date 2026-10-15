@@ -400,7 +400,9 @@
   "Tout voir": "Show everything",
   "▶ Visite guidée": "▶ Guided tour",
   "■ Arrêter la visite": "■ Stop the tour",
-  "Étude décryptée": "Research explained"
+  "Étude décryptée": "Research explained",
+  "Pour aller plus loin · {x}": "Go further · {x}",
+  "Lire l'analyse ›": "Read the analysis ›"
  },
  "months": {
   "janvier": "Jan.",
