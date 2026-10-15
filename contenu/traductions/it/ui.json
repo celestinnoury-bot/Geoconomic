@@ -430,6 +430,8 @@
   "mi": "metà",
   "année": "anno",
   "prévision": "previsione",
-  "de": "di"
+  "de": "di",
+  "{n} parties": "{n} parti",
+  "{n} min de lecture": "{n} min di lettura"
  }
 }

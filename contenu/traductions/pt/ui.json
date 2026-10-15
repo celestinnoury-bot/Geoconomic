@@ -430,6 +430,8 @@
   "mi": "meados de",
   "année": "ano",
   "prévision": "previsão",
-  "de": "de"
+  "de": "de",
+  "{n} parties": "{n} partes",
+  "{n} min de lecture": "{n} min de leitura"
  }
 }

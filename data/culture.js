@@ -6,6 +6,7 @@ window.GEOCO = window.GEOCO || {};
 window.GEOCO.culture = [
   {
     "id": "voiture-champ-de-bataille",
+    "cover": "voiture",
     "plus": false,
     "author": "Rédaction Géoconomic",
     "kind": "Enquête",
@@ -137,6 +138,7 @@ window.GEOCO.culture = [
   },
   {
     id: "reserves-strategiques",
+    cover: "barils",
     author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "eco",
@@ -186,6 +188,7 @@ window.GEOCO.culture = [
   },
   {
     id: "cables-sous-marins",
+    cover: "cables",
     author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "geo",
@@ -235,6 +238,7 @@ window.GEOCO.culture = [
   },
   {
     id: "barrage-renaissance",
+    cover: "barrage",
     author: "Rédaction Géoconomic (exemple)",
     kind: "Culture G",
     theme: "geo",

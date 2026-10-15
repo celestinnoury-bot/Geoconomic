@@ -1601,6 +1601,53 @@
   }
 
   // ---------- Articles ----------
+  // Illustrations dessinées des articles (champ `cover` de data/culture.js), en traits sur un fond aux couleurs du thème.
+  const COVER_ART = {
+    voiture: `
+      <path class="ln" d="M0 142h400"/>
+      <path class="ln" d="M96 128V92l18-34h78l14 34h46c12 0 20 8 20 18v18"/>
+      <path class="ln" d="M114 58h78M150 58v34M106 92h166"/>
+      <circle class="ln" cx="132" cy="130" r="17"/><circle class="ln" cx="244" cy="130" r="17"/>
+      <circle class="ac-f" cx="132" cy="130" r="4"/><circle class="ac-f" cx="244" cy="130" r="4"/>
+      <path class="ac" d="M272 112c34 0 30-46 62-46s26 30 40 30"/>
+      <rect class="ac" x="352" y="84" width="22" height="24" rx="4"/><path class="ac" d="M358 84v-8M368 84v-8"/>
+      <path class="ac-f" d="M206 64l-14 20h10l-6 16 16-22h-10l6-14z"/>`,
+    barils: `
+      <path class="ln" d="M0 142h400"/>
+      ${[96, 168, 240].map((x, i) => `
+        <ellipse class="ln" cx="${x}" cy="${78 + (i % 2) * 8}" rx="28" ry="8"/>
+        <path class="ln" d="M${x - 28} ${78 + (i % 2) * 8}v${64 - (i % 2) * 8}M${x + 28} ${78 + (i % 2) * 8}v${64 - (i % 2) * 8}"/>
+        <path class="ln" d="M${x - 28} ${102 + (i % 2) * 4}c10 6 46 6 56 0M${x - 28} ${122 + (i % 2) * 2}c10 6 46 6 56 0"/>`).join("")}
+      <path class="ac" d="M290 150h90v-8"/><path class="ac-f" d="M336 46c10 14 16 22 16 30a16 16 0 0 1-32 0c0-8 6-16 16-30z"/>
+      <path class="ln dim" d="M300 112h70M300 124h50"/>`,
+    cables: `
+      <path class="ln" d="M0 46c25-10 50 10 75 0s50 10 75 0 50 10 75 0 50 10 75 0 50 10 75 0 50 10 75 0"/>
+      <path class="ln dim" d="M0 60c25-8 50 8 75 0s50 8 75 0 50 8 75 0 50 8 75 0 50 8 75 0"/>
+      <path class="ln" d="M0 150c60-20 120 6 200-6s140-20 200-4"/>
+      <path class="ac" d="M0 128c70-18 130 14 200 0s130-22 200-6"/>
+      ${[70, 160, 250, 340].map((x) => `<circle class="ac-f" cx="${x}" cy="${x === 70 ? 121 : x === 160 ? 131 : x === 250 ? 121 : 119}" r="5"/>`).join("")}
+      <path class="ln dim" d="M120 88c10-8 22-8 30 0-8 8-20 8-30 0zm30 0l8-6v12z"/>`,
+    barrage: `
+      <circle class="ac" cx="330" cy="46" r="18"/>
+      <path class="ln" d="M150 142l22-96h40l22 96"/><path class="ln dim" d="M160 100h64M166 74h52"/>
+      <path class="ac" d="M20 74c14-6 28 6 42 0s28 6 42 0 28 6 46 0"/>
+      <path class="ln dim" d="M20 92c14-6 28 6 42 0s28 6 42 0 28 6 42 0"/>
+      <path class="ac" d="M234 128c30 0 40 10 80 10s60-8 86-8"/>
+      <path class="ln" d="M0 142h150M234 142h166"/>`,
+  };
+  function articleCover(c, big, solo) {
+    const art = COVER_ART[c.cover];
+    if (!art) return "";
+    return `<div class="art-cover ${c.theme}${big ? " big" : ""}${solo ? " solo" : ""}" aria-hidden="true">
+      <svg viewBox="0 0 400 170" preserveAspectRatio="xMidYMid meet">${art}</svg>
+    </div>`;
+  }
+  // Temps de lecture approximatif (200 mots par minute) et nombre de parties.
+  function articleMeta(c) {
+    const words = c.sections.reduce((n, s) => n + s.paragraphs.join(" ").split(/\s+/).length, 0);
+    return `<span>${c.sections.length} parties</span><span>${Math.max(2, Math.round(words / 200))} min de lecture</span>`;
+  }
+
   function renderArticlesIndex() {
     app.innerHTML = `
       <section class="wrap hero">
@@ -1608,12 +1655,15 @@
         <h1 class="title reveal">Analyses et recherches.<br><span class="grad geo">Pour aller plus loin.</span></h1>
         <p class="lead reveal">Des articles plus personnels sur les coulisses de l'actu : l'histoire, les ressources, les infrastructures et les rivalités qu'on voit rarement à la une.</p>
         <div class="article-list">
-          ${culture.map((c) => `
-            <a class="news-card ${c.theme} reveal" href="#/articles/${c.id}">
-              <p class="eyebrow">${c.kind || "Article"} · ${THEMES[c.theme]}${articleLocked(c) ? " · " + plusTag() : ""}</p>
-              <h3>${c.title}</h3>
-              <p class="summary">${c.hook}</p>
-              ${c.author ? `<p class="byline">Par ${c.author}</p>` : ""}
+          ${culture.map((c, i) => `
+            <a class="art-card ${c.theme}${i === 0 ? " featured" : ""} reveal" href="#/articles/${c.id}">
+              ${articleCover(c, i === 0)}
+              <div class="art-card-body">
+                <p class="art-tags"><span class="kind-chip">${c.kind || "Article"}</span><span class="theme-tag">${THEMES[c.theme]}</span>${articleLocked(c) ? plusTag() : ""}</p>
+                <h3>${c.title}</h3>
+                <p class="summary">${c.hook}</p>
+                <p class="art-meta">${articleMeta(c)}</p>
+              </div>
             </a>`).join("")}
         </div>
       </section>
@@ -1656,10 +1706,11 @@
       app.innerHTML = `
         <section class="wrap hero">
           <a class="back" href="#/articles">‹ Articles</a>
-          <p class="eyebrow reveal">${c.kind || "Article"} · ${THEMES[c.theme]} · ${plusTag()}</p>
-          ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
+          <p class="art-tags reveal"><span class="kind-chip">${c.kind || "Article"}</span><span class="theme-tag">${THEMES[c.theme]}</span>${plusTag()}</p>
           <h1 class="title reveal">${c.title}</h1>
           <p class="lead reveal">${c.hook}</p>
+          ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
+          <div class="reveal">${articleCover(c, true, true)}</div>
         </section>
         ${first ? `
         <section class="section alt">
@@ -1676,11 +1727,12 @@
     app.innerHTML = `
       <section class="wrap hero">
         <a class="back" href="#/articles">‹ Articles</a>
-        <p class="eyebrow reveal">${c.kind || "Article"} · ${THEMES[c.theme]}</p>
-        ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
+        <p class="art-tags reveal"><span class="kind-chip">${c.kind || "Article"}</span><span class="theme-tag">${THEMES[c.theme]}</span></p>
         <h1 class="title reveal">${c.title}</h1>
         <p class="lead reveal">${c.hook}</p>
-        ${heroImage(c.image)}
+        ${c.author ? `<p class="byline reveal">Par ${c.author}</p>` : ""}
+        <p class="art-meta reveal">${articleMeta(c)}</p>
+        ${c.image ? heroImage(c.image) : `<div class="reveal">${articleCover(c, true, true)}</div>`}
       </section>
 
       ${c.tldr || c.keyFigures ? `

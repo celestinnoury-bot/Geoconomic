@@ -429,6 +429,8 @@
   "mi": "mediados de",
   "année": "año",
   "prévision": "previsión",
-  "de": "de"
+  "de": "de",
+  "{n} parties": "{n} partes",
+  "{n} min de lecture": "{n} min de lectura"
  }
 }

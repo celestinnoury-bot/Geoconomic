@@ -434,6 +434,8 @@
   "mi": "Mitte",
   "année": "Jahr",
   "prévision": "Prognose",
-  "de": "für"
+  "de": "für",
+  "{n} parties": "{n} Teile",
+  "{n} min de lecture": "{n} Min. Lesezeit"
  }
 }

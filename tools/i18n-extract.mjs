@@ -16,7 +16,7 @@ for (const f of ["content", "news", "culture", "etudes", "focus", "anecdotes", "
 const G = ctx.window.GEOCO;
 // culture.kind est un libellé d'interface (traduit avec l'interface), pas du contenu.
 // Clés jamais traduites : identifiants, dates, liens, coordonnées, et les sources (titres d'origine).
-export const SKIP = new Set(["id", "date", "theme", "region", "url", "coords", "dossiers", "culture", "news", "src", "sources",
+export const SKIP = new Set(["id", "cover", "date", "theme", "region", "url", "coords", "dossiers", "culture", "news", "src", "sources",
   "link", "audio", "file", "fileDark", "photo", "cas", "icon", "color", "iso", "era", "source", "slug", "answer", "correct", "related", "see",
   "kind", "type", "highlight", "terms", "poster", "part", "at", "article", "articles",
   // Chiffres et Conflits : valeurs, couleurs et codes pays ne se traduisent pas.

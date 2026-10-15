@@ -433,6 +433,8 @@
   "mi": "mid",
   "année": "year",
   "prévision": "forecast",
-  "de": "of"
+  "de": "of",
+  "{n} parties": "{n} parts",
+  "{n} min de lecture": "{n} min read"
  }
 }
