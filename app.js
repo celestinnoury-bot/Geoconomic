@@ -224,6 +224,13 @@
   }
 
   // Les [n] du texte deviennent « (Nom de la source) », avec un lien vers l'article.
+  // Sources discrètes : dans un même bloc (une partie d'article, l'enjeu de la semaine…), chaque source
+  // n'est nommée qu'à sa première mention. citeBlock() ouvre un nouveau bloc, citeFree() revient à la normale.
+  let citeSeen = null;
+  const citeBlock = () => { citeSeen = new Set(); return ""; };
+  const citeFree = () => { citeSeen = null; return ""; };
+  // Texte sans les [n] (résumés, chiffres clés : la source est donnée dans le texte qui suit).
+  const noCite = (text) => cite(text.replace(/\s*\[\d+\]/g, ""), []);
   function cite(text, sources) {
     // Espaces insécables dans les nombres (« 322 544 ») pour qu'ils ne soient jamais coupés en fin de ligne.
     text = text.replace(/(\d) (?=\d{3}\b)/g, "$1\u00a0");
@@ -232,6 +239,7 @@
     return text.replace(/\s*\[(\d+)\]/g, (m, n) => {
       const src = sources && sources[Number(n) - 1];
       if (!src) return "";
+      if (citeSeen) { if (citeSeen.has(src.url)) return ""; citeSeen.add(src.url); }
       return ` <a class="cite" href="${src.url}" target="_blank" rel="noopener">(${src.short || src.name})</a>`;
     });
   }
@@ -1189,7 +1197,7 @@
     return `
       <section class="section alt weekly">
         <div class="wrap">
-          <p class="eyebrow reveal weekly-label">${w.label || "L'enjeu de la semaine"} · ${week}</p>
+          ${citeBlock()}<p class="eyebrow reveal weekly-label">${w.label || "L'enjeu de la semaine"} · ${week}</p>
           <h2 class="title reveal">${w.question}</h2>
           <div class="weekly-figs reveal">
             ${(w.figures || []).map((x) => `<div><div class="bigstat grad eco">${x.value}</div><p class="bigstat-label">${x.label}${x.src && f.sources[x.src - 1] ? ` <a class="cite" href="${f.sources[x.src - 1].url}" target="_blank" rel="noopener">(${f.sources[x.src - 1].short})</a>` : ""}</p></div>`).join("")}
@@ -1197,7 +1205,7 @@
           ${w.paragraphs.map((p, i) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>${(w.refs || []).filter((r) => r.p === i).map((r) => { const a = byId(culture, r.article); const sec = a && a.sections[r.part - 1]; return a ? `<a class="weekly-ref reveal" href="#/articles/${a.id}/${r.part}"><span>Lire la suite dans l'article</span><b>${sec ? sec.title : a.title} ›</b></a>` : ""; }).join("")}`).join("")}
           ${(w.articles || []).map((id) => byId(culture, id)).filter(Boolean).map((a) => `<a class="news-card eco reveal weekly-article" href="#/articles/${a.id}"><p class="eyebrow">Pour aller plus loin · ${a.kind || "Article"}</p><h3>${a.title}</h3><span class="more">Lire l'analyse ›</span></a>`).join("")}
           ${w.article && byId(culture, w.article) ? `<a class="news-card eco reveal weekly-article" href="#/articles/${w.article}"><p class="eyebrow">Pour aller plus loin · ${byId(culture, w.article).kind || "Article"}</p><h3>${byId(culture, w.article).title}</h3><span class="more">Lire l'analyse ›</span></a>` : ""}
-          ${w.toWatch && w.toWatch.length ? `
+          ${citeFree()}${w.toWatch && w.toWatch.length ? `
           <div class="towatch reveal">
             <p class="eyebrow">À suivre</p>
             <ol>
@@ -1679,13 +1687,13 @@
       <section class="section alt">
         <div class="wrap">
           ${c.tldr ? `<p class="eyebrow reveal">L'essentiel en 30 secondes</p>
-          ${c.tldr.map((t) => `<p class="statement reveal">${cite(t, c.sources)}</p>`).join("")}` : ""}
-          ${c.keyFigures ? statGrid(c.keyFigures, c.sources, c.theme) : ""}
+          ${c.tldr.map((t) => `<p class="statement reveal">${noCite(t)}</p>`).join("")}` : ""}
+          ${c.keyFigures ? statGrid(c.keyFigures.map((f) => Object.assign({}, f, { src: null })), c.sources, c.theme) : ""}
         </div>
       </section>` : ""}
 
       ${c.sections.map((sec, i) => `
-        <section class="section ${(i + (c.tldr || c.keyFigures ? 1 : 0)) % 2 === 0 ? "alt" : ""}" id="part-${i + 1}">
+        ${citeBlock()}<section class="section ${(i + (c.tldr || c.keyFigures ? 1 : 0)) % 2 === 0 ? "alt" : ""}" id="part-${i + 1}">
           <div class="wrap">
             <p class="part-num reveal">${String(i + 1).padStart(2, "0")} / ${String(c.sections.length).padStart(2, "0")}</p>
             <h2 class="title reveal">${sec.title}</h2>
@@ -1694,7 +1702,7 @@
             ${sec.box ? `<aside class="art-box ${sec.box.kind || ""} reveal"><p class="eyebrow">${sec.box.label}</p>${sec.box.title ? `<h3>${sec.box.title}</h3>` : ""}${(Array.isArray(sec.box.text) ? sec.box.text : [sec.box.text]).map((t) => `<p>${cite(t, c.sources)}</p>`).join("")}</aside>` : ""}
           </div>
         </section>
-        ${i === 0 && c.timeline ? `
+        ${i === 0 && c.timeline ? `${citeBlock()}
         <section class="section timeline-band">
           <div class="wrap">
             <p class="eyebrow reveal">${c.timelineTitle || "Les dates clés"}</p>
@@ -1708,7 +1716,7 @@
         <div class="wrap">
           <div class="panel ${c.theme} reveal">
             <p class="eyebrow">Le saviez-vous ?</p>
-            <p>${cite(c.didYouKnow, c.sources)}</p>
+            <p>${citeFree()}${cite(c.didYouKnow, c.sources)}</p>
           </div>
         </div>
       </section>
@@ -2460,6 +2468,7 @@ function statGrid(figures, sources, theme = "geo") {
   // ---------- Routeur ----------
   function route() {
     if (currentGlobe) { currentGlobe.destroy(); currentGlobe = null; }
+    citeFree();
     const [, section, param, extra] = (location.hash || "#/").split("/").map((s) => { try { return decodeURIComponent(s); } catch (e) { return s; } });
     const tab = { dossier: "cours", culture: "articles", quiz: "cours", lexique: "cours", etudes: "actu", lettres: "actu", abonnement: "actu", enjeux: "focus" }[section] || section;
     document.querySelectorAll("[data-tab]").forEach((a) => a.classList.toggle("active", a.dataset.tab === tab));
