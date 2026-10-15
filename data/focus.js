@@ -368,7 +368,7 @@ window.GEOCO.focus = [
       { short: "Carnegie", name: "Carnegie Endowment, « China, Central Asia and electric cars » (août 2025)", url: "https://carnegieendowment.org/russia-eurasia/politika/2025/08/china-central-asia-electric-cars?lang=en" },
       { short: "Business Daily", name: "Business Daily Africa, « Kenya buys 94pc of used vehicles from Japan »", url: "https://www.businessdailyafrica.com/bd/markets/market-news/kenya-buys-94pc-of-used-vehicles-from-japan--4336552" },
       { short: "France Stratégie", name: "France Stratégie, « Voiture électrique : à quel coût ? », La Note d'analyse n° 115, novembre 2022", url: "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr" },
-      { short: "Fridenson", name: "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026", url: "https://www.cairn.info/resultats_recherche.php?searchTerm=Fridenson+conflits+moteurs+premi%C3%A8re+croissance+industrie+automobile" }
+      { short: "Fridenson", name: "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026", url: "https://shs.cairn.info/les-sciences-sociales-face-a-lautomobile--9791031808581-page-31?lang=fr" }
     ]
   }
 ];

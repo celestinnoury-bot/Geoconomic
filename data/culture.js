@@ -101,7 +101,7 @@ window.GEOCO.culture = [
     ],
     "didYouKnow": "Pour sa « Très Petite Voiture », l'ancêtre de la 2 CV, Citroën a un temps imaginé de demander la suppression du permis de conduire, ou un permis gratuit [1].",
     "sources": [
-      { "short": "Fridenson", "name": "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026, p. 31-48", "url": "https://www.cairn.info/resultats_recherche.php?searchTerm=Fridenson+conflits+moteurs+premi%C3%A8re+croissance+industrie+automobile" },
+      { "short": "Fridenson", "name": "Patrick Fridenson, « Les conflits comme moteurs de la première croissance de l'industrie automobile », dans Les sciences sociales face à l'automobile, 2026, p. 31-48", "url": "https://shs.cairn.info/les-sciences-sociales-face-a-lautomobile--9791031808581-page-31?lang=fr" },
       { "short": "France Stratégie", "name": "Alice Robinet et Maxime Gérardin, « Voiture électrique : à quel coût ? », La Note d'analyse de France Stratégie n° 115, novembre 2022", "url": "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr" },
       { "short": "Mac's Motor City Garage", "name": "Bill McGuire, « Henry Ford's Electric Model T », 2021", "url": "https://macsmotorcitygarage.com/henry-fords-electric-model-t/" }
     ],
