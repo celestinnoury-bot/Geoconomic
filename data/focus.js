@@ -37,10 +37,9 @@ window.GEOCO.focus = [
       ],
       refs: [
         { p: 3, article: "voiture-champ-de-bataille", part: 1 },
-        { p: 4, article: "voiture-electrique-cout", part: 2 },
-        { p: 5, article: "voiture-electrique-cout", part: 6 }
+        { p: 5, article: "voiture-champ-de-bataille", part: 6 }
       ],
-      articles: ["voiture-champ-de-bataille", "voiture-electrique-cout"],
+      articles: ["voiture-champ-de-bataille"],
       figures: [
         { value: "4", label: "usines Stellantis à l'arrêt en octobre", src: 12 },
         { value: "+45 %", label: "de ventes de voitures électriques dans l'UE (janv.-août 2026)", src: 14 },

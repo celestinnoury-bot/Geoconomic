@@ -11,17 +11,17 @@ window.GEOCO.culture = [
     "kind": "Enquête",
     "theme": "mix",
     "title": "Voiture électrique : une bataille vieille d'un siècle",
-    "hook": "En 1914, Henry Ford annonçait déjà une Ford T électrique. Prix, aides, normes, pollution : les conflits d'aujourd'hui rejouent ceux qui ont fait naître l'automobile.",
+    "hook": "En 1914, Henry Ford voulait déjà une Ford T électrique. Prix, aides, normes, pollution : ce qui freine l'électrique aujourd'hui rejoue les conflits qui ont fait naître l'automobile.",
     "tldr": [
-      "La voiture électrique n'est pas neuve : ==Ford l'a tentée en 1914==, et c'est déjà la batterie qui l'a fait échouer [1][3].",
-      "Dès le début, les constructeurs ont hésité entre ==voitures de luxe très rentables et voitures pour tous==. Le même dilemme pèse aujourd'hui sur l'électrique [1][2].",
-      "Sécurité, prix justes, pollution : ce sont souvent ==les clients, les assureurs et les tribunaux== qui ont forcé l'industrie à changer [1]."
+      "La voiture électrique n'est pas neuve : ==Ford l'a tentée en 1914==, et c'est déjà la batterie qui l'a fait échouer [1].",
+      "Aujourd'hui, elle coûte ==bien plus cher à l'achat mais moins cher à l'usage==, et les aides publiques qui comblent l'écart coûtent cher pour le climat [2].",
+      "Luxe ou masse, colère des clients, sécurité, pollution : ==les mêmes conflits reviennent==, et les ménages modestes risquent d'en être les perdants [1][2]."
     ],
     "keyFigures": [
       { "value": "1914", "label": "Henry Ford annonce une Ford T électrique", "src": 1 },
-      { "value": "1,5 M$", "label": "dépensés avant d'abandonner le projet, fin 1914", "src": 1 },
-      { "value": "1919", "label": "la justice donne raison aux actionnaires contre Ford", "src": 1 },
-      { "value": "+16 000 €", "label": "le surcoût d'une citadine électrique en 2022", "src": 2 }
+      { "value": "+16 000 €", "label": "le surcoût d'une citadine électrique à l'achat (2022)", "src": 2 },
+      { "value": "−1 200 €", "label": "par an : ce qu'elle fait économiser à l'usage", "src": 2 },
+      { "value": "300 €", "label": "d'aides publiques par tonne de CO2 évitée, au minimum", "src": 2 }
     ],
     "timelineTitle": "Un siècle de bataille automobile",
     "timeline": [
@@ -35,34 +35,35 @@ window.GEOCO.culture = [
     ],
     "sections": [
       {
-        "title": "1914 : la première Ford électrique",
+        "title": "1914 : déjà la batterie",
         "quote": "Avant la Tesla, il y a eu la Ford T électrique.",
         "paragraphs": [
-          "Au début de 1914, Henry Ford, devenu le premier constructeur automobile du monde, annonce une Ford T électrique. Il réserve un terrain pour l'usine et monte une équipe. Un prix de 500 dollars est même évoqué, presque celui de la version à essence [1][3].",
-          "Les batteries viennent de son ami Thomas Edison. Mais les prototypes ==mettent longtemps à charger, manquent de puissance et coûtent trop cher à produire==. Fin 1914, après 1,5 million de dollars dépensés, Ford abandonne [1][3].",
-          "Un siècle plus tard, la batterie reste le nœud du problème. En 2022, une citadine électrique coûtait environ 16 000 euros de plus à l'achat que son équivalent essence, même si elle faisait économiser environ 1 200 euros par an à l'usage [2]."
+          "Au début de 1914, Henry Ford, devenu le premier constructeur du monde, annonce une Ford T électrique. Il réserve un terrain pour l'usine, monte une équipe, et un prix de 500 dollars est même évoqué, presque celui de la version à essence [1][3].",
+          "Mais les batteries de son ami Thomas Edison ==mettent longtemps à charger, manquent de puissance et coûtent trop cher==. Fin 1914, après 1,5 million de dollars dépensés, Ford abandonne [1][3].",
+          "Un siècle plus tard, la batterie pèse toujours sur le prix. En 2022, une citadine électrique (format Clio) coûtait ==environ 16 000 euros de plus à l'achat== que la même à essence, mais faisait économiser ==environ 1 200 euros par an== à l'usage [2].",
+          "Les aides de l'époque comblaient la moitié à la totalité de l'écart. Résultat : l'électrique était rentable tout de suite pour un petit modèle acheté par un ménage très modeste, mais il fallait environ six ans pour une citadine achetée par un ménage aux revenus moyens ou aisés [2]."
         ],
+        "visual": 0,
         "box": { "label": "Le détail oublié", "title": "Des batteries inventées en France", "text": "Les batteries nickel-fer de la Ford T électrique avaient été inventées en France, puis perfectionnées par Edison avec plusieurs brevets [1]." }
       },
       {
-        "title": "Luxe ou masse : le premier conflit",
+        "title": "Luxe ou masse : le dilemme qui revient",
         "quote": "« Une entreprise est organisée et dirigée d'abord pour le profit de ses actionnaires. » Cour suprême du Michigan, 1919 [1].",
         "paragraphs": [
-          "On croit souvent que la voiture pour tous était une évidence. C'est faux : au début, ==les voitures chères pour quelques riches rapportent de très gros dividendes==, et le prix moyen des voitures augmente au lieu de baisser [1].",
-          "Quand Ford veut produire une voiture pour un large public, ses actionnaires s'y opposent. Il doit racheter leurs actions petit à petit. En 1916, les frères Dodge lui font même un procès pour défendre leurs dividendes, et la justice leur donne raison en 1919. En 1920, Ford rachète leurs parts : l'entreprise n'a plus que trois actionnaires, lui, sa femme et son fils [1].",
-          "En Europe, les constructeurs restent longtemps fidèles aux petites séries de luxe, très rentables [1].",
-          "Le même dilemme existe aujourd'hui. En 2022, l'électrique était rentable tout de suite pour un SUV, mais pas pour une citadine achetée par un ménage aux revenus moyens. France Stratégie proposait de ==réserver le bonus aux petites voitures électriques== [2]."
+          "La voiture pour tous n'avait rien d'évident. Au début, ==les voitures chères pour quelques riches rapportent de très gros dividendes==, et le prix moyen des voitures augmente au lieu de baisser [1].",
+          "Quand Ford veut une voiture populaire, ses actionnaires s'y opposent. En 1916, les frères Dodge lui font un procès pour défendre leurs dividendes et gagnent en 1919. Ford finit par racheter toutes leurs parts. En Europe, les constructeurs restent longtemps fidèles aux petites séries de luxe [1].",
+          "Le même dilemme pèse sur l'électrique : en 2022, il était rentable tout de suite pour un SUV, beaucoup moins pour une citadine. Et le seul modèle neuf clairement identifié en entrée de gamme était fabriqué en Chine [2]."
         ]
       },
       {
         "title": "Des clients qui ne se laissent pas faire",
         "quote": "Les premières voitures tombaient en panne, cassaient, brûlaient. Les clients ont porté plainte.",
         "paragraphs": [
-          "Les premières voitures sont souvent défectueuses : elles tombent en panne, cassent, prennent feu, et peuvent blesser. Selon l'historienne Sally Clarke, de nombreux clients américains protestent et vont en justice [1].",
-          "Les procès font boule de neige : les clients attaquent les garagistes, les garagistes attaquent les constructeurs, qui accusent les vendeurs. Peu à peu, ==les tribunaux condamnent à de lourdes amendes== [1].",
-          "Même la mythique Ford T n'était pas parfaite : elle était surtout meilleure que les autres voitures de son prix [1].",
-          "Aujourd'hui, la méfiance des acheteurs prend une autre forme : l'incertitude sur le prix de l'électricité et le nombre de bornes freine les achats, alors même que l'électrique est rentable à l'usage [2]."
+          "Les premières voitures tombent souvent en panne, cassent, prennent feu. Selon l'historienne Sally Clarke, de nombreux clients américains vont en justice : contre les garagistes, qui attaquent les constructeurs, qui accusent les vendeurs. Peu à peu, ==les tribunaux condamnent à de lourdes amendes== [1].",
+          "Même la Ford T n'était pas parfaite : elle était surtout meilleure que les autres voitures de son prix [1].",
+          "Aujourd'hui, la méfiance a changé de forme : ==l'incertitude sur le prix de l'électricité et le nombre de bornes freine les achats==, alors que l'électrique est rentable à l'usage. Et sur une borne rapide publique, la recharge coûte trois à quatre fois plus cher qu'à domicile [2]."
         ],
+        "visual": 1,
         "box": {
           "kind": "archive",
           "label": "Document d'archive · 1925",
@@ -74,29 +75,31 @@ window.GEOCO.culture = [
         }
       },
       {
-        "title": "La sécurité, imposée par les usagers",
+        "title": "Sécurité et pollution : des combats imposés de l'extérieur",
         "quote": "La voiture est devenue plus sûre à cause des dégâts qu'elle a causés.",
         "paragraphs": [
-          "Aux États-Unis, ce sont d'abord ==les assureurs== qui étudient les accidents pour savoir qui est responsable. En 1959, ils créent un institut de recherche sur la sécurité routière [1].",
-          "Les normes de sécurité ne sont pas seulement un outil des industriels pour produire en série : elles sont aussi ==réclamées par les clients et leurs avocats==, pour que la voiture ne soit plus un « cercueil à roulettes » [1].",
-          "En 1965, l'avocat Ralph Nader publie un livre choc sur les voitures dangereuses. Traduit en France en 1966 sous le titre « Ces voitures qui tuent », il est accompagné de notes d'un journaliste qui minimisent le problème pour les voitures françaises, très probablement à la demande des constructeurs, selon l'historien Patrick Fridenson [1]."
+          "Aux États-Unis, ce sont d'abord ==les assureurs== qui étudient les accidents ; en 1959, ils créent un institut de recherche sur la sécurité routière. Les normes de sécurité sont aussi ==réclamées par les clients et leurs avocats==, pour que la voiture ne soit plus un « cercueil à roulettes » [1].",
+          "En 1966, le livre choc de l'avocat Ralph Nader sort en France sous le titre « Ces voitures qui tuent », avec des notes qui minimisent le problème pour les voitures françaises, très probablement à la demande des constructeurs, selon l'historien Patrick Fridenson [1].",
+          "La pollution, elle, ne devient un sujet qu'avec le smog de Los Angeles, dans les années 1950, et les premières initiatives sont venues ==hors des grandes capitales de l'automobile==, par exemple en Suède [1].",
+          "Elle est désormais centrale : en 2021, les transports pesaient 30 % des émissions françaises de gaz à effet de serre, seul secteur encore au-dessus de son niveau de 1990 [2]."
         ]
       },
       {
-        "title": "La pollution, un combat venu d'ailleurs",
-        "quote": "Les grands pays de l'automobile ont mené la bataille de la sécurité. Celle de la pollution est venue d'ailleurs.",
+        "title": "Des aides chères, et des oubliés",
+        "quote": "Ceux qui auront le plus besoin de changer de voiture sont ceux qui ont le moins accès à l'électrique.",
         "paragraphs": [
-          "On sait très tôt que les gaz d'échappement contiennent du monoxyde de carbone mortel. Mais la pollution de l'air des villes ne devient un sujet qu'avec le smog de Los Angeles, dans les années 1950 [1].",
-          "Selon Patrick Fridenson, les premières initiatives contre la pollution automobile ont été lancées ==hors des grandes capitales de l'automobile==, par exemple en Suède [1].",
-          "Le sujet est devenu central : en 2021, les transports pesaient 30 % des émissions de gaz à effet de serre de la France, et c'était le seul secteur au-dessus de son niveau de 1990 [2]."
+          "Même en supposant qu'une voiture électrique roule seize ans, les aides à l'achat coûtent ==au moins 300 euros d'argent public par tonne de CO2 évitée==, sans compter les émissions plus fortes de la fabrication de la batterie [2].",
+          "Les ménages modestes achètent surtout d'occasion, où l'électrique reste rare : en 2019, ==seulement 0,3 % des voitures des 10 % de ménages les plus modestes étaient électriques==. Or les zones à faibles émissions vont interdire peu à peu les voitures anciennes dans les grandes villes [2]."
         ]
       },
       {
-        "title": "Ce que l'histoire dit d'aujourd'hui",
+        "title": "Qui paiera, qui fabriquera ?",
         "paragraphs": [
-          "Pour l'historien, la voiture a toujours été « technopolitique » : un objet technique façonné par des conflits entre constructeurs, actionnaires, clients, garagistes, assureurs, élus et experts [1].",
-          "Ces conflits se rejouent avec l'électrique : ==qui paiera la transition==, les ménages modestes qui achètent d'occasion et seront touchés par les zones à faibles émissions ? Et ==qui fabriquera les voitures==, alors que la plupart des électriques achetées en France sont produites à l'étranger [2] ?"
-        ]
+          "Pour Patrick Fridenson, la voiture a toujours été « technopolitique » : un objet façonné par des conflits entre constructeurs, actionnaires, clients, garagistes, assureurs, élus et experts [1].",
+          "Les auteurs de France Stratégie proposent de réserver le bonus aux petites voitures électriques, de durcir le malus sur les émissions et le poids, d'aider les ménages modestes avec de la location longue durée et de donner de la visibilité sur l'électricité et les bornes. Ce sont des pistes, pas la position du gouvernement [2].",
+          "Reste l'industrie : ==la plupart des électriques achetées en France sont fabriquées à l'étranger==, si bien que les aides soutiennent peu les usines françaises [2]."
+        ],
+        "visual": 2
       }
     ],
     "didYouKnow": "Pour sa « Très Petite Voiture », l'ancêtre de la 2 CV, Citroën a un temps imaginé de demander la suppression du permis de conduire, ou un permis gratuit [1].",
@@ -107,114 +110,26 @@ window.GEOCO.culture = [
     ],
     "visuals": [
       {
-        "kind": "chart",
-        "type": "bar",
-        "title": "1925 : la Renault qui buvait trop",
-        "subtitle": "Consommation d'essence selon la lettre de la Banque de l'Indochine, en litres aux 100 km",
-        "xLabel": "Voiture",
-        "unit": "Litres aux 100 km",
-        "decimals": 0,
-        "data": [["Renault 18 HP (1921)", 28], ["Peugeot 15 HP", 15]],
-        "source": "Archives Crédit Agricole, fonds Banque de l'Indochine, lettre du 10 juillet 1925, citée par Patrick Fridenson (2026)"
-      }
-    ]
-  },
-  {
-    "id": "voiture-electrique-cout",
-    "plus": false,
-    "author": "Rédaction Géoconomic",
-    "kind": "Étude décryptée",
-    "theme": "eco",
-    "title": "Voiture électrique : pourquoi on n'en achète pas plus, alors qu'elle coûte moins cher à rouler",
-    "hook": "Une note de France Stratégie fait les comptes : plus chère à l'achat, moins chère à l'usage, et des aides publiques qui coûtent cher pour le climat.",
-    "tldr": [
-      "La voiture électrique coûte plus cher à l'achat, mais elle est ==moins chère à l'usage==, même avec une électricité chère [1].",
-      "Les aides compensaient ==la moitié à la totalité du surcoût== en 2022, mais elles coûtent cher pour chaque tonne de CO2 évitée [1].",
-      "Les ==ménages modestes==, qui achètent d'occasion, restent les grands oubliés de la transition [1]."
-    ],
-    "keyFigures": [
-      { "value": "10 %", "label": "des voitures neuves vendues en 2021 étaient électriques", "src": 1 },
-      { "value": "+16 000 €", "label": "le surcoût d'une citadine électrique à l'achat", "src": 1 },
-      { "value": "−1 200 €", "label": "par an : ce qu'elle fait économiser à l'usage", "src": 1 },
-      { "value": "300 €", "label": "d'aides publiques par tonne de CO2 évitée", "src": 1 }
-    ],
-    "sections": [
-      {
-        "title": "Le décalage : 10 % des ventes, objectif 100 % en 2035",
-        "paragraphs": [
-          "En 2021, les voitures électriques ne représentaient que ==10 % des ventes== de voitures neuves en France, alors que l'Union européenne prévoit la fin des ventes de voitures thermiques neuves en 2035 [1].",
-          "L'enjeu est climatique : les transports sont le seul secteur dont les émissions de gaz à effet de serre restent au-dessus de leur niveau de 1990, et ils pesaient encore 30 % des émissions françaises en 2021 [1]."
-        ]
-      },
-      {
-        "title": "Plus chère à l'achat, moins chère à l'usage",
-        "quote": "À l'usage, l'électrique est moins chère que l'essence, même avec des prix élevés de l'électricité [1].",
-        "paragraphs": [
-          "Pour une citadine (le format d'une Renault Clio), la version électrique coûte ==environ 16 000 euros de plus à l'achat== que la version essence. Mais elle fait économiser ==environ 1 200 euros par an== à l'usage [1].",
-          "Les aides de l'époque (bonus écologique de 6 000 euros, prime à la conversion, aide pour la borne de recharge, malus sur les voitures polluantes) compensaient ==entre 50 % et 100 % de ce surcoût== selon les ménages et les modèles [1].",
-          "Résultat : l'électrique est rentable tout de suite pour un petit modèle acheté par un ménage très modeste, ou pour un SUV familial, quel que soit le ménage. Pour une citadine achetée par un ménage aux revenus moyens ou aisés, il faut ==environ six ans== [1].",
-          "Ces calculs supposent une essence à 1,70 euro le litre et une recharge surtout à domicile, en heures creuses. Sur une borne rapide publique, la recharge coûte trois à quatre fois plus cher [1]."
-        ]
-      },
-      {
-        "title": "Des aides chères pour le climat",
-        "quote": "300 euros d'argent public pour chaque tonne de CO2 évitée, au minimum [1].",
-        "paragraphs": [
-          "Les auteurs rapportent l'argent public dépensé aux émissions de CO2 évitées. Même en supposant que la voiture roule seize ans et plus de 200 000 kilomètres, les aides à l'achat coûtent ==environ 300 euros par tonne de CO2 évitée== [1].",
-          "Et c'est une estimation basse : elle ne compte pas la « dette écologique » de la voiture électrique, c'est-à-dire les émissions plus importantes de sa fabrication, à cause de la batterie [1]."
-        ]
-      },
-      {
-        "title": "Les ménages modestes, angle mort de la transition",
-        "quote": "Ceux qui auront le plus besoin de changer de voiture sont ceux qui ont le moins accès à l'électrique [1].",
-        "paragraphs": [
-          "Les ménages modestes achètent surtout d'occasion, un marché où l'offre électrique reste rare. En 2019, seulement ==0,3 % des voitures== des 10 % de ménages les plus modestes étaient électriques [1].",
-          "Or les zones à faibles émissions (ZFE) vont interdire progressivement les voitures les plus anciennes dans les grandes villes : ces ménages risquent d'être obligés de changer de voiture sans en avoir les moyens [1]."
-        ]
-      },
-      {
-        "title": "Ce que proposent les auteurs",
-        "paragraphs": [
-          "Réserver le bonus aux petites voitures électriques, durcir le malus sur les émissions et sur le poids (y compris pour les électriques), aider les ménages modestes avec des formules de location longue durée, et donner de la visibilité sur le prix de l'électricité et le nombre de bornes, car l'incertitude freine les achats [1].",
-          "Ce sont des pistes d'analyse : la note précise qu'elle ne reflète pas forcément la position du gouvernement [1]."
-        ]
-      },
-      {
-        "title": "Et l'industrie française ?",
-        "paragraphs": [
-          "La plupart des voitures électriques achetées en France sont fabriquées à l'étranger : ==les aides à l'achat profitent donc peu à la production française==. Le seul modèle neuf clairement identifié dans l'entrée de gamme était fabriqué en Chine [1].",
-          "En 2019, avant le Covid, la France produisait environ 2,2 millions de véhicules, l'Europe 21,6 millions et la Chine 25,7 millions [1]. Le lien avec le Focus de la semaine : la bataille de la voiture électrique se joue aussi dans les usines."
-        ]
-      }
-    ],
-    "didYouKnow": "Les montants d'aides étudiés datent de juillet 2022 : la note signalait déjà que le bonus écologique devait passer de 6 000 à 5 000 euros dès janvier 2023. Les barèmes ont changé depuis.",
-    "sources": [
-      {
-        "short": "France Stratégie",
-        "name": "Alice Robinet et Maxime Gérardin, « Voiture électrique : à quel coût ? », La Note d'analyse de France Stratégie n° 115, novembre 2022",
-        "url": "https://shs.cairn.info/revue-la-note-d-analyse-2022-10-page-1?lang=fr"
-      }
-    ],
-    "visuals": [
-      {
-        "kind": "chart",
-        "type": "bar",
+        "kind": "chart", "type": "bar",
         "title": "Citadine électrique : ce qui compense le surcoût",
         "subtitle": "Par rapport à la même voiture à essence (format Renault Clio), en euros",
-        "xLabel": "Poste",
-        "unit": "Euros",
-        "decimals": 0,
+        "xLabel": "Poste", "unit": "Euros", "decimals": 0,
         "data": [["Surcoût", 16000], ["Aides", 8800], ["Usage 6 ans", 7200]],
         "source": "France Stratégie, note n° 115 (2022). Surcoût à l'achat, aides de 2022, et économies d'usage sur 6 ans : 1 200 € par an multipliés par 6, sans actualisation."
       },
       {
-        "kind": "chart",
-        "type": "bar",
+        "kind": "chart", "type": "bar",
+        "title": "1925 : la Renault qui buvait trop",
+        "subtitle": "Consommation d'essence selon la lettre de la Banque de l'Indochine, en litres aux 100 km",
+        "xLabel": "Voiture", "unit": "Litres aux 100 km", "decimals": 0,
+        "data": [["Renault 18 HP (1921)", 28], ["Peugeot 15 HP", 15]],
+        "source": "Archives Crédit Agricole, fonds Banque de l'Indochine, lettre du 10 juillet 1925, citée par Patrick Fridenson (2026)"
+      },
+      {
+        "kind": "chart", "type": "bar",
         "title": "Où l'on fabrique les voitures",
         "subtitle": "Véhicules produits en 2019, en millions",
-        "xLabel": "Zone",
-        "unit": "Millions de véhicules",
-        "decimals": 1,
+        "xLabel": "Zone", "unit": "Millions de véhicules", "decimals": 1,
         "data": [["France", 2.2], ["Amérique", 20.1], ["Europe", 21.6], ["Chine", 25.7]],
         "source": "France Stratégie, note n° 115 (2022), d'après le CCFA"
       }

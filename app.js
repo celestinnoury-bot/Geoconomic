@@ -1699,6 +1699,7 @@
             <h2 class="title reveal">${sec.title}</h2>
             ${sec.quote ? `<p class="pull ${c.theme} reveal">${cite(sec.quote, c.sources)}</p>` : ""}
             ${sec.paragraphs.map((p) => `<p class="copy reveal">${para(p, c.sources)}</p>`).join("")}
+            ${sec.visual != null && c.visuals && c.visuals[sec.visual] && window.GeocoViz ? `<div class="art-viz reveal">${window.GeocoViz.html([c.visuals[sec.visual]])}</div>` : ""}
             ${sec.box ? `<aside class="art-box ${sec.box.kind || ""} reveal"><p class="eyebrow">${sec.box.label}</p>${sec.box.title ? `<h3>${sec.box.title}</h3>` : ""}${(Array.isArray(sec.box.text) ? sec.box.text : [sec.box.text]).map((t) => `<p>${cite(t, c.sources)}</p>`).join("")}</aside>` : ""}
           </div>
         </section>
@@ -1709,7 +1710,7 @@
             <ol class="art-timeline">${c.timeline.map((t) => `<li class="reveal"><span class="tl-when">${t.when}</span><span class="tl-what">${cite(t.text, c.sources)}</span></li>`).join("")}</ol>
           </div>
         </section>` : ""}
-        ${i === 0 ? visualsBlock(c.visuals) : ""}
+        ${i === 0 && !c.sections.some((x) => x.visual != null) ? visualsBlock(c.visuals) : ""}
       `).join("")}
 
       <section class="section">
