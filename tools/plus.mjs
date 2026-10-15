@@ -6,7 +6,7 @@
 //   node tools/plus.mjs retirer FAMILLE2026 | prenom.nom@exemple.fr       retire un code ou un proche
 //   node tools/plus.mjs liste                                              affiche les libellés
 //   node tools/plus.mjs paiement mensuel https://…  |  annuel https://…   lien de paiement (Stripe, Lemon Squeezy…)
-//   node tools/plus.mjs fondateurs restantes 87                          places restantes de l'offre « Membres fondateurs »
+//   node tools/plus.mjs fondateurs restantes 37                          places restantes de l'offre « Membres fondateurs »
 //   node tools/plus.mjs fondateurs lien https://…                         lien de paiement de l'offre fondateurs
 //   node tools/plus.mjs fondateurs fin                                    clôt l'offre (la carte disparaît de la page)
 //   Un code suivi de --fondateur donne le badge « Membre fondateur » (ex. : code FONDATEUR "Membres fondateurs" --fondateur)
@@ -28,7 +28,7 @@ const hashMail = (m) => crypto.createHash("sha256").update("mail:" + String(m).t
 const argv = process.argv.slice(2);
 const founderFlag = argv.includes("--fondateur");
 const [cmd, a, b, c] = argv.filter((x) => x !== "--fondateur");
-P.fondateurs = P.fondateurs || { places: 100, restantes: 100, essaiMois: 2, prix: 2.99, paiement: "", ouvert: true };
+P.fondateurs = P.fondateurs || { places: 50, restantes: 50, essaiMois: 2, prix: 2.99, paiement: "", ouvert: true };
 if (cmd === "code" && a) {
   P.codes = P.codes.filter((x) => x.h !== hashCode(a));
   P.codes.push(Object.assign({ h: hashCode(a), label: b || "Code offert" }, c ? { jusqua: c } : {}, founderFlag ? { fondateur: true } : {}));

@@ -47,7 +47,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 ## Géoconomic+ (prototype d'abonnement)
 
-- 3,99 €/mois ou 39,99 €/an ; offre « Membres fondateurs » (100 premiers : 2 mois offerts puis 2,99 €/mois à vie).
+- 3,99 €/mois ou 39,99 €/an ; offre « Membres fondateurs » (50 premiers : 2 mois offerts puis 2,99 €/mois à vie).
 - Réservé : cours d'approfondissement (`plus: true` dans `data/content.js`), archives (Focus et études de cas sauf le plus récent, enjeux des semaines passées,
   lettres au-delà des 7 dernières), un article sur deux, podcast au-delà de 2 épisodes. Toujours un aperçu gratuit.
 - Codes et proches invités : `node tools/plus.mjs …` (empreintes SHA-256 dans `data/plus.js`). Codes : FAMILLE2026, FONDATEUR2026.

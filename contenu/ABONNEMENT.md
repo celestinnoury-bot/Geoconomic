@@ -34,20 +34,20 @@ Après une modification : enregistrer (commit) et republier l'appli.
 
 Le code de départ est **FAMILLE2026** (« Famille et amis », sans date de fin).
 
-## Offre « Membres fondateurs » (les 100 premiers)
+## Offre « Membres fondateurs » (les 50 premiers)
 
 2 mois offerts, puis **2,99 €/mois à vie** au lieu de 3,99 €, tant que l'abonnement continue ; badge « Membre fondateur ».
 La carte s'affiche en tête de la page Géoconomic+ avec le nombre de places restantes.
 
 ```
-node tools/plus.mjs fondateurs restantes 87          # mettre à jour le compteur
+node tools/plus.mjs fondateurs restantes 37          # mettre à jour le compteur
 node tools/plus.mjs fondateurs lien https://…         # lien de paiement de l'offre (le bouton s'active)
 node tools/plus.mjs fondateurs fin                    # clore l'offre
 ```
 
 Le code **FONDATEUR2026** (prototype) donne l'accès pendant 2 mois à partir du jour où il est tapé, avec le badge.
 Au lancement, chez le prestataire de paiement : un produit à 2,99 €/mois avec 2 mois d'essai et carte demandée,
-limité à 100 inscriptions (code promo à utilisations limitées), et l'e-mail de rappel 7 jours avant la fin de l'essai.
+limité à 50 inscriptions (code promo à utilisations limitées), et l'e-mail de rappel 7 jours avant la fin de l'essai.
 
 ## Ce qui reste un prototype
 

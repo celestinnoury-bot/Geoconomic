@@ -24,8 +24,8 @@ window.GEOCO.plus = {
   ],
   "invites": [],
   "fondateurs": {
-    "places": 100,
-    "restantes": 100,
+    "places": 50,
+    "restantes": 50,
     "essaiMois": 2,
     "prix": 2.99,
     "paiement": "",
