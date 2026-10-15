@@ -55,7 +55,9 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 ## Prototypes
 
-- `prototypes/jeu-nation.html` : prototype de jeu « Géoconomic Nations » (tirer un dirigeant du passé, bâtir son pays, aléas économiques à comprendre, cartes savoir, classement et crise du jour partagés au Sommet), publié à part : https://claude.ai/artifact/64FpMtQuNDyXxs1iX6Kk1b (capacités db + user). Pas dans l'appli. L'auteur a fait retirer toute page « Album » de l'appli (ni cartes à collectionner, ni album des lieux) : ne pas en remettre.
+- `prototypes/jeu-nation.html` : prototype de jeu « Géoconomic Nations » (tirer un dirigeant du passé, bâtir son pays, aléas économiques à comprendre, cartes savoir, classement et crise du jour partagés au Sommet), publié à part : https://claude.ai/artifact/64FpMtQuNDyXxs1iX6Kk1b (capacités db + user). Pas dans l'appli.
+- `prototypes/jeu-quiz.html` : prototype « Géoconomic Duel » (culture G façon Duolingo : parcours de leçons à 3 vies, défi du jour partagé, duel 1 contre 1 en trois manches (duo ou carré, intrus, avant ou après) puis mort subite sur les dates, contre l'ordi ou un ami par code), publié à part : https://claude.ai/artifact/Kg6VKz8e5mH1mDVf3Uu3dK (capacités db + user). Pas dans l'appli.
+- L'auteur a fait retirer toute page « Album » de l'appli (ni cartes à collectionner, ni album des lieux) : ne pas en remettre.
 
 ## En attente de l'auteur
 
