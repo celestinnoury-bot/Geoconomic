@@ -307,6 +307,19 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
 .fact-year:empty { display: none; }
 .sd-chip { color: var(--red); }
 .type-box input.near { border-color: var(--gold); background: #2e2410; }
+/* Différé et défi du jour */
+.scoreboard.solo { display: flex; justify-content: space-between; align-items: center; }
+.scoreboard.solo .pts { font-size: 28px; }
+.scoreboard.solo small { font-size: 14px; color: var(--muted); }
+.pts-row { display: flex; gap: 8px; margin: 0 0 14px; flex-wrap: wrap; }
+.pts-row span { background: var(--panel-2); border-radius: 10px; padding: 6px 10px; font-size: 13px; color: var(--muted); }
+.pts-row b { font-family: var(--display); font-size: 18px; color: var(--text); margin-right: 3px; }
+.pts-row span:first-child b { color: var(--gold); }
+.btn svg { width: 18px; height: 18px; }
+.mstate { font-size: 13px; font-weight: 700; color: var(--muted); }
+.mstate.win { color: var(--gold); } .mstate.draw { color: var(--blue); } .mstate.lose { color: var(--red); }
+.splash.lost .big { color: var(--red); }
+.duel-card { border-color: rgba(90, 169, 255, .35); }
 </style>
 
 <header class="top">
@@ -446,18 +459,27 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     [1928, "conso", "Le premier dessin animé de Mickey", ""],
   ];
   const CAT = { tech: "Technique", eco: "Économie", conso: "Conso", soc: "Société" };
-  const QUESTIONS = 7, TIMER = 12, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
+  const MATCH_Q = 7, DAILY_ORDER = 3, DAILY_YEARS = 2, TIMER = 12, YEAR_TIMER = 25, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
+  const PTS = { win: 17, draw: 7, lose: 0 };
+
+  // Textes de fin de match, prêts à traduire (la langue suit celle du téléphone).
+  const TXT = {
+    fr: { win: "Victoire !", draw: "Égalité", lose: "Bah alors ? On a perdu ?", winSub: "Bien joué, tu situes mieux le passé que ton adversaire.", drawSub: "Autant de bonnes réponses chacun.", loseSub: "Ton adversaire a mieux situé les dates. Le match retour t'attend dans 4 heures.", wait: "En attente de ton adversaire" },
+    en: { win: "Victory!", draw: "Draw", lose: "Well then? We lost?", winSub: "Well played, you place the past better than your opponent.", drawSub: "Same number of right answers each.", loseSub: "Your opponent placed the dates better. The rematch is waiting in 4 hours.", wait: "Waiting for your opponent" },
+    es: { win: "¡Victoria!", draw: "Empate", lose: "¿Y bien? ¿Hemos perdido?", winSub: "Bien jugado, sitúas el pasado mejor que tu rival.", drawSub: "El mismo número de aciertos.", loseSub: "Tu rival situó mejor las fechas. La revancha te espera en 4 horas.", wait: "Esperando a tu rival" },
+  };
+  const LANG = (navigator.language || "fr").slice(0, 2);
+  const t = (k) => (TXT[LANG] || TXT.fr)[k] || TXT.fr[k];
 
   // ================= Outils =================
   const $ = (s, r = document) => r.querySelector(s);
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   function hash(s) { let h = 1779033703 ^ s.length; for (let i = 0; i < s.length; i++) { h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = (h << 13) | (h >>> 19); } return h >>> 0; }
-  function rng(seed) { let a = hash(String(seed)); return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+  function rng(seed) { let a = hash(String(seed)); return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let x = Math.imul(a ^ (a >>> 15), 1 | a); x = (x + Math.imul(x ^ (x >>> 7), 61 | x)) ^ x; return ((x ^ (x >>> 14)) >>> 0) / 4294967296; }; }
   const shuffle = (arr, r = Math.random) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const pad = (n) => String(n).padStart(2, "0");
   const today = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const yesterday = () => { const d = new Date(); d.setDate(d.getDate() - 1); return today(d); };
-  const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
   const fmt = (n) => Number(n || 0).toLocaleString("fr-FR");
   const lower1 = (s) => s.charAt(0).toLowerCase() + s.slice(1);
   const waitText = (ms) => { const m = Math.ceil(ms / 60000); return m >= 60 ? `${Math.floor(m / 60)} h ${pad(m % 60)}` : `${m} min`; };
@@ -466,36 +488,38 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     star: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4l-5.5 2.9 1-6.2L3 9.7l6.2-.9L12 3z"/></svg>',
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
     swords: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4 20 7-7M20 20l-7-7M14.5 4.5 20 4l-.5 5.5L13 16l-5-5 6.5-6.5zM9.5 4.5 4 4l.5 5.5"/></svg>',
-    skull: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3a8 8 0 0 0-5 14.2V20h10v-2.8A8 8 0 0 0 12 3z"/><circle cx="9" cy="11" r="1.6" fill="currentColor"/><circle cx="15" cy="11" r="1.6" fill="currentColor"/><path d="M10 20v-2M14 20v-2"/></svg>',
     bolt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
     crown: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5L3 8z"/></svg>',
-    live: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><path d="M11 8h5a2 2 0 0 1 2 2v3M13 16H8a2 2 0 0 1-2-2v-3"/></svg>',
-    robot: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>',
     friend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.5a3 3 0 0 1 0 5.6M18 19a5 5 0 0 0-2.5-4.3"/></svg>',
+    dice: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"/><circle cx="9" cy="9" r="1.3" fill="currentColor"/><circle cx="15" cy="15" r="1.3" fill="currentColor"/><circle cx="15" cy="9" r="1.3" fill="currentColor"/><circle cx="9" cy="15" r="1.3" fill="currentColor"/></svg>',
     sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+    sad: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 16.5c1.8-1.6 5.2-1.6 7 0M9 10h.01M15 10h.01"/></svg>',
+    clock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
   };
 
   // ================= Sauvegarde locale =================
-  const KEY = "geoduel-v2";
-  let S = { points: 0, streak: 0, lastDay: null, daily: null, matches: [], botNext: 0, wins: 0, played: 0, seen: [] };
+  const KEY = "geoduel-v3";
+  let S = { points: 0, streak: 0, lastDay: null, daily: null, matches: [], scored: {}, wins: 0, draws: 0, losses: 0, seen: [] };
   try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
   if (!Array.isArray(S.seen)) S.seen = [];
   if (!Array.isArray(S.matches)) S.matches = [];
+  if (!S.scored || typeof S.scored !== "object") S.scored = {};
   const seen = new Set(S.seen);
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
   function markSeen(id) { if (!id || seen.has(id)) return; seen.add(id); S.seen.push(id); if (S.seen.length > 3000) seen.delete(S.seen.shift()); }
-  function touchStreak() { const t = today(); if (S.lastDay === t) return; S.streak = S.lastDay === yesterday() ? S.streak + 1 : 1; S.lastDay = t; }
+  function touchStreak() { const d = today(); if (S.lastDay === d) return; S.streak = S.lastDay === yesterday() ? S.streak + 1 : 1; S.lastDay = d; }
   const streakNow = () => (S.lastDay === today() || S.lastDay === yesterday() ? S.streak : 0);
   function addPoints(n) { S.points += n; touchStreak(); save(); renderCounters(); syncPlayer(); }
   function renderCounters() { $("#c-xp").textContent = fmt(S.points); $("#c-streak").textContent = streakNow(); }
 
   // ================= Questions =================
-  // « p12_40 » : lequel est arrivé en premier entre deux faits ; « y12 » : écrire l'année d'un fait (mort subite).
+  // « p12_40 » : lequel est arrivé en premier entre deux faits ; « y12 » : écrire l'année d'un fait.
   const PAIRS = [];
   for (let a = 0; a < FACTS.length; a++) for (let b = a + 1; b < FACTS.length; b++) {
     const g = Math.abs(FACTS[a][0] - FACTS[b][0]);
     if (g >= 1 && g <= MAX_GAP) PAIRS.push(`p${a}_${b}`);
   }
+  const gapOf = (id) => { const [a, b] = id.slice(1).split("_").map(Number); return Math.abs(FACTS[a][0] - FACTS[b][0]); };
   function build(id, seed = "") {
     const r = rng(id + "|" + seed);
     if (/^p\d+_\d+$/.test(id)) {
@@ -504,13 +528,13 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       const [x, y] = r() < 0.5 ? [a, b] : [b, a];
       return { kind: "order", id, a: FACTS[x], b: FACTS[y] };
     }
-    if (/^y\d+$/.test(id) && FACTS[+id.slice(1)]) { const f = FACTS[+id.slice(1)]; return { kind: "year", id, f, y: f[0], sd: true }; }
+    if (/^y\d+$/.test(id) && FACTS[+id.slice(1)]) { const f = FACTS[+id.slice(1)]; return { kind: "year", id, f, y: f[0] }; }
     return null;
   }
-  // Tire des paires jamais vues, sans réutiliser un même fait dans le match ; les écarts courts (les plus traîtres) d'abord.
-  function drawPairs(n, r = Math.random, { exclude = new Set(), useSeen = true } = {}) {
+  // Paires jamais vues d'abord, sans réutiliser un fait dans la partie ; les écarts courts (les plus traîtres) en priorité.
+  function drawPairs(n, r = Math.random, { useSeen = true } = {}) {
     const used = new Set(), out = [];
-    const pool = shuffle(PAIRS, r).filter((id) => !exclude.has(id));
+    const pool = shuffle(PAIRS, r);
     const tiers = [pool.filter((id) => gapOf(id) <= 12), pool.filter((id) => gapOf(id) > 12)];
     for (const pass of [true, false]) for (const tier of tiers) for (const id of tier) {
       if (out.length >= n) return out;
@@ -521,59 +545,49 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     }
     return out;
   }
-  function gapOf(id) { const [a, b] = id.slice(1).split("_").map(Number); return Math.abs(FACTS[a][0] - FACTS[b][0]); }
-  function drawYears(n, r = Math.random, exclude = []) {
-    const used = new Set(exclude.flatMap((id) => id.slice(1).split("_")));
-    const all = shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i)));
-    const fresh = all.filter((i) => !seen.has("y" + i));
-    return (fresh.length >= n ? fresh : all).slice(0, n).map((i) => "y" + i);
+  function drawYears(n, r, excludeIds) {
+    const used = new Set(excludeIds.flatMap((id) => id.slice(1).split("_")));
+    return shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i))).slice(0, n).map((i) => "y" + i);
   }
   const buildAll = (ids, seed) => ids.map((id) => build(id, seed)).filter(Boolean);
+  const validIds = (a, n) => Array.isArray(a) && a.length === n && a.every((x) => typeof x === "string" && /^p\d{1,3}_\d{1,3}$/.test(x) && build(x));
+  // Défi du jour, année à écrire : 3 points pile, 2 à 2 ans près, 1 à 5 ans près.
+  const yearPts = (gap) => (gap === 0 ? 3 : gap <= 2 ? 2 : gap <= 5 ? 1 : 0);
 
-  // ================= Moteur de match =================
-  // 7 duels de dates, 12 secondes chacun ; une bonne réponse vaut 100 points + 10 par seconde restante.
-  // Égalité : mort subite, une année à écrire, sans indice ; le plus proche gagne.
+  // ================= Moteur de partie =================
   let G = null, timerId = null;
   const play = $("#play");
 
-  function startMatch(cfg) {
-    G = Object.assign({ i: 0, me: 0, opp: 0, correct: 0, sdGuesses: [], oppAns: {} }, cfg);
+  function startGame(cfg) {
+    G = Object.assign({ i: 0, me: 0, opp: 0, correct: 0, res: [] }, cfg);
     play.hidden = false;
     document.body.style.overflow = "hidden";
     next();
   }
-  function quit() {
-    clearInterval(timerId);
-    if (G) { clearTimeout(G.waitT); clearTimeout(G.autoT); if (G.mode === "live") leaveLive(); }
-    G = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render();
-  }
+  function quit() { clearInterval(timerId); G = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render(); }
   function next() {
     clearInterval(timerId);
     if (!G) return;
-    if (G.i >= G.qs.length) {
-      if (G.onRegularEnd && !G.sdStarted) { const more = G.onRegularEnd(); if (more && more.length) { G.sdStarted = true; G.qs.push(...more); return next(); } }
-      return finish();
-    }
+    if (G.i >= G.qs.length) return finish();
     const q = G.qs[G.i];
     if (q.kind === "splash") return renderSplash(q);
     renderQ(q);
   }
   function header() {
-    const regular = G.qs.filter((q) => q.kind === "order").length;
-    const done = G.qs.slice(0, G.i).filter((q) => q.kind === "order").length;
-    const prog = `<div class="bar" aria-hidden="true"><i style="width:${Math.round((done / Math.max(1, regular)) * 100)}%"></i></div><span class="chip num">${Math.min(done + 1, regular)}/${regular}</span>`;
+    const total = G.qs.filter((q) => q.kind !== "splash").length;
+    const done = G.qs.slice(0, G.i).filter((q) => q.kind !== "splash").length;
+    const prog = `<div class="bar" aria-hidden="true"><i style="width:${Math.round((done / Math.max(1, total)) * 100)}%"></i></div><span class="chip num">${Math.min(done + 1, total)}/${total}</span>`;
     const board = G.opponent ? `
       <div class="scoreboard">
-        <div class="side"><span class="avatar you">Toi</span><div><div class="who">Toi</div><div class="pts num" id="sb-me">${fmt(G.me)}</div></div></div>
-        <span class="vs">${G.mode === "live" ? '<span class="live-dot"></span>' : ""}VS</span>
-        <div class="side right"><div><div class="who" id="sb-name">${esc(G.opponent.name)}</div><div class="pts num" id="sb-opp">${G.opponent.hidden ? "?" : fmt(G.opp)}</div></div><span class="avatar opp">${esc(G.opponent.short)}</span></div>
-      </div>` : "";
-    return `<div class="wrap"><div class="play-top"><button class="x" id="quit" aria-label="Quitter le match">${ICON.x}</button>${prog}</div>${board}`;
+        <div class="side"><span class="avatar you">Toi</span><div><div class="who">Toi</div><div class="pts num" id="sb-me">${G.me}</div></div></div>
+        <span class="vs">VS</span>
+        <div class="side right"><div><div class="who">${esc(G.opponent.name)}</div><div class="pts num" id="sb-opp">${G.ghost ? G.opp : "?"}</div></div><span class="avatar opp">${esc(G.opponent.short)}</span></div>
+      </div>` : G.mode === "daily" ? `<div class="scoreboard solo"><span class="label">Défi du jour</span><span class="pts num" id="sb-me">${G.me}<small> / ${G.max} pts</small></span></div>` : "";
+    return `<div class="wrap"><div class="play-top"><button class="x" id="quit" aria-label="Quitter">${ICON.x}</button>${prog}</div>${board}`;
   }
   function timerHTML(sec) { return `<div class="timer" id="timer"><svg viewBox="0 0 50 50"><circle class="bg" cx="25" cy="25" r="21"/><circle class="fg" cx="25" cy="25" r="21" stroke-dasharray="132" stroke-dashoffset="0"/></svg><span class="num">${sec}</span></div>`; }
   function startTimer(sec, onEnd) {
     const t0 = performance.now();
-    G.t0 = t0; G.sec = sec;
     timerId = setInterval(() => {
       const left = Math.max(0, sec - (performance.now() - t0) / 1000);
       const el = $("#timer"); if (!el) return;
@@ -583,42 +597,37 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       if (left <= 0) { clearInterval(timerId); onEnd(); }
     }, 100);
   }
-  const timeLeft = () => (G.sec ? Math.max(0, G.sec - (performance.now() - G.t0) / 1000) : 0);
-
   function renderSplash(q) {
     play.innerHTML = `${header()}
       <div class="splash">
         <div class="ico" style="background:${q.bg};color:${q.fg}">${q.icon}</div>
         <p class="label">${esc(q.kicker)}</p>
-        <h1 class="big ${q.sd ? "sd" : ""}">${esc(q.title)}</h1>
+        <h1 class="big">${esc(q.title)}</h1>
         <p class="rules">${q.rules}</p>
-        ${q.auto ? `<p class="note">On enchaîne dans quelques secondes…</p>` : `<button class="btn" id="go">${esc(q.cta || "C'est parti")}</button>`}
+        <button class="btn" id="go">${esc(q.cta || "C'est parti")}</button>
       </div></div>`;
     $("#quit").onclick = quit;
-    const go = () => { if (G && G.qs[G.i] === q) { G.i++; next(); } };
-    if (q.auto) setTimeout(go, q.auto); else $("#go").onclick = go;
+    $("#go").onclick = () => { G.i++; next(); };
   }
-
   function renderQ(q) {
     let body;
     if (q.kind === "order") {
-      body = `<div class="qhead"><span class="chip">Avant ou après ?</span>${timerHTML(TIMER)}</div>
+      body = `<div class="qhead"><span class="chip">Avant ou après ?${G.mode === "daily" ? " · 3 pts" : ""}</span>${timerHTML(TIMER)}</div>
         <h2 class="question">Lequel est arrivé en premier ?</h2>
         <div class="versus">
           ${[q.a, q.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}
         </div>`;
     } else {
-      body = `<div class="qhead"><span class="chip sd-chip">Mort subite</span>${timerHTML(25)}</div>
+      body = `<div class="qhead"><span class="chip sd-chip">Au plus près · jusqu'à 3 pts</span>${timerHTML(YEAR_TIMER)}</div>
         <h2 class="question">En quelle année : ${esc(lower1(q.f[2]))} ?</h2>
         <form class="type-box" id="type-form" autocomplete="off">
           <input id="ty" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num" aria-label="Année">
           <button class="btn wide" id="valider" type="submit">Valider</button>
-          <p class="note">Aucun indice : écris l'année. Le plus proche de la bonne réponse gagne.</p>
+          <p class="note">Pile : 3 points · à 2 ans près : 2 points · à 5 ans près : 1 point.</p>
         </form>`;
     }
     play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
     $("#quit").onclick = quit;
-    G.qStart = performance.now();
     if (q.kind === "order") {
       play.querySelectorAll(".ans").forEach((b) => (b.onclick = () => answer(q, +b.dataset.k, b)));
       startTimer(TIMER, () => answer(q, null));
@@ -627,7 +636,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       inp.oninput = () => { inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4); };
       $("#type-form").onsubmit = (e) => { e.preventDefault(); if (!inp.value) { inp.focus(); return; } answer(q, parseInt(inp.value, 10)); };
       setTimeout(() => inp.focus(), 60);
-      startTimer(25, () => answer(q, null));
+      startTimer(YEAR_TIMER, () => answer(q, null));
     }
   }
 
@@ -635,118 +644,64 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     if (q.done) return;
     q.done = true;
     clearInterval(timerId);
-    const left = timeLeft();
-    let ok = false, info = "", note = "", gain = 0;
     play.querySelectorAll(".ans, #valider, #ty").forEach((b) => (b.disabled = true));
+    const k = G.res.length;
+    let ok = false, gain = 0, info, note;
     if (q.kind === "order") {
       const first = q.a[0] < q.b[0] ? 0 : 1;
       ok = val === first;
       play.querySelectorAll(".ans").forEach((b) => {
-        const k = +b.dataset.k, f = [q.a, q.b][k];
-        b.querySelector(".fact-year").textContent = f[0];
-        if (k === first) b.classList.add("good"); else if (b === btn) b.classList.add("bad");
+        const j = +b.dataset.k;
+        b.querySelector(".fact-year").textContent = [q.a, q.b][j][0];
+        if (j === first) b.classList.add("good"); else if (b === btn) b.classList.add("bad");
       });
       const gap = Math.abs(q.a[0] - q.b[0]);
       info = `${gap} an${gap > 1 ? "s" : ""} d'écart.`;
       note = q.a[3] || q.b[3] || "";
-      if (ok) { G.correct++; gain = 100 + Math.round(left * 10); G.me += gain; }
+      gain = ok ? (G.mode === "daily" ? 3 : 1) : 0;
     } else {
       const gap = Number.isFinite(val) ? Math.abs(val - q.y) : Infinity;
-      q.guess = Number.isFinite(val) ? val : null; q.gap = gap;
-      const inp = $("#ty"); if (inp) inp.classList.add(gap === 0 ? "good" : gap <= 5 ? "near" : "bad");
+      gain = Number.isFinite(gap) ? yearPts(gap) : 0;
+      ok = gain > 0;
+      const inp = $("#ty"); if (inp) inp.classList.add(gap === 0 ? "good" : gain > 0 ? "near" : "bad");
       info = !Number.isFinite(val) ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as écrit ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
       note = q.f[3] || "";
-      G.sdGuesses.push(q.guess);
     }
-    q.ok = ok;
-    markSeen(q.id);
-    save();
+    G.res.push(q.kind === "order" ? ok : gain);
+    if (ok) G.correct++;
+    G.me += gain;
+    markSeen(q.id); save();
+    // Adversaire déjà passé : on dévoile sa réponse à cette question.
     let oppLine = "";
-    if (G.bot && q.kind === "order") {
-      const b = G.bot(q);
-      if (b.ok) G.opp += b.pts;
-      oppLine = `${G.opponent.name} : ${b.ok ? `bonne réponse (+${b.pts})` : "raté"}`;
+    if (G.ghost) {
+      const o = !!G.ghost[k];
+      if (o) G.opp++;
+      oppLine = `${G.opponent.name} ${o ? "avait trouvé" : "s'était trompé"}.`;
     }
-    if (G.bot && q.kind === "year") {
-      const bg = Math.round(q.y + gauss() * 12), bgap = Math.abs(bg - q.y);
-      oppLine = `${G.opponent.name} a écrit ${bg} (${bgap} an${bgap > 1 ? "s" : ""} d'écart).`;
-      G.sdResult = q.gap < bgap ? "win" : q.gap > bgap ? "lose" : null;
-    }
-    const live = G.mode === "live";
-    if (live) { G.emit({ i: G.i, ok, pts: gain, guess: q.kind === "year" ? q.guess : null }); oppLine = "En attente de ton adversaire…"; }
-    const sd = q.kind === "year";
-    const v = G.sdResult;
-    const cls = sd ? (G.bot && v === "win" ? "ok" : G.bot && v === "lose" ? "ko" : "neutral") : ok ? "ok" : "ko";
-    const title = sd ? (G.bot ? (v === "win" ? "Tu remportes la mort subite !" : v === "lose" ? "Perdu à la mort subite" : "Égalité parfaite : on continue") : "Réponse enregistrée")
-      : ok ? `Bien vu ! +${gain}` : val == null ? "Temps écoulé" : "Raté";
+    const cls = q.kind === "year" ? (gain === 3 ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
+    const title = q.kind === "year" ? (gain === 3 ? "Pile ! +3 pts" : gain > 0 ? `Pas loin : +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
+      : ok ? (G.mode === "daily" ? "Bien vu ! +3 pts" : "Bien vu !") : val == null ? "Temps écoulé" : "Raté";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
-    sheet.innerHTML = `<div class="wrap"><h3 id="sh-title">${ok ? ICON.check : ""}${esc(title)}</h3>
+    sheet.innerHTML = `<div class="wrap"><h3>${cls === "ok" ? ICON.check : ""}${esc(title)}</h3>
       <p><strong>${esc(info)}</strong></p>${note ? `<p>${esc(note)}</p>` : ""}
-      ${oppLine ? `<p class="opp-line" id="opp-line">${esc(oppLine)}</p>` : ""}
+      ${oppLine ? `<p class="opp-line">${esc(oppLine)}</p>` : ""}
       <button class="btn wide ${cls === "ko" ? "ghost" : ""}" id="cont">Continuer</button></div>`;
     play.appendChild(sheet);
-    updateBoard();
+    const a = $("#sb-me"); if (a) a.innerHTML = G.mode === "daily" ? `${G.me}<small> / ${G.max} pts</small>` : G.me;
+    const b = $("#sb-opp"); if (b && G.ghost) b.textContent = G.opp;
     const cont = $("#cont");
     cont.focus();
-    cont.onclick = () => {
-      clearTimeout(G.autoT);
-      G.i++;
-      if (sd && G.sdResult && (G.bot || live)) return finish();
-      next();
-    };
-    if (live) waitOpp(q, G.i);
-  }
-  function updateBoard() {
-    if (!G || !G.opponent) return;
-    const a = $("#sb-me"), b = $("#sb-opp");
-    if (a) a.textContent = fmt(G.me);
-    if (b && !G.opponent.hidden) b.textContent = fmt(G.opp);
-  }
-  // En direct : on attend la réponse de l'adversaire avant d'enchaîner, pour rester ensemble.
-  function waitOpp(q, i) {
-    const cont = $("#cont");
-    cont.disabled = true; cont.textContent = "En attente…";
-    const sec = q.kind === "year" ? 25 : TIMER;
-    G.waiting = { q, i };
-    G.waitT = setTimeout(() => resolveOpp(i), Math.max(1500, sec * 1000 - (performance.now() - G.qStart) + 3000));
-    if (G.oppAns[i]) resolveOpp(i);
-  }
-  function resolveOpp(i) {
-    if (!G || !G.waiting || G.waiting.i !== i) return;
-    const { q } = G.waiting;
-    G.waiting = null; clearTimeout(G.waitT);
-    const o = G.oppAns[i], name = G.opponent.name;
-    let line;
-    if (q.kind === "order") {
-      const pts = o && o.ok ? Math.max(0, Math.min(220, o.pts)) : 0;
-      G.opp += pts;
-      line = !o ? `${name} n'a pas répondu à temps.` : o.ok ? `${name} : bonne réponse (+${pts})` : `${name} : raté`;
-      updateBoard();
-    } else {
-      const og = o && Number.isFinite(o.guess) ? Math.abs(o.guess - q.y) : Infinity;
-      G.sdResult = q.gap < og ? "win" : q.gap > og ? "lose" : null;
-      line = o && Number.isFinite(o.guess) ? `${name} a écrit ${o.guess} (${og} an${og > 1 ? "s" : ""} d'écart).` : `${name} n'a pas répondu.`;
-      const sheet = play.querySelector(".sheet"), t = $("#sh-title");
-      if (sheet) sheet.className = `sheet ${G.sdResult === "win" ? "ok" : G.sdResult === "lose" ? "ko" : "neutral"}`;
-      if (t) t.textContent = G.sdResult === "win" ? "Tu remportes la mort subite !" : G.sdResult === "lose" ? "Perdu à la mort subite" : "Égalité parfaite : on continue";
-    }
-    const ol = $("#opp-line"); if (ol) ol.textContent = line;
-    const cont = $("#cont");
-    if (cont) { cont.disabled = false; cont.textContent = "Continuer"; G.autoT = setTimeout(() => cont.isConnected && cont.click(), 2600); }
+    cont.onclick = () => { G.i++; next(); };
   }
   function finish() {
     clearInterval(timerId);
-    if (!G) return;
-    clearTimeout(G.waitT); clearTimeout(G.autoT);
-    const wasLive = G.mode === "live";
     const r = G.onEnd(G);
-    if (wasLive) leaveLive();
-    play.innerHTML = `<div class="wrap"><div class="splash">
-      <div class="ico" style="background:${r.bg || "var(--gold)"};color:${r.fg || "#2b1d00"}">${r.icon || ICON.star}</div>
+    play.innerHTML = `<div class="wrap"><div class="splash ${r.cls || ""}">
+      <div class="ico" style="background:${r.bg};color:${r.fg}">${r.icon}</div>
       <p class="label">${esc(r.kicker)}</p>
       <h1 class="big">${esc(r.title)}</h1>
-      ${r.text ? `<p class="rules">${r.text}</p>` : ""}
+      ${r.text ? `<p class="rules">${esc(r.text)}</p>` : ""}
       ${r.stats ? `<div class="result-grid">${r.stats.map(([v, l]) => `<div class="stat"><b class="num">${esc(v)}</b><span>${esc(l)}</span></div>`).join("")}</div>` : ""}
       ${r.extra || ""}
       <div class="row" style="flex-wrap:wrap;justify-content:center">${r.cta ? `<button class="btn" id="done">${esc(r.cta)}</button>` : ""}<button class="btn ghost" id="home">Accueil</button></div>
@@ -755,113 +710,158 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     $("#home").onclick = quit;
     if (r.mount) r.mount();
   }
-  const sdSplash = (live) => ({ kind: "splash", sd: true, auto: live ? 3500 : 0, kicker: "Égalité !", title: "Mort subite", icon: ICON.skull, bg: "var(--red)", fg: "#2a0006",
-    rules: "Une année à écrire, sans indice. Le plus proche de la bonne réponse gagne le match. Égalité parfaite ? On en tire une autre." });
-  const introSplash = (who) => ({ kind: "splash", kicker: `Duel contre ${who}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
-    rules: `${QUESTIONS} duels de dates qu'on ne sait jamais situer. 12 secondes pour choisir lequel est arrivé en premier : 100 points, plus 10 par seconde restante. En cas d'égalité, mort subite.` });
 
-  // ================= Modes =================
-  // Contre le Maître (l'ordi) : un match toutes les 4 heures.
-  function startBot() {
-    if (Date.now() < (S.botNext || 0)) return;
-    S.botNext = Date.now() + COOLDOWN; save();
-    const qs = buildAll(drawPairs(QUESTIONS));
-    const sd = buildAll(drawYears(4, Math.random, qs.map((q) => q.id)));
-    startMatch({
-      mode: "bot", qs: [introSplash("le Maître"), ...qs], opponent: { name: "Le Maître", short: "M" },
-      bot: (q) => {
-        const gap = Math.abs(q.a[0] - q.b[0]);
-        let p = gap <= 5 ? 0.5 : gap <= 12 ? 0.6 : 0.72;
-        p = Math.min(0.9, Math.max(0.25, p + (G.me - G.opp) / 1500));
-        return { ok: Math.random() < p, pts: 100 + Math.round(Math.random() * 90) };
-      },
-      onRegularEnd: () => (G.me === G.opp ? [sdSplash(false), ...sd] : null),
-      onEnd: (g) => {
-        const out = g.sdResult || (g.me > g.opp ? "win" : g.me < g.opp ? "lose" : "draw");
-        const pts = g.correct * 10 + (out === "win" ? 50 : out === "draw" ? 25 : 10);
-        S.played++; if (out === "win") S.wins++;
-        addPoints(pts);
-        return {
-          kicker: g.sdResult ? "Décidé à la mort subite" : "Fin du match", title: out === "win" ? "Victoire !" : out === "draw" ? "Match nul" : "Le Maître l'emporte",
-          icon: out === "win" ? ICON.star : ICON.robot, bg: out === "win" ? "var(--gold)" : "var(--blue)", fg: out === "win" ? "#2b1d00" : "#021327",
-          stats: [[`${fmt(g.me)} – ${fmt(g.opp)}`, "score"], [`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points"]],
-          text: "Match retour contre le Maître dans 4 heures.",
-        };
-      },
-    });
-  }
-
-  // Défi du jour : les mêmes 7 duels pour tout le monde, une fois par jour.
-  function dailyIds(day = today()) { return drawPairs(QUESTIONS, rng(`defi-${day}`), { useSeen: false }); }
-  function startDaily() {
-    if (S.daily && S.daily.date === today()) return;
-    startMatch({
-      mode: "daily", qs: [{ kind: "splash", kicker: "Défi du jour", title: "Les mêmes pour tous", icon: ICON.sun, bg: "var(--mint)", fg: "#062317", cta: "C'est parti",
-        rules: `${QUESTIONS} duels de dates, les mêmes pour tous les joueurs aujourd'hui. Chaque bonne réponse rapporte des points, et ton score entre au classement du jour.` }, ...buildAll(dailyIds(), today())],
-      onEnd: (g) => {
-        S.daily = { date: today(), score: g.me, correct: g.correct };
-        const pts = g.correct * 15 + 30;
-        addPoints(pts);
-        publishDaily();
-        return { kicker: "Défi du jour", title: `${fmt(g.me)} points`, icon: ICON.sun, bg: "var(--mint)", fg: "#062317",
-          stats: [[`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points gagnés"], [String(streakNow()), "jours de suite"]],
-          text: "Reviens demain pour un nouveau défi.", cta: "Voir le classement", after: () => setTab("classement") };
-      },
-    });
-  }
-
-  // Contre un ami : le créateur tire les questions et les range dans le match ; l'autre joue exactement les mêmes.
-  // Le résultat s'affiche quand les deux ont joué ; le match retour est possible 4 heures après.
+  // ================= Mode 1 : le 1 contre 1 en différé =================
+  // Chacun joue les mêmes 7 duels quand il veut. Celui qui en situe le plus gagne : victoire 17 points, égalité 7, défaite 0.
+  // On peut défier un ami par code, ou prendre le match d'un joueur au hasard qui attend un adversaire.
   const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
-  const validIds = (a, n) => Array.isArray(a) && a.length <= n && a.every((x) => typeof x === "string" && /^(p\d{1,3}_\d{1,3}|y\d{1,3})$/.test(x) && build(x));
-  async function createFriend(rematchOf) {
+  const outcome = (a, b) => (a > b ? "win" : a < b ? "lose" : "draw");
+  const RESULT_LOOK = {
+    win: { icon: ICON.star, bg: "var(--gold)", fg: "#2b1d00" },
+    draw: { icon: ICON.swords, bg: "var(--blue)", fg: "#021327" },
+    lose: { icon: ICON.sad, bg: "var(--red)", fg: "#2a0006", cls: "lost" },
+  };
+
+  async function createMatch({ open, rematchOf }) {
     if (!db || !me) return;
     const code = newCode();
-    const ids = drawPairs(QUESTIONS);
-    const sd = drawYears(3, Math.random, ids);
-    try { await db.collection("matchs").doc(code).set({ code, ids, sd, host: me, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
-    playFriend(code, ids, sd);
+    const ids = drawPairs(MATCH_Q);
+    try { await db.collection("matchs").doc(code).set({ code, ids, host: me, open: !!open, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
+    playMatch(code, ids, null);
   }
-  async function joinFriend(code, msg) {
+  // Au hasard : le match le plus récent d'un autre joueur qui attend encore un adversaire ; sinon on en ouvre un.
+  async function randomMatch(msg) {
+    if (!db || !me) return;
+    msg.textContent = "Recherche d'un match en attente…";
+    try {
+      const snap = await db.collection("matchs").where("open", "==", true).get();
+      const list = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).filter((m) => m.host !== me && validIds(m.ids, MATCH_Q) && !S.matches.includes(m.code)).sort((a, b) => b.at - a.at);
+      const m = list[0];
+      if (!m) { msg.textContent = "Personne n'attend : tu ouvres un match, le prochain joueur le prendra."; return createMatch({ open: true }); }
+      await db.collection("matchs").doc(m.code).update({ open: false }).catch(() => {});
+      msg.textContent = "";
+      return joinMatch(m.code, msg);
+    } catch (e) { msg.textContent = "Impossible de chercher un match pour le moment."; }
+  }
+  async function joinMatch(code, msg) {
     try {
       const mine = await db.collection("matchs").doc(`${code}-${me}`).get();
       if (mine.exists) { msg.textContent = "Tu as déjà joué ce match : voici le résultat."; showMatch(code); return; }
       const snap = await db.collection("matchs").doc(code).get();
       if (!snap.exists) { msg.textContent = "Ce code ne correspond à aucun match."; return; }
       const d = snap.data();
-      if (!validIds(d.ids, QUESTIONS) || !validIds(d.sd, 3)) { msg.textContent = "Ce match est illisible."; return; }
-      playFriend(code, d.ids, d.sd);
+      if (!validIds(d.ids, MATCH_Q)) { msg.textContent = "Ce match est illisible."; return; }
+      if (d.host === me) { showMatch(code); return; }
+      const hostRes = await db.collection("matchs").doc(`${code}-${d.host}`).get();
+      const hr = hostRes.exists ? hostRes.data() : null;
+      await resolveNames([d.host]);
+      playMatch(code, d.ids, hr && Array.isArray(hr.res) ? { res: hr.res.slice(0, MATCH_Q).map(Boolean), uid: d.host } : null);
     } catch (e) { msg.textContent = "Impossible de rejoindre ce match pour le moment."; }
   }
-  function playFriend(code, ids, sdIds) {
-    const sd = buildAll(sdIds);
-    startMatch({
-      mode: "friend", qs: [introSplash("ton ami"), ...buildAll(ids, code), { ...sdSplash(false), kicker: "Départage", rules: "Trois années à écrire. Elles ne comptent qu'en cas d'égalité avec ton adversaire : le plus proche l'emporte." }, ...sd],
-      opponent: { name: "Ton ami", short: "?", hidden: true },
+  function playMatch(code, ids, ghost) {
+    const oname = ghost ? names[ghost.uid] || "Ton adversaire" : "Ton adversaire";
+    startGame({
+      mode: "match", qs: [{ kind: "splash", kicker: `Match ${code}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
+        rules: `${MATCH_Q} duels de dates qu'on ne sait jamais situer, 12 secondes chacun. Ton adversaire joue les mêmes, quand il veut. Le plus de bonnes réponses gagne : victoire 17 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
+      opponent: { name: oname, short: oname.charAt(0).toUpperCase() }, ghost: ghost ? ghost.res : null,
       onEnd: (g) => {
-        const gaps = sd.map((q) => (Number.isFinite(q.gap) ? q.gap : 9999));
-        db.collection("matchs").doc(`${code}-${me}`).set({ code, score: g.me, sd: gaps, at: Date.now() }).catch(() => {});
+        const res = g.res.map(Boolean);
+        db.collection("matchs").doc(`${code}-${me}`).set({ code, res, correct: g.correct, at: Date.now() }).catch(() => {});
         if (!S.matches.includes(code)) S.matches.unshift(code);
-        S.matches = S.matches.slice(0, 8);
-        const pts = g.correct * 10;
-        addPoints(pts);
-        return {
-          kicker: `Match ${code}`, title: `${fmt(g.me)} points`, icon: ICON.friend, bg: "var(--blue)", fg: "#021327",
-          text: `+${pts} points pour tes bonnes réponses. Le bonus de victoire arrive quand ton ami a joué.`,
-          extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="m-res"><p class="muted">Recherche du résultat…</p></div>`,
-          mount: () => watchMatch(code, $("#m-res")),
-        };
+        S.matches = S.matches.slice(0, 12); save();
+        if (ghost) {
+          const out = outcome(g.correct, g.opp);
+          scoreMatch(code, out);
+          return Object.assign({ kicker: `Match ${code} · ${g.correct} contre ${g.opp}`, title: t(out), text: t(out + "Sub"),
+            stats: [[`${g.correct}/${MATCH_Q}`, "bien situés"], [`+${PTS[out]}`, "points"], [`${S.wins}-${S.draws}-${S.losses}`, "V-N-D"]] }, RESULT_LOOK[out]);
+        }
+        return { kicker: `Match ${code}`, title: `${g.correct}/${MATCH_Q} bien situés`, icon: ICON.clock, bg: "var(--blue)", fg: "#021327",
+          text: "Ton adversaire n'a pas encore joué. Le résultat et tes points arrivent dès qu'il a fini.",
+          extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="m-res"><p class="muted">…</p></div>`,
+          mount: () => watchMatch(code, $("#m-res")) };
       },
     });
   }
-  function compare(a, b) {
-    if (a.score !== b.score) return { out: a.score > b.score ? "win" : "lose", how: "" };
-    for (let k = 0; k < 3; k++) { const x = (a.sd || [])[k] ?? 9999, y = (b.sd || [])[k] ?? 9999; if (x !== y) return { out: x < y ? "win" : "lose", how: `Égalité : décidé à la mort subite (${x} an${x > 1 ? "s" : ""} d'écart contre ${y}).` }; }
-    return { out: "draw", how: "Égalité parfaite, même à la mort subite." };
+  // Les points d'un match ne sont comptés qu'une fois, quand les deux joueurs ont joué.
+  function scoreMatch(code, out) {
+    if (S.scored[code]) return;
+    S.scored[code] = out;
+    if (out === "win") S.wins++; else if (out === "draw") S.draws++; else S.losses++;
+    addPoints(PTS[out]);
+  }
+  let matchUnsub = null;
+  function watchMatch(code, el) {
+    if (matchUnsub) { matchUnsub(); matchUnsub = null; }
+    if (!db || !el) return;
+    matchUnsub = db.collection("matchs").where("code", "==", code).onSnapshot(async (snap) => {
+      const host = snap.docs.find((d) => d.id === code);
+      const rows = snap.docs.filter((d) => d.id !== code).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
+      await resolveNames(rows.map((r) => r.uid));
+      if (!document.body.contains(el)) { matchUnsub && matchUnsub(); matchUnsub = null; return; }
+      const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
+      if (!mine) { el.innerHTML = `<p class="muted">Tu n'as pas encore joué ce match.</p>`; return; }
+      if (!other) {
+        const isOpen = host && host.data().open;
+        el.innerHTML = `<p class="label">${esc(t("wait"))}</p>${isOpen ? `<p>Ton match est ouvert : le prochain joueur qui cherche un adversaire au hasard le prendra.</p>` : ""}
+          <p>${isOpen ? "Tu peux aussi" : "Envoie"} ce code à un ami : il l'entre sur l'accueil pour jouer les mêmes duels.</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
+        const c = el.querySelector("#copy");
+        c.onclick = () => { try { navigator.clipboard.writeText(code).then(() => (c.textContent = "Code copié"), () => (c.textContent = code)); } catch (e) { c.textContent = code; } };
+        return;
+      }
+      const out = outcome(mine.correct, other.correct);
+      scoreMatch(code, out);
+      const oname = names[other.uid] || "Ton adversaire";
+      const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
+      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +17 points" : out === "draw" ? "Égalité · +7 points" : "Défaite · 0 point"}</p>
+        <h3 style="font-size:24px;margin:6px 0">${esc(t(out))}</h3>
+        <p class="muted">Toi ${mine.correct}, ${esc(oname)} ${other.correct}.</p>
+        <div class="ms-grid">${(mine.res || []).map((x, k) => `<span class="${x ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>Toi</b>${(other.res || []).map((x, k) => `<span class="${x ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>${esc(oname)}</b></div>
+        ${wait > 0 ? `<p class="note">Match retour possible dans ${waitText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
+      const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createMatch({ open: false, rematchOf: code });
+    }, () => { el.innerHTML = `<p class="muted">Résultat indisponible pour le moment.</p>`; });
+  }
+  // Au chargement : on compte les points des matchs terminés pendant qu'on était absent.
+  async function settlePending() {
+    if (!db || !me) return;
+    for (const code of S.matches.filter((c) => !S.scored[c]).slice(0, 12)) {
+      try {
+        const snap = await db.collection("matchs").where("code", "==", code).get();
+        const rows = snap.docs.filter((d) => d.id !== code).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
+        const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
+        if (mine && other) scoreMatch(code, outcome(mine.correct, other.correct));
+      } catch (e) {}
+    }
+    if (!G) render();
   }
 
-  // ================= Partagé : points, classements, matchs (db) =================
+  // ================= Mode 2 : le défi du jour =================
+  // 5 questions, les mêmes pour tous : 3 « avant ou après » (3 points chacune) et 2 années à écrire (3 points pile, 2 à 2 ans, 1 à 5 ans).
+  function dailyQs(day = today()) {
+    const r = rng(`defi-${day}`);
+    const order = drawPairs(DAILY_ORDER, r, { useSeen: false });
+    const years = drawYears(DAILY_YEARS, r, order);
+    return buildAll([order[0], years[0], order[1], order[2], years[1]], day);
+  }
+  const DAILY_MAX = (DAILY_ORDER + DAILY_YEARS) * 3;
+  function startDaily() {
+    if (S.daily && S.daily.date === today()) return;
+    startGame({
+      mode: "daily", max: DAILY_MAX,
+      qs: [{ kind: "splash", kicker: "Défi du jour", title: "5 questions", icon: ICON.sun, bg: "var(--mint)", fg: "#062317", cta: "C'est parti",
+        rules: "Les mêmes pour tous les joueurs aujourd'hui. Trois « avant ou après » à 3 points, et deux années à écrire : 3 points pile, 2 à deux ans près, 1 à cinq ans près." }, ...dailyQs()],
+      onEnd: (g) => {
+        S.daily = { date: today(), score: g.me, res: g.res };
+        addPoints(g.me);
+        publishDaily();
+        return { kicker: "Défi du jour", title: `+${g.me} points`, icon: ICON.sun, bg: "var(--mint)", fg: "#062317",
+          stats: [[`${g.me}/${DAILY_MAX}`, "points"], [String(streakNow()), "jours de suite"], [rankDailyText(), "aujourd'hui"]],
+          text: "Reviens demain pour un nouveau défi.", cta: "Voir le classement", after: () => setTab("classement") };
+      },
+    });
+  }
+
+  // ================= Partagé (db) =================
   let db = null, user = null, me = null, names = {}, players = [], dailyRows = [];
   async function initShared() {
     try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
@@ -871,7 +871,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       try {
         const snap = await db.collection("joueurs").doc(me).get();
         const d = snap.exists ? snap.data() : null;
-        if (d && Number(d.points) > S.points) { S.points = Number(d.points); S.wins = Math.max(S.wins, Number(d.wins) || 0); S.played = Math.max(S.played, Number(d.played) || 0); save(); }
+        if (d && Number(d.points) > S.points) { S.points = Number(d.points); save(); }
       } catch (e) {}
       if (S.points > 0) syncPlayer();
     }
@@ -881,12 +881,12 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
         resolveNames(players.slice(0, 30).map((p) => p.id)).then(refreshShared);
       }, () => {});
       db.collection("defi").where("date", "==", today()).onSnapshot((snap) => {
-        dailyRows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => b.score - a.score);
+        dailyRows = snap.docs.map((d) => Object.assign({ id: d.id }, d.data())).sort((a, b) => b.score - a.score || a.at - b.at);
         resolveNames(dailyRows.map((r) => r.id)).then(refreshShared);
       }, () => {});
     }
     render();
-    initRoom();
+    settlePending();
   }
   async function resolveNames(ids) {
     const todo = ids.filter((id) => id && !(id in names));
@@ -901,155 +901,16 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
   }
   function syncPlayer() {
     if (!db || !me) return;
-    db.collection("joueurs").doc(me).set({ points: S.points, wins: S.wins, played: S.played, streak: streakNow(), at: Date.now() }).catch(() => {});
+    db.collection("joueurs").doc(me).set({ points: S.points, wins: S.wins, draws: S.draws, losses: S.losses, streak: streakNow(), at: Date.now() }).catch(() => {});
   }
   function publishDaily() {
     if (!db || !me || !S.daily) return;
-    db.collection("defi").doc(me).set({ date: S.daily.date, score: S.daily.score, correct: S.daily.correct, at: Date.now() }).catch(() => {});
+    db.collection("defi").doc(me).set({ date: S.daily.date, score: S.daily.score, at: Date.now() }).catch(() => {});
   }
-  let matchUnsub = null;
-  function watchMatch(code, el) {
-    if (matchUnsub) { matchUnsub(); matchUnsub = null; }
-    if (!db || !el) return;
-    matchUnsub = db.collection("matchs").where("code", "==", code).onSnapshot(async (snap) => {
-      const rows = snap.docs.filter((d) => d.id.includes("-")).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
-      await resolveNames(rows.map((r) => r.uid));
-      if (!document.body.contains(el)) { matchUnsub && matchUnsub(); matchUnsub = null; return; }
-      const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
-      if (!mine) { el.innerHTML = `<p class="muted">Tu n'as pas encore joué ce match.</p>`; return; }
-      if (!other) {
-        el.innerHTML = `<p class="label">En attente de ton adversaire</p><p>Envoie-lui ce code : il l'entre sur l'accueil pour jouer les mêmes questions.</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
-        const c = el.querySelector("#copy");
-        c.onclick = () => { try { navigator.clipboard.writeText(code).then(() => (c.textContent = "Code copié"), () => (c.textContent = code)); } catch (e) { c.textContent = code; } };
-        return;
-      }
-      const { out, how } = compare(mine, other);
-      const key = `bonus-${code}`;
-      if (!S[key]) { S[key] = 1; S.played++; if (out === "win") S.wins++; addPoints(out === "win" ? 50 : out === "draw" ? 25 : 0); }
-      const oname = names[other.uid] || "Ton adversaire";
-      const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
-      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +50 points" : out === "lose" ? "Défaite" : "Match nul · +25 points"}</p>
-        <h3 style="font-size:28px;margin:6px 0" class="num">${fmt(mine.score)} – ${fmt(other.score)}</h3>
-        <p class="muted">Toi contre ${esc(oname)}. ${esc(how)}</p>
-        ${wait > 0 ? `<p class="note">Match retour possible dans ${waitText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
-      const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createFriend(code);
-    }, () => { el.innerHTML = `<p class="muted">Résultat indisponible pour le moment.</p>`; });
-  }
-
-  // ================= Duel en direct (room) =================
-  // Salle commune : les joueurs « en attente » sont appariés deux par deux, puis rejoignent une salle à eux.
-  // L'hôte tire 7 duels qu'aucun des deux n'a encore vus et les envoie à l'autre.
-  let room = null, L = null;
-  async function initRoom() {
-    try { room = await window.claude?.use?.("room"); } catch (e) { room = null; }
-    if (!room) return;
-    room.presence({ mode: "idle" }).catch(() => {});
-    room.onPeers(() => lobbyTick(), () => { room = null; L = null; if (!G) render(); });
-    if (!G && tab === "jouer") render();
-  }
-  const lobbyPeers = () => (room ? room.peers().filter((p) => p.kind === "viewer" && (p.sameTab || !p.isMe)) : []);
-  function lobbyText() {
-    const ps = lobbyPeers();
-    const w = ps.filter((p) => !p.sameTab && p.presence && p.presence.mode === "wait").length;
-    const n = Math.max(1, ps.length);
-    return `${n} joueur${n > 1 ? "s" : ""} en ligne${w ? ` · ${w} cherche${w > 1 ? "nt" : ""} un adversaire` : ""}`;
-  }
-  function lobbyTick() {
-    const el = $("#live-status"); if (el) el.textContent = lobbyText();
-    if (!L || L.state !== "wait") return;
-    const waiting = lobbyPeers().filter((p) => p.presence && p.presence.mode === "wait").sort((a, b) => (a.peer < b.peer ? -1 : 1));
-    const k = waiting.findIndex((p) => p.sameTab);
-    if (k < 0) return;
-    const partner = k % 2 === 0 ? waiting[k + 1] : waiting[k - 1];
-    if (partner) joinMatch(partner, waiting[k].peer);
-  }
-  function findMatch() { if (!room) return; L = { state: "wait" }; room.presence({ mode: "wait" }).catch(() => {}); render(); lobbyTick(); }
-  function cancelMatch() { leaveLive(); render(); }
-  async function joinMatch(partner, mine) {
-    L.state = "join"; L.partner = partner; L.host = mine < partner.peer; L.oppAns = {};
-    const name = ("d-" + [mine, partner.peer].sort().join("-").toLowerCase().replace(/[^a-z0-9-]/g, "")).slice(0, 48);
-    room.presence({ mode: "play" }).catch(() => {});
-    const w = $("#live-wait"); if (w) w.textContent = "Adversaire trouvé, connexion…";
-    let nr;
-    try { nr = await room.join(name); } catch (e) { if (L) { L.state = "wait"; room.presence({ mode: "wait" }).catch(() => {}); } return; }
-    if (!L) { nr.leave().catch(() => {}); return; }
-    L.nr = nr;
-    nr.presence({ seen: S.seen.slice(-80) }).catch(() => {});
-    L.offs = [
-      nr.on("start", (m) => { if (!m.sameTab && L && !L.host && !L.started) beginLive(m.data); }),
-      nr.on("ans", (m) => { if (!m.sameTab) onOppAnswer(m.data); }),
-      nr.onPeers(() => liveTick()),
-    ];
-    L.giveUp = setTimeout(() => { if (L && !L.started) { leaveLive(); findMatch(); } }, 10000);
-    liveTick();
-  }
-  function liveTick() {
-    if (!L || !L.nr) return;
-    const opp = L.nr.peers().find((p) => p.peer === L.partner.peer);
-    if (L.started) {
-      if (!opp && !L.goneT) L.goneT = setTimeout(() => { if (L && L.started && !L.nr.peers().some((p) => p.peer === L.partner.peer)) forfeit(); }, 4000);
-      if (opp && L.goneT) { clearTimeout(L.goneT); L.goneT = null; }
-      return;
-    }
-    if (L.host && opp && !L.startT) L.startT = setTimeout(hostStart, 800);
-  }
-  function hostStart() {
-    if (!L || L.started || !L.nr) return;
-    const opp = L.nr.peers().find((p) => p.peer === L.partner.peer);
-    const theirs = opp && opp.presence && Array.isArray(opp.presence.seen) ? opp.presence.seen.filter((x) => typeof x === "string") : [];
-    const ids = drawPairs(QUESTIONS, Math.random, { exclude: new Set(theirs) });
-    const data = { ids, sd: drawYears(3, Math.random, ids), seed: Math.random().toString(36).slice(2, 8) };
-    L.nr.emit("start", data).catch(() => {});
-    beginLive(data);
-  }
-  function beginLive(data) {
-    if (!L || !data || !validIds(data.ids, QUESTIONS) || !validIds(data.sd, 3) || typeof data.seed !== "string") return;
-    L.started = true; L.state = "play"; clearTimeout(L.giveUp);
-    const seed = data.seed.slice(0, 12);
-    const sd = buildAll(data.sd, seed);
-    const by = L.partner.by;
-    startMatch({
-      mode: "live", qs: buildAll(data.ids, seed), oppAns: L.oppAns,
-      opponent: { name: (by && names[by]) || "Adversaire", short: "A" },
-      emit: (d) => { if (L && L.nr) L.nr.emit("ans", d).catch(() => {}); },
-      onRegularEnd: () => (G.me === G.opp ? [sdSplash(true), ...sd] : null),
-      onEnd: (g) => {
-        const draw = !g.forfeit && !g.sdResult && g.me === g.opp;
-        const win = !draw && (g.forfeit || (g.sdResult ? g.sdResult === "win" : g.me > g.opp));
-        const pts = g.correct * 10 + (draw ? 25 : win ? 50 : 10);
-        S.played++; if (win) S.wins++;
-        addPoints(pts);
-        return {
-          kicker: g.forfeit ? "Ton adversaire a quitté le match" : g.sdResult ? "Décidé à la mort subite" : "Duel en direct",
-          title: draw ? "Match nul" : win ? "Victoire !" : "Défaite", icon: win ? ICON.star : ICON.live,
-          bg: win ? "var(--gold)" : "var(--blue)", fg: win ? "#2b1d00" : "#021327",
-          stats: [[`${fmt(g.me)} – ${fmt(g.opp)}`, "score"], [`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points"]],
-          cta: "Rejouer en direct", after: () => { setTab("jouer"); findMatch(); },
-        };
-      },
-    });
-    if (by) resolveNames([by]).then(() => {
-      if (G && G.mode === "live" && names[by]) { G.opponent.name = names[by]; G.opponent.short = names[by].charAt(0).toUpperCase(); const n = $("#sb-name"); if (n) n.textContent = names[by]; }
-    });
-  }
-  function onOppAnswer(d) {
-    if (!L || !d || !Number.isInteger(d.i) || d.i < 0 || d.i > 30) return;
-    L.oppAns[d.i] = { ok: !!d.ok, pts: Number(d.pts) || 0, guess: Number.isFinite(d.guess) ? Math.round(d.guess) : null };
-    if (G && G.mode === "live" && G.waiting && G.waiting.i === d.i) resolveOpp(d.i);
-  }
-  function forfeit() { if (G && G.mode === "live") { G.forfeit = true; finish(); } }
-  function leaveLive() {
-    if (!L) return;
-    clearTimeout(L.giveUp); clearTimeout(L.startT); clearTimeout(L.goneT);
-    (L.offs || []).forEach((f) => { try { f(); } catch (e) {} });
-    if (L.nr) L.nr.leave().catch(() => {});
-    L = null;
-    if (room) room.presence({ mode: "idle" }).catch(() => {});
-  }
+  function rankDailyText() { const k = dailyRows.findIndex((r) => r.id === me); return k >= 0 ? `${k + 1}ᵉ` : "–"; }
 
   // ================= Grades =================
-  // Le 1er est « Maître du savoir » (couronne, bordure animée), le top 5 « Élite du savoir » (logo et bordure dorés).
-  const GRADES = [[3000, "Savant"], [1000, "Érudit"], [300, "Initié"], [0, "Curieux"]];
+  const GRADES = [[500, "Savant"], [200, "Érudit"], [50, "Initié"], [0, "Curieux"]];
   const rankOf = (id) => players.findIndex((p) => p.id === id);
   function gradeOf(rank, pts) {
     if (rank === 0) return "Maître du savoir";
@@ -1067,7 +928,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
 
   // ================= Écrans =================
   let tab = "jouer";
-  function setTab(t) { tab = t; render(); window.scrollTo(0, 0); }
+  function setTab(x) { tab = x; render(); window.scrollTo(0, 0); }
   document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
 
   function championHTML() {
@@ -1079,68 +940,49 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       ${top ? `<span class="ch-pts num">${fmt(top.points)}<small>pts</small></span>` : ""}
     </section>`;
   }
-  // Un exemple de duel, pour comprendre le jeu d'un coup d'œil.
-  function heroHTML() {
-    return `<section class="duel-hero">
-      <p class="label" style="color:var(--mint)">Le jeu</p>
-      <h1>Avant ou après ?</h1>
-      <p class="muted">${QUESTIONS} duels de dates auxquelles on n'a pas idée. Le plus juste et le plus rapide gagne. Égalité ? Mort subite : une année à écrire.</p>
-      <p class="note" style="margin-bottom:8px">Essaie : lequel est arrivé en premier ?</p>
-      <div class="example">
-        <button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button>
-      </div>
-      <p class="note" id="ex-res" aria-live="polite"></p>
-    </section>`;
-  }
   function msToMidnight() { const n = new Date(), m = new Date(n); m.setHours(24, 0, 0, 0); return waitText(m - n); }
   function dailyCard() {
     const done = S.daily && S.daily.date === today();
     return `<section class="card daily">
       <p class="label" style="color:var(--mint)">Défi du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
-      <h2>${done ? `Fait : ${fmt(S.daily.score)} points` : `${QUESTIONS} duels, les mêmes pour tout le monde`}</h2>
-      <div class="meta"><span class="reward">${done ? `${S.daily.correct}/${QUESTIONS} bien situés` : `Jusqu'à +${QUESTIONS * 15 + 30} pts`}</span><span>Nouveau défi dans ${msToMidnight()}</span></div>
+      <h2>${done ? `Fait : ${S.daily.score}/${DAILY_MAX} points` : "5 questions, les mêmes pour tout le monde"}</h2>
+      <div class="meta"><span class="reward">${done ? `Classé ${rankDailyText()}` : `Jusqu'à +${DAILY_MAX} pts`}</span><span>Nouveau défi dans ${msToMidnight()}</span></div>
       ${done ? `<button class="btn ghost" data-go="classement">Voir le classement</button>` : `<button class="btn" id="daily-go">Jouer le défi</button>`}
     </section>`;
   }
-  function liveCard() {
-    const waiting = L && (L.state === "wait" || L.state === "join");
-    return `<section class="card mode live-card">
-      <div class="mode-ico" style="background:#10291c;color:var(--mint)">${ICON.live}</div>
-      <div><h3>En direct <span class="live-badge"><span class="live-dot"></span>Live</span></h3>
-      <p>Contre un joueur connecté en même temps que toi, sur des duels qu'aucun de vous deux n'a vus.</p>
-      ${!room ? `<p class="note">Le direct a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>` : `
-      <p class="note" id="live-status">${lobbyText()}</p>
-      ${waiting ? `<div class="searching"><span class="spinner" aria-hidden="true"></span><span id="live-wait">${L.state === "join" ? "Adversaire trouvé, connexion…" : "Recherche d'un adversaire…"}</span></div><button class="btn ghost" id="live-cancel">Annuler</button>`
-        : `<div class="btns"><button class="btn" id="live-go">Trouver un adversaire</button></div>`}`}</div>
-    </section>`;
-  }
-  function botCard() {
-    const wait = (S.botNext || 0) - Date.now();
-    return `<section class="card mode">
-      <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.robot}</div>
-      <div><h3>Contre le Maître</h3><p>L'ordinateur, redoutable sur les dates. Un match toutes les 4 heures.</p>
-      <div class="btns">${wait > 0 ? `<span class="cooldown">Match retour dans ${waitText(wait)}</span>` : `<button class="btn blue" id="bot-go">Défier le Maître</button>`}</div></div>
-    </section>`;
-  }
-  function friendCard() {
+  function matchCard() {
     const shared = !!(db && me);
-    return `<section class="card mode">
-      <div class="mode-ico" style="background:#3a2a10;color:var(--gold)">${ICON.friend}</div>
-      <div><h3>Contre un ami</h3><p>Tu lances un match, ton ami reçoit un code et joue les mêmes duels quand il veut. Match retour 4 heures après.</p>
-      ${shared ? `<div class="btns"><button class="btn gold" id="friend-go">Créer un match</button></div>
+    const list = S.matches.map((c) => {
+      const s = S.scored[c];
+      return `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="mstate ${s || "wait"}">${s === "win" ? "Gagné · +17" : s === "draw" ? "Égalité · +7" : s === "lose" ? "Perdu" : "En attente"}</span></button>`;
+    }).join("");
+    return `<section class="card mode duel-card">
+      <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
+      <div><h3>1 contre 1</h3>
+      <p>${MATCH_Q} duels « avant ou après » sur des dates de niche. Chacun joue quand il veut, le résultat tombe quand les deux ont fini.</p>
+      <div class="pts-row"><span><b>17</b> victoire</span><span><b>7</b> égalité</span><span><b>0</b> défaite</span></div>
+      ${shared ? `<div class="btns"><button class="btn blue" id="random-go">${ICON.dice}Adversaire au hasard</button><button class="btn gold" id="friend-go">Défier un ami</button></div>
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
-        ${S.matches.length ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${S.matches.map((c) => `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="muted">Résultat et match retour ›</span></button>`).join("")}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
-        : `<p class="note">Le match entre amis a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}</div>
+        ${list ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${list}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
+        : `<p class="note">Le 1 contre 1 a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}</div>
     </section>`;
   }
   function viewJouer() {
-    return `<div class="stack">${heroHTML()}${dailyCard()}${liveCard()}${botCard()}${friendCard()}</div>`;
+    return `<div class="stack">
+      <section class="duel-hero">
+        <p class="label" style="color:var(--mint)">Le jeu</p>
+        <h1>Avant ou après ?</h1>
+        <p class="muted">Des dates auxquelles on n'a pas idée. Essaie : lequel est arrivé en premier ?</p>
+        <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
+        <p class="note" id="ex-res" aria-live="polite"></p>
+      </section>
+      ${dailyCard()}${matchCard()}</div>`;
   }
   function viewClassement() {
     let general;
     if (!db) general = `<p class="muted">Le classement partagé s'affiche quand la page est ouverte sur claude.ai, connecté.</p>`;
-    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Joue un match ou le défi du jour : tu apparaîtras ici pour tous les joueurs.</p>`;
+    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Gagne un match ou fais le défi du jour : tu apparaîtras ici pour tous les joueurs.</p>`;
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
@@ -1148,7 +990,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
         ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} <em class="gchip ${k + 3 < 5 ? "" : "plain"}">${k + 3 < 5 ? "Élite" : gradeOf(k + 3, p.points)}</em></span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
-      : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${fmt(r.score)}</span></li>`).join("")}</ol>`;
+      : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
     return `<div class="stack">
       <section class="card"><p class="label">Tous les joueurs</p><h2 style="font-size:26px;margin-top:4px">Classement général</h2>${general}</section>
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
@@ -1156,7 +998,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
         <ul class="grades">
           <li><span class="g-ico master-ico">${ICON.crown}</span><div><b>1ᵉʳ · Maître du savoir</b><span>Couronne sur le logo, bordure dorée animée, ton nom en tête pour tous.</span></div></li>
           <li><span class="g-ico elite-ico">${ICON.star}</span><div><b>Top 5 · Élite du savoir</b><span>Le logo de l'appli passe en or, avec une bordure dorée autour de l'appli.</span></div></li>
-          <li><span class="g-ico">${ICON.bolt}</span><div><b>Selon tes points</b><span>Curieux, Initié (300), Érudit (1 000), Savant (3 000).</span></div></li>
+          <li><span class="g-ico">${ICON.bolt}</span><div><b>Selon tes points</b><span>Curieux, Initié (50), Érudit (200), Savant (500).</span></div></li>
         </ul>
         <p class="label" style="margin-top:14px">Aperçu</p>
         <div class="seg">${[["normal", "Normal"], ["elite", "Top 5"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
@@ -1164,13 +1006,13 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me), S.points))}</p>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><b class="num">${fmt(S.points)}</b><span>points</span></div>
-          <div class="stat"><b class="num">${S.wins}/${S.played}</b><span>matchs gagnés</span></div>
+          <div class="stat"><b class="num">${S.wins}-${S.draws}-${S.losses}</b><span>victoires, nuls, défaites</span></div>
           <div class="stat"><b class="num">${streakNow()}</b><span>jours de suite</span></div>
-          <div class="stat"><b class="num">${fmt(seen.size)}</b><span>duels joués</span></div>
+          <div class="stat"><b class="num">${fmt(seen.size)}</b><span>questions vues</span></div>
           <div class="stat"><b class="num">${FACTS.length}</b><span>faits datés</span></div>
           <div class="stat"><b class="num">${fmt(PAIRS.length)}</b><span>duels possibles</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Points : 10 par duel bien situé, +50 pour une victoire (+25 si nul, +10 si défaite). Défi du jour : 15 par duel bien situé, +30.</p></section>
+        <p class="note" style="margin-top:12px">Points : 1 contre 1, victoire 17, égalité 7, défaite 0. Défi du jour : 3 par bonne réponse, et pour les années à écrire 3 pile, 2 à deux ans près, 1 à cinq ans près.</p></section>
     </div>`;
   }
 
@@ -1181,23 +1023,21 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     renderCounters();
     const on = (sel, fn) => { const el = $(sel); if (el) el.onclick = fn; };
     on("#daily-go", startDaily);
-    on("#bot-go", startBot);
-    on("#friend-go", () => createFriend(null));
-    on("#live-go", findMatch);
-    on("#live-cancel", cancelMatch);
+    on("#friend-go", () => createMatch({ open: false }));
+    on("#random-go", () => randomMatch($("#join-msg")));
     on("#join-go", () => {
       const code = $("#code-in").value.trim().toUpperCase();
       const msg = $("#join-msg");
       if (!/^[A-Z0-9]{5}$/.test(code)) { msg.textContent = "Le code fait 5 caractères, par exemple K7RMX."; return; }
-      joinFriend(code, msg);
+      joinMatch(code, msg);
     });
     v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
+    v.querySelectorAll("[data-match]").forEach((b) => (b.onclick = () => showMatch(b.dataset.match)));
+    v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
     v.querySelectorAll("[data-ex]").forEach((b) => (b.onclick = () => {
       v.querySelectorAll("[data-ex]").forEach((x) => { x.disabled = true; x.classList.add(x.dataset.ex === "1" ? "good" : x === b ? "bad" : "dim"); });
       $("#ex-res").textContent = (b.dataset.ex === "1" ? "Bien vu ! " : "Eh non ! ") + "La Lune en 1969, la valise à roulettes en 1972 : on a marché sur la Lune avant de mettre des roues aux valises.";
     }));
-    v.querySelectorAll("[data-match]").forEach((b) => (b.onclick = () => showMatch(b.dataset.match)));
-    v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
     applyStatus();
   }
   function showMatch(code) { const box = $("#match-view") || $("#join-msg"); if (!box) return; box.innerHTML = `<div class="card" style="background:var(--panel-2)"><p class="muted">Chargement…</p></div>`; watchMatch(code, box.firstElementChild); }
