@@ -3,7 +3,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&family=Cinzel+Decorative:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Cinzel+Decorative:wght@700;900&display=swap">
 <style>
 /* Plateau de jeu télévisé, version poche : une colonne, des gros boutons « en relief », un bandeau de score en haut.
    Un seul monde visuel, sombre, assumé (comme l'appli Géoconomic). */
@@ -346,6 +346,104 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
 @keyframes flicker { 0%, 100% { transform: scale(1, 1) skewX(0); } 25% { transform: scale(.94, 1.12) skewX(-4deg); } 50% { transform: scale(1.04, .92) skewX(3deg); } 75% { transform: scale(.97, 1.06) skewX(-2deg); } }
 @keyframes shimmer { to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .flame, .fx-name, .fx-title span { animation: none; } }
+/* ================= Direction visuelle : tableau d'affichage de gare =================
+   Panneaux noirs, lettres blanches condensées, jaune signalétique, années sur cases à volets, angles nets.
+   (Ces règles viennent en dernier et remplacent l'habillage précédent.) */
+:root {
+  --bg: #121315;
+  --panel: #1c1d20;
+  --panel-2: #26272b;
+  --line: #34363b;
+  --text: #ece9e1;
+  --muted: #9a9890;
+  --mint: #4cc06a;
+  --mint-deep: #2f8a48;
+  --gold: #f2c230;
+  --red: #e5483b;
+  --red-deep: #a8302a;
+  --blue: #ece9e1;
+  --flap: #0b0c0d;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Helvetica Neue", Arial, sans-serif;
+}
+body { background: var(--bg); font-family: var(--body); }
+h1, h2, h3, .brand, .label, .btn, .chip, .tab, .vs, .pts, .code, .ch-pts, .stat b, .step { font-family: var(--display); }
+.top { background: var(--bg); -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom: 2px solid var(--line); }
+.brand { text-transform: uppercase; letter-spacing: .04em; font-weight: 800; }
+.brand b { color: var(--gold); }
+.label { letter-spacing: .14em; }
+.card, .champion, .ans, .stat, .rank li, .duel-item, .scoreboard, .fact-mini, .join input, .type-box input, .cooldown, .pts-row span, .seg, .seg button, .sheet .btn { border-radius: 4px; }
+.card { background: var(--panel); border: 1px solid var(--line); }
+.daily { background: var(--panel); border-color: var(--line); border-top: 4px solid var(--gold); }
+.daily::after { display: none; }
+.daily h2 { font-size: 30px; text-transform: uppercase; letter-spacing: .01em; }
+.daily .reward { color: var(--gold); }
+.duel-card, .live-card, .ms-card { border-color: var(--line); }
+.mode-ico { background: var(--flap) !important; color: var(--gold) !important; border-radius: 4px; }
+.mode h3 { font-size: 26px; text-transform: uppercase; letter-spacing: .02em; }
+.btn { border-radius: 3px; box-shadow: none; border-bottom: 3px solid rgba(0, 0, 0, .35); font-family: var(--display); font-size: 18px; letter-spacing: .06em; padding: 12px 18px; }
+.btn:active { transform: translateY(2px); box-shadow: none; border-bottom-width: 1px; }
+.btn, .btn.wide { background: var(--gold); color: #1a1500; }
+.btn.blue { background: var(--text); color: #121315; }
+.btn.gold { background: transparent; color: var(--gold); border: 2px solid var(--gold); }
+.btn.ghost { background: var(--panel-2); color: var(--text); box-shadow: none; }
+.pts-row span { background: var(--flap); }
+.pts-row b { font-size: 20px; }
+/* Bandeau du premier : une ligne du tableau */
+.champion { background: var(--flap); border: 1px solid var(--line); border-left: 6px solid var(--gold); }
+.champion .crown { border-radius: 3px; }
+/* Accueil */
+.board-strip { display: flex; justify-content: space-between; margin: 0 0 10px; padding: 6px 10px; background: var(--gold); color: #1a1500; font: 800 14px var(--display); letter-spacing: .16em; text-transform: uppercase; }
+.duel-hero h1 { text-transform: uppercase; font-size: clamp(46px, 14vw, 72px); letter-spacing: -.01em; line-height: .9; }
+.fact-mini { background: var(--flap); border: 1px solid var(--line); box-shadow: none; font-family: var(--body); }
+.or { font-family: var(--display); }
+/* Questions */
+.question { font-family: var(--display); text-transform: none; font-weight: 700; font-size: clamp(28px, 7.5vw, 34px); line-height: 1.05; }
+.ans, .ans.fact { background: var(--panel); border: 1px solid var(--line); box-shadow: none; }
+.ans:active:not([disabled]) { transform: none; box-shadow: none; background: var(--panel-2); }
+.ans.good { background: #142a1b; border-color: var(--mint); color: var(--text); }
+.ans.bad { background: #2c1513; border-color: var(--red); color: var(--text); }
+.fact-cat { border-radius: 2px; background: var(--flap); font-family: var(--display); letter-spacing: .12em; }
+.fact-cat.tech, .fact-cat.eco, .fact-cat.conso, .fact-cat.soc { color: var(--muted); }
+.fact-text { font-family: var(--body); font-weight: 600; }
+.fact-year { display: inline-flex; gap: 3px; font-size: 30px; }
+.fact-year i { position: relative; display: inline-grid; place-items: center; width: 1.05em; height: 1.35em; font: 700 1em var(--display); font-style: normal; color: var(--text); background: var(--flap); border-radius: 3px; overflow: hidden; animation: flapIn .42s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--k) * 90ms); transform-origin: 50% 50%; }
+.fact-year i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .7); box-shadow: 0 1px 0 rgba(255, 255, 255, .06); }
+.ans.good .fact-year i { color: var(--gold); }
+@keyframes flapIn { 0% { transform: rotateX(90deg); opacity: .2; } 60% { transform: rotateX(-12deg); opacity: 1; } 100% { transform: none; } }
+.chip { border-radius: 2px; background: var(--flap); letter-spacing: .1em; }
+.sd-chip { color: var(--gold); }
+.timer .fg { stroke: var(--gold); }
+.timer span { font-family: var(--display); }
+.bar { border-radius: 2px; height: 8px; }
+.bar i { background: var(--gold); border-radius: 2px; }
+.type-box input.year-in { font-family: var(--display); color: var(--gold); background: var(--flap); letter-spacing: .3em; }
+.scoreboard { background: var(--flap); }
+.avatar { border-radius: 3px; font-family: var(--display); }
+.avatar.you { background: var(--gold); color: #1a1500; }
+.avatar.opp { background: var(--text); color: #121315; }
+.sheet.ok { background: #13241a; border-top: 3px solid var(--mint); }
+.sheet.ko { background: #261412; border-top: 3px solid var(--red); }
+.sheet.neutral { background: var(--panel); border-top: 3px solid var(--gold); }
+.sheet h3 { font-family: var(--display); text-transform: uppercase; letter-spacing: .04em; font-size: 26px; }
+.splash .ico { border-radius: 4px; }
+.splash .big { text-transform: uppercase; letter-spacing: 0; line-height: .95; }
+.tabs { background: var(--bg); border-top: 2px solid var(--line); }
+.tab { text-transform: uppercase; letter-spacing: .12em; font-size: 13px; }
+.tab[aria-selected="true"] { color: var(--gold); }
+.code { color: var(--gold); }
+.seg button[aria-pressed="true"] { background: var(--gold); color: #1a1500; }
+.pod .step { border-radius: 2px 2px 0 0; font-family: var(--display); }
+.pod.p1 .step { background: var(--gold); }
+.pod.p2 .step { background: #c9c6bd; }
+.pod.p3 .step { background: #b98a4e; }
+.rank li.fx-row { background: var(--flap); border: 1px solid rgba(242, 194, 48, .45); }
+.grades .g-ico { border-radius: 3px; }
+.master-ico { background: var(--gold); }
+.elite-ico { background: var(--flap); color: var(--gold); }
+.gchip { border-radius: 2px; }
+body.elite .logo-elite { filter: none; }
+@media (prefers-reduced-motion: reduce) { .fact-year i { animation: none; } }
 </style>
 
 <header class="top">
@@ -581,6 +679,8 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     const used = new Set(excludeIds.flatMap((id) => id.slice(1).split("_")));
     return shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i))).slice(0, n).map((i) => "y" + i);
   }
+  // Année affichée en cases à volets, comme un tableau d'affichage de gare.
+  const flap = (y) => String(y).split("").map((d, k) => `<i style="--k:${k}">${d}</i>`).join("");
   const buildAll = (ids, seed) => ids.map((id) => build(id, seed)).filter(Boolean);
   const validIds = (a, n) => Array.isArray(a) && a.length === n && a.every((x) => typeof x === "string" && /^p\d{1,3}_\d{1,3}$/.test(x) && build(x));
   // Défi du jour, année à écrire : 3 points pile, 2 à 2 ans près, 1 à 5 ans près.
@@ -684,7 +784,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       ok = val === first;
       play.querySelectorAll(".ans").forEach((b) => {
         const j = +b.dataset.k;
-        b.querySelector(".fact-year").textContent = [q.a, q.b][j][0];
+        b.querySelector(".fact-year").innerHTML = flap([q.a, q.b][j][0]);
         if (j === first) b.classList.add("good"); else if (b === btn) b.classList.add("bad");
       });
       const gap = Math.abs(q.a[0] - q.b[0]);
@@ -711,8 +811,8 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       oppLine = `${G.opponent.name} ${o ? "avait trouvé" : "s'était trompé"}.`;
     }
     const cls = q.kind === "year" ? (gain === 3 ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
-    const title = q.kind === "year" ? (gain === 3 ? "Pile ! +3 pts" : gain > 0 ? `Pas loin : +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
-      : ok ? (G.mode === "daily" ? "Bien vu ! +3 pts" : "Bien vu !") : val == null ? "Temps écoulé" : "Raté";
+    const title = q.kind === "year" ? (gain === 3 ? "Pile · +3 pts" : gain > 0 ? `Proche · +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
+      : ok ? (G.mode === "daily" ? "Juste · +3 pts" : "Juste") : val == null ? "Temps écoulé" : "Raté";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
     sheet.innerHTML = `<div class="wrap"><h3>${cls === "ok" ? ICON.check : ""}${esc(title)}</h3>
@@ -989,7 +1089,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
   function dailyCard() {
     const done = S.daily && S.daily.date === today();
     return `<section class="card daily">
-      <p class="label" style="color:var(--mint)">Défi du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
+      <p class="label" style="color:var(--gold)">Défi du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
       <h2>${done ? `Fait : ${S.daily.score}/${DAILY_MAX} points` : "5 questions, les mêmes pour tout le monde"}</h2>
       <div class="meta"><span class="reward">${done ? `Classé ${rankDailyText()}` : `Jusqu'à +${DAILY_MAX} pts`}</span><span>Nouveau défi dans ${msToMidnight()}</span></div>
       ${done ? `<button class="btn ghost" data-go="classement">Voir le classement</button>` : `<button class="btn" id="daily-go">Jouer le défi</button>`}
@@ -1016,9 +1116,9 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
   function viewJouer() {
     return `<div class="stack">
       <section class="duel-hero">
-        <p class="label" style="color:var(--mint)">Le jeu</p>
+        <p class="board-strip"><span>Prochain duel</span><span>7 questions · 12 s</span></p>
         <h1>Avant ou après ?</h1>
-        <p class="muted">Des dates auxquelles on n'a pas idée. Essaie : lequel est arrivé en premier ?</p>
+        <p class="muted">Deux événements, une seule question : lequel est arrivé en premier ? Par exemple :</p>
         <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
         <p class="note" id="ex-res" aria-live="polite"></p>
       </section>
@@ -1080,7 +1180,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
     v.querySelectorAll("[data-ex]").forEach((b) => (b.onclick = () => {
       v.querySelectorAll("[data-ex]").forEach((x) => { x.disabled = true; x.classList.add(x.dataset.ex === "1" ? "good" : x === b ? "bad" : "dim"); });
-      $("#ex-res").textContent = (b.dataset.ex === "1" ? "Bien vu ! " : "Eh non ! ") + "La Lune en 1969, la valise à roulettes en 1972 : on a marché sur la Lune avant de mettre des roues aux valises.";
+      $("#ex-res").textContent = (b.dataset.ex === "1" ? "Exact. " : "Non. ") + "La Lune en 1969, la valise à roulettes en 1972 : on a marché sur la Lune avant de mettre des roues aux valises.";
     }));
     applyStatus();
   }
