@@ -3,7 +3,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 /* Plateau de jeu télévisé, version poche : une colonne, des gros boutons « en relief », un bandeau de score en haut.
    Un seul monde visuel, sombre, assumé (comme l'appli Géoconomic). */
@@ -718,6 +718,93 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
 .k-medal { width: 32px; height: 32px; font-size: 16px; } .k1 .k-medal { width: 38px; height: 38px; font-size: 19px; }
 .k-pts { font-size: 15px; margin-top: 2px; } .k1 .k-pts { font-size: 17px; }
 @media (prefers-reduced-motion: reduce) { .mt-row, .mt-row.hot .mt-nm small { animation: none; } }
+/* ================= Version chaleureuse =================
+   Même famille que Géoconomic (titres à empattements, pilules, surfaces arrondies), mais au coin du feu :
+   brun nuit au lieu du noir, ambre et corail (le dégradé « éco » de l'appli) au lieu du bleu, un léger grain,
+   des pastilles colorées, des traits faits main. Le jeu se distingue ainsi des actus, restées bleu nuit. */
+:root {
+  --bg: #16110d;
+  --panel: #231b16;
+  --panel-2: #30261f;
+  --line: rgba(255, 228, 200, .1);
+  --text: #f7efe6;
+  --muted: #b3a08e;
+  --mint: #8fd19e;
+  --gold: #f4b860;
+  --red: #ef6f5c;
+  --blue: #f4a261;
+  --warm: linear-gradient(90deg, #ffb340 0%, #ff7a45 55%, #ef5f74 100%);
+  --geo: var(--warm);
+  --display: "Fraunces", "Tinos", Georgia, serif;
+  --body: "Figtree", "Segoe UI", -apple-system, sans-serif;
+}
+body { background: radial-gradient(120% 60% at 50% -10%, #2a1c13 0%, var(--bg) 55%) fixed, var(--bg); }
+body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 70; opacity: .06; mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>"); }
+h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-family: var(--display); font-weight: 700; letter-spacing: -.01em; font-variation-settings: "SOFT" 100, "WONK" 1; }
+.grad-warm, .grad-geo { background: var(--warm); -webkit-background-clip: text; background-clip: text; color: transparent; font-style: italic; }
+.scribble { position: relative; display: inline-block; }
+.scribble svg { position: absolute; left: -2%; bottom: -6px; width: 104%; height: 12px; overflow: visible; }
+.scribble path { fill: none; stroke: #ff7a45; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 140; stroke-dashoffset: 140; animation: drawLine .9s .3s ease-out forwards; }
+@keyframes drawLine { to { stroke-dashoffset: 0; } }
+.top { background: rgba(22, 17, 13, .78); }
+.tabs { background: rgba(22, 17, 13, .9); }
+.tab[aria-selected="true"] { color: #ffb066; }
+.brand b { background: var(--warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.card, .champion { background: var(--panel); box-shadow: 0 1px 0 rgba(255, 230, 200, .05) inset, 0 10px 30px rgba(0, 0, 0, .25); }
+.daily { background: linear-gradient(160deg, #3a2618 0%, var(--panel) 55%); }
+.daily .reward { color: #ffb066; }
+.duel-hero .label { color: #e9b98d; font-style: italic; font-family: var(--display); font-size: 15px; font-weight: 500; }
+.duel-hero h1 { font-size: clamp(30px, 8.4vw, 42px); }
+.fact-mini { background: var(--panel); font-family: var(--display); }
+.btn, .btn.wide, .btn.blue { background: var(--warm); color: #2a1206; font-weight: 700; box-shadow: 0 6px 18px rgba(255, 122, 69, .25); }
+.btn.gold { color: var(--text); border-color: rgba(255, 179, 64, .45); }
+.btn.ghost { background: var(--panel-2); color: var(--text); box-shadow: none; }
+.mode-ico { background: #3a2a1e !important; color: #ffb066 !important; }
+.pts-row span { background: var(--panel-2); }
+.pts-row span:first-child b { color: #ffb066; }
+.chip { background: var(--panel-2); color: #e9cbb0; }
+.sd-chip { color: #ffb066; }
+.timer .fg { stroke: #ff9a52; }
+.bar i { background: var(--warm); }
+.ans, .ans.fact { background: var(--panel); }
+.ans.good { border-color: var(--mint); box-shadow: inset 0 0 0 1px var(--mint); }
+.ans.bad { border-color: var(--red); }
+.fact-text { font-family: var(--display); font-weight: 500; }
+.fact-year { font-family: var(--display); }
+.ans.good .fact-year { color: var(--mint); }
+.avatar.you { background: var(--warm); color: #2a1206; }
+.avatar.opp { background: #c97b5a; color: #2a1206; }
+.scoreboard { background: var(--panel); }
+.sheet.ok, .sheet.ko, .sheet.neutral { background: rgba(35, 27, 22, .9); }
+.sheet.ok h3 { color: var(--mint); } .sheet.ko h3 { color: var(--red); } .sheet.neutral h3 { color: var(--gold); }
+.splash .ico { box-shadow: 0 10px 30px rgba(0, 0, 0, .3); }
+.champion .crown { background: #3a2a1e; color: var(--gold); }
+.ch-main b, .champion .fx-name { font-family: var(--display); }
+.seg button[aria-pressed="true"] { background: var(--warm); color: #2a1206; }
+/* Podium au coin du feu */
+.kpodium { background: linear-gradient(180deg, #2c1d14 0%, #1b130e 100%); }
+.k-rays { background: repeating-conic-gradient(from 0deg, rgba(255, 196, 120, .07) 0 9deg, transparent 9deg 18deg); }
+.k1 .k-step { background: #4a3122; } .k2 .k-step, .k3 .k-step { background: #3b281d; }
+.k-who b { font-family: var(--display); }
+.k1 .k-who b { background: var(--warm); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.k-who span, .k-step small { color: #d7b89a; }
+.k-col.me .k-step { box-shadow: inset 0 0 0 2px #ffb066; }
+/* Tableau */
+.mtable { background: #1d1612; }
+.mt-head { background: #261d17; }
+.mt-row { border-top-color: rgba(255, 228, 200, .06); }
+.mt-row.me { background: rgba(255, 160, 90, .1); }
+.mt-av { color: #2a1206; box-shadow: none; font-weight: 700; }
+.mt-nm b { font-family: var(--display); font-weight: 600; }
+.mt-n { color: #d8c7b6; }
+@keyframes titleHue { 0%, 100% { color: #ffb340; } 33% { color: #ff7a45; } 66% { color: #ef5f74; } }
+.rank li.me, .mt-row.me { outline: 0; }
+.fx-dark .fx-name, .fx-title.fx-dark span { background-image: var(--warm) !important; }
+body.elite::before { border-color: rgba(244, 184, 96, .7); }
+body.master::before { background: var(--warm); }
+.grade-chip { background: #3a2a1e; color: var(--gold); }
+@media (prefers-reduced-motion: reduce) { .scribble path { animation: none; stroke-dashoffset: 0; } }
 </style>
 
 <header class="top">
@@ -1121,7 +1208,7 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
     const cls = duelYear ? (won === "me" || won === "both" ? "ok" : won === "opp" ? "ko" : "neutral") : q.kind === "year" ? (gain === DAILY_PT ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
     const title = duelYear ? (won === "me" ? "Manche gagnée" : won === "opp" ? "Manche perdue" : won === "both" ? "Manche partagée" : myGap === 0 ? "Pile !" : val == null ? "Temps écoulé" : `À ${myGap} an${myGap > 1 ? "s" : ""}`)
       : q.kind === "year" ? (gain === DAILY_PT ? `Pile · +${DAILY_PT} pts` : gain > 0 ? `Proche · +${gain} pts` : val == null ? "Temps écoulé" : "Trop loin")
-      : ok ? (G.mode === "daily" ? `Juste · +${DAILY_PT} pts` : "Juste") : val == null ? "Temps écoulé" : "Raté";
+      : ok ? (G.mode === "daily" ? `${cheer()} +${DAILY_PT} pts` : cheer()) : val == null ? "Le temps a filé…" : Math.abs(q.a[0] - q.b[0]) <= 3 ? "Ah, c'était serré !" : "Pas cette fois";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
     sheet.innerHTML = `<div class="wrap"><h3>${cls === "ok" ? ICON.check : ""}${esc(title)}</h3>
@@ -1346,6 +1433,11 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
     try { const ps = await user.profiles(todo); Object.entries(ps || {}).forEach(([id, p]) => { names[id] = (p && p.name) || ""; }); } catch (e) {}
   }
   const nameOf = (id) => (id === me ? "Toi" : names[id] || "Joueur");
+  // Petites phrases et couleurs de pastille, pour un ton plus humain.
+  const CHEERS = ["Bien vu !", "Exactement !", "Joli !", "Tu l'avais !", "Bravo !"];
+  const cheer = () => CHEERS[Math.floor(Math.random() * CHEERS.length)];
+  const AV = ["#f0a35e", "#e3735e", "#d9a441", "#c97b5a", "#8fb38a", "#7aa6c2", "#b48ac4", "#e08fa0"];
+  const avColor = (str) => AV[hash(String(str)) % AV.length];
   function refreshShared() {
     const c = $("#champion"); if (c) c.outerHTML = championHTML();
     applyStatus();
@@ -1456,8 +1548,8 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
   function viewJouer() {
     return `<div class="stack">
       <section class="duel-hero">
-        <p class="label">Le jeu des dates</p>
-        <h1>Avant ou après.<br><span class="grad-geo">Sept manches.</span></h1>
+        <p class="label">Entre deux actus, un petit duel ?</p>
+        <h1>Avant ou <span class="scribble">après<svg viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9c18-6 38-7 58-4s38 4 56-3"/></svg></span> ?<br><span class="grad-warm">Sept manches entre amis.</span></h1>
         <p class="muted">Deux événements, une seule question : lequel est arrivé en premier ? Par exemple :</p>
         <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
         <p class="note" id="ex-res" aria-live="polite"></p>
@@ -1482,7 +1574,7 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
           <div class="mt-head" role="row"><span></span><span>Joueurs</span><span>V</span><span>N</span><span>Points</span></div>
           ${players.slice(3, 30).map((p, k) => `<div class="mt-row${p.id === me ? " me" : ""}${k + 3 < 5 ? " hot" : ""}" role="row" style="--i:${k}">
             <span class="mt-pos num">${k + 4}</span>
-            <span class="mt-who"><span class="mt-av">${esc(nameOf(p.id).charAt(0).toUpperCase())}</span><span class="mt-nm"><b>${esc(nameOf(p.id))}</b><small>${esc(gradeOf(k + 3))}</small></span></span>
+            <span class="mt-who"><span class="mt-av" style="background:${avColor(p.id)}">${esc(nameOf(p.id).charAt(0).toUpperCase())}</span><span class="mt-nm"><b>${esc(nameOf(p.id))}</b><small>${esc(gradeOf(k + 3))}</small></span></span>
             <span class="mt-n num">${Number(p.wins) || 0}</span><span class="mt-n num">${Number(p.draws) || 0}</span><span class="mt-pts num">${fmt(p.points)}</span>
           </div>`).join("")}
         </div>` : ""}`;
