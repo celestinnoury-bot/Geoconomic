@@ -877,6 +877,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .mt-row.hot { min-height: 76px; }
 .mt-row.hot .mt-nm b, .mt-row.hot .mt-nm small { color: #f5c86b; animation: none; }
 .mt-row.hot:first-of-type .mt-pos, .mt-row.hot:nth-child(2) .mt-pos { color: #f5c86b; font-weight: 700; }
+/* Les grades : juste les titres, sans le détail des bordures, pour gagner de la place */
+.grades { gap: 8px; margin-top: 12px; }
+.grades li { grid-template-columns: 32px 1fr; gap: 10px; }
+.grades .g-ico { width: 32px; height: 32px; font-size: 14px; }
+.grades .master-ico { background: var(--royal); color: #fff; }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -1567,13 +1572,6 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     if (rank >= 5 && rank < 20) return MORE_TITLES[rank - 5];
     return ""; // après la 20e place, pas de titre
   }
-  const GRADE_FX = [
-    "1ᵉʳ du classement : couronne sur le logo, bordure animée bleu marine et violet, ton titre en tête pour tous.",
-    "2ᵉ : « attention danger » pour de vrai, bordure à rayures rouges et noires qui défilent, logo rouge vif.",
-    "3ᵉ : savoir lumineux mais nocif, bordure vert toxique qui luit et respire, logo phosphorescent.",
-    "4ᵉ du classement : logo doré et bordure dorée autour de l'appli.",
-    "5ᵉ du classement : logo doré et bordure dorée autour de l'appli.",
-  ];
   let preview = "";
   function applyStatus() {
     const r = { master: 0, r2: 1, r3: 2, elite: 3, normal: -1 }[preview] ?? rankOf(me);
@@ -1668,7 +1666,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
       <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
         <ul class="grades">
-          ${TITLES.map((x, k) => `<li><span class="g-ico ${["master-ico", "r2-ico", "r3-ico"][k] || "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b><span>${GRADE_FX[k]}</span></div></li>`).join("")}
+          ${TITLES.map((x, k) => `<li><span class="g-ico ${["master-ico", "r2-ico", "r3-ico"][k] || "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b></div></li>`).join("")}
         </ul>
         <p class="label" style="margin-top:14px">Places 6 à 20</p>
         <ol class="title-list" start="6">${MORE_TITLES.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
