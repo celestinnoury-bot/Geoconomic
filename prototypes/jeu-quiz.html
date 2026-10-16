@@ -3,7 +3,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Cinzel+Decorative:wght@700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tinos:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Plateau de jeu télévisé, version poche : une colonne, des gros boutons « en relief », un bandeau de score en haut.
    Un seul monde visuel, sombre, assumé (comme l'appli Géoconomic). */
@@ -522,6 +522,125 @@ main { padding-block: 26px 120px; }
 .stat { padding: 14px; }
 .card .label + h2 { margin-top: 6px !important; margin-bottom: 4px; }
 .btn.blue, .btn.gold, .btn.ghost { box-shadow: none; }
+/* ================= Style de l'appli Géoconomic, version sobre =================
+   Noir profond, surfaces en verre dépoli, titres à empattements (comme l'appli), boutons pilule bleus,
+   dégradé géo en seul accent. Peu d'animations : une révélation douce des années, rien qui clignote.
+   (Ces règles viennent en dernier et remplacent l'habillage « tableau de gare ».) */
+:root {
+  --bg: #000;
+  --panel: #1c1c1e;
+  --panel-2: #2c2c2e;
+  --line: rgba(255, 255, 255, .12);
+  --text: #f5f5f7;
+  --muted: #86868b;
+  --mint: #30d158;
+  --mint-deep: #248a3d;
+  --gold: #f5c86b;
+  --red: #ff453a;
+  --red-deep: #c4302a;
+  --blue: #2997ff;
+  --flap: #2c2c2e;
+  --geo: linear-gradient(90deg, #64d2ff 0%, #5e5ce6 55%, #bf5af2 100%);
+  --display: "Tinos", "Times New Roman", Times, serif;
+  --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", Arial, sans-serif;
+}
+body { background: var(--bg); font-family: var(--body); letter-spacing: -.005em; }
+h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3, .ch-main b, .champion .fx-name { font-family: var(--display); text-transform: none !important; letter-spacing: -.015em; }
+.label, .btn, .chip, .tab, .vs, .pts, .code, .ch-pts, .stat b, .step, .brand, .pts-row b, .pos, .fact-cat { font-family: var(--body); }
+.label { text-transform: none; letter-spacing: 0; font-weight: 600; font-size: 13px; }
+.grad-geo { background: var(--geo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* En-tête et onglets : verre dépoli, comme la barre de l'appli */
+.top { background: rgba(0, 0, 0, .72); -webkit-backdrop-filter: blur(20px) saturate(180%); backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid var(--line); }
+.brand { text-transform: none; letter-spacing: -.01em; font-weight: 600; font-size: 17px; }
+.brand b { color: inherit; background: var(--geo); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 600; }
+.tabs { background: rgba(0, 0, 0, .8); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-top: 1px solid var(--line); }
+.tab { text-transform: none; letter-spacing: 0; font-size: 12px; font-weight: 600; }
+.tab[aria-selected="true"] { color: var(--blue); }
+/* Cartes : surfaces arrondies, sans bordure colorée */
+.card, .champion, .stat, .rank li, .duel-item, .scoreboard, .fact-mini, .join input, .type-box input, .cooldown, .pts-row span, .seg { border-radius: 20px; }
+.card { background: var(--panel); border: 0; }
+.daily { background: var(--panel); border: 0; border-top: 0; }
+.daily h2 { font-size: 24px; text-transform: none; }
+.daily .label { color: var(--muted) !important; }
+.daily .reward { color: var(--gold); }
+.mode-ico { background: var(--panel-2) !important; color: var(--text) !important; border-radius: 14px; }
+.mode h3 { font-size: 22px; text-transform: none; }
+.duel-card, .live-card, .ms-card { border: 0; }
+.pts-row span { background: var(--panel-2); border-radius: 12px; }
+.pts-row span:first-child b { color: var(--gold); }
+.champion { background: var(--panel); border: 0; border-left: 0; }
+.champion .crown { background: var(--panel-2); color: var(--gold); border-radius: 14px; }
+.ch-pts { color: var(--gold); }
+/* Boutons pilule, bleu de l'appli */
+.btn, .btn.wide, .btn.blue { background: #0071e3; color: #fff; border: 0; border-radius: 999px; box-shadow: none; font-weight: 600; font-size: 15px; letter-spacing: 0; text-transform: none; padding: 11px 20px; }
+.btn:active { transform: scale(.98); border: 0; }
+.btn.gold { background: transparent; color: var(--text); border: 1px solid var(--line); border-radius: 999px; }
+.btn.ghost { background: var(--panel-2); color: var(--text); border-radius: 999px; }
+.btn[disabled] { opacity: .4; }
+.join input { background: var(--panel-2); border: 1px solid transparent; letter-spacing: .2em; }
+/* Accueil */
+.duel-hero h1 { font-size: clamp(30px, 8vw, 42px); line-height: 1.08; text-transform: none; margin: 8px 0 14px; }
+.duel-hero .label { color: var(--muted); }
+.fact-mini { background: var(--panel); border: 1px solid var(--line); box-shadow: none; font-family: var(--display); font-size: 15px; border-radius: 16px; }
+/* Manche */
+.question { font-size: clamp(22px, 6vw, 26px); font-weight: 700; }
+.chip { background: var(--panel-2); border-radius: 999px; letter-spacing: 0; text-transform: none; font-weight: 600; font-size: 12px; }
+.sd-chip { color: var(--blue); }
+.ans, .ans.fact { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; }
+.ans.good { background: var(--panel); border-color: var(--mint); box-shadow: inset 0 0 0 1px var(--mint); }
+.ans.bad { background: var(--panel); border-color: var(--red); opacity: .75; }
+.fact-cat { background: none; padding: 0; color: var(--muted) !important; text-transform: none; letter-spacing: 0; font-size: 12px; font-weight: 600; }
+.fact-text { font-family: var(--display); font-weight: 400; font-size: 17px; }
+/* L'année : plus de volets, un chiffre net qui apparaît en douceur, dans le dégradé géo (vert si juste) */
+.fact-year { display: block; gap: 0; font: 700 28px var(--display); color: var(--text); }
+.ans.good .fact-year { color: var(--mint); }
+.fact-year i { display: inline; width: auto; height: auto; background: none; border-radius: 0; font: inherit; font-style: normal; color: inherit !important; animation: softIn .5s ease-out both; animation-delay: calc(var(--k) * 60ms); }
+.fact-year i::after { display: none; }
+@keyframes softIn { from { opacity: 0; filter: blur(4px); } to { opacity: 1; filter: none; } }
+.bar { height: 4px; border-radius: 99px; background: var(--panel-2); }
+.bar i { background: var(--geo); border-radius: 99px; }
+.timer .fg { stroke: var(--blue); }
+.timer span { font-family: var(--body); font-weight: 600; }
+.type-box input.year-in { background: var(--panel); color: var(--text); font-family: var(--display); letter-spacing: .1em; border-radius: 18px; }
+.scoreboard { background: var(--panel); border: 0; }
+.avatar { border-radius: 50%; font-family: var(--body); font-weight: 600; }
+.avatar.you { background: #0071e3; color: #fff; }
+.avatar.opp { background: var(--panel-2); color: var(--text); }
+/* Bande de correction : verre dépoli, couleur seulement sur le titre */
+.sheet.ok, .sheet.ko, .sheet.neutral { background: rgba(28, 28, 30, .86); -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px); border-top: 1px solid var(--line); }
+.sheet h3 { text-transform: none; letter-spacing: -.01em; font-size: 22px; }
+.sheet.ok h3 { color: var(--mint); } .sheet.ko h3 { color: var(--red); } .sheet.neutral h3 { color: var(--gold); }
+.splash .ico { border-radius: 22px; }
+.splash .big { text-transform: none; line-height: 1.1; }
+.splash.lost .big { color: var(--text); }
+.code { color: var(--text); letter-spacing: .25em; }
+.seg { background: var(--panel-2); border-radius: 999px; }
+.seg button { border-radius: 999px; }
+.seg button[aria-pressed="true"] { background: var(--text); color: #000; }
+/* Classement : sobre. Top 3 en dégradé géo avec une petite flamme fixe, 4 et 5 en or, les autres en blanc. */
+.rank li { background: var(--panel); border: 0; border-radius: 16px; }
+.rank li.fx-row { background: var(--panel); border: 0; }
+.rank li.me { outline: 1px solid var(--blue); }
+.pos { color: var(--muted); }
+.pod .step { border-radius: 14px 14px 0 0; font-family: var(--display); }
+.pod.p1 .step { background: var(--gold); color: #2b1d00; }
+.pod.p2 .step { background: #d1d1d6; color: #1c1c1e; }
+.pod.p3 .step { background: #c69c6d; color: #2b1d00; }
+.fx-name, .fx-title span { font-family: var(--display) !important; font-weight: 700 !important; animation: none !important; }
+.fx-title span { font-weight: 400 !important; font-family: var(--body) !important; }
+.fx-dark .fx-name, .fx-title.fx-dark span { background-image: var(--geo) !important; }
+.fx-gold .fx-name, .fx-title.fx-gold span { background-image: linear-gradient(90deg, #d9a640, #f5c86b 50%, #ffe3a3) !important; }
+.fx.fx-gold, .fx-title.fx-gold, .fx.fx-dark, .fx-title.fx-dark { filter: none !important; }
+.flame { animation: none !important; width: 10px; height: 14px; }
+.gchip { background: var(--panel-2); color: var(--muted); border-radius: 999px; }
+.grades .g-ico, .master-ico, .elite-ico { border-radius: 12px; }
+.master-ico { background: var(--panel-2); color: var(--gold); }
+.elite-ico { background: var(--panel-2); color: var(--gold); }
+/* Top 5 : bordure fine et logo doré, sans animation */
+body.elite::before { border: 2px solid rgba(245, 200, 107, .7); box-shadow: none; }
+body.master::before { animation: none; padding: 2px; background: var(--geo); }
+.grade-chip { background: var(--panel-2); color: var(--gold); }
+body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -webkit-background-clip: text; background-clip: text; color: transparent; }
 </style>
 
 <header class="top">
@@ -553,7 +672,7 @@ main { padding-block: 26px 120px; }
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="fl-gold" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff5a00"/><stop offset=".55" stop-color="#ffb000"/><stop offset="1" stop-color="#fff2a8"/></linearGradient>
-    <linearGradient id="fl-dark" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#10002b"/><stop offset=".5" stop-color="#7b2ff7"/><stop offset="1" stop-color="#e0aaff"/></linearGradient>
+    <linearGradient id="fl-dark" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#5e5ce6"/><stop offset=".6" stop-color="#bf5af2"/><stop offset="1" stop-color="#e9d4ff"/></linearGradient>
   </defs>
 </svg>
 <div id="play" hidden></div>
@@ -1178,7 +1297,7 @@ main { padding-block: 26px 120px; }
   // Noms et titres du top 5 : police à part, en relief, entre deux flammes animées. Or pour les 4ᵉ et 5ᵉ, noir violet pour le top 3.
   const FLAME = (tone, k) => `<svg class="flame f${k}" viewBox="0 0 24 32" aria-hidden="true"><path fill="url(#fl-${tone})" d="M12 1c1.6 5.6 7 8 7 16a7 7 0 0 1-14 0c0-3.6 1.7-5.8 3.6-7.2.3 2.8 1.7 4.2 3.2 4.2C10.6 9.6 10.4 5.4 12 1z"/><path fill="#fff" opacity=".35" d="M12 16c.8 2.4 3 3.4 3 6.4a3 3 0 0 1-6 0c0-1.6.8-2.6 1.6-3.2.2 1.2.8 1.8 1.4 1.8-.4-1.8-.6-3.4 0-5z"/></svg>`;
   const tone = (rank) => (rank < 3 ? "dark" : "gold");
-  const fxName = (name, rank) => `<span class="fx fx-${tone(rank)}">${FLAME(tone(rank), 1)}<span class="fx-name">${esc(name)}</span>${FLAME(tone(rank), 2)}</span>`;
+  const fxName = (name, rank) => rank < 3 ? `<span class="fx fx-${tone(rank)}">${FLAME(tone(rank), 1)}<span class="fx-name">${esc(name)}</span></span>` : `<span class="fx fx-${tone(rank)}"><span class="fx-name">${esc(name)}</span></span>`;
   const fxTitle = (rank) => `<em class="fx-title fx-${tone(rank)}"><span>${esc(TITLES[rank])}</span></em>`;
   // Titres des places suivantes, dans le même esprit : un titre par place jusqu'à la 20ᵉ, puis par tranches.
   const MORE_TITLES = [
@@ -1260,8 +1379,8 @@ main { padding-block: 26px 120px; }
   function viewJouer() {
     return `<div class="stack">
       <section class="duel-hero">
-        <p class="board-strip"><span>Prochain duel</span><span>7 questions · 12 s</span></p>
-        <h1>Avant ou après ?</h1>
+        <p class="label">Le jeu des dates</p>
+        <h1>Avant ou après.<br><span class="grad-geo">Sept manches.</span></h1>
         <p class="muted">Deux événements, une seule question : lequel est arrivé en premier ? Par exemple :</p>
         <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
         <p class="note" id="ex-res" aria-live="polite"></p>
