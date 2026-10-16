@@ -246,7 +246,7 @@ main { padding-block: 20px 110px; }
 .type-box input.bad { border-color: var(--red); background: #3a141b; }
 .cooldown { display: inline-flex; align-items: center; padding: 12px 16px; border-radius: 14px; background: var(--panel-2); color: var(--muted); font-weight: 700; font-size: 14px; }
 .ms-card { border-color: rgba(255, 95, 109, .35); }
-.ms-grid { display: grid; grid-template-columns: repeat(5, 30px) 1fr; gap: 6px; align-items: center; margin: 12px 0; }
+.ms-grid { display: grid; grid-template-columns: repeat(7, 28px) 1fr; gap: 6px; align-items: center; margin: 12px 0; }
 .ms-grid span { height: 30px; border-radius: 8px; display: grid; place-items: center; font-weight: 800; font-size: 13px; }
 .ms-grid span.ok { background: #12321f; color: var(--mint); }
 .ms-grid span.ko { background: #3a141b; color: var(--red); }
@@ -760,7 +760,30 @@ main { padding-block: 26px 120px; }
   // Année affichée en cases à volets, comme un tableau d'affichage de gare.
   const flap = (y) => String(y).split("").map((d, k) => `<i style="--k:${k}">${d}</i>`).join("");
   const buildAll = (ids, seed) => ids.map((id) => build(id, seed)).filter(Boolean);
-  const validIds = (a, n) => Array.isArray(a) && a.length === n && a.every((x) => typeof x === "string" && /^p\d{1,3}_\d{1,3}$/.test(x) && build(x));
+  const validIds = (a, n) => Array.isArray(a) && a.length === n && a.every((x) => typeof x === "string" && /^(p\d{1,3}_\d{1,3}|y\d{1,3})$/.test(x) && build(x));
+  // Un match : 5 manches « avant ou après » et 2 années à écrire (3ᵉ et 6ᵉ manches), où le plus proche emporte le point.
+  function matchIds() {
+    const pairs = drawPairs(MATCH_Q - 2);
+    const years = drawYears(2, Math.random, pairs);
+    return [pairs[0], pairs[1], years[0], pairs[2], pairs[3], years[1], pairs[4]];
+  }
+  // Score d'une manche à partir des réponses des deux joueurs : true/false pour « avant ou après », écart en années pour une date.
+  const gapVal = (x) => (typeof x === "number" && Number.isFinite(x) ? x : 9999);
+  function roundPts(a, b) {
+    if (typeof a === "number" || typeof b === "number") {
+      const ga = gapVal(a), gb = gapVal(b);
+      if (ga < gb) return [1, 0];
+      if (gb < ga) return [0, 1];
+      return ga < 9999 ? [1, 1] : [0, 0];
+    }
+    return [a ? 1 : 0, b ? 1 : 0];
+  }
+  function matchScore(ra, rb) {
+    let sa = 0, sb = 0;
+    for (let k = 0; k < MATCH_Q; k++) { const [x, y] = roundPts((ra || [])[k], (rb || [])[k]); sa += x; sb += y; }
+    return [sa, sb];
+  }
+  const cleanRes = (r) => (Array.isArray(r) ? r.slice(0, MATCH_Q).map((x) => (typeof x === "number" ? x : !!x)) : []);
   // Défi du jour, année à écrire : 3 points pile, 2 à 2 ans près, 1 à 5 ans près.
   const yearPts = (gap) => (gap === 0 ? 3 : gap <= 2 ? 2 : gap <= 5 ? 1 : 0);
 
@@ -828,12 +851,13 @@ main { padding-block: 26px 120px; }
           ${[q.a, q.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}
         </div>`;
     } else {
-      body = `<div class="qhead"><span class="chip sd-chip">Au plus près · jusqu'à 3 pts</span>${timerHTML(YEAR_TIMER)}</div>
+      const duel = G.mode === "match";
+      body = `<div class="qhead"><span class="chip sd-chip">${duel ? "Manche date · au plus près" : "Au plus près · jusqu'à 3 pts"}</span>${timerHTML(YEAR_TIMER)}</div>
         <h2 class="question">En quelle année : ${esc(lower1(q.f[2]))} ?</h2>
         <form class="type-box" id="type-form" autocomplete="off">
           <input id="ty" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num" aria-label="Année">
           <button class="btn wide" id="valider" type="submit">Valider</button>
-          <p class="note">Pile : 3 points · à 2 ans près : 2 points · à 5 ans près : 1 point.</p>
+          <p class="note">${duel ? "Le plus proche de la bonne année remporte le point de la manche. À écart égal, chacun marque." : "Pile : 3 points · à 2 ans près : 2 points · à 5 ans près : 1 point."}</p>
         </form>`;
     }
     play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
@@ -877,19 +901,29 @@ main { padding-block: 26px 120px; }
       info = !Number.isFinite(val) ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as écrit ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
       note = q.f[3] || "";
     }
-    G.res.push(q.kind === "order" ? ok : gain);
+    const duelYear = G.mode === "match" && q.kind === "year";
+    const myGap = q.kind === "year" && Number.isFinite(val) ? Math.abs(val - q.y) : 9999;
+    G.res.push(q.kind === "order" ? ok : duelYear ? myGap : gain);
     if (ok) G.correct++;
-    G.me += gain;
+    if (!duelYear) G.me += gain;
     markSeen(q.id); save();
-    // Adversaire déjà passé : on dévoile sa réponse à cette question.
-    let oppLine = "";
+    // Adversaire déjà passé : on dévoile sa réponse à cette manche.
+    let oppLine = "", won = null;
     if (G.ghost) {
-      const o = !!G.ghost[k];
-      if (o) G.opp++;
-      oppLine = `${G.opponent.name} ${o ? "avait trouvé" : "s'était trompé"}.`;
-    }
-    const cls = q.kind === "year" ? (gain === 3 ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
-    const title = q.kind === "year" ? (gain === 3 ? "Pile · +3 pts" : gain > 0 ? `Proche · +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
+      const o = G.ghost[k];
+      if (duelYear) {
+        const [x, y] = roundPts(myGap, o);
+        G.me += x; G.opp += y; won = x > y ? "me" : y > x ? "opp" : x ? "both" : "none";
+        const og = gapVal(o);
+        oppLine = `${G.opponent.name} ${og < 9999 ? `était à ${og} an${og > 1 ? "s" : ""}` : "n'avait pas répondu"} : ${won === "me" ? "tu remportes la manche." : won === "opp" ? "la manche lui revient." : won === "both" ? "même écart, un point chacun." : "personne ne marque."}`;
+      } else {
+        if (o) G.opp++;
+        oppLine = `${G.opponent.name} ${o ? "avait trouvé" : "s'était trompé"}.`;
+      }
+    } else if (duelYear) oppLine = "Le point ira au plus proche des deux : réponse quand ton adversaire aura joué.";
+    const cls = duelYear ? (won === "me" || won === "both" ? "ok" : won === "opp" ? "ko" : "neutral") : q.kind === "year" ? (gain === 3 ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
+    const title = duelYear ? (won === "me" ? "Manche gagnée" : won === "opp" ? "Manche perdue" : won === "both" ? "Manche partagée" : myGap === 0 ? "Pile !" : val == null ? "Temps écoulé" : `À ${myGap} an${myGap > 1 ? "s" : ""}`)
+      : q.kind === "year" ? (gain === 3 ? "Pile · +3 pts" : gain > 0 ? `Proche · +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
       : ok ? (G.mode === "daily" ? "Juste · +3 pts" : "Juste") : val == null ? "Temps écoulé" : "Raté";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
@@ -936,7 +970,7 @@ main { padding-block: 26px 120px; }
   async function createMatch({ open, rematchOf }) {
     if (!db || !me) return;
     const code = newCode();
-    const ids = drawPairs(MATCH_Q);
+    const ids = matchIds();
     try { await db.collection("matchs").doc(code).set({ code, ids, host: me, open: !!open, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
     playMatch(code, ids, null);
   }
@@ -966,27 +1000,28 @@ main { padding-block: 26px 120px; }
       const hostRes = await db.collection("matchs").doc(`${code}-${d.host}`).get();
       const hr = hostRes.exists ? hostRes.data() : null;
       await resolveNames([d.host]);
-      playMatch(code, d.ids, hr && Array.isArray(hr.res) ? { res: hr.res.slice(0, MATCH_Q).map(Boolean), uid: d.host } : null);
+      playMatch(code, d.ids, hr && Array.isArray(hr.res) ? { res: cleanRes(hr.res), uid: d.host } : null);
     } catch (e) { msg.textContent = "Impossible de rejoindre ce match pour le moment."; }
   }
   function playMatch(code, ids, ghost) {
     const oname = ghost ? names[ghost.uid] || "Ton adversaire" : "Ton adversaire";
     startGame({
       mode: "match", qs: [{ kind: "splash", kicker: `Match ${code}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
-        rules: `${MATCH_Q} duels de dates qu'on ne sait jamais situer, 12 secondes chacun. Ton adversaire joue les mêmes, quand il veut. Le plus de bonnes réponses gagne : victoire 17 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
+        rules: `${MATCH_Q} manches. Cinq « avant ou après » : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 17 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
       opponent: { name: oname, short: oname.charAt(0).toUpperCase() }, ghost: ghost ? ghost.res : null,
       onEnd: (g) => {
-        const res = g.res.map(Boolean);
-        db.collection("matchs").doc(`${code}-${me}`).set({ code, res, correct: g.correct, at: Date.now() }).catch(() => {});
+        const res = cleanRes(g.res);
+        db.collection("matchs").doc(`${code}-${me}`).set({ code, res, at: Date.now() }).catch(() => {});
         if (!S.matches.includes(code)) S.matches.unshift(code);
         S.matches = S.matches.slice(0, 12); save();
         if (ghost) {
-          const out = outcome(g.correct, g.opp);
+          const [sa, sb] = matchScore(res, ghost.res);
+          const out = outcome(sa, sb);
           scoreMatch(code, out);
-          return Object.assign({ kicker: `Match ${code} · ${g.correct} contre ${g.opp}`, title: t(out), text: t(out + "Sub"),
-            stats: [[`${g.correct}/${MATCH_Q}`, "bien situés"], [`+${PTS[out]}`, "points"], [`${S.wins}-${S.draws}-${S.losses}`, "V-N-D"]] }, RESULT_LOOK[out]);
+          return Object.assign({ kicker: `Match ${code} · ${sa} manches contre ${sb}`, title: t(out), text: t(out + "Sub"),
+            stats: [[`${sa}–${sb}`, "manches"], [`+${PTS[out]}`, "points"], [`${S.wins}-${S.draws}-${S.losses}`, "V-N-D"]] }, RESULT_LOOK[out]);
         }
-        return { kicker: `Match ${code}`, title: `${g.correct}/${MATCH_Q} bien situés`, icon: ICON.clock, bg: "var(--blue)", fg: "#021327",
+        return { kicker: `Match ${code}`, title: `${g.correct}/${MATCH_Q - 2} bien situés`, icon: ICON.clock, bg: "var(--blue)", fg: "#021327",
           text: "Ton adversaire n'a pas encore joué. Le résultat et tes points arrivent dès qu'il a fini.",
           extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="m-res"><p class="muted">…</p></div>`,
           mount: () => watchMatch(code, $("#m-res")) };
@@ -999,6 +1034,15 @@ main { padding-block: 26px 120px; }
     S.scored[code] = out;
     if (out === "win") S.wins++; else if (out === "draw") S.draws++; else S.losses++;
     addPoints(PTS[out]);
+  }
+  // Tableau manche par manche : vert si le joueur a pris le point ; « D » marque une manche date (au plus proche).
+  function roundsGrid(ra, rb, oname) {
+    const cells = (who) => Array.from({ length: MATCH_Q }, (_, k) => {
+      const pts = roundPts(ra[k], rb[k])[who], isDate = typeof ra[k] === "number" || typeof rb[k] === "number";
+      const gap = gapVal((who ? rb : ra)[k]);
+      return `<span class="${pts ? "ok" : "ko"}" title="${isDate ? (gap < 9999 ? `à ${gap} an(s)` : "pas de réponse") : ""}">${isDate ? "D" : k + 1}</span>`;
+    }).join("");
+    return `<div class="ms-grid">${cells(0)}<b>Toi</b>${cells(1)}<b>${esc(oname)}</b></div><p class="note">« D » : manche date, le point va au plus proche.</p>`;
   }
   let matchUnsub = null;
   function watchMatch(code, el) {
@@ -1019,14 +1063,15 @@ main { padding-block: 26px 120px; }
         c.onclick = () => { try { navigator.clipboard.writeText(code).then(() => (c.textContent = "Code copié"), () => (c.textContent = code)); } catch (e) { c.textContent = code; } };
         return;
       }
-      const out = outcome(mine.correct, other.correct);
+      const [sa, sb] = matchScore(cleanRes(mine.res), cleanRes(other.res));
+      const out = outcome(sa, sb);
       scoreMatch(code, out);
       const oname = names[other.uid] || "Ton adversaire";
       const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
       el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +17 points" : out === "draw" ? "Égalité · +7 points" : "Défaite · 0 point"}</p>
         <h3 style="font-size:24px;margin:6px 0">${esc(t(out))}</h3>
-        <p class="muted">Toi ${mine.correct}, ${esc(oname)} ${other.correct}.</p>
-        <div class="ms-grid">${(mine.res || []).map((x, k) => `<span class="${x ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>Toi</b>${(other.res || []).map((x, k) => `<span class="${x ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>${esc(oname)}</b></div>
+        <p class="muted">${sa} manche${sa > 1 ? "s" : ""} pour toi, ${sb} pour ${esc(oname)}.</p>
+        ${roundsGrid(cleanRes(mine.res), cleanRes(other.res), oname)}
         ${wait > 0 ? `<p class="note">Match retour possible dans ${waitText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
       const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createMatch({ open: false, rematchOf: code });
     }, () => { el.innerHTML = `<p class="muted">Résultat indisponible pour le moment.</p>`; });
@@ -1039,7 +1084,7 @@ main { padding-block: 26px 120px; }
         const snap = await db.collection("matchs").where("code", "==", code).get();
         const rows = snap.docs.filter((d) => d.id !== code).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
         const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
-        if (mine && other) scoreMatch(code, outcome(mine.correct, other.correct));
+        if (mine && other) { const [sa, sb] = matchScore(cleanRes(mine.res), cleanRes(other.res)); scoreMatch(code, outcome(sa, sb)); }
       } catch (e) {}
     }
     if (!G) render();
