@@ -2,10 +2,10 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Big+Shoulders+Stencil+Display:wght@700;800&family=Share+Tech+Mono&family=Cinzel+Decorative:wght@700;900&family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Libre+Franklin:wght@600;700;800&family=Tinos:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Titillium+Web:ital,wght@0,600;0,700;0,900;1,900&family=Roboto+Mono:wght@500;700&family=Playfair+Display:ital,wght@0,700;0,900;1,900&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Libre+Franklin:wght@600;700;800&family=Tinos:wght@400;700&family=Inter:wght@400;500;600;700&display=swap">
 <style>
 /* Planche de présentation : fond graphite neutre, trois téléphones par direction, onglets pour passer de l'une à l'autre.
-   Chaque direction a ses propres jetons, scopés sur .p-quai, .p-journal, .p-globe. */
+   Chaque direction a ses propres jetons, scopés sur .p-paddock, .p-journal, .p-globe. */
 :root {
   --board: #17171a;
   --board-2: #222226;
@@ -58,70 +58,81 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 @keyframes shimmer { to { background-position: -200% 0; } }
 .fxw { display: inline-flex; align-items: flex-end; gap: 4px; max-width: 100%; }
 
-/* ===================== 1. QUAI : tableau d'affichage de gare ===================== */
-.p-quai { --bg: #121315; --panel: #1c1d20; --flap: #0b0c0d; --text: #ece9e1; --muted: #9a9890; --yel: #f2c230; --ok: #4cc06a; --ko: #e5483b; --line: #34363b; }
-.p-quai .screen { background: var(--bg); color: var(--text); font: 13px/1.5 "Barlow", sans-serif; }
-.p-quai .top { display: flex; justify-content: space-between; align-items: center; padding: 22px 16px 12px; border-bottom: 2px solid var(--line); font: 800 15px "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .05em; }
-.p-quai .top b { color: var(--yel); }
-.p-quai .body { padding: 16px 16px 80px; display: grid; gap: 18px; }
-.p-quai .strip { display: flex; justify-content: space-between; background: var(--yel); color: #1a1500; font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; padding: 5px 8px; }
-.p-quai h1 { margin: 6px 0 0; font: 800 38px/.9 "Barlow Condensed", sans-serif; text-transform: uppercase; }
-.p-quai .lead { color: var(--muted); margin: 8px 0 0; }
-.p-quai .champ { background: var(--flap); border-left: 5px solid var(--yel); padding: 12px; display: grid; gap: 4px; }
-.p-quai .lab { font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-.p-quai .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--yel); padding: 14px; display: grid; gap: 8px; border-radius: 2px; }
-.p-quai .card h3 { margin: 0; font: 700 20px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; }
-.p-quai .pts3 { display: flex; gap: 6px; }
-.p-quai .pts3 span { background: var(--flap); padding: 4px 8px; font-size: 12px; color: var(--muted); }
-.p-quai .pts3 b { font: 700 16px "Barlow Condensed", sans-serif; color: var(--text); margin-right: 3px; }
-.p-quai .btn { background: var(--yel); color: #1a1500; border: 0; border-bottom: 3px solid rgba(0, 0, 0, .35); font: 800 14px "Barlow Condensed", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 9px 12px; border-radius: 2px; justify-self: start; }
-.p-quai .duo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
-.p-quai .mini { background: var(--flap); border: 1px solid var(--line); padding: 10px 8px; text-align: center; font-weight: 600; font-size: 12px; }
-.p-quai .or { font: 800 11px "Barlow Condensed", sans-serif; color: var(--muted); letter-spacing: .14em; }
-.p-quai .tabbar { background: var(--bg); border-top: 2px solid var(--line); font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.p-quai .tabbar .on { color: var(--yel); }
-.p-quai .bar { height: 6px; background: var(--panel); } .p-quai .bar i { display: block; height: 100%; width: 43%; background: var(--yel); }
-.p-quai .score { display: flex; justify-content: space-between; align-items: center; background: var(--flap); padding: 10px 12px; font: 800 22px "Barlow Condensed", sans-serif; }
-.p-quai .score small { display: block; font: 600 10px "Barlow", sans-serif; color: var(--muted); }
-.p-quai .chip { background: var(--flap); font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 4px 8px; justify-self: start; }
-.p-quai .q { margin: 0; font: 700 23px/1.1 "Barlow Condensed", sans-serif; }
-.p-quai .fact { text-align: left; background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 14px; display: grid; gap: 8px; font: 600 14px/1.35 "Barlow", sans-serif; cursor: pointer; border-radius: 2px; min-height: 92px; }
-.p-quai .fact.good { border-color: var(--ok); background: #142a1b; } .p-quai .fact.bad { border-color: var(--ko); background: #2c1513; }
-.p-quai .yr { display: inline-flex; gap: 3px; }
-.p-quai .yr i { font: 700 22px "Barlow Condensed", sans-serif; font-style: normal; width: 22px; height: 30px; display: grid; place-items: center; background: var(--flap); position: relative; border-radius: 2px; animation: flapIn .42s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--i) * 90ms); }
-.p-quai .yr i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .75); }
-.p-quai .good .yr i { color: var(--yel); }
-@keyframes flapIn { 0% { transform: rotateX(90deg); opacity: .2; } 60% { transform: rotateX(-12deg); opacity: 1; } 100% { transform: none; } }
-.p-quai .sheet { background: #142a1b; border-top: 3px solid var(--ok); padding: 12px; }
-.p-quai .sheet.ko { background: #2c1513; border-top-color: var(--ko); }
-.p-quai .sheet h4 { margin: 0 0 4px; font: 800 18px "Barlow Condensed", sans-serif; text-transform: uppercase; color: var(--ok); }
-.p-quai .sheet.ko h4 { color: var(--ko); }
-.p-quai .row { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 2px; }
-.p-quai .pos { font: 800 16px "Barlow Condensed", sans-serif; color: var(--muted); }
-.p-quai .pt { font: 700 15px "Barlow Condensed", sans-serif; }
-.p-quai .who { min-width: 0; display: grid; gap: 3px; }
-.p-quai .tier-label { font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
-/* Tranche 1-3 : noir violet entre deux flammes */
-.p-quai .t1 { background: var(--flap); border-color: rgba(157, 78, 221, .55); }
-.p-quai .t1 .nm, .p-quai .t1 .ti span { font-family: "Cinzel Decorative", serif; font-weight: 900; background: linear-gradient(100deg, #3c096c, #9d4edd 20%, #f3dcff 34%, #b46cff 48%, #5a189a 68%, #e0aaff 84%, #3c096c) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite; }
-.p-quai .t1 .fxw, .p-quai .t1 .ti { filter: drop-shadow(0 1px 0 #10002b) drop-shadow(0 0 5px rgba(123, 47, 247, .85)); }
-.p-quai .t1 .nm { font-size: 15px; } .p-quai .t1 .ti { font-size: 10px; line-height: 1.25; }
-/* Tranche 4-5 : or entre deux flammes */
-.p-quai .t2 { background: var(--flap); border-color: rgba(242, 194, 48, .5); }
-.p-quai .t2 .nm, .p-quai .t2 .ti span { font-family: "Cinzel Decorative", serif; font-weight: 900; background: linear-gradient(100deg, #8a5a12, #f5c86b 22%, #fff3c4 35%, #f5c86b 48%, #b07a1c 70%, #ffe08a 85%, #8a5a12) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite; }
-.p-quai .t2 .fxw, .p-quai .t2 .ti { filter: drop-shadow(0 1px 0 #4a2f06) drop-shadow(0 2px 3px rgba(255, 140, 0, .35)); }
-.p-quai .t2 .nm { font-size: 14px; } .p-quai .t2 .ti { font-size: 10px; line-height: 1.25; }
-/* Tranche 6-10 : lettres sur volets, qui se retournent en vague toutes les 6 s */
-.p-quai .t3 .nm { display: inline-flex; gap: 2px; }
-.p-quai .t3 .nm i { font: 800 14px "Big Shoulders Stencil Display", sans-serif; font-style: normal; text-transform: uppercase; background: var(--flap); color: var(--yel); width: 15px; height: 20px; display: grid; place-items: center; position: relative; animation: flapLoop 6s ease-in-out infinite; animation-delay: calc(var(--i) * 70ms); }
-.p-quai .t3 .nm i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .8); }
-.p-quai .t3 .ti { font: 600 11px "Barlow Condensed", sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
-@keyframes flapLoop { 0%, 86%, 100% { transform: none; } 90% { transform: rotateX(90deg); } 94% { transform: rotateX(-15deg); } }
-/* Tranche 11-20 : afficheur à LED ambre, titre qui défile */
-.p-quai .t4 .nm { font: 400 14px "Share Tech Mono", monospace; color: #ffb547; text-shadow: 0 0 6px rgba(255, 181, 71, .55); text-transform: uppercase; letter-spacing: .06em; }
-.p-quai .t4 .ti { overflow: hidden; white-space: nowrap; background: var(--flap); padding: 2px 0; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
-.p-quai .t4 .ti span { display: inline-block; padding-left: 100%; font: 400 11px "Share Tech Mono", monospace; color: #ffb547; animation: ticker 9s linear infinite; }
-@keyframes ticker { to { transform: translateX(-100%); } }
+/* ===================== 1. PADDOCK : course automobile ===================== */
+/* Les écrans de chronométrage d'un grand prix : tour de classement, feux de départ, secteurs violets (meilleur) et verts.
+   Carbone, blanc, un rouge course. */
+.p-paddock { --carbon: #0e0f12; --panel: #17191e; --panel-2: #20232a; --line: #2c3038; --text: #f2f3f5; --muted: #8b8f98; --red: #e10600; --purple: #a24bff; --green: #00d26a; --yellow: #ffd400; }
+.p-paddock .screen { background: var(--carbon); color: var(--text); font: 500 14px/1.45 "Titillium Web", "Arial Narrow", sans-serif; }
+.p-paddock .top { display: flex; justify-content: space-between; align-items: center; padding: 22px 16px 10px; font: 700 13px "Titillium Web", sans-serif; text-transform: uppercase; letter-spacing: .06em; border-bottom: 2px solid var(--red); }
+.p-paddock .top b { color: var(--red); }
+.p-paddock .body { padding: 14px 14px 80px; display: grid; gap: 16px; }
+.p-paddock .lab { font: 700 10px "Titillium Web", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.p-paddock .lights { display: flex; gap: 8px; justify-content: center; padding: 10px; background: #050506; border-radius: 6px; }
+.p-paddock .lights i { width: 22px; height: 22px; border-radius: 50%; background: #2a0000; box-shadow: inset 0 0 0 2px #111; animation: light 5s steps(1) infinite; animation-delay: calc(var(--i) * .5s); }
+@keyframes light { 0% { background: #2a0000; } 10% { background: var(--red); box-shadow: 0 0 10px var(--red); } 60% { background: #2a0000; box-shadow: inset 0 0 0 2px #111; } }
+.p-paddock h1 { margin: 6px 0 0; font: 900 34px/1 "Titillium Web", sans-serif; text-transform: uppercase; font-style: italic; letter-spacing: -.01em; }
+.p-paddock h1 span { color: var(--red); }
+.p-paddock .flag { height: 10px; background: conic-gradient(#fff 25%, #000 0 50%, #fff 0 75%, #000 0) 0 0 / 10px 10px; opacity: .85; }
+.p-paddock .lead { margin: 6px 0 0; color: var(--muted); }
+.p-paddock .champ { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; background: var(--panel); border-left: 4px solid var(--purple); padding: 10px 12px; border-radius: 4px; }
+.p-paddock .champ .p1 { font: 900 22px "Titillium Web", sans-serif; font-style: italic; }
+.p-paddock .card { background: var(--panel); border-radius: 6px; padding: 14px; display: grid; gap: 8px; border-top: 3px solid var(--red); }
+.p-paddock .card h3 { margin: 0; font: 900 20px/1.05 "Titillium Web", sans-serif; text-transform: uppercase; font-style: italic; }
+.p-paddock .pts3 { display: flex; gap: 6px; }
+.p-paddock .pts3 span { background: var(--panel-2); border-radius: 4px; padding: 3px 8px; font-size: 12px; color: var(--muted); }
+.p-paddock .pts3 b { font: 700 16px "Roboto Mono", monospace; color: var(--text); margin-right: 4px; }
+.p-paddock .pts3 span:first-child b { color: var(--purple); }
+.p-paddock .btn { background: var(--red); color: #fff; border: 0; border-radius: 4px; font: 700 13px "Titillium Web", sans-serif; text-transform: uppercase; letter-spacing: .08em; padding: 9px 14px; justify-self: start; clip-path: polygon(0 0, 100% 0, 94% 100%, 0 100%); padding-right: 20px; }
+.p-paddock .duo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
+.p-paddock .mini { background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 9px 6px; text-align: center; font: 600 13px/1.3 "Titillium Web", sans-serif; }
+.p-paddock .or { font: 900 12px "Titillium Web", sans-serif; font-style: italic; color: var(--red); }
+.p-paddock .tabbar { background: var(--carbon); border-top: 1px solid var(--line); font: 700 11px "Titillium Web", sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.p-paddock .tabbar .on { color: var(--text); box-shadow: inset 0 -3px 0 var(--red); }
+.p-paddock .bar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; height: 6px; background: none; }
+.p-paddock .bar i { display: none; }
+.p-paddock .bar::before { content: ""; grid-column: 1 / 4; background: linear-gradient(90deg, var(--purple) 0 33%, var(--green) 33% 66%, var(--yellow) 66%); border-radius: 2px; }
+.p-paddock .bar::after { content: ""; grid-column: 4 / 8; background: var(--panel-2); border-radius: 2px; }
+.p-paddock .score { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; background: var(--panel); border-radius: 6px; padding: 8px 12px; font: 900 22px "Titillium Web", sans-serif; font-style: italic; }
+.p-paddock .score small { display: block; font: 700 10px "Titillium Web", sans-serif; font-style: normal; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.p-paddock .chip { font: 700 10px "Titillium Web", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--text); background: var(--red); padding: 3px 10px; justify-self: start; clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%); padding-right: 14px; }
+.p-paddock .q { margin: 0; font: 700 22px/1.15 "Titillium Web", sans-serif; }
+.p-paddock .fact { position: relative; text-align: left; background: var(--panel); border: 0; border-left: 4px solid var(--line); border-radius: 4px; color: var(--text); padding: 12px 14px; display: grid; gap: 6px; font: 600 15px/1.3 "Titillium Web", sans-serif; cursor: pointer; min-height: 90px; }
+.p-paddock .fact.good { border-left-color: var(--purple); background: linear-gradient(90deg, rgba(162, 75, 255, .18), var(--panel) 60%); }
+.p-paddock .fact.bad { border-left-color: var(--yellow); }
+/* Révélation : l'année s'affiche comme un temps au tour, avec l'écart en couleur de secteur. */
+.p-paddock .yr { font: 700 24px "Roboto Mono", monospace; letter-spacing: -.02em; animation: lap .35s ease-out both; }
+.p-paddock .good .yr { color: var(--purple); }
+.p-paddock .gap { font: 700 12px "Roboto Mono", monospace; color: var(--yellow); margin-left: 8px; }
+@keyframes lap { from { opacity: 0; transform: translateX(-12px); } to { opacity: 1; transform: none; } }
+.p-paddock .sheet { background: var(--panel); border-left: 4px solid var(--purple); padding: 10px 12px; border-radius: 4px; }
+.p-paddock .sheet.ko { border-left-color: var(--yellow); }
+.p-paddock .sheet h4 { margin: 0 0 4px; font: 900 18px "Titillium Web", sans-serif; text-transform: uppercase; font-style: italic; color: var(--purple); }
+.p-paddock .sheet.ko h4 { color: var(--yellow); }
+/* Classement : la tour de chronométrage */
+.p-paddock .row { display: grid; grid-template-columns: 30px 4px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 8px 10px 8px 0; background: var(--panel); border-radius: 4px; overflow: hidden; animation: towerIn .4s ease-out both; animation-delay: calc(var(--i) * 50ms); }
+@keyframes towerIn { from { opacity: 0; transform: translateX(-16px); } to { opacity: 1; transform: none; } }
+.p-paddock .row::before { content: ""; grid-column: 2; grid-row: 1; height: 100%; background: var(--team, #555); }
+.p-paddock .pos { grid-column: 1; grid-row: 1; font: 900 16px "Titillium Web", sans-serif; font-style: italic; text-align: center; background: #fff; color: #000; align-self: stretch; display: grid; place-items: center; }
+.p-paddock .who { grid-column: 3; min-width: 0; display: grid; gap: 1px; }
+.p-paddock .pt { grid-column: 4; font: 700 12px "Roboto Mono", monospace; color: var(--muted); }
+.p-paddock .nm { font: 700 15px "Titillium Web", sans-serif; text-transform: uppercase; letter-spacing: .04em; }
+.p-paddock .ti { font: 500 11px/1.25 "Titillium Web", sans-serif; color: var(--muted); }
+.p-paddock .tier-label { font: 700 10px "Titillium Web", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+/* 1-3 : cases or, argent, bronze ; titre en violet « meilleur tour » qui pulse */
+.p-paddock .t1 .pos { color: #000; }
+.p-paddock .t1:nth-of-type(1) .pos, .p-paddock .row.r1 .pos { background: #f5c400; }
+.p-paddock .row.r2 .pos { background: #c7cbd2; }
+.p-paddock .row.r3 .pos { background: #e3741f; }
+.p-paddock .t1 .nm { font-size: 17px; font-style: italic; font-weight: 900; }
+.p-paddock .t1 .ti { color: var(--purple); font-weight: 700; animation: fastest 2.4s ease-in-out infinite; }
+@keyframes fastest { 50% { color: #e0c3ff; text-shadow: 0 0 8px rgba(162, 75, 255, .6); } }
+/* 4-5 : un peu plus grands, titre dont la couleur passe du vert au jaune */
+.p-paddock .t2 { padding-block: 12px; }
+.p-paddock .t2 .nm { font-size: 17px; }
+.p-paddock .t2 .ti { font-weight: 700; animation: sector 4s ease-in-out infinite; }
+@keyframes sector { 0%, 100% { color: var(--green); } 50% { color: var(--yellow); } }
+/* 6-20 : la tour normale, écart au leader en chiffres */
+.p-paddock .t3 .ti, .p-paddock .t4 .ti { color: var(--muted); }
 
 /* ===================== 2. JOURNAL : la lettre du matin ===================== */
 /* Papier journal, encre, un seul rouge d'accent : le style déjà validé pour la lettre PDF. */
@@ -246,7 +257,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 .p-globe .t4 .nm::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #64d2ff; flex: none; animation: pin 2.4s ease-out infinite; animation-delay: calc(var(--i) * .2s); }
 .p-globe .t4 .ti { font: 400 11px/1.3 "Inter", sans-serif; color: var(--muted); padding-left: 14px; }
 
-@media (prefers-reduced-motion: reduce) { .p-quai *, .p-journal *, .p-globe *, .flame { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .p-paddock *, .p-journal *, .p-globe *, .flame { animation: none !important; } }
 </style>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -262,12 +273,12 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
     <p>Trois habillages complets du même jeu, pour choisir. Les trois restent sérieux, dans la famille de Géoconomic. Chacun change les couleurs, les polices, la façon de révéler les années et l'effet de chaque tranche du classement : 1 à 3, 4 et 5, 6 à 10, 11 à 20. Touche une carte dans l'écran « Manche » pour voir la révélation. Les joueurs du classement sont des exemples.</p>
   </header>
   <nav class="picker" role="tablist" aria-label="Directions">
-    <button role="tab" data-p="quai" id="tab-quai"><b>1 · Quai</b><span>Tableau d'affichage de gare, volets et LED</span></button>
+    <button role="tab" data-p="paddock" id="tab-paddock"><b>1 · Paddock</b><span>Course automobile : feux de départ, tour de chronométrage</span></button>
     <button role="tab" data-p="journal" id="tab-journal"><b>2 · Journal</b><span>Le style de ta lettre du matin : papier, encre, un rouge</span></button>
     <button role="tab" data-p="globe" id="tab-globe"><b>3 · Globe</b><span>Le style de l'appli : noir, verre, dégradés éco et géo</span></button>
   </nav>
   <main id="stage"></main>
-  <p class="choose">Dis-moi <b>1</b>, <b>2</b> ou <b>3</b>, ou un mélange (par exemple « les écrans du 3 avec les volets du 1 »), et je l'applique au vrai jeu.</p>
+  <p class="choose">Dis-moi <b>1</b>, <b>2</b> ou <b>3</b>, ou un mélange (par exemple « les écrans du 3 avec le classement du 1 »), et je l'applique au vrai jeu.</p>
 </div>
 
 <script>
@@ -299,13 +310,13 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
   // Nom et titre d'une ligne du classement, selon la direction et la tranche.
   function decorate(p, k) {
     const t = tierOf(k), name = NAMES[k], title = TITLES[k];
+    if (p === "paddock") return `<span class="nm">${esc(name)}</span><span class="ti">${esc(title)}</span>`;
     if (t <= 2) { const [f1, f2] = flames(p, t); return `<span class="fxw">${f1}<span class="nm">${esc(name)}</span>${f2}</span><span class="ti"><span>${esc(title)}</span></span>`; }
-    if (p === "quai" && t === 3) return `<span class="nm">${[...name].map((c, i) => `<i style="--i:${i}">${esc(c)}</i>`).join("")}</span><span class="ti">${esc(title)}</span>`;
-    if (p === "quai" && t === 4) return `<span class="nm">${esc(name)}</span><span class="ti"><span>${esc(title)}</span></span>`;
+
     return `<span class="nm" style="--i:${k}">${esc(name)}</span><span class="ti" style="--i:${k}">${esc(title)}</span>`;
   }
   const TIER_LABEL = {
-    quai: ["Places 1 à 3 · noir violet, flammes", "Places 4 et 5 · or, flammes", "Places 6 à 10 · lettres sur volets", "Places 11 à 20 · afficheur LED"],
+    paddock: ["Podium · cases or, argent, bronze, titre « meilleur tour » violet", "Places 4 et 5 · plus grandes, titre du vert au jaune", "Places 6 à 10 · la tour de chronométrage", "Places 11 à 20 · écart au leader"],
     journal: ["Places 1 à 3 · titre de une, flammes gravées", "Places 4 et 5 · dorure à chaud", "Places 6 à 10 · soulignés au crayon rouge", "Places 11 à 20 · l'encre apparaît"],
     globe: ["Places 1 à 3 · dégradé géo, flammes", "Places 4 et 5 · or de l'appli, flammes", "Places 6 à 10 · dégradé éco", "Places 11 à 20 · repère lumineux"],
   };
@@ -314,17 +325,19 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
     for (let k = 0; k < 20; k++) {
       const t = tierOf(k);
       if (t !== last) { out += `<p class="tier-label">${TIER_LABEL[p][t - 1]}</p>`; last = t; }
-      out += `<div class="row t${t}"><span class="pos">${k + 1}</span><div class="who">${decorate(p, k)}</div><span class="pt">${fmt(POINTS[k])}</span></div>`;
+      const TEAM = ["#a24bff", "#00d26a", "#2997ff", "#ffd400", "#e10600"];
+      const pts = p === "paddock" ? (k === 0 ? "LEADER" : `+${fmt(POINTS[0] - POINTS[k])}`) : fmt(POINTS[k]);
+      out += `<div class="row t${t} r${k + 1}" style="--i:${k};--team:${TEAM[k % 5]}"><span class="pos">${k + 1}</span><div class="who">${decorate(p, k)}</div><span class="pt">${pts}</span></div>`;
     }
     return out;
   }
 
   const PROJECTS = {
-    quai: {
-      name: "Quai", pitch: "Le jeu parle de dates : on les affiche comme un tableau de départs. Panneaux noirs, jaune de signalétique, lettres condensées. Les années tombent sur des volets qui se retournent un par un.",
-      points: ["Révélation : les quatre chiffres de l'année se retournent comme sur un tableau de gare.", "Classement 6 à 10 : chaque lettre du nom est sur un volet, et le nom se retourne en vague toutes les 6 secondes.", "Classement 11 à 20 : nom en LED ambre, titre qui défile comme une annonce."],
-      swatches: ["#121315", "#1c1d20", "#0b0c0d", "#ece9e1", "#f2c230", "#4cc06a", "#e5483b"],
-      fonts: ["Barlow Condensed · titres et chiffres", "Barlow · textes", "Big Shoulders Stencil · volets 6 à 10", "Share Tech Mono · LED 11 à 20", "Cinzel Decorative · top 5"],
+    paddock: {
+      name: "Paddock", pitch: "Le duel comme un grand prix, dans l'esprit des écrans de chronométrage de la F1 : feux de départ, secteurs, tour de classement. Ça rappelle aussi la voiture du Focus. Carbone, blanc, un rouge course, et le violet du « meilleur tour ».",
+      points: ["Accueil : les cinq feux de départ s'allument un à un, puis s'éteignent.", "Révélation : l'année s'affiche comme un temps au tour ; la bonne carte passe au violet « meilleur tour », la mauvaise au jaune.", "Classement : tour de chronométrage avec écart au leader ; podium en cases or, argent, bronze et titre violet qui pulse ; 4ᵉ et 5ᵉ plus grands, titre du vert au jaune."],
+      swatches: ["#0e0f12", "#17191e", "#f2f3f5", "#e10600", "#a24bff", "#00d26a", "#ffd400"],
+      fonts: ["Titillium Web · titres et textes (la police des écrans de course)", "Roboto Mono · temps, années, écarts"],
     },
     journal: {
       name: "Journal", pitch: "Le jeu prend l'allure de ta lettre du matin : papier journal, encre noire, titres de une, un seul rouge d'accent. Les dates sont traitées comme des archives : l'année est frappée au tampon dateur.",
@@ -341,13 +354,14 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
   };
 
   function home(p) {
-    if (p === "quai") return `
-      <div class="top"><span>Géoconomic <b>Duel</b></span><span>▲ 124 pts</span></div>
+    if (p === "paddock") return `
+      <div class="top"><span>Géoconomic <b>Duel</b></span><span>124 pts</span></div>
       <div class="body">
-        <div class="champ"><span class="lab">${esc(TITLES[0])}</span><div class="row t1" style="padding:0;border:0;background:none"><div class="who"><span class="fxw">${FLAME("dark", 1)}<span class="nm">Léa</span>${FLAME("dark", 2)}</span></div></div></div>
-        <div><p class="strip"><span>Prochain duel</span><span>7 manches · 12 s</span></p><h1>Avant ou après ?</h1><p class="lead">Deux événements, une question : lequel est arrivé en premier ?</p></div>
-        <div class="duo"><span class="mini">La valise à roulettes</span><span class="or">ou</span><span class="mini">Les premiers pas sur la Lune</span></div>
-        <div class="card"><span class="lab">Défi du jour · 5 questions</span><h3>Les mêmes pour tout le monde</h3><span style="color:var(--yel);font-weight:700">Jusqu'à +75 pts</span><button class="btn" tabindex="-1">Jouer le défi</button></div>
+        <div class="champ"><span class="p1">P1</span><div><span class="lab">${esc(TITLES[0])}</span><div style="font:900 18px 'Titillium Web';font-style:italic;text-transform:uppercase">Léa</div></div></div>
+        <div><div class="lights" aria-hidden="true">${[0, 1, 2, 3, 4].map((i) => `<i style="--i:${i}"></i>`).join("")}</div><h1>Avant <span>ou</span> après</h1><p class="lead">Grand prix des dates · 7 manches. Lequel est arrivé en premier ?</p></div>
+        <div class="flag" aria-hidden="true"></div>
+        <div class="duo"><span class="mini">La valise à roulettes</span><span class="or">VS</span><span class="mini">Les premiers pas sur la Lune</span></div>
+        <div class="card"><span class="lab">Défi du jour · 5 questions</span><h3>Les mêmes pour tout le monde</h3><span style="color:var(--purple);font-weight:700">Jusqu'à +75 pts</span><button class="btn" tabindex="-1">Prendre le départ</button></div>
         <div class="card"><h3>1 contre 1</h3><div class="pts3"><span><b>58</b>victoire</span><span><b>7</b>égalité</span><span><b>0</b>défaite</span></div><button class="btn" tabindex="-1">Adversaire au hasard</button></div>
       </div>`;
     if (p === "journal") {
@@ -378,7 +392,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 
   const ROUND = { a: ["Le premier briquet (lampe de Döbereiner)", 1823, "Technique"], b: ["La première allumette à friction", 1826, "Technique"], note: "Le briquet a précédé l'allumette de trois ans." };
   function round(p) {
-    const head = p === "quai" ? `<div class="score"><div><small>Toi</small>3</div><span style="font-size:13px;color:var(--muted)">VS</span><div style="text-align:right"><small>Karim</small>2</div></div><span class="chip">Manche 4 / 7 · avant ou après</span>`
+    const head = p === "paddock" ? `<div class="score"><div><small>Toi</small>3</div><span style="font-size:13px;color:var(--red)">VS</span><div style="text-align:right"><small>Karim</small>2</div></div><span class="chip">Secteur 4 / 7</span>`
       : p === "journal" ? `<div class="score"><div><small>Toi</small>3</div><span style="font:italic 14px 'Source Serif 4';color:var(--muted)">contre</span><div style="text-align:right"><small>Karim</small>2</div></div><span class="chip">Manche 4 sur 7</span>`
       : `<div class="score"><div><small>Toi</small>3</div><span style="font:600 11px Inter;color:var(--muted)">contre</span><div style="text-align:right"><small>Karim</small>2</div></div><span class="chip">Manche 4 sur 7 · avant ou après</span>`;
     return `
@@ -387,7 +401,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
         <div class="bar"><i></i></div>
         ${head}
         <h2 class="q">Lequel est arrivé en premier ?</h2>
-        ${[ROUND.a, ROUND.b].map((f, k) => `<button class="fact" data-k="${k}"><span class="lab" style="${p === "quai" ? "background:var(--flap);justify-self:start;padding:2px 6px" : ""}">${esc(f[2])}</span><span>${esc(f[0])}</span><span class="yr-slot"></span></button>`).join(`<span class="or" style="text-align:center">ou</span>`)}
+        ${[ROUND.a, ROUND.b].map((f, k) => `<button class="fact" data-k="${k}"><span class="lab" style="">${esc(f[2])}</span><span>${esc(f[0])}</span><span class="yr-slot"></span></button>`).join(`<span class="or" style="text-align:center">ou</span>`)}
         <div class="sheet-slot"></div>
       </div>`;
   }
@@ -399,7 +413,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
       const y = [ROUND.a, ROUND.b][k][1];
       const slot = b.querySelector(".yr-slot");
       if (k === first) b.classList.add("good"); else if (k === pick) b.classList.add("bad");
-      if (p === "quai") slot.innerHTML = `<span class="yr">${String(y).split("").map((d, i) => `<i style="--i:${i}">${d}</i>`).join("")}</span>`;
+      if (p === "paddock") slot.innerHTML = `<span class="yr" style="animation-delay:${k * 150}ms">${y}</span>${k !== first ? `<span class="gap">+${Math.abs(ROUND.a[1] - ROUND.b[1])} ans</span>` : ""}`;
       else if (p === "journal") { slot.innerHTML = `<span class="yr" style="animation-delay:${k * 160}ms">${y}</span>`; }
       else {
         slot.innerHTML = `<span class="yr">${y - 40}</span>`;
@@ -442,6 +456,6 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
   }
   document.querySelectorAll(".picker button").forEach((b) => (b.onclick = () => show(b.dataset.p)));
   const start = (location.hash || "").slice(1);
-  show(PROJECTS[start] ? start : "quai");
+  show(PROJECTS[start] ? start : "paddock");
 })();
 </script>

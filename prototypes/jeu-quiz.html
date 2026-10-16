@@ -671,6 +671,23 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
 @keyframes kRise { to { transform: scaleY(1); } }
 @keyframes kFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .k-rays { animation: none; } .k-step, .k-who { animation: none; transform: none; opacity: 1; } }
+/* Liste sous le podium : une ligne par joueur. 4ᵉ et 5ᵉ un peu plus grands, même police, titre aux couleurs qui changent doucement. */
+.klist { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.klist li { display: grid; grid-template-columns: 30px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 16px; background: var(--panel-2); animation: kFade .4s ease-out both; animation-delay: calc(1.9s + var(--i) * 70ms); }
+.klist li.me { outline: 1px solid var(--blue); }
+.kl-pos { font: 700 15px var(--body); color: var(--muted); text-align: center; }
+.kl-who { min-width: 0; display: grid; gap: 2px; }
+.kl-who b { font: 700 16px var(--display); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.kl-title { font: 500 12px/1.3 var(--body); color: var(--muted); }
+.kl-pts { font: 700 15px var(--body); }
+.kl-pts small { font-weight: 500; color: var(--muted); font-size: 11px; }
+.klist li.big { padding: 16px 16px; background: linear-gradient(135deg, rgba(94, 92, 230, .16), var(--panel-2) 55%); }
+.klist li.big .kl-pos { font-size: 19px; color: var(--text); }
+.klist li.big .kl-who b { font-size: 20px; }
+.klist li.big .kl-title { font-size: 13px; font-weight: 600; animation: titleHue 6s ease-in-out infinite; }
+.klist li.big .kl-pts { font-size: 18px; }
+@keyframes titleHue { 0%, 100% { color: #64d2ff; } 25% { color: #8e8cff; } 50% { color: #bf5af2; } 75% { color: #f5c86b; } }
+@media (prefers-reduced-motion: reduce) { .klist li, .klist li.big .kl-title { animation: none; } .klist li.big .kl-title { color: #8e8cff; } }
 </style>
 
 <header class="top">
@@ -1431,7 +1448,7 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
           <div class="k-step"><span class="k-medal">${k + 1}</span><span class="k-pts num">${fmt(podium[k].points)}</span><small>pts</small></div>
         </div>`).join("")}</div>
       </div>
-        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "fx-row" : ""}"><span class="pos num">${k + 4}</span><span class="row-who">${k + 3 < 5 ? `${fxName(nameOf(p.id), k + 3)}${fxTitle(k + 3)}` : `${esc(nameOf(p.id))} <em class="gchip plain">${esc(gradeOf(k + 3))}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
+        ${players.length > 3 ? `<ol class="klist">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "big" : ""}" style="--i:${k}"><span class="kl-pos num">${k + 4}</span><span class="kl-who"><b>${esc(nameOf(p.id))}</b><span class="kl-title">${esc(gradeOf(k + 3))}</span></span><span class="kl-pts num">${fmt(p.points)}<small> pts</small></span></li>`).join("")}</ol>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
       : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
