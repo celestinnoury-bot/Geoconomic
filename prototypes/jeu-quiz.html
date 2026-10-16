@@ -641,6 +641,36 @@ body.elite::before { border: 2px solid rgba(245, 200, 107, .7); box-shadow: none
 body.master::before { animation: none; padding: 2px; background: var(--geo); }
 .grade-chip { background: var(--panel-2); color: var(--gold); }
 body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* Podium façon Kahoot : trois colonnes qui montent (3ᵉ, puis 2ᵉ, puis 1ᵉʳ), médailles or, argent, bronze, rayons derrière.
+   Couleurs de l'appli : indigo du dégradé géo, sur fond sombre. */
+.kpodium { position: relative; overflow: hidden; margin-top: 18px; border-radius: 20px; padding: 26px 10px 0; background: linear-gradient(180deg, #1b1a3a 0%, #101024 100%); }
+.k-rays { position: absolute; left: 50%; top: 58%; width: 220%; aspect-ratio: 1; transform: translate(-50%, -50%); background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .06) 0 9deg, transparent 9deg 18deg); -webkit-mask-image: radial-gradient(circle, #000 0%, transparent 62%); mask-image: radial-gradient(circle, #000 0%, transparent 62%); animation: raysTurn 60s linear infinite; }
+@keyframes raysTurn { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.k-cols { position: relative; display: grid; grid-template-columns: 1fr 1.15fr 1fr; align-items: end; gap: 6px; }
+.k-col { display: grid; justify-items: center; gap: 10px; min-width: 0; }
+.k-who { text-align: center; display: grid; gap: 2px; min-width: 0; max-width: 100%; opacity: 0; animation: kFade .4s ease-out forwards; }
+.k-who b { font: 700 16px var(--display); color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.k-who span { font: 500 10px/1.25 var(--body); color: #b9b6ea; }
+.k1 .k-who b { font-size: 19px; background: var(--geo); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.k-step { width: 100%; display: grid; justify-items: center; align-content: start; gap: 2px; padding-top: 14px; border-radius: 10px 10px 0 0; transform-origin: bottom; transform: scaleY(0); animation: kRise .7s cubic-bezier(.2, 1.1, .3, 1) forwards; }
+.k1 .k-step { height: 184px; background: #2a2766; }
+.k2 .k-step { height: 146px; background: #322f78; }
+.k3 .k-step { height: 120px; background: #322f78; }
+.k-medal { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font: 800 21px var(--body); color: #fff; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18), 0 0 0 3px rgba(255, 255, 255, .85); }
+.k1 .k-medal { background: #f5c400; color: #3a2a00; width: 50px; height: 50px; font-size: 25px; }
+.k2 .k-medal { background: #a8acb5; }
+.k3 .k-medal { background: #e3741f; }
+.k-pts { margin-top: 6px; font: 800 18px var(--body); color: #fff; }
+.k1 .k-pts { font-size: 21px; }
+.k-step small { font: 600 11px var(--body); color: #b9b6ea; }
+.k-col.me .k-step { box-shadow: inset 0 0 0 2px var(--blue); }
+/* Ordre d'apparition : 3ᵉ, puis 2ᵉ, puis 1ᵉʳ */
+.k3 .k-step { animation-delay: .1s; } .k3 .k-who { animation-delay: .6s; }
+.k2 .k-step { animation-delay: .6s; } .k2 .k-who { animation-delay: 1.1s; }
+.k1 .k-step { animation-delay: 1.1s; } .k1 .k-who { animation-delay: 1.7s; }
+@keyframes kRise { to { transform: scaleY(1); } }
+@keyframes kFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .k-rays { animation: none; } .k-step, .k-who { animation: none; transform: none; opacity: 1; } }
 </style>
 
 <header class="top">
@@ -1394,7 +1424,13 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
-      general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${fxName(nameOf(podium[k].id), k)}</b>${fxTitle(k)}<span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
+      general = `<div class="kpodium" aria-label="Podium">
+        <div class="k-rays" aria-hidden="true"></div>
+        <div class="k-cols">${order.map((k) => `<div class="k-col k${k + 1}${podium[k].id === me ? " me" : ""}">
+          <div class="k-who"><b>${esc(nameOf(podium[k].id))}</b><span>${esc(TITLES[k])}</span></div>
+          <div class="k-step"><span class="k-medal">${k + 1}</span><span class="k-pts num">${fmt(podium[k].points)}</span><small>pts</small></div>
+        </div>`).join("")}</div>
+      </div>
         ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "fx-row" : ""}"><span class="pos num">${k + 4}</span><span class="row-who">${k + 3 < 5 ? `${fxName(nameOf(p.id), k + 3)}${fxTitle(k + 3)}` : `${esc(nameOf(p.id))} <em class="gchip plain">${esc(gradeOf(k + 3))}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
