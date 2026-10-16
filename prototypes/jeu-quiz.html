@@ -668,7 +668,8 @@ main { padding-block: 26px 120px; }
   ];
   const CAT = { tech: "Technique", eco: "Économie", conso: "Conso", soc: "Société" };
   const MATCH_Q = 7, DAILY_ORDER = 3, DAILY_YEARS = 2, TIMER = 12, YEAR_TIMER = 25, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
-  const PTS = { win: 17, draw: 7, lose: 0 };
+  const PTS = { win: 58, draw: 7, lose: 0 };
+  const DAILY_PT = 15;
 
   // Textes de fin de match, prêts à traduire (la langue suit celle du téléphone).
   const TXT = {
@@ -784,8 +785,8 @@ main { padding-block: 26px 120px; }
     return [sa, sb];
   }
   const cleanRes = (r) => (Array.isArray(r) ? r.slice(0, MATCH_Q).map((x) => (typeof x === "number" ? x : !!x)) : []);
-  // Défi du jour, année à écrire : 3 points pile, 2 à 2 ans près, 1 à 5 ans près.
-  const yearPts = (gap) => (gap === 0 ? 3 : gap <= 2 ? 2 : gap <= 5 ? 1 : 0);
+  // Défi du jour, année à écrire : 15 points pile, puis 3 de moins par année d'écart (12, 9, 6, 3), toujours un entier.
+  const yearPts = (gap) => Math.max(0, DAILY_PT - 3 * Math.round(gap));
 
   // ================= Moteur de partie =================
   let G = null, timerId = null;
@@ -845,19 +846,19 @@ main { padding-block: 26px 120px; }
   function renderQ(q) {
     let body;
     if (q.kind === "order") {
-      body = `<div class="qhead"><span class="chip">Avant ou après ?${G.mode === "daily" ? " · 3 pts" : ""}</span>${timerHTML(TIMER)}</div>
+      body = `<div class="qhead"><span class="chip">Avant ou après ?${G.mode === "daily" ? ` · ${DAILY_PT} pts` : ""}</span>${timerHTML(TIMER)}</div>
         <h2 class="question">Lequel est arrivé en premier ?</h2>
         <div class="versus">
           ${[q.a, q.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}
         </div>`;
     } else {
       const duel = G.mode === "match";
-      body = `<div class="qhead"><span class="chip sd-chip">${duel ? "Manche date · au plus près" : "Au plus près · jusqu'à 3 pts"}</span>${timerHTML(YEAR_TIMER)}</div>
+      body = `<div class="qhead"><span class="chip sd-chip">${duel ? "Manche date · au plus près" : `Au plus près · jusqu'à ${DAILY_PT} pts`}</span>${timerHTML(YEAR_TIMER)}</div>
         <h2 class="question">En quelle année : ${esc(lower1(q.f[2]))} ?</h2>
         <form class="type-box" id="type-form" autocomplete="off">
           <input id="ty" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num" aria-label="Année">
           <button class="btn wide" id="valider" type="submit">Valider</button>
-          <p class="note">${duel ? "Le plus proche de la bonne année remporte le point de la manche. À écart égal, chacun marque." : "Pile : 3 points · à 2 ans près : 2 points · à 5 ans près : 1 point."}</p>
+          <p class="note">${duel ? "Le plus proche de la bonne année remporte le point de la manche. À écart égal, chacun marque." : "Pile : 15 points, puis 3 de moins par année d'écart : 12, 9, 6, 3."}</p>
         </form>`;
     }
     play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
@@ -892,7 +893,7 @@ main { padding-block: 26px 120px; }
       const gap = Math.abs(q.a[0] - q.b[0]);
       info = `${gap} an${gap > 1 ? "s" : ""} d'écart.`;
       note = q.a[3] || q.b[3] || "";
-      gain = ok ? (G.mode === "daily" ? 3 : 1) : 0;
+      gain = ok ? (G.mode === "daily" ? DAILY_PT : 1) : 0;
     } else {
       const gap = Number.isFinite(val) ? Math.abs(val - q.y) : Infinity;
       gain = Number.isFinite(gap) ? yearPts(gap) : 0;
@@ -921,10 +922,10 @@ main { padding-block: 26px 120px; }
         oppLine = `${G.opponent.name} ${o ? "avait trouvé" : "s'était trompé"}.`;
       }
     } else if (duelYear) oppLine = "Le point ira au plus proche des deux : réponse quand ton adversaire aura joué.";
-    const cls = duelYear ? (won === "me" || won === "both" ? "ok" : won === "opp" ? "ko" : "neutral") : q.kind === "year" ? (gain === 3 ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
+    const cls = duelYear ? (won === "me" || won === "both" ? "ok" : won === "opp" ? "ko" : "neutral") : q.kind === "year" ? (gain === DAILY_PT ? "ok" : gain > 0 ? "neutral" : "ko") : ok ? "ok" : "ko";
     const title = duelYear ? (won === "me" ? "Manche gagnée" : won === "opp" ? "Manche perdue" : won === "both" ? "Manche partagée" : myGap === 0 ? "Pile !" : val == null ? "Temps écoulé" : `À ${myGap} an${myGap > 1 ? "s" : ""}`)
-      : q.kind === "year" ? (gain === 3 ? "Pile · +3 pts" : gain > 0 ? `Proche · +${gain} pt${gain > 1 ? "s" : ""}` : val == null ? "Temps écoulé" : "Trop loin")
-      : ok ? (G.mode === "daily" ? "Juste · +3 pts" : "Juste") : val == null ? "Temps écoulé" : "Raté";
+      : q.kind === "year" ? (gain === DAILY_PT ? `Pile · +${DAILY_PT} pts` : gain > 0 ? `Proche · +${gain} pts` : val == null ? "Temps écoulé" : "Trop loin")
+      : ok ? (G.mode === "daily" ? `Juste · +${DAILY_PT} pts` : "Juste") : val == null ? "Temps écoulé" : "Raté";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
     sheet.innerHTML = `<div class="wrap"><h3>${cls === "ok" ? ICON.check : ""}${esc(title)}</h3>
@@ -956,7 +957,7 @@ main { padding-block: 26px 120px; }
   }
 
   // ================= Mode 1 : le 1 contre 1 en différé =================
-  // Chacun joue les mêmes 7 duels quand il veut. Celui qui en situe le plus gagne : victoire 17 points, égalité 7, défaite 0.
+  // Chacun joue les mêmes 7 duels quand il veut. Celui qui en situe le plus gagne : victoire 58 points, égalité 7, défaite 0.
   // On peut défier un ami par code, ou prendre le match d'un joueur au hasard qui attend un adversaire.
   const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
@@ -1007,7 +1008,7 @@ main { padding-block: 26px 120px; }
     const oname = ghost ? names[ghost.uid] || "Ton adversaire" : "Ton adversaire";
     startGame({
       mode: "match", qs: [{ kind: "splash", kicker: `Match ${code}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
-        rules: `${MATCH_Q} manches. Cinq « avant ou après » : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 17 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
+        rules: `${MATCH_Q} manches. Cinq « avant ou après » : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 58 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
       opponent: { name: oname, short: oname.charAt(0).toUpperCase() }, ghost: ghost ? ghost.res : null,
       onEnd: (g) => {
         const res = cleanRes(g.res);
@@ -1068,7 +1069,7 @@ main { padding-block: 26px 120px; }
       scoreMatch(code, out);
       const oname = names[other.uid] || "Ton adversaire";
       const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
-      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +17 points" : out === "draw" ? "Égalité · +7 points" : "Défaite · 0 point"}</p>
+      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +58 points" : out === "draw" ? "Égalité · +7 points" : "Défaite · 0 point"}</p>
         <h3 style="font-size:24px;margin:6px 0">${esc(t(out))}</h3>
         <p class="muted">${sa} manche${sa > 1 ? "s" : ""} pour toi, ${sb} pour ${esc(oname)}.</p>
         ${roundsGrid(cleanRes(mine.res), cleanRes(other.res), oname)}
@@ -1091,20 +1092,20 @@ main { padding-block: 26px 120px; }
   }
 
   // ================= Mode 2 : le défi du jour =================
-  // 5 questions, les mêmes pour tous : 3 « avant ou après » (3 points chacune) et 2 années à écrire (3 points pile, 2 à 2 ans, 1 à 5 ans).
+  // 5 questions, les mêmes pour tous : 3 « avant ou après » (15 points chacune) et 2 années à écrire (15 points pile, moins 3 par année d'écart).
   function dailyQs(day = today()) {
     const r = rng(`defi-${day}`);
     const order = drawPairs(DAILY_ORDER, r, { useSeen: false });
     const years = drawYears(DAILY_YEARS, r, order);
     return buildAll([order[0], years[0], order[1], order[2], years[1]], day);
   }
-  const DAILY_MAX = (DAILY_ORDER + DAILY_YEARS) * 3;
+  const DAILY_MAX = (DAILY_ORDER + DAILY_YEARS) * DAILY_PT;
   function startDaily() {
     if (S.daily && S.daily.date === today()) return;
     startGame({
       mode: "daily", max: DAILY_MAX,
       qs: [{ kind: "splash", kicker: "Défi du jour", title: "5 questions", icon: ICON.sun, bg: "var(--mint)", fg: "#062317", cta: "C'est parti",
-        rules: "Les mêmes pour tous les joueurs aujourd'hui. Trois « avant ou après » à 3 points, et deux années à écrire : 3 points pile, 2 à deux ans près, 1 à cinq ans près." }, ...dailyQs()],
+        rules: "Les mêmes pour tous les joueurs aujourd'hui. Trois « avant ou après » à 15 points, et deux années à écrire : 15 points pile, puis 3 de moins par année d'écart (12, 9, 6, 3)." }, ...dailyQs()],
       onEnd: (g) => {
         S.daily = { date: today(), score: g.me, res: g.res };
         addPoints(g.me);
@@ -1242,13 +1243,13 @@ main { padding-block: 26px 120px; }
     const shared = !!(db && me);
     const list = S.matches.map((c) => {
       const s = S.scored[c];
-      return `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="mstate ${s || "wait"}">${s === "win" ? "Gagné · +17" : s === "draw" ? "Égalité · +7" : s === "lose" ? "Perdu" : "En attente"}</span></button>`;
+      return `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="mstate ${s || "wait"}">${s === "win" ? "Gagné · +58" : s === "draw" ? "Égalité · +7" : s === "lose" ? "Perdu" : "En attente"}</span></button>`;
     }).join("");
     return `<section class="card mode duel-card">
       <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
       <div><h3>1 contre 1</h3>
       <p>${MATCH_Q} duels « avant ou après » sur des dates de niche. Chacun joue quand il veut, le résultat tombe quand les deux ont fini.</p>
-      <div class="pts-row"><span><b>17</b> victoire</span><span><b>7</b> égalité</span><span><b>0</b> défaite</span></div>
+      <div class="pts-row"><span><b>58</b> victoire</span><span><b>7</b> égalité</span><span><b>0</b> défaite</span></div>
       ${shared ? `<div class="btns"><button class="btn blue" id="random-go">${ICON.dice}Adversaire au hasard</button><button class="btn gold" id="friend-go">Défier un ami</button></div>
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
@@ -1304,7 +1305,7 @@ main { padding-block: 26px 120px; }
           <div class="stat"><b class="num">${FACTS.length}</b><span>faits datés</span></div>
           <div class="stat"><b class="num">${fmt(PAIRS.length)}</b><span>duels possibles</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Points : 1 contre 1, victoire 17, égalité 7, défaite 0. Défi du jour : 3 par bonne réponse, et pour les années à écrire 3 pile, 2 à deux ans près, 1 à cinq ans près.</p></section>
+        <p class="note" style="margin-top:12px">Points : 1 contre 1, victoire 58, égalité 7, défaite 0. Défi du jour : 15 par bonne réponse ; pour les années à écrire, 15 pile puis 3 de moins par année d'écart (12, 9, 6, 3)</p></section>
     </div>`;
   }
 
