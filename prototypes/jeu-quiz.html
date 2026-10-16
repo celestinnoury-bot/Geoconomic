@@ -688,6 +688,36 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
 .klist li.big .kl-pts { font-size: 18px; }
 @keyframes titleHue { 0%, 100% { color: #64d2ff; } 25% { color: #8e8cff; } 50% { color: #bf5af2; } 75% { color: #f5c86b; } }
 @media (prefers-reduced-motion: reduce) { .klist li, .klist li.big .kl-title { animation: none; } .klist li.big .kl-title { color: #8e8cff; } }
+/* Tableau compact façon MPP sous le podium : en-tête, une ligne fine par joueur, chiffres alignés à droite. */
+.mtable { margin-top: 12px; border-radius: 14px; overflow: hidden; background: #141416; }
+.mt-head, .mt-row { display: grid; grid-template-columns: 22px minmax(0, 1fr) 26px 26px 52px; gap: 8px; align-items: center; padding: 0 12px; }
+.mt-head { height: 30px; font: 600 11px var(--body); color: var(--muted); background: #1c1c1e; }
+.mt-head span:nth-child(n+3), .mt-n, .mt-pts { text-align: right; }
+.mt-row { min-height: 46px; border-top: 1px solid rgba(255, 255, 255, .06); animation: kFade .35s ease-out both; animation-delay: calc(1.9s + var(--i) * 50ms); }
+.mt-row.me { background: rgba(41, 151, 255, .1); }
+.mt-pos { font: 500 12px var(--body); color: var(--muted); }
+.mt-who { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.mt-av { width: 28px; height: 28px; flex: none; border-radius: 50%; display: grid; place-items: center; font: 600 12px var(--body); background: #2c2c2e; box-shadow: 0 0 0 2px #3a3a3c; }
+.mt-nm { min-width: 0; display: grid; line-height: 1.2; }
+.mt-nm b { font: 600 14px var(--body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mt-nm small { font: 400 11px var(--body); color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mt-n { font: 500 13px var(--body); color: #c7c7cc; }
+.mt-pts { font: 700 14px var(--body); }
+/* 4ᵉ et 5ᵉ : ligne un peu plus haute, titre aux couleurs qui changent doucement */
+.mt-row.hot { min-height: 54px; }
+.mt-row.hot .mt-nm b { font-size: 15px; }
+.mt-row.hot .mt-nm small { font-weight: 600; animation: titleHue 6s ease-in-out infinite; }
+.mt-row.hot .mt-av { box-shadow: 0 0 0 2px #f5c86b; }
+/* Podium plus compact */
+.kpodium { padding-top: 16px; margin-top: 14px; }
+.k-col { gap: 6px; }
+.k-who b { font-size: 14px; } .k1 .k-who b { font-size: 16px; }
+.k-who span { font-size: 9px; }
+.k-step { padding-top: 10px; }
+.k1 .k-step { height: 124px; } .k2 .k-step { height: 100px; } .k3 .k-step { height: 84px; }
+.k-medal { width: 32px; height: 32px; font-size: 16px; } .k1 .k-medal { width: 38px; height: 38px; font-size: 19px; }
+.k-pts { font-size: 15px; margin-top: 2px; } .k1 .k-pts { font-size: 17px; }
+@media (prefers-reduced-motion: reduce) { .mt-row, .mt-row.hot .mt-nm small { animation: none; } }
 </style>
 
 <header class="top">
@@ -1448,7 +1478,14 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
           <div class="k-step"><span class="k-medal">${k + 1}</span><span class="k-pts num">${fmt(podium[k].points)}</span><small>pts</small></div>
         </div>`).join("")}</div>
       </div>
-        ${players.length > 3 ? `<ol class="klist">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "big" : ""}" style="--i:${k}"><span class="kl-pos num">${k + 4}</span><span class="kl-who"><b>${esc(nameOf(p.id))}</b><span class="kl-title">${esc(gradeOf(k + 3))}</span></span><span class="kl-pts num">${fmt(p.points)}<small> pts</small></span></li>`).join("")}</ol>` : ""}`;
+        ${players.length > 3 ? `<div class="mtable" role="table" aria-label="Classement à partir de la 4ᵉ place">
+          <div class="mt-head" role="row"><span></span><span>Joueurs</span><span>V</span><span>N</span><span>Points</span></div>
+          ${players.slice(3, 30).map((p, k) => `<div class="mt-row${p.id === me ? " me" : ""}${k + 3 < 5 ? " hot" : ""}" role="row" style="--i:${k}">
+            <span class="mt-pos num">${k + 4}</span>
+            <span class="mt-who"><span class="mt-av">${esc(nameOf(p.id).charAt(0).toUpperCase())}</span><span class="mt-nm"><b>${esc(nameOf(p.id))}</b><small>${esc(gradeOf(k + 3))}</small></span></span>
+            <span class="mt-n num">${Number(p.wins) || 0}</span><span class="mt-n num">${Number(p.draws) || 0}</span><span class="mt-pts num">${fmt(p.points)}</span>
+          </div>`).join("")}
+        </div>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
       : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
