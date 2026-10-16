@@ -1,0 +1,461 @@
+<title>Duel, trois directions</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Big+Shoulders+Stencil+Display:wght@700;800&family=Share+Tech+Mono&family=Cinzel+Decorative:wght@700;900&family=Press+Start+2P&family=VT323&family=Monoton&family=Silkscreen:wght@400;700&family=UnifrakturMaguntia&family=Pirata+One&family=Cinzel:wght@600;800&family=IM+Fell+English+SC&family=Cormorant+Garamond:wght@500;600;700&display=swap">
+<style>
+/* Planche de présentation : fond graphite neutre, trois téléphones par direction, onglets pour passer de l'une à l'autre.
+   Chaque direction a ses propres jetons, scopés sur .p-quai, .p-neon, .p-blason. */
+:root {
+  --board: #17171a;
+  --board-2: #222226;
+  --board-line: #323238;
+  --board-text: #ecebe6;
+  --board-muted: #9b9a94;
+  --board-accent: #f2c230;
+  --ui: "Barlow", "Helvetica Neue", Arial, sans-serif;
+  --ui-cond: "Barlow Condensed", "Arial Narrow", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--board); color: var(--board-text); font: 15px/1.55 var(--ui); }
+.shell { max-width: 1180px; margin: 0 auto; padding-block: 28px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.intro h1 { font: 800 clamp(30px, 6vw, 44px)/1 var(--ui-cond); text-transform: uppercase; letter-spacing: .01em; margin: 0 0 10px; text-wrap: balance; }
+.intro p { margin: 0; color: var(--board-muted); max-width: 62ch; }
+.picker { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 8px; }
+.picker button { flex: 1 1 200px; text-align: left; border: 1px solid var(--board-line); background: var(--board-2); color: var(--board-text); border-radius: 4px; padding: 12px 14px; cursor: pointer; font: inherit; }
+.picker button b { display: block; font: 700 20px var(--ui-cond); text-transform: uppercase; letter-spacing: .04em; }
+.picker button span { color: var(--board-muted); font-size: 13px; }
+.picker button[aria-selected="true"] { border-color: var(--board-accent); box-shadow: inset 0 -3px 0 var(--board-accent); }
+.picker button:focus-visible { outline: 2px solid var(--board-accent); outline-offset: 2px; }
+.project { margin-top: 26px; }
+.brief { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 24px; align-items: start; margin-bottom: 26px; }
+.brief h2 { font: 800 32px/1 var(--ui-cond); text-transform: uppercase; margin: 0 0 8px; }
+.brief p { margin: 0 0 12px; color: var(--board-muted); max-width: 60ch; }
+.brief ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.spec { display: grid; gap: 14px; }
+.spec .k { font: 700 12px var(--ui-cond); letter-spacing: .14em; text-transform: uppercase; color: var(--board-muted); margin-bottom: 6px; }
+.swatches { display: flex; flex-wrap: wrap; gap: 6px; }
+.swatches i { width: 34px; height: 34px; border-radius: 3px; border: 1px solid var(--board-line); }
+.fonts { display: grid; gap: 4px; font-size: 14px; }
+.phones { display: flex; flex-wrap: wrap; gap: 26px; justify-content: center; }
+.phone-wrap { display: grid; gap: 10px; justify-items: center; }
+.phone-wrap > p { margin: 0; font: 700 13px var(--ui-cond); letter-spacing: .14em; text-transform: uppercase; color: var(--board-muted); }
+.phone { width: 320px; max-width: 100%; height: 660px; border-radius: 38px; padding: 10px; background: #050506; border: 1px solid #2a2a2e; box-shadow: 0 20px 50px rgba(0, 0, 0, .5); }
+.screen { position: relative; width: 100%; height: 100%; border-radius: 30px; overflow: hidden; }
+.scroll { position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; }
+.scroll::-webkit-scrollbar { display: none; }
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; height: 54px; display: grid; grid-template-columns: 1fr 1fr; align-items: center; text-align: center; z-index: 3; }
+.choose { margin-top: 30px; padding: 16px 18px; border: 1px dashed var(--board-line); border-radius: 4px; color: var(--board-muted); }
+.choose b { color: var(--board-text); }
+.replay { margin-top: 2px; background: none; border: 1px solid var(--board-line); color: var(--board-muted); border-radius: 3px; padding: 4px 10px; font: 600 12px var(--ui); cursor: pointer; }
+@media (max-width: 760px) { .brief { grid-template-columns: 1fr; } }
+
+/* Flammes communes (SVG), qui vacillent */
+.flame { width: 12px; height: 17px; flex: none; transform-origin: 50% 100%; animation: flicker 1.1s ease-in-out infinite; }
+.flame.f2 { animation-delay: -.5s; animation-duration: 1.3s; }
+@keyframes flicker { 0%, 100% { transform: scale(1, 1) skewX(0); } 25% { transform: scale(.92, 1.14) skewX(-4deg); } 50% { transform: scale(1.05, .9) skewX(3deg); } 75% { transform: scale(.96, 1.07) skewX(-2deg); } }
+@keyframes shimmer { to { background-position: -200% 0; } }
+.fxw { display: inline-flex; align-items: flex-end; gap: 4px; max-width: 100%; }
+
+/* ===================== 1. QUAI : tableau d'affichage de gare ===================== */
+.p-quai { --bg: #121315; --panel: #1c1d20; --flap: #0b0c0d; --text: #ece9e1; --muted: #9a9890; --yel: #f2c230; --ok: #4cc06a; --ko: #e5483b; --line: #34363b; }
+.p-quai .screen { background: var(--bg); color: var(--text); font: 13px/1.5 "Barlow", sans-serif; }
+.p-quai .top { display: flex; justify-content: space-between; align-items: center; padding: 22px 16px 12px; border-bottom: 2px solid var(--line); font: 800 15px "Barlow Condensed", sans-serif; text-transform: uppercase; letter-spacing: .05em; }
+.p-quai .top b { color: var(--yel); }
+.p-quai .body { padding: 16px 16px 80px; display: grid; gap: 18px; }
+.p-quai .strip { display: flex; justify-content: space-between; background: var(--yel); color: #1a1500; font: 800 11px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; padding: 5px 8px; }
+.p-quai h1 { margin: 6px 0 0; font: 800 38px/.9 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.p-quai .lead { color: var(--muted); margin: 8px 0 0; }
+.p-quai .champ { background: var(--flap); border-left: 5px solid var(--yel); padding: 12px; display: grid; gap: 4px; }
+.p-quai .lab { font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.p-quai .card { background: var(--panel); border: 1px solid var(--line); border-top: 3px solid var(--yel); padding: 14px; display: grid; gap: 8px; border-radius: 2px; }
+.p-quai .card h3 { margin: 0; font: 700 20px/1.05 "Barlow Condensed", sans-serif; text-transform: uppercase; }
+.p-quai .pts3 { display: flex; gap: 6px; }
+.p-quai .pts3 span { background: var(--flap); padding: 4px 8px; font-size: 12px; color: var(--muted); }
+.p-quai .pts3 b { font: 700 16px "Barlow Condensed", sans-serif; color: var(--text); margin-right: 3px; }
+.p-quai .btn { background: var(--yel); color: #1a1500; border: 0; border-bottom: 3px solid rgba(0, 0, 0, .35); font: 800 14px "Barlow Condensed", sans-serif; letter-spacing: .08em; text-transform: uppercase; padding: 9px 12px; border-radius: 2px; justify-self: start; }
+.p-quai .duo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
+.p-quai .mini { background: var(--flap); border: 1px solid var(--line); padding: 10px 8px; text-align: center; font-weight: 600; font-size: 12px; }
+.p-quai .or { font: 800 11px "Barlow Condensed", sans-serif; color: var(--muted); letter-spacing: .14em; }
+.p-quai .tabbar { background: var(--bg); border-top: 2px solid var(--line); font: 700 11px "Barlow Condensed", sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.p-quai .tabbar .on { color: var(--yel); }
+.p-quai .bar { height: 6px; background: var(--panel); } .p-quai .bar i { display: block; height: 100%; width: 43%; background: var(--yel); }
+.p-quai .score { display: flex; justify-content: space-between; align-items: center; background: var(--flap); padding: 10px 12px; font: 800 22px "Barlow Condensed", sans-serif; }
+.p-quai .score small { display: block; font: 600 10px "Barlow", sans-serif; color: var(--muted); }
+.p-quai .chip { background: var(--flap); font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .12em; text-transform: uppercase; padding: 4px 8px; justify-self: start; }
+.p-quai .q { margin: 0; font: 700 23px/1.1 "Barlow Condensed", sans-serif; }
+.p-quai .fact { text-align: left; background: var(--panel); border: 1px solid var(--line); color: var(--text); padding: 14px; display: grid; gap: 8px; font: 600 14px/1.35 "Barlow", sans-serif; cursor: pointer; border-radius: 2px; min-height: 92px; }
+.p-quai .fact.good { border-color: var(--ok); background: #142a1b; } .p-quai .fact.bad { border-color: var(--ko); background: #2c1513; }
+.p-quai .yr { display: inline-flex; gap: 3px; }
+.p-quai .yr i { font: 700 22px "Barlow Condensed", sans-serif; font-style: normal; width: 22px; height: 30px; display: grid; place-items: center; background: var(--flap); position: relative; border-radius: 2px; animation: flapIn .42s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--i) * 90ms); }
+.p-quai .yr i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .75); }
+.p-quai .good .yr i { color: var(--yel); }
+@keyframes flapIn { 0% { transform: rotateX(90deg); opacity: .2; } 60% { transform: rotateX(-12deg); opacity: 1; } 100% { transform: none; } }
+.p-quai .sheet { background: #142a1b; border-top: 3px solid var(--ok); padding: 12px; }
+.p-quai .sheet.ko { background: #2c1513; border-top-color: var(--ko); }
+.p-quai .sheet h4 { margin: 0 0 4px; font: 800 18px "Barlow Condensed", sans-serif; text-transform: uppercase; color: var(--ok); }
+.p-quai .sheet.ko h4 { color: var(--ko); }
+.p-quai .row { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px; background: var(--panel); border: 1px solid var(--line); border-radius: 2px; }
+.p-quai .pos { font: 800 16px "Barlow Condensed", sans-serif; color: var(--muted); }
+.p-quai .pt { font: 700 15px "Barlow Condensed", sans-serif; }
+.p-quai .who { min-width: 0; display: grid; gap: 3px; }
+.p-quai .tier-label { font: 700 10px "Barlow Condensed", sans-serif; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+/* Tranche 1-3 : noir violet entre deux flammes */
+.p-quai .t1 { background: var(--flap); border-color: rgba(157, 78, 221, .55); }
+.p-quai .t1 .nm, .p-quai .t1 .ti span { font-family: "Cinzel Decorative", serif; font-weight: 900; background: linear-gradient(100deg, #3c096c, #9d4edd 20%, #f3dcff 34%, #b46cff 48%, #5a189a 68%, #e0aaff 84%, #3c096c) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite; }
+.p-quai .t1 .fxw, .p-quai .t1 .ti { filter: drop-shadow(0 1px 0 #10002b) drop-shadow(0 0 5px rgba(123, 47, 247, .85)); }
+.p-quai .t1 .nm { font-size: 15px; } .p-quai .t1 .ti { font-size: 10px; line-height: 1.25; }
+/* Tranche 4-5 : or entre deux flammes */
+.p-quai .t2 { background: var(--flap); border-color: rgba(242, 194, 48, .5); }
+.p-quai .t2 .nm, .p-quai .t2 .ti span { font-family: "Cinzel Decorative", serif; font-weight: 900; background: linear-gradient(100deg, #8a5a12, #f5c86b 22%, #fff3c4 35%, #f5c86b 48%, #b07a1c 70%, #ffe08a 85%, #8a5a12) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite; }
+.p-quai .t2 .fxw, .p-quai .t2 .ti { filter: drop-shadow(0 1px 0 #4a2f06) drop-shadow(0 2px 3px rgba(255, 140, 0, .35)); }
+.p-quai .t2 .nm { font-size: 14px; } .p-quai .t2 .ti { font-size: 10px; line-height: 1.25; }
+/* Tranche 6-10 : lettres sur volets, qui se retournent en vague toutes les 6 s */
+.p-quai .t3 .nm { display: inline-flex; gap: 2px; }
+.p-quai .t3 .nm i { font: 800 14px "Big Shoulders Stencil Display", sans-serif; font-style: normal; text-transform: uppercase; background: var(--flap); color: var(--yel); width: 15px; height: 20px; display: grid; place-items: center; position: relative; animation: flapLoop 6s ease-in-out infinite; animation-delay: calc(var(--i) * 70ms); }
+.p-quai .t3 .nm i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(0, 0, 0, .8); }
+.p-quai .t3 .ti { font: 600 11px "Barlow Condensed", sans-serif; letter-spacing: .06em; text-transform: uppercase; color: var(--text); }
+@keyframes flapLoop { 0%, 86%, 100% { transform: none; } 90% { transform: rotateX(90deg); } 94% { transform: rotateX(-15deg); } }
+/* Tranche 11-20 : afficheur à LED ambre, titre qui défile */
+.p-quai .t4 .nm { font: 400 14px "Share Tech Mono", monospace; color: #ffb547; text-shadow: 0 0 6px rgba(255, 181, 71, .55); text-transform: uppercase; letter-spacing: .06em; }
+.p-quai .t4 .ti { overflow: hidden; white-space: nowrap; background: var(--flap); padding: 2px 0; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+.p-quai .t4 .ti span { display: inline-block; padding-left: 100%; font: 400 11px "Share Tech Mono", monospace; color: #ffb547; animation: ticker 9s linear infinite; }
+@keyframes ticker { to { transform: translateX(-100%); } }
+
+/* ===================== 2. NÉON : borne d'arcade ===================== */
+.p-neon { --bg: #0d0221; --panel: #170a33; --text: #f4ecff; --muted: #9a8cc4; --pink: #ff2fd1; --cyan: #2de2e6; --lime: #c6ff3d; --yel: #ffe14d; --line: #33205e; }
+.p-neon .screen { background: var(--bg); color: var(--text); font: 19px/1.15 "VT323", monospace; }
+.p-neon .screen::after { content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 5; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, .22) 0 1px, transparent 1px 3px); }
+.p-neon .top { display: flex; justify-content: space-between; align-items: center; padding: 24px 14px 10px; font: 10px "Press Start 2P", monospace; }
+.p-neon .top b { color: var(--pink); font-weight: 400; }
+.p-neon .top .hi { color: var(--yel); }
+.p-neon .body { padding: 12px 14px 80px; display: grid; gap: 16px; }
+.p-neon .hero { position: relative; padding: 16px 10px 64px; text-align: center; overflow: hidden; border: 2px solid var(--line); background: linear-gradient(180deg, #1a0640 0%, #0d0221 60%); }
+.p-neon .hero::after { content: ""; position: absolute; left: -40%; right: -40%; bottom: -10px; height: 70px; background: linear-gradient(transparent 0 92%, var(--cyan) 92%) 0 0 / 100% 14px, linear-gradient(90deg, transparent 0 96%, var(--cyan) 96%) 0 0 / 18px 100%; transform: perspective(120px) rotateX(55deg); opacity: .55; animation: grid 1.2s linear infinite; }
+@keyframes grid { to { background-position: 0 14px, 0 0; } }
+.p-neon h1 { margin: 6px 0 4px; font: 400 30px/1.05 "Monoton", cursive; color: var(--pink); text-shadow: 0 0 6px var(--pink), 0 0 18px rgba(255, 47, 209, .6); }
+.p-neon .vs { font: 9px "Press Start 2P", monospace; color: var(--cyan); }
+.p-neon .coin { font: 9px "Press Start 2P", monospace; color: var(--yel); animation: blink 1s steps(1) infinite; margin-top: 10px; }
+@keyframes blink { 50% { opacity: 0; } }
+.p-neon .lab { font: 8px "Press Start 2P", monospace; color: var(--muted); letter-spacing: .05em; }
+.p-neon .champ { border: 2px solid var(--pink); padding: 10px; display: grid; gap: 6px; box-shadow: 0 0 12px rgba(255, 47, 209, .35) inset; }
+.p-neon .card { border: 2px solid var(--line); background: var(--panel); padding: 12px; display: grid; gap: 8px; }
+.p-neon .card h3 { margin: 0; font: 11px/1.5 "Press Start 2P", monospace; color: var(--cyan); }
+.p-neon .pts3 { display: flex; gap: 6px; font-size: 18px; }
+.p-neon .pts3 span { border: 2px solid var(--line); padding: 2px 6px; }
+.p-neon .pts3 b { font: 10px "Press Start 2P", monospace; color: var(--yel); margin-right: 4px; font-weight: 400; }
+.p-neon .btn { background: var(--lime); color: #0d0221; border: 0; font: 10px "Press Start 2P", monospace; padding: 10px 12px; justify-self: start; box-shadow: 4px 4px 0 var(--pink); }
+.p-neon .duo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
+.p-neon .mini { border: 2px solid var(--cyan); padding: 8px 6px; text-align: center; font-size: 17px; }
+.p-neon .or { font: 8px "Press Start 2P", monospace; color: var(--pink); }
+.p-neon .tabbar { background: #08011a; border-top: 2px solid var(--line); font: 8px "Press Start 2P", monospace; color: var(--muted); }
+.p-neon .tabbar .on { color: var(--lime); }
+.p-neon .bar { height: 10px; border: 2px solid var(--line); } .p-neon .bar i { display: block; height: 100%; width: 43%; background: repeating-linear-gradient(90deg, var(--lime) 0 6px, transparent 6px 8px); }
+.p-neon .score { display: flex; justify-content: space-between; align-items: center; font: 14px "Press Start 2P", monospace; border: 2px solid var(--line); padding: 10px; }
+.p-neon .score small { display: block; font: 16px "VT323", monospace; color: var(--muted); }
+.p-neon .score .p1 { color: var(--lime); } .p-neon .score .p2 { color: var(--pink); }
+.p-neon .chip { font: 8px "Press Start 2P", monospace; color: var(--yel); justify-self: start; }
+.p-neon .q { margin: 0; font: 400 26px/1 "VT323", monospace; }
+.p-neon .fact { text-align: left; background: var(--panel); border: 2px solid var(--cyan); color: var(--text); padding: 12px; display: grid; gap: 6px; font: 20px/1.1 "VT323", monospace; cursor: pointer; min-height: 90px; }
+.p-neon .fact.good { border-color: var(--lime); box-shadow: 0 0 14px rgba(198, 255, 61, .45); } .p-neon .fact.bad { border-color: var(--pink); opacity: .75; }
+.p-neon .yr { font: 18px "Press Start 2P", monospace; color: var(--yel); }
+.p-neon .good .yr { color: var(--lime); }
+.p-neon .plus { font: 10px "Press Start 2P", monospace; color: var(--lime); animation: up 1s ease-out both; }
+@keyframes up { from { transform: translateY(8px); opacity: 0; } 30% { opacity: 1; } to { transform: translateY(-6px); opacity: 1; } }
+.p-neon .sheet { border: 2px solid var(--lime); padding: 10px; font-size: 18px; }
+.p-neon .sheet.ko { border-color: var(--pink); }
+.p-neon .sheet h4 { margin: 0 0 6px; font: 11px "Press Start 2P", monospace; color: var(--lime); }
+.p-neon .sheet.ko h4 { color: var(--pink); }
+.p-neon .row { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; gap: 8px; align-items: center; padding: 8px; border: 2px solid var(--line); }
+.p-neon .pos { font: 10px "Press Start 2P", monospace; color: var(--muted); }
+.p-neon .pt { font: 9px "Press Start 2P", monospace; color: var(--yel); }
+.p-neon .who { min-width: 0; display: grid; gap: 4px; }
+.p-neon .tier-label { font: 8px "Press Start 2P", monospace; color: var(--muted); margin-top: 6px; }
+/* 1-3 : texte chromé noir violet qui « glitche », flammes en pixels */
+.p-neon .t1 { border-color: #7b2ff7; background: #14062b; }
+.p-neon .t1 .nm { position: relative; font: 11px "Press Start 2P", monospace; color: #e7d1ff; text-shadow: 0 0 8px #7b2ff7; }
+.p-neon .t1 .nm::before, .p-neon .t1 .nm::after { content: attr(data-t); position: absolute; left: 0; top: 0; }
+.p-neon .t1 .nm::before { color: var(--cyan); animation: glitchA 2.6s steps(1) infinite; clip-path: inset(0 0 55% 0); }
+.p-neon .t1 .nm::after { color: var(--pink); animation: glitchB 2.6s steps(1) infinite; clip-path: inset(55% 0 0 0); }
+@keyframes glitchA { 0%, 88%, 100% { transform: none; opacity: 0; } 89% { transform: translate(-2px, 0); opacity: 1; } 93% { transform: translate(2px, 0); opacity: 1; } }
+@keyframes glitchB { 0%, 88%, 100% { transform: none; opacity: 0; } 90% { transform: translate(2px, 0); opacity: 1; } 94% { transform: translate(-2px, 0); opacity: 1; } }
+.p-neon .t1 .ti { font: 16px/1 "VT323", monospace; color: #b98cff; }
+/* 4-5 : tube néon qui grésille */
+.p-neon .t2 { border-color: var(--pink); }
+.p-neon .t2 .nm { font: 400 15px "Monoton", cursive; color: #ffd0f3; text-shadow: 0 0 4px var(--pink), 0 0 12px var(--pink); animation: neon 4s infinite; }
+.p-neon .t2 .ti { font: 16px/1 "VT323", monospace; color: var(--pink); }
+@keyframes neon { 0%, 18%, 22%, 25%, 53%, 57%, 100% { opacity: 1; } 20%, 24%, 55% { opacity: .35; } }
+/* 6-10 : machine à écrire au curseur clignotant */
+.p-neon .t3 .nm { font: 20px "VT323", monospace; color: var(--cyan); white-space: nowrap; overflow: hidden; width: 0; border-right: 2px solid var(--cyan); animation: type 3.2s steps(var(--n)) infinite, caret .6s steps(1) infinite; max-width: max-content; }
+@keyframes type { 0% { width: 0; } 45%, 85% { width: calc(var(--n) * 1ch); } 100% { width: 0; } }
+@keyframes caret { 50% { border-color: transparent; } }
+.p-neon .t3 .ti { font: 16px/1 "VT323", monospace; color: var(--muted); }
+/* 11-20 : police pixel, couleurs qui tournent */
+.p-neon .t4 .nm { font: 700 12px "Silkscreen", monospace; color: var(--lime); animation: hue 6s linear infinite; }
+.p-neon .t4 .ti { font: 15px/1 "VT323", monospace; color: var(--muted); }
+@keyframes hue { to { filter: hue-rotate(360deg); } }
+.pix { width: 12px; height: 16px; flex: none; image-rendering: pixelated; }
+.pix .a { animation: px 0.5s steps(1) infinite; } .pix .b { animation: px 0.5s steps(1) infinite reverse; }
+@keyframes px { 50% { opacity: 0; } }
+
+/* ===================== 3. BLASON : tournoi héraldique ===================== */
+.p-blason { --bg: #23080c; --panel: #33101a; --ivory: #efe3c8; --muted: #b79b8a; --brass: #c9a24a; --brass-hi: #f2d98a; --sable: #1a0f1f; --purp: #6a2c9a; --wax: #a3162b; --line: #5a2430; }
+.p-blason .screen { background: radial-gradient(120% 60% at 50% 0%, #3a0f16 0%, var(--bg) 60%); color: var(--ivory); font: 500 15px/1.4 "Cormorant Garamond", Georgia, serif; }
+.p-blason .top { display: flex; justify-content: space-between; align-items: center; padding: 22px 16px 12px; border-bottom: 1px solid var(--line); font: 18px "IM Fell English SC", serif; }
+.p-blason .top b { color: var(--brass-hi); font-weight: 400; }
+.p-blason .body { padding: 16px 16px 80px; display: grid; gap: 18px; }
+.p-blason .hero { text-align: center; display: grid; justify-items: center; gap: 6px; }
+.p-blason .shield { width: 64px; height: 76px; }
+.p-blason h1 { margin: 0; font: 400 40px/1 "UnifrakturMaguntia", serif; color: var(--brass-hi); text-shadow: 0 2px 0 #5a3a0a; }
+.p-blason .lead { color: var(--muted); margin: 0; font-style: italic; }
+.p-blason .lab { font: 13px "IM Fell English SC", serif; color: var(--muted); letter-spacing: .04em; }
+.p-blason .champ { border: 1px solid var(--brass); padding: 12px; display: grid; gap: 4px; text-align: center; background: rgba(0, 0, 0, .2); outline: 1px solid rgba(201, 162, 74, .35); outline-offset: 3px; }
+.p-blason .card { border: 1px solid var(--line); background: rgba(51, 16, 26, .85); padding: 14px; display: grid; gap: 8px; }
+.p-blason .card h3 { margin: 0; font: 22px/1.1 "Cinzel", serif; font-weight: 800; color: var(--brass-hi); }
+.p-blason .pts3 { display: flex; gap: 6px; font-size: 14px; }
+.p-blason .pts3 span { border: 1px solid var(--line); padding: 2px 8px; }
+.p-blason .pts3 b { font: 800 16px "Cinzel", serif; color: var(--brass-hi); margin-right: 3px; }
+.p-blason .btn { background: linear-gradient(180deg, var(--brass-hi), var(--brass)); color: #2a1503; border: 1px solid #7a5a1a; font: 700 14px "Cinzel", serif; padding: 9px 14px; justify-self: start; letter-spacing: .04em; }
+.p-blason .duo { display: grid; grid-template-columns: 1fr auto 1fr; gap: 6px; align-items: center; }
+.p-blason .mini { border: 1px solid var(--brass); padding: 10px 6px; text-align: center; font-weight: 600; font-size: 14px; }
+.p-blason .or { font: 14px "IM Fell English SC", serif; color: var(--brass); }
+.p-blason .tabbar { background: #1a0609; border-top: 1px solid var(--line); font: 14px "IM Fell English SC", serif; color: var(--muted); }
+.p-blason .tabbar .on { color: var(--brass-hi); }
+.p-blason .bar { height: 4px; background: var(--panel); } .p-blason .bar i { display: block; height: 100%; width: 43%; background: var(--brass); }
+.p-blason .score { display: flex; justify-content: space-between; align-items: center; font: 800 22px "Cinzel", serif; color: var(--brass-hi); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 8px 2px; }
+.p-blason .score small { display: block; font: 13px "IM Fell English SC", serif; color: var(--muted); }
+.p-blason .chip { font: 13px "IM Fell English SC", serif; color: var(--brass); justify-self: start; }
+.p-blason .q { margin: 0; font: 700 24px/1.1 "Cormorant Garamond", serif; }
+.p-blason .fact { position: relative; text-align: left; background: rgba(51, 16, 26, .9); border: 1px solid var(--line); color: var(--ivory); padding: 14px; display: grid; gap: 6px; font: 600 16px/1.3 "Cormorant Garamond", serif; cursor: pointer; min-height: 92px; }
+.p-blason .fact.good { border-color: var(--brass); } .p-blason .fact.bad { opacity: .7; }
+.p-blason .yr { font: 800 22px "Cinzel", serif; color: var(--brass-hi); }
+.p-blason .seal { position: absolute; right: 10px; top: 10px; width: 46px; height: 46px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d0344a, var(--wax) 55%, #5e0c18); display: grid; place-items: center; font: 11px "IM Fell English SC", serif; color: #ffd7dd; box-shadow: 0 2px 6px rgba(0, 0, 0, .5); animation: stamp .5s cubic-bezier(.2, 1.6, .4, 1) both; }
+@keyframes stamp { from { transform: scale(2.2) rotate(-20deg); opacity: 0; } to { transform: rotate(-8deg); opacity: 1; } }
+.p-blason .sheet { border-top: 1px solid var(--brass); padding: 10px 2px; }
+.p-blason .sheet h4 { margin: 0 0 4px; font: 400 26px "UnifrakturMaguntia", serif; color: var(--brass-hi); }
+.p-blason .sheet.ko h4 { color: #e07a86; }
+.p-blason .row { display: grid; grid-template-columns: 26px minmax(0, 1fr) auto; gap: 10px; align-items: center; padding: 10px; border-bottom: 1px solid var(--line); }
+.p-blason .pos { font: 800 16px "Cinzel", serif; color: var(--muted); }
+.p-blason .pt { font: 700 15px "Cinzel", serif; color: var(--brass-hi); }
+.p-blason .who { min-width: 0; display: grid; gap: 3px; }
+.p-blason .tier-label { font: 13px "IM Fell English SC", serif; color: var(--muted); margin-top: 8px; }
+/* 1-3 : gothique sable et pourpre, liseré d'or, flammes de brasero violettes */
+.p-blason .t1 { background: rgba(26, 15, 31, .7); border: 1px solid var(--purp); }
+.p-blason .t1 .nm { font: 400 20px "UnifrakturMaguntia", serif; background: linear-gradient(100deg, #2a0f3d, #8e4fc9 25%, #e9d4ff 38%, #6a2c9a 55%, #1a0f1f 75%, #b98cff) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 4s linear infinite; -webkit-text-stroke: .4px var(--brass-hi); }
+.p-blason .t1 .ti { font: italic 600 13px "Cormorant Garamond", serif; color: #d9c2f0; }
+/* 4-5 : lettres de pirate à la feuille d'or, flammes dorées */
+.p-blason .t2 .nm { font: 400 19px "Pirata One", serif; background: linear-gradient(100deg, #7a5410, #f2d98a 25%, #fff6d8 38%, #c9a24a 55%, #7a5410 75%, #f2d98a) 0 0 / 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; animation: shimmer 3.5s linear infinite; }
+.p-blason .t2 .ti { font: italic 600 13px "Cormorant Garamond", serif; color: var(--brass-hi); }
+/* 6-10 : capitales gravées, titre sur une banderole qui ondule */
+.p-blason .t3 .nm { font: 800 15px "Cinzel", serif; color: var(--ivory); text-shadow: 0 1px 0 #000, 0 -1px 0 rgba(255, 255, 255, .15); letter-spacing: .06em; }
+.p-blason .t3 .ti { justify-self: start; position: relative; background: var(--brass); color: #2a1503; font: 600 12px "Cormorant Garamond", serif; padding: 1px 12px; clip-path: polygon(0 0, 100% 0, 94% 50%, 100% 100%, 0 100%, 6% 50%); animation: wave 3s ease-in-out infinite; transform-origin: left center; }
+@keyframes wave { 0%, 100% { transform: skewY(0); } 50% { transform: skewY(-2deg); } }
+/* 11-20 : petites capitales anciennes, sceau de cire qui tombe */
+.p-blason .t4 .nm { font: 16px "IM Fell English SC", serif; color: var(--ivory); display: inline-flex; align-items: center; gap: 8px; }
+.p-blason .t4 .mini-seal { width: 20px; height: 20px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #d0344a, var(--wax) 55%, #5e0c18); display: grid; place-items: center; font: 10px "IM Fell English SC", serif; color: #ffd7dd; animation: stamp .6s cubic-bezier(.2, 1.6, .4, 1) both; animation-delay: calc(var(--i) * 120ms); }
+.p-blason .t4 .ti { font: italic 13px "Cormorant Garamond", serif; color: var(--muted); }
+
+@media (prefers-reduced-motion: reduce) { .p-quai *, .p-neon *, .p-blason *, .flame { animation: none !important; } .p-neon .t3 .nm { width: auto; border: 0; } }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="fl-gold" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff5a00"/><stop offset=".55" stop-color="#ffb000"/><stop offset="1" stop-color="#fff2a8"/></linearGradient>
+    <linearGradient id="fl-dark" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#10002b"/><stop offset=".5" stop-color="#7b2ff7"/><stop offset="1" stop-color="#e0aaff"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="shell">
+  <header class="intro">
+    <h1>Géoconomic Duel · trois directions</h1>
+    <p>Trois habillages complets du même jeu, pour choisir. Chacun change les couleurs, les polices, la façon de révéler les années et l'effet de chaque tranche du classement : 1 à 3, 4 et 5, 6 à 10, 11 à 20. Touche une carte dans l'écran « Manche » pour voir la révélation. Les joueurs du classement sont des exemples.</p>
+  </header>
+  <nav class="picker" role="tablist" aria-label="Directions">
+    <button role="tab" data-p="quai" id="tab-quai"><b>1 · Quai</b><span>Tableau d'affichage de gare, volets et LED</span></button>
+    <button role="tab" data-p="neon" id="tab-neon"><b>2 · Néon</b><span>Borne d'arcade, pixels et tubes néon</span></button>
+    <button role="tab" data-p="blason" id="tab-blason"><b>3 · Blason</b><span>Tournoi héraldique, gothique et cire</span></button>
+  </nav>
+  <main id="stage"></main>
+  <p class="choose">Dis-moi <b>1</b>, <b>2</b> ou <b>3</b>, ou un mélange (par exemple « le classement du 3 avec les écrans du 1 »), et je l'applique au vrai jeu.</p>
+</div>
+
+<script>
+(() => {
+  const TITLES = [
+    "Empereur des ténèbres de la mort éternelle", "Sultan de puissance extrême, attention danger", "Monarque nocif du savoir lumineux",
+    "Suzerain millénaire féroce et galvanisé", "Potentat extrême, lucide présomption",
+    "Archiduc ardent, mélancolie supersonique", "Grand vizir de l'érudition sournoise", "Margrave turbulent de l'aube électrique",
+    "Doge suprême des archives interdites", "Calife de la connaissance tonitruante", "Shogun impérieux, mémoire d'acier",
+    "Tsar intrépide du passé brûlant", "Pharaon éternel, sagesse corrosive", "Maharadjah des siècles insondables",
+    "Khan farouche de la frise infinie", "Prince électeur de l'anecdote fatale", "Duc vorace, chronologie insolente",
+    "Marquis ténébreux du savoir oblique", "Comte palatin des almanachs maudits", "Vicomte souverain, panique majestueuse",
+  ];
+  // Joueurs d'exemple pour remplir le classement.
+  const NAMES = ["Léa", "Karim", "Tom", "Inès", "Hugo", "Maëlys", "Yanis", "Chloé", "Sacha", "Nour", "Jules", "Emma", "Adam", "Zoé", "Rayan", "Lina", "Noah", "Jade", "Ilyes", "Manon"];
+  const POINTS = [412, 389, 361, 340, 322, 298, 287, 270, 255, 241, 230, 214, 203, 196, 180, 171, 159, 148, 136, 124];
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const tierOf = (k) => (k < 3 ? 1 : k < 5 ? 2 : k < 10 ? 3 : 4);
+  const FLAME = (tone, k) => `<svg class="flame f${k}" viewBox="0 0 24 32" aria-hidden="true"><path fill="url(#fl-${tone})" d="M12 1c1.6 5.6 7 8 7 16a7 7 0 0 1-14 0c0-3.6 1.7-5.8 3.6-7.2.3 2.8 1.7 4.2 3.2 4.2C10.6 9.6 10.4 5.4 12 1z"/><path fill="#fff" opacity=".35" d="M12 16c.8 2.4 3 3.4 3 6.4a3 3 0 0 1-6 0c0-1.6.8-2.6 1.6-3.2.2 1.2.8 1.8 1.4 1.8-.4-1.8-.6-3.4 0-5z"/></svg>`;
+  // Flamme en pixels, deux images qui alternent.
+  const PIX = (c1, c2) => `<svg class="pix" viewBox="0 0 6 8" aria-hidden="true" shape-rendering="crispEdges"><g class="a"><rect x="2" y="0" width="1" height="1" fill="${c2}"/><rect x="1" y="1" width="3" height="2" fill="${c2}"/><rect x="1" y="3" width="4" height="3" fill="${c1}"/><rect x="2" y="4" width="2" height="2" fill="${c2}"/><rect x="0" y="6" width="6" height="2" fill="${c1}"/></g><g class="b"><rect x="3" y="0" width="1" height="1" fill="${c2}"/><rect x="2" y="1" width="3" height="2" fill="${c2}"/><rect x="1" y="3" width="4" height="3" fill="${c1}"/><rect x="2" y="3" width="2" height="2" fill="${c2}"/><rect x="0" y="6" width="6" height="2" fill="${c1}"/></g></svg>`;
+
+  // Nom et titre d'une ligne du classement, selon la direction et la tranche.
+  function decorate(p, k) {
+    const t = tierOf(k), name = NAMES[k], title = TITLES[k];
+    if (p === "quai") {
+      if (t <= 2) { const tone = t === 1 ? "dark" : "gold"; return `<span class="fxw">${FLAME(tone, 1)}<span class="nm">${esc(name)}</span>${FLAME(tone, 2)}</span><span class="ti"><span>${esc(title)}</span></span>`; }
+      if (t === 3) return `<span class="nm">${[...name].map((c, i) => `<i style="--i:${i}">${esc(c)}</i>`).join("")}</span><span class="ti">${esc(title)}</span>`;
+      return `<span class="nm">${esc(name)}</span><span class="ti"><span>${esc(title)}</span></span>`;
+    }
+    if (p === "neon") {
+      if (t === 1) return `<span class="fxw">${PIX("#1a0033", "#b46cff")}<span class="nm" data-t="${esc(name)}">${esc(name)}</span>${PIX("#1a0033", "#b46cff")}</span><span class="ti">${esc(title)}</span>`;
+      if (t === 2) return `<span class="fxw">${PIX("#ff5a00", "#ffe14d")}<span class="nm">${esc(name)}</span>${PIX("#ff5a00", "#ffe14d")}</span><span class="ti">${esc(title)}</span>`;
+      if (t === 3) return `<span class="nm" style="--n:${[...name].length}">${esc(name)}</span><span class="ti">${esc(title)}</span>`;
+      return `<span class="nm">${esc(name)}</span><span class="ti">${esc(title)}</span>`;
+    }
+    if (t <= 2) { const tone = t === 1 ? "dark" : "gold"; return `<span class="fxw">${FLAME(tone, 1)}<span class="nm">${esc(name)}</span>${FLAME(tone, 2)}</span><span class="ti">${esc(title)}</span>`; }
+    if (t === 3) return `<span class="nm">${esc(name)}</span><span class="ti">${esc(title)}</span>`;
+    return `<span class="nm"><span class="mini-seal" style="--i:${k - 10}">${esc(name.charAt(0))}</span>${esc(name)}</span><span class="ti">${esc(title)}</span>`;
+  }
+  const TIER_LABEL = {
+    quai: ["Places 1 à 3 · noir violet, flammes", "Places 4 et 5 · or, flammes", "Places 6 à 10 · lettres sur volets", "Places 11 à 20 · afficheur LED"],
+    neon: ["Places 1 à 3 · chrome qui glitche, flammes pixel", "Places 4 et 5 · tube néon", "Places 6 à 10 · machine à écrire", "Places 11 à 20 · pixels arc-en-ciel"],
+    blason: ["Places 1 à 3 · gothique pourpre, brasero", "Places 4 et 5 · feuille d'or", "Places 6 à 10 · banderole", "Places 11 à 20 · sceau de cire"],
+  };
+  function ranking(p) {
+    let out = "", last = 0;
+    for (let k = 0; k < 20; k++) {
+      const t = tierOf(k);
+      if (t !== last) { out += `<p class="tier-label">${TIER_LABEL[p][t - 1]}</p>`; last = t; }
+      out += `<div class="row t${t}"><span class="pos">${k + 1}</span><div class="who">${decorate(p, k)}</div><span class="pt">${POINTS[k]}</span></div>`;
+    }
+    return out;
+  }
+
+  const PROJECTS = {
+    quai: {
+      name: "Quai", pitch: "Le jeu parle de dates : on les affiche comme un tableau de départs. Panneaux noirs, jaune de signalétique, lettres condensées. Les années tombent sur des volets qui se retournent un par un.",
+      points: ["Révélation : les quatre chiffres de l'année se retournent comme sur un tableau de gare.", "Classement 6 à 10 : chaque lettre du nom est sur un volet, et le nom se retourne en vague toutes les 6 secondes.", "Classement 11 à 20 : nom en LED ambre, titre qui défile comme une annonce."],
+      swatches: ["#121315", "#1c1d20", "#0b0c0d", "#ece9e1", "#f2c230", "#4cc06a", "#e5483b"],
+      fonts: ["Barlow Condensed · titres et chiffres", "Barlow · textes", "Big Shoulders Stencil · volets 6 à 10", "Share Tech Mono · LED 11 à 20", "Cinzel Decorative · top 5"],
+    },
+    neon: {
+      name: "Néon", pitch: "Une borne d'arcade des années 80 : écran à balayage, grille qui file vers l'horizon, scores en pixels. Le 1 contre 1 devient « Player 1 contre Player 2 ».",
+      points: ["Révélation : l'année défile comme un compteur, puis « +1 UP » s'envole.", "Classement 6 à 10 : le nom s'écrit lettre par lettre, curseur clignotant.", "Classement 11 à 20 : police pixel dont les couleurs tournent lentement."],
+      swatches: ["#0d0221", "#170a33", "#f4ecff", "#ff2fd1", "#2de2e6", "#c6ff3d", "#ffe14d"],
+      fonts: ["Press Start 2P · scores, boutons", "VT323 · textes", "Monoton · grand titre, néon 4 et 5", "Silkscreen · 11 à 20"],
+    },
+    blason: {
+      name: "Blason", pitch: "Tes titres (Empereur, Sultan, Suzerain…) appellent un tournoi de chevalerie : rouge sang de bœuf, laiton, écriture gothique. Chaque bonne réponse reçoit un sceau de cire.",
+      points: ["Révélation : un sceau de cire rouge vient frapper la bonne carte.", "Classement 6 à 10 : le titre flotte sur une banderole de laiton qui ondule.", "Classement 11 à 20 : un petit sceau à l'initiale tombe devant chaque nom."],
+      swatches: ["#23080c", "#33101a", "#efe3c8", "#c9a24a", "#f2d98a", "#6a2c9a", "#a3162b"],
+      fonts: ["UnifrakturMaguntia · grand titre, top 3", "Cinzel · chiffres, 6 à 10", "Cormorant Garamond · textes", "IM Fell English SC · étiquettes, 11 à 20", "Pirata One · 4 et 5"],
+    },
+  };
+
+  const SHIELD = `<svg class="shield" viewBox="0 0 64 76" aria-hidden="true"><path d="M4 4h56v30c0 20-14 32-28 38C18 66 4 54 4 34z" fill="#6a2c9a" stroke="#c9a24a" stroke-width="3"/><path d="M32 4v68" stroke="#c9a24a" stroke-width="2"/><path d="M4 30h56" stroke="#c9a24a" stroke-width="2" opacity=".6"/><text x="18" y="25" font-family="Cinzel, serif" font-size="13" font-weight="800" fill="#f2d98a" text-anchor="middle">AV</text><text x="46" y="25" font-family="Cinzel, serif" font-size="13" font-weight="800" fill="#f2d98a" text-anchor="middle">AP</text></svg>`;
+
+  function home(p) {
+    if (p === "quai") return `
+      <div class="top"><span>Géoconomic <b>Duel</b></span><span>▲ 124 pts</span></div>
+      <div class="body">
+        <div class="champ"><span class="lab">${esc(TITLES[0])}</span><div class="row t1" style="padding:0;border:0;background:none">${`<div class="who"><span class="fxw">${FLAME("dark", 1)}<span class="nm">Léa</span>${FLAME("dark", 2)}</span></div>`}</div></div>
+        <div><p class="strip"><span>Prochain duel</span><span>7 manches · 12 s</span></p><h1>Avant ou après ?</h1><p class="lead">Deux événements, une question : lequel est arrivé en premier ?</p></div>
+        <div class="duo"><span class="mini">La valise à roulettes</span><span class="or">ou</span><span class="mini">Les premiers pas sur la Lune</span></div>
+        <div class="card"><span class="lab">Défi du jour · 5 questions</span><h3>Les mêmes pour tout le monde</h3><span style="color:var(--yel);font-weight:700">Jusqu'à +15 pts</span><button class="btn" tabindex="-1">Jouer le défi</button></div>
+        <div class="card"><h3>1 contre 1</h3><div class="pts3"><span><b>17</b>victoire</span><span><b>7</b>égalité</span><span><b>0</b>défaite</span></div><button class="btn" tabindex="-1">Adversaire au hasard</button></div>
+      </div>`;
+    if (p === "neon") return `
+      <div class="top"><span>GEO<b>DUEL</b></span><span class="hi">HI 0412</span></div>
+      <div class="body">
+        <div class="champ"><span class="lab">${esc(TITLES[0]).toUpperCase()}</span><div class="row t1" style="padding:0;border:0;background:none"><div class="who"><span class="fxw">${PIX("#1a0033", "#b46cff")}<span class="nm" data-t="LÉA">LÉA</span>${PIX("#1a0033", "#b46cff")}</span></div></div></div>
+        <div class="hero"><span class="vs">PLAYER 1 · VS · PLAYER 2</span><h1>Avant ou après</h1><p class="coin">APPUIE POUR JOUER</p></div>
+        <div class="duo"><span class="mini">Valise à roulettes</span><span class="or">OU</span><span class="mini">Pas sur la Lune</span></div>
+        <div class="card"><h3>DÉFI DU JOUR</h3><span>5 questions, les mêmes pour tous. Jusqu'à 15 pts.</span><button class="btn" tabindex="-1">START</button></div>
+        <div class="card"><h3>1 CONTRE 1</h3><div class="pts3"><span><b>17</b>WIN</span><span><b>7</b>DRAW</span><span><b>0</b>LOSE</span></div><button class="btn" tabindex="-1">TROUVER UN P2</button></div>
+      </div>`;
+    return `
+      <div class="top"><span>Géoconomic <b>Duel</b></span><span>124 pts</span></div>
+      <div class="body">
+        <div class="champ"><span class="lab">${esc(TITLES[0])}</span><div class="row t1" style="padding:0;border:0;background:none;justify-content:center;display:flex"><div class="who"><span class="fxw">${FLAME("dark", 1)}<span class="nm">Léa</span>${FLAME("dark", 2)}</span></div></div></div>
+        <div class="hero">${SHIELD}<h1>Avant ou Après</h1><p class="lead">Tournoi des dates, en sept passes d'armes</p></div>
+        <div class="duo"><span class="mini">La valise à roulettes</span><span class="or">ou</span><span class="mini">Les premiers pas sur la Lune</span></div>
+        <div class="card"><span class="lab">Épreuve du jour</span><h3>Cinq questions pour tous</h3><span>Jusqu'à 15 points</span><button class="btn" tabindex="-1">Entrer en lice</button></div>
+        <div class="card"><h3>Le duel</h3><div class="pts3"><span><b>17</b>victoire</span><span><b>7</b>égalité</span><span><b>0</b>défaite</span></div><button class="btn" tabindex="-1">Défier un adversaire</button></div>
+      </div>`;
+  }
+
+  const ROUND = { a: ["Le premier briquet (lampe de Döbereiner)", 1823, "Technique"], b: ["La première allumette à friction", 1826, "Technique"], note: "Le briquet a précédé l'allumette de trois ans." };
+  function round(p) {
+    const head = p === "quai" ? `<div class="score"><div><small>Toi</small>3</div><span style="font-size:13px;color:var(--muted)">VS</span><div style="text-align:right"><small>Karim</small>2</div></div><span class="chip">Manche 4 / 7 · avant ou après</span>`
+      : p === "neon" ? `<div class="score"><div class="p1"><small>P1 · TOI</small>03</div><div class="p2" style="text-align:right"><small>P2 · KARIM</small>02</div></div><span class="chip">MANCHE 4/7</span>`
+      : `<div class="score"><div><small>Toi</small>III</div><span style="font:14px 'IM Fell English SC';color:var(--muted)">contre</span><div style="text-align:right"><small>Karim</small>II</div></div><span class="chip">Quatrième passe d'armes</span>`;
+    const q = p === "neon" ? "LEQUEL EST ARRIVÉ EN PREMIER ?" : "Lequel est arrivé en premier ?";
+    return `
+      <div class="top">${p === "neon" ? "<span>GEO<b>DUEL</b></span><span class='hi'>12</span>" : "<span>✕</span><span>12 s</span>"}</div>
+      <div class="body">
+        <div class="bar"><i></i></div>
+        ${head}
+        <h2 class="q">${q}</h2>
+        ${[ROUND.a, ROUND.b].map((f, k) => `<button class="fact" data-k="${k}"><span class="${p === "neon" ? "lab" : "lab"}" style="${p === "quai" ? "background:var(--flap);justify-self:start;padding:2px 6px" : ""}">${esc(f[2])}</span><span>${esc(f[0])}</span><span class="yr-slot"></span></button>`).join(`<span class="or" style="text-align:center">${p === "neon" ? "OU" : "ou"}</span>`)}
+        <div class="sheet-slot"></div>
+      </div>`;
+  }
+  function reveal(p, root, pick) {
+    const facts = root.querySelectorAll(".fact");
+    const first = ROUND.a[1] < ROUND.b[1] ? 0 : 1;
+    facts.forEach((b) => (b.disabled = true));
+    facts.forEach((b, k) => {
+      const y = [ROUND.a, ROUND.b][k][1];
+      const slot = b.querySelector(".yr-slot");
+      if (k === first) b.classList.add("good"); else if (k === pick) b.classList.add("bad");
+      if (p === "quai") slot.innerHTML = `<span class="yr">${String(y).split("").map((d, i) => `<i style="--i:${i}">${d}</i>`).join("")}</span>`;
+      else if (p === "neon") {
+        slot.innerHTML = `<span class="yr">0000</span>${k === first && pick === first ? ' <span class="plus">+1 UP</span>' : ""}`;
+        const el = slot.querySelector(".yr"); const t0 = performance.now();
+        const step = (t) => { const r = Math.min(1, (t - t0) / 700); el.textContent = String(Math.round(1000 + (y - 1000) * r)).padStart(4, "0"); if (r < 1) requestAnimationFrame(step); };
+        requestAnimationFrame(step);
+      } else {
+        slot.innerHTML = `<span class="yr">${y}</span>`;
+        if (k === first) b.insertAdjacentHTML("beforeend", `<span class="seal">${pick === first ? "Gagné" : "Ici"}</span>`);
+      }
+    });
+    const ok = pick === first;
+    const title = p === "neon" ? (ok ? "BIEN JOUÉ !" : "GAME OVER ?") : p === "blason" ? (ok ? "Victoire" : "Touché") : ok ? "Juste" : "Raté";
+    root.querySelector(".sheet-slot").innerHTML = `<div class="sheet ${ok ? "" : "ko"}"><h4>${title}</h4><span>3 ans d'écart. ${esc(ROUND.note)}</span></div><button class="replay" type="button">Rejouer la manche</button>`;
+    root.querySelector(".replay").onclick = () => mountRound(p, root);
+  }
+  function mountRound(p, root) {
+    root.innerHTML = round(p);
+    root.querySelectorAll(".fact").forEach((b) => (b.onclick = () => reveal(p, root, +b.dataset.k)));
+  }
+  const tabbar = (p, on) => `<div class="tabbar"><span class="${on === 0 ? "on" : ""}">${p === "neon" ? "JOUER" : p === "blason" ? "Lice" : "Jouer"}</span><span class="${on === 1 ? "on" : ""}">${p === "neon" ? "HI-SCORES" : p === "blason" ? "Armorial" : "Classement"}</span></div>`;
+  const phone = (label, inner, p, on) => `<div class="phone-wrap"><p>${label}</p><div class="phone"><div class="screen"><div class="scroll">${inner}</div>${tabbar(p, on)}</div></div></div>`;
+
+  function show(p) {
+    const P = PROJECTS[p];
+    document.querySelectorAll(".picker button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.p === p)));
+    const stage = document.getElementById("stage");
+    stage.innerHTML = `<section class="project p-${p}" role="tabpanel" aria-labelledby="tab-${p}">
+      <div class="brief">
+        <div><h2>${P.name}</h2><p>${P.pitch}</p><ul>${P.points.map((x) => `<li>${esc(x)}</li>`).join("")}</ul></div>
+        <div class="spec">
+          <div><p class="k">Couleurs</p><div class="swatches">${P.swatches.map((c) => `<i style="background:${c}" title="${c}"></i>`).join("")}</div></div>
+          <div><p class="k">Polices</p><div class="fonts">${P.fonts.map((f) => `<span>${esc(f)}</span>`).join("")}</div></div>
+        </div>
+      </div>
+      <div class="phones">
+        ${phone("Accueil", home(p), p, 0)}
+        ${phone("Manche · touche une carte", `<div id="round-${p}"></div>`, p, 0)}
+        ${phone("Classement · fais défiler", `<div class="top">${p === "neon" ? "<span>HI-<b>SCORES</b></span><span class='hi'>TOP 20</span>" : p === "blason" ? "<span>L'<b>Armorial</b></span><span>des vingt</span>" : "<span>Classement <b>général</b></span><span>Top 20</span>"}</div><div class="body" style="gap:8px">${ranking(p)}</div>`, p, 1)}
+      </div>
+    </section>`;
+    mountRound(p, document.getElementById(`round-${p}`));
+    try { history.replaceState(null, "", "#" + p); } catch (e) {}
+  }
+  document.querySelectorAll(".picker button").forEach((b) => (b.onclick = () => show(b.dataset.p)));
+  const start = (location.hash || "").slice(1);
+  show(PROJECTS[start] ? start : "quai");
+})();
+</script>
