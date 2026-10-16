@@ -15,6 +15,500 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-16-ethiopie-erythree-rupture",
+    "date": "2026-10-16",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Adigrat, Tigré (nord de l'Éthiopie), près de la frontière érythréenne",
+        "label": "Éthiopie",
+        "coords": [
+          39.46,
+          14.28
+        ]
+      }
+    ],
+    "title": "L'Érythrée rompt avec l'Éthiopie, qui répète vouloir un accès à la mer Rouge",
+    "summary": "Après l'expulsion de 10 diplomates érythréens, Asmara a rompu ses relations. Addis-Abeba affirme que des soldats érythréens sont entrés dans le Tigré ; l'Érythrée dément.",
+    "points": [
+      "L'Éthiopie a dit au Conseil de sécurité de l'ONU que des soldats érythréens avaient avancé jusqu'à 60 kilomètres à l'intérieur du Tigré, sa région du nord. L'Érythrée dément et y voit un prétexte pour faire la guerre. Reuters n'a pas pu vérifier l'incursion de façon indépendante [1][2].",
+      "Les forces éthiopiennes et leurs alliés sont revenus à Adigrat, à environ 30 kilomètres de la frontière, après le retrait des troupes érythréennes. Selon ACLED, l'Éthiopie a utilisé des drones contre elles [2].",
+      "L'Érythrée a annoncé rompre ses relations diplomatiques après que l'Éthiopie a expulsé 10 de ses diplomates et fermé son ambassade à Asmara [1][2]."
+    ],
+    "why": [
+      "Un pays de plus de cent millions d'habitants sans accès à la mer menace de se brouiller avec le voisin qui a des ports. Le Premier ministre Abiy Ahmed répète que l'Éthiopie doit accéder à la mer Rouge ; il dit vouloir l'obtenir par la paix et le dialogue, mais l'Érythrée l'accuse de préparer une guerre d'agression [2].",
+      "Les deux pays s'étaient réconciliés en 2018 et avaient rouvert leurs postes-frontières, puis les relations se sont à nouveau dégradées. Les combats ont aussi repris entre l'armée éthiopienne et une alliance d'opposition qui inclut le TPLF, ce qui fragilise l'accord de paix de novembre 2022 [2]."
+    ],
+    "forMe": "Tu n'es pas touché directement, mais la mer Rouge est une route du commerce mondial. Un nouveau conflit dans la Corne de l'Afrique ajoute un risque de plus dans une région déjà tendue.",
+    "figures": [
+      {
+        "value": "60 km",
+        "label": "avancée affirmée de soldats érythréens dans le Tigré, selon l'Éthiopie (non vérifiée)",
+        "src": 2
+      },
+      {
+        "value": "10",
+        "label": "diplomates érythréens expulsés par l'Éthiopie",
+        "src": 2
+      },
+      {
+        "value": "≈ 30 km",
+        "label": "distance entre Adigrat et la frontière érythréenne",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "AP (KSAT)",
+        "name": "AP, « Eritrean forces seen entering towns in Ethiopia's Tigray region after crossing border »",
+        "url": "https://www.ksat.com/news/world/2026/10/08/eritrean-forces-seen-entering-towns-in-ethiopias-tigray-region-after-crossing-border/"
+      },
+      {
+        "short": "Reuters (The Star)",
+        "name": "Reuters, « Ethiopian forces regain control of border city after reported Eritrean incursion »",
+        "url": "https://www.thestar.com.my/news/world/2026/10/10/ethiopian-forces-regain-control-of-border-city-after-reported-eritrean-incursion"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-namibie-boeuf-europe-fievre-aphteuse",
+    "date": "2026-10-16",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Karasburg, sud de la Namibie",
+        "label": "Namibie",
+        "coords": [
+          18.75,
+          -28
+        ]
+      }
+    ],
+    "title": "L'Europe ferme sa porte au bœuf namibien à cause de la fièvre aphteuse",
+    "summary": "Depuis le 6 octobre, l'Union européenne a suspendu une partie des importations de viande de Namibie, après une épidémie dans le sud du pays.",
+    "points": [
+      "Un règlement européen adopté le 2 octobre est entré en vigueur le 6 octobre : il suspend les importations de bœuf frais, de viande de mouton et de chèvre, de certains animaux à sabots d'élevage ou sauvages, et de produits comme le biltong [1][3].",
+      "La fièvre aphteuse a été confirmée dans une ferme commerciale du district de Karasburg ; l'épidémie a été déclarée le 22 septembre et touchait 11 fermes [1][2].",
+      "Des exceptions existent : la viande ayant subi le traitement européen le plus strict contre le risque peut entrer, et la viande fraîche certifiée avant le 23 septembre peut encore arriver pendant 90 jours. L'accès préférentiel de la Namibie au marché européen reste inchangé [3]."
+    ],
+    "why": [
+      "L'Union européenne est de loin le premier client de la viande de bœuf namibienne : plus de 80 % de ses exportations de bœuf [1].",
+      "Le secteur était déjà fragile : les exportations de bœuf ont reculé de 41,1 % entre 2024 et 2025, de 22,7 millions à 13,4 millions de kilos, selon la Namibia Meat Board [1]. Des acheteurs européens se tournent déjà vers d'autres fournisseurs [2]."
+    ],
+    "forMe": "Si tu achètes de la viande importée, il se peut que d'autres pays prennent la place de la Namibie dans les rayons. Pour les éleveurs namibiens, c'est une perte de revenus immédiate.",
+    "figures": [
+      {
+        "value": "> 80 %",
+        "label": "part de l'Union européenne dans les exportations de bœuf de la Namibie",
+        "src": 1
+      },
+      {
+        "value": "− 41,1 %",
+        "label": "baisse des exportations de bœuf namibien entre 2024 et 2025",
+        "src": 1
+      },
+      {
+        "value": "11",
+        "label": "fermes touchées par l'épidémie",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Africanews",
+        "name": "Africanews, « EU suspends imports of meat from Namibia over FMD fears »",
+        "url": "https://www.africanews.com/2026/10/06/eu-suspends-imports-of-meat-from-namibia-over-fmd-fears/"
+      },
+      {
+        "short": "The Namibian",
+        "name": "The Namibian, « EU beef buyers turn to other suppliers amid FMD »",
+        "url": "https://www.namibian.com.na/eu-beef-buyers-turn-to-other-suppliers-amid-fmd/"
+      },
+      {
+        "short": "UE (SEAE)",
+        "name": "Délégation de l'UE en Namibie, « EU Statement on the foot and mouth disease outbreak in Namibia »",
+        "url": "https://www.eeas.europa.eu/delegations/namibia/eu-statement-foot-and-mouth-disease-outbreak-namibia_en"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-afghanistan-route-wakhan-chine",
+    "date": "2026-10-16",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Corridor du Wakhan, de Broghil à la frontière chinoise (Afghanistan)",
+        "label": "Afghanistan",
+        "coords": [
+          73.8,
+          37
+        ]
+      }
+    ],
+    "title": "Les talibans ouvrent une route vers la Chine pour ne plus dépendre du Pakistan",
+    "summary": "Une route de 121 kilomètres relie désormais le couloir du Wakhan, dans le nord-est de l'Afghanistan, à la frontière chinoise. Elle ne fait pas encore un vrai passage commercial.",
+    "points": [
+      "Le gouvernement taliban a inauguré le 4 octobre une route de 121 kilomètres qui va de Broghil, en face du district pakistanais de Chitral, jusqu'au « point zéro » de la frontière chinoise [1][2].",
+      "Elle a coûté environ 365 millions d'afghanis, soit près de 5,5 millions de dollars, et a été construite par des ingénieurs afghans, sans conseillers étrangers [1]. Selon un commentateur pakistanais, elle n'est pas goudronnée [2].",
+      "Pour Asia Times, ouvrir la route ne signifie pas qu'un passage commercial fonctionne déjà [1]."
+    ],
+    "why": [
+      "Jusqu'ici, l'Afghanistan, pays sans mer, dépend du Pakistan pour ses marchandises : elles passent par Karachi et par les postes de Torkham et de Chaman [2]. Cette route donne un chemin vers la Chine qui évite le territoire pakistanais [1][2].",
+      "Le contexte pèse : l'Afghanistan se plaint de frappes aériennes pakistanaises, que le Pakistan dit viser des militants, et la Chine s'inquiète de groupes armés près du Xinjiang [1]. Pour Pékin, c'est aussi une manière de moins dépendre du Pakistan et du corridor CPEC [1]."
+    ],
+    "forMe": "Cela n'a pas d'effet direct sur tes courses, mais c'est un exemple clair : quand un pays est coincé, il construit une route ailleurs pour changer ses dépendances.",
+    "figures": [
+      {
+        "value": "121 km",
+        "label": "longueur de la route, de Broghil à la frontière chinoise",
+        "src": 1
+      },
+      {
+        "value": "≈ 5,5 M$",
+        "label": "coût de la route (365 millions d'afghanis)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Asia Times",
+        "name": "Asia Times, « Afghan road to China tests Pakistan's power and leverage »",
+        "url": "https://asiatimes.com/2026/10/afghan-road-to-china-tests-pakistans-power-and-leverage/"
+      },
+      {
+        "short": "Pakistan Observer",
+        "name": "Pakistan Observer, « Road through Wakhan: Turning a bypass into a bridge »",
+        "url": "https://pakobserver.net/?p=781142"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-venezuela-fmi-pas-de-dollar",
+    "date": "2026-10-16",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Caracas, Venezuela",
+        "label": "Venezuela",
+        "coords": [
+          -66.9,
+          10.5
+        ]
+      }
+    ],
+    "title": "Le Venezuela dit non au dollar et présente au FMI son plan pétrole et mines",
+    "summary": "Le 14 octobre, à Bangkok, le vice-président à l'Économie a promis plus de pétrole et de minerais pour réparer l'eau et l'électricité, et a écarté la dollarisation.",
+    "points": [
+      "Le vice-président à l'Économie, Calixto Ortega, a présenté le 14 octobre aux réunions annuelles du FMI et de la Banque mondiale, à Bangkok, un plan pour augmenter la production de pétrole et de minerais et en réinvestir les recettes dans l'eau et l'électricité, négligées depuis une dizaine d'années [3].",
+      "Il a écarté d'adopter le dollar américain comme monnaie du pays : le bolívar doit, à terme, servir pour toute l'économie intérieure. La banque centrale parle d'une « remonétisation progressive » du bolívar et vise à moyen terme un objectif d'inflation [1][2][3].",
+      "Le FMI dit discuter d'un bureau technique dans le pays, mais le Venezuela n'a pas demandé de programme de financement [3]."
+    ],
+    "why": [
+      "Le Venezuela essaie de rouvrir sa porte à la finance mondiale. Le FMI prévoit +5 % de croissance en 2026 et +7 % en 2027, mais une inflation de 467,9 % fin 2026 : le prix de tout continue d'exploser [3][4].",
+      "Refuser le dollar est un choix politique autant qu'économique : cela garde une monnaie nationale, mais il faudra la rendre crédible. Selon le Rio Times, la présidente par intérim Delcy Rodríguez dirige le pays depuis la capture de Nicolás Maduro par les forces américaines en janvier 2026 [3]."
+    ],
+    "forMe": "Le Venezuela a de très grandes réserves de pétrole. Plus il produit, plus l'offre mondiale peut augmenter, ce qui pèse sur le prix à la pompe, mais le chemin est encore long.",
+    "figures": [
+      {
+        "value": "+ 5 %",
+        "label": "croissance prévue par le FMI au Venezuela en 2026 (+ 7 % en 2027)",
+        "src": 4
+      },
+      {
+        "value": "467,9 %",
+        "label": "inflation prévue par le FMI pour fin 2026",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "dollar",
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Descifrado",
+        "name": "Descifrado, « BCV dice ante el FMI que busca “una remonetización progresiva” del bolívar »",
+        "url": "https://www.descifrado.com/2026/10/14/bcv-dice-ante-el-fmi-que-busca-una-remonetizacion-progresiva-del-bolivar/"
+      },
+      {
+        "short": "Última Hora",
+        "name": "Diario Última Hora, « Venezuela presenta al FMI cuatro pilares para consolidar estabilidad macroeconómica »",
+        "url": "https://www.diarioultimahoradigital.com.ve/2026/10/15/venezuela-presenta-al-fmi-cuatro-pilares-para-consolidar-estabilidad-macroeconomica/"
+      },
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Venezuela Pitches Oil and Mining Plan to the IMF in Bangkok »",
+        "url": "https://www.riotimesonline.com/venezuela-oil-and-mining-plan-imf-2026"
+      },
+      {
+        "short": "Últimas Noticias",
+        "name": "Últimas Noticias, « IMF projects that Venezuela's economy will grow by 5% in 2026 »",
+        "url": "https://en.ultimasnoticias.com.ve/actualidad/fmi-proyecta-que-la-economia-de-venezuela-crecera-5-en-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-costa-rica-megaprison",
+    "date": "2026-10-16",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "La Reforma, San Rafael de Alajuela (Costa Rica)",
+        "label": "Costa Rica",
+        "coords": [
+          -84.25,
+          10.03
+        ]
+      }
+    ],
+    "title": "Le Costa Rica prévoyait d'ouvrir une mégaprison de 5 100 places, copiée sur celle du Salvador",
+    "summary": "Le centre de haute sécurité contre le crime organisé devait ouvrir le 14 octobre. Il s'inspire de la prison géante de Nayib Bukele au Salvador.",
+    "points": [
+      "Le Costa Rica a annoncé l'ouverture, prévue le mercredi 14 octobre à 12 h 30, de son Centre de haute contention contre le crime organisé (CACCO), dans le complexe pénitentiaire de La Reforma [1]. Nous n'avons pas trouvé de compte rendu de la cérémonie elle-même.",
+      "La prison a une capacité de 5 100 détenus et s'inspire du CECOT, la méga-prison salvadorienne ; le Salvador a donné les plans. Son coût tourne autour de 35 millions de dollars [2][3].",
+      "Les médias costaricains annonçaient la présence de Nayib Bukele et du président colombien, sans confirmation de la présidence. Des organisations de défense des droits humains dénoncent des abus au CECOT, ce que le gouvernement salvadorien nie [1][2]."
+    ],
+    "why": [
+      "Le Costa Rica, longtemps connu pour sa tranquillité, copie une méthode dure venue de son voisin face à la montée du crime organisé. La nouvelle présidente Laura Fernández assume ce modèle [4].",
+      "Le projet doit augmenter de 40 % la capacité des prisons du pays [3]. Reste à voir si ce choix réduira vraiment la violence."
+    ],
+    "forMe": "Tu verras peut-être ce modèle cité dans d'autres pays : la sécurité devient un sujet central pour les élections en Amérique latine.",
+    "figures": [
+      {
+        "value": "5 100",
+        "label": "places dans la nouvelle prison",
+        "src": 2
+      },
+      {
+        "value": "+ 40 %",
+        "label": "hausse de la capacité carcérale du Costa Rica prévue par le projet",
+        "src": 3
+      },
+      {
+        "value": "≈ 35 M$",
+        "label": "coût estimé",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "El Mundo (Salvador)",
+        "name": "Diario El Mundo, « Costa Rica inaugurará el 14 de octubre su megacárcel inspirada en el CECOT »",
+        "url": "https://diario.elmundo.sv/el-mundo/costa-rica-inaugurara-el-14-de-octubre-su-megacarcel-inspirada-en-el-cecot"
+      },
+      {
+        "short": "Bloomberg Línea",
+        "name": "Bloomberg Línea, « Costa Rica está por inaugurar su “megacárcel” : así es la prisión inspirada en el Cecot de Bukele »",
+        "url": "https://www.bloomberglinea.com/latinoamerica/costa-rica/costa-rica-esta-por-inaugurar-su-megacarcel-asi-es-la-prision-inspirada-en-el-cecot-de-bukele/"
+      },
+      {
+        "short": "Reuters (Internazionale)",
+        "name": "Reuters, « Costa Rica, weeks before election, hosts El Salvador President Bukele to inaugurate new mega-prison »",
+        "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/01/15/costa-rica-weeks-before-election-hosts-el-salvador-president-bukele-to-inaugurate-new-mega-prison"
+      },
+      {
+        "short": "Artículo 14",
+        "name": "Artículo 14, « La presidenta de Costa Rica, Laura Fernández, abraza el modelo Bukele con una megacárcel »",
+        "url": "https://www.articulo14.es/internacional/la-presidenta-de-costa-rica-laura-fernandez-abraza-el-modelo-bukele-con-una-megacarcel-para-combatir-el-crimen-organizado-20261008.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-grece-un-milliard-energie-clause-derogation",
+    "date": "2026-10-16",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Athènes, Grèce",
+        "label": "Grèce",
+        "coords": [
+          23.73,
+          37.98
+        ]
+      }
+    ],
+    "title": "Bruxelles autorise la Grèce à dépenser un milliard d'euros pour son énergie hors du plafond de dépenses",
+    "summary": "L'Union européenne a accepté d'étendre à l'énergie la « clause de sauvegarde » grecque : batteries, pompes à chaleur et trains financés par le pays lui-même.",
+    "points": [
+      "Le 9 octobre, l'Union européenne a accepté, pour la Grèce seulement, d'étendre la clause de dérogation nationale existante aux dépenses de résilience énergétique [1][2].",
+      "La Grèce prévoit environ un milliard d'euros d'investissements : stockage d'énergie, équipements des ménages, bâtiments publics et transports. Elle les finance avec ses propres ressources, pas par une nouvelle subvention européenne [1][2].",
+      "Parmi les projets : 200 millions d'euros pour des batteries associées aux énergies renouvelables, 200 millions pour des pompes à chaleur et des chauffe-eau solaires, et 320 millions pour la sécurité et l'extension du réseau ferré [2]."
+    ],
+    "why": [
+      "Normalement, un pays européen doit limiter la hausse de ses dépenses. Ici, la Grèce peut dépasser cette limite jusqu'à 0,3 % du PIB par an, et 0,6 % au total jusqu'en 2028, pour ces dépenses d'énergie [1][2].",
+      "Attention : ces sommes comptent quand même dans le déficit et dans la dette [1][2]. L'exception fait aussi de l'énergie un sujet de souveraineté : les États européens veulent mieux se protéger quand les prix s'envolent."
+    ],
+    "forMe": "Si tu paies tes factures d'énergie, c'est le genre de décision qui, à terme, peut aider à les stabiliser. Pour l'instant, c'est un signal que Bruxelles assouplit ses règles pour l'énergie.",
+    "figures": [
+      {
+        "value": "≈ 1 Md€",
+        "label": "investissements énergétiques grecs concernés",
+        "src": 1
+      },
+      {
+        "value": "0,3 % du PIB",
+        "label": "dépassement annuel autorisé, jusqu'à 0,6 % au total en 2028",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Greek Reporter",
+        "name": "Greek Reporter, « EU Gives Green Light for Greece's €1 Billion Energy Investment Plan »",
+        "url": "https://greekreporter.com/2026/10/10/energy-investment-greece-eu/"
+      },
+      {
+        "short": "To Vima",
+        "name": "To Vima, « Greece Wins EU Approval to Spend More on Energy Resilience »",
+        "url": "https://www.tovima.com/finance/greece-wins-eu-approval-to-spend-more-on-energy-resilience/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-irak-syrie-petrole-contourner-ormuz",
+    "date": "2026-10-16",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Baniyas, côte syrienne",
+        "label": "Syrie",
+        "coords": [
+          35.95,
+          35.18
+        ]
+      }
+    ],
+    "title": "Pour contourner Ormuz, l'Irak se tourne vers la Syrie : de l'essence en camion, un oléoduc en projet",
+    "summary": "Un terminal syrien reçoit de l'essence destinée à l'Irak, et un oléoduc irakien traversant la Syrie est à l'étude.",
+    "points": [
+      "La Syrie a commencé à acheminer de l'essence importée vers l'Irak par son terminal pétrolier de Baniyas, dans le cadre d'un accord de trois mois renouvelable, selon l'agence officielle syrienne rapportée par des analystes. Le passage frontalier entre les deux pays sert déjà au commerce de pétrole et de gaz [2][3].",
+      "Un réseau irakien d'oléoducs irait de Haditha à Baniyas en traversant la Syrie, avec une capacité initiale d'environ deux millions de barils par jour, ce qui permettrait à l'Irak d'exporter sans passer par le détroit d'Ormuz [1].",
+      "Le FMI attribue la contraction de l'économie du Moyen-Orient en 2026 à la fermeture prolongée d'Ormuz [4]."
+    ],
+    "why": [
+      "Quand un détroit se ferme, il faut une autre porte de sortie. L'Irak, très dépendant du pétrole, cherche une sortie par la Méditerranée, via un pays qui sort à peine de la guerre civile [1].",
+      "Rien n'est encore construit : les analystes parlent d'une opportunité plus que d'un fait accompli, avec de grandes difficultés de sécurité et de financement [1]. Les chiffres du trafic viennent surtout des médias d'État syriens et des analyses, donc ils restent à prendre avec prudence [2][3]."
+    ],
+    "forMe": "Plus il y a de routes pour sortir le pétrole du Golfe, moins un blocage d'Ormuz fait grimper le prix de l'essence en France. Ces solutions restent pourtant partielles.",
+    "figures": [
+      {
+        "value": "≈ 2 M b/j",
+        "label": "capacité initiale envisagée pour l'oléoduc Haditha–Baniyas",
+        "src": 1
+      },
+      {
+        "value": "3 mois",
+        "label": "durée, renouvelable, de l'accord sur l'essence transitant par Baniyas",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Chatham House",
+        "name": "Chatham House, « New energy and trade routes could bypass Hormuz and change the Middle East. But major challenges remain »",
+        "url": "https://www.chathamhouse.org/2026/09/new-energy-and-trade-routes-could-bypass-hormuz-and-change-middle-east-major-challenges"
+      },
+      {
+        "short": "Jerusalem Post",
+        "name": "The Jerusalem Post, « Iraq-Syria border becoming the Middle East's most important new energy corridor »",
+        "url": "https://www.jpost.com/middle-east/article-909969"
+      },
+      {
+        "short": "Centre Alma",
+        "name": "Alma Research and Education Center, « The New Oil Route from Iraq to Syria »",
+        "url": "https://israel-alma.org/the-new-oil-route-from-iraq-to-syria-an-economic-corridor-becoming-an-operational-opportunity-for-iran/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Middle East and Central Asia's economy to shrink in 2026 amid war, IMF says »",
+        "url": "https://www.aljazeera.com/economy/2026/10/13/middle-east-and-central-asias-economy-to-shrink-in-2026-amid-war-imf-says"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-16-casca-plus-rail-asie-centrale-europe",
+    "date": "2026-10-16",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Tachkent, Ouzbékistan (réunion des chemins de fer)",
+        "label": "Corridor CASCA+",
+        "coords": [
+          69.24,
+          41.3
+        ]
+      }
+    ],
+    "title": "Six chemins de fer d'Asie centrale et du Caucase s'allient pour faire passer plus de marchandises de Chine vers l'Europe",
+    "summary": "Réunis à Tachkent, les opérateurs ferroviaires de six pays ont signé un protocole pour accélérer le fret sur la route « CASCA+ ».",
+    "points": [
+      "Les 7 et 8 octobre, à Tachkent, les chemins de fer de l'Azerbaïdjan, du Kirghizistan, de l'Ouzbékistan, du Turkménistan, de la Géorgie et de la Turquie ont signé un protocole sur la route CASCA+ [1][2].",
+      "À l'ordre du jour : augmenter les volumes de fret, proposer des tarifs compétitifs pour les conteneurs réfrigérés, garantir un approvisionnement régulier en wagons porte-conteneurs et réduire le temps d'attente des conteneurs dans les ports [1].",
+      "Le « plus » de CASCA+ signifie que d'autres pays intéressés pourront rejoindre la route. L'objectif est d'augmenter le trafic venant d'Asie, en particulier de Chine, vers l'Europe [1][3]."
+    ],
+    "why": [
+      "Aujourd'hui, une grande partie des échanges Chine–Europe passe par la mer ou par la Russie. Ces pays veulent faire de leurs voies ferrées une alternative qui passe par le sud, via la Caspienne et le Caucase.",
+      "Les sources consultées ne donnent ni objectif de volume ni tarifs précis : c'est un accord de méthode, pas encore une preuve de résultats [1]."
+    ],
+    "forMe": "Beaucoup d'objets que tu achètes viennent d'Asie. Plus il existe de routes pour les transporter, moins un blocage sur l'une d'elles pèse sur les délais et les prix.",
+    "figures": [
+      {
+        "value": "6",
+        "label": "réseaux ferroviaires signataires du protocole",
+        "src": 1
+      },
+      {
+        "value": "7-8 oct.",
+        "label": "dates de la réunion de Tachkent",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Caspian Post",
+        "name": "Caspian Post, « Six Countries Sign Deal to Expand CASCA+ Transport Corridor »",
+        "url": "https://caspianpost.com/azerbaijan/six-countries-sign-deal-to-expand-casca-transport-corridor"
+      },
+      {
+        "short": "Kun.uz",
+        "name": "Kun.uz, « Uzbekistan and partner countries sign protocol to expand CASCA+ rail corridor »",
+        "url": "https://kun.uz/en/04742370"
+      },
+      {
+        "short": "Trend",
+        "name": "Trend, « Uzbekistan, five countries sign protocol to develop CASCA+ route »",
+        "url": "https://www.trend.az/casia/uzbekistan/4232753.html"
+      }
+    ]
+  },
+  {
     "id": "2026-10-15-pont-yalou-coree-du-nord",
     "date": "2026-10-15",
     "region": "Asie",
@@ -6464,402 +6958,6 @@ window.GEOCO.news = [
         "short": "Holland & Knight",
         "name": "Mexico Retains Preferential Access Under USMCA Despite New U.S. Forced Labor Tariffs (juillet 2026)",
         "url": "https://www.hklaw.com/en/insights/publications/2026/07/mexico-mantiene-acceso-preferencial-bajo-el-tmec"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-chili-cuivre-production",
-    "date": "2026-10-01",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Chili : la production de cuivre tombe à son plus bas niveau depuis plus de 15 ans",
-    "summary": "Le Chili, géant du cuivre, a extrait en août sa plus faible quantité mensuelle depuis 2011. Des menaces de grève dans de grandes mines pourraient aggraver la situation.",
-    "geo": [
-      {
-        "name": "Santiago, Chili",
-        "label": "Chili",
-        "coords": [
-          -70.67,
-          -33.45
-        ]
-      }
-    ],
-    "points": [
-      "La production chilienne de cuivre a chuté de 12,8 % sur un an en août, à environ 369 500 tonnes, son plus bas niveau mensuel depuis plus de 15 ans [1].",
-      "Les tempêtes de l'hiver austral, des perturbations dans les ports et une teneur en minerai plus faible dans plusieurs mines expliquent ce recul [1].",
-      "Des syndicats de la mine de Centinela (groupe Antofagasta) ont rejeté l'offre de la direction et des superviseurs d'Escondida (BHP), plus grande mine de cuivre du monde, ont voté en faveur d'une grève [2][3]."
-    ],
-    "why": [
-      "Le cuivre est le premier produit d'exportation du Chili et une source majeure de recettes pour l'État : moins de tonnes extraites, c'est moins d'argent public. Une grève à Centinela pourrait encore réduire l'offre [2].",
-      "Sur les marchés, la tonne de cuivre se maintenait autour de 14 417 dollars à Londres, soutenue par ces difficultés chiliennes [3]. Le cuivre est indispensable aux réseaux électriques, aux voitures électriques et aux centres de données."
-    ],
-    "forMe": "Le cuivre est partout : câbles, moteurs, éoliennes, voitures électriques. Quand le Chili produit moins, les prix montent, et à terme cela peut renchérir les travaux électriques, l'électroménager ou les équipements pour la transition énergétique en France.",
-    "figures": [
-      {
-        "value": "-12,8 %",
-        "label": "production de cuivre en août sur un an",
-        "src": 1
-      },
-      {
-        "value": "369 500 t",
-        "label": "cuivre extrait en août 2026",
-        "src": 1
-      },
-      {
-        "value": "14 417 $",
-        "label": "prix de la tonne de cuivre à Londres (1er oct.)",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Mining.com.au",
-        "name": "Mining.com.au, « Chile's monthly copper output sinks to 15-year low » (octobre 2026)",
-        "url": "https://mining.com.au/chiles-monthly-copper-output-sinks-to-15-year-low/"
-      },
-      {
-        "short": "Latin Times",
-        "name": "Latin Times, « Chile's Copper Hits 15-Year Low — and a Mine Strike Could Make It Worse » (octobre 2026)",
-        "url": "https://www.latintimes.com/chiles-copper-hits-15-year-low-mine-strike-could-make-it-worse-599774"
-      },
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Copper Steady at US$14,417 as Chile Output Hits 15-Year Low » (1er octobre 2026)",
-        "url": "https://www.riotimesonline.com/copper-markets-latam-thursday-october-1-2026/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-chine-carburants",
-    "date": "2026-10-01",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Chine : les raffineurs gèlent leurs exportations de carburants en octobre",
-    "summary": "Selon des sources citées par Reuters, les grands raffineurs chinois ont suspendu presque toutes leurs exportations d'essence, de diesel et de kérosène pour octobre, le temps de reconstituer les stocks du pays. Une mauvaise nouvelle pour un marché mondial du diesel déjà très tendu.",
-    "geo": [
-      {
-        "name": "Zhoushan, Zhejiang, Chine",
-        "label": "Zhejiang",
-        "coords": [
-          122.2,
-          30
-        ]
-      }
-    ],
-    "points": [
-      "Les raffineurs chinois ont suspendu leurs exportations de produits pétroliers hors Hong Kong et Macao jusqu'à nouvel ordre de Pékin, après la « Golden Week » qui s'achevait le 7 octobre [1].",
-      "PetroChina, géant public, a annulé plusieurs cargaisons d'essence et de kérosène prévues en octobre, et le raffineur privé Zhejiang Petrochemical n'a programmé aucune expédition pendant la semaine fériée [1].",
-      "Pékin avait restreint ces exportations dès mars, après le déclenchement de la guerre en Iran qui a perturbé l'approvisionnement en brut du Moyen-Orient, avant de les assouplir en juillet puis de les gérer mois par mois [1][2]."
-    ],
-    "why": [
-      "La Chine fait passer son marché intérieur avant ses clients étrangers : selon le cabinet Kpler, ses stocks commerciaux de diesel sont environ 20 millions de barils sous le niveau visé par Pékin, et ceux d'essence environ 9 millions de barils en dessous [2]. Les autorités doivent examiner les stocks et le rythme des raffineries avant de décider d'une reprise [1].",
-      "Selon les analystes, ce retrait risque d'aggraver la pénurie de diesel en Asie et au-delà, alors que les prix mondiaux atteignent des records [2]. La décision n'a toutefois pas été annoncée officiellement par Pékin et repose sur des sources anonymes [1]."
-    ],
-    "forMe": "Le diesel est un marché mondial : quand un gros vendeur comme la Chine ferme le robinet, les acheteurs asiatiques se tournent vers d'autres fournisseurs, notamment ceux qui livrent aussi l'Europe. Résultat possible : un gazole qui reste cher à la pompe en France, et des coûts de transport (camions, livraisons) qui se répercutent sur les prix.",
-    "figures": [
-      {
-        "value": "~20 millions",
-        "label": "barils de diesel manquants dans les stocks chinois (estimation Kpler)",
-        "src": 2
-      },
-      {
-        "value": "~9 millions",
-        "label": "barils d'essence manquants dans les stocks chinois",
-        "src": 2
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Reuters / Business Recorder",
-        "name": "Business Recorder (Reuters), « Chinese refiners suspend Oct fuel exports, PetroChina cancels cargoes, sources say » (1er octobre 2026)",
-        "url": "https://www.brecorder.com/news/40442157/chinese-refiners-suspend-oct-fuel-exports-petrochina-cancels-cargoes-sources-say"
-      },
-      {
-        "short": "Oilprice",
-        "name": "Oilprice.com, « China Halts October Fuel Exports as Global Diesel Crunch Deepens » (octobre 2026)",
-        "url": "https://oilprice.com/Latest-Energy-News/World-News/China-Halts-October-Fuel-Exports-as-Global-Diesel-Crunch-Deepens.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-ethiopie-erythree-rupture",
-    "date": "2026-10-01",
-    "region": "Afrique",
-    "theme": "geo",
-    "title": "Éthiopie-Érythrée : rupture diplomatique en pleine reprise des combats au Tigré",
-    "summary": "L'Érythrée a rompu ses relations diplomatiques avec l'Éthiopie, qui venait d'expulser ses diplomates. En parallèle, l'armée éthiopienne a repris Mekele, capitale du Tigré.",
-    "geo": [
-      {
-        "name": "Asmara, Érythrée",
-        "label": "Érythrée",
-        "coords": [
-          38.93,
-          15.32
-        ]
-      },
-      {
-        "name": "Mekele, Tigré, Éthiopie",
-        "label": "Tigré",
-        "coords": [
-          39.47,
-          13.5
-        ]
-      }
-    ],
-    "points": [
-      "L'Éthiopie a déclaré « persona non grata » 10 diplomates érythréens en poste à Addis-Abeba et leur a donné 48 heures pour partir, en accusant l'Érythrée d'« actes d'hostilité » [1].",
-      "L'Érythrée a répondu en rompant toutes ses relations diplomatiques, et accuse l'Éthiopie de vouloir s'emparer d'un accès à la mer Rouge [1].",
-      "Le 4 octobre, les forces gouvernementales éthiopiennes ont repris Mekele, la capitale du Tigré, après le retrait du Front de libération du peuple du Tigré (TPLF) [2]."
-    ],
-    "why": [
-      "Cette rupture efface le rapprochement de 2018 entre les deux pays, qui avait rétabli les liens après la guerre frontalière de 1998-2000 [1]. Elle intervient alors que les combats ont repris fin septembre au Tigré, où le TPLF s'était emparé des aéroports de Mekele, Aksoum et Shire [1].",
-      "Les États-Unis ont averti le 3 octobre que la Corne de l'Afrique « ne peut pas supporter un nouveau conflit militaire et une nouvelle crise humanitaire » et appelé les deux pays à revenir au cadre de paix de 2018 [3]. Les accusations sont réciproques : l'Éthiopie reproche à l'Érythrée de soutenir une nouvelle alliance rebelle, ce qu'Asmara dément, tandis que l'Érythrée accuse l'Éthiopie d'armer des opposants érythréens [1]."
-    ],
-    "forMe": "Et moi, dans tout ça ? La mer Rouge est l'une des routes maritimes les plus importantes du monde : une partie des marchandises entre l'Asie et l'Europe passe au large de l'Érythrée. Une guerre dans la région pourrait encore perturber ce trafic, avec à la clé des délais et des coûts de transport plus élevés pour ce que tu achètes.",
-    "figures": [
-      {
-        "value": "10",
-        "label": "diplomates érythréens expulsés d'Éthiopie",
-        "src": 1
-      },
-      {
-        "value": "48 h",
-        "label": "délai donné pour quitter le pays",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, Eritrea severs diplomatic ties with Ethiopia in tit-for-tat move (1er octobre 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/1/eritrea-severs-diplomatic-ties-with-ethiopia-in-tit-for-tat-move"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, Ethiopian government forces seize Tigray capital Mekelle as TPLF withdraws (4 octobre 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/4/government-forces-seize-capital-of-ethiopias-tigray-region-from-rebels"
-      },
-      {
-        "short": "Département d'État",
-        "name": "Département d'État américain, U.S. Statement on Increased Tensions Between Ethiopia and Eritrea (octobre 2026)",
-        "url": "https://www.state.gov/releases/office-of-the-spokesman/2026/10/u-s-statement-on-increased-tensions-between-ethiopia-and-eritrea"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-serbie-nis-sanctions",
-    "date": "2026-10-01",
-    "region": "Europe",
-    "theme": "eco",
-    "title": "Serbie : la seule raffinerie du pays obtient un nouveau sursis d'un mois",
-    "summary": "Washington a prolongé jusqu'au 30 octobre la licence qui permet à NIS, compagnie pétrolière serbe à capitaux russes, de continuer à fonctionner malgré les sanctions. Le hongrois MOL négocie toujours le rachat de la part russe.",
-    "geo": [
-      {
-        "name": "Pančevo, Serbie",
-        "label": "Serbie",
-        "coords": [
-          20.64,
-          44.87
-        ]
-      }
-    ],
-    "points": [
-      "Le Trésor américain (OFAC) a prolongé jusqu'au 30 octobre 2026 la licence d'exploitation de NIS, ce qui permet à la raffinerie de Pančevo de continuer à tourner, selon la ministre serbe de l'Énergie Dubravka Djedovic Handanovic [1].",
-      "Le 30 septembre, le groupe hongrois MOL a reçu une licence pour poursuivre jusqu'au 30 octobre les négociations sur le rachat de la participation majoritaire de NIS [2].",
-      "MOL négocie avec Gazprom Neft pour acquérir sa part de 56,15 % ; l'État serbe détient 29,9 % de l'entreprise [2][3]."
-    ],
-    "why": [
-      "Les sanctions américaines visent NIS parce qu'elle est contrôlée par des groupes russes ; elles sont entrées en vigueur en octobre 2025 et la raffinerie avait dû s'arrêter fin novembre 2025 faute de pétrole brut [3]. Depuis, la Serbie vit au rythme de licences de courte durée accordées par Washington [3].",
-      "L'enjeu est simple : Pančevo est la seule raffinerie de Serbie [1]. Tant que la part russe n'est pas vendue à un acheteur accepté par les États-Unis, l'approvisionnement en carburant du pays dépend d'une prolongation renouvelée chaque mois [2]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Ce feuilleton montre comment les sanctions contre la Russie touchent aussi des pays tiers, ici un candidat à l'Union européenne. Si tu voyages dans les Balkans, c'est aussi ce qui se joue derrière le prix du plein en Serbie.",
-    "figures": [
-      {
-        "value": "30 oct.",
-        "label": "nouvelle date limite de la licence américaine",
-        "src": 1
-      },
-      {
-        "value": "56,15 %",
-        "label": "part de Gazprom Neft que MOL veut racheter",
-        "src": 2
-      },
-      {
-        "value": "29,9 %",
-        "label": "part détenue par l'État serbe",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "TASS",
-        "name": "TASS, US extends license for Serbia's NIS until October 30 — Serbian Energy Ministry (octobre 2026)",
-        "url": "https://tass.com/economy/2195305"
-      },
-      {
-        "short": "EWB",
-        "name": "European Western Balkans, MOL receives a new license extension to continue talks on acquisition of Russian stake in NIS (1er octobre 2026)",
-        "url": "https://europeanwesternbalkans.com/2026/10/01/mol-receives-a-new-license-extension-to-continue-talks-on-acquisition-of-russian-stake-in-nis/"
-      },
-      {
-        "short": "bne IntelliNews",
-        "name": "bne IntelliNews, US sanctions on Serbian oil company NIS take effect",
-        "url": "https://www.intellinews.com/us-sanctions-on-serbian-oil-company-nis-take-effect-405546/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-armenie-budget-2027",
-    "date": "2026-10-01",
-    "region": "Europe",
-    "theme": "eco",
-    "title": "Arménie : un budget 2027 en déficit pour viser 6 % de croissance par an",
-    "summary": "Le gouvernement arménien a adopté son projet de budget 2027, avec un déficit financé par l'emprunt. Le Premier ministre vise une croissance moyenne de 6 % par an sur cinq ans.",
-    "geo": [
-      {
-        "name": "Erevan, Arménie",
-        "label": "Arménie",
-        "coords": [
-          44.51,
-          40.18
-        ]
-      }
-    ],
-    "points": [
-      "Le 1er octobre, le gouvernement a approuvé le projet de budget 2027, qui prévoit un déficit de 468,2 milliards de drams ; il doit encore être voté par le Parlement [1].",
-      "Le projet table sur une croissance de 5,8 % en 2027 [2].",
-      "Le 6 octobre, le Premier ministre Nikol Pachinian a fixé l'objectif d'une croissance moyenne de 6 % par an pendant les cinq prochaines années [3]."
-    ],
-    "why": [
-      "Le ministre des Finances Vahe Hovhannisyan assure que la dette publique restera sous 50 % du PIB à moyen terme ; elle atteint 13,9 milliards de dollars [4]. Le budget prévoit de financer le déficit par l'emprunt, avec une dette autour de 47 % du PIB en 2027-2028 [1].",
-      "Une partie de l'optimisme arménien repose sur la « route Trump » (TRIPP), un projet de corridor de transport entre l'Azerbaïdjan et son enclave du Nakhitchevan à travers le sud de l'Arménie. Mais aucun chantier n'a commencé : les études de faisabilité sont en cours et les grands contrats ne sont pas attendus avant fin 2026 ou début 2027 [5]."
-    ],
-    "forMe": "Et moi, dans tout ça ? L'Arménie, petit pays du Caucase sans accès à la mer, cherche à devenir un lieu de passage pour le commerce entre l'Asie et l'Europe. Si ces nouvelles routes voient le jour, elles pourraient un jour diversifier les chemins par lesquels arrivent les marchandises jusqu'en Europe.",
-    "figures": [
-      {
-        "value": "468,2 Md drams",
-        "label": "déficit prévu dans le budget 2027",
-        "src": 1
-      },
-      {
-        "value": "5,8 %",
-        "label": "croissance prévue en 2027",
-        "src": 2
-      },
-      {
-        "value": "< 50 %",
-        "label": "dette publique visée (en % du PIB)",
-        "src": 4
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Armenpress",
-        "name": "Armenpress, Armenian government approves draft 2027 state budget (1er octobre 2026)",
-        "url": "https://armenpress.am/en/article/1261743"
-      },
-      {
-        "short": "PAN.am",
-        "name": "PAN.am, Armenia expects 5.8% growth in 2027 budget draft (octobre 2026)",
-        "url": "https://www.pan.am/en/625807"
-      },
-      {
-        "short": "ArmBanks",
-        "name": "ArmBanks.am, Armenia targets 6% annual GDP growth (6 octobre 2026)",
-        "url": "https://armbanks.am/en/2026/10/06/280884/"
-      },
-      {
-        "short": "ArmBanks",
-        "name": "ArmBanks.am, Armenia's public debt to remain below 50% of GDP in the medium term (7 octobre 2026)",
-        "url": "https://armbanks.am/en/2026/10/07/280984/"
-      },
-      {
-        "short": "RFE/RL",
-        "name": "Radio Free Europe/Radio Liberty, US Pushes To Turn Armenia-Azerbaijan Transit Deal Into Investment Opportunity (septembre 2026)",
-        "url": "https://www.rferl.org/a/tripp-armenia-azerbaijan-us-investment-transit-corridor/33863442.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-01-colombie-travail-force-droits-douane",
-    "date": "2026-10-01",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "La Colombie interdit les produits du travail forcé pour faire baisser les taxes américaines",
-    "summary": "Taxée à 12,5 % par Washington pour ne pas avoir banni les importations issues du travail forcé, la Colombie vient d'adopter cette interdiction et ouvre des discussions techniques avec les États-Unis. Mais la surtaxe reste en place tant que Washington ne décide pas de la lever.",
-    "geo": [
-      {
-        "name": "Bogota, Colombie",
-        "label": "Colombie",
-        "coords": [
-          -74.07,
-          4.71
-        ]
-      }
-    ],
-    "points": [
-      "En mars 2026, les États-Unis ont ouvert des enquêtes sur 60 économies au sujet des importations de biens fabriqués par le travail forcé [1].",
-      "Le 23 juillet, Washington a fixé une surtaxe de 10 % pour les pays ayant déjà interdit ces biens ou s'étant engagés à le faire, et de 12,5 % pour les autres, dont la Colombie [1].",
-      "Le café, la banane, le pétrole et le charbon colombiens sont exclus de cette surtaxe [2].",
-      "Selon l'association d'exportateurs Analdex, la mesure touche environ 30 % des exportations colombiennes vers les États-Unis, soit quelque 5 milliards de dollars, et plus de 1 700 entreprises [1].",
-      "Le 28 septembre, Bogota a signé le décret 1444, qui interdit l'entrée de marchandises produites totalement ou partiellement par le travail forcé [1].",
-      "Des délégués des deux pays ont entamé début octobre une table de travail technique sur cette surtaxe [3]."
-    ],
-    "why": [
-      "Avec ce décret, la Colombie remplit formellement la condition fixée par Washington pour le taux de 10 %, mais les États-Unis n'ont annoncé aucune modification : la baisse dépend d'une décision américaine [1].",
-      "Le pays a été durement frappé en août par un séisme de magnitude 7,4 qui a fait au moins 294 morts ; le nouveau président Abelardo de la Espriella avait alors demandé à Donald Trump de suspendre temporairement ces taxes [4].",
-      "Les États-Unis sont le premier marché d'exportation de la Colombie [2] : l'issue de ces discussions est un test pour les relations entre Bogota et l'administration Trump, qui utilise les droits de douane comme levier sur de nombreux sujets."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le café et les bananes colombiens, que tu trouves aussi en France, sont exclus de la surtaxe américaine : pas d'effet direct sur ton panier. Mais l'histoire montre comment Washington se sert des droits de douane pour imposer ses normes (ici sur le travail forcé) à ses partenaires, une méthode qui concerne aussi l'Europe.",
-    "figures": [
-      {
-        "value": "12,5 %",
-        "label": "Surtaxe américaine actuelle sur une partie des produits colombiens",
-        "src": 1
-      },
-      {
-        "value": "≈ 5 Md$",
-        "label": "Exportations colombiennes vers les États-Unis touchées (estimation Analdex)",
-        "src": 1
-      },
-      {
-        "value": "1 700",
-        "label": "Entreprises colombiennes concernées (plus de)",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "La FM",
-        "name": "Colombia ya tiene la norma contra el trabajo forzoso que pedía EE. UU.: ¿qué pasa ahora con el arancel de 12,5%? (septembre 2026)",
-        "url": "https://www.lafm.com.co/economia/decreto-1444-trabajo-forzoso-importaciones-colombia-arancel-estados-unidos-412321"
-      },
-      {
-        "short": "Colombia One",
-        "name": "Colombia-US Trade Negotiations Are Approaching and Could Affect Tariffs (1er octobre 2026)",
-        "url": "https://colombiaone.com/2026/10/01/trade-negotiations-colombia-us-affect-tariffs/"
-      },
-      {
-        "short": "CR Prensa",
-        "name": "Colombia y Estados Unidos inician mesa técnica para resolver arancel a importaciones (1er octobre 2026)",
-        "url": "https://crprensa.com/2026/10/01/colombia-y-estados-unidos-inician-mesa-tecnica-para-resolver-arancel-a-importaciones/"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Colombia asks Trump to suspend tariffs as country reels from earthquake (15 août 2026)",
-        "url": "https://www.aljazeera.com/news/2026/8/15/colombia-asks-trump-to-suspend-tariffs-as-country-reels-from-earthquake"
       }
     ]
   }

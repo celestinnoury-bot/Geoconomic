@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-16",
+    "file": "lettres/2026-10-16.pdf",
+    "titles": [
+      "L'Érythrée rompt avec l'Éthiopie, qui répète vouloir un accès à la mer Rouge",
+      "L'Europe ferme sa porte au bœuf namibien à cause de la fièvre aphteuse",
+      "Les talibans ouvrent une route vers la Chine pour ne plus dépendre du Pakistan"
+    ],
+    "fileDark": "lettres/2026-10-16-sombre.pdf"
+  },
+  {
     "date": "2026-10-15",
     "file": "lettres/2026-10-15.pdf",
     "titles": [

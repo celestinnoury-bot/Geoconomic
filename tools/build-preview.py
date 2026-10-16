@@ -7,7 +7,7 @@ import re, shutil, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / ".preview"
 FILES = [
-    "styles.css", "i18n.js", "app.js", "viz.js", "globe.js", "data/iso2.js",
+    "duel.html", "styles.css", "i18n.js", "app.js", "viz.js", "globe.js", "data/iso2.js",
     "data/content.js", "data/news.js", "data/culture.js", "data/etudes.js", "data/plus.js", "data/indicators.js", "data/conflits.js", "data/couches.js", "data/lettres.js", "data/auteur.js", "data/anecdotes.js", "data/focus.js",
     "car3d.js", "assets/models/supra-poster.webp",
     "assets/vendor/three/three.module.min.js", "assets/vendor/three/GLTFLoader.js",

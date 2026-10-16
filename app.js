@@ -469,6 +469,11 @@
               <div class="bar"><div style="width:${(readCount / dossiers.length) * 100}%"></div></div>
             </div>
           </div>
+          <a class="panel eco reveal play duel-panel" href="duel.html" style="margin-top:20px">
+            <p class="eyebrow">Géoconomic Duel</p>
+            <p>Avant ou après ? Affronte un ami sur des dates surprenantes, et relève le défi du jour.</p>
+            <span class="pill-btn blue">Lancer un duel</span>
+          </a>
           <div class="group reveal" style="margin-top:20px">
             <a class="row" href="#/lexique">
               <div class="row-main"><div class="row-title">Lexique</div><div class="row-sub">${glossary.length} mots de l'actu, expliqués</div></div>
