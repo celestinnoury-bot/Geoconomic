@@ -2593,6 +2593,15 @@ function statGrid(figures, sources, theme = "geo") {
     watchReveals();
   }
 
+  // Géoconomic Duel : sur claude.ai, on ouvre la version en ligne (classement commun à jour) ; ailleurs, la page duel.html.
+  const DUEL_ONLINE = "https://claude.ai/artifact/Kg6VKz8e5mH1mDVf3Uu3dK";
+  document.addEventListener("click", (e) => {
+    const a = e.target.closest && e.target.closest('a[href="duel.html"]');
+    if (!a || typeof (window.claude && window.claude.use) !== "function") return;
+    e.preventDefault();
+    const w = window.open(DUEL_ONLINE, "_blank");
+    if (w) w.opener = null; else location.href = DUEL_ONLINE;
+  });
   window.addEventListener("hashchange", route);
   route();
   I18N.watch();

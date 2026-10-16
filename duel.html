@@ -882,6 +882,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .grades li { grid-template-columns: 32px 1fr; gap: 10px; }
 .grades .g-ico { width: 32px; height: 32px; font-size: 14px; }
 .grades .master-ico { background: var(--royal); color: #fff; }
+.online-link { color: #ffb066; font-weight: 700; }
+.online-btn { display: inline-flex; margin-top: 12px; text-decoration: none; }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -1481,6 +1483,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
 
   // ================= Partagé (db) =================
+  // Version en ligne (classement commun et 1 contre 1), quand cette page tourne sans base partagée (dans l'appli).
+  const ONLINE_URL = "https://claude.ai/artifact/Kg6VKz8e5mH1mDVf3Uu3dK";
   let db = null, user = null, me = null, names = {}, players = [], dailyRows = [];
   async function initShared() {
     try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
@@ -1622,7 +1626,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
         ${list ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${list}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
-        : `<p class="note">Le 1 contre 1 a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}</div>
+        : `<p class="note">Le 1 contre 1 se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Géoconomic Duel en ligne ›</a></p>`}</div>
     </section>`;
   }
   function viewJouer() {
@@ -1638,7 +1642,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
   function viewClassement() {
     let general;
-    if (!db) general = `<p class="muted">Le classement partagé s'affiche quand la page est ouverte sur claude.ai, connecté.</p>`;
+    if (!db) general = `<p class="muted">Le classement commun, mis à jour en direct, est dans la version en ligne.</p><a class="btn online-btn" href="${ONLINE_URL}" target="_blank" rel="noopener">Voir le classement en direct</a>`;
     else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Gagne un match ou fais le défi du jour : tu apparaîtras ici avec ton titre.</p>`;
     else {
       const podium = players.slice(0, 3);
