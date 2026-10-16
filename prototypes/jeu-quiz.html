@@ -259,6 +259,8 @@ main { padding-block: 20px 110px; }
 .grades span { color: var(--muted); font-size: 14px; }
 .g-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--panel-2); color: var(--mint); }
 .g-ico svg { width: 22px; height: 22px; }
+.rank-ico { font-family: var(--display); font-weight: 800; font-size: 20px; }
+.pod .gchip { white-space: normal; text-align: center; line-height: 1.25; border-radius: 8px; padding: 4px 6px; font-size: 10px; }
 .master-ico { background: var(--gold); color: #2b1d00; }
 .elite-ico { background: #3a2a10; color: var(--gold); }
 .gchip { font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .04em; color: var(--gold); background: rgba(245, 200, 107, .12); padding: 2px 7px; border-radius: 99px; margin-left: 4px; white-space: nowrap; }
@@ -910,11 +912,19 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
   function rankDailyText() { const k = dailyRows.findIndex((r) => r.id === me); return k >= 0 ? `${k + 1}ᵉ` : "–"; }
 
   // ================= Grades =================
+  // Les titres du top 5 du classement des points.
+  const TITLES = [
+    "Empereur des ténèbres de la mort éternelle",
+    "Sultan de puissance extrême, attention danger",
+    "Monarque nocif du savoir lumineux",
+    "Suzerain millénaire féroce et galvanisé",
+    "Potentat extrême, lucide présomption",
+  ];
+  const SHORT = ["Empereur", "Sultan", "Monarque", "Suzerain", "Potentat"];
   const GRADES = [[500, "Savant"], [200, "Érudit"], [50, "Initié"], [0, "Curieux"]];
   const rankOf = (id) => players.findIndex((p) => p.id === id);
   function gradeOf(rank, pts) {
-    if (rank === 0) return "Maître du savoir";
-    if (rank > 0 && rank < 5) return "Élite du savoir";
+    if (rank >= 0 && rank < 5) return TITLES[rank];
     return (GRADES.find(([m]) => pts >= m) || GRADES[GRADES.length - 1])[1];
   }
   let preview = "";
@@ -923,7 +933,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     document.body.classList.toggle("elite", r >= 0 && r < 5);
     document.body.classList.toggle("master", r === 0);
     const chip = $("#grade-chip");
-    if (chip) { chip.textContent = r === 0 ? "Maître" : r > 0 && r < 5 ? `Top ${r + 1}` : ""; chip.hidden = !(r >= 0 && r < 5); }
+    if (chip) { chip.textContent = r >= 0 && r < 5 ? SHORT[r] : ""; chip.hidden = !(r >= 0 && r < 5); }
   }
 
   // ================= Écrans =================
@@ -936,7 +946,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     const top = players[0];
     return `<section class="champion" id="champion">
       <span class="crown">${ICON.crown}</span>
-      <div class="ch-main"><span class="label">Maître du savoir</span><b>${top ? esc(nameOf(top.id)) : "La place est libre"}</b>${top ? "" : `<small>Gagne des points et prends la tête.</small>`}</div>
+      <div class="ch-main"><span class="label">${esc(TITLES[0])}</span><b>${top ? esc(nameOf(top.id)) : "La place est libre"}</b>${top ? "" : `<small>Gagne des points et prends la tête.</small>`}</div>
       ${top ? `<span class="ch-pts num">${fmt(top.points)}<small>pts</small></span>` : ""}
     </section>`;
   }
@@ -986,8 +996,8 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
-      general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${esc(nameOf(podium[k].id))}</b><em class="gchip">${k === 0 ? "Maître du savoir" : "Élite"}</em><span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
-        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} <em class="gchip ${k + 3 < 5 ? "" : "plain"}">${k + 3 < 5 ? "Élite" : gradeOf(k + 3, p.points)}</em></span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
+      general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${esc(nameOf(podium[k].id))}</b><em class="gchip">${esc(TITLES[k])}</em><span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
+        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} <em class="gchip ${k + 3 < 5 ? "" : "plain"}">${esc(gradeOf(k + 3, p.points))}</em></span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
       : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
@@ -996,8 +1006,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
       <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
         <ul class="grades">
-          <li><span class="g-ico master-ico">${ICON.crown}</span><div><b>1ᵉʳ · Maître du savoir</b><span>Couronne sur le logo, bordure dorée animée, ton nom en tête pour tous.</span></div></li>
-          <li><span class="g-ico elite-ico">${ICON.star}</span><div><b>Top 5 · Élite du savoir</b><span>Le logo de l'appli passe en or, avec une bordure dorée autour de l'appli.</span></div></li>
+          ${TITLES.map((x, k) => `<li><span class="g-ico ${k === 0 ? "master-ico" : "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b><span>${k === 0 ? "1ᵉʳ du classement : couronne sur le logo, bordure dorée animée, ton titre en tête pour tous." : `${k + 1}ᵉ du classement : logo doré et bordure dorée autour de l'appli.`}</span></div></li>`).join("")}
           <li><span class="g-ico">${ICON.bolt}</span><div><b>Selon tes points</b><span>Curieux, Initié (50), Érudit (200), Savant (500).</span></div></li>
         </ul>
         <p class="label" style="margin-top:14px">Aperçu</p>
