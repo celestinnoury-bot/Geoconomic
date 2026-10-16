@@ -818,6 +818,32 @@ body.master .master-ico, .champion .crown { background: var(--royal); color: #ff
 .champion { border-color: rgba(155, 107, 255, .45); background: linear-gradient(120deg, #1d2160, #231b16 75%); }
 .champion .fx-name, .champion .fx-name * { background-image: linear-gradient(90deg, #a9b8ff, #c9a8ff, #9b6bff) !important; }
 @media (prefers-reduced-motion: reduce) { body.master::before { animation: none; } }
+/* 2e : « attention danger », rouge sang et rayures de chantier qui défilent */
+:root { --danger: linear-gradient(135deg, #7a0f1e, #e8344a 55%, #ff8a5c); --danger-text: #ff7a85; --toxic: linear-gradient(135deg, #0f5c3a, #2fe08a 55%, #c6ff5c); --toxic-text: #8dffb8; }
+body.rank2::before { border: 0; padding: 5px; background: repeating-linear-gradient(-45deg, #e8344a 0 14px, #140608 14px 28px) 0 0 / 40px 40px; -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); box-shadow: none; animation: hazard 1.6s linear infinite; }
+@keyframes hazard { to { background-position: 40px 0; } }
+body.rank2 .logo-elite { color: var(--danger-text); filter: drop-shadow(0 0 7px rgba(232, 52, 74, .8)); animation: alarm 1.4s ease-in-out infinite; }
+@keyframes alarm { 50% { filter: drop-shadow(0 0 2px rgba(232, 52, 74, .3)); } }
+body.rank2 .brand b { color: var(--danger-text); }
+body.rank2 .grade-chip { background: var(--danger); color: #fff; }
+.r2-ico { background: var(--danger) !important; color: #fff !important; }
+/* 3e : « nocif » et « lumineux », vert toxique phosphorescent qui respire */
+body.rank3::before { border: 3px solid #2fe08a; box-shadow: inset 0 0 22px rgba(47, 224, 138, .45); animation: glow 2.6s ease-in-out infinite; }
+@keyframes glow { 50% { border-color: #c6ff5c; box-shadow: inset 0 0 40px rgba(198, 255, 92, .55); } }
+body.rank3 .logo-elite { color: var(--toxic-text); filter: drop-shadow(0 0 9px rgba(47, 224, 138, .9)); }
+body.rank3 .brand b { color: var(--toxic-text); }
+body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
+.r3-ico { background: var(--toxic) !important; color: #062014 !important; }
+/* Podium : chaque marche a sa couleur */
+.k2 .k-step { background: linear-gradient(180deg, #5a1520, #2e0b12); }
+.k2 .k-step::after { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: repeating-linear-gradient(-45deg, #e8344a 0 6px, #140608 6px 12px); }
+.k2 .k-who b { background: linear-gradient(90deg, #ff9a8a, #e8344a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.k2 .k-medal { background: var(--danger); color: #fff; }
+.k3 .k-step { background: linear-gradient(180deg, #11402b, #0a2318); box-shadow: inset 0 0 18px rgba(47, 224, 138, .25); }
+.k3 .k-who b { background: linear-gradient(90deg, #c6ff5c, #2fe08a); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.k3 .k-medal { background: var(--toxic); color: #062014; box-shadow: 0 0 12px rgba(47, 224, 138, .6); }
+.k-step { position: relative; overflow: hidden; }
+@media (prefers-reduced-motion: reduce) { body.rank2::before, body.rank3::before, body.rank2 .logo-elite { animation: none; } }
 </style>
 
 <header class="top">
@@ -1507,11 +1533,20 @@ body.master .master-ico, .champion .crown { background: var(--royal); color: #ff
     const place = rank < 0 ? Infinity : rank + 1;
     return BANDS.find(([max]) => place <= max)[1];
   }
+  const GRADE_FX = [
+    "1ᵉʳ du classement : couronne sur le logo, bordure animée bleu marine et violet, ton titre en tête pour tous.",
+    "2ᵉ : « attention danger » pour de vrai, bordure à rayures rouges et noires qui défilent, logo rouge vif.",
+    "3ᵉ : savoir lumineux mais nocif, bordure vert toxique qui luit et respire, logo phosphorescent.",
+    "4ᵉ du classement : logo doré et bordure dorée autour de l'appli.",
+    "5ᵉ du classement : logo doré et bordure dorée autour de l'appli.",
+  ];
   let preview = "";
   function applyStatus() {
-    const r = preview === "master" ? 0 : preview === "elite" ? 2 : preview === "normal" ? -1 : rankOf(me);
+    const r = { master: 0, r2: 1, r3: 2, elite: 3, normal: -1 }[preview] ?? rankOf(me);
     document.body.classList.toggle("elite", r >= 0 && r < 5);
     document.body.classList.toggle("master", r === 0);
+    document.body.classList.toggle("rank2", r === 1);
+    document.body.classList.toggle("rank3", r === 2);
     const chip = $("#grade-chip");
     if (chip) { chip.textContent = r >= 0 && r < 5 ? SHORT[r] : ""; chip.hidden = !(r >= 0 && r < 5); }
   }
@@ -1599,7 +1634,7 @@ body.master .master-ico, .champion .crown { background: var(--royal); color: #ff
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
       <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
         <ul class="grades">
-          ${TITLES.map((x, k) => `<li><span class="g-ico ${k === 0 ? "master-ico" : "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b><span>${k === 0 ? "1ᵉʳ du classement : couronne sur le logo, bordure dorée animée, ton titre en tête pour tous." : `${k + 1}ᵉ du classement : logo doré et bordure dorée autour de l'appli.`}</span></div></li>`).join("")}
+          ${TITLES.map((x, k) => `<li><span class="g-ico ${["master-ico", "r2-ico", "r3-ico"][k] || "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b><span>${GRADE_FX[k]}</span></div></li>`).join("")}
         </ul>
         <p class="label" style="margin-top:14px">Places 6 à 20</p>
         <ol class="title-list" start="6">${MORE_TITLES.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
@@ -1608,7 +1643,7 @@ body.master .master-ico, .champion .crown { background: var(--royal); color: #ff
           <li><b>21ᵉ à 30ᵉ</b> ${esc(BANDS[0][1])}</li><li><b>31ᵉ à 50ᵉ</b> ${esc(BANDS[1][1])}</li><li><b>51ᵉ à 100ᵉ</b> ${esc(BANDS[2][1])}</li><li><b>Ensuite</b> ${esc(BANDS[3][1])}</li>
         </ul>
         <p class="label" style="margin-top:14px">Aperçu</p>
-        <div class="seg">${[["normal", "Normal"], ["elite", "Top 5"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
+        <div class="seg">${[["normal", "Normal"], ["elite", "4ᵉ-5ᵉ"], ["r3", "3ᵉ"], ["r2", "2ᵉ"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
       </section>
       <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me)))}</p>
         <div class="stats" style="margin-top:12px">
