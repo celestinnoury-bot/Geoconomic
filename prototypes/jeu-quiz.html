@@ -844,6 +844,33 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .k3 .k-medal { background: var(--toxic); color: #062014; box-shadow: 0 0 12px rgba(47, 224, 138, .6); }
 .k-step { position: relative; overflow: hidden; }
 @media (prefers-reduced-motion: reduce) { body.rank2::before, body.rank3::before, body.rank2 .logo-elite { animation: none; } }
+/* Classement repris de la capture de l'auteur : podium indigo façon Kahoot, médailles or/argent/bronze, liste épurée */
+.kpodium { background: linear-gradient(180deg, #2b2a6e 0%, #1c1b4a 100%); }
+.k-rays { background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .07) 0 9deg, transparent 9deg 18deg); }
+.k1 .k-step, .k2 .k-step, .k3 .k-step { background: #3a37a6; box-shadow: none; }
+.k1 .k-step { background: #3330a0; }
+.k2 .k-step::after { content: none; }
+.k-who b, .k2 .k-who b, .k3 .k-who b { background: none; color: #fff; -webkit-background-clip: border-box; background-clip: border-box; }
+.k1 .k-who b { background: none; color: #8f8cff; -webkit-background-clip: border-box; background-clip: border-box; }
+.k-who span, .k-step small { color: #d6d4ff; }
+.k-medal { box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18), 0 0 0 3px rgba(255, 255, 255, .85); }
+.k1 .k-medal { background: #f5c400; color: #3a2a00; }
+.k2 .k-medal { background: #a8acb5; color: #fff; }
+.k3 .k-medal { background: #e3741f; color: #fff; box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18), 0 0 0 3px rgba(255, 255, 255, .85); }
+.k1 .k-medal, .k2 .k-medal { box-shadow: inset 0 -3px 0 rgba(0, 0, 0, .18), 0 0 0 3px rgba(255, 255, 255, .85); }
+.k-col.me .k-step { box-shadow: inset 0 0 0 2px #fff; }
+.mtable { background: none; }
+.mt-head { display: none; }
+.mt-head, .mt-row { grid-template-columns: 22px minmax(0, 1fr) 52px; }
+.mt-row > .mt-n { display: none; }
+.mt-av { display: none; }
+.mt-row { min-height: 56px; border-top: 0; padding-block: 8px; }
+.mt-nm { gap: 4px; }
+.mt-nm b { font-family: var(--display); font-weight: 700; }
+.mt-pos { color: var(--muted); }
+.mt-row.hot { min-height: 76px; }
+.mt-row.hot .mt-nm b, .mt-row.hot .mt-nm small { color: #f5c86b; animation: none; }
+.mt-row.hot:first-of-type .mt-pos, .mt-row.hot:nth-child(2) .mt-pos { color: #f5c86b; font-weight: 700; }
 </style>
 
 <header class="top">
