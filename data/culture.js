@@ -76,14 +76,27 @@ window.GEOCO.culture = [
         }
       },
       {
-        "title": "Sécurité et pollution : des combats imposés de l'extérieur",
+        "title": "Automobilistes contre experts : qui a rendu la voiture plus sûre ?",
         "quote": "La voiture est devenue plus sûre à cause des dégâts qu'elle a causés.",
         "paragraphs": [
-          "Aux États-Unis, ce sont d'abord ==les assureurs== qui étudient les accidents ; en 1959, ils créent un institut de recherche sur la sécurité routière. Les normes de sécurité sont aussi ==réclamées par les clients et leurs avocats==, pour que la voiture ne soit plus un « cercueil à roulettes » [1].",
-          "En 1966, le livre choc de l'avocat Ralph Nader sort en France sous le titre « Ces voitures qui tuent », avec des notes qui minimisent le problème pour les voitures françaises, très probablement à la demande des constructeurs, selon l'historien Patrick Fridenson [1].",
-          "La pollution, elle, ne devient un sujet qu'avec le smog de Los Angeles, dans les années 1950, et les premières initiatives sont venues ==hors des grandes capitales de l'automobile==, par exemple en Suède [1].",
-          "Elle est désormais centrale : en 2021, les transports pesaient 30 % des émissions françaises de gaz à effet de serre, seul secteur encore au-dessus de son niveau de 1990 [2]."
-        ]
+          "Pour l'historien américain Lee Vinsel, la sécurité routière est née d'==un conflit permanent entre automobilistes, constructeurs et experts==. Chaque nouveauté technique crée de nouveaux dangers, donc de nouvelles règles. Et ces règles dépassent la voiture : routes, circulation en ville, panneaux, pompes à essence, tout fait système [1].",
+          "Dès les années 1920, ==les assureurs américains== analysent les accidents et font appel à des experts pour les chiffrer et répartir les responsabilités. Dans les années 1950 et 1960, ils lancent les recherches sur ce qu'est une voiture solide et stable ; en 1959, ils créent un institut de recherche sur la sécurité routière, sans but lucratif [1].",
+          "Les agences de l'État ne sont pas des arbitres tombés du ciel : selon Vinsel, ==elles ont été réclamées par ceux qui subissaient les crises== de l'automobile. Les règles naissent des rencontres entre constructeurs, élus (des villes, des États et de l'État fédéral) et administrations [1].",
+          "Viser seulement les conducteurs les plus dangereux ne suffit pas. On crée donc des normes pour que la voiture ne soit plus un « cercueil à roulettes ». Ces normes ne servent pas seulement à produire en série : ==ce sont aussi les clients et leurs avocats qui les exigent==, et dès les années 1920, les bureaux d'études des constructeurs cherchent des voitures plus fiables [1].",
+          "En France, les équipements de la route ont longtemps servi d'abord à ==protéger le piéton==, avant que l'on apprenne peu à peu à partager la circulation, selon l'historien Mathieu Flonneau [1].",
+          "Le danger des gaz d'échappement est connu très tôt : ==les premiers manuels conseillent de ne pas faire tourner le moteur dans un local fermé==, à cause du monoxyde de carbone. Mais la pollution de l'air des villes ne devient un sujet qu'avec le smog de Los Angeles, dans les années 1950 ; avant, c'étaient les fumées du charbon qui inquiétaient. Pour le public américain, le grand problème restait les accidents [1].",
+          "Autre fait peu connu : la sécurité a pris son élan aux États-Unis, mais ==les premières initiatives contre la pollution automobile sont venues de loin des grandes capitales de l'automobile==, par exemple de Suède [1].",
+          "La pollution est désormais centrale : en 2021, les transports pesaient 30 % des émissions françaises de gaz à effet de serre, seul secteur encore au-dessus de son niveau de 1990 [2]."
+        ],
+        "box": {
+          "kind": "archive",
+          "label": "Le détail oublié · 1966",
+          "title": "« Ces voitures qui tuent », version adoucie",
+          "text": [
+            "En 1965, l'avocat américain Ralph Nader publie un livre choc sur les voitures dangereuses. Il est traduit très vite en France, par deux femmes, sous un titre plus radical : « Ces voitures qui tuent » (1966) [1].",
+            "Mais l'éditeur y ajoute des « annotations techniques » du journaliste automobile Roger Brioult : les voitures françaises seraient plus sûres, et beaucoup de problèmes viendraient des conducteurs eux-mêmes. Selon l'historien Patrick Fridenson, ces notes viennent ==très probablement d'une intervention du syndicat des constructeurs== auprès de l'éditeur [1]."
+          ]
+        }
       },
       {
         "title": "Des aides chères, et des oubliés",
