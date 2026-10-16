@@ -230,11 +230,74 @@ main { padding-block: 20px 110px; }
 @keyframes blink { 50% { opacity: .3; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) { .live-dot, .spinner { animation: none; } }
+/* Réponse écrite et niveaux */
+.levels { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 4px 0 6px; }
+.levels i { height: 6px; border-radius: 99px; background: var(--panel-2); }
+.levels i.passed { background: var(--mint); }
+.levels i.now { background: var(--red); }
+.levels.big { margin: 0 0 14px; }
+.levels.big span { font-size: 11px; font-weight: 700; text-align: center; padding: 5px 0; border-radius: 8px; background: linear-gradient(90deg, rgba(255,95,109,.08), rgba(255,95,109,.25)); color: #ffc2c8; }
+.levels.big span:nth-child(1) { background: rgba(255,95,109,.06); } .levels.big span:nth-child(2) { background: rgba(255,95,109,.11); } .levels.big span:nth-child(3) { background: rgba(255,95,109,.16); } .levels.big span:nth-child(4) { background: rgba(255,95,109,.22); } .levels.big span:nth-child(5) { background: rgba(255,95,109,.3); }
+.type-box { display: grid; gap: 12px; }
+.type-box input { width: 100%; background: var(--panel); border: 2px solid var(--line); border-radius: 16px; padding: 16px 18px; color: var(--text); font: 600 20px var(--body); }
+.type-box input.year-in { font: 800 44px var(--display); text-align: center; letter-spacing: .12em; color: var(--gold); padding: 12px; }
+.type-box input:focus { border-color: var(--blue); outline: none; }
+.type-box input.good { border-color: var(--mint); background: #12321f; }
+.type-box input.bad { border-color: var(--red); background: #3a141b; }
+.cooldown { display: inline-flex; align-items: center; padding: 12px 16px; border-radius: 14px; background: var(--panel-2); color: var(--muted); font-weight: 700; font-size: 14px; }
+.ms-card { border-color: rgba(255, 95, 109, .35); }
+.ms-grid { display: grid; grid-template-columns: repeat(5, 30px) 1fr; gap: 6px; align-items: center; margin: 12px 0; }
+.ms-grid span { height: 30px; border-radius: 8px; display: grid; place-items: center; font-weight: 800; font-size: 13px; }
+.ms-grid span.ok { background: #12321f; color: var(--mint); }
+.ms-grid span.ko { background: #3a141b; color: var(--red); }
+.ms-grid b { font-size: 14px; margin-left: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.daily .reward { color: var(--gold); font-weight: 800; }
+/* Grades */
+.grades { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 10px; }
+.grades li { display: grid; grid-template-columns: 40px 1fr; gap: 12px; align-items: center; }
+.grades b { display: block; }
+.grades span { color: var(--muted); font-size: 14px; }
+.g-ico { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--panel-2); color: var(--mint); }
+.g-ico svg { width: 22px; height: 22px; }
+.master-ico { background: var(--gold); color: #2b1d00; }
+.elite-ico { background: #3a2a10; color: var(--gold); }
+.gchip { font-style: normal; font-size: 11px; font-weight: 800; letter-spacing: .04em; color: var(--gold); background: rgba(245, 200, 107, .12); padding: 2px 7px; border-radius: 99px; margin-left: 4px; white-space: nowrap; }
+.gchip.plain { color: var(--muted); background: var(--panel); }
+.pod .gchip { margin: 0; }
+.seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 14px; background: var(--panel-2); margin-top: 8px; }
+.seg button { border: 0; background: none; padding: 8px 14px; border-radius: 10px; font-weight: 700; cursor: pointer; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: var(--text); color: var(--bg); }
+.logo { display: grid; place-items: center; width: 32px; height: 32px; flex: none; }
+.mode > div { min-width: 0; }
+.brand { min-width: 0; white-space: nowrap; }
+body.elite .brand { font-size: 18px; gap: 6px; }
+.counters { flex: none; }
+.logo-elite, .grade-chip { display: none; }
+.grade-chip { font-size: 11px; font-weight: 800; letter-spacing: .04em; padding: 3px 8px; border-radius: 99px; background: var(--gold); color: #2b1d00; white-space: nowrap; }
+body.elite .logo-normal { display: none; }
+body.elite .logo-elite { display: block; color: var(--gold); filter: drop-shadow(0 0 6px rgba(245, 200, 107, .55)); }
+body.elite .grade-chip:not([hidden]) { display: inline-block; }
+.logo-crown { display: none; }
+body.master .logo-crown { display: block; }
+body.elite .brand b { color: var(--gold); }
+/* Bordure de l'appli : dorée pour le top 5, animée pour le 1er */
+@property --spin { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+body.elite::before { content: ""; position: fixed; inset: 0; z-index: 60; pointer-events: none; border: 3px solid var(--gold); box-shadow: inset 0 0 22px rgba(245, 200, 107, .35); }
+body.master::before { border: 0; padding: 4px; background: conic-gradient(from var(--spin), #f5c86b, #fff1c2, #b88d33, #f5c86b, #ffe08a, #f5c86b); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); animation: spinb 4s linear infinite; }
+@keyframes spinb { to { --spin: 360deg; } }
+@media (prefers-reduced-motion: reduce) { body.master::before { animation: none; } }
 </style>
 
 <header class="top">
   <div class="wrap">
-    <div class="brand"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>Géoconomic <b>Duel</b></div>
+    <div class="brand">
+      <span class="logo" aria-hidden="true">
+        <svg class="logo-normal" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
+        <svg class="logo-elite" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="logo-crown" d="M11.5 7.2 12.6 3l2.2 2.4L16 2.2l1.2 3.2L19.4 3l1.1 4.2z" fill="currentColor" stroke="none"/><circle cx="16" cy="17" r="7"/><path d="M9 17h14M16 10c2.4 2.7 2.4 11.3 0 14M16 10c-2.4 2.7-2.4 11.3 0 14"/><path d="M5.6 11c-1.6 4-1 8.6 2.4 12M26.4 11c1.6 4 1 8.6-2.4 12"/><path d="M4.6 14.2l2.2.7M4.8 18.2l2.2-.2M6.2 21.6l1.9-1M27.4 14.2l-2.2.7M27.2 18.2l-2.2-.2M25.8 21.6l-1.9-1"/></svg>
+      </span>
+      <span>Géoconomic <b>Duel</b></span>
+      <span class="grade-chip" id="grade-chip" hidden></span>
+    </div>
     <div class="counters">
       <span class="counter" title="Série de jours" style="color:var(--gold)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2c1 4 5 5.5 5 11a5 5 0 0 1-10 0c0-2.5 1.2-4 2.5-5 .2 2 1.2 3 2.3 3C11 8 11 5 12 2z"/></svg><span class="num" id="c-streak">0</span></span>
       <span class="counter" title="Points" style="color:var(--mint)"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg><span class="num" id="c-xp">0</span></span>
@@ -448,6 +511,62 @@ main { padding-block: 20px 110px; }
     ["Israël", "Israël", "le shekel"], ["Chine", "la Chine", "le yuan"], ["Pérou", "le Pérou", "le sol"], ["Islande", "l'Islande", "la couronne islandaise"],
   ];
 
+  // Questions à réponse écrite (mort subite) : [niveau 1 à 5, thème, question, [réponses acceptées, la première est affichée], explication]
+  const OPEN = [
+    [1, "eco", "Comment appelle-t-on la hausse générale et durable des prix ?", ["inflation"], "Quand les prix montent partout et longtemps, chaque euro achète moins de choses."],
+    [1, "eco", "Quelle monnaie partagent la France, l'Allemagne et l'Italie ?", ["euro"], "L'euro circule en pièces et billets depuis 2002."],
+    [1, "geo", "Quel pays est le plus peuplé du monde depuis 2023 ?", ["Inde"], "Selon l'ONU, l'Inde a dépassé la Chine en 2023."],
+    [1, "eco", "Quel sigle désigne l'organisation des pays exportateurs de pétrole ?", ["OPEP", "OPEC"], "Créée en 1960 à Bagdad, elle siège à Vienne."],
+    [1, "eco", "Quelle est la monnaie des États-Unis ?", ["dollar", "dollar americain", "us dollar"], "Le dollar est aussi la première monnaie de réserve du monde."],
+    [1, "eco", "Quel sigle désigne la richesse produite dans un pays en un an ?", ["PIB", "produit interieur brut"], "Le produit intérieur brut."],
+    [1, "carte", "Quel océan sépare l'Europe de l'Amérique ?", ["Atlantique", "ocean atlantique"], ""],
+    [1, "geo", "Quel sigle désigne l'organisation née en 1945 pour maintenir la paix dans le monde ?", ["ONU", "nations unies", "organisation des nations unies"], "Son siège est à New York."],
+    [1, "carte", "Quelle est la capitale de l'Allemagne ?", ["Berlin"], "Berlin est redevenue capitale après la réunification de 1990."],
+    [1, "carte", "Quel est le plus grand pays du monde par sa superficie ?", ["Russie"], ""],
+    [2, "eco", "Quel sigle désigne la banque centrale de la zone euro ?", ["BCE", "banque centrale europeenne"], "Elle siège à Francfort."],
+    [2, "eco", "Comment appelle-t-on un recul durable de l'activité économique ?", ["récession"], "On parle souvent de récession après deux trimestres de baisse du PIB."],
+    [2, "geo", "Quel détroit relie le golfe Persique au golfe d'Oman ?", ["Ormuz", "detroit d'ormuz", "hormuz"], "Une grande partie du pétrole du Golfe y passe."],
+    [2, "carte", "Quel canal relie la Méditerranée à la mer Rouge ?", ["Suez", "canal de suez"], "Ouvert en 1869."],
+    [2, "geo", "Quel sigle désigne l'alliance militaire née en 1949 autour des États-Unis ?", ["OTAN", "NATO"], "Son siège est à Bruxelles."],
+    [2, "hist", "Quel président américain a lancé le New Deal ?", ["Roosevelt", "franklin roosevelt", "franklin d roosevelt", "fdr"], "Franklin D. Roosevelt, en 1933."],
+    [2, "eco", "Quelle est la monnaie du Japon ?", ["yen"], ""],
+    [2, "eco", "Comment appelle-t-on la taxe payée sur un produit importé ?", ["droit de douane", "droits de douane", "douane", "tarif douanier"], "On parle aussi de tarif douanier."],
+    [2, "eco", "Quel pays est le premier producteur de pétrole au monde ?", ["États-Unis", "usa", "etats unis", "amerique"], "Grâce au pétrole de schiste."],
+    [2, "carte", "Quelle est la capitale de l'Australie ?", ["Canberra"], "Ni Sydney, ni Melbourne."],
+    [3, "eco", "Comment s'appelle l'indice phare de la Bourse de Paris ?", ["CAC 40", "cac40", "cac"], "Il suit 40 grandes entreprises."],
+    [3, "eco", "Quel économiste a parlé de la « main invisible » du marché ?", ["Adam Smith", "smith"], "Dans « La Richesse des nations », en 1776."],
+    [3, "hist", "Quelle conférence de 1944 a créé le FMI et la Banque mondiale ?", ["Bretton Woods"], "Dans le New Hampshire, aux États-Unis."],
+    [3, "eco", "Quel économiste a défendu l'intervention de l'État dans sa « Théorie générale » ?", ["Keynes", "john maynard keynes"], "En 1936, en pleine Grande Dépression."],
+    [3, "eco", "Comment appelle-t-on une croissance faible combinée à une forte inflation ?", ["stagflation"], "Le cas typique : les années 1970."],
+    [3, "eco", "Quel pays produit la majorité du cobalt mondial ?", ["RD Congo", "rdc", "congo", "republique democratique du congo"], "Environ les trois quarts de la production mondiale."],
+    [3, "hist", "Quel dirigeant chinois a lancé l'ouverture économique en 1978 ?", ["Deng Xiaoping", "deng"], "Avec les premières zones économiques spéciales."],
+    [3, "eco", "Quelle entreprise taïwanaise fabrique la plupart des puces les plus avancées ?", ["TSMC"], ""],
+    [3, "hist", "Quel traité signé en 1992 a créé l'Union européenne ?", ["Maastricht", "traite de maastricht"], ""],
+    [3, "geo", "Quel détroit relie la mer Rouge au golfe d'Aden ?", ["Bab-el-Mandeb", "bab el mandeb"], "Entre le Yémen et Djibouti."],
+    [4, "eco", "Quel économiste a théorisé les avantages comparatifs ?", ["Ricardo", "david ricardo"], "En 1817."],
+    [4, "eco", "Quel économiste a popularisé la « destruction créatrice » ?", ["Schumpeter", "joseph schumpeter"], ""],
+    [4, "hist", "Quel président américain a suspendu la convertibilité du dollar en or en 1971 ?", ["Nixon", "richard nixon"], "La fin du système de Bretton Woods."],
+    [4, "eco", "Comment s'appelle le pétrole de référence de la mer du Nord ?", ["Brent"], ""],
+    [4, "eco", "Quelle entreprise néerlandaise fabrique les machines de lithographie EUV indispensables aux puces de pointe ?", ["ASML"], ""],
+    [4, "hist", "Quel ministre français a proposé, le 9 mai 1950, de mettre en commun le charbon et l'acier ?", ["Schuman", "robert schuman"], "Le 9 mai est devenu la Journée de l'Europe."],
+    [4, "geo", "Dans quelle ville siège l'OPEP ?", ["Vienne"], "En Autriche, depuis 1965."],
+    [4, "eco", "Quelle est la monnaie de la Pologne ?", ["zloty"], ""],
+    [4, "hist", "Dans quelle ville a été signé en 1957 le traité qui a créé la CEE ?", ["Rome"], "Le traité de Rome."],
+    [4, "eco", "Comment s'appelle l'indice de la Bourse de Tokyo ?", ["Nikkei", "nikkei 225"], ""],
+    [5, "eco", "Quel Français a reçu le prix Nobel d'économie en 2014 ?", ["Jean Tirole", "tirole"], "Pour ses travaux sur la régulation des marchés."],
+    [5, "geo", "Dans quelle ville a été signé le traité qui a créé le Mercosur ?", ["Asunción"], "En 1991, au Paraguay."],
+    [5, "carte", "Quelle est la capitale du Kazakhstan ?", ["Astana", "nour-soultan", "noursoultan"], "Elle s'est appelée Noursoultan de 2019 à 2022."],
+    [5, "geo", "Quel pays a construit le grand barrage de la Renaissance sur le Nil Bleu ?", ["Éthiopie"], "Un conflit diplomatique majeur avec l'Égypte."],
+    [5, "eco", "Quelle est la monnaie de la Hongrie ?", ["forint"], ""],
+    [5, "carte", "Quelle est la capitale de la Mongolie ?", ["Oulan-Bator", "oulan bator", "ulaanbaatar", "oulan-bator"], ""],
+    [5, "eco", "Quel sigle désignait l'accord de 1947, ancêtre de l'OMC ?", ["GATT"], "L'accord général sur les tarifs douaniers et le commerce."],
+    [5, "geo", "Quels accords de 1985 suppriment les contrôles aux frontières entre pays signataires ?", ["Schengen", "accords de schengen"], ""],
+    [5, "hist", "Qui a dirigé le chantier du canal de Suez ?", ["Ferdinand de Lesseps", "lesseps", "de lesseps"], "Le canal est inauguré en 1869."],
+    [5, "geo", "Dans quelle ville a été signée la charte des Nations unies en 1945 ?", ["San Francisco"], "En juin 1945."],
+  ];
+  // Niveau (1 à 5) de chaque date de DATES, pour la mort subite : de « ça va » à « dur ».
+  const DATE_LEVEL = [1, 3, 2, 3, 4, 1, 2, 3, 3, 4, 3, 3, 2, 2, 2, 3, 3, 4, 4, 1, 2, 3, 3, 3, 4, 3, 4, 2, 1, 2, 1, 1, 4, 5, 5, 5, 3, 2, 4, 1, 5, 4, 5, 4, 4, 4, 5, 4, 4, 4, 5, 5];
+
   const THEME = { eco: "Économie", geo: "Géopolitique", hist: "Histoire", carte: "Géographie" };
 
   // ================= Outils =================
@@ -486,10 +605,11 @@ main { padding-block: 20px 110px; }
 
   // ================= Sauvegarde locale (série, points, questions déjà vues) =================
   const KEY = "geoduel-v1";
-  let S = { points: 0, streak: 0, lastDay: null, lessons: {}, daily: null, best: 0, duels: [], wins: 0, played: 0, seen: [] };
+  let S = { points: 0, streak: 0, lastDay: null, lessons: {}, daily: null, best: 0, ms: [], msBotNext: 0, wins: 0, played: 0, seen: [] };
   try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
   if (S.xp && !S.points) S.points = S.xp;
   if (!Array.isArray(S.seen)) S.seen = [];
+  if (!Array.isArray(S.ms)) S.ms = [];
   const seen = new Set(S.seen);
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
   function markSeen(id) { if (!id || seen.has(id)) return; seen.add(id); S.seen.push(id); if (S.seen.length > 4000) seen.delete(S.seen.shift()); }
@@ -508,9 +628,24 @@ main { padding-block: 20px 110px; }
     ],
     date: DATES.map((x, i) => ({ id: "d" + i, th: x[0] })),
     intrus: INTRUS.map((x, i) => ({ id: "i" + i, th: x[0] })),
+    // Mort subite : réponse écrite, une date (y) ou un mot (q), classée par niveau.
+    ms: [...OPEN.map((x, i) => ({ id: "q" + i, th: x[1], lv: x[0] })), ...DATES.map((x, i) => ({ id: "y" + i, th: x[0], lv: DATE_LEVEL[i] || 3 }))],
   };
   const ORDER_PAIRS = (() => { let n = 0; for (let a = 0; a < DATES.length; a++) for (let b = a + 1; b < DATES.length; b++) if (Math.abs(DATES[a][2] - DATES[b][2]) >= 3) n++; return n; })();
-  const BANK = POOL.qcm.length + POOL.date.length + POOL.intrus.length;
+  const BANK = POOL.qcm.length + POOL.date.length + POOL.intrus.length + OPEN.length;
+
+  // Réponse écrite : on ignore majuscules, accents, articles et petites fautes de frappe.
+  const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[''`’]/g, " ").replace(/[^a-z0-9 ]+/g, " ")
+    .replace(/\b(le|la|les|l|un|une|des|du|de|d)\b/g, " ").replace(/\s+/g, " ").trim();
+  function lev(a, b) {
+    const d = Array.from({ length: b.length + 1 }, (_, j) => j);
+    for (let i = 1; i <= a.length; i++) { let prev = d[0]; d[0] = i; for (let j = 1; j <= b.length; j++) { const t = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = t; } }
+    return d[b.length];
+  }
+  function matchOpen(input, answers) {
+    const v = norm(input); if (!v) return false;
+    return answers.some((a) => { const n = norm(a); if (!n) return false; const tol = n.length >= 9 ? 2 : n.length >= 5 ? 1 : 0; return v === n || lev(v, n) <= tol || (n.length >= 4 && (" " + v + " ").includes(" " + n + " ")); });
+  }
 
   function rangeFor(y) { return y >= 1900 ? [1900, 2026] : y >= 1750 ? [1750, 1950] : [1400, 1900]; }
   function mkDate(it) { const [th, e, y, ex] = it; const [min, max] = rangeFor(y); return { kind: "date", th, e, y, ex: ex || "", min, max }; }
@@ -535,6 +670,8 @@ main { padding-block: 20px 110px; }
     if (t === "m" && MONNAIES[+n]) { const x = MONNAIES[+n]; return qcmObj(id, "eco", `Quelle est la monnaie ${de(x[1])} ?`, cap(shortCur(x[2])), others(MONNAIES, +n, (y) => cap(shortCur(y[2])), r), "", r); }
     if (t === "M" && MONNAIES[+n]) { const x = MONNAIES[+n]; return qcmObj(id, "eco", `${cap(x[2])} est la monnaie de quel pays ?`, x[0], others(MONNAIES, +n, (y) => y[0], r), "", r); }
     if (t === "d" && DATES[+n]) return Object.assign(mkDate(DATES[+n]), { id });
+    if (t === "y" && DATES[+n]) return Object.assign(mkDate(DATES[+n]), { id, typed: true, lv: DATE_LEVEL[+n] || 3 });
+    if (t === "q" && OPEN[+n]) { const [lv, th, q, answers, ex] = OPEN[+n]; return { kind: "open", id, th, q, answers, ex, lv }; }
     if (t === "i" && INTRUS[+n]) return Object.assign(mkIntrus(INTRUS[+n], r), { id });
     if (t === "o") {
       const [a, b] = n.split("_").map(Number);
@@ -545,7 +682,7 @@ main { padding-block: 20px 110px; }
     return null;
   }
   // Tire n identifiants d'un type, en évitant d'abord les questions déjà vues (et celles à exclure).
-  function drawIds(kind, n, r = Math.random, { th = null, exclude = new Set(), useSeen = true } = {}) {
+  function drawIds(kind, n, r = Math.random, { th = null, lv = null, exclude = new Set(), useSeen = true } = {}) {
     if (kind === "order") {
       const out = [];
       for (let tries = 0; out.length < n && tries < 600; tries++) {
@@ -557,7 +694,7 @@ main { padding-block: 20px 110px; }
       }
       return out;
     }
-    const all = POOL[kind].filter((x) => !th || x.th === th).map((x) => x.id).filter((id) => !exclude.has(id));
+    const all = POOL[kind].filter((x) => (!th || x.th === th) && (lv == null || x.lv === lv)).map((x) => x.id).filter((id) => !exclude.has(id));
     let out = pick(useSeen ? all.filter((id) => !seen.has(id)) : all, n, r);
     if (out.length < n) out = out.concat(pick(all.filter((id) => !out.includes(id)), n - out.length, r));
     return out;
@@ -569,7 +706,7 @@ main { padding-block: 20px 110px; }
   const play = $("#play");
 
   function startGame(cfg) {
-    G = Object.assign({ i: 0, me: 0, opp: 0, hearts: null, correct: 0, answered: 0, combo: 0, sdGuesses: [], oppAns: {} }, cfg);
+    G = Object.assign({ i: 0, me: 0, opp: 0, hearts: null, correct: 0, answered: 0, combo: 0, sdGuesses: [], oppAns: {}, typed: cfg.mode !== "lesson" }, cfg);
     play.hidden = false;
     document.body.style.overflow = "hidden";
     next();
@@ -665,6 +802,18 @@ main { padding-block: 20px 110px; }
     } else if (q.kind === "order") {
       body = `${qhead(q, "Avant ou après ?")}<h2 class="question">Lequel est arrivé en premier ?</h2>
         <div class="answers">${[q.a, q.b].map((d, k) => `<button class="ans order-card" data-k="${k}">${esc(d.e)}</button>`).join("")}</div>`;
+    } else if (q.kind === "open" || (q.kind === "date" && (q.typed || G.typed))) {
+      // Réponse à écrire, sans indice : ni propositions, ni bornes.
+      const isDate = q.kind === "date";
+      const label = q.lv ? `Niveau ${q.lv} · ${["ça va", "facile", "moyen", "costaud", "dur"][q.lv - 1]}` : q.sd ? "Mort subite" : isDate ? "Écris l'année" : "Écris ta réponse";
+      body = `${qhead(q, label)}
+        ${q.lv ? `<div class="levels" aria-hidden="true">${[1, 2, 3, 4, 5].map((k) => `<i class="${k < q.lv ? "passed" : k === q.lv ? "now" : ""}"></i>`).join("")}</div>` : ""}
+        <h2 class="question">${isDate ? `En quelle année : ${esc(q.e.charAt(0).toLowerCase() + q.e.slice(1))} ?` : esc(q.q)}</h2>
+        <form class="type-box" id="type-form" autocomplete="off">
+          <input id="ty" ${isDate ? 'inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num"' : 'type="text" maxlength="60" placeholder="Ta réponse" autocapitalize="off" spellcheck="false"'} aria-label="${isDate ? "Année" : "Ta réponse"}">
+          <button class="btn wide" id="valider" type="submit">Valider</button>
+          <p class="note">${isDate ? "L'année exacte, en chiffres." : "Un mot ou un nom suffit. Accents et petites fautes de frappe acceptés."}</p>
+        </form>`;
     } else if (q.kind === "date") {
       const mid = Math.round((q.min + q.max) / 2);
       body = `${qhead(q, q.sd ? "Mort subite" : q.tol != null ? `À ${q.tol} an${q.tol > 1 ? "s" : ""} près` : "En quelle année ?")}
@@ -681,7 +830,13 @@ main { padding-block: 20px 110px; }
     play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
     $("#quit").onclick = quit;
     G.qStart = performance.now();
-    if (q.kind === "date") {
+    const tf = $("#type-form");
+    if (tf) {
+      const inp = $("#ty");
+      if (q.kind === "date") inp.oninput = () => { inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4); };
+      tf.onsubmit = (e) => { e.preventDefault(); const v = inp.value.trim(); if (!v) { inp.focus(); return; } answer(q, q.kind === "date" ? parseInt(v, 10) : v); };
+      setTimeout(() => inp.focus(), 60);
+    } else if (q.kind === "date") {
       const r = $("#yr"), v = $("#yv");
       const set = (y) => { r.value = Math.min(q.max, Math.max(q.min, y)); v.textContent = r.value; };
       r.oninput = () => set(+r.value);
@@ -707,8 +862,21 @@ main { padding-block: 20px 110px; }
     clearInterval(timerId);
     const left = timeLeft();
     let ok = false, info = "", detail = "";
-    play.querySelectorAll(".ans, #valider, .steps button, #yr").forEach((b) => (b.disabled = true));
-    if (q.kind === "qcm") {
+    play.querySelectorAll(".ans, #valider, .steps button, #yr, #ty").forEach((b) => (b.disabled = true));
+    const typed = !!$("#type-form");
+    if (q.kind === "open") {
+      ok = val != null && matchOpen(val, q.answers);
+      const inp = $("#ty"); if (inp) inp.classList.add(ok ? "good" : "bad");
+      info = val == null ? `Temps écoulé. Réponse : ${q.answers[0]}.` : ok ? (norm(val) === norm(q.answers[0]) ? "" : `Réponse attendue : ${q.answers[0]}.`) : `Réponse attendue : ${q.answers[0]}.`;
+      detail = q.ex;
+    } else if (q.kind === "date" && typed) {
+      const gap = val == null || !Number.isFinite(val) ? Infinity : Math.abs(val - q.y);
+      q.guess = Number.isFinite(val) ? val : null; q.gap = gap;
+      ok = q.tol != null ? gap <= q.tol : gap === 0;
+      const inp = $("#ty"); if (inp) inp.classList.add(ok ? "good" : "bad");
+      info = val == null ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as écrit ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
+      detail = q.ex;
+    } else if (q.kind === "qcm") {
       ok = val === q.correct;
       play.querySelectorAll(".ans").forEach((b) => { if (b.dataset.v === q.correct) b.classList.add("good"); else if (b === btn) b.classList.add("bad"); });
       info = ok ? "" : `Bonne réponse : ${q.correct}.`;
@@ -732,6 +900,7 @@ main { padding-block: 20px 110px; }
       detail = q.ex;
     }
     markSeen(q.id);
+    q.ok = ok;
     // Score
     let gain = 0;
     if (q.sd) G.sdGuesses.push(val == null ? null : val);
@@ -747,6 +916,10 @@ main { padding-block: 20px 110px; }
       const b = G.bot(q);
       if (b.ok) G.opp += b.pts;
       oppLine = `${G.opponent.name} : ${b.ok ? "bonne réponse" : "raté"}${b.mode ? ` (en ${b.mode})` : ""}${b.ok ? ` · +${b.pts}` : ""}`;
+      if (G.mode === "ms") {
+        if (ok !== b.ok) { G.msOver = ok ? "win" : "lose"; oppLine = ok ? "Le Maître s'est trompé : il tombe !" : "Le Maître a trouvé : tu tombes."; }
+        else oppLine = ok ? "Le Maître a trouvé lui aussi : on continue." : "Le Maître s'est trompé lui aussi : vous restez en vie.";
+      }
     }
     if (q.sd && G.bot) {
       const bg = Math.round(q.y + gauss() * 9), bgap = Math.abs(bg - q.y);
@@ -775,6 +948,7 @@ main { padding-block: 20px 110px; }
     cont.onclick = () => {
       clearTimeout(G.autoT);
       G.i++;
+      if (G.msOver) return finish();
       if (q.sd && G.sdResult && (G.bot || live)) return finish();
       if (G.endless && !ok) return finish();
       next();
@@ -943,46 +1117,102 @@ main { padding-block: 20px 110px; }
     });
   }
 
-  // Duel contre un ami par code : même code = mêmes questions ; le résultat s'affiche quand les deux ont joué.
+  // 5. Mort subite : 5 questions à écrire (une date ou un mot), de « ça va » à « dur », jamais les mêmes.
+  // Dès que l'un tombe et pas l'autre, c'est fini. Si les deux tiennent, une date décisive : le plus proche gagne.
+  // Un match toutes les 4 heures : le temps de préparer le match retour.
+  const MS_COOLDOWN = 4 * 3600 * 1000;
   const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
-  function startFriendDuel(code) {
-    if (!db || !me) return;
-    const { qs, sd } = duelQs(code, false);
+  const LEVEL_NAMES = ["ça va", "facile", "moyen", "costaud", "dur"];
+  function msIds() {
+    const ids = [];
+    for (let lv = 1; lv <= 5; lv++) ids.push(...drawIds("ms", 1, Math.random, { lv, exclude: new Set(ids) }));
+    const years = POOL.ms.filter((x) => x.id[0] === "y" && !ids.includes(x.id) && !ids.includes("y" + x.id.slice(1)));
+    const fresh = years.filter((x) => !seen.has(x.id));
+    const decisive = (pick(fresh.length ? fresh : years, 1, Math.random)[0] || { id: "y0" }).id;
+    return { ids, decisive };
+  }
+  const msSplash = (who) => ({ kind: "splash", kicker: `Mort subite · contre ${who}`, title: "Une seule vie", icon: ICON.skull, bg: "var(--red)", fg: "#2a0006", cta: "Je suis prêt",
+    rules: "Cinq questions, de « ça va » à « dur ». Pas de propositions : tu écris la réponse, une date ou un mot. Dès que l'un de vous tombe et pas l'autre, c'est fini. Si vous tenez tous les deux, une date décisive départage : le plus proche gagne." });
+  const decisiveSplash = () => ({ kind: "splash", sd: true, kicker: "Personne n'est tombé", title: "Date décisive", icon: ICON.skull, bg: "var(--gold)", fg: "#2b1d00", rules: "Écris l'année. Le plus proche de la bonne réponse remporte le match." });
+  const msQs = (ids) => buildAll(ids, "", { timer: 30 });
+  const msDecisive = (id) => Object.assign(build(id), { sd: true, typed: true, timer: 30, lv: null });
+  const levelPts = (g) => g.qs.filter((q) => q.lv && q.ok && !q.sd).reduce((s, q) => s + 10 * q.lv, 0);
+  const cooldownText = (ms) => { const m = Math.ceil(ms / 60000); return m >= 60 ? `${Math.floor(m / 60)} h ${pad(m % 60)}` : `${m} min`; };
+
+  function startMsBot() {
+    if (Date.now() < (S.msBotNext || 0)) return;
+    S.msBotNext = Date.now() + MS_COOLDOWN; save();
+    const { ids, decisive } = msIds();
+    const P = [0.92, 0.8, 0.64, 0.48, 0.32];
     startGame({
-      mode: "friend", qs: [...qs, sdSplash("friend"), ...sd], duel: true, duoCarre: true,
-      opponent: { name: "Ton adversaire", short: "?", hidden: true },
+      mode: "ms", qs: [msSplash("le Maître"), ...msQs(ids)], duel: true,
+      opponent: { name: "Le Maître", short: "M" },
+      bot: (q) => ({ ok: Math.random() < P[(q.lv || 3) - 1], pts: 1 }),
+      onRegularEnd: () => (!G.msOver ? [decisiveSplash(), msDecisive(decisive)] : null),
       onEnd: (g) => {
-        const doc = { code, score: g.me, sd: g.sdGuesses.map((v, k) => (v == null ? 999 : Math.abs(v - sd[k].y))), at: Date.now() };
-        db.collection("duels").doc(`${code}-${me}`).set(doc).catch(() => {});
-        if (!S.duels.includes(code)) S.duels.unshift(code);
-        S.duels = S.duels.slice(0, 8);
-        addPoints(g.correct * 10 + 20);
+        const out = g.msOver || (g.sdResult || "draw");
+        const pts = levelPts(g) + (out === "win" ? 60 : out === "draw" ? 25 : 10);
+        S.played++; if (out === "win") S.wins++;
+        addPoints(pts);
+        const reached = g.qs.filter((q) => q.lv && q.done && !q.sd).length;
         return {
-          kicker: `Duel ${code}`, title: `${g.me} points`, icon: ICON.swords, bg: "var(--blue)", fg: "#021327",
-          extra: `<div class="card" style="width:100%;max-width:420px" id="duel-res"><p class="muted">Recherche du résultat…</p></div>`,
-          mount: () => watchDuel(code, $("#duel-res")),
+          kicker: g.msOver ? `Décidé à la question ${reached}` : "Décidé à la date décisive",
+          title: out === "win" ? "Le Maître est tombé !" : out === "draw" ? "Égalité parfaite" : "Tu es tombé",
+          icon: out === "win" ? ICON.star : ICON.skull, bg: out === "win" ? "var(--gold)" : "var(--red)", fg: out === "win" ? "#2b1d00" : "#2a0006",
+          stats: [[`${reached}/5`, "questions jouées"], [`+${pts}`, "points"], [`${S.wins}/${S.played}`, "matchs gagnés"]],
+          text: `Match retour contre le Maître dans 4 h.`,
           cta: "Retour aux défis", after: () => setTab("defis"),
         };
       },
     });
   }
 
-  // 5. Mort subite des dates en solo : la marge se resserre, une erreur et c'est fini.
-  function startSuddenDeath() {
-    const tols = [10, 8, 6, 5, 4, 3, 3, 2, 2, 1];
-    const used = new Set();
-    let k = 0;
+  // Contre un ami : le créateur tire les questions et les range dans le match ; l'autre joue exactement les mêmes.
+  async function createMsFriend(rematchOf) {
+    if (!db || !me) return;
+    const code = newCode();
+    const { ids, decisive } = msIds();
+    try { await db.collection("ms").doc(code).set({ code, ids, decisive, host: me, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
+    playMsFriend(code, ids, decisive);
+  }
+  async function joinMsFriend(code, msg) {
+    try {
+      const mine = await db.collection("ms").doc(`${code}-${me}`).get();
+      if (mine.exists) { msg.textContent = "Tu as déjà joué ce match : voici le résultat."; showMs(code); return; }
+      const snap = await db.collection("ms").doc(code).get();
+      if (!snap.exists) { msg.textContent = "Ce code ne correspond à aucun match."; return; }
+      const d = snap.data();
+      if (!validIds(d.ids) || d.ids.length !== 5 || typeof d.decisive !== "string" || !/^y[0-9]{1,3}$/.test(d.decisive)) { msg.textContent = "Ce match est illisible."; return; }
+      playMsFriend(code, d.ids, d.decisive);
+    } catch (e) { msg.textContent = "Impossible de rejoindre ce match pour le moment."; }
+  }
+  function playMsFriend(code, ids, decisive) {
     startGame({
-      mode: "sd", qs: [],
-      endless: () => { const id = drawIds("date", 1, Math.random, { exclude: used })[0] || "d0"; used.add(id); const d = build(id); d.tol = tols[Math.min(k, tols.length - 1)]; d.timer = 30; k++; return d; },
+      mode: "msf", qs: [msSplash("ton ami"), ...msQs(ids), decisiveSplash(), msDecisive(decisive)], duel: true,
+      opponent: { name: "Ton ami", short: "?", hidden: true },
       onEnd: (g) => {
-        const isRecord = g.correct > S.best;
-        if (isRecord) S.best = g.correct;
-        addPoints(g.correct * 15);
-        return { kicker: "Mort subite", title: `${g.correct} date${g.correct > 1 ? "s" : ""} d'affilée`, text: (isRecord && g.correct ? "Nouveau record ! " : `Ton record : ${S.best}. `) + `+${g.correct * 15} points.`, icon: ICON.skull, bg: "var(--red)", fg: "#2a0006", cta: "Rejouer", after: startSuddenDeath };
+        const res = g.qs.filter((q) => q.lv && !q.sd).map((q) => !!q.ok);
+        const dq = g.qs.find((q) => q.sd);
+        const gap = dq && Number.isFinite(dq.gap) ? dq.gap : 9999;
+        db.collection("ms").doc(`${code}-${me}`).set({ code, res, gap, at: Date.now() }).catch(() => {});
+        if (!S.ms.includes(code)) S.ms.unshift(code);
+        S.ms = S.ms.slice(0, 8);
+        const pts = levelPts(g) + 20;
+        addPoints(pts);
+        return {
+          kicker: `Mort subite · match ${code}`, title: `${res.filter(Boolean).length}/5 trouvées`, icon: ICON.skull, bg: "var(--red)", fg: "#2a0006",
+          extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="ms-res"><p class="muted">Recherche du résultat…</p></div>`,
+          mount: () => watchMs(code, $("#ms-res")), text: `+${pts} points pour tes bonnes réponses. Le bonus de victoire arrive quand ton ami a joué.`,
+          cta: "Retour aux défis", after: () => setTab("defis"),
+        };
       },
     });
+  }
+  function msCompare(a, b) {
+    for (let k = 0; k < 5; k++) { const x = !!(a.res || [])[k], y = !!(b.res || [])[k]; if (x !== y) return { out: x ? "win" : "lose", how: `Décidé à la question ${k + 1} (${LEVEL_NAMES[k]}).` }; }
+    if (a.gap !== b.gap) return { out: a.gap < b.gap ? "win" : "lose", how: `Décidé à la date décisive : ${a.gap} an${a.gap > 1 ? "s" : ""} d'écart contre ${b.gap}.` };
+    return { out: "draw", how: "Égalité parfaite, même à la date décisive." };
   }
 
   // ================= Partagé : points, classements, duels (db) =================
@@ -1021,6 +1251,7 @@ main { padding-block: 20px 110px; }
   const nameOf = (id) => (id === me ? "Toi" : names[id] || "Joueur");
   function refreshShared() {
     const c = $("#champion"); if (c) c.outerHTML = championHTML();
+    applyStatus();
     if (tab === "classement" && !G) render();
   }
   function syncPlayer() {
@@ -1032,31 +1263,34 @@ main { padding-block: 20px 110px; }
     if (!db || !me || !S.daily) return;
     db.collection("defi").doc(me).set({ date: S.daily.date, score: S.daily.score, correct: S.daily.correct, at: Date.now() }).catch(() => {});
   }
-  let duelUnsub = null;
-  function watchDuel(code, el) {
-    if (duelUnsub) { duelUnsub(); duelUnsub = null; }
+  // Résultat d'un match à distance, en direct dès que l'adversaire a joué, avec le match retour au bout de 4 h.
+  let msUnsub = null;
+  function watchMs(code, el) {
+    if (msUnsub) { msUnsub(); msUnsub = null; }
     if (!db || !el) return;
-    duelUnsub = db.collection("duels").where("code", "==", code).onSnapshot(async (snap) => {
-      const rows = snap.docs.map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
+    msUnsub = db.collection("ms").where("code", "==", code).onSnapshot(async (snap) => {
+      const rows = snap.docs.filter((d) => d.id.includes("-")).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
       await resolveNames(rows.map((r) => r.uid));
+      if (!document.body.contains(el)) { msUnsub && msUnsub(); msUnsub = null; return; }
       const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
-      if (!document.body.contains(el)) { duelUnsub && duelUnsub(); duelUnsub = null; return; }
-      if (!mine) { el.innerHTML = `<p class="muted">Tu n'as pas encore joué ce duel.</p>`; return; }
+      if (!mine) { el.innerHTML = `<p class="muted">Tu n'as pas encore joué ce match.</p>`; return; }
       if (!other) {
-        el.innerHTML = `<p class="label">En attente de ton adversaire</p><p>Envoie-lui ce code. Il l'entre dans « Défis » pour jouer les mêmes questions :</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
+        el.innerHTML = `<p class="label">En attente de ton adversaire</p><p>Envoie-lui ce code : il l'entre dans « Défis » pour jouer les mêmes questions.</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
         const c = el.querySelector("#copy");
         c.onclick = () => { try { navigator.clipboard.writeText(code).then(() => (c.textContent = "Code copié"), () => (c.textContent = code)); } catch (e) { c.textContent = code; } };
         return;
       }
-      let out = mine.score > other.score ? "win" : mine.score < other.score ? "lose" : null, how = "";
-      if (!out) {
-        for (let k = 0; k < 3 && !out; k++) { if (mine.sd[k] < other.sd[k]) out = "win"; else if (mine.sd[k] > other.sd[k]) out = "lose"; }
-        how = out ? "Égalité : décidé à la mort subite sur les dates." : "Égalité parfaite, même à la mort subite !";
-      }
+      const { out, how } = msCompare(mine, other);
+      const key = `ms-bonus-${code}`;
+      if (!S[key]) { S[key] = 1; addPoints(out === "win" ? 60 : out === "draw" ? 25 : 0); if (out === "win") S.wins++; S.played++; save(); }
       const oname = names[other.uid] || "Ton adversaire";
-      el.innerHTML = `<p class="label">${out === "win" ? "Victoire" : out === "lose" ? "Défaite" : "Match nul"}</p>
-        <h3 style="font-size:30px;margin:6px 0" class="num">${mine.score} – ${other.score}</h3>
-        <p class="muted">Toi contre ${esc(oname)}. ${how}</p>`;
+      const wait = Math.max(mine.at || 0, other.at || 0) + MS_COOLDOWN - Date.now();
+      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +60 points" : out === "lose" ? "Défaite" : "Match nul · +25 points"}</p>
+        <h3 style="font-size:24px;margin:6px 0">Toi contre ${esc(oname)}</h3>
+        <p class="muted">${esc(how)}</p>
+        <div class="ms-grid">${[0, 1, 2, 3, 4].map((k) => `<span class="${(mine.res || [])[k] ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>Toi</b>${[0, 1, 2, 3, 4].map((k) => `<span class="${(other.res || [])[k] ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>${esc(oname)}</b></div>
+        ${wait > 0 ? `<p class="note">Match retour possible dans ${cooldownText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
+      const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createMsFriend(code);
     }, () => { el.innerHTML = `<p class="muted">Résultat indisponible pour le moment.</p>`; });
   }
 
@@ -1129,7 +1363,7 @@ main { padding-block: 20px 110px; }
     L.nr.emit("start", data).catch(() => {});
     beginLive(data);
   }
-  const validIds = (a) => Array.isArray(a) && a.length <= 12 && a.every((x) => typeof x === "string" && /^[ckKmMdio][0-9_]{1,9}$/.test(x));
+  const validIds = (a) => Array.isArray(a) && a.length <= 12 && a.every((x) => typeof x === "string" && /^[ckKmMdioqy][0-9_]{1,9}$/.test(x));
   function beginLive(data) {
     if (!L || !data || !validIds(data.ids) || !validIds(data.sd) || typeof data.seed !== "string") return;
     L.started = true; L.state = "play"; clearTimeout(L.giveUp);
@@ -1181,12 +1415,28 @@ main { padding-block: 20px 110px; }
   function setTab(t) { tab = t; render(); window.scrollTo(0, 0); }
   document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
 
+  // Grades : le 1er est « Maître du savoir », le top 5 « Élite du savoir » (logo et bordure dorés), puis selon les points.
+  const GRADES = [[3000, "Savant"], [1000, "Érudit"], [300, "Initié"], [0, "Curieux"]];
+  const rankOf = (id) => players.findIndex((p) => p.id === id);
+  function gradeOf(rank, pts) {
+    if (rank === 0) return "Maître du savoir";
+    if (rank > 0 && rank < 5) return "Élite du savoir";
+    return (GRADES.find(([m]) => pts >= m) || GRADES[GRADES.length - 1])[1];
+  }
+  let preview = "";
+  function applyStatus() {
+    const r = preview === "master" ? 0 : preview === "elite" ? 2 : preview === "normal" ? -1 : rankOf(me);
+    document.body.classList.toggle("elite", r >= 0 && r < 5);
+    document.body.classList.toggle("master", r === 0);
+    const chip = $("#grade-chip");
+    if (chip) { chip.textContent = r === 0 ? "Maître" : r > 0 && r < 5 ? `Top ${r + 1}` : ""; chip.hidden = !(r >= 0 && r < 5); }
+  }
   function championHTML() {
     if (!db) return `<div id="champion"></div>`;
     const top = players[0];
     return `<section class="champion" id="champion">
       <span class="crown">${ICON.crown}</span>
-      <div class="ch-main"><span class="label">Meilleur joueur</span><b>${top ? esc(nameOf(top.id)) : "La place est libre"}</b>${top ? "" : `<small>Gagne des points et prends la tête.</small>`}</div>
+      <div class="ch-main"><span class="label">Maître du savoir</span><b>${top ? esc(nameOf(top.id)) : "La place est libre"}</b>${top ? "" : `<small>Gagne des points et prends la tête.</small>`}</div>
       ${top ? `<span class="ch-pts num">${fmt(top.points)}<small>pts</small></span>` : ""}
     </section>`;
   }
@@ -1196,7 +1446,7 @@ main { padding-block: 20px 110px; }
     return `<section class="card daily">
       <p class="label" style="color:var(--mint)">Défi du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
       <h2>${done ? `Fait : ${fmt(S.daily.score)} points` : "10 questions, les mêmes pour tout le monde"}</h2>
-      <div class="meta"><span>20 s par question</span><span>Prochain défi dans ${msToMidnight()}</span></div>
+      <div class="meta"><span class="reward">${done ? "Points gagnés" : "Jusqu'à +130 pts"}</span><span>20 s par question</span><span>Prochain défi dans ${msToMidnight()}</span></div>
       ${done ? `<button class="btn ghost" data-go="classement">Voir le classement</button>` : `<button class="btn" id="daily-go">Jouer le défi</button>`}
     </section>`;
   }
@@ -1244,29 +1494,39 @@ main { padding-block: 20px 110px; }
     </section>`;
   }
 
-  function viewDefis() {
+  function msCard() {
     const shared = !!(db && me);
+    const wait = (S.msBotNext || 0) - Date.now();
+    return `<section class="card mode ms-card">
+      <div class="mode-ico" style="background:#3a141b;color:var(--red)">${ICON.skull}</div>
+      <div>
+        <h3>Mort subite</h3>
+        <p>Cinq questions à écrire, une date ou un mot, de « ça va » à « dur ». Jamais les mêmes. Dès que l'un tombe et pas l'autre, c'est fini. Un match toutes les 4 heures : prépare ton match retour.</p>
+        <div class="levels big" aria-hidden="true">${LEVEL_NAMES.map((n) => `<span>${n}</span>`).join("")}</div>
+        <div class="btns">
+          ${wait > 0 ? `<span class="cooldown">Match contre le Maître dans ${cooldownText(wait)}</span>` : `<button class="btn" id="msbot-go" style="background:var(--red);color:#2a0006;box-shadow:0 4px 0 var(--red-deep)">Contre le Maître</button>`}
+          ${shared ? `<button class="btn ghost" id="msf-go">Défier un ami</button>` : ""}
+        </div>
+        ${shared ? `<div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
+        <p class="note" id="join-msg"></p>
+        ${S.ms.length ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${S.ms.map((c) => `<button class="duel-item" data-ms="${c}"><b>${c}</b><span class="muted">Résultat et match retour ›</span></button>`).join("")}</div><div id="ms-view" style="margin-top:12px"></div>` : ""}`
+        : `<p class="note">Le match contre un ami a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}
+      </div>
+    </section>`;
+  }
+
+  function viewDefis() {
     return `<div class="stack">
+      ${dailyCard()}
+      ${msCard()}
       ${liveCard()}
       ${eclairCard()}
-      ${dailyCard()}
       <section class="card mode">
         <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
         <div>
           <h3>Duel en trois manches</h3>
-          <p>Duo ou carré, l'intrus, avant ou après. En cas d'égalité, mort subite sur une date : le plus proche gagne.</p>
-          <div class="btns"><button class="btn blue" id="bot-go">Contre le Maître</button>${shared ? `<button class="btn ghost" id="friend-go">Défier un ami par code</button>` : ""}</div>
-          ${shared ? `<div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
-          <p class="note" id="join-msg"></p>
-          ${S.duels.length ? `<p class="label" style="margin-top:16px">Mes duels par code</p><div class="duel-list">${S.duels.map((c) => `<button class="duel-item" data-duel="${c}"><b>${c}</b><span class="muted">Voir le résultat ›</span></button>`).join("")}</div><div id="duel-view" style="margin-top:12px"></div>` : ""}` : ""}
-        </div>
-      </section>
-      <section class="card mode">
-        <div class="mode-ico" style="background:#3a141b;color:var(--red)">${ICON.skull}</div>
-        <div>
-          <h3>Mort subite des dates</h3>
-          <p>Trouve l'année, à quelques ans près. La marge se resserre à chaque date. Une erreur, et c'est fini. 15 points par date trouvée.</p>
-          <div class="btns"><button class="btn ghost" id="sd-go">Jouer</button><span class="muted" style="align-self:center">Record : <strong class="num" style="color:var(--gold)">${S.best}</strong></span></div>
+          <p>Duo ou carré, l'intrus, avant ou après. En cas d'égalité, une date à écrire, sans indice : le plus proche gagne.</p>
+          <div class="btns"><button class="btn blue" id="bot-go">Contre le Maître</button></div>
         </div>
       </section>
     </div>`;
@@ -1279,8 +1539,8 @@ main { padding-block: 20px 110px; }
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
-      general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${esc(nameOf(podium[k].id))}</b><span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
-        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
+      general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${esc(nameOf(podium[k].id))}</b><em class="gchip">${k === 0 ? "Maître du savoir" : "Élite"}</em><span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
+        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} ${k + 3 < 5 ? '<em class="gchip">Élite</em>' : `<em class="gchip plain">${gradeOf(k + 3, p.points)}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
     let daily;
     if (!db) daily = "";
@@ -1289,16 +1549,25 @@ main { padding-block: 20px 110px; }
     return `<div class="stack">
       <section class="card"><p class="label">Tous les joueurs</p><h2 style="font-size:26px;margin-top:4px">Classement général</h2>${general}</section>
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
-      <section class="card"><p class="label">Tes chiffres</p>
+      <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
+        <ul class="grades">
+          <li><span class="g-ico master-ico">${ICON.crown}</span><div><b>1ᵉʳ · Maître du savoir</b><span>Couronne sur le logo, bordure dorée animée, ton nom en tête pour tous.</span></div></li>
+          <li><span class="g-ico elite-ico">${ICON.star}</span><div><b>Top 5 · Élite du savoir</b><span>Le logo de l'appli passe en or, avec une bordure dorée autour de l'appli.</span></div></li>
+          <li><span class="g-ico">${ICON.bolt}</span><div><b>Selon tes points</b><span>Curieux, Initié (300), Érudit (1 000), Savant (3 000).</span></div></li>
+        </ul>
+        <p class="label" style="margin-top:14px">Aperçu</p>
+        <div class="seg">${[["normal", "Normal"], ["elite", "Top 5"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
+      </section>
+      <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me), S.points))}</p>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><b class="num">${fmt(S.points)}</b><span>points</span></div>
           <div class="stat"><b class="num">${streakNow()}</b><span>jours de suite</span></div>
           <div class="stat"><b class="num">${S.wins}/${S.played}</b><span>duels gagnés</span></div>
           <div class="stat"><b class="num">${fmt(seen.size)}</b><span>questions vues</span></div>
-          <div class="stat"><b class="num">${S.best}</b><span>record mort subite</span></div>
+          <div class="stat"><b class="num">${S.ms.length}</b><span>matchs à distance</span></div>
           <div class="stat"><b class="num">${fmt(BANK + ORDER_PAIRS)}</b><span>questions possibles</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Comment gagner des points : 10 par bonne réponse en leçon (+20 si réussie), quiz éclair avec combo, défi du jour (+30), duel gagné (+40 contre le Maître, +50 en direct), 15 par date en mort subite.</p></section>
+        <p class="note" style="margin-top:12px">Comment gagner des points : 10 par bonne réponse en leçon (+20 si réussie), quiz éclair avec combo, défi du jour (+30), duel gagné (+40 contre le Maître, +50 en direct), mort subite (10 × le niveau de chaque question trouvée, +60 si tu gagnes).</p></section>
     </div>`;
   }
 
@@ -1311,29 +1580,27 @@ main { padding-block: 20px 110px; }
     on("#daily-go", startDaily);
     on("#eclair-go", startEclair);
     on("#bot-go", startBotDuel);
-    on("#sd-go", startSuddenDeath);
-    on("#friend-go", () => startFriendDuel(newCode()));
+    on("#msbot-go", startMsBot);
+    on("#msf-go", () => createMsFriend(null));
     on("#live-go", findMatch);
     on("#live-cancel", cancelMatch);
     v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
+    v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview === "normal" ? "normal" : b.dataset.preview; render(); }));
     v.querySelectorAll("[data-lesson]").forEach((b) => (b.onclick = () => {
       if (b.classList.contains("locked")) return;
       const [th, n] = b.dataset.lesson.split("-");
       startLesson(th, +n, `${THEME[th]} · leçon ${+n + 1}`);
     }));
-    on("#join-go", async () => {
+    on("#join-go", () => {
       const code = $("#code-in").value.trim().toUpperCase();
       const msg = $("#join-msg");
       if (!/^[A-Z0-9]{5}$/.test(code)) { msg.textContent = "Le code fait 5 caractères, par exemple K7RMX."; return; }
-      try {
-        const snap = await db.collection("duels").doc(`${code}-${me}`).get();
-        if (snap.exists) { msg.textContent = "Tu as déjà joué ce duel : voici le résultat."; showDuel(code); return; }
-      } catch (e) {}
-      startFriendDuel(code);
+      joinMsFriend(code, msg);
     });
-    v.querySelectorAll("[data-duel]").forEach((b) => (b.onclick = () => showDuel(b.dataset.duel)));
+    v.querySelectorAll("[data-ms]").forEach((b) => (b.onclick = () => showMs(b.dataset.ms)));
+    applyStatus();
   }
-  function showDuel(code) { const box = $("#duel-view") || $("#join-msg"); if (!box) return; box.innerHTML = `<div class="card" style="background:var(--panel-2)"><p class="muted">Chargement…</p></div>`; watchDuel(code, box.firstElementChild); }
+  function showMs(code) { const box = $("#ms-view") || $("#join-msg"); if (!box) return; box.innerHTML = `<div class="card" style="background:var(--panel-2)"><p class="muted">Chargement…</p></div>`; watchMs(code, box.firstElementChild); }
 
   document.addEventListener("keydown", (e) => {
     if (!G || play.hidden) return;
