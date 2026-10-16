@@ -805,6 +805,19 @@ body.elite::before { border-color: rgba(244, 184, 96, .7); }
 body.master::before { background: var(--warm); }
 .grade-chip { background: #3a2a1e; color: var(--gold); }
 @media (prefers-reduced-motion: reduce) { .scribble path { animation: none; stroke-dashoffset: 0; } }
+/* 1er du classement : bleu marine et violet au lieu de l'or */
+:root { --royal: linear-gradient(135deg, #1e2f86, #4b3bd6 50%, #9b6bff); --royal-text: #c9b8ff; }
+body.master::before { padding: 4px; background: conic-gradient(from var(--spin), #14205e, #4b3bd6, #9b6bff, #c9b8ff, #4b3bd6, #14205e); animation: spinb 5s linear infinite; }
+body.master .logo-elite { color: var(--royal-text); filter: drop-shadow(0 0 8px rgba(124, 92, 255, .7)); }
+body.master .brand b { color: var(--royal-text); }
+body.master .grade-chip { background: var(--royal); color: #fff; }
+body.master .master-ico, .champion .crown { background: var(--royal); color: #fff; }
+.k1 .k-step { background: linear-gradient(180deg, #2a2f7a, #1b1d4f); }
+.k1 .k-who b { background: linear-gradient(90deg, #a9b8ff, #c9a8ff, #9b6bff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.k1 .k-medal { background: var(--royal); color: #fff; box-shadow: 0 0 0 3px rgba(201, 184, 255, .35); }
+.champion { border-color: rgba(155, 107, 255, .45); background: linear-gradient(120deg, #1d2160, #231b16 75%); }
+.champion .fx-name, .champion .fx-name * { background-image: linear-gradient(90deg, #a9b8ff, #c9a8ff, #9b6bff) !important; }
+@media (prefers-reduced-motion: reduce) { body.master::before { animation: none; } }
 </style>
 
 <header class="top">
