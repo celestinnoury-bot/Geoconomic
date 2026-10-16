@@ -1227,3 +1227,13 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .globe-hero.sheet-open .scroll-rail { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .rail-thumb svg { animation: none; } }
 .car-card, .ind-card { z-index: 6; }
+
+/* Accès au jeu Géoconomic Duel dans le bandeau : la couleur ambre du jeu */
+.nav-actions .nav-duel { border-color: rgba(255, 150, 70, .55); color: #ffb066; }
+.nav-actions .nav-duel:hover { background: rgba(255, 150, 70, .12); }
+.nav-duel-m { display: none; }
+@media (max-width: 560px) {
+  .navbar-inner .nav-actions .nav-duel { display: none; }
+  .navbar-inner .nav-duel-m { display: inline-flex; order: 2; margin-left: auto; padding: 5px 11px; font-size: 13px; color: #ffb066; border-color: rgba(255, 150, 70, .55); }
+  .navbar-inner .nav-duel-m + .nav-search { margin-left: 8px; }
+}
