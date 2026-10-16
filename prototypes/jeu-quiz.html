@@ -444,6 +444,38 @@ h1, h2, h3, .brand, .label, .btn, .chip, .tab, .vs, .pts, .code, .ch-pts, .stat 
 .gchip { border-radius: 2px; }
 body.elite .logo-elite { filter: none; }
 @media (prefers-reduced-motion: reduce) { .fact-year i { animation: none; } }
+/* Titres des places 6 et plus */
+.title-list { margin: 8px 0 0; padding-left: 26px; display: grid; gap: 4px; font-size: 13px; color: var(--text); }
+.title-list li::marker { font-family: var(--display); color: var(--muted); }
+.title-list.bands { list-style: none; padding-left: 0; }
+.title-list.bands b { display: inline-block; min-width: 92px; font-family: var(--display); color: var(--muted); font-weight: 600; }
+.gchip.plain { white-space: normal; background: transparent; padding: 0; color: var(--muted); font-weight: 600; font-size: 11px; display: block; margin: 1px 0 0; }
+/* Texte plus petit partout */
+body { font-size: 15px; }
+.brand { font-size: 17px; }
+.duel-hero h1 { font-size: clamp(32px, 9.5vw, 48px); }
+.duel-hero .muted, .mode p, .rules, .note { font-size: 14px; }
+.board-strip { font-size: 12px; }
+.daily h2 { font-size: 22px; }
+.mode h3 { font-size: 20px; }
+.question { font-size: clamp(21px, 5.6vw, 25px); margin: 4px 0 16px; }
+.fact-text { font-size: 16px; }
+.ans.fact { min-height: 96px; padding: 14px 16px; }
+.fact-year { font-size: 24px; }
+.type-box input.year-in { font-size: 34px; }
+.splash .big { font-size: clamp(28px, 8vw, 40px); }
+.sheet h3 { font-size: 20px; }
+.sheet p { font-size: 14px; }
+.btn { font-size: 16px; padding: 10px 16px; }
+.ch-main b { font-size: 18px; }
+.champion .fx-name { font-size: 17px; }
+.ch-pts { font-size: 22px; }
+.card h2[style] { font-size: 22px !important; }
+.stat b { font-size: 22px; }
+.result-grid .stat b { font-size: 19px; }
+.side .pts { font-size: 22px; }
+.pts-row b { font-size: 17px; }
+.rank li { font-size: 14px; padding: 8px 10px; }
 </style>
 
 <header class="top">
@@ -1056,11 +1088,31 @@ body.elite .logo-elite { filter: none; }
   const tone = (rank) => (rank < 3 ? "dark" : "gold");
   const fxName = (name, rank) => `<span class="fx fx-${tone(rank)}">${FLAME(tone(rank), 1)}<span class="fx-name">${esc(name)}</span>${FLAME(tone(rank), 2)}</span>`;
   const fxTitle = (rank) => `<em class="fx-title fx-${tone(rank)}"><span>${esc(TITLES[rank])}</span></em>`;
-  const GRADES = [[500, "Savant"], [200, "Érudit"], [50, "Initié"], [0, "Curieux"]];
+  // Titres des places suivantes, dans le même esprit : un titre par place jusqu'à la 20ᵉ, puis par tranches.
+  const MORE_TITLES = [
+    "Archiduc implacable des dates oubliées",
+    "Grand vizir de l'érudition sournoise",
+    "Margrave fulgurant, chronologie acérée",
+    "Doge suprême des archives interdites",
+    "Calife de la connaissance tonitruante",
+    "Shogun impérieux, mémoire d'acier",
+    "Tsar intrépide du passé brûlant",
+    "Pharaon éternel, sagesse corrosive",
+    "Maharadjah des siècles insondables",
+    "Khan farouche de la frise infinie",
+    "Prince électeur de l'anecdote fatale",
+    "Duc vorace, chronologie insolente",
+    "Marquis ténébreux du savoir oblique",
+    "Comte palatin des almanachs maudits",
+    "Vicomte acharné, précision redoutable",
+  ];
+  const BANDS = [[30, "Baron des dates furtives"], [50, "Chevalier errant de la frise"], [100, "Écuyer du calendrier perdu"], [Infinity, "Page des siècles à venir"]];
   const rankOf = (id) => players.findIndex((p) => p.id === id);
-  function gradeOf(rank, pts) {
+  function gradeOf(rank) {
     if (rank >= 0 && rank < 5) return TITLES[rank];
-    return (GRADES.find(([m]) => pts >= m) || GRADES[GRADES.length - 1])[1];
+    if (rank >= 5 && rank < 20) return MORE_TITLES[rank - 5];
+    const place = rank < 0 ? Infinity : rank + 1;
+    return BANDS.find(([max]) => place <= max)[1];
   }
   let preview = "";
   function applyStatus() {
@@ -1127,12 +1179,12 @@ body.elite .logo-elite { filter: none; }
   function viewClassement() {
     let general;
     if (!db) general = `<p class="muted">Le classement partagé s'affiche quand la page est ouverte sur claude.ai, connecté.</p>`;
-    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Gagne un match ou fais le défi du jour : tu apparaîtras ici pour tous les joueurs.</p>`;
+    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Gagne un match ou fais le défi du jour : tu apparaîtras ici avec ton titre.</p>`;
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
       general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${fxName(nameOf(podium[k].id), k)}</b>${fxTitle(k)}<span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
-        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "fx-row" : ""}"><span class="pos num">${k + 4}</span><span class="row-who">${k + 3 < 5 ? `${fxName(nameOf(p.id), k + 3)}${fxTitle(k + 3)}` : `${esc(nameOf(p.id))} <em class="gchip plain">${esc(gradeOf(k + 3, p.points))}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
+        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""} ${k + 3 < 5 ? "fx-row" : ""}"><span class="pos num">${k + 4}</span><span class="row-who">${k + 3 < 5 ? `${fxName(nameOf(p.id), k + 3)}${fxTitle(k + 3)}` : `${esc(nameOf(p.id))} <em class="gchip plain">${esc(gradeOf(k + 3))}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
       : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
@@ -1142,12 +1194,17 @@ body.elite .logo-elite { filter: none; }
       <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
         <ul class="grades">
           ${TITLES.map((x, k) => `<li><span class="g-ico ${k === 0 ? "master-ico" : "elite-ico"} rank-ico">${k + 1}</span><div><b>${esc(x)}</b><span>${k === 0 ? "1ᵉʳ du classement : couronne sur le logo, bordure dorée animée, ton titre en tête pour tous." : `${k + 1}ᵉ du classement : logo doré et bordure dorée autour de l'appli.`}</span></div></li>`).join("")}
-          <li><span class="g-ico">${ICON.bolt}</span><div><b>Selon tes points</b><span>Curieux, Initié (50), Érudit (200), Savant (500).</span></div></li>
+        </ul>
+        <p class="label" style="margin-top:14px">Places 6 à 20</p>
+        <ol class="title-list" start="6">${MORE_TITLES.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+        <p class="label" style="margin-top:14px">Au-delà</p>
+        <ul class="title-list bands">
+          <li><b>21ᵉ à 30ᵉ</b> ${esc(BANDS[0][1])}</li><li><b>31ᵉ à 50ᵉ</b> ${esc(BANDS[1][1])}</li><li><b>51ᵉ à 100ᵉ</b> ${esc(BANDS[2][1])}</li><li><b>Ensuite</b> ${esc(BANDS[3][1])}</li>
         </ul>
         <p class="label" style="margin-top:14px">Aperçu</p>
         <div class="seg">${[["normal", "Normal"], ["elite", "Top 5"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
       </section>
-      <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me), S.points))}</p>
+      <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me)))}</p>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><b class="num">${fmt(S.points)}</b><span>points</span></div>
           <div class="stat"><b class="num">${S.wins}-${S.draws}-${S.losses}</b><span>victoires, nuls, défaites</span></div>
