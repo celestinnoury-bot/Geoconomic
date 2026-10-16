@@ -45,7 +45,7 @@ h1, h2, h3 { font-family: var(--display); margin: 0; letter-spacing: -.01em; tex
 
 main { padding-block: 20px 110px; }
 .tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: var(--panel); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
-.tabs .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+.tabs .wrap { display: grid; grid-template-columns: repeat(2, 1fr); }
 .tab { background: none; border: 0; padding: 10px 4px 12px; display: grid; justify-items: center; gap: 3px; font-size: 12px; font-weight: 700; color: var(--muted); cursor: pointer; }
 .tab svg { width: 24px; height: 24px; }
 .tab[aria-selected="true"] { color: var(--mint); }
@@ -286,6 +286,27 @@ body.elite::before { content: ""; position: fixed; inset: 0; z-index: 60; pointe
 body.master::before { border: 0; padding: 4px; background: conic-gradient(from var(--spin), #f5c86b, #fff1c2, #b88d33, #f5c86b, #ffe08a, #f5c86b); -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0); animation: spinb 4s linear infinite; }
 @keyframes spinb { to { --spin: 360deg; } }
 @media (prefers-reduced-motion: reduce) { body.master::before { animation: none; } }
+/* Duel « avant ou après » */
+.duel-hero { padding: 6px 2px 4px; }
+.duel-hero h1 { font-size: clamp(38px, 11vw, 56px); line-height: 1; margin: 6px 0 10px; }
+.duel-hero .muted { margin: 0 0 14px; max-width: 46ch; }
+.example { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.fact-mini { background: var(--panel); border: 2px solid var(--line); border-radius: 14px; padding: 12px; font-weight: 700; font-size: 14px; text-align: center; box-shadow: 0 4px 0 #0b0f19; }
+.or { font-family: var(--display); font-weight: 800; color: var(--muted); text-transform: uppercase; font-size: 13px; letter-spacing: .1em; text-align: center; }
+.duel-hero .note { margin-top: 10px; }
+button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer; }
+.fact-mini.good { border-color: var(--mint); background: #12321f; }
+.fact-mini.bad { border-color: var(--red); background: #3a141b; }
+.versus { display: grid; gap: 10px; }
+.versus .or { padding: 2px 0; }
+.ans.fact { display: grid; gap: 8px; padding: 18px; min-height: 120px; align-content: center; }
+.fact-cat { justify-self: start; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: var(--panel-2); }
+.fact-cat.tech { color: #7fe3ff; } .fact-cat.eco { color: #ffb37a; } .fact-cat.conso { color: #ff9cc8; } .fact-cat.soc { color: #a9adff; }
+.fact-text { font-size: 19px; line-height: 1.3; }
+.fact-year { font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
+.fact-year:empty { display: none; }
+.sd-chip { color: var(--red); }
+.type-box input.near { border-color: var(--gold); background: #2e2410; }
 </style>
 
 <header class="top">
@@ -309,8 +330,7 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
 
 <nav class="tabs" aria-label="Sections">
   <div class="wrap" role="tablist">
-    <button class="tab" role="tab" data-tab="parcours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="12" r="2.5"/><circle cx="7" cy="19" r="2.5"/><path d="M8.3 7.2 15.8 11M15.9 13.3 9.2 17.8"/></svg>Parcours</button>
-    <button class="tab" role="tab" data-tab="defis"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 20 7-7M20 20l-7-7M14.5 4.5 20 4l-.5 5.5L13 16l-5-5 6.5-6.5zM9.5 4.5 4 4l.5 5.5"/></svg>Défis</button>
+    <button class="tab" role="tab" data-tab="jouer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m4 20 7-7M20 20l-7-7M14.5 4.5 20 4l-.5 5.5L13 16l-5-5 6.5-6.5zM9.5 4.5 4 4l.5 5.5"/></svg>Jouer</button>
     <button class="tab" role="tab" data-tab="classement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg>Classement</button>
   </div>
 </nav>
@@ -319,255 +339,114 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
 
 <script>
 (() => {
-  // ================= Banque de questions =================
-  // Thèmes : eco (économie), geo (géopolitique), hist (histoire), carte (géographie).
-  // QCM : [thème, question, bonne réponse, faux 1, faux 2, faux 3, explication]
-  const QCM = [
-    ["eco", "Quelle institution fixe les taux directeurs de la zone euro ?", "La Banque centrale européenne", "Le FMI", "La Commission européenne", "La Banque de France", "La BCE, installée à Francfort, décide des taux pour tous les pays de l'euro. La Banque de France applique sa politique en France."],
-    ["eco", "Que mesure le PIB ?", "La richesse produite en un an", "Le patrimoine total d'un pays", "Le total des exportations", "Le budget de l'État", "Le produit intérieur brut additionne la valeur de tout ce qui est produit dans un pays sur une période, en général un an."],
-    ["eco", "L'inflation, c'est…", "La hausse générale et durable des prix", "La hausse des salaires", "La hausse de la Bourse", "La hausse des impôts", "Quand les prix montent partout et longtemps, chaque euro achète moins de choses : c'est l'inflation."],
-    ["eco", "La stagflation, c'est…", "Une croissance faible avec une forte inflation", "Une baisse générale des prix", "Une Bourse qui stagne", "Une économie sans chômage", "Le mot mélange « stagnation » et « inflation ». Les années 1970, après les chocs pétroliers, en sont l'exemple type."],
-    ["eco", "Quand une banque centrale monte ses taux, en général…", "Le crédit devient plus cher", "Les prix montent plus vite", "La monnaie perd de la valeur", "Les salaires augmentent", "Des taux plus hauts rendent l'emprunt plus coûteux : on achète et on investit moins, ce qui freine l'inflation."],
-    ["eco", "Un déficit commercial, c'est quand un pays…", "Importe plus qu'il n'exporte", "Dépense plus qu'il ne perçoit d'impôts", "N'a plus de réserves d'or", "Exporte plus qu'il n'importe", "On parle de balance commerciale : achats à l'étranger (importations) contre ventes à l'étranger (exportations)."],
-    ["eco", "Quelle est la monnaie du Japon ?", "Le yen", "Le yuan", "Le won", "Le baht", "Le yuan est chinois, le won coréen et le baht thaïlandais."],
-    ["eco", "Quelle est la monnaie de l'Inde ?", "La roupie", "Le taka", "Le rand", "Le ringgit", "Le taka est la monnaie du Bangladesh, le rand celle de l'Afrique du Sud, le ringgit celle de la Malaisie."],
-    ["eco", "Quelle est la monnaie du Brésil ?", "Le real", "Le peso", "Le sol", "Le bolivar", "Le real circule depuis 1994. Le sol est péruvien, le bolivar vénézuélien."],
-    ["eco", "Quelle est la monnaie de l'Afrique du Sud ?", "Le rand", "Le naira", "Le shilling", "Le dirham", "Le naira est nigérian, le dirham marocain ou émirati, le shilling kényan ou ougandais."],
-    ["eco", "Où siège la Banque centrale européenne ?", "Francfort", "Bruxelles", "Paris", "Luxembourg", "Francfort, en Allemagne, accueille la BCE depuis sa création en 1998."],
-    ["eco", "Où siège le Fonds monétaire international ?", "Washington", "New York", "Genève", "Londres", "Le FMI et la Banque mondiale, nés à Bretton Woods en 1944, siègent tous deux à Washington."],
-    ["eco", "Où siège l'Organisation mondiale du commerce ?", "Genève", "Washington", "Bruxelles", "Vienne", "L'OMC est installée à Genève, en Suisse, depuis sa création en 1995."],
-    ["eco", "Où siège l'OPEP ?", "Vienne", "Riyad", "Dubaï", "Genève", "L'Organisation des pays exportateurs de pétrole a son siège à Vienne, en Autriche, depuis 1965."],
-    ["eco", "Qui a parlé de la « main invisible » du marché ?", "Adam Smith", "John Maynard Keynes", "Karl Marx", "David Ricardo", "Adam Smith, économiste écossais du XVIIIe siècle, l'utilise dans « La Richesse des nations » (1776)."],
-    ["eco", "Qui a théorisé les « avantages comparatifs » dans le commerce ?", "David Ricardo", "Adam Smith", "Milton Friedman", "Joseph Schumpeter", "Ricardo montre en 1817 que deux pays gagnent à échanger, même si l'un est meilleur partout."],
-    ["eco", "Qui a popularisé l'idée de « destruction créatrice » ?", "Joseph Schumpeter", "Karl Marx", "Adam Smith", "Friedrich Hayek", "Pour Schumpeter, l'innovation détruit les anciennes activités pour en créer de nouvelles : c'est le moteur du capitalisme."],
-    ["eco", "Le CAC 40, c'est l'indice de quelle Bourse ?", "Paris", "Francfort", "Londres", "Bruxelles", "Il suit 40 grandes entreprises cotées à Paris. Francfort a le DAX, Londres le FTSE 100."],
-    ["eco", "Le Nikkei est l'indice boursier de quelle ville ?", "Tokyo", "Séoul", "Shanghai", "Hong Kong", "Le Nikkei 225 suit la Bourse de Tokyo. Hong Kong a le Hang Seng."],
-    ["eco", "Quel pays est le premier producteur de pétrole au monde ?", "Les États-Unis", "L'Arabie saoudite", "La Russie", "L'Irak", "Grâce au pétrole de schiste, les États-Unis sont devenus le premier producteur mondial à la fin des années 2010."],
-    ["eco", "Quel pays fournit la majorité du cobalt mondial, utile aux batteries ?", "La RD Congo", "Le Chili", "L'Australie", "La Chine", "La République démocratique du Congo produit environ les trois quarts du cobalt mondial. La Chine, elle, le raffine."],
-    ["eco", "Quel pays est le premier producteur mondial de cacao ?", "La Côte d'Ivoire", "Le Brésil", "Le Ghana", "L'Équateur", "La Côte d'Ivoire produit à elle seule autour de 40 % du cacao mondial, devant le Ghana."],
-    ["eco", "Dans quel pays est basée l'entreprise TSMC, géant des puces électroniques ?", "Taïwan", "La Corée du Sud", "Le Japon", "Les États-Unis", "TSMC fabrique l'essentiel des puces les plus avancées du monde : c'est un enjeu majeur autour de Taïwan."],
-    ["eco", "Le « Brent », c'est…", "Un pétrole de référence de la mer du Nord", "Une taxe sur le carbone", "Un indice boursier britannique", "Une unité de mesure du gaz", "Le prix du baril de Brent sert de référence pour une grande partie du pétrole vendu dans le monde."],
-    ["eco", "Quel Français a reçu le prix Nobel d'économie en 2014 ?", "Jean Tirole", "Thomas Piketty", "Esther Duflo", "Maurice Allais", "Jean Tirole, de l'École d'économie de Toulouse, a été récompensé pour ses travaux sur la régulation des marchés."],
-    ["eco", "Que veut dire SMIC ?", "Salaire minimum interprofessionnel de croissance", "Salaire moyen indexé sur le coût de la vie", "Seuil minimum d'imposition commune", "Salaire mensuel interentreprises calculé", "Créé en 1970, le SMIC est revalorisé au moins une fois par an."],
-    ["geo", "Combien de membres permanents compte le Conseil de sécurité de l'ONU ?", "5", "7", "10", "15", "États-Unis, Chine, Russie, France, Royaume-Uni. Chacun a un droit de veto. Le Conseil compte 15 membres en tout."],
-    ["geo", "Où siège l'Organisation des Nations unies ?", "New York", "Genève", "Washington", "Paris", "Le siège est à New York ; Genève accueille de nombreuses agences de l'ONU."],
-    ["geo", "Où siège l'OTAN ?", "Bruxelles", "Washington", "Londres", "Strasbourg", "Le quartier général de l'Alliance atlantique est installé à Bruxelles depuis 1967."],
-    ["geo", "Où siège l'Union africaine ?", "Addis-Abeba", "Nairobi", "Le Caire", "Abuja", "La capitale éthiopienne accueillait déjà l'Organisation de l'unité africaine, créée en 1963."],
-    ["geo", "Où se trouve le siège officiel du Parlement européen ?", "Strasbourg", "Bruxelles", "Luxembourg", "Francfort", "Les sessions plénières ont lieu à Strasbourg ; une partie du travail se fait aussi à Bruxelles."],
-    ["geo", "Le détroit d'Ormuz relie le golfe Persique à…", "Le golfe d'Oman", "La mer Rouge", "La mer Caspienne", "La Méditerranée", "Une grande partie du pétrole exporté par le Golfe passe par ce passage étroit entre l'Iran et Oman."],
-    ["geo", "Le canal de Suez relie la Méditerranée à…", "La mer Rouge", "Le golfe Persique", "La mer Noire", "L'océan Indien directement", "Il évite aux navires le tour de l'Afrique. Le détroit de Bab-el-Mandeb, au sud de la mer Rouge, est l'autre point clé."],
-    ["geo", "Le détroit de Malacca passe entre…", "La Malaisie et l'Indonésie", "Le Japon et la Corée", "L'Inde et le Sri Lanka", "La Chine et Taïwan", "C'est l'une des routes maritimes les plus fréquentées du monde, entre l'océan Indien et le Pacifique."],
-    ["geo", "Quel pays contrôle Gibraltar ?", "Le Royaume-Uni", "L'Espagne", "Le Maroc", "Le Portugal", "Gibraltar est britannique depuis le traité d'Utrecht (1713). L'Espagne le revendique toujours."],
-    ["geo", "Dans quel pays se trouve le Bosphore ?", "La Turquie", "La Grèce", "La Bulgarie", "L'Égypte", "Ce détroit traverse Istanbul et relie la mer Noire à la mer de Marmara."],
-    ["geo", "Quel pays a construit le grand barrage de la Renaissance sur le Nil Bleu ?", "L'Éthiopie", "L'Égypte", "Le Soudan", "L'Ouganda", "L'Égypte, qui dépend du Nil pour son eau, voit ce barrage comme une menace : c'est un conflit diplomatique majeur."],
-    ["geo", "Dans quelle ville se tient le Forum économique mondial chaque hiver ?", "Davos", "Genève", "Zurich", "Lausanne", "Dirigeants et patrons s'y retrouvent chaque janvier dans cette station de ski suisse."],
-    ["geo", "Depuis 2023, quel est le pays le plus peuplé du monde ?", "L'Inde", "La Chine", "Les États-Unis", "L'Indonésie", "Selon l'ONU, l'Inde a dépassé la Chine en 2023, avec plus de 1,4 milliard d'habitants."],
-    ["geo", "Quel pays a la plus grande économie du monde (PIB en dollars) ?", "Les États-Unis", "La Chine", "Le Japon", "L'Allemagne", "Les États-Unis restent en tête en dollars courants, devant la Chine."],
-    ["geo", "Quel pays est le premier exportateur mondial de marchandises ?", "La Chine", "Les États-Unis", "L'Allemagne", "Le Japon", "La Chine est l'« atelier du monde » depuis la fin des années 2000."],
-    ["hist", "Quel président américain a lancé le New Deal ?", "Franklin D. Roosevelt", "Herbert Hoover", "Harry Truman", "Theodore Roosevelt", "Face à la Grande Dépression, Franklin D. Roosevelt lance en 1933 de grands travaux et de nouvelles protections sociales."],
-    ["hist", "Qui a lancé la perestroïka en URSS ?", "Mikhaïl Gorbatchev", "Boris Eltsine", "Leonid Brejnev", "Nikita Khrouchtchev", "La perestroïka (« restructuration ») vise à réformer l'économie soviétique à partir de 1985."],
-    ["hist", "Qui fut le premier chancelier de la RFA ?", "Konrad Adenauer", "Willy Brandt", "Helmut Kohl", "Ludwig Erhard", "Adenauer dirige l'Allemagne de l'Ouest de 1949 à 1963 et scelle la réconciliation avec la France."],
-    ["hist", "Qui a prononcé la déclaration du 9 mai 1950, acte de naissance de la construction européenne ?", "Robert Schuman", "Jean Monnet", "Charles de Gaulle", "Konrad Adenauer", "Le ministre français propose de mettre en commun le charbon et l'acier : ce sera la CECA. Le 9 mai est devenu la Journée de l'Europe."],
-    ["hist", "Lee Kuan Yew a transformé quel pays ?", "Singapour", "La Malaisie", "Hong Kong", "Taïwan", "Premier ministre de 1959 à 1990, il a fait d'un petit port un des pays les plus riches du monde."],
-    ["hist", "Quel pays Mustafa Kemal Atatürk a-t-il fondé ?", "La Turquie moderne", "L'Égypte moderne", "L'Iran moderne", "L'Irak", "Il proclame la République de Turquie en 1923 et la modernise à marche forcée."],
-    ["hist", "Qui fut la première femme Première ministre du Royaume-Uni ?", "Margaret Thatcher", "Theresa May", "Elizabeth II", "Liz Truss", "Margaret Thatcher gouverne de 1979 à 1990 : privatisations, bras de fer avec les syndicats."],
-    ["hist", "Qui a lancé les réformes qui ont ouvert l'économie chinoise à partir de 1978 ?", "Deng Xiaoping", "Mao Zedong", "Xi Jinping", "Zhou Enlai", "Deng Xiaoping ouvre la Chine aux investissements étrangers, avec les premières zones économiques spéciales comme Shenzhen."],
-    ["hist", "Qui a créé la Banque de France ?", "Napoléon Bonaparte", "Louis XIV", "Colbert", "Charles de Gaulle", "Bonaparte, alors Premier consul, la fonde en 1800 pour remettre de l'ordre dans les finances."],
-    ["hist", "Quel pays a proposé le plan Marshall pour reconstruire l'Europe ?", "Les États-Unis", "Le Royaume-Uni", "L'URSS", "Le Canada", "Annoncé en 1947 par le secrétaire d'État George Marshall, il apporte des milliards de dollars d'aide à l'Europe de l'Ouest."],
-    ["hist", "Qui a popularisé l'expression « rideau de fer » en 1946 ?", "Winston Churchill", "Harry Truman", "Charles de Gaulle", "Joseph Staline", "Dans un discours aux États-Unis, Churchill décrit la coupure de l'Europe entre l'Ouest et le bloc soviétique."],
-    ["hist", "Qui a nationalisé le canal de Suez en 1956 ?", "Gamal Abdel Nasser", "Anouar el-Sadate", "Hosni Moubarak", "Le roi Farouk", "La nationalisation déclenche la crise de Suez : la France, le Royaume-Uni et Israël interviennent, puis doivent se retirer."],
-    ["hist", "Quelle conférence a créé le FMI et la Banque mondiale ?", "Bretton Woods", "Yalta", "Potsdam", "Versailles", "En 1944, 44 pays se réunissent à Bretton Woods, aux États-Unis, pour bâtir l'ordre monétaire d'après-guerre."],
-    ["carte", "Quelle est la capitale de l'Australie ?", "Canberra", "Sydney", "Melbourne", "Perth", "Canberra a été construite exprès pour départager Sydney et Melbourne, qui voulaient toutes deux être capitale."],
-    ["carte", "Quelle est la capitale du Canada ?", "Ottawa", "Toronto", "Montréal", "Vancouver", "Ottawa, en Ontario, est à la frontière avec le Québec francophone."],
-    ["carte", "Quelle est la capitale du Brésil ?", "Brasilia", "Rio de Janeiro", "São Paulo", "Salvador", "Brasilia, inaugurée en 1960, a remplacé Rio de Janeiro pour développer l'intérieur du pays."],
-    ["carte", "Quelle est la capitale de la Turquie ?", "Ankara", "Istanbul", "Izmir", "Antalya", "Atatürk a choisi Ankara en 1923. Istanbul reste la plus grande ville et le cœur économique."],
-    ["carte", "Quelle est la capitale du Nigeria ?", "Abuja", "Lagos", "Kano", "Ibadan", "Abuja a remplacé Lagos en 1991. Lagos reste la plus grande ville du pays."],
-    ["carte", "Quelle est la capitale du Kazakhstan ?", "Astana", "Almaty", "Bichkek", "Tachkent", "Elle s'est appelée Noursoultan de 2019 à 2022 avant de reprendre le nom d'Astana."],
-    ["carte", "Quel est le plus grand pays d'Afrique par sa superficie ?", "L'Algérie", "La RD Congo", "Le Soudan", "La Libye", "L'Algérie est en tête depuis la partition du Soudan en 2011."],
-    ["carte", "Quel est le plus grand pays du monde par sa superficie ?", "La Russie", "Le Canada", "La Chine", "Les États-Unis", "La Russie s'étend sur 11 fuseaux horaires, de la Baltique au Pacifique."],
-    ["carte", "Quelle mer borde la Crimée ?", "La mer Noire", "La mer Caspienne", "La mer Baltique", "La mer Égée", "La Crimée s'avance dans la mer Noire ; le port de Sébastopol accueille la flotte russe de la mer Noire."],
-    ["carte", "Le détroit de Bab-el-Mandeb relie la mer Rouge à…", "Le golfe d'Aden", "Le golfe Persique", "La Méditerranée", "La mer d'Arabie directement", "Entre le Yémen et Djibouti, il commande l'accès au canal de Suez par le sud."],
+  // ================= Banque de faits datés =================
+  // Des dates de niche, techniques, qu'on ne sait pas situer les unes par rapport aux autres.
+  // [année, catégorie, fait, note facultative affichée après la réponse]
+  const FACTS = [
+    [1972, "tech", "Le brevet de la valise à roulettes (Bernard Sadow)", "Trois ans après les premiers pas sur la Lune : on savait aller sur la Lune avant de mettre des roues aux valises."],
+    [1969, "tech", "Les premiers pas de l'homme sur la Lune", ""],
+    [1843, "tech", "Le premier brevet de fax (Alexander Bain)", "Le fax est plus ancien que le téléphone, breveté en 1876."],
+    [1876, "tech", "Le brevet du téléphone de Graham Bell", ""],
+    [1823, "tech", "Le premier briquet (la lampe de Döbereiner)", "Le briquet a précédé l'allumette à friction de trois ans."],
+    [1826, "tech", "La première allumette à friction (John Walker)", ""],
+    [1810, "tech", "Le brevet de la boîte de conserve (Peter Durand)", "Pendant près d'un demi-siècle, on a ouvert les conserves au marteau et au burin."],
+    [1855, "tech", "Le premier ouvre-boîte (Robert Yeates)", "Plus de quarante ans après la boîte de conserve."],
+    [1863, "tech", "L'ouverture du premier métro du monde, à Londres", "Deux ans avant l'abolition de l'esclavage aux États-Unis."],
+    [1865, "soc", "L'abolition de l'esclavage aux États-Unis (13ᵉ amendement)", ""],
+    [1903, "tech", "Le premier vol motorisé des frères Wright", ""],
+    [1952, "tech", "Le premier vol commercial d'un avion de ligne à réaction (le Comet)", ""],
+    [1974, "eco", "Le premier article scanné avec un code-barres (un paquet de chewing-gums)", ""],
+    [1992, "tech", "Le premier SMS envoyé", "Son texte : « Merry Christmas »."],
+    [1971, "tech", "Le premier e-mail (Ray Tomlinson)", "Il a aussi choisi le signe @ pour séparer le nom et la machine."],
+    [1973, "tech", "Le premier appel depuis un téléphone portable (Martin Cooper, Motorola)", ""],
+    [1947, "tech", "Le premier four à micro-ondes commercialisé", "Il pesait plus de 300 kg."],
+    [1938, "tech", "La découverte du téflon", "Par accident, dans un laboratoire de DuPont."],
+    [1950, "eco", "La première carte de paiement (Diners Club)", ""],
+    [1967, "eco", "Le premier distributeur automatique de billets (Londres)", "Il fonctionnait avec des chèques imprégnés de carbone 14."],
+    [1937, "eco", "Le premier chariot de supermarché", ""],
+    [1956, "eco", "Le premier porte-conteneurs (l'Ideal X)", "La boîte standard qui a fait exploser le commerce mondial en divisant le coût du chargement."],
+    [1994, "tech", "L'invention du QR code (Denso Wave, Japon)", "Conçu pour suivre les pièces détachées chez Toyota."],
+    [1983, "tech", "Le passage d'Internet au protocole TCP/IP", ""],
+    [1978, "tech", "Le lancement du premier satellite GPS", ""],
+    [1981, "tech", "Le premier TGV commercial", ""],
+    [1976, "tech", "Le premier vol commercial du Concorde", ""],
+    [1954, "tech", "La première centrale nucléaire reliée au réseau (Obninsk, URSS)", ""],
+    [1859, "eco", "Le premier puits de pétrole commercial (Drake, Pennsylvanie)", ""],
+    [1867, "tech", "Le brevet de la dynamite (Alfred Nobel)", ""],
+    [1879, "tech", "L'ampoule électrique d'Edison", ""],
+    [1895, "tech", "La première projection publique du cinématographe des frères Lumière", ""],
+    [1888, "tech", "Le premier appareil photo Kodak", ""],
+    [1948, "tech", "Le premier appareil photo instantané Polaroid", ""],
+    [1957, "tech", "L'invention du papier bulle", "Il devait d'abord servir de papier peint."],
+    [1955, "tech", "Le brevet du Velcro (Georges de Mestral)", "Inspiré des fleurs de bardane accrochées aux poils de son chien."],
+    [1980, "conso", "La mise en vente des Post-it", ""],
+    [1928, "conso", "Le premier pain vendu tranché", ""],
+    [1953, "tech", "La découverte de la structure de l'ADN", ""],
+    [1967, "tech", "La première greffe du cœur", ""],
+    [1978, "tech", "La naissance du premier bébé conçu par fécondation in vitro", ""],
+    [1996, "tech", "La naissance de la brebis Dolly, premier mammifère cloné", ""],
+    [1958, "conso", "Le brevet de la brique LEGO moderne", ""],
+    [1959, "conso", "La première poupée Barbie", ""],
+    [1974, "conso", "L'invention du Rubik's Cube", ""],
+    [1984, "conso", "La sortie de Tetris", "Créé par un ingénieur soviétique, Alekseï Pajitnov."],
+    [1989, "conso", "La sortie de la Game Boy", ""],
+    [2007, "tech", "La présentation du premier iPhone", ""],
+    [2005, "tech", "La mise en ligne de YouTube", ""],
+    [2001, "tech", "Le lancement de Wikipédia", ""],
+    [1998, "eco", "La création de Google", ""],
+    [1854, "tech", "La démonstration du frein de sécurité d'ascenseur d'Otis", "Sans lui, pas de gratte-ciel."],
+    [1840, "soc", "Le premier timbre-poste (le Penny Black)", ""],
+    [1884, "soc", "Le choix de Greenwich comme méridien international", ""],
+    [1840, "soc", "Le système métrique devient obligatoire en France", "Presque cinquante ans après son invention sous la Révolution."],
+    [1602, "eco", "La Compagnie néerlandaise des Indes orientales, première société aux actions échangées en Bourse", ""],
+    [1694, "eco", "La création de la Banque d'Angleterre", ""],
+    [1661, "eco", "Les premiers billets de banque européens (Stockholm)", ""],
+    [1800, "eco", "La création de la Banque de France", ""],
+    [1913, "eco", "La création de la Réserve fédérale américaine", "Les États-Unis n'avaient pas de banque centrale avant."],
+    [1914, "eco", "La loi qui crée l'impôt sur le revenu en France", ""],
+    [1934, "eco", "La loi suisse sur le secret bancaire", ""],
+    [1934, "eco", "Le premier calcul du revenu national par Simon Kuznets, ancêtre du PIB", ""],
+    [1904, "eco", "Le brevet du Landlord's Game, ancêtre du Monopoly", "Il voulait dénoncer les méfaits des monopoles fonciers."],
+    [1935, "conso", "La sortie du Monopoly", ""],
+    [1986, "eco", "Le premier indice Big Mac de The Economist", ""],
+    [1969, "eco", "Le premier prix Nobel d'économie", ""],
+    [2019, "eco", "L'entrée en Bourse de Saudi Aramco", ""],
+    [1931, "eco", "L'abandon de l'étalon-or par le Royaume-Uni", ""],
+    [1873, "conso", "Le brevet du jean à rivets (Levi Strauss et Jacob Davis)", ""],
+    [1865, "eco", "La fondation de Nokia, alors une papeterie", "Nokia est plus ancienne que le téléphone."],
+    [1889, "eco", "La fondation de Nintendo, alors fabricant de cartes à jouer", ""],
+    [1938, "eco", "La fondation de Samsung, alors commerce de nouilles et de poisson séché", ""],
+    [1976, "eco", "La fondation d'Apple", ""],
+    [1975, "eco", "La fondation de Microsoft", ""],
+    [1994, "eco", "La fondation d'Amazon", ""],
+    [1943, "eco", "La fondation d'IKEA", ""],
+    [1940, "conso", "Le premier restaurant McDonald's", ""],
+    [1937, "eco", "La fondation de Toyota Motor", ""],
+    [1886, "conso", "L'invention du Coca-Cola", ""],
+    [1938, "conso", "Le lancement du Nescafé", ""],
+    [1964, "conso", "La naissance de la marque Nutella", ""],
+    [1974, "conso", "Le premier œuf Kinder Surprise", ""],
+    [1944, "soc", "Le droit de vote des femmes en France", ""],
+    [1965, "soc", "En France, les femmes mariées peuvent ouvrir un compte en banque sans l'accord de leur mari", "Quatre ans seulement avant les premiers pas sur la Lune."],
+    [1971, "soc", "Le droit de vote des femmes en Suisse, au niveau fédéral", ""],
+    [2018, "soc", "Le droit de conduire pour les femmes en Arabie saoudite", ""],
+    [1977, "soc", "La dernière exécution à la guillotine en France", "Un an après la création d'Apple, et la même année que la sortie de Star Wars."],
+    [1981, "soc", "L'abolition de la peine de mort en France", ""],
+    [1973, "soc", "La ceinture de sécurité obligatoire à l'avant en France, hors agglomération", ""],
+    [2008, "soc", "L'interdiction de fumer dans les bars et restaurants en France", ""],
+    [1896, "soc", "Les premiers Jeux olympiques modernes", ""],
+    [1903, "soc", "Le premier Tour de France", ""],
+    [1930, "soc", "La première Coupe du monde de football", ""],
+    [1922, "soc", "La fin de l'Empire ottoman", ""],
+    [1804, "soc", "Le Code civil de Napoléon", ""],
+    [1808, "soc", "La création du baccalauréat", ""],
+    [1863, "soc", "La fondation de la Croix-Rouge", ""],
+    [1901, "soc", "Les premiers prix Nobel", ""],
+    [1929, "conso", "La première aventure de Tintin", ""],
+    [1928, "conso", "Le premier dessin animé de Mickey", ""],
   ];
-
-  // Dates : [thème, événement, année, explication facultative]
-  const DATES = [
-    ["hist", "La chute du mur de Berlin", 1989, "Le 9 novembre 1989, les Berlinois de l'Est passent à l'Ouest : c'est le début de la fin de la guerre froide."],
-    ["hist", "La réunification de l'Allemagne", 1990, "Le 3 octobre 1990, la RDA rejoint la RFA, moins d'un an après la chute du Mur."],
-    ["hist", "La disparition de l'URSS", 1991, "Fin décembre 1991, Gorbatchev démissionne et l'Union soviétique laisse place à 15 États."],
-    ["eco", "Le traité de Rome, qui crée la CEE", 1957, "Six pays fondent la Communauté économique européenne, ancêtre de l'Union européenne."],
-    ["eco", "La création de la CECA (charbon et acier)", 1951, "Première communauté européenne, née du plan Schuman de 1950."],
-    ["eco", "L'arrivée des pièces et billets en euros", 2002, "L'euro existait déjà depuis 1999 pour les banques et les marchés ; les pièces et billets arrivent le 1er janvier 2002."],
-    ["eco", "Le jeudi noir, krach de Wall Street", 1929, "Le krach d'octobre 1929 ouvre la Grande Dépression."],
-    ["eco", "Le premier choc pétrolier", 1973, "Pendant la guerre du Kippour, les pays arabes producteurs coupent le robinet : le prix du baril est multiplié par quatre."],
-    ["eco", "La conférence de Bretton Woods", 1944, "Elle fonde le FMI, la Banque mondiale et un système de monnaies arrimées au dollar."],
-    ["eco", "La fin de la convertibilité du dollar en or", 1971, "Richard Nixon suspend l'échange des dollars contre de l'or : fin du système de Bretton Woods."],
-    ["eco", "La création de l'Organisation mondiale du commerce", 1995, "L'OMC remplace le GATT, signé en 1947."],
-    ["eco", "L'entrée de la Chine à l'OMC", 2001, "Une étape clé de la mondialisation : les exportations chinoises décollent."],
-    ["eco", "La faillite de la banque Lehman Brothers", 2008, "Le 15 septembre 2008, la crise des subprimes devient une crise financière mondiale."],
-    ["geo", "La sortie effective du Royaume-Uni de l'Union européenne", 2020, "Le référendum a eu lieu en 2016, mais le Brexit ne devient effectif que le 31 janvier 2020."],
-    ["geo", "La création de l'ONU", 1945, "La charte des Nations unies est signée à San Francisco en juin 1945."],
-    ["geo", "La création de l'OTAN", 1949, "Douze pays signent le traité de l'Atlantique Nord à Washington."],
-    ["hist", "L'annonce du plan Marshall", 1947, "Aide américaine à la reconstruction de l'Europe, refusée par l'URSS et ses alliés."],
-    ["carte", "L'ouverture du canal de Suez", 1869, "Construit sous la direction de Ferdinand de Lesseps."],
-    ["carte", "L'ouverture du canal de Panama", 1914, "Il évite aux navires le tour de l'Amérique du Sud par le cap Horn."],
-    ["hist", "La prise de la Bastille", 1789, "Le 14 juillet 1789, début symbolique de la Révolution française."],
-    ["hist", "La déclaration d'indépendance des États-Unis", 1776, "Signée le 4 juillet 1776 à Philadelphie."],
-    ["eco", "La signature du traité de Maastricht", 1992, "Il crée l'Union européenne et prépare la monnaie unique."],
-    ["geo", "L'indépendance de l'Inde", 1947, "Le 15 août 1947, l'Inde devient indépendante, séparée du Pakistan."],
-    ["geo", "La crise des missiles de Cuba", 1962, "Pendant treize jours d'octobre, le monde frôle la guerre nucléaire."],
-    ["eco", "La création de l'OPEP", 1960, "Fondée à Bagdad par l'Arabie saoudite, l'Irak, l'Iran, le Koweït et le Venezuela."],
-    ["geo", "La révolution iranienne", 1979, "La monarchie du chah tombe ; c'est aussi le déclencheur du second choc pétrolier."],
-    ["eco", "Le début des réformes de Deng Xiaoping en Chine", 1978, "La Chine commence à s'ouvrir au marché et aux capitaux étrangers."],
-    ["geo", "L'annexion de la Crimée par la Russie", 2014, "Condamnée par l'ONU, elle déclenche les premières sanctions occidentales."],
-    ["geo", "L'invasion de l'Ukraine à grande échelle par la Russie", 2022, "Le 24 février 2022 : flambée des prix de l'énergie et des céréales."],
-    ["geo", "La signature de l'accord de Paris sur le climat", 2015, "Objectif : contenir le réchauffement nettement sous 2 °C."],
-    ["hist", "Les premiers pas de l'homme sur la Lune", 1969, "Neil Armstrong, mission Apollo 11, le 21 juillet 1969 (heure de Paris)."],
-    ["geo", "Les attentats du 11 Septembre", 2001, "Ils déclenchent la guerre d'Afghanistan puis, en 2003, celle d'Irak."],
-    ["eco", "La création de la Banque centrale européenne", 1998, "Elle naît le 1er juin 1998, quelques mois avant le lancement de l'euro."],
-    ["eco", "La parution de « La Richesse des nations » d'Adam Smith", 1776, "Le livre fondateur de l'économie politique."],
-    ["eco", "La parution de la « Théorie générale » de Keynes", 1936, "Keynes y défend l'intervention de l'État pour sortir de la crise."],
-    ["eco", "La parution du livre I du « Capital » de Karl Marx", 1867, "Une critique du capitalisme qui inspirera les régimes communistes."],
-    ["geo", "L'élection de Nelson Mandela à la présidence de l'Afrique du Sud", 1994, "Premières élections ouvertes à tous, qui tournent la page de l'apartheid."],
-    ["hist", "La signature du traité de Versailles", 1919, "Il met fin à la Première Guerre mondiale et impose de lourdes réparations à l'Allemagne."],
-    ["hist", "La nationalisation du canal de Suez par Nasser", 1956, "Elle déclenche la crise de Suez."],
-    ["hist", "L'arrivée de Christophe Colomb en Amérique", 1492, "Le 12 octobre 1492, aux Bahamas."],
-    ["eco", "Le premier sommet du G7 (alors G6), à Rambouillet", 1975, "Les grandes économies se réunissent après le choc pétrolier."],
-    ["eco", "Le lancement du bitcoin", 2009, "Le premier bloc de la chaîne est créé le 3 janvier 2009."],
-    ["eco", "La crise financière asiatique", 1997, "Partie de Thaïlande, elle touche la Corée du Sud et l'Indonésie."],
-    ["geo", "La rétrocession de Hong Kong à la Chine", 1997, "Après 156 ans de souveraineté britannique, avec le principe « un pays, deux systèmes »."],
-    ["geo", "La signature des accords de Schengen", 1985, "Ils suppriment peu à peu les contrôles aux frontières entre pays signataires."],
-    ["hist", "L'abolition définitive de l'esclavage en France", 1848, "Décret porté par Victor Schœlcher, sous la IIe République."],
-    ["eco", "L'entrée en vigueur de l'ALENA (Amérique du Nord)", 1994, "Libre-échange entre États-Unis, Canada et Mexique ; remplacé en 2020 par l'ACEUM."],
-    ["hist", "La guerre des Six Jours", 1967, "Israël prend le Sinaï, Gaza, la Cisjordanie et le Golan."],
-    ["hist", "Les accords d'Évian (fin de la guerre d'Algérie)", 1962, "L'Algérie devient indépendante la même année."],
-    ["eco", "Le lancement du New Deal par Roosevelt", 1933, "Grands travaux et protections sociales contre la Grande Dépression."],
-    ["geo", "La création de l'Organisation de l'unité africaine", 1963, "Remplacée en 2002 par l'Union africaine."],
-    ["eco", "Le traité d'Asunción, qui crée le Mercosur", 1991, "Marché commun entre Argentine, Brésil, Paraguay et Uruguay."],
-  ];
-
-  // Intrus : [thème, question, [6 propositions], index de l'intrus, explication]
-  const INTRUS = [
-    ["geo", "Trouve l'intrus : membres permanents du Conseil de sécurité", ["États-Unis", "Chine", "Russie", "France", "Royaume-Uni", "Allemagne"], 5, "L'Allemagne n'est pas membre permanent. Elle siège parfois comme membre élu, pour deux ans."],
-    ["eco", "Trouve l'intrus : pays fondateurs de la CEE en 1957", ["France", "RFA", "Italie", "Belgique", "Luxembourg", "Espagne"], 5, "L'Espagne n'entre qu'en 1986, avec le Portugal. Le sixième fondateur, ce sont les Pays-Bas."],
-    ["geo", "Trouve l'intrus : les cinq premiers BRICS", ["Brésil", "Russie", "Inde", "Chine", "Afrique du Sud", "Mexique"], 5, "Le Mexique n'en fait pas partie. Le groupe s'est élargi depuis 2024, notamment à l'Égypte, l'Éthiopie, l'Iran et les Émirats."],
-    ["eco", "Trouve l'intrus : pays membres de l'OPEP", ["Arabie saoudite", "Irak", "Iran", "Venezuela", "Koweït", "Norvège"], 5, "La Norvège est un grand producteur de pétrole, mais elle n'a jamais rejoint l'OPEP."],
-    ["carte", "Trouve l'intrus : pays sans accès à la mer", ["Bolivie", "Mongolie", "Suisse", "Éthiopie", "Kazakhstan", "Pérou"], 5, "Le Pérou a une longue côte sur le Pacifique. L'Éthiopie a perdu son accès à la mer avec l'indépendance de l'Érythrée en 1993."],
-    ["eco", "Trouve l'intrus : pays qui utilisent l'euro", ["Allemagne", "Grèce", "Croatie", "Portugal", "Irlande", "Danemark"], 5, "Le Danemark est dans l'UE mais a gardé sa couronne. La Croatie est passée à l'euro en 2023."],
-    ["eco", "Trouve l'intrus : membres du G7", ["États-Unis", "Japon", "Allemagne", "Canada", "Italie", "Chine"], 5, "La Chine n'est pas au G7 (elle est au G20). Les deux autres membres sont la France et le Royaume-Uni."],
-    ["carte", "Trouve l'intrus : capitales de leur pays", ["Canberra", "Ottawa", "Brasilia", "Ankara", "Islamabad", "Istanbul"], 5, "Istanbul est la plus grande ville de Turquie, mais la capitale est Ankara."],
-    ["geo", "Trouve l'intrus : pays membres de l'OTAN", ["France", "Turquie", "Norvège", "Canada", "Finlande", "Suisse"], 5, "La Suisse est neutre. La Finlande a rejoint l'OTAN en 2023, après l'invasion de l'Ukraine."],
-    ["carte", "Trouve l'intrus : pays traversés par le Nil ou ses grandes branches", ["Égypte", "Soudan", "Éthiopie", "Ouganda", "Soudan du Sud", "Nigeria"], 5, "Le Nigeria est traversé par le Niger, pas par le Nil."],
-    ["geo", "Trouve l'intrus : pays membres de l'ASEAN", ["Indonésie", "Vietnam", "Thaïlande", "Philippines", "Malaisie", "Corée du Sud"], 5, "La Corée du Sud est un partenaire de l'ASEAN, pas un membre."],
-    ["geo", "Trouve l'intrus : pays de l'Union européenne", ["Autriche", "Suède", "Irlande", "Malte", "Chypre", "Norvège"], 5, "Les Norvégiens ont dit non par référendum en 1972 et en 1994."],
-  ];
-
-  // Capitales (questions générées dans les deux sens) : [pays, pays avec article, capitale, zone]
-  const CAPITALES = [
-    ["Allemagne", "l'Allemagne", "Berlin", "eu"], ["Espagne", "l'Espagne", "Madrid", "eu"], ["Italie", "l'Italie", "Rome", "eu"],
-    ["Portugal", "le Portugal", "Lisbonne", "eu"], ["Pays-Bas", "les Pays-Bas", "Amsterdam", "eu"], ["Belgique", "la Belgique", "Bruxelles", "eu"],
-    ["Suisse", "la Suisse", "Berne", "eu"], ["Autriche", "l'Autriche", "Vienne", "eu"], ["Pologne", "la Pologne", "Varsovie", "eu"],
-    ["Tchéquie", "la Tchéquie", "Prague", "eu"], ["Hongrie", "la Hongrie", "Budapest", "eu"], ["Roumanie", "la Roumanie", "Bucarest", "eu"],
-    ["Bulgarie", "la Bulgarie", "Sofia", "eu"], ["Grèce", "la Grèce", "Athènes", "eu"], ["Suède", "la Suède", "Stockholm", "eu"],
-    ["Norvège", "la Norvège", "Oslo", "eu"], ["Finlande", "la Finlande", "Helsinki", "eu"], ["Danemark", "le Danemark", "Copenhague", "eu"],
-    ["Irlande", "l'Irlande", "Dublin", "eu"], ["Ukraine", "l'Ukraine", "Kiev", "eu"], ["Serbie", "la Serbie", "Belgrade", "eu"],
-    ["Croatie", "la Croatie", "Zagreb", "eu"], ["Slovénie", "la Slovénie", "Ljubljana", "eu"], ["Slovaquie", "la Slovaquie", "Bratislava", "eu"],
-    ["Lituanie", "la Lituanie", "Vilnius", "eu"], ["Lettonie", "la Lettonie", "Riga", "eu"], ["Estonie", "l'Estonie", "Tallinn", "eu"],
-    ["Islande", "l'Islande", "Reykjavik", "eu"], ["Russie", "la Russie", "Moscou", "eu"],
-    ["Japon", "le Japon", "Tokyo", "as"], ["Chine", "la Chine", "Pékin", "as"], ["Corée du Sud", "la Corée du Sud", "Séoul", "as"],
-    ["Inde", "l'Inde", "New Delhi", "as"], ["Pakistan", "le Pakistan", "Islamabad", "as"], ["Vietnam", "le Vietnam", "Hanoï", "as"],
-    ["Thaïlande", "la Thaïlande", "Bangkok", "as"], ["Philippines", "les Philippines", "Manille", "as"], ["Malaisie", "la Malaisie", "Kuala Lumpur", "as"],
-    ["Iran", "l'Iran", "Téhéran", "as"], ["Irak", "l'Irak", "Bagdad", "as"], ["Arabie saoudite", "l'Arabie saoudite", "Riyad", "as"],
-    ["Syrie", "la Syrie", "Damas", "as"], ["Jordanie", "la Jordanie", "Amman", "as"], ["Liban", "le Liban", "Beyrouth", "as"],
-    ["Afghanistan", "l'Afghanistan", "Kaboul", "as"], ["Bangladesh", "le Bangladesh", "Dacca", "as"], ["Népal", "le Népal", "Katmandou", "as"],
-    ["Mongolie", "la Mongolie", "Oulan-Bator", "as"], ["Ouzbékistan", "l'Ouzbékistan", "Tachkent", "as"], ["Qatar", "le Qatar", "Doha", "as"],
-    ["Émirats arabes unis", "les Émirats arabes unis", "Abou Dabi", "as"], ["Oman", "Oman", "Mascate", "as"],
-    ["Maroc", "le Maroc", "Rabat", "af"], ["Algérie", "l'Algérie", "Alger", "af"], ["Tunisie", "la Tunisie", "Tunis", "af"],
-    ["Égypte", "l'Égypte", "Le Caire", "af"], ["Sénégal", "le Sénégal", "Dakar", "af"], ["Mali", "le Mali", "Bamako", "af"],
-    ["Ghana", "le Ghana", "Accra", "af"], ["Kenya", "le Kenya", "Nairobi", "af"], ["Éthiopie", "l'Éthiopie", "Addis-Abeba", "af"],
-    ["Angola", "l'Angola", "Luanda", "af"], ["RD Congo", "la RD Congo", "Kinshasa", "af"], ["Cameroun", "le Cameroun", "Yaoundé", "af"],
-    ["Madagascar", "Madagascar", "Antananarivo", "af"], ["Niger", "le Niger", "Niamey", "af"], ["Burkina Faso", "le Burkina Faso", "Ouagadougou", "af"],
-    ["Libye", "la Libye", "Tripoli", "af"], ["Rwanda", "le Rwanda", "Kigali", "af"], ["Zimbabwe", "le Zimbabwe", "Harare", "af"],
-    ["Mozambique", "le Mozambique", "Maputo", "af"],
-    ["États-Unis", "les États-Unis", "Washington", "am"], ["Mexique", "le Mexique", "Mexico", "am"], ["Argentine", "l'Argentine", "Buenos Aires", "am"],
-    ["Chili", "le Chili", "Santiago", "am"], ["Pérou", "le Pérou", "Lima", "am"], ["Colombie", "la Colombie", "Bogota", "am"],
-    ["Venezuela", "le Venezuela", "Caracas", "am"], ["Cuba", "Cuba", "La Havane", "am"], ["Équateur", "l'Équateur", "Quito", "am"],
-    ["Uruguay", "l'Uruguay", "Montevideo", "am"], ["Paraguay", "le Paraguay", "Asuncion", "am"], ["Nouvelle-Zélande", "la Nouvelle-Zélande", "Wellington", "oc"],
-  ];
-  // Monnaies : [pays, pays avec article, monnaie]. Question inverse seulement quand le nom de la monnaie ne trahit pas le pays.
-  const MONNAIES = [
-    ["Royaume-Uni", "le Royaume-Uni", "la livre sterling"], ["Suisse", "la Suisse", "le franc suisse"], ["Russie", "la Russie", "le rouble"],
-    ["Corée du Sud", "la Corée du Sud", "le won"], ["Mexique", "le Mexique", "le peso mexicain"], ["Argentine", "l'Argentine", "le peso argentin"],
-    ["Turquie", "la Turquie", "la livre turque"], ["Pologne", "la Pologne", "le zloty"], ["Suède", "la Suède", "la couronne suédoise"],
-    ["Norvège", "la Norvège", "la couronne norvégienne"], ["Danemark", "le Danemark", "la couronne danoise"], ["Tchéquie", "la Tchéquie", "la couronne tchèque"],
-    ["Hongrie", "la Hongrie", "le forint"], ["Roumanie", "la Roumanie", "le leu"], ["Arabie saoudite", "l'Arabie saoudite", "le riyal saoudien"],
-    ["Émirats arabes unis", "les Émirats arabes unis", "le dirham émirien"], ["Maroc", "le Maroc", "le dirham marocain"], ["Algérie", "l'Algérie", "le dinar algérien"],
-    ["Tunisie", "la Tunisie", "le dinar tunisien"], ["Nigeria", "le Nigeria", "le naira"], ["Kenya", "le Kenya", "le shilling kényan"],
-    ["Égypte", "l'Égypte", "la livre égyptienne"], ["Thaïlande", "la Thaïlande", "le baht"], ["Vietnam", "le Vietnam", "le dong"],
-    ["Indonésie", "l'Indonésie", "la roupie indonésienne"], ["Malaisie", "la Malaisie", "le ringgit"], ["Philippines", "les Philippines", "le peso philippin"],
-    ["Iran", "l'Iran", "le rial iranien"], ["Ukraine", "l'Ukraine", "la hryvnia"], ["Canada", "le Canada", "le dollar canadien"],
-    ["Australie", "l'Australie", "le dollar australien"], ["Sénégal", "le Sénégal", "le franc CFA"], ["Chili", "le Chili", "le peso chilien"],
-    ["Colombie", "la Colombie", "le peso colombien"], ["Venezuela", "le Venezuela", "le bolivar"], ["Bangladesh", "le Bangladesh", "le taka"],
-    ["Pakistan", "le Pakistan", "la roupie pakistanaise"], ["Ghana", "le Ghana", "le cedi"], ["Éthiopie", "l'Éthiopie", "le birr"],
-    ["Israël", "Israël", "le shekel"], ["Chine", "la Chine", "le yuan"], ["Pérou", "le Pérou", "le sol"], ["Islande", "l'Islande", "la couronne islandaise"],
-  ];
-
-  // Questions à réponse écrite (mort subite) : [niveau 1 à 5, thème, question, [réponses acceptées, la première est affichée], explication]
-  const OPEN = [
-    [1, "eco", "Comment appelle-t-on la hausse générale et durable des prix ?", ["inflation"], "Quand les prix montent partout et longtemps, chaque euro achète moins de choses."],
-    [1, "eco", "Quelle monnaie partagent la France, l'Allemagne et l'Italie ?", ["euro"], "L'euro circule en pièces et billets depuis 2002."],
-    [1, "geo", "Quel pays est le plus peuplé du monde depuis 2023 ?", ["Inde"], "Selon l'ONU, l'Inde a dépassé la Chine en 2023."],
-    [1, "eco", "Quel sigle désigne l'organisation des pays exportateurs de pétrole ?", ["OPEP", "OPEC"], "Créée en 1960 à Bagdad, elle siège à Vienne."],
-    [1, "eco", "Quelle est la monnaie des États-Unis ?", ["dollar", "dollar americain", "us dollar"], "Le dollar est aussi la première monnaie de réserve du monde."],
-    [1, "eco", "Quel sigle désigne la richesse produite dans un pays en un an ?", ["PIB", "produit interieur brut"], "Le produit intérieur brut."],
-    [1, "carte", "Quel océan sépare l'Europe de l'Amérique ?", ["Atlantique", "ocean atlantique"], ""],
-    [1, "geo", "Quel sigle désigne l'organisation née en 1945 pour maintenir la paix dans le monde ?", ["ONU", "nations unies", "organisation des nations unies"], "Son siège est à New York."],
-    [1, "carte", "Quelle est la capitale de l'Allemagne ?", ["Berlin"], "Berlin est redevenue capitale après la réunification de 1990."],
-    [1, "carte", "Quel est le plus grand pays du monde par sa superficie ?", ["Russie"], ""],
-    [2, "eco", "Quel sigle désigne la banque centrale de la zone euro ?", ["BCE", "banque centrale europeenne"], "Elle siège à Francfort."],
-    [2, "eco", "Comment appelle-t-on un recul durable de l'activité économique ?", ["récession"], "On parle souvent de récession après deux trimestres de baisse du PIB."],
-    [2, "geo", "Quel détroit relie le golfe Persique au golfe d'Oman ?", ["Ormuz", "detroit d'ormuz", "hormuz"], "Une grande partie du pétrole du Golfe y passe."],
-    [2, "carte", "Quel canal relie la Méditerranée à la mer Rouge ?", ["Suez", "canal de suez"], "Ouvert en 1869."],
-    [2, "geo", "Quel sigle désigne l'alliance militaire née en 1949 autour des États-Unis ?", ["OTAN", "NATO"], "Son siège est à Bruxelles."],
-    [2, "hist", "Quel président américain a lancé le New Deal ?", ["Roosevelt", "franklin roosevelt", "franklin d roosevelt", "fdr"], "Franklin D. Roosevelt, en 1933."],
-    [2, "eco", "Quelle est la monnaie du Japon ?", ["yen"], ""],
-    [2, "eco", "Comment appelle-t-on la taxe payée sur un produit importé ?", ["droit de douane", "droits de douane", "douane", "tarif douanier"], "On parle aussi de tarif douanier."],
-    [2, "eco", "Quel pays est le premier producteur de pétrole au monde ?", ["États-Unis", "usa", "etats unis", "amerique"], "Grâce au pétrole de schiste."],
-    [2, "carte", "Quelle est la capitale de l'Australie ?", ["Canberra"], "Ni Sydney, ni Melbourne."],
-    [3, "eco", "Comment s'appelle l'indice phare de la Bourse de Paris ?", ["CAC 40", "cac40", "cac"], "Il suit 40 grandes entreprises."],
-    [3, "eco", "Quel économiste a parlé de la « main invisible » du marché ?", ["Adam Smith", "smith"], "Dans « La Richesse des nations », en 1776."],
-    [3, "hist", "Quelle conférence de 1944 a créé le FMI et la Banque mondiale ?", ["Bretton Woods"], "Dans le New Hampshire, aux États-Unis."],
-    [3, "eco", "Quel économiste a défendu l'intervention de l'État dans sa « Théorie générale » ?", ["Keynes", "john maynard keynes"], "En 1936, en pleine Grande Dépression."],
-    [3, "eco", "Comment appelle-t-on une croissance faible combinée à une forte inflation ?", ["stagflation"], "Le cas typique : les années 1970."],
-    [3, "eco", "Quel pays produit la majorité du cobalt mondial ?", ["RD Congo", "rdc", "congo", "republique democratique du congo"], "Environ les trois quarts de la production mondiale."],
-    [3, "hist", "Quel dirigeant chinois a lancé l'ouverture économique en 1978 ?", ["Deng Xiaoping", "deng"], "Avec les premières zones économiques spéciales."],
-    [3, "eco", "Quelle entreprise taïwanaise fabrique la plupart des puces les plus avancées ?", ["TSMC"], ""],
-    [3, "hist", "Quel traité signé en 1992 a créé l'Union européenne ?", ["Maastricht", "traite de maastricht"], ""],
-    [3, "geo", "Quel détroit relie la mer Rouge au golfe d'Aden ?", ["Bab-el-Mandeb", "bab el mandeb"], "Entre le Yémen et Djibouti."],
-    [4, "eco", "Quel économiste a théorisé les avantages comparatifs ?", ["Ricardo", "david ricardo"], "En 1817."],
-    [4, "eco", "Quel économiste a popularisé la « destruction créatrice » ?", ["Schumpeter", "joseph schumpeter"], ""],
-    [4, "hist", "Quel président américain a suspendu la convertibilité du dollar en or en 1971 ?", ["Nixon", "richard nixon"], "La fin du système de Bretton Woods."],
-    [4, "eco", "Comment s'appelle le pétrole de référence de la mer du Nord ?", ["Brent"], ""],
-    [4, "eco", "Quelle entreprise néerlandaise fabrique les machines de lithographie EUV indispensables aux puces de pointe ?", ["ASML"], ""],
-    [4, "hist", "Quel ministre français a proposé, le 9 mai 1950, de mettre en commun le charbon et l'acier ?", ["Schuman", "robert schuman"], "Le 9 mai est devenu la Journée de l'Europe."],
-    [4, "geo", "Dans quelle ville siège l'OPEP ?", ["Vienne"], "En Autriche, depuis 1965."],
-    [4, "eco", "Quelle est la monnaie de la Pologne ?", ["zloty"], ""],
-    [4, "hist", "Dans quelle ville a été signé en 1957 le traité qui a créé la CEE ?", ["Rome"], "Le traité de Rome."],
-    [4, "eco", "Comment s'appelle l'indice de la Bourse de Tokyo ?", ["Nikkei", "nikkei 225"], ""],
-    [5, "eco", "Quel Français a reçu le prix Nobel d'économie en 2014 ?", ["Jean Tirole", "tirole"], "Pour ses travaux sur la régulation des marchés."],
-    [5, "geo", "Dans quelle ville a été signé le traité qui a créé le Mercosur ?", ["Asunción"], "En 1991, au Paraguay."],
-    [5, "carte", "Quelle est la capitale du Kazakhstan ?", ["Astana", "nour-soultan", "noursoultan"], "Elle s'est appelée Noursoultan de 2019 à 2022."],
-    [5, "geo", "Quel pays a construit le grand barrage de la Renaissance sur le Nil Bleu ?", ["Éthiopie"], "Un conflit diplomatique majeur avec l'Égypte."],
-    [5, "eco", "Quelle est la monnaie de la Hongrie ?", ["forint"], ""],
-    [5, "carte", "Quelle est la capitale de la Mongolie ?", ["Oulan-Bator", "oulan bator", "ulaanbaatar", "oulan-bator"], ""],
-    [5, "eco", "Quel sigle désignait l'accord de 1947, ancêtre de l'OMC ?", ["GATT"], "L'accord général sur les tarifs douaniers et le commerce."],
-    [5, "geo", "Quels accords de 1985 suppriment les contrôles aux frontières entre pays signataires ?", ["Schengen", "accords de schengen"], ""],
-    [5, "hist", "Qui a dirigé le chantier du canal de Suez ?", ["Ferdinand de Lesseps", "lesseps", "de lesseps"], "Le canal est inauguré en 1869."],
-    [5, "geo", "Dans quelle ville a été signée la charte des Nations unies en 1945 ?", ["San Francisco"], "En juin 1945."],
-  ];
-  // Niveau (1 à 5) de chaque date de DATES, pour la mort subite : de « ça va » à « dur ».
-  const DATE_LEVEL = [1, 3, 2, 3, 4, 1, 2, 3, 3, 4, 3, 3, 2, 2, 2, 3, 3, 4, 4, 1, 2, 3, 3, 3, 4, 3, 4, 2, 1, 2, 1, 1, 4, 5, 5, 5, 3, 2, 4, 1, 5, 4, 5, 4, 4, 4, 5, 4, 4, 4, 5, 5];
-
-  const THEME = { eco: "Économie", geo: "Géopolitique", hist: "Histoire", carte: "Géographie" };
+  const CAT = { tech: "Technique", eco: "Économie", conso: "Conso", soc: "Société" };
+  const QUESTIONS = 7, TIMER = 12, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
 
   // ================= Outils =================
   const $ = (s, r = document) => r.querySelector(s);
@@ -575,138 +454,90 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
   function hash(s) { let h = 1779033703 ^ s.length; for (let i = 0; i < s.length; i++) { h = Math.imul(h ^ s.charCodeAt(i), 3432918353); h = (h << 13) | (h >>> 19); } return h >>> 0; }
   function rng(seed) { let a = hash(String(seed)); return () => { a |= 0; a = (a + 0x6d2b79f5) | 0; let t = Math.imul(a ^ (a >>> 15), 1 | a); t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t; return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
   const shuffle = (arr, r = Math.random) => { const a = arr.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
-  const pick = (arr, n, r) => shuffle(arr, r).slice(0, n);
   const pad = (n) => String(n).padStart(2, "0");
   const today = (d = new Date()) => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
   const yesterday = () => { const d = new Date(); d.setDate(d.getDate() - 1); return today(d); };
   const gauss = () => { let u = 0, v = 0; while (!u) u = Math.random(); while (!v) v = Math.random(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
-  const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
   const fmt = (n) => Number(n || 0).toLocaleString("fr-FR");
-  // « de » + nom de pays avec son article : du Japon, des Pays-Bas, de la Pologne, de l'Irlande, d'Oman.
-  function de(x) {
-    if (x.startsWith("le ")) return "du " + x.slice(3);
-    if (x.startsWith("les ")) return "des " + x.slice(4);
-    if (x.startsWith("la ") || x.startsWith("l'")) return "de " + x;
-    return /^[aeiouyéèêâîôûœ]/i.test(x) ? "d'" + x : "de " + x;
-  }
-  const shortCur = (m) => m.split(" ").slice(0, 2).join(" ");
+  const lower1 = (s) => s.charAt(0).toLowerCase() + s.slice(1);
+  const waitText = (ms) => { const m = Math.ceil(ms / 60000); return m >= 60 ? `${Math.floor(m / 60)} h ${pad(m % 60)}` : `${m} min`; };
   const ICON = {
-    check: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
-    lock: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',
+    check: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg>',
     star: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="m12 3 2.8 5.8 6.2.9-4.5 4.4 1 6.2L12 17.4l-5.5 2.9 1-6.2L3 9.7l6.2-.9L12 3z"/></svg>',
     x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>',
-    heart: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg>',
     swords: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="m4 20 7-7M20 20l-7-7M14.5 4.5 20 4l-.5 5.5L13 16l-5-5 6.5-6.5zM9.5 4.5 4 4l.5 5.5"/></svg>',
     skull: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 3a8 8 0 0 0-5 14.2V20h10v-2.8A8 8 0 0 0 12 3z"/><circle cx="9" cy="11" r="1.6" fill="currentColor"/><circle cx="15" cy="11" r="1.6" fill="currentColor"/><path d="M10 20v-2M14 20v-2"/></svg>',
     bolt: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>',
     crown: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5L3 8z"/></svg>',
     live: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="16" r="3"/><path d="M11 8h5a2 2 0 0 1 2 2v3M13 16H8a2 2 0 0 1-2-2v-3"/></svg>',
+    robot: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><rect x="5" y="8" width="14" height="11" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9.5 16.5h5"/></svg>',
+    friend: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0M16 5.5a3 3 0 0 1 0 5.6M18 19a5 5 0 0 0-2.5-4.3"/></svg>',
+    sun: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
   };
 
-  // ================= Sauvegarde locale (série, points, questions déjà vues) =================
-  const KEY = "geoduel-v1";
-  let S = { points: 0, streak: 0, lastDay: null, lessons: {}, daily: null, best: 0, ms: [], msBotNext: 0, wins: 0, played: 0, seen: [] };
+  // ================= Sauvegarde locale =================
+  const KEY = "geoduel-v2";
+  let S = { points: 0, streak: 0, lastDay: null, daily: null, matches: [], botNext: 0, wins: 0, played: 0, seen: [] };
   try { Object.assign(S, JSON.parse(localStorage.getItem(KEY) || "{}")); } catch (e) {}
-  if (S.xp && !S.points) S.points = S.xp;
   if (!Array.isArray(S.seen)) S.seen = [];
-  if (!Array.isArray(S.ms)) S.ms = [];
+  if (!Array.isArray(S.matches)) S.matches = [];
   const seen = new Set(S.seen);
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
-  function markSeen(id) { if (!id || seen.has(id)) return; seen.add(id); S.seen.push(id); if (S.seen.length > 4000) seen.delete(S.seen.shift()); }
+  function markSeen(id) { if (!id || seen.has(id)) return; seen.add(id); S.seen.push(id); if (S.seen.length > 3000) seen.delete(S.seen.shift()); }
   function touchStreak() { const t = today(); if (S.lastDay === t) return; S.streak = S.lastDay === yesterday() ? S.streak + 1 : 1; S.lastDay = t; }
   const streakNow = () => (S.lastDay === today() || S.lastDay === yesterday() ? S.streak : 0);
   function addPoints(n) { S.points += n; touchStreak(); save(); renderCounters(); syncPlayer(); }
   function renderCounters() { $("#c-xp").textContent = fmt(S.points); $("#c-streak").textContent = streakNow(); }
 
-  // ================= Banque : chaque question a un identifiant =================
-  // c = QCM écrit, k/K = capitale (dans un sens ou l'autre), m/M = monnaie, d = date, i = intrus, o = avant/après (paire de dates).
-  const POOL = {
-    qcm: [
-      ...QCM.map((x, i) => ({ id: "c" + i, th: x[0] })),
-      ...CAPITALES.flatMap((x, i) => [{ id: "k" + i, th: "carte" }, { id: "K" + i, th: "carte" }]),
-      ...MONNAIES.flatMap((x, i) => (x[2].split(" ").length === 2 ? [{ id: "m" + i, th: "eco" }, { id: "M" + i, th: "eco" }] : [{ id: "m" + i, th: "eco" }])),
-    ],
-    date: DATES.map((x, i) => ({ id: "d" + i, th: x[0] })),
-    intrus: INTRUS.map((x, i) => ({ id: "i" + i, th: x[0] })),
-    // Mort subite : réponse écrite, une date (y) ou un mot (q), classée par niveau.
-    ms: [...OPEN.map((x, i) => ({ id: "q" + i, th: x[1], lv: x[0] })), ...DATES.map((x, i) => ({ id: "y" + i, th: x[0], lv: DATE_LEVEL[i] || 3 }))],
-  };
-  const ORDER_PAIRS = (() => { let n = 0; for (let a = 0; a < DATES.length; a++) for (let b = a + 1; b < DATES.length; b++) if (Math.abs(DATES[a][2] - DATES[b][2]) >= 3) n++; return n; })();
-  const BANK = POOL.qcm.length + POOL.date.length + POOL.intrus.length + OPEN.length;
-
-  // Réponse écrite : on ignore majuscules, accents, articles et petites fautes de frappe.
-  const norm = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[''`’]/g, " ").replace(/[^a-z0-9 ]+/g, " ")
-    .replace(/\b(le|la|les|l|un|une|des|du|de|d)\b/g, " ").replace(/\s+/g, " ").trim();
-  function lev(a, b) {
-    const d = Array.from({ length: b.length + 1 }, (_, j) => j);
-    for (let i = 1; i <= a.length; i++) { let prev = d[0]; d[0] = i; for (let j = 1; j <= b.length; j++) { const t = d[j]; d[j] = Math.min(d[j] + 1, d[j - 1] + 1, prev + (a[i - 1] === b[j - 1] ? 0 : 1)); prev = t; } }
-    return d[b.length];
-  }
-  function matchOpen(input, answers) {
-    const v = norm(input); if (!v) return false;
-    return answers.some((a) => { const n = norm(a); if (!n) return false; const tol = n.length >= 9 ? 2 : n.length >= 5 ? 1 : 0; return v === n || lev(v, n) <= tol || (n.length >= 4 && (" " + v + " ").includes(" " + n + " ")); });
-  }
-
-  function rangeFor(y) { return y >= 1900 ? [1900, 2026] : y >= 1750 ? [1750, 1950] : [1400, 1900]; }
-  function mkDate(it) { const [th, e, y, ex] = it; const [min, max] = rangeFor(y); return { kind: "date", th, e, y, ex: ex || "", min, max }; }
-  function mkIntrus(it, r) { const [th, q, items, odd, ex] = it; return { kind: "intrus", th, q, items: shuffle(items.map((t, i) => ({ t, odd: i === odd })), r), ex }; }
-  function qcmObj(id, th, q, c, wrong, ex, r) { return { kind: "qcm", id, th, q, correct: c, wrong, ex: ex || "", opts: shuffle([c, ...wrong], r), duoWrong: wrong[Math.floor(r() * wrong.length)] }; }
-  // Trois mauvaises réponses prises dans la même liste (même continent quand c'est possible), sans doublon avec la bonne.
-  function others(list, i, val, r, zone) {
-    const good = val(list[i]);
-    const ok = (x, k) => k !== i && val(x) !== good;
-    const near = list.filter((x, k) => ok(x, k) && (!zone || x[3] === list[i][3]));
-    const base = near.length >= 3 ? near : list.filter(ok);
-    const out = [];
-    for (const x of shuffle(base, r)) { if (!out.includes(val(x))) out.push(val(x)); if (out.length === 3) break; }
-    return out;
+  // ================= Questions =================
+  // « p12_40 » : lequel est arrivé en premier entre deux faits ; « y12 » : écrire l'année d'un fait (mort subite).
+  const PAIRS = [];
+  for (let a = 0; a < FACTS.length; a++) for (let b = a + 1; b < FACTS.length; b++) {
+    const g = Math.abs(FACTS[a][0] - FACTS[b][0]);
+    if (g >= 1 && g <= MAX_GAP) PAIRS.push(`p${a}_${b}`);
   }
   function build(id, seed = "") {
     const r = rng(id + "|" + seed);
-    const t = id[0], n = id.slice(1);
-    if (t === "c" && QCM[+n]) { const [th, q, c, w1, w2, w3, ex] = QCM[+n]; return qcmObj(id, th, q, c, [w1, w2, w3], ex, r); }
-    if (t === "k" && CAPITALES[+n]) { const x = CAPITALES[+n]; return qcmObj(id, "carte", `Quelle est la capitale ${de(x[1])} ?`, x[2], others(CAPITALES, +n, (y) => y[2], r, true), "", r); }
-    if (t === "K" && CAPITALES[+n]) { const x = CAPITALES[+n]; return qcmObj(id, "carte", `${x[2]} est la capitale de quel pays ?`, x[0], others(CAPITALES, +n, (y) => y[0], r, true), "", r); }
-    if (t === "m" && MONNAIES[+n]) { const x = MONNAIES[+n]; return qcmObj(id, "eco", `Quelle est la monnaie ${de(x[1])} ?`, cap(shortCur(x[2])), others(MONNAIES, +n, (y) => cap(shortCur(y[2])), r), "", r); }
-    if (t === "M" && MONNAIES[+n]) { const x = MONNAIES[+n]; return qcmObj(id, "eco", `${cap(x[2])} est la monnaie de quel pays ?`, x[0], others(MONNAIES, +n, (y) => y[0], r), "", r); }
-    if (t === "d" && DATES[+n]) return Object.assign(mkDate(DATES[+n]), { id });
-    if (t === "y" && DATES[+n]) return Object.assign(mkDate(DATES[+n]), { id, typed: true, lv: DATE_LEVEL[+n] || 3 });
-    if (t === "q" && OPEN[+n]) { const [lv, th, q, answers, ex] = OPEN[+n]; return { kind: "open", id, th, q, answers, ex, lv }; }
-    if (t === "i" && INTRUS[+n]) return Object.assign(mkIntrus(INTRUS[+n], r), { id });
-    if (t === "o") {
-      const [a, b] = n.split("_").map(Number);
-      if (!DATES[a] || !DATES[b]) return null;
+    if (/^p\d+_\d+$/.test(id)) {
+      const [a, b] = id.slice(1).split("_").map(Number);
+      if (!FACTS[a] || !FACTS[b]) return null;
       const [x, y] = r() < 0.5 ? [a, b] : [b, a];
-      return { kind: "order", id, th: DATES[x][0], a: mkDate(DATES[x]), b: mkDate(DATES[y]) };
+      return { kind: "order", id, a: FACTS[x], b: FACTS[y] };
     }
+    if (/^y\d+$/.test(id) && FACTS[+id.slice(1)]) { const f = FACTS[+id.slice(1)]; return { kind: "year", id, f, y: f[0], sd: true }; }
     return null;
   }
-  // Tire n identifiants d'un type, en évitant d'abord les questions déjà vues (et celles à exclure).
-  function drawIds(kind, n, r = Math.random, { th = null, lv = null, exclude = new Set(), useSeen = true } = {}) {
-    if (kind === "order") {
-      const out = [];
-      for (let tries = 0; out.length < n && tries < 600; tries++) {
-        const a = Math.floor(r() * DATES.length), b = Math.floor(r() * DATES.length);
-        if (a === b || Math.abs(DATES[a][2] - DATES[b][2]) < 3) continue;
-        const id = `o${Math.min(a, b)}_${Math.max(a, b)}`;
-        if (out.includes(id) || exclude.has(id) || (useSeen && seen.has(id) && tries < 400)) continue;
-        out.push(id);
-      }
-      return out;
+  // Tire des paires jamais vues, sans réutiliser un même fait dans le match ; les écarts courts (les plus traîtres) d'abord.
+  function drawPairs(n, r = Math.random, { exclude = new Set(), useSeen = true } = {}) {
+    const used = new Set(), out = [];
+    const pool = shuffle(PAIRS, r).filter((id) => !exclude.has(id));
+    const tiers = [pool.filter((id) => gapOf(id) <= 12), pool.filter((id) => gapOf(id) > 12)];
+    for (const pass of [true, false]) for (const tier of tiers) for (const id of tier) {
+      if (out.length >= n) return out;
+      if (pass && useSeen && seen.has(id)) continue;
+      const [a, b] = id.slice(1).split("_");
+      if (used.has(a) || used.has(b) || out.includes(id)) continue;
+      out.push(id); used.add(a); used.add(b);
     }
-    const all = POOL[kind].filter((x) => (!th || x.th === th) && (lv == null || x.lv === lv)).map((x) => x.id).filter((id) => !exclude.has(id));
-    let out = pick(useSeen ? all.filter((id) => !seen.has(id)) : all, n, r);
-    if (out.length < n) out = out.concat(pick(all.filter((id) => !out.includes(id)), n - out.length, r));
     return out;
   }
-  const buildAll = (ids, seed, extra) => ids.map((id) => build(id, seed)).filter(Boolean).map((q) => Object.assign(q, extra || {}));
+  function gapOf(id) { const [a, b] = id.slice(1).split("_").map(Number); return Math.abs(FACTS[a][0] - FACTS[b][0]); }
+  function drawYears(n, r = Math.random, exclude = []) {
+    const used = new Set(exclude.flatMap((id) => id.slice(1).split("_")));
+    const all = shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i)));
+    const fresh = all.filter((i) => !seen.has("y" + i));
+    return (fresh.length >= n ? fresh : all).slice(0, n).map((i) => "y" + i);
+  }
+  const buildAll = (ids, seed) => ids.map((id) => build(id, seed)).filter(Boolean);
 
-  // ================= Moteur de partie =================
+  // ================= Moteur de match =================
+  // 7 duels de dates, 12 secondes chacun ; une bonne réponse vaut 100 points + 10 par seconde restante.
+  // Égalité : mort subite, une année à écrire, sans indice ; le plus proche gagne.
   let G = null, timerId = null;
   const play = $("#play");
 
-  function startGame(cfg) {
-    G = Object.assign({ i: 0, me: 0, opp: 0, hearts: null, correct: 0, answered: 0, combo: 0, sdGuesses: [], oppAns: {}, typed: cfg.mode !== "lesson" }, cfg);
+  function startMatch(cfg) {
+    G = Object.assign({ i: 0, me: 0, opp: 0, correct: 0, sdGuesses: [], oppAns: {} }, cfg);
     play.hidden = false;
     document.body.style.overflow = "hidden";
     next();
@@ -716,12 +547,9 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     if (G) { clearTimeout(G.waitT); clearTimeout(G.autoT); if (G.mode === "live") leaveLive(); }
     G = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render();
   }
-
   function next() {
     clearInterval(timerId);
     if (!G) return;
-    if (G.hearts === 0) return finish();
-    if (G.endless && G.i >= G.qs.length) G.qs.push(G.endless());
     if (G.i >= G.qs.length) {
       if (G.onRegularEnd && !G.sdStarted) { const more = G.onRegularEnd(); if (more && more.length) { G.sdStarted = true; G.qs.push(...more); return next(); } }
       return finish();
@@ -730,25 +558,20 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     if (q.kind === "splash") return renderSplash(q);
     renderQ(q);
   }
-
-  const mult = () => (G.combo >= 5 ? 3 : G.combo >= 3 ? 2 : 1);
   function header() {
-    const prog = G.endless ? "" : `<div class="bar" aria-hidden="true"><i style="width:${Math.round((G.i / G.qs.length) * 100)}%"></i></div>`;
-    let right = "";
-    if (G.hearts != null) right = `<span class="hearts" aria-label="${G.hearts} vies">${ICON.heart}<span class="num">${G.hearts}</span></span>`;
-    else if (G.endless) right = `<span class="chip" style="color:var(--gold)">Série : ${G.correct}</span>`;
-    else if (G.mode === "eclair") right = `<span class="chip combo ${G.combo >= 3 ? "hot" : ""}">Combo ×${mult()}</span>`;
+    const regular = G.qs.filter((q) => q.kind === "order").length;
+    const done = G.qs.slice(0, G.i).filter((q) => q.kind === "order").length;
+    const prog = `<div class="bar" aria-hidden="true"><i style="width:${Math.round((done / Math.max(1, regular)) * 100)}%"></i></div><span class="chip num">${Math.min(done + 1, regular)}/${regular}</span>`;
     const board = G.opponent ? `
       <div class="scoreboard">
         <div class="side"><span class="avatar you">Toi</span><div><div class="who">Toi</div><div class="pts num" id="sb-me">${fmt(G.me)}</div></div></div>
         <span class="vs">${G.mode === "live" ? '<span class="live-dot"></span>' : ""}VS</span>
         <div class="side right"><div><div class="who" id="sb-name">${esc(G.opponent.name)}</div><div class="pts num" id="sb-opp">${G.opponent.hidden ? "?" : fmt(G.opp)}</div></div><span class="avatar opp">${esc(G.opponent.short)}</span></div>
       </div>` : "";
-    return `<div class="wrap"><div class="play-top"><button class="x" id="quit" aria-label="Quitter la partie">${ICON.x}</button>${prog}${right}</div>${board}`;
+    return `<div class="wrap"><div class="play-top"><button class="x" id="quit" aria-label="Quitter le match">${ICON.x}</button>${prog}</div>${board}`;
   }
-  function timerHTML(sec) { return sec ? `<div class="timer" id="timer"><svg viewBox="0 0 50 50"><circle class="bg" cx="25" cy="25" r="21"/><circle class="fg" cx="25" cy="25" r="21" stroke-dasharray="132" stroke-dashoffset="0"/></svg><span class="num">${sec}</span></div>` : ""; }
+  function timerHTML(sec) { return `<div class="timer" id="timer"><svg viewBox="0 0 50 50"><circle class="bg" cx="25" cy="25" r="21"/><circle class="fg" cx="25" cy="25" r="21" stroke-dasharray="132" stroke-dashoffset="0"/></svg><span class="num">${sec}</span></div>`; }
   function startTimer(sec, onEnd) {
-    if (!sec) return;
     const t0 = performance.now();
     G.t0 = t0; G.sec = sec;
     timerId = setInterval(() => {
@@ -761,13 +584,12 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     }, 100);
   }
   const timeLeft = () => (G.sec ? Math.max(0, G.sec - (performance.now() - G.t0) / 1000) : 0);
-  function qhead(q, label) { return `<div class="qhead"><span class="chip ${q.th}">${label || THEME[q.th]}</span>${timerHTML(q.timer || G.timer)}</div>`; }
 
   function renderSplash(q) {
     play.innerHTML = `${header()}
       <div class="splash">
-        <div class="ico" style="background:${q.bg || "var(--panel-2)"};color:${q.fg || "var(--text)"}">${q.icon || ICON.star}</div>
-        <p class="label">${esc(q.kicker || "")}</p>
+        <div class="ico" style="background:${q.bg};color:${q.fg}">${q.icon}</div>
+        <p class="label">${esc(q.kicker)}</p>
         <h1 class="big ${q.sd ? "sd" : ""}">${esc(q.title)}</h1>
         <p class="rules">${q.rules}</p>
         ${q.auto ? `<p class="note">On enchaîne dans quelques secondes…</p>` : `<button class="btn" id="go">${esc(q.cta || "C'est parti")}</button>`}
@@ -778,82 +600,35 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
   }
 
   function renderQ(q) {
-    let body = "";
-    if (q.kind === "qcm" && G.duoCarre && !q.mode) {
-      body = `${qhead(q, "Duo ou carré ?")}
-        <h2 class="question">${esc(q.q)}</h2>
-        <p class="muted">Avant de voir les réponses, choisis : deux propositions pour 1 point, ou quatre pour 2 points.</p>
-        <div class="choice">
-          <button class="duo" data-mode="duo"><span class="dots" style="color:var(--blue)"><i></i><i></i></span><b>Duo</b><span>2 réponses · 1 pt</span></button>
-          <button class="carre" data-mode="carre"><span class="dots" style="color:var(--gold)"><i></i><i></i><i></i><i></i></span><b>Carré</b><span>4 réponses · 2 pts</span></button>
+    let body;
+    if (q.kind === "order") {
+      body = `<div class="qhead"><span class="chip">Avant ou après ?</span>${timerHTML(TIMER)}</div>
+        <h2 class="question">Lequel est arrivé en premier ?</h2>
+        <div class="versus">
+          ${[q.a, q.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}
         </div>`;
-      play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
-      $("#quit").onclick = quit;
-      play.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => { q.mode = b.dataset.mode; renderQ(q); }));
-      return;
-    }
-    if (q.kind === "qcm") {
-      const opts = q.mode === "duo" ? shuffle([q.correct, q.duoWrong]) : q.opts;
-      body = `${qhead(q, q.mode === "duo" ? "Duo · 1 pt" : q.mode === "carre" ? "Carré · 2 pts" : "")}<h2 class="question">${esc(q.q)}</h2>
-        <div class="answers ${q.mode === "duo" ? "grid2" : ""}">${opts.map((o) => `<button class="ans" data-v="${esc(o)}">${esc(o)}</button>`).join("")}</div>`;
-    } else if (q.kind === "intrus") {
-      body = `${qhead(q)}<h2 class="question">${esc(q.q)}</h2>
-        <div class="intrus">${q.items.map((it, k) => `<button class="ans" data-k="${k}">${esc(it.t)}</button>`).join("")}</div>`;
-    } else if (q.kind === "order") {
-      body = `${qhead(q, "Avant ou après ?")}<h2 class="question">Lequel est arrivé en premier ?</h2>
-        <div class="answers">${[q.a, q.b].map((d, k) => `<button class="ans order-card" data-k="${k}">${esc(d.e)}</button>`).join("")}</div>`;
-    } else if (q.kind === "open" || (q.kind === "date" && (q.typed || G.typed))) {
-      // Réponse à écrire, sans indice : ni propositions, ni bornes.
-      const isDate = q.kind === "date";
-      const label = q.lv ? `Niveau ${q.lv} · ${["ça va", "facile", "moyen", "costaud", "dur"][q.lv - 1]}` : q.sd ? "Mort subite" : isDate ? "Écris l'année" : "Écris ta réponse";
-      body = `${qhead(q, label)}
-        ${q.lv ? `<div class="levels" aria-hidden="true">${[1, 2, 3, 4, 5].map((k) => `<i class="${k < q.lv ? "passed" : k === q.lv ? "now" : ""}"></i>`).join("")}</div>` : ""}
-        <h2 class="question">${isDate ? `En quelle année : ${esc(q.e.charAt(0).toLowerCase() + q.e.slice(1))} ?` : esc(q.q)}</h2>
+    } else {
+      body = `<div class="qhead"><span class="chip sd-chip">Mort subite</span>${timerHTML(25)}</div>
+        <h2 class="question">En quelle année : ${esc(lower1(q.f[2]))} ?</h2>
         <form class="type-box" id="type-form" autocomplete="off">
-          <input id="ty" ${isDate ? 'inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num"' : 'type="text" maxlength="60" placeholder="Ta réponse" autocapitalize="off" spellcheck="false"'} aria-label="${isDate ? "Année" : "Ta réponse"}">
+          <input id="ty" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="Année" class="year-in num" aria-label="Année">
           <button class="btn wide" id="valider" type="submit">Valider</button>
-          <p class="note">${isDate ? "L'année exacte, en chiffres." : "Un mot ou un nom suffit. Accents et petites fautes de frappe acceptés."}</p>
+          <p class="note">Aucun indice : écris l'année. Le plus proche de la bonne réponse gagne.</p>
         </form>`;
-    } else if (q.kind === "date") {
-      const mid = Math.round((q.min + q.max) / 2);
-      body = `${qhead(q, q.sd ? "Mort subite" : q.tol != null ? `À ${q.tol} an${q.tol > 1 ? "s" : ""} près` : "En quelle année ?")}
-        <h2 class="question">${esc(q.e)}</h2>
-        <div class="year">
-          <div class="year-big num" id="yv">${mid}</div>
-          <label class="label" for="yr">Glisse jusqu'à ton année</label>
-          <input type="range" id="yr" min="${q.min}" max="${q.max}" value="${mid}">
-          <div class="range-ends num"><span>${q.min}</span><span>${q.max}</span></div>
-          <div class="steps"><button data-d="-10">−10</button><button data-d="-1">−1</button><button data-d="1">+1</button><button data-d="10">+10</button></div>
-          <button class="btn wide" id="valider">Valider</button>
-        </div>`;
     }
     play.innerHTML = `${header()}${body}<div class="spacer"></div></div>`;
     $("#quit").onclick = quit;
     G.qStart = performance.now();
-    const tf = $("#type-form");
-    if (tf) {
-      const inp = $("#ty");
-      if (q.kind === "date") inp.oninput = () => { inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4); };
-      tf.onsubmit = (e) => { e.preventDefault(); const v = inp.value.trim(); if (!v) { inp.focus(); return; } answer(q, q.kind === "date" ? parseInt(v, 10) : v); };
-      setTimeout(() => inp.focus(), 60);
-    } else if (q.kind === "date") {
-      const r = $("#yr"), v = $("#yv");
-      const set = (y) => { r.value = Math.min(q.max, Math.max(q.min, y)); v.textContent = r.value; };
-      r.oninput = () => set(+r.value);
-      play.querySelectorAll("[data-d]").forEach((b) => (b.onclick = () => set(+r.value + +b.dataset.d)));
-      $("#valider").onclick = () => answer(q, +r.value);
+    if (q.kind === "order") {
+      play.querySelectorAll(".ans").forEach((b) => (b.onclick = () => answer(q, +b.dataset.k, b)));
+      startTimer(TIMER, () => answer(q, null));
     } else {
-      play.querySelectorAll(".ans").forEach((b) => (b.onclick = () => answer(q, b.dataset.v ?? +b.dataset.k, b)));
+      const inp = $("#ty");
+      inp.oninput = () => { inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4); };
+      $("#type-form").onsubmit = (e) => { e.preventDefault(); if (!inp.value) { inp.focus(); return; } answer(q, parseInt(inp.value, 10)); };
+      setTimeout(() => inp.focus(), 60);
+      startTimer(25, () => answer(q, null));
     }
-    startTimer(q.timer || G.timer, () => answer(q, null));
-  }
-
-  // Ce que rapporte une bonne réponse, selon le mode.
-  function gainFor(q, left) {
-    if (G.mode === "daily" || G.mode === "live") return 100 + Math.round(left * 5);
-    if (G.mode === "eclair") return 10 * mult();
-    if (G.mode === "bot" || G.mode === "friend") return q.kind === "qcm" ? (q.mode === "duo" ? 1 : 2) : q.kind === "intrus" ? 2 : 1;
-    return 1;
   }
 
   function answer(q, val, btn) {
@@ -861,96 +636,63 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     q.done = true;
     clearInterval(timerId);
     const left = timeLeft();
-    let ok = false, info = "", detail = "";
-    play.querySelectorAll(".ans, #valider, .steps button, #yr, #ty").forEach((b) => (b.disabled = true));
-    const typed = !!$("#type-form");
-    if (q.kind === "open") {
-      ok = val != null && matchOpen(val, q.answers);
-      const inp = $("#ty"); if (inp) inp.classList.add(ok ? "good" : "bad");
-      info = val == null ? `Temps écoulé. Réponse : ${q.answers[0]}.` : ok ? (norm(val) === norm(q.answers[0]) ? "" : `Réponse attendue : ${q.answers[0]}.`) : `Réponse attendue : ${q.answers[0]}.`;
-      detail = q.ex;
-    } else if (q.kind === "date" && typed) {
-      const gap = val == null || !Number.isFinite(val) ? Infinity : Math.abs(val - q.y);
-      q.guess = Number.isFinite(val) ? val : null; q.gap = gap;
-      ok = q.tol != null ? gap <= q.tol : gap === 0;
-      const inp = $("#ty"); if (inp) inp.classList.add(ok ? "good" : "bad");
-      info = val == null ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as écrit ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
-      detail = q.ex;
-    } else if (q.kind === "qcm") {
-      ok = val === q.correct;
-      play.querySelectorAll(".ans").forEach((b) => { if (b.dataset.v === q.correct) b.classList.add("good"); else if (b === btn) b.classList.add("bad"); });
-      info = ok ? "" : `Bonne réponse : ${q.correct}.`;
-      detail = q.ex;
-    } else if (q.kind === "intrus") {
-      ok = val != null && q.items[val].odd;
-      play.querySelectorAll(".ans").forEach((b) => { const it = q.items[+b.dataset.k]; if (it.odd) b.classList.add("good"); else if (b === btn) b.classList.add("bad"); });
-      info = ok ? "" : `L'intrus : ${q.items.find((x) => x.odd).t}.`;
-      detail = q.ex;
-    } else if (q.kind === "order") {
-      const first = q.a.y < q.b.y ? 0 : 1;
+    let ok = false, info = "", note = "", gain = 0;
+    play.querySelectorAll(".ans, #valider, #ty").forEach((b) => (b.disabled = true));
+    if (q.kind === "order") {
+      const first = q.a[0] < q.b[0] ? 0 : 1;
       ok = val === first;
-      play.querySelectorAll(".ans").forEach((b) => { const k = +b.dataset.k; b.innerHTML += `<br><span class="num" style="font-family:var(--display);font-size:22px">${[q.a, q.b][k].y}</span>`; if (k === first) b.classList.add("good"); else if (b === btn) b.classList.add("bad"); });
-      info = `${q.a.e} : ${q.a.y}. ${q.b.e} : ${q.b.y}.`;
-    } else if (q.kind === "date") {
-      const gap = val == null ? Infinity : Math.abs(val - q.y);
-      q.guess = val; q.gap = gap;
-      ok = gap <= (q.tol ?? 2);
-      $("#yv").textContent = q.y;
-      info = val == null ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as répondu ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
-      detail = q.ex;
+      play.querySelectorAll(".ans").forEach((b) => {
+        const k = +b.dataset.k, f = [q.a, q.b][k];
+        b.querySelector(".fact-year").textContent = f[0];
+        if (k === first) b.classList.add("good"); else if (b === btn) b.classList.add("bad");
+      });
+      const gap = Math.abs(q.a[0] - q.b[0]);
+      info = `${gap} an${gap > 1 ? "s" : ""} d'écart.`;
+      note = q.a[3] || q.b[3] || "";
+      if (ok) { G.correct++; gain = 100 + Math.round(left * 10); G.me += gain; }
+    } else {
+      const gap = Number.isFinite(val) ? Math.abs(val - q.y) : Infinity;
+      q.guess = Number.isFinite(val) ? val : null; q.gap = gap;
+      const inp = $("#ty"); if (inp) inp.classList.add(gap === 0 ? "good" : gap <= 5 ? "near" : "bad");
+      info = !Number.isFinite(val) ? `Temps écoulé. C'était en ${q.y}.` : gap === 0 ? `Pile ${q.y} !` : `C'était en ${q.y} : tu as écrit ${val}, à ${gap} an${gap > 1 ? "s" : ""}.`;
+      note = q.f[3] || "";
+      G.sdGuesses.push(q.guess);
     }
-    markSeen(q.id);
     q.ok = ok;
-    // Score
-    let gain = 0;
-    if (q.sd) G.sdGuesses.push(val == null ? null : val);
-    else {
-      G.answered++;
-      if (ok) { G.correct++; G.combo++; gain = gainFor(q, left); G.me += gain; }
-      else { G.combo = 0; if (G.hearts != null) G.hearts--; }
-    }
+    markSeen(q.id);
     save();
-    // Adversaire (ordi)
-    let oppLine = "", verdict = null;
-    if (G.bot && !q.sd) {
+    let oppLine = "";
+    if (G.bot && q.kind === "order") {
       const b = G.bot(q);
       if (b.ok) G.opp += b.pts;
-      oppLine = `${G.opponent.name} : ${b.ok ? "bonne réponse" : "raté"}${b.mode ? ` (en ${b.mode})` : ""}${b.ok ? ` · +${b.pts}` : ""}`;
-      if (G.mode === "ms") {
-        if (ok !== b.ok) { G.msOver = ok ? "win" : "lose"; oppLine = ok ? "Le Maître s'est trompé : il tombe !" : "Le Maître a trouvé : tu tombes."; }
-        else oppLine = ok ? "Le Maître a trouvé lui aussi : on continue." : "Le Maître s'est trompé lui aussi : vous restez en vie.";
-      }
+      oppLine = `${G.opponent.name} : ${b.ok ? `bonne réponse (+${b.pts})` : "raté"}`;
     }
-    if (q.sd && G.bot) {
-      const bg = Math.round(q.y + gauss() * 9), bgap = Math.abs(bg - q.y);
-      oppLine = `${G.opponent.name} a répondu ${bg} (${bgap} an${bgap > 1 ? "s" : ""} d'écart).`;
-      verdict = q.gap < bgap ? "win" : q.gap > bgap ? "lose" : null;
-      G.sdResult = verdict;
+    if (G.bot && q.kind === "year") {
+      const bg = Math.round(q.y + gauss() * 12), bgap = Math.abs(bg - q.y);
+      oppLine = `${G.opponent.name} a écrit ${bg} (${bgap} an${bgap > 1 ? "s" : ""} d'écart).`;
+      G.sdResult = q.gap < bgap ? "win" : q.gap > bgap ? "lose" : null;
     }
     const live = G.mode === "live";
-    if (live) { G.emit({ i: G.i, ok, pts: gain, guess: q.kind === "date" ? val : null }); oppLine = "En attente de ton adversaire…"; }
-    // Feuille de correction
-    const cls = q.sd ? (verdict === "win" ? "ok" : verdict === "lose" ? "ko" : "neutral") : ok ? "ok" : "ko";
-    const title = q.sd ? (verdict === "win" ? "Tu remportes la mort subite !" : verdict === "lose" ? "Perdu à la mort subite" : G.bot ? "Égalité parfaite : on continue" : "Réponse enregistrée")
-      : ok ? (gain > 1 ? `Bravo ! +${fmt(gain)}${G.mode === "eclair" ? " pts" : ""}` : "Bravo !") : val == null ? "Temps écoulé" : "Raté";
+    if (live) { G.emit({ i: G.i, ok, pts: gain, guess: q.kind === "year" ? q.guess : null }); oppLine = "En attente de ton adversaire…"; }
+    const sd = q.kind === "year";
+    const v = G.sdResult;
+    const cls = sd ? (G.bot && v === "win" ? "ok" : G.bot && v === "lose" ? "ko" : "neutral") : ok ? "ok" : "ko";
+    const title = sd ? (G.bot ? (v === "win" ? "Tu remportes la mort subite !" : v === "lose" ? "Perdu à la mort subite" : "Égalité parfaite : on continue") : "Réponse enregistrée")
+      : ok ? `Bien vu ! +${gain}` : val == null ? "Temps écoulé" : "Raté";
     const sheet = document.createElement("div");
     sheet.className = `sheet ${cls}`;
-    sheet.innerHTML = `<div class="wrap"><h3 id="sh-title">${ok || verdict === "win" ? ICON.check.replace("<svg", '<svg width="24" height="24"') : ""}${esc(title)}</h3>
-      ${info ? `<p><strong>${esc(info)}</strong></p>` : ""}${detail ? `<p>${esc(detail)}</p>` : ""}
+    sheet.innerHTML = `<div class="wrap"><h3 id="sh-title">${ok ? ICON.check : ""}${esc(title)}</h3>
+      <p><strong>${esc(info)}</strong></p>${note ? `<p>${esc(note)}</p>` : ""}
       ${oppLine ? `<p class="opp-line" id="opp-line">${esc(oppLine)}</p>` : ""}
       <button class="btn wide ${cls === "ko" ? "ghost" : ""}" id="cont">Continuer</button></div>`;
     play.appendChild(sheet);
     updateBoard();
-    if (G.hearts != null) { const h = play.querySelector(".hearts .num"); if (h) h.textContent = G.hearts; }
-    const combo = play.querySelector(".combo"); if (combo) { combo.textContent = `Combo ×${mult()}`; combo.classList.toggle("hot", G.combo >= 3); }
     const cont = $("#cont");
     cont.focus();
     cont.onclick = () => {
       clearTimeout(G.autoT);
       G.i++;
-      if (G.msOver) return finish();
-      if (q.sd && G.sdResult && (G.bot || live)) return finish();
-      if (G.endless && !ok) return finish();
+      if (sd && G.sdResult && (G.bot || live)) return finish();
       next();
     };
     if (live) waitOpp(q, G.i);
@@ -961,14 +703,13 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     if (a) a.textContent = fmt(G.me);
     if (b && !G.opponent.hidden) b.textContent = fmt(G.opp);
   }
-
-  // Duel en direct : on attend la réponse de l'adversaire avant d'enchaîner, pour rester ensemble.
+  // En direct : on attend la réponse de l'adversaire avant d'enchaîner, pour rester ensemble.
   function waitOpp(q, i) {
     const cont = $("#cont");
     cont.disabled = true; cont.textContent = "En attente…";
-    const ms = Math.max(1500, (q.timer || G.timer || 15) * 1000 - (performance.now() - G.qStart) + 3000);
+    const sec = q.kind === "year" ? 25 : TIMER;
     G.waiting = { q, i };
-    G.waitT = setTimeout(() => resolveOpp(i), ms);
+    G.waitT = setTimeout(() => resolveOpp(i), Math.max(1500, sec * 1000 - (performance.now() - G.qStart) + 3000));
     if (G.oppAns[i]) resolveOpp(i);
   }
   function resolveOpp(i) {
@@ -977,256 +718,160 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     G.waiting = null; clearTimeout(G.waitT);
     const o = G.oppAns[i], name = G.opponent.name;
     let line;
-    if (!q.sd) {
-      if (o && o.ok) G.opp += Math.max(0, Math.min(175, Number(o.pts) || 0));
-      line = !o ? `${name} n'a pas répondu à temps.` : o.ok ? `${name} : bonne réponse (+${fmt(Math.min(175, Number(o.pts) || 0))})` : `${name} : raté`;
+    if (q.kind === "order") {
+      const pts = o && o.ok ? Math.max(0, Math.min(220, o.pts)) : 0;
+      G.opp += pts;
+      line = !o ? `${name} n'a pas répondu à temps.` : o.ok ? `${name} : bonne réponse (+${pts})` : `${name} : raté`;
       updateBoard();
     } else {
       const og = o && Number.isFinite(o.guess) ? Math.abs(o.guess - q.y) : Infinity;
-      const verdict = q.gap < og ? "win" : q.gap > og ? "lose" : null;
-      G.sdResult = verdict;
-      line = o && Number.isFinite(o.guess) ? `${name} a répondu ${o.guess} (${og} an${og > 1 ? "s" : ""} d'écart).` : `${name} n'a pas répondu.`;
+      G.sdResult = q.gap < og ? "win" : q.gap > og ? "lose" : null;
+      line = o && Number.isFinite(o.guess) ? `${name} a écrit ${o.guess} (${og} an${og > 1 ? "s" : ""} d'écart).` : `${name} n'a pas répondu.`;
       const sheet = play.querySelector(".sheet"), t = $("#sh-title");
-      if (sheet) sheet.className = `sheet ${verdict === "win" ? "ok" : verdict === "lose" ? "ko" : "neutral"}`;
-      if (t) t.textContent = verdict === "win" ? "Tu remportes la mort subite !" : verdict === "lose" ? "Perdu à la mort subite" : "Égalité parfaite : on continue";
+      if (sheet) sheet.className = `sheet ${G.sdResult === "win" ? "ok" : G.sdResult === "lose" ? "ko" : "neutral"}`;
+      if (t) t.textContent = G.sdResult === "win" ? "Tu remportes la mort subite !" : G.sdResult === "lose" ? "Perdu à la mort subite" : "Égalité parfaite : on continue";
     }
     const ol = $("#opp-line"); if (ol) ol.textContent = line;
     const cont = $("#cont");
     if (cont) { cont.disabled = false; cont.textContent = "Continuer"; G.autoT = setTimeout(() => cont.isConnected && cont.click(), 2600); }
   }
-
   function finish() {
     clearInterval(timerId);
     if (!G) return;
     clearTimeout(G.waitT); clearTimeout(G.autoT);
     const wasLive = G.mode === "live";
-    const r = G.onEnd ? G.onEnd(G) : null;
+    const r = G.onEnd(G);
     if (wasLive) leaveLive();
-    if (!r) return quit();
     play.innerHTML = `<div class="wrap"><div class="splash">
       <div class="ico" style="background:${r.bg || "var(--gold)"};color:${r.fg || "#2b1d00"}">${r.icon || ICON.star}</div>
-      <p class="label">${esc(r.kicker || "Partie terminée")}</p>
+      <p class="label">${esc(r.kicker)}</p>
       <h1 class="big">${esc(r.title)}</h1>
       ${r.text ? `<p class="rules">${r.text}</p>` : ""}
       ${r.stats ? `<div class="result-grid">${r.stats.map(([v, l]) => `<div class="stat"><b class="num">${esc(v)}</b><span>${esc(l)}</span></div>`).join("")}</div>` : ""}
       ${r.extra || ""}
-      <div class="row" style="flex-wrap:wrap;justify-content:center"><button class="btn" id="done">${esc(r.cta || "Terminer")}</button>${r.cta ? `<button class="btn ghost" id="home">Accueil</button>` : ""}</div>
+      <div class="row" style="flex-wrap:wrap;justify-content:center">${r.cta ? `<button class="btn" id="done">${esc(r.cta)}</button>` : ""}<button class="btn ghost" id="home">Accueil</button></div>
     </div></div>`;
-    $("#done").onclick = () => { const after = r.after; quit(); if (after) after(); };
-    const h = $("#home"); if (h) h.onclick = quit;
+    const d = $("#done"); if (d) d.onclick = () => { const after = r.after; quit(); if (after) after(); };
+    $("#home").onclick = quit;
     if (r.mount) r.mount();
   }
+  const sdSplash = (live) => ({ kind: "splash", sd: true, auto: live ? 3500 : 0, kicker: "Égalité !", title: "Mort subite", icon: ICON.skull, bg: "var(--red)", fg: "#2a0006",
+    rules: "Une année à écrire, sans indice. Le plus proche de la bonne réponse gagne le match. Égalité parfaite ? On en tire une autre." });
+  const introSplash = (who) => ({ kind: "splash", kicker: `Duel contre ${who}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
+    rules: `${QUESTIONS} duels de dates qu'on ne sait jamais situer. 12 secondes pour choisir lequel est arrivé en premier : 100 points, plus 10 par seconde restante. En cas d'égalité, mort subite.` });
 
   // ================= Modes =================
-  // 1. Parcours façon Duolingo : 4 unités de 5 leçons, 3 vies par leçon, questions jamais vues en priorité.
-  const UNITS = [["eco", "Économie", "Monnaies, banques, crises"], ["geo", "Géopolitique", "Alliances, détroits, puissances"], ["hist", "Histoire", "Dirigeants et tournants"], ["carte", "Géographie", "Capitales, fleuves, frontières"]];
-  const LESSONS = 5;
-  function lessonQs(th) {
-    const ids = [...drawIds("qcm", 4, Math.random, { th }), ...drawIds("intrus", 1, Math.random, { th }), ...drawIds("date", 2, Math.random, { th })];
-    if (ids.length < 7) ids.push(...drawIds("qcm", 7 - ids.length, Math.random, { th, exclude: new Set(ids) }));
-    return shuffle(buildAll(ids));
-  }
-  function startLesson(th, n, label) {
-    startGame({
-      mode: "lesson", qs: lessonQs(th), hearts: 3,
-      onEnd: (g) => {
-        const passed = g.hearts > 0;
-        const pts = g.correct * 10 + (passed ? 20 : 0);
-        if (passed) S.lessons[`${th}-${n}`] = true;
-        addPoints(pts);
-        const stats = [[`${g.correct}/${g.answered}`, "bonnes réponses"], [`+${pts}`, "points"], [String(streakNow()), "jours de suite"]];
-        return passed
-          ? { kicker: label, title: "Leçon réussie !", stats }
-          : { kicker: label, title: "Plus de vies…", text: "Lis bien les explications à chaque erreur, puis retente la leçon.", bg: "var(--red)", fg: "#2a0006", icon: ICON.heart, stats };
-      },
-    });
-  }
-
-  // 2. Quiz éclair : 10 questions jamais vues, 15 s chacune, combo ×2 dès 3 bonnes réponses de suite, ×3 dès 5.
-  function startEclair() {
-    const ids = [...drawIds("qcm", 5), ...drawIds("intrus", 1), ...drawIds("order", 2), ...drawIds("date", 2)];
-    startGame({
-      mode: "eclair", qs: shuffle(buildAll(ids)), timer: 15,
-      onEnd: (g) => {
-        addPoints(g.me);
-        return { kicker: "Quiz éclair", title: `+${fmt(g.me)} points`, icon: ICON.bolt, text: "10 points par bonne réponse, ×2 dès 3 de suite, ×3 dès 5 de suite.", stats: [[`${g.correct}/10`, "bonnes réponses"], [fmt(S.points), "points au total"], [rankText(), "au classement"]], cta: "Rejouer", after: startEclair };
-      },
-    });
-  }
-
-  // 3. Défi du jour : 10 questions, les mêmes pour tout le monde, chrono de 20 s.
-  function dailyQs(day = today()) {
-    const r = rng(`defi-${day}`), o = { useSeen: false };
-    const ids = [...drawIds("qcm", 4, r, o), ...drawIds("intrus", 2, r, o), ...drawIds("order", 2, r, o), ...drawIds("date", 2, r, o)];
-    return shuffle(buildAll(ids, day), r);
-  }
-  function startDaily() {
-    startGame({
-      mode: "daily", qs: dailyQs(), timer: 20,
-      onEnd: (g) => {
-        S.daily = { date: today(), score: g.me, correct: g.correct };
-        const pts = g.correct * 10 + 30;
-        addPoints(pts);
-        publishDaily();
-        return { kicker: "Défi du jour", title: `${fmt(g.me)} points`, text: "Une réponse juste vaut 100 points, plus 5 points par seconde restante. Reviens demain pour un nouveau défi.", stats: [[`${g.correct}/10`, "bonnes réponses"], [`+${pts}`, "points gagnés"], [String(streakNow()), "jours de suite"]], cta: "Voir le classement", after: () => setTab("classement") };
-      },
-    });
-  }
-
-  // 4. Duel en trois manches (contre l'ordi ou un ami), puis mort subite sur les dates.
-  function duelQs(seed, fresh) {
-    const r = fresh ? Math.random : rng(`duel-${seed}`), o = { useSeen: !!fresh };
-    const QS = [];
-    QS.push({ kind: "splash", kicker: "Manche 1", title: "Duo ou carré", icon: '<b style="font:800 30px var(--display)">1</b>', bg: "var(--blue)", fg: "#021327", rules: "Quatre questions. Pour chacune, choisis avant de voir les réponses : <strong>duo</strong> (2 propositions, 1 point) ou <strong>carré</strong> (4 propositions, 2 points)." });
-    QS.push(...buildAll(drawIds("qcm", 4, r, o), seed, { timer: 20 }));
-    QS.push({ kind: "splash", kicker: "Manche 2", title: "L'intrus", icon: '<b style="font:800 30px var(--display)">2</b>', bg: "var(--gold)", fg: "#2b1d00", rules: "Six propositions, une seule ne colle pas avec les autres. Trouve-la : 2 points." });
-    QS.push(...buildAll(drawIds("intrus", 2, r, o), seed, { timer: 25 }));
-    QS.push({ kind: "splash", kicker: "Manche 3", title: "Avant ou après", icon: '<b style="font:800 30px var(--display)">3</b>', bg: "var(--mint)", fg: "#062317", rules: "Deux événements : lequel est arrivé en premier ? Trois questions, 8 secondes chacune, 1 point." });
-    QS.push(...buildAll(drawIds("order", 3, r, o), seed, { timer: 8 }));
-    const sd = buildAll(drawIds("date", 3, r, o), seed, { sd: true, timer: 25 });
-    return { qs: QS, sd };
-  }
-  const sdSplash = (how) => ({ kind: "splash", sd: true, auto: how === "live" ? 3500 : 0, kicker: how === "friend" ? "Départage" : "Égalité !", title: "Mort subite", icon: ICON.skull, bg: "var(--red)", fg: "#2a0006", rules: how === "friend" ? "Trois dates à trouver. Elles ne comptent qu'en cas d'égalité avec ton adversaire : le plus proche de la bonne année l'emporte." : "Une date, deux réponses. Le plus proche de la bonne année gagne le duel. En cas d'égalité parfaite, on en tire une autre." });
-
-  function startBotDuel() {
-    const { qs } = duelQs(Math.random().toString(36).slice(2), true);
-    const sd = buildAll(drawIds("date", 6), "", { sd: true, timer: 25 });
-    startGame({
-      mode: "bot", qs, duel: true, duoCarre: true,
-      opponent: { name: "Le Maître", short: "M" },
+  // Contre le Maître (l'ordi) : un match toutes les 4 heures.
+  function startBot() {
+    if (Date.now() < (S.botNext || 0)) return;
+    S.botNext = Date.now() + COOLDOWN; save();
+    const qs = buildAll(drawPairs(QUESTIONS));
+    const sd = buildAll(drawYears(4, Math.random, qs.map((q) => q.id)));
+    startMatch({
+      mode: "bot", qs: [introSplash("le Maître"), ...qs], opponent: { name: "Le Maître", short: "M" },
       bot: (q) => {
-        const behind = G.me - G.opp;
-        const mode = q.kind === "qcm" ? (Math.random() < 0.5 ? "duo" : "carré") : null;
-        let p = q.kind === "qcm" ? (mode === "duo" ? 0.82 : 0.62) : q.kind === "intrus" ? 0.6 : 0.68;
-        p = Math.min(0.95, Math.max(0.2, p + behind * 0.07));
-        return { ok: Math.random() < p, pts: q.kind === "qcm" ? (mode === "duo" ? 1 : 2) : q.kind === "intrus" ? 2 : 1, mode };
+        const gap = Math.abs(q.a[0] - q.b[0]);
+        let p = gap <= 5 ? 0.5 : gap <= 12 ? 0.6 : 0.72;
+        p = Math.min(0.9, Math.max(0.25, p + (G.me - G.opp) / 1500));
+        return { ok: Math.random() < p, pts: 100 + Math.round(Math.random() * 90) };
       },
-      onRegularEnd: () => (G.me === G.opp ? [sdSplash("bot"), ...sd] : null),
+      onRegularEnd: () => (G.me === G.opp ? [sdSplash(false), ...sd] : null),
       onEnd: (g) => {
-        const win = g.sdResult ? g.sdResult === "win" : g.me > g.opp;
-        const pts = g.correct * 10 + (win ? 40 : 10);
-        S.played++; if (win) S.wins++;
-        addPoints(pts);
-        return {
-          kicker: g.sdResult ? "Décidé à la mort subite" : "Fin du duel", title: win ? "Victoire !" : "Le Maître l'emporte",
-          bg: win ? "var(--gold)" : "var(--blue)", fg: win ? "#2b1d00" : "#021327", icon: win ? ICON.star : ICON.swords,
-          stats: [[`${g.me} – ${g.opp}`, "score"], [`+${pts}`, "points"], [`${S.wins}/${S.played}`, "duels gagnés"]],
-          cta: "Rejouer", after: startBotDuel,
-        };
-      },
-    });
-  }
-
-  // 5. Mort subite : 5 questions à écrire (une date ou un mot), de « ça va » à « dur », jamais les mêmes.
-  // Dès que l'un tombe et pas l'autre, c'est fini. Si les deux tiennent, une date décisive : le plus proche gagne.
-  // Un match toutes les 4 heures : le temps de préparer le match retour.
-  const MS_COOLDOWN = 4 * 3600 * 1000;
-  const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
-  const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
-  const LEVEL_NAMES = ["ça va", "facile", "moyen", "costaud", "dur"];
-  function msIds() {
-    const ids = [];
-    for (let lv = 1; lv <= 5; lv++) ids.push(...drawIds("ms", 1, Math.random, { lv, exclude: new Set(ids) }));
-    const years = POOL.ms.filter((x) => x.id[0] === "y" && !ids.includes(x.id) && !ids.includes("y" + x.id.slice(1)));
-    const fresh = years.filter((x) => !seen.has(x.id));
-    const decisive = (pick(fresh.length ? fresh : years, 1, Math.random)[0] || { id: "y0" }).id;
-    return { ids, decisive };
-  }
-  const msSplash = (who) => ({ kind: "splash", kicker: `Mort subite · contre ${who}`, title: "Une seule vie", icon: ICON.skull, bg: "var(--red)", fg: "#2a0006", cta: "Je suis prêt",
-    rules: "Cinq questions, de « ça va » à « dur ». Pas de propositions : tu écris la réponse, une date ou un mot. Dès que l'un de vous tombe et pas l'autre, c'est fini. Si vous tenez tous les deux, une date décisive départage : le plus proche gagne." });
-  const decisiveSplash = () => ({ kind: "splash", sd: true, kicker: "Personne n'est tombé", title: "Date décisive", icon: ICON.skull, bg: "var(--gold)", fg: "#2b1d00", rules: "Écris l'année. Le plus proche de la bonne réponse remporte le match." });
-  const msQs = (ids) => buildAll(ids, "", { timer: 30 });
-  const msDecisive = (id) => Object.assign(build(id), { sd: true, typed: true, timer: 30, lv: null });
-  const levelPts = (g) => g.qs.filter((q) => q.lv && q.ok && !q.sd).reduce((s, q) => s + 10 * q.lv, 0);
-  const cooldownText = (ms) => { const m = Math.ceil(ms / 60000); return m >= 60 ? `${Math.floor(m / 60)} h ${pad(m % 60)}` : `${m} min`; };
-
-  function startMsBot() {
-    if (Date.now() < (S.msBotNext || 0)) return;
-    S.msBotNext = Date.now() + MS_COOLDOWN; save();
-    const { ids, decisive } = msIds();
-    const P = [0.92, 0.8, 0.64, 0.48, 0.32];
-    startGame({
-      mode: "ms", qs: [msSplash("le Maître"), ...msQs(ids)], duel: true,
-      opponent: { name: "Le Maître", short: "M" },
-      bot: (q) => ({ ok: Math.random() < P[(q.lv || 3) - 1], pts: 1 }),
-      onRegularEnd: () => (!G.msOver ? [decisiveSplash(), msDecisive(decisive)] : null),
-      onEnd: (g) => {
-        const out = g.msOver || (g.sdResult || "draw");
-        const pts = levelPts(g) + (out === "win" ? 60 : out === "draw" ? 25 : 10);
+        const out = g.sdResult || (g.me > g.opp ? "win" : g.me < g.opp ? "lose" : "draw");
+        const pts = g.correct * 10 + (out === "win" ? 50 : out === "draw" ? 25 : 10);
         S.played++; if (out === "win") S.wins++;
         addPoints(pts);
-        const reached = g.qs.filter((q) => q.lv && q.done && !q.sd).length;
         return {
-          kicker: g.msOver ? `Décidé à la question ${reached}` : "Décidé à la date décisive",
-          title: out === "win" ? "Le Maître est tombé !" : out === "draw" ? "Égalité parfaite" : "Tu es tombé",
-          icon: out === "win" ? ICON.star : ICON.skull, bg: out === "win" ? "var(--gold)" : "var(--red)", fg: out === "win" ? "#2b1d00" : "#2a0006",
-          stats: [[`${reached}/5`, "questions jouées"], [`+${pts}`, "points"], [`${S.wins}/${S.played}`, "matchs gagnés"]],
-          text: `Match retour contre le Maître dans 4 h.`,
-          cta: "Retour aux défis", after: () => setTab("defis"),
+          kicker: g.sdResult ? "Décidé à la mort subite" : "Fin du match", title: out === "win" ? "Victoire !" : out === "draw" ? "Match nul" : "Le Maître l'emporte",
+          icon: out === "win" ? ICON.star : ICON.robot, bg: out === "win" ? "var(--gold)" : "var(--blue)", fg: out === "win" ? "#2b1d00" : "#021327",
+          stats: [[`${fmt(g.me)} – ${fmt(g.opp)}`, "score"], [`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points"]],
+          text: "Match retour contre le Maître dans 4 heures.",
         };
+      },
+    });
+  }
+
+  // Défi du jour : les mêmes 7 duels pour tout le monde, une fois par jour.
+  function dailyIds(day = today()) { return drawPairs(QUESTIONS, rng(`defi-${day}`), { useSeen: false }); }
+  function startDaily() {
+    if (S.daily && S.daily.date === today()) return;
+    startMatch({
+      mode: "daily", qs: [{ kind: "splash", kicker: "Défi du jour", title: "Les mêmes pour tous", icon: ICON.sun, bg: "var(--mint)", fg: "#062317", cta: "C'est parti",
+        rules: `${QUESTIONS} duels de dates, les mêmes pour tous les joueurs aujourd'hui. Chaque bonne réponse rapporte des points, et ton score entre au classement du jour.` }, ...buildAll(dailyIds(), today())],
+      onEnd: (g) => {
+        S.daily = { date: today(), score: g.me, correct: g.correct };
+        const pts = g.correct * 15 + 30;
+        addPoints(pts);
+        publishDaily();
+        return { kicker: "Défi du jour", title: `${fmt(g.me)} points`, icon: ICON.sun, bg: "var(--mint)", fg: "#062317",
+          stats: [[`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points gagnés"], [String(streakNow()), "jours de suite"]],
+          text: "Reviens demain pour un nouveau défi.", cta: "Voir le classement", after: () => setTab("classement") };
       },
     });
   }
 
   // Contre un ami : le créateur tire les questions et les range dans le match ; l'autre joue exactement les mêmes.
-  async function createMsFriend(rematchOf) {
+  // Le résultat s'affiche quand les deux ont joué ; le match retour est possible 4 heures après.
+  const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
+  const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
+  const validIds = (a, n) => Array.isArray(a) && a.length <= n && a.every((x) => typeof x === "string" && /^(p\d{1,3}_\d{1,3}|y\d{1,3})$/.test(x) && build(x));
+  async function createFriend(rematchOf) {
     if (!db || !me) return;
     const code = newCode();
-    const { ids, decisive } = msIds();
-    try { await db.collection("ms").doc(code).set({ code, ids, decisive, host: me, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
-    playMsFriend(code, ids, decisive);
+    const ids = drawPairs(QUESTIONS);
+    const sd = drawYears(3, Math.random, ids);
+    try { await db.collection("matchs").doc(code).set({ code, ids, sd, host: me, at: Date.now(), rematchOf: rematchOf || null }); } catch (e) { return; }
+    playFriend(code, ids, sd);
   }
-  async function joinMsFriend(code, msg) {
+  async function joinFriend(code, msg) {
     try {
-      const mine = await db.collection("ms").doc(`${code}-${me}`).get();
-      if (mine.exists) { msg.textContent = "Tu as déjà joué ce match : voici le résultat."; showMs(code); return; }
-      const snap = await db.collection("ms").doc(code).get();
+      const mine = await db.collection("matchs").doc(`${code}-${me}`).get();
+      if (mine.exists) { msg.textContent = "Tu as déjà joué ce match : voici le résultat."; showMatch(code); return; }
+      const snap = await db.collection("matchs").doc(code).get();
       if (!snap.exists) { msg.textContent = "Ce code ne correspond à aucun match."; return; }
       const d = snap.data();
-      if (!validIds(d.ids) || d.ids.length !== 5 || typeof d.decisive !== "string" || !/^y[0-9]{1,3}$/.test(d.decisive)) { msg.textContent = "Ce match est illisible."; return; }
-      playMsFriend(code, d.ids, d.decisive);
+      if (!validIds(d.ids, QUESTIONS) || !validIds(d.sd, 3)) { msg.textContent = "Ce match est illisible."; return; }
+      playFriend(code, d.ids, d.sd);
     } catch (e) { msg.textContent = "Impossible de rejoindre ce match pour le moment."; }
   }
-  function playMsFriend(code, ids, decisive) {
-    startGame({
-      mode: "msf", qs: [msSplash("ton ami"), ...msQs(ids), decisiveSplash(), msDecisive(decisive)], duel: true,
+  function playFriend(code, ids, sdIds) {
+    const sd = buildAll(sdIds);
+    startMatch({
+      mode: "friend", qs: [introSplash("ton ami"), ...buildAll(ids, code), { ...sdSplash(false), kicker: "Départage", rules: "Trois années à écrire. Elles ne comptent qu'en cas d'égalité avec ton adversaire : le plus proche l'emporte." }, ...sd],
       opponent: { name: "Ton ami", short: "?", hidden: true },
       onEnd: (g) => {
-        const res = g.qs.filter((q) => q.lv && !q.sd).map((q) => !!q.ok);
-        const dq = g.qs.find((q) => q.sd);
-        const gap = dq && Number.isFinite(dq.gap) ? dq.gap : 9999;
-        db.collection("ms").doc(`${code}-${me}`).set({ code, res, gap, at: Date.now() }).catch(() => {});
-        if (!S.ms.includes(code)) S.ms.unshift(code);
-        S.ms = S.ms.slice(0, 8);
-        const pts = levelPts(g) + 20;
+        const gaps = sd.map((q) => (Number.isFinite(q.gap) ? q.gap : 9999));
+        db.collection("matchs").doc(`${code}-${me}`).set({ code, score: g.me, sd: gaps, at: Date.now() }).catch(() => {});
+        if (!S.matches.includes(code)) S.matches.unshift(code);
+        S.matches = S.matches.slice(0, 8);
+        const pts = g.correct * 10;
         addPoints(pts);
         return {
-          kicker: `Mort subite · match ${code}`, title: `${res.filter(Boolean).length}/5 trouvées`, icon: ICON.skull, bg: "var(--red)", fg: "#2a0006",
-          extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="ms-res"><p class="muted">Recherche du résultat…</p></div>`,
-          mount: () => watchMs(code, $("#ms-res")), text: `+${pts} points pour tes bonnes réponses. Le bonus de victoire arrive quand ton ami a joué.`,
-          cta: "Retour aux défis", after: () => setTab("defis"),
+          kicker: `Match ${code}`, title: `${fmt(g.me)} points`, icon: ICON.friend, bg: "var(--blue)", fg: "#021327",
+          text: `+${pts} points pour tes bonnes réponses. Le bonus de victoire arrive quand ton ami a joué.`,
+          extra: `<div class="card" style="width:100%;max-width:420px;text-align:left" id="m-res"><p class="muted">Recherche du résultat…</p></div>`,
+          mount: () => watchMatch(code, $("#m-res")),
         };
       },
     });
   }
-  function msCompare(a, b) {
-    for (let k = 0; k < 5; k++) { const x = !!(a.res || [])[k], y = !!(b.res || [])[k]; if (x !== y) return { out: x ? "win" : "lose", how: `Décidé à la question ${k + 1} (${LEVEL_NAMES[k]}).` }; }
-    if (a.gap !== b.gap) return { out: a.gap < b.gap ? "win" : "lose", how: `Décidé à la date décisive : ${a.gap} an${a.gap > 1 ? "s" : ""} d'écart contre ${b.gap}.` };
-    return { out: "draw", how: "Égalité parfaite, même à la date décisive." };
+  function compare(a, b) {
+    if (a.score !== b.score) return { out: a.score > b.score ? "win" : "lose", how: "" };
+    for (let k = 0; k < 3; k++) { const x = (a.sd || [])[k] ?? 9999, y = (b.sd || [])[k] ?? 9999; if (x !== y) return { out: x < y ? "win" : "lose", how: `Égalité : décidé à la mort subite (${x} an${x > 1 ? "s" : ""} d'écart contre ${y}).` }; }
+    return { out: "draw", how: "Égalité parfaite, même à la mort subite." };
   }
 
-  // ================= Partagé : points, classements, duels (db) =================
+  // ================= Partagé : points, classements, matchs (db) =================
   let db = null, user = null, me = null, names = {}, players = [], dailyRows = [];
   async function initShared() {
     try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
     try { user = await window.claude?.use?.("user"); } catch (e) { user = null; }
     try { me = user ? await user.id() : null; } catch (e) { me = null; }
     if (db && me) {
-      // Les points suivent le joueur d'un appareil à l'autre.
       try {
         const snap = await db.collection("joueurs").doc(me).get();
         const d = snap.exists ? snap.data() : null;
-        if (d && Number(d.points) > S.points) { S.points = Number(d.points); S.wins = Math.max(S.wins, Number(d.wins) || 0); S.played = Math.max(S.played, Number(d.played) || 0); S.best = Math.max(S.best, Number(d.best) || 0); save(); }
+        if (d && Number(d.points) > S.points) { S.points = Number(d.points); S.wins = Math.max(S.wins, Number(d.wins) || 0); S.played = Math.max(S.played, Number(d.played) || 0); save(); }
       } catch (e) {}
       if (S.points > 0) syncPlayer();
     }
@@ -1256,54 +901,51 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
   }
   function syncPlayer() {
     if (!db || !me) return;
-    db.collection("joueurs").doc(me).set({ points: S.points, wins: S.wins, played: S.played, best: S.best, streak: streakNow(), at: Date.now() }).catch(() => {});
+    db.collection("joueurs").doc(me).set({ points: S.points, wins: S.wins, played: S.played, streak: streakNow(), at: Date.now() }).catch(() => {});
   }
-  function rankText() { const k = players.findIndex((p) => p.id === me); return k >= 0 ? `${k + 1}ᵉ` : "–"; }
   function publishDaily() {
     if (!db || !me || !S.daily) return;
     db.collection("defi").doc(me).set({ date: S.daily.date, score: S.daily.score, correct: S.daily.correct, at: Date.now() }).catch(() => {});
   }
-  // Résultat d'un match à distance, en direct dès que l'adversaire a joué, avec le match retour au bout de 4 h.
-  let msUnsub = null;
-  function watchMs(code, el) {
-    if (msUnsub) { msUnsub(); msUnsub = null; }
+  let matchUnsub = null;
+  function watchMatch(code, el) {
+    if (matchUnsub) { matchUnsub(); matchUnsub = null; }
     if (!db || !el) return;
-    msUnsub = db.collection("ms").where("code", "==", code).onSnapshot(async (snap) => {
+    matchUnsub = db.collection("matchs").where("code", "==", code).onSnapshot(async (snap) => {
       const rows = snap.docs.filter((d) => d.id.includes("-")).map((d) => Object.assign({ uid: d.id.slice(code.length + 1) }, d.data()));
       await resolveNames(rows.map((r) => r.uid));
-      if (!document.body.contains(el)) { msUnsub && msUnsub(); msUnsub = null; return; }
+      if (!document.body.contains(el)) { matchUnsub && matchUnsub(); matchUnsub = null; return; }
       const mine = rows.find((r) => r.uid === me), other = rows.find((r) => r.uid !== me);
       if (!mine) { el.innerHTML = `<p class="muted">Tu n'as pas encore joué ce match.</p>`; return; }
       if (!other) {
-        el.innerHTML = `<p class="label">En attente de ton adversaire</p><p>Envoie-lui ce code : il l'entre dans « Défis » pour jouer les mêmes questions.</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
+        el.innerHTML = `<p class="label">En attente de ton adversaire</p><p>Envoie-lui ce code : il l'entre sur l'accueil pour jouer les mêmes questions.</p><p class="code">${code}</p><button class="btn ghost" id="copy">Copier le code</button>`;
         const c = el.querySelector("#copy");
         c.onclick = () => { try { navigator.clipboard.writeText(code).then(() => (c.textContent = "Code copié"), () => (c.textContent = code)); } catch (e) { c.textContent = code; } };
         return;
       }
-      const { out, how } = msCompare(mine, other);
-      const key = `ms-bonus-${code}`;
-      if (!S[key]) { S[key] = 1; addPoints(out === "win" ? 60 : out === "draw" ? 25 : 0); if (out === "win") S.wins++; S.played++; save(); }
+      const { out, how } = compare(mine, other);
+      const key = `bonus-${code}`;
+      if (!S[key]) { S[key] = 1; S.played++; if (out === "win") S.wins++; addPoints(out === "win" ? 50 : out === "draw" ? 25 : 0); }
       const oname = names[other.uid] || "Ton adversaire";
-      const wait = Math.max(mine.at || 0, other.at || 0) + MS_COOLDOWN - Date.now();
-      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +60 points" : out === "lose" ? "Défaite" : "Match nul · +25 points"}</p>
-        <h3 style="font-size:24px;margin:6px 0">Toi contre ${esc(oname)}</h3>
-        <p class="muted">${esc(how)}</p>
-        <div class="ms-grid">${[0, 1, 2, 3, 4].map((k) => `<span class="${(mine.res || [])[k] ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>Toi</b>${[0, 1, 2, 3, 4].map((k) => `<span class="${(other.res || [])[k] ? "ok" : "ko"}">${k + 1}</span>`).join("")}<b>${esc(oname)}</b></div>
-        ${wait > 0 ? `<p class="note">Match retour possible dans ${cooldownText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
-      const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createMsFriend(code);
+      const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
+      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +50 points" : out === "lose" ? "Défaite" : "Match nul · +25 points"}</p>
+        <h3 style="font-size:28px;margin:6px 0" class="num">${fmt(mine.score)} – ${fmt(other.score)}</h3>
+        <p class="muted">Toi contre ${esc(oname)}. ${esc(how)}</p>
+        ${wait > 0 ? `<p class="note">Match retour possible dans ${waitText(wait)}.</p>` : `<button class="btn" id="rematch">Lancer le match retour</button>`}`;
+      const rm = el.querySelector("#rematch"); if (rm) rm.onclick = () => createFriend(code);
     }, () => { el.innerHTML = `<p class="muted">Résultat indisponible pour le moment.</p>`; });
   }
 
   // ================= Duel en direct (room) =================
-  // Salle commune : chaque joueur affiche « en attente » ; les joueurs en attente sont appariés deux par deux,
-  // puis rejoignent une salle à eux. L'hôte tire 10 questions qu'aucun des deux n'a encore vues et les envoie.
+  // Salle commune : les joueurs « en attente » sont appariés deux par deux, puis rejoignent une salle à eux.
+  // L'hôte tire 7 duels qu'aucun des deux n'a encore vus et les envoie à l'autre.
   let room = null, L = null;
   async function initRoom() {
     try { room = await window.claude?.use?.("room"); } catch (e) { room = null; }
     if (!room) return;
     room.presence({ mode: "idle" }).catch(() => {});
-    room.onPeers(() => lobbyTick(), () => { room = null; L = null; if (tab === "defis" && !G) render(); });
-    if (tab === "defis" && !G) render();
+    room.onPeers(() => lobbyTick(), () => { room = null; L = null; if (!G) render(); });
+    if (!G && tab === "jouer") render();
   }
   const lobbyPeers = () => (room ? room.peers().filter((p) => p.kind === "viewer" && (p.sameTab || !p.isMe)) : []);
   function lobbyText() {
@@ -1323,17 +965,16 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
   }
   function findMatch() { if (!room) return; L = { state: "wait" }; room.presence({ mode: "wait" }).catch(() => {}); render(); lobbyTick(); }
   function cancelMatch() { leaveLive(); render(); }
-  function setLiveMsg(t) { const el = $("#live-wait"); if (el) el.textContent = t; }
   async function joinMatch(partner, mine) {
     L.state = "join"; L.partner = partner; L.host = mine < partner.peer; L.oppAns = {};
     const name = ("d-" + [mine, partner.peer].sort().join("-").toLowerCase().replace(/[^a-z0-9-]/g, "")).slice(0, 48);
     room.presence({ mode: "play" }).catch(() => {});
-    setLiveMsg("Adversaire trouvé, connexion…");
+    const w = $("#live-wait"); if (w) w.textContent = "Adversaire trouvé, connexion…";
     let nr;
     try { nr = await room.join(name); } catch (e) { if (L) { L.state = "wait"; room.presence({ mode: "wait" }).catch(() => {}); } return; }
     if (!L) { nr.leave().catch(() => {}); return; }
     L.nr = nr;
-    nr.presence({ uid: me || "", seen: S.seen.slice(-80) }).catch(() => {});
+    nr.presence({ seen: S.seen.slice(-80) }).catch(() => {});
     L.offs = [
       nr.on("start", (m) => { if (!m.sameTab && L && !L.host && !L.started) beginLive(m.data); }),
       nr.on("ans", (m) => { if (!m.sameTab) onOppAnswer(m.data); }),
@@ -1356,26 +997,22 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     if (!L || L.started || !L.nr) return;
     const opp = L.nr.peers().find((p) => p.peer === L.partner.peer);
     const theirs = opp && opp.presence && Array.isArray(opp.presence.seen) ? opp.presence.seen.filter((x) => typeof x === "string") : [];
-    const ex = new Set(theirs);
-    const ids = shuffle([...drawIds("qcm", 4, Math.random, { exclude: ex }), ...drawIds("intrus", 2, Math.random, { exclude: ex }), ...drawIds("order", 2, Math.random, { exclude: ex }), ...drawIds("date", 2, Math.random, { exclude: ex })]);
-    const sd = drawIds("date", 3, Math.random, { exclude: new Set([...ex, ...ids]) });
-    const data = { ids, sd, seed: Math.random().toString(36).slice(2, 8) };
+    const ids = drawPairs(QUESTIONS, Math.random, { exclude: new Set(theirs) });
+    const data = { ids, sd: drawYears(3, Math.random, ids), seed: Math.random().toString(36).slice(2, 8) };
     L.nr.emit("start", data).catch(() => {});
     beginLive(data);
   }
-  const validIds = (a) => Array.isArray(a) && a.length <= 12 && a.every((x) => typeof x === "string" && /^[ckKmMdioqy][0-9_]{1,9}$/.test(x));
   function beginLive(data) {
-    if (!L || !data || !validIds(data.ids) || !validIds(data.sd) || typeof data.seed !== "string") return;
+    if (!L || !data || !validIds(data.ids, QUESTIONS) || !validIds(data.sd, 3) || typeof data.seed !== "string") return;
     L.started = true; L.state = "play"; clearTimeout(L.giveUp);
     const seed = data.seed.slice(0, 12);
-    const qs = buildAll(data.ids, seed, { timer: 15 });
-    const sd = buildAll(data.sd, seed, { sd: true, timer: 20 });
+    const sd = buildAll(data.sd, seed);
     const by = L.partner.by;
-    startGame({
-      mode: "live", qs, timer: 15, duel: true, oppAns: L.oppAns,
+    startMatch({
+      mode: "live", qs: buildAll(data.ids, seed), oppAns: L.oppAns,
       opponent: { name: (by && names[by]) || "Adversaire", short: "A" },
       emit: (d) => { if (L && L.nr) L.nr.emit("ans", d).catch(() => {}); },
-      onRegularEnd: () => (G.me === G.opp ? [sdSplash("live"), ...sd] : null),
+      onRegularEnd: () => (G.me === G.opp ? [sdSplash(true), ...sd] : null),
       onEnd: (g) => {
         const draw = !g.forfeit && !g.sdResult && g.me === g.opp;
         const win = !draw && (g.forfeit || (g.sdResult ? g.sdResult === "win" : g.me > g.opp));
@@ -1383,11 +1020,11 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
         S.played++; if (win) S.wins++;
         addPoints(pts);
         return {
-          kicker: g.forfeit ? "Ton adversaire a quitté la partie" : g.sdResult ? "Décidé à la mort subite" : "Duel en direct",
+          kicker: g.forfeit ? "Ton adversaire a quitté le match" : g.sdResult ? "Décidé à la mort subite" : "Duel en direct",
           title: draw ? "Match nul" : win ? "Victoire !" : "Défaite", icon: win ? ICON.star : ICON.live,
           bg: win ? "var(--gold)" : "var(--blue)", fg: win ? "#2b1d00" : "#021327",
-          stats: [[`${fmt(g.me)} – ${fmt(g.opp)}`, "score"], [`+${pts}`, "points"], [`${S.wins}/${S.played}`, "duels gagnés"]],
-          cta: "Rejouer en direct", after: () => { setTab("defis"); findMatch(); },
+          stats: [[`${fmt(g.me)} – ${fmt(g.opp)}`, "score"], [`${g.correct}/${QUESTIONS}`, "bien situés"], [`+${pts}`, "points"]],
+          cta: "Rejouer en direct", after: () => { setTab("jouer"); findMatch(); },
         };
       },
     });
@@ -1396,7 +1033,7 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     });
   }
   function onOppAnswer(d) {
-    if (!L || !d || !Number.isInteger(d.i) || d.i < 0 || d.i > 40) return;
+    if (!L || !d || !Number.isInteger(d.i) || d.i < 0 || d.i > 30) return;
     L.oppAns[d.i] = { ok: !!d.ok, pts: Number(d.pts) || 0, guess: Number.isFinite(d.guess) ? Math.round(d.guess) : null };
     if (G && G.mode === "live" && G.waiting && G.waiting.i === d.i) resolveOpp(d.i);
   }
@@ -1410,12 +1047,8 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     if (room) room.presence({ mode: "idle" }).catch(() => {});
   }
 
-  // ================= Écrans =================
-  let tab = "parcours";
-  function setTab(t) { tab = t; render(); window.scrollTo(0, 0); }
-  document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
-
-  // Grades : le 1er est « Maître du savoir », le top 5 « Élite du savoir » (logo et bordure dorés), puis selon les points.
+  // ================= Grades =================
+  // Le 1er est « Maître du savoir » (couronne, bordure animée), le top 5 « Élite du savoir » (logo et bordure dorés).
   const GRADES = [[3000, "Savant"], [1000, "Érudit"], [300, "Initié"], [0, "Curieux"]];
   const rankOf = (id) => players.findIndex((p) => p.id === id);
   function gradeOf(rank, pts) {
@@ -1431,6 +1064,12 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
     const chip = $("#grade-chip");
     if (chip) { chip.textContent = r === 0 ? "Maître" : r > 0 && r < 5 ? `Top ${r + 1}` : ""; chip.hidden = !(r >= 0 && r < 5); }
   }
+
+  // ================= Écrans =================
+  let tab = "jouer";
+  function setTab(t) { tab = t; render(); window.scrollTo(0, 0); }
+  document.querySelectorAll(".tab").forEach((b) => (b.onclick = () => setTab(b.dataset.tab)));
+
   function championHTML() {
     if (!db) return `<div id="champion"></div>`;
     const top = players[0];
@@ -1440,112 +1079,76 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
       ${top ? `<span class="ch-pts num">${fmt(top.points)}<small>pts</small></span>` : ""}
     </section>`;
   }
-  function msToMidnight() { const n = new Date(), m = new Date(n); m.setHours(24, 0, 0, 0); const s = Math.floor((m - n) / 1000); return `${Math.floor(s / 3600)} h ${pad(Math.floor((s % 3600) / 60))}`; }
+  // Un exemple de duel, pour comprendre le jeu d'un coup d'œil.
+  function heroHTML() {
+    return `<section class="duel-hero">
+      <p class="label" style="color:var(--mint)">Le jeu</p>
+      <h1>Avant ou après ?</h1>
+      <p class="muted">${QUESTIONS} duels de dates auxquelles on n'a pas idée. Le plus juste et le plus rapide gagne. Égalité ? Mort subite : une année à écrire.</p>
+      <p class="note" style="margin-bottom:8px">Essaie : lequel est arrivé en premier ?</p>
+      <div class="example">
+        <button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button>
+      </div>
+      <p class="note" id="ex-res" aria-live="polite"></p>
+    </section>`;
+  }
+  function msToMidnight() { const n = new Date(), m = new Date(n); m.setHours(24, 0, 0, 0); return waitText(m - n); }
   function dailyCard() {
     const done = S.daily && S.daily.date === today();
     return `<section class="card daily">
       <p class="label" style="color:var(--mint)">Défi du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
-      <h2>${done ? `Fait : ${fmt(S.daily.score)} points` : "10 questions, les mêmes pour tout le monde"}</h2>
-      <div class="meta"><span class="reward">${done ? "Points gagnés" : "Jusqu'à +130 pts"}</span><span>20 s par question</span><span>Prochain défi dans ${msToMidnight()}</span></div>
+      <h2>${done ? `Fait : ${fmt(S.daily.score)} points` : `${QUESTIONS} duels, les mêmes pour tout le monde`}</h2>
+      <div class="meta"><span class="reward">${done ? `${S.daily.correct}/${QUESTIONS} bien situés` : `Jusqu'à +${QUESTIONS * 15 + 30} pts`}</span><span>Nouveau défi dans ${msToMidnight()}</span></div>
       ${done ? `<button class="btn ghost" data-go="classement">Voir le classement</button>` : `<button class="btn" id="daily-go">Jouer le défi</button>`}
     </section>`;
   }
-  function eclairCard() {
-    return `<section class="card mode">
-      <div class="mode-ico" style="background:#3a2a10;color:var(--gold)">${ICON.bolt}</div>
-      <div><h3>Quiz éclair</h3><p>10 questions que tu n'as jamais vues, 15 secondes chacune. Enchaîne les bonnes réponses : ×2 dès 3 de suite, ×3 dès 5.</p>
-      <div class="btns"><button class="btn gold" id="eclair-go">Gagner des points</button></div></div>
-    </section>`;
-  }
-
-  function viewParcours() {
-    let firstOpen = null;
-    const units = UNITS.map(([th, name, sub], u) => {
-      const nodes = Array.from({ length: LESSONS }, (_, n) => {
-        const done = !!S.lessons[`${th}-${n}`];
-        const prevDone = n === 0 || !!S.lessons[`${th}-${n - 1}`];
-        const state = done ? "done" : prevDone ? "current" : "locked";
-        if (state === "current" && !firstOpen) firstOpen = `${th}-${n}`;
-        const x = Math.round(Math.sin((n + u) * 1.3) * 70);
-        return `<div style="transform:translateX(${x}px);display:grid;justify-items:center">
-          ${state === "current" && firstOpen === `${th}-${n}` ? `<span class="bubble">Commencer</span>` : ""}
-          <button class="node ${state}" data-lesson="${th}-${n}" aria-label="${name}, leçon ${n + 1}${state === "locked" ? " (verrouillée)" : ""}">${state === "done" ? ICON.check : state === "locked" ? ICON.lock : n + 1}</button></div>`;
-      }).join("");
-      const count = Array.from({ length: LESSONS }, (_, n) => S.lessons[`${th}-${n}`]).filter(Boolean).length;
-      return `<section class="unit u-${th}"><div class="unit-head"><div><h3>Unité ${u + 1} · ${name}</h3><p>${sub}</p></div><span class="num" style="font-weight:800">${count}/${LESSONS}</span></div><div class="path">${nodes}</div></section>`;
-    }).join("");
-    return `<div class="stack">${dailyCard()}${eclairCard()}</div>${units}`;
-  }
-
   function liveCard() {
-    if (!room) return `<section class="card mode live-card">
-      <div class="mode-ico" style="background:#10291c;color:var(--mint)">${ICON.live}</div>
-      <div><h3>Duel en direct</h3><p>Affronte un autre joueur connecté en même temps que toi, sur 10 questions qu'aucun de vous deux n'a vues.</p>
-      <p class="note">Le duel en direct a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p></div></section>`;
     const waiting = L && (L.state === "wait" || L.state === "join");
     return `<section class="card mode live-card">
       <div class="mode-ico" style="background:#10291c;color:var(--mint)">${ICON.live}</div>
-      <div><h3>Duel en direct <span class="live-badge"><span class="live-dot"></span>Live</span></h3>
-      <p>Affronte un autre joueur connecté en même temps que toi, sur 10 questions qu'aucun de vous deux n'a vues. 15 s par question : le plus rapide marque le plus. Égalité ? Mort subite.</p>
+      <div><h3>En direct <span class="live-badge"><span class="live-dot"></span>Live</span></h3>
+      <p>Contre un joueur connecté en même temps que toi, sur des duels qu'aucun de vous deux n'a vus.</p>
+      ${!room ? `<p class="note">Le direct a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>` : `
       <p class="note" id="live-status">${lobbyText()}</p>
       ${waiting ? `<div class="searching"><span class="spinner" aria-hidden="true"></span><span id="live-wait">${L.state === "join" ? "Adversaire trouvé, connexion…" : "Recherche d'un adversaire…"}</span></div><button class="btn ghost" id="live-cancel">Annuler</button>`
-        : `<div class="btns"><button class="btn" id="live-go">Trouver un adversaire</button></div>`}
-      <p class="note" style="margin-top:10px">Personne en ligne ? Partage la page à un ami, ou joue contre le Maître en attendant.</p></div>
+        : `<div class="btns"><button class="btn" id="live-go">Trouver un adversaire</button></div>`}`}</div>
     </section>`;
   }
-
-  function msCard() {
+  function botCard() {
+    const wait = (S.botNext || 0) - Date.now();
+    return `<section class="card mode">
+      <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.robot}</div>
+      <div><h3>Contre le Maître</h3><p>L'ordinateur, redoutable sur les dates. Un match toutes les 4 heures.</p>
+      <div class="btns">${wait > 0 ? `<span class="cooldown">Match retour dans ${waitText(wait)}</span>` : `<button class="btn blue" id="bot-go">Défier le Maître</button>`}</div></div>
+    </section>`;
+  }
+  function friendCard() {
     const shared = !!(db && me);
-    const wait = (S.msBotNext || 0) - Date.now();
-    return `<section class="card mode ms-card">
-      <div class="mode-ico" style="background:#3a141b;color:var(--red)">${ICON.skull}</div>
-      <div>
-        <h3>Mort subite</h3>
-        <p>Cinq questions à écrire, une date ou un mot, de « ça va » à « dur ». Jamais les mêmes. Dès que l'un tombe et pas l'autre, c'est fini. Un match toutes les 4 heures : prépare ton match retour.</p>
-        <div class="levels big" aria-hidden="true">${LEVEL_NAMES.map((n) => `<span>${n}</span>`).join("")}</div>
-        <div class="btns">
-          ${wait > 0 ? `<span class="cooldown">Match contre le Maître dans ${cooldownText(wait)}</span>` : `<button class="btn" id="msbot-go" style="background:var(--red);color:#2a0006;box-shadow:0 4px 0 var(--red-deep)">Contre le Maître</button>`}
-          ${shared ? `<button class="btn ghost" id="msf-go">Défier un ami</button>` : ""}
-        </div>
-        ${shared ? `<div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
+    return `<section class="card mode">
+      <div class="mode-ico" style="background:#3a2a10;color:var(--gold)">${ICON.friend}</div>
+      <div><h3>Contre un ami</h3><p>Tu lances un match, ton ami reçoit un code et joue les mêmes duels quand il veut. Match retour 4 heures après.</p>
+      ${shared ? `<div class="btns"><button class="btn gold" id="friend-go">Créer un match</button></div>
+        <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
-        ${S.ms.length ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${S.ms.map((c) => `<button class="duel-item" data-ms="${c}"><b>${c}</b><span class="muted">Résultat et match retour ›</span></button>`).join("")}</div><div id="ms-view" style="margin-top:12px"></div>` : ""}`
-        : `<p class="note">Le match contre un ami a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}
-      </div>
+        ${S.matches.length ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${S.matches.map((c) => `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="muted">Résultat et match retour ›</span></button>`).join("")}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
+        : `<p class="note">Le match entre amis a besoin du mode partagé : ouvre cette page sur claude.ai, connecté.</p>`}</div>
     </section>`;
   }
-
-  function viewDefis() {
-    return `<div class="stack">
-      ${dailyCard()}
-      ${msCard()}
-      ${liveCard()}
-      ${eclairCard()}
-      <section class="card mode">
-        <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
-        <div>
-          <h3>Duel en trois manches</h3>
-          <p>Duo ou carré, l'intrus, avant ou après. En cas d'égalité, une date à écrire, sans indice : le plus proche gagne.</p>
-          <div class="btns"><button class="btn blue" id="bot-go">Contre le Maître</button></div>
-        </div>
-      </section>
-    </div>`;
+  function viewJouer() {
+    return `<div class="stack">${heroHTML()}${dailyCard()}${liveCard()}${botCard()}${friendCard()}</div>`;
   }
-
   function viewClassement() {
     let general;
     if (!db) general = `<p class="muted">Le classement partagé s'affiche quand la page est ouverte sur claude.ai, connecté.</p>`;
-    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Joue une leçon, un quiz éclair ou un duel : tu apparaîtras ici pour tous les joueurs.</p>`;
+    else if (!players.length) general = `<p class="muted">Personne n'a encore de points. Joue un match ou le défi du jour : tu apparaîtras ici pour tous les joueurs.</p>`;
     else {
       const podium = players.slice(0, 3);
       const order = [1, 0, 2].filter((k) => podium[k]);
       general = `<div class="podium">${order.map((k) => `<div class="pod p${k + 1}"><span class="avatar ${podium[k].id === me ? "you" : "opp"}">${esc(nameOf(podium[k].id).charAt(0).toUpperCase())}</span><b>${esc(nameOf(podium[k].id))}</b><em class="gchip">${k === 0 ? "Maître du savoir" : "Élite"}</em><span class="num">${fmt(podium[k].points)} pts</span><div class="step">${k + 1}</div></div>`).join("")}</div>
-        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} ${k + 3 < 5 ? '<em class="gchip">Élite</em>' : `<em class="gchip plain">${gradeOf(k + 3, p.points)}</em>`}</span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
+        ${players.length > 3 ? `<ol class="rank" start="4">${players.slice(3, 30).map((p, k) => `<li class="${p.id === me ? "me" : ""}"><span class="pos num">${k + 4}</span><span>${esc(nameOf(p.id))} <em class="gchip ${k + 3 < 5 ? "" : "plain"}">${k + 3 < 5 ? "Élite" : gradeOf(k + 3, p.points)}</em></span><span class="num" style="font-weight:800">${fmt(p.points)}</span></li>`).join("")}</ol>` : ""}`;
     }
-    let daily;
-    if (!db) daily = "";
-    else if (!dailyRows.length) daily = `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`;
-    else daily = `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${fmt(r.score)}</span></li>`).join("")}</ol>`;
+    const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
+      : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${fmt(r.score)}</span></li>`).join("")}</ol>`;
     return `<div class="stack">
       <section class="card"><p class="label">Tous les joueurs</p><h2 style="font-size:26px;margin-top:4px">Classement général</h2>${general}</section>
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
@@ -1561,46 +1164,43 @@ body.master::before { border: 0; padding: 4px; background: conic-gradient(from v
       <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me), S.points))}</p>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><b class="num">${fmt(S.points)}</b><span>points</span></div>
+          <div class="stat"><b class="num">${S.wins}/${S.played}</b><span>matchs gagnés</span></div>
           <div class="stat"><b class="num">${streakNow()}</b><span>jours de suite</span></div>
-          <div class="stat"><b class="num">${S.wins}/${S.played}</b><span>duels gagnés</span></div>
-          <div class="stat"><b class="num">${fmt(seen.size)}</b><span>questions vues</span></div>
-          <div class="stat"><b class="num">${S.ms.length}</b><span>matchs à distance</span></div>
-          <div class="stat"><b class="num">${fmt(BANK + ORDER_PAIRS)}</b><span>questions possibles</span></div>
+          <div class="stat"><b class="num">${fmt(seen.size)}</b><span>duels joués</span></div>
+          <div class="stat"><b class="num">${FACTS.length}</b><span>faits datés</span></div>
+          <div class="stat"><b class="num">${fmt(PAIRS.length)}</b><span>duels possibles</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Comment gagner des points : 10 par bonne réponse en leçon (+20 si réussie), quiz éclair avec combo, défi du jour (+30), duel gagné (+40 contre le Maître, +50 en direct), mort subite (10 × le niveau de chaque question trouvée, +60 si tu gagnes).</p></section>
+        <p class="note" style="margin-top:12px">Points : 10 par duel bien situé, +50 pour une victoire (+25 si nul, +10 si défaite). Défi du jour : 15 par duel bien situé, +30.</p></section>
     </div>`;
   }
 
   function render() {
     document.querySelectorAll(".tab").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === tab)));
     const v = $("#view");
-    v.innerHTML = championHTML() + (tab === "parcours" ? viewParcours() : tab === "defis" ? viewDefis() : viewClassement());
+    v.innerHTML = championHTML() + (tab === "jouer" ? viewJouer() : viewClassement());
     renderCounters();
     const on = (sel, fn) => { const el = $(sel); if (el) el.onclick = fn; };
     on("#daily-go", startDaily);
-    on("#eclair-go", startEclair);
-    on("#bot-go", startBotDuel);
-    on("#msbot-go", startMsBot);
-    on("#msf-go", () => createMsFriend(null));
+    on("#bot-go", startBot);
+    on("#friend-go", () => createFriend(null));
     on("#live-go", findMatch);
     on("#live-cancel", cancelMatch);
-    v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
-    v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview === "normal" ? "normal" : b.dataset.preview; render(); }));
-    v.querySelectorAll("[data-lesson]").forEach((b) => (b.onclick = () => {
-      if (b.classList.contains("locked")) return;
-      const [th, n] = b.dataset.lesson.split("-");
-      startLesson(th, +n, `${THEME[th]} · leçon ${+n + 1}`);
-    }));
     on("#join-go", () => {
       const code = $("#code-in").value.trim().toUpperCase();
       const msg = $("#join-msg");
       if (!/^[A-Z0-9]{5}$/.test(code)) { msg.textContent = "Le code fait 5 caractères, par exemple K7RMX."; return; }
-      joinMsFriend(code, msg);
+      joinFriend(code, msg);
     });
-    v.querySelectorAll("[data-ms]").forEach((b) => (b.onclick = () => showMs(b.dataset.ms)));
+    v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
+    v.querySelectorAll("[data-ex]").forEach((b) => (b.onclick = () => {
+      v.querySelectorAll("[data-ex]").forEach((x) => { x.disabled = true; x.classList.add(x.dataset.ex === "1" ? "good" : x === b ? "bad" : "dim"); });
+      $("#ex-res").textContent = (b.dataset.ex === "1" ? "Bien vu ! " : "Eh non ! ") + "La Lune en 1969, la valise à roulettes en 1972 : on a marché sur la Lune avant de mettre des roues aux valises.";
+    }));
+    v.querySelectorAll("[data-match]").forEach((b) => (b.onclick = () => showMatch(b.dataset.match)));
+    v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
     applyStatus();
   }
-  function showMs(code) { const box = $("#ms-view") || $("#join-msg"); if (!box) return; box.innerHTML = `<div class="card" style="background:var(--panel-2)"><p class="muted">Chargement…</p></div>`; watchMs(code, box.firstElementChild); }
+  function showMatch(code) { const box = $("#match-view") || $("#join-msg"); if (!box) return; box.innerHTML = `<div class="card" style="background:var(--panel-2)"><p class="muted">Chargement…</p></div>`; watchMatch(code, box.firstElementChild); }
 
   document.addEventListener("keydown", (e) => {
     if (!G || play.hidden) return;
