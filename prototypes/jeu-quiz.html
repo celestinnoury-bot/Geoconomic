@@ -1552,13 +1552,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     "Comte palatin des almanachs maudits",
     "Vicomte souverain, panique majestueuse",
   ];
-  const BANDS = [[30, "Baron des dates furtives"], [50, "Chevalier errant de la frise"], [100, "Écuyer du calendrier perdu"], [Infinity, "Page des siècles à venir"]];
   const rankOf = (id) => players.findIndex((p) => p.id === id);
   function gradeOf(rank) {
     if (rank >= 0 && rank < 5) return TITLES[rank];
     if (rank >= 5 && rank < 20) return MORE_TITLES[rank - 5];
-    const place = rank < 0 ? Infinity : rank + 1;
-    return BANDS.find(([max]) => place <= max)[1];
+    return ""; // après la 20e place, pas de titre
   }
   const GRADE_FX = [
     "1ᵉʳ du classement : couronne sur le logo, bordure animée bleu marine et violet, ton titre en tête pour tous.",
@@ -1649,7 +1647,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
           <div class="mt-head" role="row"><span></span><span>Joueurs</span><span>V</span><span>N</span><span>Points</span></div>
           ${players.slice(3, 30).map((p, k) => `<div class="mt-row${p.id === me ? " me" : ""}${k + 3 < 5 ? " hot" : ""}" role="row" style="--i:${k}">
             <span class="mt-pos num">${k + 4}</span>
-            <span class="mt-who"><span class="mt-av" style="background:${avColor(p.id)}">${esc(nameOf(p.id).charAt(0).toUpperCase())}</span><span class="mt-nm"><b>${esc(nameOf(p.id))}</b><small>${esc(gradeOf(k + 3))}</small></span></span>
+            <span class="mt-who"><span class="mt-av" style="background:${avColor(p.id)}">${esc(nameOf(p.id).charAt(0).toUpperCase())}</span><span class="mt-nm"><b>${esc(nameOf(p.id))}</b>${k + 3 < 20 ? `<small>${esc(gradeOf(k + 3))}</small>` : ""}</span></span>
             <span class="mt-n num">${Number(p.wins) || 0}</span><span class="mt-n num">${Number(p.draws) || 0}</span><span class="mt-pts num">${fmt(p.points)}</span>
           </div>`).join("")}
         </div>` : ""}`;
@@ -1665,14 +1663,10 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         </ul>
         <p class="label" style="margin-top:14px">Places 6 à 20</p>
         <ol class="title-list" start="6">${MORE_TITLES.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
-        <p class="label" style="margin-top:14px">Au-delà</p>
-        <ul class="title-list bands">
-          <li><b>21ᵉ à 30ᵉ</b> ${esc(BANDS[0][1])}</li><li><b>31ᵉ à 50ᵉ</b> ${esc(BANDS[1][1])}</li><li><b>51ᵉ à 100ᵉ</b> ${esc(BANDS[2][1])}</li><li><b>Ensuite</b> ${esc(BANDS[3][1])}</li>
-        </ul>
         <p class="label" style="margin-top:14px">Aperçu</p>
         <div class="seg">${[["normal", "Normal"], ["elite", "4ᵉ-5ᵉ"], ["r3", "3ᵉ"], ["r2", "2ᵉ"], ["master", "1ᵉʳ"]].map(([k, l]) => `<button data-preview="${k}" aria-pressed="${(preview || "normal") === k}">${l}</button>`).join("")}</div>
       </section>
-      <section class="card"><p class="label">Tes chiffres · ${esc(gradeOf(rankOf(me)))}</p>
+      <section class="card"><p class="label">Tes chiffres${gradeOf(rankOf(me)) ? ` · ${esc(gradeOf(rankOf(me)))}` : ""}</p>
         <div class="stats" style="margin-top:12px">
           <div class="stat"><b class="num">${fmt(S.points)}</b><span>points</span></div>
           <div class="stat"><b class="num">${S.wins}-${S.draws}-${S.losses}</b><span>victoires, nuls, défaites</span></div>
