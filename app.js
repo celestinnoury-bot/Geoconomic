@@ -1471,6 +1471,8 @@
         </div>
       </section>
 
+      ${chainBlock(f)}
+
       ${f.weekly ? weeklyBlock(f, f.weekly, f.week) : ""}
       ${archivedEnjeux().length ? `
       <section class="wrap" style="padding-bottom:8px">
@@ -1490,7 +1492,7 @@
           </div>
         </section>
         ${i === 1 ? visualsBlock([f.chart].filter(Boolean)) : ""}
-        ${i === 3 ? chainBlock(f) + visualsBlock([focusMap(f)].filter(Boolean), true) + rivalsBlock(f) : ""}
+        ${i === 3 ? visualsBlock([focusMap(f)].filter(Boolean), true) + rivalsBlock(f) : ""}
       `).join("")}
 
       <section class="wrap">
