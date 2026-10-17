@@ -963,6 +963,28 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-clues li b { font: 600 15px var(--display); }
 .qz-clues li.ok { background: rgba(255, 179, 64, .16); } .qz-clues li.ok b { color: #ffd08a; }
 .qz-clues li.miss b { color: #ff8f9c; }
+.qd-card h2 { margin-top: 4px; }
+.qd-card .label svg, .qz-duel-tag svg { width: 15px; height: 15px; vertical-align: -2px; }
+.qd-card .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.qd-card .join { margin-top: 10px; }
+.qd-done { margin: 12px 0 6px; }
+.qd-res { background: var(--panel-2); margin-top: 10px; padding: 12px 14px; text-align: left; width: 100%; box-sizing: border-box; }
+.qd-res p { margin: 0 0 4px; }
+.qd-out.win b { color: var(--mint); } .qd-out.lose b { color: #ff8f9c; } .qd-out.draw b { color: #ffb340; }
+.qd-vs { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+.qd-vs span { display: grid; gap: 2px; padding: 8px 10px; border-radius: 12px; background: var(--panel); font-size: 13px; color: var(--muted); }
+.qd-vs b { font: 700 22px var(--display); color: var(--text); }
+.qd-vs small { font-size: 12px; }
+.qz-duel-tag { color: #ffb340; }
+.qz-pbtn { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--panel-2); color: var(--text); display: grid; place-items: center; cursor: pointer; flex: none; }
+.qz-pbtn svg { width: 16px; height: 16px; }
+.qz.paused > :not(.play-top) { filter: blur(14px); pointer-events: none; user-select: none; }
+.qz-pausebox { position: fixed; inset: 0; z-index: 30; display: grid; place-content: center; justify-items: center; gap: 8px; text-align: center; padding: 24px; background: rgba(22, 17, 13, .55); }
+.qz-pausebox h2 { margin: 0; }
+.qz-globe { position: relative; }
+.g-zoom { position: absolute; right: 4px; bottom: 6px; display: grid; gap: 6px; }
+.g-zoom button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .12); background: rgba(35, 27, 22, .88); color: var(--text); font: 700 18px/1 var(--body); cursor: pointer; }
+.qz-globe.zoomed .g-land { stroke-width: .3; }
 </style>
 
 <header class="top">
@@ -1817,6 +1839,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     });
     v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
     v.querySelectorAll("[data-quiz]").forEach((b) => (b.onclick = () => startQuiz(b.dataset.quiz)));
+    if (tab === "jouer") qdBind(v);
     v.querySelectorAll("[data-qf]").forEach((b) => (b.onclick = () => { qzFilter = b.dataset.qf; const y = scrollY; render(); scrollTo(0, y); }));
     v.querySelectorAll("[data-match]").forEach((b) => (b.onclick = () => showMatch(b.dataset.match)));
     v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
@@ -1985,12 +2008,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   let qzFilter = "all";
   const QFILTER = { write: ["list", "clues"], globe: ["list", "actu"], rank: ["rank"], qcm: ["qcm"] };
   function quizCards() {
-    return `<section class="card qz-section">
+    return `${qdCard()}<section class="card qz-section">
       <p class="label">Quiz du monde</p>
       <h2>Pays, capitales, matières premières</h2>
       <p class="muted">À écrire, à cliquer sur le globe, à remettre dans l'ordre ou à choix multiples. Jusqu'à ${QUIZ_PT} points par quiz, une fois par jour.</p>
       <div class="seg qz-filter">${[["all", "Tous"], ["write", "Écrire"], ["globe", "Globe"], ["rank", "Classer"], ["qcm", "QCM"]].map(([k, l]) => `<button data-qf="${k}" aria-pressed="${qzFilter === k}">${l}</button>`).join("")}</div>
-      <div class="qz-grid">${QUIZZES.filter(quizAvailable).filter((q) => qzFilter === "all" || QFILTER[qzFilter].includes(q.type)).map((q) => {
+      <div class="qz-grid">${QUIZZES.filter(quizAvailable).filter((q) => qdPlayed() || q.id !== dayQuiz().id).filter((q) => qzFilter === "all" || QFILTER[qzFilter].includes(q.type)).map((q) => {
         const t = QTYPE[q.type], st = S.quiz[q.id];
         return `<button class="qz-card" data-quiz="${q.id}">
           <span class="qz-ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</span>
@@ -2001,11 +2024,111 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     </section>`;
   }
 
+  // ================= Duel du jour =================
+  // Chaque jour, un quiz du monde tiré au sort, le même pour tous. On le joue une fois par 24 h : seul,
+  // ou contre quelqu'un (un ami avec un code, ou un adversaire au hasard). Meilleur pourcentage gagne,
+  // à égalité le plus rapide. Collection « qduels » : doc `code` {code, day, quiz, host, open, at},
+  // doc `code-uid` {code, pct, secs, at}.
+  const QD_PTS = { win: 30, draw: 10, lose: 0 };
+  if (!S.qdScored || typeof S.qdScored !== "object") S.qdScored = {};
+  if (!Array.isArray(S.qdList)) S.qdList = [];
+  function dayQuiz(day = today()) {
+    const c = QUIZZES.filter(quizAvailable).filter((q) => q.id !== "monde");
+    return c[hash("qd-" + day) % c.length];
+  }
+  const qdPlayed = () => S.qd && S.qd.day === today();
+  function qdCard() {
+    const q = dayQuiz(), shared = !!(db && me), done = qdPlayed();
+    const mine = S.qdList.filter((x) => x.day === today());
+    return `<section class="card qd-card">
+      <p class="label" style="color:#ffb340">${ICON.swords} Duel du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
+      <h2>${esc(q.title)}</h2>
+      <p class="muted">Le même quiz pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}.</p>
+      ${done ? `<p class="qd-done">Fait : <b>${S.qd.pct} %</b> en ${mmss(S.qd.secs || 0)}${S.qd.code ? ` · duel <b>${esc(S.qd.code)}</b>` : " · en solo"}. Nouveau duel dans ${msToMidnight()}.</p>
+          ${mine.length ? `<div id="qd-mine">${mine.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">Chargement…</p></div>`).join("")}</div>` : ""}`
+        : `<div class="btns">${shared ? `<button class="btn" id="qd-random">${ICON.dice} Adversaire au hasard</button><button class="btn gold" id="qd-friend">Défier un ami</button>` : ""}<button class="btn ghost" id="qd-solo">Jouer seul</button></div>
+          ${shared ? `<div class="join"><input id="qd-code" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel reçu"><button class="btn ghost" id="qd-join">Rejoindre</button></div>` : `<p class="note">Le duel contre quelqu'un se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Géoconomic Duel en ligne ›</a></p>`}
+          <p class="note" id="qd-msg" aria-live="polite"></p>`}
+    </section>`;
+  }
+  function qdBind(v) {
+    const on = (sel, fn) => { const el = v.querySelector(sel); if (el) el.onclick = fn; };
+    on("#qd-solo", () => startQuiz(dayQuiz().id, { daily: true }));
+    on("#qd-friend", () => qdCreate(false));
+    on("#qd-random", () => qdRandom());
+    on("#qd-join", () => {
+      const code = (v.querySelector("#qd-code").value || "").trim().toUpperCase();
+      if (!/^[A-Z0-9]{5}$/.test(code)) { v.querySelector("#qd-msg").textContent = "Le code fait 5 caractères, par exemple K7RMX."; return; }
+      qdJoin(code);
+    });
+    v.querySelectorAll("#qd-mine .qd-res").forEach((el) => qdWatch(el.dataset.code, el));
+  }
+  const qdMsg = (t) => { const m = $("#qd-msg"); if (m) m.textContent = t; };
+  async function qdCreate(open) {
+    if (!db || !me || qdPlayed()) return;
+    const code = newCode(), q = dayQuiz();
+    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz: q.id, host: me, open: !!open, at: Date.now() }); } catch (e) { qdMsg("Impossible de créer le duel pour le moment."); return; }
+    S.qdList.push({ code, day: today() }); save();
+    startQuiz(q.id, { duel: { code } });
+  }
+  async function qdRandom() {
+    if (!db || !me || qdPlayed()) return;
+    qdMsg("Recherche d'un adversaire…");
+    try {
+      const snap = await db.collection("qduels").where("open", "==", true).get();
+      const d = snap.docs.map((x) => x.data()).filter((x) => x.day === today() && x.host !== me && !S.qdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
+      if (!d) { qdMsg("Personne n'attend : tu ouvres un duel, le prochain joueur le prendra."); return qdCreate(true); }
+      await db.collection("qduels").doc(d.code).update({ open: false }).catch(() => {});
+      return qdJoin(d.code);
+    } catch (e) { qdMsg("Impossible de chercher un adversaire pour le moment."); }
+  }
+  async function qdJoin(code) {
+    if (!db || !me) return;
+    try {
+      const snap = await db.collection("qduels").doc(code).get();
+      if (!snap.exists) { qdMsg("Ce code ne correspond à aucun duel."); return; }
+      const d = snap.data();
+      if (d.day !== today()) { qdMsg("Ce duel date d'un autre jour : il faut un code d'aujourd'hui."); return; }
+      if (d.host === me || S.qdList.some((y) => y.code === code)) { qdMsg("C'est déjà ton duel : le résultat s'affiche ci-dessous."); return; }
+      if (qdPlayed()) { qdMsg("Tu as déjà joué le quiz du jour : reviens demain."); return; }
+      await resolveNames([d.host]);
+      S.qdList.push({ code, day: today() }); save();
+      startQuiz(d.quiz, { duel: { code, vs: nameOf(d.host) } });
+    } catch (e) { qdMsg("Impossible de rejoindre ce duel pour le moment."); }
+  }
+  function qdSend(code, pct, secs) {
+    if (!db || !me) return;
+    db.collection("qduels").doc(`${code}-${me}`).set({ code, pct, secs, at: Date.now() }).catch(() => {});
+  }
+  const qdUnsubs = new Map();
+  function qdWatch(code, el) {
+    if (!db || !me) return;
+    if (qdUnsubs.has(code)) qdUnsubs.get(code)();
+    const un = db.collection("qduels").where("code", "==", code).onSnapshot(async (snap) => {
+      const docs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
+      const res = docs.filter((d) => d.id !== code && typeof d.pct === "number");
+      const mine = res.find((d) => d.id === `${code}-${me}`), other = res.find((d) => d.id !== `${code}-${me}`);
+      if (!document.body.contains(el)) { un(); qdUnsubs.delete(code); return; }
+      if (!mine) { el.innerHTML = `<p class="muted">Duel ${esc(code)} : à toi de jouer.</p>`; return; }
+      if (!other) { el.innerHTML = `<p><b>Duel ${esc(code)}</b> · ${mine.pct} % en ${mmss(mine.secs)}</p><p class="muted">En attente de ton adversaire. Envoie-lui le code <b class="code">${esc(code)}</b> : il a jusqu'à minuit.</p>`; return; }
+      const oid = other.id.slice(code.length + 1);
+      await resolveNames([oid]);
+      const out = mine.pct !== other.pct ? (mine.pct > other.pct ? "win" : "lose") : mine.secs !== other.secs ? (mine.secs < other.secs ? "win" : "lose") : "draw";
+      if (!S.qdScored[code]) { S.qdScored[code] = out; if (QD_PTS[out]) addPoints(QD_PTS[out]); else save(); }
+      const head = out === "win" ? `Gagné · +${QD_PTS.win}` : out === "draw" ? `Égalité · +${QD_PTS.draw}` : t("lose");
+      el.innerHTML = `<p class="qd-out ${out}"><b>${esc(head)}</b></p>
+        <div class="qd-vs"><span>Toi<b class="num">${mine.pct} %</b><small>${mmss(mine.secs)}</small></span><span>${esc(nameOf(oid))}<b class="num">${other.pct} %</b><small>${mmss(other.secs)}</small></span></div>
+        ${mine.pct === other.pct ? `<p class="note">Même score : ${out === "draw" ? "même temps aussi." : "le plus rapide l'emporte."}</p>` : ""}`;
+    });
+    qdUnsubs.set(code, un);
+  }
+
   // ---------- Globe (d3, projection orthographique) ----------
   function makeGlobe(host, { onPick } = {}) {
     if (!window.d3 || !QD) { host.remove(); return null; }
     const W = Math.max(260, host.clientWidth || 340), H = Math.min(W, 300);
-    const proj = d3.geoOrthographic().scale(H / 2 - 6).translate([W / 2, H / 2]).clipAngle(90).rotate([-15, -25]);
+    const base = H / 2 - 6;
+    const proj = d3.geoOrthographic().scale(base).translate([W / 2, H / 2]).clipAngle(90).rotate([-15, -25]);
     const path = d3.geoPath(proj);
     const svg = d3.select(host).append("svg").attr("viewBox", `0 0 ${W} ${H}`).attr("class", "qz-globe-svg").attr("role", "img").attr("aria-label", "Globe : fais-le tourner, touche un pays");
     svg.append("path").datum({ type: "Sphere" }).attr("class", "g-sea");
@@ -2015,10 +2138,28 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const land = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "g-land");
     const draw = () => { svg.selectAll(".g-sea,.g-grat").attr("d", path); land.attr("d", path); };
     draw();
-    svg.call(d3.drag().clickDistance(6).on("drag", (e) => {
-      const r = proj.rotate(), k = 70 / proj.scale();
-      proj.rotate([r[0] + e.dx * k, Math.max(-80, Math.min(80, r[1] - e.dy * k))]); draw();
-    }));
+    // Un seul geste pour tout : glisser fait tourner, pincer (ou la molette, ou + / −) zoome, jusqu'à 10 fois.
+    let last = d3.zoomIdentity;
+    const zoom = d3.zoom().scaleExtent([1, 10]).clickDistance(6).on("zoom", (e) => {
+      const t = e.transform;
+      if (t.k !== last.k) proj.scale(base * t.k);
+      else {
+        const r = proj.rotate(), k = 70 / proj.scale();
+        proj.rotate([r[0] + (t.x - last.x) * k, Math.max(-85, Math.min(85, r[1] - (t.y - last.y) * k))]);
+      }
+      last = t; draw();
+      host.classList.toggle("zoomed", t.k > 1.05);
+    });
+    svg.call(zoom).on("dblclick.zoom", null);
+    const tools = document.createElement("div");
+    tools.className = "g-zoom";
+    tools.innerHTML = `<button type="button" data-z="in" aria-label="Zoomer">+</button><button type="button" data-z="out" aria-label="Dézoomer">−</button><button type="button" data-z="reset" aria-label="Revoir tout le globe">⤢</button>`;
+    host.appendChild(tools);
+    tools.onclick = (e) => {
+      const z = e.target.closest("[data-z]"); if (!z) return;
+      const sel = svg.transition().duration(300);
+      if (z.dataset.z === "reset") sel.call(zoom.scaleTo, 1); else sel.call(zoom.scaleBy, z.dataset.z === "in" ? 1.8 : 1 / 1.8);
+    };
     land.on("click", (e, f) => onPick && onPick(f.id));
     return {
       focus(id) {
@@ -2035,36 +2176,79 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 
   // ---------- Écrans ----------
   let QZ = null, qzTimer = null;
+  // Contexte de la partie : duel du jour (contre quelqu'un ou seul), sans chrono, temps écoulé (pauses retirées).
+  let QZCTX = { duel: null, daily: false, noclock: false };
+  let QZT = { t0: 0, paused: 0, pausedAt: 0 };
+  const qzElapsed = () => ((QZT.pausedAt || performance.now()) - QZT.t0 - QZT.paused) / 1000;
+  const PAUSE_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1.5"/><rect x="14" y="5" width="4" height="14" rx="1.5"/></svg>';
+  const clockHTML = (q) => `${QZCTX.duel || QZCTX.noclock ? "" : `<button class="qz-pbtn" id="qz-pause" aria-label="Mettre en pause">${PAUSE_SVG}</button>`}<span class="chip num" id="qz-clock">${QZCTX.noclock ? "Sans chrono" : mmss(q.time)}</span>`;
+  function qzClock(q, end) {
+    const pb = $("#qz-pause");
+    if (pb) pb.onclick = () => qzPause(true);
+    if (QZCTX.noclock) return;
+    qzTimer = setInterval(() => {
+      if (QZT.pausedAt) return;
+      const left = Math.ceil(q.time - qzElapsed());
+      const c = $("#qz-clock"); if (c) { c.textContent = mmss(Math.max(0, left)); c.classList.toggle("low", left <= 15); }
+      if (left <= 0) end();
+    }, 250);
+  }
+  function qzPause(on) {
+    const box = play.querySelector(".qz");
+    if (!box) return;
+    if (on && !QZT.pausedAt) {
+      QZT.pausedAt = performance.now();
+      box.classList.add("paused");
+      const o = document.createElement("div");
+      o.className = "qz-pausebox";
+      o.innerHTML = `<p class="label">Pause</p><h2>Le chrono est arrêté</h2><p class="muted">Les réponses sont cachées en attendant.</p><button class="btn" id="qz-resume">Reprendre</button>`;
+      play.appendChild(o);
+      $("#qz-resume").onclick = () => qzPause(false);
+    } else if (!on && QZT.pausedAt) {
+      QZT.paused += performance.now() - QZT.pausedAt; QZT.pausedAt = 0;
+      box.classList.remove("paused");
+      const o = play.querySelector(".qz-pausebox"); if (o) o.remove();
+      const i = $("#qz-in"); if (i) i.focus();
+    }
+  }
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.max(0, s) % 60).padStart(2, "0")}`;
   function qzOpen(html) { play.hidden = false; document.body.style.overflow = "hidden"; play.innerHTML = `<div class="wrap qz">${html}</div>`; const x = $("#qz-quit"); if (x) x.onclick = qzQuit; }
   function qzQuit() { clearInterval(qzTimer); QZ = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render(); }
   const qzTop = (q, right = "") => `<div class="play-top"><button class="x" id="qz-quit" aria-label="Quitter">${ICON.x}</button><div class="qz-title"><small>${esc(q.tag)}</small><b>${esc(q.title)}</b></div>${right}</div>`;
   const srcHTML = (src) => src && src.length ? `<p class="qz-src">Source${src.length > 1 ? "s" : ""} : ${src.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.short)}</a>`).join(", ")}</p>` : "";
 
-  function startQuiz(id) {
+  function startQuiz(id, ctx = {}) {
     const q = QUIZZES.find((x) => x.id === id);
     if (!q) return;
+    QZCTX = { duel: ctx.duel || null, daily: !!ctx.daily, noclock: false };
     const t = QTYPE[q.type];
+    const kicker = QZCTX.duel ? `<p class="label qz-duel-tag">${ICON.swords} Duel du jour ${esc(QZCTX.duel.code)}${QZCTX.duel.vs ? ` contre ${esc(QZCTX.duel.vs)}` : ""}</p>` : QZCTX.daily ? `<p class="label qz-duel-tag">${ICON.sun} Quiz du jour, en solo</p>` : "";
+    const clockOpt = (q.type === "list" || q.type === "clues") && !QZCTX.duel && !QZCTX.daily ? `<div class="seg qz-modes" id="qz-clockopt"><button data-clock="on" aria-pressed="true">${ICON.clock} Chrono</button><button data-clock="off" aria-pressed="false">Sans chrono</button></div><p class="note">Sans chrono : prends ton temps, mais les points sont divisés par deux.</p>` : "";
     const modes = q.type === "list" ? `<div class="seg qz-modes"><button data-mode="write" aria-pressed="true">${QICO.pen} Écrire</button>${window.d3 && QD ? `<button data-mode="click" aria-pressed="false">${QICO.globe} Sur le globe</button>` : ""}</div>` : "";
     qzOpen(`${qzTop(q)}
       <div class="splash qz-splash">
         <div class="ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</div>
         <p class="label">${esc(t.label)} · ${quizSize(q)} ${q.type === "qcm" ? "questions" : q.type === "rank" ? "pays" : "à trouver"}</p>
-        <h1 class="big">${esc(q.title)}</h1>
-        <p class="rules">${esc(q.intro)}${q.time ? ` Tu as ${mmss(q.time)}.` : ""}</p>
-        ${modes}
+        ${kicker}<h1 class="big">${esc(q.title)}</h1>
+        <p class="rules">${esc(q.intro)}${q.time ? ` Tu as ${mmss(q.time)}.` : ""}${QZCTX.duel ? " Même quiz pour vous deux : le meilleur score gagne, à égalité le plus rapide. Pas de pause en duel." : ""}</p>
+        ${modes}${clockOpt}
         <button class="btn" id="qz-go">C'est parti</button>
       </div>`);
     let mode = "write";
     play.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => { mode = b.dataset.mode; play.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
-    $("#qz-go").onclick = () => (q.type === "list" ? runList(q, mode) : q.type === "clues" ? runClues(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
+    play.querySelectorAll("[data-clock]").forEach((b) => (b.onclick = () => { QZCTX.noclock = b.dataset.clock === "off"; play.querySelectorAll("[data-clock]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
+    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q, mode) : q.type === "clues" ? runClues(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
   }
 
   function quizDone(q, pct, hints = 0, extra = "") {
     clearInterval(qzTimer);
+    const secs = Math.round(qzElapsed());
     const st = S.quiz[q.id] || { best: 0, day: null, plays: 0 };
     const first = st.day !== today();
-    const gain = first ? Math.max(0, Math.round((QUIZ_PT * pct) / 100) - 2 * hints) : 0;
+    let gain = first ? Math.max(0, Math.round((QUIZ_PT * pct) / 100) - 2 * hints) : 0;
+    if (QZCTX.noclock) gain = Math.floor(gain / 2);
+    const daily = QZCTX.duel || QZCTX.daily;
+    if (daily) { S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct, secs }; if (QZCTX.duel) qdSend(QZCTX.duel.code, pct, secs); }
     const record = pct > st.best;
     S.quiz[q.id] = { best: Math.max(st.best, pct), day: today(), plays: (st.plays || 0) + 1 };
     if (gain) addPoints(gain); else save();
@@ -2073,12 +2257,18 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <div class="qz-score num">${pct}<small> %</small></div>
       <p class="qz-msg">${msg}${record && st.plays ? " Nouveau record !" : ""}</p>
       <p class="muted">${gain ? `+${gain} points au classement${hints ? ` (${hints} indice${hints > 1 ? "s" : ""} utilisé${hints > 1 ? "s" : ""})` : ""}.` : first ? "Pas de points cette fois." : "Points déjà gagnés aujourd'hui sur ce quiz : rejoue pour le record."}</p>
+      <p class="note">En ${mmss(secs)}${QZCTX.noclock ? ", sans chrono (points divisés par deux)" : ""}.</p>
       ${extra}
-      <div class="btns"><button class="btn" id="qz-again">Rejouer</button><button class="btn ghost" id="qz-back">Autres quiz</button></div>
+      ${QZCTX.duel ? `<div class="card qd-res" id="qd-res" data-code="${esc(QZCTX.duel.code)}"><p class="muted">Résultat du duel…</p></div>` : ""}
+      <div class="btns">${daily ? "" : `<button class="btn" id="qz-again">Rejouer</button>`}<button class="btn ${daily ? "" : "ghost"}" id="qz-back">${daily ? "Retour" : "Autres quiz"}</button></div>
       ${srcHTML(q.src)}
     </div>`;
   }
-  function bindEnd(q) { $("#qz-again").onclick = () => startQuiz(q.id); $("#qz-back").onclick = qzQuit; }
+  function bindEnd(q) {
+    const a = $("#qz-again"); if (a) a.onclick = () => startQuiz(q.id);
+    $("#qz-back").onclick = qzQuit;
+    const r = $("#qd-res"); if (r) qdWatch(r.dataset.code, r);
+  }
 
   // Liste : écrire les noms (ils se placent tout seuls) ou cliquer les pays sur le globe.
   function runList(q, mode) {
@@ -2087,7 +2277,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const tiny = mode === "click" ? items.filter((it) => !hasGeo(it.id)) : [];
     QZ = { found: new Set(), hints: 0, misses: 0, over: false };
     const total = pool.length;
-    qzOpen(`${qzTop(q, `<span class="chip num" id="qz-clock">${mmss(q.time)}</span>`)}
+    qzOpen(`${qzTop(q, clockHTML(q))}
       <div class="qz-count"><b class="num" id="qz-n">0</b> / ${total} <span class="muted">trouvés</span></div>
       <div class="qz-globe" id="qz-globe"></div>
       ${mode === "write" ? `<form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris un pays…" aria-label="Écris un pays" autocapitalize="off" spellcheck="false"></form>` : `<p class="note qz-tip">Fais tourner le globe et touche les pays. ${tiny.length ? `Trop petits pour le globe, offerts : ${tiny.map((t) => esc(qName(t.id))).join(", ")}.` : ""}</p>`}
@@ -2159,15 +2349,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       if (mode === "click" && globe) globe.focus(it.id);
     };
     $("#qz-give").onclick = end;
-    let left = q.time;
-    qzTimer = setInterval(() => { left--; const c = $("#qz-clock"); if (c) { c.textContent = mmss(left); c.classList.toggle("low", left <= 15); } if (left <= 0) end(); }, 1000);
+    qzClock(q, end);
   }
 
   // Définitions : chaque réponse écrite se range en face de sa définition (« toutes les réponses commencent par P »).
   function runClues(q) {
     const items = q.items.map(([clue, ans, ...alt], k) => ({ k, clue, ans, ok: new Set([norm(ans), ...alt.map(norm)]) }));
     QZ = { found: new Set(), hints: 0, over: false };
-    qzOpen(`${qzTop(q, `<span class="chip num" id="qz-clock">${mmss(q.time)}</span>`)}
+    qzOpen(`${qzTop(q, clockHTML(q))}
       <div class="qz-count"><b class="num" id="qz-n">0</b> / ${items.length} <span class="muted">trouvées</span></div>
       <form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris une réponse…" aria-label="Écris une réponse" autocapitalize="off" spellcheck="false"></form>
       <div class="btns qz-tools"><button class="btn ghost small" id="qz-hint">Un indice</button><button class="btn ghost small" id="qz-give">J'abandonne</button></div>
@@ -2210,13 +2399,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     };
     $("#qz-give").onclick = end;
     setTimeout(() => inp.focus(), 80);
-    let left = q.time;
-    qzTimer = setInterval(() => { left--; const c = $("#qz-clock"); if (c) { c.textContent = mmss(left); c.classList.toggle("low", left <= 15); } if (left <= 0) end(); }, 1000);
+    qzClock(q, end);
   }
 
   // Les pays de l'actu : une actu, un clic sur le globe.
   function runActu(q) {
-    const list = shuffleR(QD.news.filter((n) => hasGeo(n.iso))).slice(0, q.count);
+    const list = shuffleR(QD.news.filter((n) => hasGeo(n.iso)), QZCTX.duel || QZCTX.daily ? rng("qd-actu-" + today()) : Math.random).slice(0, q.count);
     QZ = { k: 0, ok: 0, hints: 0 };
     qzOpen(`${qzTop(q, `<span class="chip num" id="qz-step">1/${list.length}</span>`)}
       <p class="qz-prompt" id="qz-prompt"></p>
