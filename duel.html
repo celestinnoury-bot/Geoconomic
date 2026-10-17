@@ -1003,6 +1003,13 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-2en1 { max-width: 320px; }
 .qz-2en1 svg { width: 15px; height: 15px; vertical-align: -2px; }
 .qz-tools .btn.small { padding: 8px 12px; font-size: 13px; }
+.qz-confirm { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 6px 0; padding: 8px 12px; border-radius: 14px; background: rgba(255, 179, 64, .12); border: 1px solid rgba(255, 179, 64, .4); font-size: 14px; }
+.qz-confirm span { flex: 1; min-width: 140px; }
+.g-land.sel { fill: #ffd08a; stroke: #fff; stroke-width: 1.4; }
+.qz-boom { font: 600 16px var(--display); color: #ff8f9c; margin: 4px 0; }
+.qz-sd { font-size: 14px; color: #ffb066; max-width: 340px; margin: 0; }
+.qz-level { font-size: 12px; color: var(--muted); margin: 4px 0 0; letter-spacing: .02em; }
+.qz [hidden], #play [hidden] { display: none !important; }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -1902,6 +1909,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     return new Set([n, n.replace(/^(republique|royaume|etat) (du |de la |des |de |d )?/, ""), ...(ALIASES[id] || []), ...((QD && QD.alias[id]) || [])]);
   }
   const shuffleR = (a, r = Math.random) => { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  let NAME_MAP = null;
+  function countryByName(v) {
+    if (!NAME_MAP) { NAME_MAP = new Map(); if (QD) for (const id of Object.keys(QD.names)) for (const n of accepted(id)) if (!NAME_MAP.has(n)) NAME_MAP.set(n, id); }
+    return NAME_MAP.get(v) || null;
+  }
   const hasGeo = (() => { const s = new Set((QD ? QD.geo : []).map((g) => g[0])); return (id) => s.has(id); })();
 
   const SRC_NEWS_OPEP = { short: "Gulf News", url: "https://gulfnews.com/business/energy/opec-keeps-october-oil-output-quota-unchanged-from-september-levels-1.500665366" };
@@ -1970,7 +1982,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       intro: "Une définition, une réponse en M. Écris-les dans n'importe quel ordre.",
       items: [["Capitale de l'Espagne", "Madrid"], ["Capitale de la Russie", "Moscou"], ["Pays dont la capitale est Rabat", "Maroc"], ["Pays dont la capitale est Bamako", "Mali"], ["Pays dont la capitale est Oulan-Bator", "Mongolie"], ["Pays dont la capitale est Mexico", "Mexique"], ["Marché commun d'Amérique du Sud", "Mercosur"], ["Détroit entre la Malaisie et Sumatra", "Malacca"], ["Premier président noir d'Afrique du Sud", "Mandela", "nelson mandela"], ["Chancelière allemande de 2005 à 2021", "Merkel", "angela merkel"], ["Pays dont la capitale est Antananarivo", "Madagascar"], ["Pays dont la capitale est Kuala Lumpur", "Malaisie"]] },
     { id: "dates", type: "dates", hidden: true, tag: "Dates", title: "Avant ou après : les dates du jour",
-      intro: "Cinq « avant ou après » et trois années à écrire (pile : la totalité des points, puis un cinquième de moins par année d'écart)." },
+      intro: "Douze « avant ou après », des écarts les plus larges aux plus serrés. Mort subite : une erreur et la série s'arrête." },
     { id: "actu", type: "actu", tag: "Actu", title: "Les pays de l'actu", count: 8,
       intro: "Une actu de Géoconomic, et un globe : clique sur le pays où elle se passe." },
     { id: "uranium", type: "rank", tag: "Énergie", title: "Uranium : les 5 premiers producteurs", unit: "tonnes d'uranium extraites en 2023",
@@ -1993,6 +2005,26 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         ["Capitale du Canada ?", ["Ottawa", "Toronto", "Montréal", "Vancouver"]],
         ["Capitale du Maroc ?", ["Rabat", "Casablanca", "Marrakech", "Fès"]],
       ], src: [SRC_FACTBOOK] },
+    { id: "histeco", type: "qcm", tag: "Histoire économique", title: "Monnaies, krachs et accords : l'histoire économique", intro: "Ça commence accessible, puis ça devient pointu.",
+      qs: [
+        ["Que fixe une banque centrale pour freiner ou relancer le crédit ?", ["Son taux directeur", "Le prix de l'essence", "Le salaire minimum", "L'impôt sur le revenu"], "", 1],
+        ["Un droit de douane, c'est…", ["Une taxe sur un produit importé", "Une aide aux exportateurs", "Un quota de production", "Un impôt sur les bénéfices"], "", 1],
+        ["Le « jeudi noir » du krach de Wall Street, c'était en…", ["1929", "1907", "1987", "1933"], "", 1],
+        ["Le plan Marshall, en 1948 : qui aide qui ?", ["Les États-Unis aident l'Europe", "L'URSS aide l'Europe de l'Est", "L'Europe aide l'Afrique", "Le FMI aide l'Asie"], "", 1],
+        ["La crise des « subprimes » éclate en…", ["2007-2008", "1997-1998", "2000-2001", "2011-2012"], "", 1],
+        ["Quel traité de 1992 prépare la création de l'euro ?", ["Maastricht", "Rome", "Lisbonne", "Nice"], "", 2],
+        ["Quel accord de 1944 organise le système monétaire d'après-guerre ?", ["Bretton Woods", "Yalta", "Potsdam", "Versailles"], "Il crée aussi le FMI et la Banque mondiale.", 2],
+        ["En 1931, le Royaume-Uni abandonne…", ["L'étalon-or", "Le Commonwealth", "La livre sterling", "Le libre-échange"], "En pleine crise, la livre n'est plus convertible en or.", 2],
+        ["En 1971, qui met fin à la convertibilité du dollar en or ?", ["Richard Nixon", "John F. Kennedy", "Ronald Reagan", "Jimmy Carter"], "", 2],
+        ["Le premier choc pétrolier, en 1973, part…", ["D'un embargo de pays arabes producteurs", "D'une guerre entre l'Iran et l'Irak", "D'une grève en Arabie saoudite", "De la chute de l'URSS"], "", 2],
+        ["Hyperinflation de 1923 : quel pays ?", ["L'Allemagne", "L'Autriche", "La France", "L'Italie"], "", 2],
+        ["La Chine entre à l'OMC en…", ["2001", "1995", "2008", "1989"], "", 2],
+        ["Accords du Plaza, 1985 : les grandes puissances s'entendent pour faire baisser…", ["Le dollar", "Le yen", "Le mark", "Le prix du pétrole"], "", 3],
+        ["« Mercredi noir », 1992 : quelle monnaie sort du Système monétaire européen ?", ["La livre sterling", "Le franc", "Le mark", "La peseta"], "", 3],
+        ["La crise financière asiatique de 1997 démarre dans quel pays ?", ["La Thaïlande", "Le Japon", "La Corée du Sud", "L'Indonésie"], "", 3],
+        ["Le GATT, l'ancêtre de l'OMC, est signé en…", ["1947", "1919", "1960", "1995"], "", 3],
+        ["Quel pays a connu l'hyperinflation la plus forte jamais mesurée, en 1946 ?", ["La Hongrie", "L'Allemagne", "Le Zimbabwe", "Le Venezuela"], "", 3],
+      ], src: [{ short: "FMI, histoire", url: "https://www.imf.org/fr/About/history" }, { short: "Banque d'Angleterre", url: "https://www.bankofengland.co.uk/" }] },
     { id: "gaulle", type: "qcm", tag: "Histoire", title: "L'histoire de Charles de Gaulle", intro: "De l'appel du 18 juin à Colombey : douze questions.",
       qs: QS_GAULLE, src: [{ short: "Fondation Charles de Gaulle", url: "https://www.charles-de-gaulle.org/" }, { short: "Élysée", url: "https://www.elysee.fr/charles-de-gaulle" }] },
     { id: "eco", type: "qcm", tag: "Économie", title: "Monnaies, sièges et matières premières", intro: "Huit questions pour briller au dîner.",
@@ -2026,7 +2058,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   if (!S.quiz || typeof S.quiz !== "object") S.quiz = {};
   // « Tous les pays du monde » : la liste vient des données (ONU + Vatican + Palestine, par continent).
   { const m = QUIZZES.find((q) => q.id === "monde"); if (m && QD && QD.world) m.items = QD.world.map(([id, group]) => ({ id, group })); }
-  const quizSize = (q) => q.type === "list" || q.type === "clues" ? q.items.length : q.type === "actu" ? q.count : q.type === "rank" ? 5 : q.type === "dates" ? 8 : q.qs.length;
+  const quizSize = (q) => q.type === "list" || q.type === "clues" ? q.items.length : q.type === "actu" ? q.count : q.type === "rank" ? 5 : q.type === "dates" ? 12 : q.qs.length;
   const quizAvailable = (q) => q.items && !q.items.length ? false : q.type !== "actu" && !q.ind ? true : !!(QD && (q.type === "actu" ? QD.news.length >= q.count : QD.ind[q.ind]));
 
   let qzFilter = "all";
@@ -2151,9 +2183,9 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
 
   // ---------- Globe (d3, projection orthographique) ----------
-  function makeGlobe(host, { onPick } = {}) {
+  function makeGlobe(host, { onPick, onSelect, confirm = false } = {}) {
     if (!window.d3 || !QD) { host.remove(); return null; }
-    const W = Math.max(260, host.clientWidth || 340), H = Math.min(W, 300);
+    const W = Math.max(260, host.clientWidth || 340), H = Math.min(W, 360);
     const base = H / 2 - 6;
     const proj = d3.geoOrthographic().scale(base).translate([W / 2, H / 2]).clipAngle(90).rotate([-15, -25]);
     const path = d3.geoPath(proj);
@@ -2167,7 +2199,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     draw();
     // Un seul geste pour tout : glisser fait tourner, pincer (ou la molette, ou + / −) zoome, jusqu'à 10 fois.
     let last = d3.zoomIdentity;
-    const zoom = d3.zoom().scaleExtent([1, 10]).clickDistance(6).on("zoom", (e) => {
+    const zoom = d3.zoom().scaleExtent([1, 30]).clickDistance(6).on("zoom", (e) => {
       const t = e.transform;
       if (t.k !== last.k) proj.scale(base * t.k);
       else {
@@ -2187,8 +2219,26 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       const sel = svg.transition().duration(300);
       if (z.dataset.z === "reset") sel.call(zoom.scaleTo, 1); else sel.call(zoom.scaleBy, z.dataset.z === "in" ? 1.8 : 1 / 1.8);
     };
-    land.on("click", (e, f) => onPick && onPick(f.id));
+    // Mort subite : un toucher sélectionne (le pays s'entoure et la loupe zoome dessus), un second toucher sur le même valide.
+    let sel = null;
+    const select = (id) => {
+      sel = id;
+      land.classed("sel", (f) => f.id === id);
+      if (!id) return;
+      const f = byId.get(id), [x, y] = d3.geoCentroid(f), from = proj.rotate(), to = [-x, Math.max(-70, Math.min(70, -y))];
+      d3.select(host).transition().duration(500).tween("r", () => { const i = d3.interpolate(from, to); return (t) => { proj.rotate(i(t)); draw(); }; });
+      const size = Math.sqrt(d3.geoArea(f) / Math.PI) * 180 / Math.PI, want = Math.min(30, Math.max(2.5, 18 / Math.max(1, size)));
+      if (last.k < want) svg.transition().delay(150).duration(450).call(zoom.scaleTo, want);
+    };
+    land.on("click", (e, f) => {
+      if (!onPick) return;
+      if (!confirm) return onPick(f.id);
+      if (sel === f.id) { select(null); onSelect && onSelect(null); return onPick(f.id); }
+      select(f.id); onSelect && onSelect(f.id);
+    });
     return {
+      select(id) { select(id); },
+      selected: () => sel,
       focus(id) {
         const f = byId.get(id); if (!f) return;
         const [x, y] = d3.geoCentroid(f), from = proj.rotate();
@@ -2288,6 +2338,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         <p class="label">${esc(t.label)} · ${quizSize(q)} ${q.type === "qcm" || q.type === "dates" ? "questions" : q.type === "rank" ? "pays" : "à trouver"}</p>
         ${kicker}<h1 class="big">${esc(q.title)}</h1>
         <p class="rules">${esc(q.intro)}${q.time ? ` Tu as ${mmss(q.time)}.` : ""}${QZCTX.duel ? " Même quiz pour vous deux : le meilleur score gagne, à égalité le plus rapide. Pas de pause en duel." : ""}</p>
+        ${q.type !== "rank" ? `<p class="qz-sd">💥 Mort subite : ${q.type === "list" ? "un pays qui n'en fait pas partie (touché sur le globe, ou écrit puis validé avec Entrée)" : q.type === "clues" ? "une mauvaise réponse validée avec Entrée" : "une erreur"}, et c'est fini. ${q.type === "list" || q.type === "actu" ? "Sur le globe : un toucher sélectionne et zoome, un second valide." : ""}</p>` : ""}
         ${modes}${clockOpt}
         <button class="btn" id="qz-go">C'est parti</button>
       </div>`);
@@ -2343,6 +2394,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <div class="qz-globe" id="qz-globe"></div>
       <form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris un pays, ou touche-le sur le globe…" aria-label="Écris un pays" autocapitalize="off" spellcheck="false"></form>
       ${tiny.length && window.d3 && QD ? `<p class="note qz-tip">Trop petits pour le globe, à écrire : ${tiny.length} pays.</p>` : ""}
+      <div class="qz-confirm" id="qz-confirm" hidden><span>Pays sélectionné sur le globe.</span><button class="btn small" id="qz-ok">Valider</button><button class="btn ghost small" id="qz-cancel">Annuler</button></div>
       <div class="qz-mystery" id="qz-mystery" hidden></div>
       <div class="btns qz-tools">
         <button class="btn ghost small" data-hint="zone">📍 Où chercher</button>
@@ -2354,8 +2406,10 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <p class="note" id="qz-hint-txt" aria-live="polite">Chaque indice coûte ${QZCTX.duel ? "3 % du score en duel" : "2 points"}.</p>
       ${q.grouped ? [...new Set(pool.map((it) => it.group))].map((g) => { const n = pool.filter((it) => it.group === g).length; return `<p class="qz-group"><b>${esc(g)}</b> <span class="num" data-gn="${esc(g)}">0</span>/${n}</p><ol class="qz-slots" data-group="${esc(g)}">${Array.from({ length: n }, (_, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`; }).join("")
         : `<ol class="qz-slots">${pool.map((it, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`}`);
-    const globe = makeGlobe($("#qz-globe"), { onPick: pick });
+    const globe = makeGlobe($("#qz-globe"), { onPick: pick, confirm: true, onSelect: (id) => { $("#qz-confirm").hidden = !id; } });
     if (!globe) play.querySelectorAll('[data-hint="zone"], [data-hint="near"]').forEach((b) => b.remove());
+    $("#qz-ok").onclick = () => { const id = globe && globe.selected(); if (!id) return; globe.select(null); $("#qz-confirm").hidden = true; pick(id); };
+    $("#qz-cancel").onclick = () => { globe && globe.select(null); $("#qz-confirm").hidden = true; };
     // Les cases se remplissent dans l'ordre de découverte (par continent pour la liste du monde), comme sur JetPunk.
     const groupOf = new Map(pool.map((it) => [it.id, it.group]));
     function fill(id, cls) {
@@ -2377,7 +2431,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       if (QZ.over) return;
       if (pool.some((it) => it.id === id)) found(id);
       else if (QZ.found.has(id)) return;
-      else { QZ.misses++; globe && globe.flash(id, "bad"); $("#qz-hint-txt").textContent = `${qName(id)} : non.`; }
+      else die(id);
+    }
+    // Mort subite : un pays qui n'en fait pas partie, et c'est fini.
+    function die(id) {
+      if (QZ.over) return;
+      QZ.boom = id;
+      if (globe) { globe.mark(id, "wrong"); globe.focus(id); }
+      end();
     }
     function end() {
       if (QZ.over) return;
@@ -2385,12 +2446,13 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       clearInterval(qzTimer);
       if (globe) globe.zone(null);
       $("#qz-mystery").hidden = true;
+      $("#qz-confirm").hidden = true; if (globe) globe.select(null);
       const missing = pool.filter((it) => !QZ.found.has(it.id));
       missing.forEach((it) => { fill(it.id, "miss"); globe && globe.mark(it.id, "miss"); });
       play.querySelectorAll("#qz-in, [data-hint], #qz-give").forEach((b) => (b.disabled = true));
       const pct = Math.round((QZ.found.size / total) * 100);
       const box = document.createElement("div");
-      box.innerHTML = quizDone(q, pct, QZ.hints, missing.length ? `<p class="note">En rouge : ceux qui manquaient.</p>` : "");
+      box.innerHTML = quizDone(q, pct, QZ.hints, `${QZ.boom ? `<p class="qz-boom">💥 Mort subite : ${esc(qName(QZ.boom))} n'en fait pas partie.</p>` : ""}${missing.length ? `<p class="note">En rouge : ceux qui manquaient.</p>` : ""}`);
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       bindEnd(q);
     }
@@ -2409,7 +2471,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       found(hit.id); inp.value = ""; return true;
     };
     inp.oninput = () => tryHit(false);
-    $("#qz-form").onsubmit = (e) => { e.preventDefault(); if (!tryHit(true) && inp.value.trim()) { inp.classList.add("shake"); setTimeout(() => inp.classList.remove("shake"), 400); } };
+    $("#qz-form").onsubmit = (e) => {
+      e.preventDefault();
+      if (tryHit(true) || !inp.value.trim()) return;
+      // Un vrai pays qui n'est pas dans la liste, validé avec Entrée : mort subite. Une faute de frappe : on secoue juste.
+      const other = countryByName(norm(inp.value));
+      if (other && !QZ.found.has(other)) { inp.value = ""; return die(other); }
+      inp.classList.add("shake"); setTimeout(() => inp.classList.remove("shake"), 400);
+    };
     setTimeout(() => inp.focus(), 80);
 
     // Indices sur un « pays mystère » : on garde le même tant qu'il n'est pas trouvé, et les indices s'additionnent.
@@ -2460,7 +2529,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       items.filter((it) => !QZ.found.has(it.k)).forEach((it) => { const l = li(it.k); l.classList.add("miss"); l.querySelector("b").textContent = it.ans; });
       play.querySelectorAll("#qz-in, #qz-hint, #qz-give").forEach((b) => (b.disabled = true));
       const box = document.createElement("div");
-      box.innerHTML = quizDone(q, Math.round((QZ.found.size / items.length) * 100), QZ.hints);
+      box.innerHTML = quizDone(q, Math.round((QZ.found.size / items.length) * 100), QZ.hints, QZ.boom ? `<p class="qz-boom">💥 Mort subite : « ${esc(QZ.boom)} » n'était pas une réponse.</p>` : "");
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       bindEnd(q);
     }
@@ -2480,7 +2549,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       return true;
     };
     inp.oninput = () => tryHit(false);
-    $("#qz-form").onsubmit = (e) => { e.preventDefault(); if (!tryHit(true) && inp.value.trim()) { inp.classList.add("shake"); setTimeout(() => inp.classList.remove("shake"), 400); } };
+    $("#qz-form").onsubmit = (e) => {
+      e.preventDefault();
+      if (tryHit(true) || norm(inp.value).length < 3) return;
+      QZ.boom = inp.value.trim(); inp.value = ""; end();
+    };
     $("#qz-hint").onclick = () => {
       const left = items.filter((it) => !QZ.found.has(it.k));
       if (!left.length) return;
@@ -2500,14 +2573,23 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 
   // Dates du jour (duel du jour) : 5 « avant ou après » et 3 années à écrire, les mêmes pour tous ce jour-là.
   function runDates(q) {
+    // Mort subite : douze « avant ou après », du plus large écart (accessible) au plus serré (pointu).
     const r = rng("qd-dates-" + today());
-    const pairs = drawPairs(5, r, { useSeen: false });
-    const years = drawYears(3, r, pairs);
-    const qs = buildAll([pairs[0], pairs[1], years[0], pairs[2], years[1], pairs[3], pairs[4], years[2]], "qd-" + today());
+    const BANDS_GAP = [[25, 30], [18, 24], [12, 17], [7, 11], [4, 6], [1, 3]], used = new Set(), ids = [];
+    for (const [lo, hi] of BANDS_GAP) {
+      let n = 0;
+      for (const id of shuffle(PAIRS, r)) {
+        const g = gapOf(id), [a, b] = id.slice(1).split("_");
+        if (g < lo || g > hi || used.has(a) || used.has(b)) continue;
+        ids.push(id); used.add(a); used.add(b);
+        if (++n === 2) break;
+      }
+    }
+    const qs = buildAll(ids, "qd-" + today());
     QZ = { k: 0, score: 0 };
     function show() {
       const x = qs[QZ.k];
-      const head = qzTop(q, `<span class="chip num">${QZ.k + 1}/${qs.length}</span>`);
+      const head = qzTop(q, `<span class="chip num">Série ${QZ.score} · ${QZ.k + 1}/${qs.length}</span>`);
       if (x.kind === "order") {
         qzOpen(`${head}<h2 class="question qz-q">Lequel est arrivé en premier ?</h2>
           <div class="versus">${[x.a, x.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}</div>
@@ -2515,8 +2597,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         play.querySelectorAll(".ans").forEach((b) => (b.onclick = () => {
           const first = x.a[0] < x.b[0] ? 0 : 1, ok = +b.dataset.k === first;
           play.querySelectorAll(".ans").forEach((y) => { const j = +y.dataset.k; y.disabled = true; y.querySelector(".fact-year").innerHTML = flap([x.a, x.b][j][0]); if (j === first) y.classList.add("good"); else if (y === b) y.classList.add("bad"); });
-          if (ok) QZ.score += 1;
-          $("#qz-info").innerHTML = `<b class="${ok ? "ok" : "ko"}">${ok ? cheer() : "Pas cette fois."}</b> ${Math.abs(x.a[0] - x.b[0])} an(s) d'écart.`;
+          if (ok) QZ.score += 1; else QZ.dead = true;
+          $("#qz-info").innerHTML = `<b class="${ok ? "ok" : "ko"}">${ok ? cheer() : "💥 Mort subite."}</b> ${Math.abs(x.a[0] - x.b[0])} an(s) d'écart.`;
           done();
         }));
       } else {
@@ -2540,12 +2622,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     }
     function done() {
       const nx = $("#qz-next"); nx.hidden = false;
-      nx.textContent = QZ.k + 1 < qs.length ? "Suivante" : "Voir mon score";
+      nx.textContent = QZ.k + 1 < qs.length && !QZ.dead ? "Suivante" : "Voir mon score";
       nx.focus();
       nx.onclick = () => {
         QZ.k++;
-        if (QZ.k < qs.length) return show();
-        qzOpen(`${qzTop(q)}<p class="qz-prompt"><small>Terminé</small>${Math.round(QZ.score * 10) / 10} points sur ${qs.length}.</p><div class="qz-tools"></div>`);
+        if (QZ.k < qs.length && !QZ.dead) return show();
+        qzOpen(`${qzTop(q)}<p class="qz-prompt"><small>${QZ.dead ? "Mort subite" : "Sans faute"}</small>Série : ${QZ.score} sur ${qs.length}.</p><div class="qz-tools"></div>`);
         const box = document.createElement("div");
         box.innerHTML = quizDone(q, Math.round((QZ.score / qs.length) * 100));
         play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
@@ -2562,9 +2644,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     qzOpen(`${qzTop(q, `<span class="chip num" id="qz-step">1/${list.length}</span>`)}
       <p class="qz-prompt" id="qz-prompt"></p>
       <div class="qz-globe big" id="qz-globe"></div>
+      <div class="qz-confirm" id="qz-confirm" hidden><span>Pays sélectionné.</span><button class="btn small" id="qz-ok">Valider</button><button class="btn ghost small" id="qz-cancel">Annuler</button></div>
       <p class="note" id="qz-hint-txt" aria-live="polite"></p>
       <div class="btns qz-tools"><button class="btn ghost small" id="qz-hint">Un indice</button><button class="btn" id="qz-next" hidden>Suivante</button></div>`);
-    const globe = makeGlobe($("#qz-globe"), { onPick: pick });
+    const globe = makeGlobe($("#qz-globe"), { onPick: pick, confirm: true, onSelect: (id) => { $("#qz-confirm").hidden = !id; } });
+    if (globe) {
+      $("#qz-ok").onclick = () => { const id = globe.selected(); if (!id) return; globe.select(null); $("#qz-confirm").hidden = true; pick(id); };
+      $("#qz-cancel").onclick = () => { globe.select(null); $("#qz-confirm").hidden = true; };
+    }
     if (!globe) { play.innerHTML = `<div class="wrap qz">${qzTop(q)}<p class="muted">Le globe n'a pas pu se charger.</p></div>`; $("#qz-quit").onclick = qzQuit; return; }
     let answered = false;
     function show() {
@@ -2583,14 +2670,15 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       if (good) { QZ.ok++; globe.mark(id, "found"); } else { globe.mark(id, "wrong"); globe.mark(n.iso, "miss"); globe.focus(n.iso); }
       $("#qz-hint-txt").innerHTML = good ? `<b class="ok">${cheer()}</b> ${esc(qName(n.iso))}.` : `<b class="ko">Non</b> : c'était ${esc(qName(n.iso))}.`;
       $("#qz-hint").disabled = true;
-      const nx = $("#qz-next"); nx.hidden = false; nx.textContent = QZ.k + 1 < list.length ? "Suivante" : "Voir mon score";
+      if (!good) QZ.dead = true;
+      const nx = $("#qz-next"); nx.hidden = false; nx.textContent = QZ.k + 1 < list.length && good ? "Suivante" : "Voir mon score";
     }
     $("#qz-next").onclick = () => {
       globe.mark(list[QZ.k].iso, ""); QZ.k++;
       play.querySelectorAll(".g-land.wrong").forEach((p) => p.setAttribute("class", "g-land"));
-      if (QZ.k < list.length) return show();
+      if (QZ.k < list.length && !QZ.dead) return show();
       const box = document.createElement("div");
-      box.innerHTML = quizDone(q, Math.round((QZ.ok / list.length) * 100), QZ.hints);
+      box.innerHTML = quizDone(q, Math.round((QZ.ok / list.length) * 100), QZ.hints, QZ.dead ? `<p class="qz-boom">💥 Mort subite : une erreur, et la série s'arrête.</p>` : "");
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       $("#qz-prompt").innerHTML = `<small>Terminé</small>${QZ.ok} pays bien placés sur ${list.length}.`;
       bindEnd(q);
@@ -2648,12 +2736,15 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 
   // QCM : quatre réponses, la bonne est toujours écrite en premier dans la liste puis mélangée.
   function runQcm(q) {
-    const qs = shuffleR(q.qs);
+    // Du plus accessible au plus pointu (niveau en 4ᵉ position, 2 par défaut), mélangé à l'intérieur d'un même niveau.
+    const qs = shuffleR(q.qs).sort((a, b) => (a[3] || 2) - (b[3] || 2));
     QZ = { k: 0, ok: 0 };
     function show() {
       const [text, opts, info] = qs[QZ.k];
       const mixed = shuffleR(opts.map((o, i) => ({ o, good: i === 0 })));
-      qzOpen(`${qzTop(q, `<span class="chip num">${QZ.k + 1}/${qs.length}</span>`)}
+      const lvl = qs[QZ.k][3] || 2;
+      qzOpen(`${qzTop(q, `<span class="chip num">Série ${QZ.ok} · ${QZ.k + 1}/${qs.length}</span>`)}
+        <p class="qz-level">${"●".repeat(lvl)}${"○".repeat(3 - lvl)} ${["", "Pour se lancer", "On monte d'un cran", "Pour les pointus"][lvl]}</p>
         <h2 class="question qz-q">${esc(text)}</h2>
         <div class="qz-opts">${mixed.map((m, i) => `<button class="qz-opt" data-i="${i}">${esc(m.o)}</button>`).join("")}</div>
         <p class="note" id="qz-info" aria-live="polite"></p>
@@ -2661,14 +2752,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       play.querySelectorAll(".qz-opt").forEach((b) => (b.onclick = () => {
         const m = mixed[+b.dataset.i];
         play.querySelectorAll(".qz-opt").forEach((x, i) => { x.disabled = true; if (mixed[i].good) x.classList.add("good"); else if (x === b) x.classList.add("bad"); else x.classList.add("dim"); });
-        if (m.good) QZ.ok++;
-        $("#qz-info").innerHTML = `<b class="${m.good ? "ok" : "ko"}">${m.good ? cheer() : "Raté."}</b> ${m.good ? "" : `C'était : ${esc(opts[0])}. `}${info ? esc(info) : ""}`;
-        $("#qz-next").hidden = false;
+        if (m.good) QZ.ok++; else QZ.dead = true;
+        $("#qz-info").innerHTML = `<b class="${m.good ? "ok" : "ko"}">${m.good ? cheer() : "💥 Mort subite."}</b> ${m.good ? "" : `C'était : ${esc(opts[0])}. `}${info ? esc(info) : ""}`;
+        const nx = $("#qz-next"); nx.hidden = false; if (QZ.dead) nx.textContent = "Voir mon score";
       }));
       $("#qz-next").onclick = () => {
         QZ.k++;
-        if (QZ.k < qs.length) return show();
-        qzOpen(`${qzTop(q)}<p class="qz-prompt"><small>Terminé</small>${QZ.ok} bonnes réponses sur ${qs.length}.</p><div class="qz-tools"></div>`);
+        if (QZ.k < qs.length && !QZ.dead) return show();
+        qzOpen(`${qzTop(q)}<p class="qz-prompt"><small>${QZ.dead ? "Mort subite" : "Sans faute"}</small>Série : ${QZ.ok} bonne${QZ.ok > 1 ? "s" : ""} réponse${QZ.ok > 1 ? "s" : ""} sur ${qs.length}.</p><div class="qz-tools"></div>`);
         const box = document.createElement("div");
         box.innerHTML = quizDone(q, Math.round((QZ.ok / qs.length) * 100));
         play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
