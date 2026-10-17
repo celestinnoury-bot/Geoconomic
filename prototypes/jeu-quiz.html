@@ -1011,6 +1011,9 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-clues li .qz-rate { margin-left: 8px; }
 .qz-clues li { grid-template-columns: minmax(0, 1fr) auto auto; }
 .qz-rate-sum { text-align: center; max-width: 340px; }
+.online-banner { display: grid; gap: 4px; text-decoration: none; color: var(--text); border: 1px solid rgba(255, 179, 64, .45); background: rgba(255, 179, 64, .1); }
+.online-banner b { color: #ffb340; font: 600 17px var(--display); }
+.online-banner span { font-size: 14px; color: var(--muted); }
 </style>
 
 <header class="top">
@@ -1796,6 +1799,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
         <p class="note" id="ex-res" aria-live="polite"></p>
       </section>
+      ${db ? "" : `<a class="card online-banner" href="${ONLINE_URL}" target="_blank" rel="noopener"><b>Jouer contre les autres ›</b><span>Le 1 contre 1, le duel du jour et le classement commun sont dans la version en ligne. Ici, tu peux jouer seul.</span></a>`}
       ${dailyCard()}${matchCard()}${quizCards()}</div>`;
   }
   function viewClassement() {

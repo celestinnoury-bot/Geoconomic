@@ -2600,8 +2600,9 @@ function statGrid(figures, sources, theme = "geo") {
     const a = e.target.closest && e.target.closest('a[href="duel.html"]');
     if (!a || typeof (window.claude && window.claude.use) !== "function") return;
     e.preventDefault();
+    // Si le nouvel onglet est bloqué (appli mobile), on ouvre la page du jeu dans l'appli : claude.ai ne peut pas s'afficher ici.
     const w = window.open(DUEL_ONLINE, "_blank");
-    if (w) w.opener = null; else location.href = DUEL_ONLINE;
+    if (w) w.opener = null; else location.href = "duel.html";
   });
   window.addEventListener("hashchange", route);
   route();
