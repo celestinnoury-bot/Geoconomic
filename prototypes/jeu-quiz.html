@@ -985,6 +985,9 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .g-zoom { position: absolute; right: 4px; bottom: 6px; display: grid; gap: 6px; }
 .g-zoom button { width: 36px; height: 36px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .12); background: rgba(35, 27, 22, .88); color: var(--text); font: 700 18px/1 var(--body); cursor: pointer; }
 .qz-globe.zoomed .g-land { stroke-width: .3; }
+.qz-timeup { margin: 8px 0; padding: 12px 14px; border-radius: 16px; background: rgba(255, 179, 64, .12); border: 1px solid rgba(255, 179, 64, .35); }
+.qz-timeup p { margin: 0 0 8px; }
+.qz-timeup .btns { display: flex; gap: 8px; flex-wrap: wrap; }
 </style>
 
 <header class="top">
@@ -2190,7 +2193,18 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       if (QZT.pausedAt) return;
       const left = Math.ceil(q.time - qzElapsed());
       const c = $("#qz-clock"); if (c) { c.textContent = mmss(Math.max(0, left)); c.classList.toggle("low", left <= 15); }
-      if (left <= 0) end();
+      if (left > 0) return;
+      clearInterval(qzTimer);
+      // En duel, le temps est le même pour tous : fin de partie. Seul, on peut continuer sans chrono.
+      if (QZCTX.duel) return end();
+      const tools = play.querySelector(".qz-tools");
+      if (!tools) return end();
+      const box = document.createElement("div");
+      box.className = "qz-timeup";
+      box.innerHTML = `<p><b>Temps écoulé !</b> Tu n'es pas en duel : continue sans chrono si tu veux.</p><div class="btns"><button class="btn small" id="qz-more">Continuer sans chrono</button><button class="btn ghost small" id="qz-stop">Voir mon score</button></div>`;
+      tools.before(box);
+      $("#qz-more").onclick = () => { QZCTX.noclock = true; box.remove(); const c = $("#qz-clock"); if (c) { c.textContent = "Sans chrono"; c.classList.remove("low"); } const pb = $("#qz-pause"); if (pb) pb.remove(); const i = $("#qz-in"); if (i) i.focus(); };
+      $("#qz-stop").onclick = () => { box.remove(); end(); };
     }, 250);
   }
   function qzPause(on) {
@@ -2223,7 +2237,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     QZCTX = { duel: ctx.duel || null, daily: !!ctx.daily, noclock: false };
     const t = QTYPE[q.type];
     const kicker = QZCTX.duel ? `<p class="label qz-duel-tag">${ICON.swords} Duel du jour ${esc(QZCTX.duel.code)}${QZCTX.duel.vs ? ` contre ${esc(QZCTX.duel.vs)}` : ""}</p>` : QZCTX.daily ? `<p class="label qz-duel-tag">${ICON.sun} Quiz du jour, en solo</p>` : "";
-    const clockOpt = (q.type === "list" || q.type === "clues") && !QZCTX.duel && !QZCTX.daily ? `<div class="seg qz-modes" id="qz-clockopt"><button data-clock="on" aria-pressed="true">${ICON.clock} Chrono</button><button data-clock="off" aria-pressed="false">Sans chrono</button></div><p class="note">Sans chrono : prends ton temps, mais les points sont divisés par deux.</p>` : "";
+    const clockOpt = (q.type === "list" || q.type === "clues") && !QZCTX.duel ? `<div class="seg qz-modes" id="qz-clockopt"><button data-clock="on" aria-pressed="true">${ICON.clock} Chrono</button><button data-clock="off" aria-pressed="false">Sans chrono</button></div><p class="note">Sans chrono : prends tout ton temps, les points restent les mêmes.</p>` : "";
     const modes = q.type === "list" ? `<div class="seg qz-modes"><button data-mode="write" aria-pressed="true">${QICO.pen} Écrire</button>${window.d3 && QD ? `<button data-mode="click" aria-pressed="false">${QICO.globe} Sur le globe</button>` : ""}</div>` : "";
     qzOpen(`${qzTop(q)}
       <div class="splash qz-splash">
@@ -2246,7 +2260,6 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const st = S.quiz[q.id] || { best: 0, day: null, plays: 0 };
     const first = st.day !== today();
     let gain = first ? Math.max(0, Math.round((QUIZ_PT * pct) / 100) - 2 * hints) : 0;
-    if (QZCTX.noclock) gain = Math.floor(gain / 2);
     const daily = QZCTX.duel || QZCTX.daily;
     if (daily) { S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct, secs }; if (QZCTX.duel) qdSend(QZCTX.duel.code, pct, secs); }
     const record = pct > st.best;
@@ -2257,7 +2270,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <div class="qz-score num">${pct}<small> %</small></div>
       <p class="qz-msg">${msg}${record && st.plays ? " Nouveau record !" : ""}</p>
       <p class="muted">${gain ? `+${gain} points au classement${hints ? ` (${hints} indice${hints > 1 ? "s" : ""} utilisé${hints > 1 ? "s" : ""})` : ""}.` : first ? "Pas de points cette fois." : "Points déjà gagnés aujourd'hui sur ce quiz : rejoue pour le record."}</p>
-      <p class="note">En ${mmss(secs)}${QZCTX.noclock ? ", sans chrono (points divisés par deux)" : ""}.</p>
+      <p class="note">En ${mmss(secs)}${QZCTX.noclock ? ", sans chrono" : ""}.</p>
       ${extra}
       ${QZCTX.duel ? `<div class="card qd-res" id="qd-res" data-code="${esc(QZCTX.duel.code)}"><p class="muted">Résultat du duel…</p></div>` : ""}
       <div class="btns">${daily ? "" : `<button class="btn" id="qz-again">Rejouer</button>`}<button class="btn ${daily ? "" : "ghost"}" id="qz-back">${daily ? "Retour" : "Autres quiz"}</button></div>
