@@ -1004,6 +1004,13 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-sd { font-size: 14px; color: #ffb066; max-width: 340px; margin: 0; }
 .qz-level { font-size: 12px; color: var(--muted); margin: 4px 0 0; letter-spacing: .02em; }
 .qz [hidden], #play [hidden] { display: none !important; }
+.qz-rate { margin-left: auto; font-size: 11px; font-weight: 700; color: var(--muted); padding: 2px 6px; border-radius: 99px; background: rgba(255, 255, 255, .06); white-space: nowrap; }
+.qz-rate.rare { color: #2a1206; background: #ffb340; }
+.qz-rate.easy { color: #fff; background: rgba(239, 95, 116, .5); }
+.qz-rate.inline { margin-left: 6px; }
+.qz-clues li .qz-rate { margin-left: 8px; }
+.qz-clues li { grid-template-columns: minmax(0, 1fr) auto auto; }
+.qz-rate-sum { text-align: center; max-width: 340px; }
 </style>
 
 <header class="top">
@@ -2173,6 +2180,50 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     qdUnsubs.set(code, un);
   }
 
+  // ---------- Taux de réussite (façon JetPunk) ----------
+  // Chaque joueur garde un document par quiz, `qstats/<quiz>-<uid>` = {quiz, res: {élément: 1 ou 0}, at} (sa dernière partie).
+  // Le taux d'un élément = part des joueurs qui l'ont trouvé, parmi ceux à qui il a été posé.
+  const QSTATS = new Map();
+  function qsLoad(qid) {
+    if (!db || !me) return Promise.resolve(null);
+    if (QSTATS.has(qid)) return QSTATS.get(qid);
+    const pr = db.collection("qstats").where("quiz", "==", qid).limit(500).get().then((snap) => {
+      const rate = new Map(); let n = 0;
+      snap.docs.forEach((d) => {
+        if (d.id === `${qid}-${me}`) return;
+        const r = d.data().res; if (!r || typeof r !== "object") return;
+        n++;
+        for (const [k, v] of Object.entries(r)) { const x = rate.get(k) || { hit: 0, tot: 0 }; x.tot++; if (v) x.hit++; rate.set(k, x); }
+      });
+      return { n, rate };
+    }).catch(() => null);
+    QSTATS.set(qid, pr);
+    return pr;
+  }
+  function qsSave(qid, res) {
+    if (!db || !me) return;
+    db.collection("qstats").doc(`${qid}-${me}`).set({ quiz: qid, res, at: Date.now() }).catch(() => {});
+  }
+  const pctOf = (x) => (x && x.tot ? Math.round((100 * x.hit) / x.tot) : null);
+  // Sous chaque case : « 64 % » ; ceux que peu trouvent sont signalés quand on les a eus.
+  async function qsPaint(qid, res, slotOf, summaryEl, label = (k) => k) {
+    const st = await qsLoad(qid);
+    if (!st || !st.n) { if (summaryEl) summaryEl.innerHTML = `<p class="note">Taux de réussite : tu es le premier joueur sur ce quiz.</p>`; return; }
+    let rarest = null, missedEasy = null;
+    for (const [k, v] of Object.entries(res)) {
+      const x = st.rate.get(k), p = pctOf(x), el = slotOf(k);
+      if (p == null || !el) continue;
+      const tag = document.createElement("small");
+      tag.className = "qz-rate" + (v && p < 25 ? " rare" : !v && p >= 60 ? " easy" : "");
+      tag.textContent = `${p} %`;
+      tag.title = `${x.hit} joueur${x.hit > 1 ? "s" : ""} sur ${x.tot} l'ont trouvé`;
+      el.appendChild(tag);
+      if (v && (!rarest || p < rarest.p)) rarest = { k, p };
+      if (!v && (!missedEasy || p > missedEasy.p)) missedEasy = { k, p };
+    }
+    if (summaryEl) summaryEl.innerHTML = `<p class="note qz-rate-sum">Le % sous chaque case : la part des ${st.n} autre${st.n > 1 ? "s" : ""} joueur${st.n > 1 ? "s" : ""} qui l'ont trouvé.${rarest && rarest.p < 50 ? ` Bien vu pour <b>${esc(label(rarest.k))}</b> : ${rarest.p ? `seuls ${rarest.p} % le trouvent` : "personne d'autre ne l'avait trouvé"}.` : ""}${missedEasy && missedEasy.p >= 50 ? ` Raté : <b>${esc(label(missedEasy.k))}</b>, que ${missedEasy.p} % trouvent.` : ""}</p>`;
+  }
+
   // ---------- Globe (d3, projection orthographique) ----------
   function makeGlobe(host, { onPick, onSelect, confirm = false } = {}) {
     if (!window.d3 || !QD) { host.remove(); return null; }
@@ -2380,6 +2431,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const tiny = items.filter((it) => !hasGeo(it.id));
     QZ = { found: new Set(), hints: 0, misses: 0, over: false, target: null, clue: { letters: 0, zone: false, near: false, cap: false } };
     const total = pool.length;
+    qsLoad(q.id);
     qzOpen(`${qzTop(q, clockHTML(q))}
       <div class="qz-count"><b class="num" id="qz-n">0</b> / ${total} <span class="muted">trouvés</span></div>
       <div class="qz-globe" id="qz-globe"></div>
@@ -2406,7 +2458,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     function fill(id, cls) {
       const box = q.grouped ? play.querySelector(`.qz-slots[data-group="${groupOf.get(id)}"]`) : play.querySelector(".qz-slots");
       const li = box.querySelector("li:not(.ok):not(.miss)");
-      li.classList.add(cls); li.querySelector("b").textContent = qName(id);
+      li.classList.add(cls); li.querySelector("b").textContent = qName(id); li.dataset.id = id;
       if (q.grouped && cls === "ok") { const c = play.querySelector(`[data-gn="${groupOf.get(id)}"]`); c.textContent = +c.textContent + 1; }
     }
     function found(id) {
@@ -2443,9 +2495,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       play.querySelectorAll("#qz-in, [data-hint], #qz-give").forEach((b) => (b.disabled = true));
       const pct = Math.round((QZ.found.size / total) * 100);
       const box = document.createElement("div");
-      box.innerHTML = quizDone(q, pct, QZ.hints, `${QZ.boom ? `<p class="qz-boom">💥 Mort subite : ${esc(qName(QZ.boom))} n'en fait pas partie.</p>` : ""}${missing.length ? `<p class="note">En rouge : ceux qui manquaient.</p>` : ""}`);
+      box.innerHTML = quizDone(q, pct, QZ.hints, `${QZ.boom ? `<p class="qz-boom">💥 Mort subite : ${esc(qName(QZ.boom))} n'en fait pas partie.</p>` : ""}${missing.length ? `<p class="note">En rouge : ceux qui manquaient.</p>` : ""}<div id="qz-rates"></div>`);
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       bindEnd(q);
+      const res = Object.fromEntries(pool.map((it) => [it.id, QZ.found.has(it.id) ? 1 : 0]));
+      qsPaint(q.id, res, (k) => play.querySelector(`.qz-slots li[data-id="${k}"]`), $("#qz-rates"), qName).then(() => qsSave(q.id, res));
     }
     const inp = $("#qz-in");
     // « Niger » est validé tout de suite… sauf si « Nigeria » reste à trouver : on attend alors une petite pause ou Entrée.
@@ -2514,15 +2568,18 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <p class="note" id="qz-hint-txt" aria-live="polite"></p>
       <ol class="qz-clues">${items.map((it) => `<li data-k="${it.k}"><span>${esc(it.clue)}</span><b></b></li>`).join("")}</ol>`);
     const li = (k) => play.querySelector(`.qz-clues li[data-k="${k}"]`);
+    qsLoad(q.id);
     function end() {
       if (QZ.over) return;
       QZ.over = true; clearInterval(qzTimer);
       items.filter((it) => !QZ.found.has(it.k)).forEach((it) => { const l = li(it.k); l.classList.add("miss"); l.querySelector("b").textContent = it.ans; });
       play.querySelectorAll("#qz-in, #qz-hint, #qz-give").forEach((b) => (b.disabled = true));
       const box = document.createElement("div");
-      box.innerHTML = quizDone(q, Math.round((QZ.found.size / items.length) * 100), QZ.hints, QZ.boom ? `<p class="qz-boom">💥 Mort subite : « ${esc(QZ.boom)} » n'était pas une réponse.</p>` : "");
+      box.innerHTML = quizDone(q, Math.round((QZ.found.size / items.length) * 100), QZ.hints, `${QZ.boom ? `<p class="qz-boom">💥 Mort subite : « ${esc(QZ.boom)} » n'était pas une réponse.</p>` : ""}<div id="qz-rates"></div>`);
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       bindEnd(q);
+      const res = Object.fromEntries(items.map((it) => [String(it.k), QZ.found.has(it.k) ? 1 : 0]));
+      qsPaint(q.id, res, (k) => li(k), $("#qz-rates"), (k) => items[+k].ans).then(() => qsSave(q.id, res));
     }
     const inp = $("#qz-in");
     let wait = null;
@@ -2727,6 +2784,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 
   // QCM : quatre réponses, la bonne est toujours écrite en premier dans la liste puis mélangée.
   function runQcm(q) {
+    qsLoad(q.id);
+    const qres = {};
     // Du plus accessible au plus pointu (niveau en 4ᵉ position, 2 par défaut), mélangé à l'intérieur d'un même niveau.
     const qs = shuffleR(q.qs).sort((a, b) => (a[3] || 2) - (b[3] || 2));
     QZ = { k: 0, ok: 0 };
@@ -2744,7 +2803,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         const m = mixed[+b.dataset.i];
         play.querySelectorAll(".qz-opt").forEach((x, i) => { x.disabled = true; if (mixed[i].good) x.classList.add("good"); else if (x === b) x.classList.add("bad"); else x.classList.add("dim"); });
         if (m.good) QZ.ok++; else QZ.dead = true;
-        $("#qz-info").innerHTML = `<b class="${m.good ? "ok" : "ko"}">${m.good ? cheer() : "💥 Mort subite."}</b> ${m.good ? "" : `C'était : ${esc(opts[0])}. `}${info ? esc(info) : ""}`;
+        const key = "q" + (hash(text) % 9999991);
+        qres[key] = m.good ? 1 : 0;
+        $("#qz-info").innerHTML = `<b class="${m.good ? "ok" : "ko"}">${m.good ? cheer() : "💥 Mort subite."}</b> ${m.good ? "" : `C'était : ${esc(opts[0])}. `}${info ? esc(info) : ""}<span id="qz-qrate"></span>`;
+        qsLoad(q.id).then((st) => { const x = st && st.rate.get(key), pc = pctOf(x), el = $("#qz-qrate"); if (el && pc != null) el.innerHTML = ` <span class="qz-rate inline${m.good && pc < 30 ? " rare" : ""}">${pc} % des joueurs ont bon</span>`; });
+        if (QZ.dead || QZ.k + 1 >= qs.length) qsSave(q.id, qres);
         const nx = $("#qz-next"); nx.hidden = false; if (QZ.dead) nx.textContent = "Voir mon score";
       }));
       $("#qz-next").onclick = () => {
