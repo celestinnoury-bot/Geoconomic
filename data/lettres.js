@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-17",
+    "file": "lettres/2026-10-17.pdf",
+    "titles": [
+      "Le pétrole retouche 110 dollars : Ormuz s'embrase et la « trêve de l'énergie » en Ukraine vole en éclats",
+      "Le Chili et la Bolivie se parlent enfin : première visite d'État depuis 71 ans, mais toujours pas de mer",
+      "La Bourse d'Indonésie perd près de 12 % en un jour, sa pire chute depuis 1998"
+    ],
+    "fileDark": "lettres/2026-10-17-sombre.pdf"
+  },
+  {
     "date": "2026-10-16",
     "file": "lettres/2026-10-16.pdf",
     "titles": [

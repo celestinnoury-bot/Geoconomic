@@ -15,6 +15,578 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-17-petrole-110-dollars-ormuz-ukraine",
+    "date": "2026-10-17",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Détroit d'Ormuz",
+        "label": "Ormuz",
+        "coords": [
+          56.5,
+          26.5
+        ]
+      }
+    ],
+    "title": "Le pétrole retouche 110 dollars : Ormuz s'embrase et la « trêve de l'énergie » en Ukraine vole en éclats",
+    "summary": "Le baril de Brent a touché 110 dollars, pour la première fois depuis mai. Des navires sont attaqués autour d'Ormuz, et Kiev a repris ses frappes sur les raffineries russes.",
+    "points": [
+      "Le Brent a touché 110 dollars en séance, un niveau jamais revu depuis mai, avant de clôturer à 109,86 dollars (+ 3,7 %). Le pétrole américain WTI a fini à 101,41 dollars [1].",
+      "Au moins neuf pétroliers et cargos ont été attaqués depuis dimanche autour d'Ormuz. Le Commandement central américain affirme que l'Iran a coulé le porte-conteneurs GFS Pride mercredi. Selon Kpler, 9,4 millions de barils par jour ont franchi le détroit la semaine passée, environ 70 % du niveau d'avant la guerre [1].",
+      "La trêve de l'énergie annoncée par Donald Trump s'est effondrée : Volodymyr Zelensky dit avoir repris les frappes sur les raffineries russes parce que Moscou n'a pas respecté le cessez-le-feu. Trump a qualifié cette décision de « honte ». Une attaque de drones aurait arrêté l'unité principale de la raffinerie de Riazan [1]."
+    ],
+    "why": [
+      "Deux sources d'approvisionnement sont touchées en même temps : le pétrole du Golfe, qui passe par un détroit de plus en plus risqué, et le pétrole et les produits raffinés russes, visés par les drones ukrainiens. Quand l'offre inquiète, les prix montent vite [1].",
+      "Cette annonce montre aussi la fragilité des « trêves » proclamées sans détails : celle de l'énergie n'aura tenu que quelques jours [1]."
+    ],
+    "forMe": "Un baril plus cher se paie à la pompe et sur la facture de chauffage, avec un petit délai. Si le prix reste autour de 110 dollars, l'essence et le gazole peuvent repartir à la hausse dans les semaines qui viennent.",
+    "figures": [
+      {
+        "value": "110 $",
+        "label": "plus haut du baril de Brent en séance, une première depuis mai",
+        "src": 1
+      },
+      {
+        "value": "9",
+        "label": "navires attaqués depuis dimanche autour d'Ormuz, au moins",
+        "src": 1
+      },
+      {
+        "value": "≈ 70 %",
+        "label": "du trafic pétrolier d'avant-guerre qui passe encore par Ormuz",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "CNBC",
+        "name": "CNBC, « Brent oil touches $110 as Iran escalates Hormuz attacks, Ukraine vows to hit Russian refineries »",
+        "url": "https://www.cnbc.com/2026/10/16/oil-price-today-iran-strait-hormuz-ukraine-russia.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-chili-bolivie-visite-kast",
+    "date": "2026-10-17",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "La Paz, Bolivie",
+        "label": "Bolivie",
+        "coords": [
+          -68.15,
+          -16.5
+        ]
+      }
+    ],
+    "title": "Le Chili et la Bolivie se parlent enfin : première visite d'État depuis 71 ans, mais toujours pas de mer",
+    "summary": "Le président chilien José Antonio Kast est à La Paz. Les deux pays, brouillés depuis 1978, signent des accords sur les mines, l'électricité et la frontière, mais pas sur l'accès à la mer.",
+    "points": [
+      "Le président chilien José Antonio Kast a fait à La Paz la première visite d'État d'un dirigeant chilien en Bolivie depuis 71 ans. Les deux pays ont rompu leurs relations diplomatiques en 1978 et n'ont pas annoncé le retour des ambassades [1][2].",
+      "Les ministres ont signé des accords sur l'intégration minière, l'interconnexion électrique, des corridors reliant l'Atlantique au Pacifique, la sécurité à la frontière et le statut des Boliviens installés au Chili. Les deux pays vont aussi négocier la mise à jour d'un accord commercial [1][2].",
+      "L'accès souverain à la mer, que la Bolivie a perdu devant la Cour internationale de justice en 2018, n'était pas à l'ordre du jour. Le président Rodrigo Paz a rappelé que cette revendication figure dans la Constitution bolivienne, tout en disant que le passé ne doit pas freiner le développement [1][3]."
+    ],
+    "why": [
+      "Enclavée depuis la guerre du Pacifique (1879-1884), la Bolivie fait passer environ 70 % de son commerce extérieur par les ports du nord du Chili. Normaliser la relation, c'est donc d'abord faciliter ce passage [3].",
+      "Les responsables ont aussi évoqué la remise en service du chemin de fer Arica–La Paz, prévu par le traité de 1904, et un passage de frontière ouvert 24 heures sur 24 à Tambo Quemado–Chungará [1]. Kast a invité Paz au Chili en 2027 [1]."
+    ],
+    "forMe": "Tu n'es pas concerné au quotidien, mais c'est un bon exemple d'une idée simple : deux pays voisins, fâchés depuis près de cinquante ans, recommencent à commercer parce que leurs intérêts économiques l'emportent sur la querelle historique.",
+    "figures": [
+      {
+        "value": "71 ans",
+        "label": "depuis la dernière visite d'État d'un président chilien en Bolivie",
+        "src": 3
+      },
+      {
+        "value": "≈ 70 %",
+        "label": "du commerce extérieur de la Bolivie qui passe par des ports du nord du Chili",
+        "src": 3
+      },
+      {
+        "value": "1978",
+        "label": "année de la rupture des relations diplomatiques",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "MercoPress",
+        "name": "MercoPress, « Kast and Paz open the way in La Paz to normalising Chile-Bolivia relations »",
+        "url": "https://en.mercopress.com/2026/10/16/kast-and-paz-open-the-way-in-la-paz-to-normalising-chile-bolivia-relations"
+      },
+      {
+        "short": "UPI",
+        "name": "UPI, « Chilean, Bolivian presidents meet in La Paz for first time in 71 years »",
+        "url": "https://www.upi.com/Top_News/World-News/2026/10/16/latam-bolivia-chile-kast-Paz-meet/5351792172829/"
+      },
+      {
+        "short": "AP (Washington Times)",
+        "name": "AP, « Chile's president makes first state visit to Bolivia in 71 years as region shifts right »",
+        "url": "https://www.washingtontimes.com/news/2026/oct/16/chilean-president-makes-first-state-visit-bolivia-71-years-region/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-indonesie-bourse-msci",
+    "date": "2026-10-17",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Jakarta, Indonésie",
+        "label": "Indonésie",
+        "coords": [
+          106.85,
+          -6.21
+        ]
+      }
+    ],
+    "title": "La Bourse d'Indonésie perd près de 12 % en un jour, sa pire chute depuis 1998",
+    "summary": "L'indice MSCI envisage de rétrograder l'Indonésie hors du club des marchés émergents. La Bourse de Jakarta s'est effondrée vendredi.",
+    "points": [
+      "L'indice de la Bourse de Jakarta a perdu 11,57 % vendredi et a fini à 5 185 points, son plus bas niveau de l'année. Bloomberg parle de la plus forte baisse en une séance depuis janvier 1998 [1][2].",
+      "Le fournisseur d'indices MSCI a ouvert jeudi une consultation sur un possible passage de l'Indonésie du statut de marché émergent à celui de « marché autonome ». Il invoque le manque de transparence sur qui détient les actions et des soupçons de manœuvres coordonnées sur les cours [1][2].",
+      "Ce n'est pas la première alerte de l'année : fin janvier, un avertissement similaire de MSCI avait déjà fait perdre environ 12 % à la Bourse et plus de 80 milliards de dollars de valeur en une semaine environ [3]."
+    ],
+    "why": [
+      "MSCI fabrique des indices que suivent de très gros fonds. Quand un pays en sort ou est rétrogradé, ces fonds peuvent devoir vendre ses actions, ce qui explique la panique des investisseurs.",
+      "La décision n'est pas prise : il s'agit d'une consultation, mais la simple menace suffit à faire chuter le marché [1][2]."
+    ],
+    "forMe": "Tu n'es probablement pas touché directement. C'est surtout un rappel que la confiance des investisseurs étrangers dans une Bourse peut s'évaporer en une journée quand les règles ou la transparence sont mises en doute.",
+    "figures": [
+      {
+        "value": "− 11,57 %",
+        "label": "chute de l'indice de Jakarta vendredi, à 5 185 points",
+        "src": 1
+      },
+      {
+        "value": "1998",
+        "label": "dernière fois qu'une séance avait été aussi mauvaise, selon Bloomberg",
+        "src": 2
+      },
+      {
+        "value": "80 Md$",
+        "label": "de valeur boursière perdue lors de l'alerte précédente de MSCI, fin janvier",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Jakarta Globe",
+        "name": "Jakarta Globe, « Indonesian Stocks End at 2026 Low After Losing 11.57% on MSCI Warning »",
+        "url": "https://jakartaglobe.id/business/indonesian-stocks-end-at-2026-low-after-losing-1157-on-msci-warning"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Indonesia Stocks Sink Most in 28 Years on MSCI Downgrade Warning »",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-15/indonesia-s-emerging-market-status-under-consultation-msci-says"
+      },
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « Indonesian stocks shed US$80 billion on MSCI warning »",
+        "url": "https://malaymail.com/news/money/2026/02/02/gorenggoreng-saham-and-state-meddling-leave-indonesia-trailing-in-emerging-market-rally-after-us80b-wipeout/207779"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-armenie-onu-guterres-route-tripp",
+    "date": "2026-10-17",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Erevan, Arménie",
+        "label": "Arménie",
+        "coords": [
+          44.51,
+          40.18
+        ]
+      }
+    ],
+    "title": "Arménie : le chef de l'ONU à Erevan, une route à travers le pays pour relier l'Azerbaïdjan à son enclave, et un traité de paix toujours pas signé",
+    "summary": "Antonio Guterres rencontre le Premier ministre Pachinian pendant un sommet de l'ONU sur la nature. La paix avec l'Azerbaïdjan et le projet de route TRIPP sont au menu.",
+    "points": [
+      "Le secrétaire général de l'ONU, Antonio Guterres, est à Erevan pour le sommet des dirigeants de la COP17, la conférence de l'ONU sur la biodiversité. Il a rencontré jeudi le Premier ministre Nikol Pachinian ; c'est le deuxième patron de l'ONU à visiter l'Arménie [1][2].",
+      "Le traité de paix avec l'Azerbaïdjan, paraphé à Washington en août 2025, n'est toujours pas signé. Bakou réclame des changements dans la Constitution arménienne, et des prisonniers arméniens restent détenus en Azerbaïdjan [3].",
+      "Les deux hommes ont aussi parlé de TRIPP, une route et des infrastructures qui relieraient l'Azerbaïdjan à son enclave du Nakhitchevan en traversant le sud de l'Arménie. Un accord américano-arménien prévoit une société chargée de les construire, et des études techniques ont commencé [2][3]."
+    ],
+    "why": [
+      "L'Arménie n'a pas d'accès à la mer. Une route qui traverse son sud peut changer la carte des transports de la région, et c'est pour cela que ce projet est surveillé de près [3].",
+      "En marge du sommet, le président iranien Massoud Pezeshkian a rencontré le Premier ministre géorgien et plaidé pour un calendrier de coopération plus étroit. Tbilissi avait coupé ses liaisons aériennes avec l'Iran après des sanctions américaines contre des compagnies iraniennes [4]."
+    ],
+    "forMe": "Une paix durable dans le Caucase rendrait les routes entre l'Asie centrale, la Turquie et l'Europe plus sûres, donc les marchandises et l'énergie qui les empruntent plus fiables. Tu ne le verras pas dans ton quotidien, mais c'est l'un des chantiers qui redessinent le commerce eurasiatique.",
+    "figures": [
+      {
+        "value": "2e",
+        "label": "secrétaire général de l'ONU à visiter l'Arménie",
+        "src": 2
+      },
+      {
+        "value": "Août 2025",
+        "label": "paraphe du traité de paix à Washington, toujours non signé",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Armradio",
+        "name": "Armradio, « Pashinyan, Guterres discuss Armenia-Azerbaijan peace process, TRIPP project »",
+        "url": "https://en.armradio.am/2026/10/15/pashinyan-guterres-discuss-armenia-azerbaijan-peace-process-tripp-project/"
+      },
+      {
+        "short": "Report.az",
+        "name": "Report.az, « Pashinyan, Guterres discuss Armenia-Azerbaijan peace process and TRIPP »",
+        "url": "https://report.az/en/region/pashinyan-guterres-discuss-armenia-azerbaijan-peace-process-and-tripp"
+      },
+      {
+        "short": "Horizon Weekly",
+        "name": "Horizon Weekly, « Guterres backs Armenia-Azerbaijan peace process as Armenian prisoners remain in Baku »",
+        "url": "https://horizonweekly.ca/en/guterres-backs-armenia-azerbaijan-peace-process-as-armenian-prisoners-remain-in-baku/"
+      },
+      {
+        "short": "Korea Times",
+        "name": "Korea Times, « Iran denies nuclear ambitions, says ready for talks »",
+        "url": "https://www.koreatimes.co.kr/world/20261017/iran-denies-nuclear-ambitions-says-ready-for-talks"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-kenya-ebola-deuxieme-cas",
+    "date": "2026-10-17",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Nairobi, Kenya",
+        "label": "Kenya",
+        "coords": [
+          36.82,
+          -1.29
+        ]
+      }
+    ],
+    "title": "Ebola arrive au Kenya : deuxième cas confirmé chez un proche du premier patient",
+    "summary": "Un homme de 39 ans, déjà isolé, est positif au virus Bundibugyo. Les autorités disent qu'il n'y a pas de transmission dans la population.",
+    "points": [
+      "Le ministère kényan de la Santé a confirmé le 14 octobre un deuxième cas d'Ebola : un homme de 39 ans, proche du premier malade, tombé malade le 13 octobre alors qu'il était déjà en quarantaine [1][2].",
+      "Deux laboratoires, dont celui de KEMRI-CDC, ont chacun confirmé la maladie à virus Bundibugyo. Le premier patient, un Kényan de 40 ans, est mort le 5 octobre à Nairobi [1][2].",
+      "Sur 128 contacts identifiés, 113 avaient été retrouvés, dont 108 en quarantaine au Kenya. Le ministère dit que les deux cas sont liés et qu'il n'y a pas de preuve de transmission plus large [1][2]."
+    ],
+    "why": [
+      "Le Kenya est touché par une épidémie venue de République démocratique du Congo, où se concentre l'essentiel des cas. L'organisation CARE la décrit comme la deuxième plus grande épidémie d'Ebola jamais enregistrée, avec plus de 9 000 cas [3].",
+      "Repérer et isoler les contacts très vite, comme le fait le Kenya, est ce qui permet de limiter la propagation [1][2]."
+    ],
+    "forMe": "Le risque pour toi est très faible : les cas kényans sont suivis et isolés. Mais une épidémie dans un grand pays d'Afrique de l'Est peut peser sur le tourisme, les vols et le commerce de la région.",
+    "figures": [
+      {
+        "value": "2",
+        "label": "cas confirmés au Kenya, dont 1 décès",
+        "src": 1
+      },
+      {
+        "value": "128",
+        "label": "contacts identifiés par les autorités kényanes",
+        "src": 1
+      },
+      {
+        "value": "> 9 000",
+        "label": "cas dans l'épidémie, presque tous en RD Congo, selon CARE",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "AP (ABC News)",
+        "name": "AP, « Kenya confirms second Ebola case, a relative of first patient »",
+        "url": "https://abcnews.com/International/wireStory/kenya-confirms-ebola-case-relative-patient-137261113"
+      },
+      {
+        "short": "CBC",
+        "name": "CBC, « Kenya confirms 2nd case of Ebola in relative of patient who died earlier this month »",
+        "url": "https://www.cbc.ca/news/world/kenya-second-case-ebola-confirmed-9.7380626"
+      },
+      {
+        "short": "CARE",
+        "name": "CARE, « Kenya confirms second case of Ebola, as cases surpass 9,000 »",
+        "url": "https://www.care.org/news-and-stories/kenya-confirms-second-case-ebola-bulletin-care-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-tanzanie-gaz-42-milliards",
+    "date": "2026-10-17",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Dar es Salaam, Tanzanie",
+        "label": "Tanzanie",
+        "coords": [
+          39.28,
+          -6.82
+        ]
+      }
+    ],
+    "title": "Tanzanie : le plus gros projet de gaz du pays, 42 milliards de dollars, attend toujours sa signature",
+    "summary": "Le ministre des Finances dit qu'un accord est proche avec Shell et Equinor, mais il devait être signé avant juin et ne l'est toujours pas.",
+    "points": [
+      "Le ministre des Finances, Khamis Mussa Omar, a dit le 13 octobre que la Tanzanie était proche d'un accord sur son projet de gaz naturel liquéfié (GNL) de 42 milliards de dollars. Les accords définitifs ne sont pas signés [1].",
+      "L'objectif de les signer avant juin 2026 n'a pas été tenu. Une loi spéciale sur les investissements dans le GNL pourrait être prête d'ici la fin de 2026, selon un vice-ministre cité par bne IntelliNews [1].",
+      "Le projet vise 47,13 mille milliards de pieds cubes de gaz. Equinor et Shell le pilotent, avec ExxonMobil, Pavilion Energy, Medco Energi et la société d'État TPDC [2]."
+    ],
+    "why": [
+      "À 42 milliards de dollars, c'est le plus gros investissement jamais envisagé dans le pays, ce qui explique que le gouvernement veuille un cadre légal particulier avant de signer [2].",
+      "La production ne commencerait qu'environ huit ans après la signature : l'effet économique se joue donc sur le long terme [2]."
+    ],
+    "forMe": "Un projet de cette taille ne se voit pas à la pompe avant des années. Mais il montre pourquoi l'Afrique de l'Est attire les géants de l'énergie, et pourquoi leurs négociations avec les États prennent si longtemps.",
+    "figures": [
+      {
+        "value": "42 Md$",
+        "label": "coût du projet de GNL, le plus gros du pays",
+        "src": 2
+      },
+      {
+        "value": "47,13",
+        "label": "mille milliards de pieds cubes de gaz que le projet permettrait d'exploiter",
+        "src": 2
+      },
+      {
+        "value": "≈ 8 ans",
+        "label": "entre la signature et le début de la production",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "bne IntelliNews",
+        "name": "bne IntelliNews, « Tanzania nears agreement on $42bn LNG project after years of delays »",
+        "url": "https://www.intellinews.com/tanzania-nears-agreement-on-42bn-lng-project-after-years-of-delays-475624"
+      },
+      {
+        "short": "Hydrocarbon Processing",
+        "name": "Hydrocarbon Processing, « Tanzania expects to sign $42-B mega LNG project before June »",
+        "url": "https://hydrocarbonprocessing.com/news/2026/01/tanzania-expects-to-sign-42-b-mega-lng-project-before-june/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-yemen-houthis-mer-rouge-aden",
+    "date": "2026-10-17",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Aden, Yémen",
+        "label": "Yémen",
+        "coords": [
+          45.03,
+          12.79
+        ]
+      }
+    ],
+    "title": "Yémen : les Houthis frappent le palais du gouvernement à Aden, le Conseil de sécurité s'alarme pour la mer Rouge",
+    "summary": "Après avoir pris le port de Moka le mois dernier, les rebelles attaquent la ville où siège le gouvernement. L'ONU condamne les attaques contre les aéroports, l'énergie et la navigation.",
+    "points": [
+      "Jeudi, une attaque contre le palais d'Al-Maashiq, à Aden, a fait 5 morts et 16 blessés selon le ministre yéménite de la Santé. Les médias proches des Houthis disent avoir visé le quartier général des opérations, dirigé par des officiers saoudiens [2].",
+      "Les Houthis ont pris le port de Moka le 10 septembre, puis l'île de Perim le lendemain, au bord du détroit de Bab-el-Mandeb. Le gouvernement parle d'un « repli tactique » ; des médias yéménites ont depuis dit l'avoir repris, ce que les Houthis démentent et que nous n'avons pas pu vérifier [3].",
+      "Le Conseil de sécurité de l'ONU a condamné le 15 octobre les attaques houthies contre des civils, des aéroports et des installations énergétiques, ainsi que les menaces sur la navigation en mer Rouge et dans le détroit de Bab-el-Mandeb [4]."
+    ],
+    "why": [
+      "Bab-el-Mandeb est la porte sud de la mer Rouge : les bateaux qui vont vers le canal de Suez passent par là. Celui qui tient la côte peut menacer le passage [3][4].",
+      "La guerre du Yémen se mêle à celle du Golfe : l'Arabie saoudite accuse l'Iran d'armer et d'entraîner les Houthis [2]."
+    ],
+    "forMe": "Si les navires évitent la mer Rouge, ils font le tour de l'Afrique : plus long et plus cher. Cela peut renchérir certains produits venus d'Asie et le transport des carburants.",
+    "figures": [
+      {
+        "value": "5",
+        "label": "morts dans l'attaque du palais d'Al-Maashiq à Aden, selon le ministre de la Santé",
+        "src": 2
+      },
+      {
+        "value": "16",
+        "label": "blessés",
+        "src": 2
+      },
+      {
+        "value": "10 sept.",
+        "label": "date de la prise de Moka par les Houthis",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Fighting in Yemen intensifies: What's the latest on the battlefield? »",
+        "url": "https://www.aljazeera.com/news/2026/10/15/fighting-in-yemen-intensifies-whats-the-latest-on-the-battlefield"
+      },
+      {
+        "short": "Manila Times",
+        "name": "Manila Times, « Houthis attack Yemeni presidential palace »",
+        "url": "https://www.manilatimes.net/2026/10/17/world/americas-emea/houthis-attack-yemeni-presidential-palace/2447502"
+      },
+      {
+        "short": "Al Jazeera (Moka)",
+        "name": "Al Jazeera, « Yemen's Houthis seize strategic Red Sea city of Mocha »",
+        "url": "https://www.aljazeera.com/news/2026/9/10/yemens-houthis-seize-strategic-red-sea-city-of-mocha"
+      },
+      {
+        "short": "Yemen Monitor",
+        "name": "Yemen Monitor, « Yemen Welcomes UN Security Council's Position on Houthi Attacks on Its Territory and Saudi Arabia »",
+        "url": "https://www.yemenmonitor.com/en/Details/ArtMID/908/ArticleID/185034"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-singapour-brume-poursuites-entreprises",
+    "date": "2026-10-17",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Singapour",
+        "label": "Singapour",
+        "coords": [
+          103.82,
+          1.35
+        ]
+      }
+    ],
+    "title": "Brume toxique : Singapour menace de poursuivre les entreprises derrière les incendies indonésiens",
+    "summary": "Le Premier ministre Lawrence Wong dit chercher quelles sociétés sont responsables et évoque des poursuites. L'air est le plus pollué de l'année.",
+    "points": [
+      "Dans un message publié jeudi soir, le Premier ministre Lawrence Wong a dit que Singapour cherchait quelles entreprises pouvaient être responsables des incendies de forêts et de tourbières en Indonésie, et pourrait agir en vertu de sa loi contre la pollution transfrontalière [1][2].",
+      "L'indice de pollution du centre de l'île a atteint jusqu'à 229 vendredi, le plus haut de l'année. Singapour vit 12 jours d'affilée d'air malsain depuis le 5 octobre, sa plus longue série depuis la crise de 2015 [3].",
+      "L'Indonésie accepte l'aide étrangère, approuvée par le président Prabowo Subianto. Quatre personnes sont mortes à Java en combattant les feux [1][4]."
+    ],
+    "why": [
+      "Poursuivre des entreprises pour une fumée qui traverse les frontières est difficile : les enquêtes dépendent de la coopération des autorités étrangères, préviennent des juristes [1].",
+      "Le gouvernement singapourien a aussi accéléré la distribution de masques N95 à la population, signe que la situation est prise au sérieux [3]."
+    ],
+    "forMe": "Si tu voyages ou travailles en Asie du Sud-Est, la brume peut peser sur la santé et le quotidien : l'air est malsain à Singapour depuis près de deux semaines. C'est aussi un test pour savoir si les entreprises peuvent être tenues responsables de feux qui polluent d'autres pays.",
+    "figures": [
+      {
+        "value": "229",
+        "label": "indice de pollution (24 h) au centre de Singapour, record de l'année",
+        "src": 3
+      },
+      {
+        "value": "12 jours",
+        "label": "d'air malsain d'affilée, la plus longue série depuis 2015",
+        "src": 3
+      },
+      {
+        "value": "4",
+        "label": "morts à Java en luttant contre les incendies",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "CNBC",
+        "name": "CNBC, « Gasping for clean air: Singapore battles relentless haze as Prime Minister Wong warns of action »",
+        "url": "https://www.cnbc.com/2026/10/16/singapore-haze-wong-warning-indonesia.html"
+      },
+      {
+        "short": "Japan Times",
+        "name": "Japan Times, « Singapore probing firms over haze-causing Indonesian fires »",
+        "url": "https://www.japantimes.co.jp/news/2026/10/16/asia-pacific/science-health/singapore-probe-haze-firms/"
+      },
+      {
+        "short": "The Online Citizen",
+        "name": "The Online Citizen, « Singapore haze: Central region's 24-hour PSI hits 229 at 3pm on 16 October, highest in 2026 »",
+        "url": "https://news.theonlinecitizen.com/2026/10/16/singapore-haze-central-region-s-24-hour-psi-hits-229-at-3pm-on-16-october-highest-in-2026"
+      },
+      {
+        "short": "Manila Times",
+        "name": "Manila Times, « Indonesia fires kill 4 as haze cloaks SEA »",
+        "url": "https://www.manilatimes.net/2026/10/17/world/asia-oceania/indonesia-fires-kill-4-as-haze-cloaks-sea/2447506"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-17-chine-ue-hybrides-terres-rares",
+    "date": "2026-10-17",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Pékin, Chine",
+        "label": "Chine",
+        "coords": [
+          116.4,
+          39.9
+        ]
+      }
+    ],
+    "title": "La Chine accepte de vendre deux fois moins de voitures hybrides à l'Europe, et promet une « voie rapide » pour les terres rares",
+    "summary": "Après deux jours de négociations à Pékin, l'UE annonce un accord de principe sur les hybrides. Pékin dit que les terres rares continueront d'arriver en Europe.",
+    "points": [
+      "Le commissaire européen au Commerce, Maroš Šefčovič, a annoncé le 9 octobre que la Chine réduirait ses exportations de voitures hybrides vers l'UE, après deux jours de discussions à Pékin avec le ministre du Commerce Wang Wentao. Cela concerne les hybrides classiques et rechargeables [1][2].",
+      "La « moitié » est calculée par rapport aux ventes prévues, pas aux ventes actuelles. Selon Šefčovič, cela éviterait l'arrivée de plusieurs millions de véhicules chinois en quatre ans par rapport à un scénario sans accord. Le dispositif (quotas ou engagements des constructeurs) n'est pas précisé, et l'accord doit encore être approuvé par l'UE [2].",
+      "Selon CNBC, la Chine a dit le 15 octobre rester prête à faciliter par une « voie rapide » les licences d'exportation de terres rares et d'aimants vers l'Europe, même à l'approche de l'échéance de l'accord commercial avec les États-Unis. Elle demande en échange à l'UE de soutenir certaines de ses exportations dans des secteurs à double usage [3]."
+    ],
+    "why": [
+      "Pour l'Europe, l'accord limiterait l'arrivée de véhicules chinois tout en lui faisant économiser des droits de douane [2].",
+      "Les sources divergent sur ce qui est réellement acquis : les gains de droits de douane sont chiffrés différemment selon les médias, et Pékin n'a pas promis de volumes de licences de terres rares [2][3]."
+    ],
+    "forMe": "Si tu cherches une voiture hybride, l'offre de modèles chinois pourrait se réduire. Les terres rares, elles, servent aux aimants des voitures électriques, des éoliennes et de nombreux appareils.",
+    "figures": [
+      {
+        "value": "÷ 2",
+        "label": "exportations chinoises d'hybrides vers l'UE par rapport aux prévisions",
+        "src": 2
+      },
+      {
+        "value": "2 jours",
+        "label": "de négociations à Pékin entre Šefčovič et Wang Wentao",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "CNBC (hybrides)",
+        "name": "CNBC, « China, Europe agree to cut Chinese hybrid vehicle exports by over half »",
+        "url": "https://www.cnbc.com/2026/10/09/china-europe-hybrid-vehicle-exports-deal.html"
+      },
+      {
+        "short": "EU Perspectives",
+        "name": "EU Perspectives, « China agrees to half hybrid exports as EU secures tariff savings »",
+        "url": "https://euperspectives.eu/2026/10/china-eu-hybrid-exports-tariff-deal/"
+      },
+      {
+        "short": "CNBC (terres rares)",
+        "name": "CNBC, « China indicates rare earths will keep flowing to EU, regardless of U.S. trade deal expiration »",
+        "url": "https://www.cnbc.com/2026/10/15/china-rare-earth-exports-europe.html"
+      }
+    ]
+  },
+  {
     "id": "2026-10-16-ethiopie-erythree-rupture",
     "date": "2026-10-16",
     "region": "Afrique",
@@ -6693,271 +7265,6 @@ window.GEOCO.news = [
         "short": "Expreso",
         "name": "Expreso, « La demanda eléctrica de Ecuador bajó 300 MW, pero Mazar sigue bajo presión » (octobre 2026)",
         "url": "https://www.expreso.ec/economia-y-negocios/demanda-electrica-ecuador-300-mw-mazar-sigue-presion-298280.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-02-haiti-gangs-onu",
-    "date": "2026-10-02",
-    "region": "Amériques",
-    "theme": "geo",
-    "title": "Haïti : l'ONU alerte, les gangs « s'adaptent et s'étendent » malgré la force internationale",
-    "summary": "Le Haut-Commissaire de l'ONU aux droits de l'homme, Volker Türk, a dressé un bilan très sombre de la violence des gangs en Haïti. La force internationale chargée de les combattre n'a qu'une fraction des effectifs prévus.",
-    "geo": [
-      {
-        "name": "Port-au-Prince, Haïti",
-        "label": "Haïti",
-        "coords": [
-          -72.34,
-          18.54
-        ]
-      }
-    ],
-    "points": [
-      "Selon Volker Türk, les gangs ont été en partie contenus dans la capitale Port-au-Prince, mais continuent de « s'adapter et de s'étendre », réapparaissent dans de nouvelles zones et se réarment sans cesse [1].",
-      "Son bureau a recensé au moins 5 700 personnes tuées ou blessées entre le 1er janvier et le 11 septembre 2026, plus de 230 enlèvements et plus de 1 000 femmes et filles violées, des chiffres probablement sous-estimés [2].",
-      "La Force de répression des gangs, mandatée par l'ONU, doit compter 5 500 personnes mais n'en a qu'environ 1 500 sur place [2]."
-    ],
-    "why": [
-      "Haïti n'a ni président élu ni Parlement en fonction, et l'ONU estime que le pays reste loin des conditions nécessaires à des élections crédibles [3]. Tant que les gangs contrôlent des routes et des quartiers, l'État ne peut ni organiser un vote sûr, ni relancer l'économie.",
-      "Volker Türk demande aux États de financer et d'équiper rapidement la force internationale, de maintenir et d'élargir les sanctions contre les chefs de gangs et leurs soutiens, et de couper le trafic d'armes vers Haïti [1]. Il s'inquiète aussi des violences commises par des « groupes d'autodéfense », qui auraient tué ou blessé environ 280 personnes cette année [2]."
-    ],
-    "forMe": "Haïti partage la mer des Caraïbes avec la Guadeloupe et la Martinique, et une diaspora haïtienne vit en France. Une crise qui dure, c'est plus de familles poussées à partir, y compris vers les territoires français de la région.",
-    "figures": [
-      {
-        "value": "5 700",
-        "label": "personnes tuées ou blessées (1er janv.–11 sept. 2026)",
-        "src": 2
-      },
-      {
-        "value": "1 500 / 5 500",
-        "label": "effectifs déployés / prévus de la force anti-gangs",
-        "src": 2
-      },
-      {
-        "value": "230+",
-        "label": "enlèvements recensés depuis janvier",
-        "src": 2
-      }
-    ],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "HCDH",
-        "name": "Haut-Commissariat de l'ONU aux droits de l'homme, « High Commissioner Türk: We need all eyes on Haiti » (octobre 2026)",
-        "url": "https://www.ohchr.org/en/statements-and-speeches/2026/10/high-commissioner-turk-we-need-all-eyes-haiti"
-      },
-      {
-        "short": "Courthouse News / AFP",
-        "name": "Courthouse News (AFP), « At least 5,700 killed, wounded in Haiti gang crisis this year: UN » (octobre 2026)",
-        "url": "https://www.courthousenews.com/at-least-5700-killed-wounded-in-haiti-gang-crisis-this-year-un/"
-      },
-      {
-        "short": "Caribbean National Weekly",
-        "name": "Caribbean National Weekly, « UN rights chief warns Haiti remains far from conditions for credible elections » (octobre 2026)",
-        "url": "https://www.caribbeannationalweekly.com/posts/un-rights-chief-warns-haiti-remains-far-from-conditions-for-credible-elections"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-02-taiwan-f16v",
-    "date": "2026-10-02",
-    "region": "Asie",
-    "theme": "geo",
-    "title": "Taïwan reçoit enfin ses premiers F-16V américains, avec des années de retard",
-    "summary": "Les deux premiers des 66 chasseurs F-16V Block 70 commandés aux États-Unis ont atterri à Taïwan le 2 octobre. Une livraison prévue à l'origine pour 2023, et qui arrive dans un contexte de doutes sur le soutien américain.",
-    "geo": [
-      {
-        "name": "Base aérienne de Chihhang, Taitung, Taïwan",
-        "label": "Taïwan",
-        "coords": [
-          121.1,
-          22.75
-        ]
-      }
-    ],
-    "points": [
-      "Taïwan a reçu le 2 octobre les deux premiers de ses 66 F-16V Block 70, sur la base aérienne de Chihhang dans le comté de Taitung, avec environ un mois de retard sur le calendrier attendu [1][2].",
-      "La vente, approuvée par Washington en 2019 pour environ 8 milliards de dollars, devait être livrée à partir de 2023, mais des problèmes techniques ont repoussé le calendrier [1].",
-      "Le ministre de la Défense Wellington Koo a indiqué que plus de deux appareils seraient livrés cette année et que les dates suivantes seraient fixées avec les États-Unis [2]."
-    ],
-    "why": [
-      "Ces avions de combat modernes doivent renforcer la capacité de Taïwan à dissuader une attaque de la Chine [3]. Pékin a réaffirmé son « opposition ferme » aux ventes d'armes américaines à Taïwan [3].",
-      "Les appareils sont restés plus d'un mois à Hawaï, alors que Donald Trump préparait une rencontre avec Xi Jinping [2]. La livraison intervient alors qu'à Taïwan grandit l'inquiétude sur l'engagement de l'administration Trump à armer l'île, même si Washington affirme que sa politique n'a pas changé [4]."
-    ],
-    "forMe": "Taïwan est au cœur de la rivalité entre la Chine et les États-Unis, et l'île est un maillon clé de l'industrie des puces électroniques. Tout ce qui touche à sa sécurité compte donc pour tes appareils électroniques et pour la stabilité de l'économie mondiale.",
-    "figures": [
-      {
-        "value": "2 sur 66",
-        "label": "F-16V livrés à Taïwan",
-        "src": 1
-      },
-      {
-        "value": "~8 Md$",
-        "label": "montant de la commande approuvée en 2019",
-        "src": 1
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Focus Taiwan",
-        "name": "Focus Taiwan (CNA), « Taiwan receives first 2 F-16V Block 70s » (2 octobre 2026)",
-        "url": "https://focustaiwan.tw/politics/202610020006"
-      },
-      {
-        "short": "Taipei Times",
-        "name": "Taipei Times, « Taiwan receives first 2 F-16V Block 70s » (3 octobre 2026)",
-        "url": "https://www.taipeitimes.com/News/front/archives/2026/10/03/2003865308"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « US delivers F-16V fighter jets to Taiwan as island eyes threat from China » (2 octobre 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/2/us-delivers-f-16v-fighter-jets-to-taiwan-as-island-eyes-threat-from-china"
-      },
-      {
-        "short": "Defense News",
-        "name": "Defense News, « Taiwan's first two F-16V fighter jets arrive to bolster defenses against China » (2 octobre 2026)",
-        "url": "https://www.defensenews.com/global/asia-pacific/2026/10/02/taiwans-first-two-f-16v-fighter-jets-arrive-to-bolster-defenses-against-china/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-02-gaza-aide-financement",
-    "date": "2026-10-02",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "title": "Gaza : faute d'argent, l'aide alimentaire va diminuer à l'approche de l'hiver",
-    "summary": "Selon le dernier rapport du bureau humanitaire de l'ONU (OCHA), les repas chauds et les colis alimentaires distribués à Gaza vont nettement baisser à partir d'octobre, faute de financement. Près de 280 000 personnes vivent dans des camps exposés aux inondations.",
-    "geo": [
-      {
-        "name": "Gaza, Territoires palestiniens",
-        "label": "Gaza",
-        "coords": [
-          34.47,
-          31.5
-        ]
-      }
-    ],
-    "points": [
-      "Les organisations chargées de l'aide alimentaire préviennent que la production quotidienne de repas chauds et les distributions mensuelles de colis aux familles vont « nettement diminuer » à partir d'octobre, faute de financements [1].",
-      "Environ 279 000 personnes vivent dans 400 sites de déplacés exposés aux inondations, et plus de 2 300 dans des bâtiments dangereux à démolir, soit plus de 13 % de la population de Gaza [1].",
-      "Le manque d'argent et les restrictions à l'entrée d'huile moteur, de pièces détachées et d'équipements réduisent le dessalement de l'eau dans le sud de Gaza [1]."
-    ],
-    "why": [
-      "À Gaza, l'aide humanitaire dépend de l'argent que les pays donateurs versent à l'ONU et aux ONG : or l'appel de fonds 2026 pour Gaza et la Cisjordanie (environ 4 milliards de dollars) n'était financé qu'à 40 % fin août, selon OCHA [2][3]. Près de 92 % de cette somme est destinée à Gaza [3].",
-      "Le calendrier compte : la saison froide et pluvieuse approche, ce qui augmente le risque d'inondation dans des sites de déplacés déjà fragiles [1]. Moins de colis et moins d'eau dessalée, c'est une population encore plus dépendante d'une aide qui se réduit."
-    ],
-    "forMe": "Et moi, dans tout ça ? L'aide humanitaire est financée en partie par tes impôts, via la France et l'Union européenne, qui comptent parmi les donateurs de l'ONU. Quand les budgets d'aide se resserrent dans le monde, ce sont des crises comme celle de Gaza qui trinquent en premier : c'est un bon exemple de la façon dont des décisions budgétaires prises loin du terrain se traduisent concrètement en repas en moins.",
-    "figures": [
-      {
-        "value": "279 000",
-        "label": "personnes dans des sites de déplacés exposés aux inondations",
-        "src": 1
-      },
-      {
-        "value": "40 %",
-        "label": "part financée de l'appel humanitaire 2026 (fin août)",
-        "src": 2
-      },
-      {
-        "value": "~4 Md$",
-        "label": "montant demandé par l'ONU pour Gaza et la Cisjordanie en 2026",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "OCHA",
-        "name": "OCHA (bureau humanitaire de l'ONU), oPt : Humanitarian Situation Report (2 octobre 2026)",
-        "url": "https://www.ochaopt.org/content/humanitarian-situation-report-2-october-2026"
-      },
-      {
-        "short": "OCHA",
-        "name": "OCHA, oPt : Humanitarian Situation Report (28 août 2026)",
-        "url": "https://www.unocha.org/publications/report/occupied-palestinian-territory/opt-humanitarian-situation-report-28-august-2026"
-      },
-      {
-        "short": "ONU",
-        "name": "ONU (UNISPAL), OCHA : la communauté humanitaire lance un appel de 4 milliards de dollars pour Gaza et la Cisjordanie (décembre 2025)",
-        "url": "https://www.un.org/unispal/document/ocha-humanitarian-community-launches-us4-billion-flash-appeal-for-gaza-and-the-west-bank/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-02-mexique-etats-unis-acier-automobile",
-    "date": "2026-10-02",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Le Mexique se rapproche d'un accord avec Washington sur l'acier et l'automobile",
-    "summary": "Mexico négocie presque chaque jour avec les États-Unis pour alléger les droits de douane sur ses voitures, son acier et son aluminium. Un compromis semble proche, mais rien n'est signé.",
-    "geo": [
-      {
-        "name": "Mexico, Mexique",
-        "label": "Mexique",
-        "coords": [
-          -99.13,
-          19.43
-        ]
-      }
-    ],
-    "points": [
-      "Le ministre mexicain de l'Économie Marcelo Ebrard a rencontré le représentant américain au Commerce Jamieson Greer à Milwaukee, en marge de la réunion des ministres du Commerce du G20 (30 septembre–1er octobre) [1][2].",
-      "Le 1er octobre, Ebrard a reconnu que les négociations sur la baisse des droits « section 232 » (taxes américaines justifiées par la sécurité nationale) n'étaient pas terminées, malgré des échanges quasi quotidiens avec Greer [3].",
-      "Le cadre discuté abaisserait de 25 % à 15 % les droits américains sur les véhicules légers venus du Mexique ; comme ce taux ne s'applique qu'à la part non américaine du véhicule, la charge réelle tomberait entre 10 % et 12 % selon des responsables mexicains [3].",
-      "Aujourd'hui, les voitures mexicaines paient 25 % aux États-Unis, contre 15 % pour les voitures européennes, japonaises et coréennes, selon l'association des constructeurs mexicains (AMIA) [2].",
-      "L'acier et l'aluminium mexicains restent taxés à 50 % ; l'ampleur d'une éventuelle baisse n'est pas connue [3].",
-      "Depuis le 24 juillet 2026, un droit supplémentaire de 10 % lié au travail forcé s'applique aux produits mexicains, ceux conformes à l'ACEUM en étant exemptés [4]."
-    ],
-    "why": [
-      "Plus de 80 % des exportations mexicaines partent vers les États-Unis, et l'automobile emploie environ 800 000 personnes au Mexique : ces négociations sont vitales pour l'économie du pays [3].",
-      "Le Mexique veut faire mieux que le Canada, à qui Washington avait proposé un taux nominal de 15 % pouvant descendre vers 7 % avec les remises liées au contenu régional [3]. Mais l'échec de dernière minute de l'accord canadien en août incite à la prudence [3].",
-      "Ces discussions sont liées à la révision de l'ACEUM (Accord Canada–États-Unis–Mexique, le traité de libre-échange nord-américain), dont un quatrième cycle de négociation a glissé à octobre sans date publiée [2]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Mexique est devenu une grande usine pour l'Amérique du Nord, y compris pour des groupes européens de l'automobile et des pièces détachées. Si ses voitures restent plus taxées que les européennes à l'entrée des États-Unis, les constructeurs européens gardent un avantage ; si l'écart se réduit, la concurrence se durcit pour eux sur le marché américain.",
-    "figures": [
-      {
-        "value": "25 % → 15 %",
-        "label": "Baisse envisagée des droits américains sur les véhicules légers mexicains",
-        "src": 3
-      },
-      {
-        "value": "50 %",
-        "label": "Droits américains actuels sur l'acier et l'aluminium mexicains",
-        "src": 3
-      },
-      {
-        "value": "800 000",
-        "label": "Emplois dans l'industrie automobile mexicaine (environ)",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "Xinhua",
-        "name": "Mexico seeks U.S. steel, auto tariff cuts (2 octobre 2026)",
-        "url": "https://english.news.cn/northamerica/20261002/0ff78693d4604286a8d0bc677a5e48ef/c.html"
-      },
-      {
-        "short": "Latin Times",
-        "name": "Mexico-U.S. Trade Talks Move Forward, but Steel, Autos and Canada Complicate the Deal (octobre 2026)",
-        "url": "https://www.latintimes.com/mexico-us-trade-talks-move-forward-steel-autos-canada-complicate-deal-599955"
-      },
-      {
-        "short": "Mexico Business News",
-        "name": "Mexico Nears US Deal to Cut Auto, Steel and Aluminum Tariffs (octobre 2026)",
-        "url": "https://mexicobusiness.news/automotive/news/mexico-nears-us-deal-cut-auto-steel-and-aluminum-tariffs"
-      },
-      {
-        "short": "Holland & Knight",
-        "name": "Mexico Retains Preferential Access Under USMCA Despite New U.S. Forced Labor Tariffs (juillet 2026)",
-        "url": "https://www.hklaw.com/en/insights/publications/2026/07/mexico-mantiene-acceso-preferencial-bajo-el-tmec"
       }
     ]
   }
