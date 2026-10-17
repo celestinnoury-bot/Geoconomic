@@ -994,6 +994,15 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-timeup { margin: 8px 0; padding: 12px 14px; border-radius: 16px; background: rgba(255, 179, 64, .12); border: 1px solid rgba(255, 179, 64, .35); }
 .qz-timeup p { margin: 0 0 8px; }
 .qz-timeup .btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.qz-mystery { margin: 8px 0; padding: 10px 14px; border-radius: 16px; background: rgba(127, 182, 255, .08); border: 1px dashed rgba(127, 182, 255, .4); }
+.qz-mystery p { margin: 2px 0; font-size: 14px; }
+.qz-mystery .label { color: #7fb6ff; margin-bottom: 4px; }
+.qz-mask { font: 700 18px var(--display); letter-spacing: .06em; margin-right: 8px; color: var(--text); }
+.qz-mystery small { color: var(--muted); }
+.g-zone { fill: rgba(127, 182, 255, .14); stroke: #7fb6ff; stroke-width: 1.6; stroke-dasharray: 5 4; pointer-events: none; }
+.qz-2en1 { max-width: 320px; }
+.qz-2en1 svg { width: 15px; height: 15px; vertical-align: -2px; }
+.qz-tools .btn.small { padding: 8px 12px; font-size: 13px; }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -2001,7 +2010,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       src: [{ short: "USGS (cobalt, 2026)", url: "https://pubs.usgs.gov/periodicals/mcs2026/mcs2026-cobalt.pdf" }, { short: "Statista (cacao)", url: "https://www.statista.com/statistics/263855/cocoa-bean-production-worldwide-by-region/" }, { short: "Commission européenne (euro)", url: "https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro_fr" }] },
   ];
   const QTYPE = {
-    list: { label: "À écrire ou sur le globe", ico: "pen", bg: "#3a2a1e", fg: "#ffb340" },
+    list: { label: "Écrire ou toucher le globe", ico: "pen", bg: "#3a2a1e", fg: "#ffb340" },
     actu: { label: "Sur le globe", ico: "globe", bg: "#1e2b3a", fg: "#7fb6ff" },
     rank: { label: "Classement à reconstituer", ico: "bars", bg: "#22301f", fg: "#9fd88a" },
     qcm: { label: "Choix multiples", ico: "grid", bg: "#33213a", fg: "#d5a6ff" },
@@ -2154,7 +2163,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const feats = QD.geo.map(([id, c]) => ({ type: "Feature", id, geometry: { type: "MultiPolygon", coordinates: c } }));
     const byId = new Map(feats.map((f) => [f.id, f]));
     const land = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "g-land");
-    const draw = () => { svg.selectAll(".g-sea,.g-grat").attr("d", path); land.attr("d", path); };
+    const draw = () => { svg.selectAll(".g-sea,.g-grat,.g-zone").attr("d", path); land.attr("d", path); };
     draw();
     // Un seul geste pour tout : glisser fait tourner, pincer (ou la molette, ou + / −) zoome, jusqu'à 10 fois.
     let last = d3.zoomIdentity;
@@ -2189,6 +2198,25 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       mark(id, cls) { land.filter((f) => f.id === id).attr("class", "g-land " + cls); },
       flash(id, cls) { const p = land.filter((f) => f.id === id); p.classed(cls, true); setTimeout(() => p.classed(cls, false), 700); },
       has: (id) => byId.has(id),
+      // Zone d'indice : un cercle qui contient le pays sans être centré dessus.
+      zone(id) {
+        svg.selectAll(".g-zone").remove();
+        const f = id && byId.get(id); if (!f) return;
+        const c = d3.geoCentroid(f), size = Math.sqrt(d3.geoArea(f) / Math.PI) * 180 / Math.PI;
+        const r = Math.max(9, size * 2.2), a = Math.random() * 2 * Math.PI, off = r * 0.45;
+        const center = [c[0] + off * Math.cos(a) / Math.max(0.3, Math.cos(c[1] * Math.PI / 180)), Math.max(-80, Math.min(80, c[1] + off * Math.sin(a)))];
+        svg.append("path").datum(d3.geoCircle().center(center).radius(r)()).attr("class", "g-zone").attr("d", path);
+        draw();
+        const from = proj.rotate(), to = [-center[0], Math.max(-60, Math.min(60, -center[1]))];
+        d3.select(host).transition().duration(750).tween("r", () => { const i = d3.interpolate(from, to); return (t) => { proj.rotate(i(t)); draw(); }; });
+      },
+      nearest(id) {
+        const f = byId.get(id); if (!f) return null;
+        const c = d3.geoCentroid(f);
+        let best = null, bd = Infinity;
+        for (const g of feats) { if (g.id === id || !QD.names[g.id]) continue; const d = d3.geoDistance(c, d3.geoCentroid(g)); if (d < bd) { bd = d; best = g.id; } }
+        return best ? qName(best) : null;
+      },
     };
   }
 
@@ -2253,7 +2281,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const t = QTYPE[q.type];
     const kicker = QZCTX.duel ? `<p class="label qz-duel-tag">${ICON.swords} Duel du jour ${esc(QZCTX.duel.code)}${QZCTX.duel.vs ? ` contre ${esc(QZCTX.duel.vs)}` : ""}</p>` : QZCTX.daily ? `<p class="label qz-duel-tag">${ICON.sun} Quiz du jour, en solo</p>` : "";
     const clockOpt = (q.type === "list" || q.type === "clues") && !QZCTX.duel ? `<div class="seg qz-modes" id="qz-clockopt"><button data-clock="on" aria-pressed="true">${ICON.clock} Chrono</button><button data-clock="off" aria-pressed="false">Sans chrono</button></div><p class="note">Sans chrono : prends tout ton temps, les points restent les mêmes.</p>` : "";
-    const modes = q.type === "list" ? `<div class="seg qz-modes"><button data-mode="write" aria-pressed="true">${QICO.pen} Écrire</button>${window.d3 && QD ? `<button data-mode="click" aria-pressed="false">${QICO.globe} Sur le globe</button>` : ""}</div>` : "";
+    const modes = q.type === "list" && window.d3 && QD ? `<p class="note qz-2en1">${QICO.pen} Écris les noms <b>ou</b> ${QICO.globe} touche les pays sur le globe : les deux comptent, dans la même partie.</p>` : "";
     qzOpen(`${qzTop(q)}
       <div class="splash qz-splash">
         <div class="ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</div>
@@ -2266,7 +2294,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     let mode = "write";
     play.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => { mode = b.dataset.mode; play.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
     play.querySelectorAll("[data-clock]").forEach((b) => (b.onclick = () => { QZCTX.noclock = b.dataset.clock === "off"; play.querySelectorAll("[data-clock]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
-    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q, mode) : q.type === "clues" ? runClues(q) : q.type === "dates" ? runDates(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
+    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q) : q.type === "clues" ? runClues(q) : q.type === "dates" ? runDates(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
   }
 
   function quizDone(q, pct, hints = 0, extra = "") {
@@ -2276,7 +2304,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const first = st.day !== today();
     let gain = first ? Math.max(0, Math.round((QUIZ_PT * pct) / 100) - 2 * hints) : 0;
     const daily = QZCTX.duel || QZCTX.daily;
-    if (daily) { S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct, secs }; if (QZCTX.duel) qdSend(QZCTX.duel.code, pct, secs); }
+    if (daily) {
+      const dpct = Math.max(0, pct - (QZCTX.duel ? 3 * hints : 0));
+      S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct: dpct, secs };
+      if (QZCTX.duel) qdSend(QZCTX.duel.code, dpct, secs);
+    }
     const record = pct > st.best;
     S.quiz[q.id] = { best: Math.max(st.best, pct), day: today(), plays: (st.plays || 0) + 1 };
     if (gain) addPoints(gain); else save();
@@ -2299,21 +2331,31 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
 
   // Liste : écrire les noms (ils se placent tout seuls) ou cliquer les pays sur le globe.
-  function runList(q, mode) {
+  function runList(q) {
+    // Deux en un : on peut écrire OU toucher le pays sur le globe, dans la même partie. Même difficulté pour tous.
     const items = q.items.map((x) => (Array.isArray(x) ? { id: x[0], hint: x[1] } : typeof x === "object" ? x : { id: x }));
-    const pool = mode === "click" ? items.filter((it) => hasGeo(it.id)) : items;
-    const tiny = mode === "click" ? items.filter((it) => !hasGeo(it.id)) : [];
-    QZ = { found: new Set(), hints: 0, misses: 0, over: false };
+    const pool = items;
+    const tiny = items.filter((it) => !hasGeo(it.id));
+    QZ = { found: new Set(), hints: 0, misses: 0, over: false, target: null, clue: { letters: 0, zone: false, near: false, cap: false } };
     const total = pool.length;
     qzOpen(`${qzTop(q, clockHTML(q))}
       <div class="qz-count"><b class="num" id="qz-n">0</b> / ${total} <span class="muted">trouvés</span></div>
       <div class="qz-globe" id="qz-globe"></div>
-      ${mode === "write" ? `<form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris un pays…" aria-label="Écris un pays" autocapitalize="off" spellcheck="false"></form>` : `<p class="note qz-tip">Fais tourner le globe et touche les pays. ${tiny.length ? `Trop petits pour le globe, offerts : ${tiny.map((t) => esc(qName(t.id))).join(", ")}.` : ""}</p>`}
-      <div class="btns qz-tools"><button class="btn ghost small" id="qz-hint">Un indice</button><button class="btn ghost small" id="qz-give">J'abandonne</button></div>
-      <p class="note" id="qz-hint-txt" aria-live="polite"></p>
+      <form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris un pays, ou touche-le sur le globe…" aria-label="Écris un pays" autocapitalize="off" spellcheck="false"></form>
+      ${tiny.length && window.d3 && QD ? `<p class="note qz-tip">Trop petits pour le globe, à écrire : ${tiny.length} pays.</p>` : ""}
+      <div class="qz-mystery" id="qz-mystery" hidden></div>
+      <div class="btns qz-tools">
+        <button class="btn ghost small" data-hint="zone">📍 Où chercher</button>
+        <button class="btn ghost small" data-hint="letter">🔤 Une lettre</button>
+        <button class="btn ghost small" data-hint="near">🧭 Un voisin</button>
+        ${items.some((it) => it.hint) ? `<button class="btn ghost small" data-hint="cap">🏛️ La capitale</button>` : ""}
+        <button class="btn ghost small" id="qz-give">J'abandonne</button>
+      </div>
+      <p class="note" id="qz-hint-txt" aria-live="polite">Chaque indice coûte ${QZCTX.duel ? "3 % du score en duel" : "2 points"}.</p>
       ${q.grouped ? [...new Set(pool.map((it) => it.group))].map((g) => { const n = pool.filter((it) => it.group === g).length; return `<p class="qz-group"><b>${esc(g)}</b> <span class="num" data-gn="${esc(g)}">0</span>/${n}</p><ol class="qz-slots" data-group="${esc(g)}">${Array.from({ length: n }, (_, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`; }).join("")
         : `<ol class="qz-slots">${pool.map((it, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`}`);
-    const globe = makeGlobe($("#qz-globe"), { onPick: mode === "click" ? pick : null });
+    const globe = makeGlobe($("#qz-globe"), { onPick: pick });
+    if (!globe) play.querySelectorAll('[data-hint="zone"], [data-hint="near"]').forEach((b) => b.remove());
     // Les cases se remplissent dans l'ordre de découverte (par continent pour la liste du monde), comme sur JetPunk.
     const groupOf = new Map(pool.map((it) => [it.id, it.group]));
     function fill(id, cls) {
@@ -2328,54 +2370,75 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       fill(id, "ok");
       $("#qz-n").textContent = QZ.found.size;
       if (globe) { globe.mark(id, "found"); globe.focus(id); }
+      if (QZ.target === id) { QZ.target = null; if (globe) globe.zone(null); $("#qz-mystery").hidden = true; }
       if (QZ.found.size === total) end();
     }
     function pick(id) {
       if (QZ.over) return;
       if (pool.some((it) => it.id === id)) found(id);
+      else if (QZ.found.has(id)) return;
       else { QZ.misses++; globe && globe.flash(id, "bad"); $("#qz-hint-txt").textContent = `${qName(id)} : non.`; }
     }
     function end() {
       if (QZ.over) return;
       QZ.over = true;
       clearInterval(qzTimer);
+      if (globe) globe.zone(null);
+      $("#qz-mystery").hidden = true;
       const missing = pool.filter((it) => !QZ.found.has(it.id));
       missing.forEach((it) => { fill(it.id, "miss"); globe && globe.mark(it.id, "miss"); });
-      play.querySelectorAll("#qz-in, #qz-hint, #qz-give").forEach((b) => (b.disabled = true));
+      play.querySelectorAll("#qz-in, [data-hint], #qz-give").forEach((b) => (b.disabled = true));
       const pct = Math.round((QZ.found.size / total) * 100);
       const box = document.createElement("div");
       box.innerHTML = quizDone(q, pct, QZ.hints, missing.length ? `<p class="note">En rouge : ceux qui manquaient.</p>` : "");
       play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
       bindEnd(q);
     }
-    if (mode === "write") {
-      const inp = $("#qz-in");
-      // « Niger » est validé tout de suite… sauf si « Nigeria » reste à trouver : on attend alors une petite pause ou Entrée.
-      let wait = null;
-      const tryHit = (force) => {
-        clearTimeout(wait);
-        const v = norm(inp.value);
-        if (v.length < 2) return false;
-        const left = pool.filter((it) => !QZ.found.has(it.id));
-        const hit = left.find((it) => accepted(it.id).has(v));
-        if (!hit) return false;
-        const longer = left.some((it) => it !== hit && [...accepted(it.id)].some((n) => n.length > v.length && n.startsWith(v)));
-        if (longer && !force) { wait = setTimeout(() => tryHit(true), 900); return true; }
-        found(hit.id); inp.value = ""; return true;
-      };
-      inp.oninput = () => tryHit(false);
-      $("#qz-form").onsubmit = (e) => { e.preventDefault(); if (!tryHit(true) && inp.value.trim()) { inp.classList.add("shake"); setTimeout(() => inp.classList.remove("shake"), 400); } };
-      setTimeout(() => inp.focus(), 80);
-    }
-    $("#qz-hint").onclick = () => {
+    const inp = $("#qz-in");
+    // « Niger » est validé tout de suite… sauf si « Nigeria » reste à trouver : on attend alors une petite pause ou Entrée.
+    let wait = null;
+    const tryHit = (force) => {
+      clearTimeout(wait);
+      const v = norm(inp.value);
+      if (v.length < 2) return false;
       const left = pool.filter((it) => !QZ.found.has(it.id));
-      if (!left.length) return;
-      const it = left[Math.floor(Math.random() * left.length)];
-      QZ.hints++;
-      const name = qName(it.id);
-      $("#qz-hint-txt").textContent = it.hint ? `Indice : sa capitale est ${it.hint}.` : mode === "click" ? `Indice : cherche ${name}.` : `Indice : ${name.slice(0, 2)}… (${name.length} lettres)`;
-      if (mode === "click" && globe) globe.focus(it.id);
+      const hit = left.find((it) => accepted(it.id).has(v));
+      if (!hit) return false;
+      const longer = left.some((it) => it !== hit && [...accepted(it.id)].some((n) => n.length > v.length && n.startsWith(v)));
+      if (longer && !force) { wait = setTimeout(() => tryHit(true), 900); return true; }
+      found(hit.id); inp.value = ""; return true;
     };
+    inp.oninput = () => tryHit(false);
+    $("#qz-form").onsubmit = (e) => { e.preventDefault(); if (!tryHit(true) && inp.value.trim()) { inp.classList.add("shake"); setTimeout(() => inp.classList.remove("shake"), 400); } };
+    setTimeout(() => inp.focus(), 80);
+
+    // Indices sur un « pays mystère » : on garde le même tant qu'il n'est pas trouvé, et les indices s'additionnent.
+    const mask = (name, n) => { let k = 0; return [...name].map((c) => (/[a-zà-ÿ]/i.test(c) ? (k++ < n ? c.toUpperCase() : "_") : c)).join(" "); };
+    function paintMystery() {
+      const it = pool.find((x) => x.id === QZ.target), name = qName(it.id), c = QZ.clue, lines = [];
+      lines.push(`<span class="qz-mask num">${esc(mask(name, c.letters))}</span><small>${[...name].filter((ch) => /[a-zà-ÿ]/i.test(ch)).length} lettres</small>`);
+      if (c.zone) lines.push(`<span>📍 Il est dans la zone entourée sur le globe.</span>`);
+      if (c.near) lines.push(`<span>🧭 Il est tout près de : <b>${esc(c.near)}</b>.</span>`);
+      if (c.cap) lines.push(`<span>🏛️ Sa capitale : <b>${esc(it.hint)}</b>.</span>`);
+      const m = $("#qz-mystery"); m.hidden = false; m.innerHTML = `<p class="label">Pays mystère</p>${lines.map((l) => `<p>${l}</p>`).join("")}`;
+    }
+    play.querySelectorAll("[data-hint]").forEach((b) => (b.onclick = () => {
+      if (QZ.over) return;
+      const kind = b.dataset.hint;
+      let left = pool.filter((it) => !QZ.found.has(it.id));
+      if (kind === "zone" || kind === "near") left = left.filter((it) => hasGeo(it.id));
+      if (kind === "cap") left = left.filter((it) => it.hint);
+      if (!left.length) return;
+      if (!QZ.target || !left.some((it) => it.id === QZ.target)) { QZ.target = left[Math.floor(Math.random() * left.length)].id; QZ.clue = { letters: 0, zone: false, near: false, cap: false }; if (globe) globe.zone(null); }
+      const c = QZ.clue, it = pool.find((x) => x.id === QZ.target);
+      if (kind === "letter") { if (c.letters >= qName(it.id).length - 1) return; c.letters++; }
+      else if (kind === "zone") { if (c.zone) return; c.zone = true; globe.zone(it.id); }
+      else if (kind === "near") { if (c.near) return; c.near = globe.nearest(it.id) || "?"; }
+      else if (kind === "cap") { if (c.cap) return; c.cap = true; }
+      QZ.hints++;
+      $("#qz-hint-txt").textContent = `Indices utilisés : ${QZ.hints} (${QZCTX.duel ? `−${3 * QZ.hints} % en duel` : `−${2 * QZ.hints} points`}).`;
+      paintMystery();
+    }));
     $("#qz-give").onclick = end;
     qzClock(q, end);
   }
@@ -2421,9 +2484,14 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     $("#qz-hint").onclick = () => {
       const left = items.filter((it) => !QZ.found.has(it.k));
       if (!left.length) return;
-      const it = left[Math.floor(Math.random() * left.length)];
+      if (!QZ.target || QZ.found.has(QZ.target.k)) QZ.target = Object.assign(left[Math.floor(Math.random() * left.length)], { shown: 0 });
+      const it = QZ.target;
+      if (it.shown >= it.ans.length) return;
+      it.shown++;
       QZ.hints++;
-      $("#qz-hint-txt").textContent = `Indice : « ${it.clue} » → ${it.ans.slice(0, 3)}… (${it.ans.length} lettres)`;
+      let k = 0;
+      const masked = [...it.ans].map((c) => (/[a-zà-ÿ]/i.test(c) ? (k++ < it.shown ? c.toUpperCase() : "_") : c)).join(" ");
+      $("#qz-hint-txt").innerHTML = `« ${esc(it.clue)} » → <span class="qz-mask num">${esc(masked)}</span> · re-touche « Un indice » pour une lettre de plus.`;
     };
     $("#qz-give").onclick = end;
     setTimeout(() => inp.focus(), 80);
