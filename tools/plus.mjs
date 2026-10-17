@@ -9,6 +9,8 @@
 //   node tools/plus.mjs fondateurs restantes 37                          places restantes de l'offre « Membres fondateurs »
 //   node tools/plus.mjs fondateurs lien https://…                         lien de paiement de l'offre fondateurs
 //   node tools/plus.mjs fondateurs fin                                    clôt l'offre (la carte disparaît de la page)
+//   node tools/plus.mjs revenuecat cle rcb_…                              clé publique Web Billing de RevenueCat (active le paiement dans l'appli)
+//   node tools/plus.mjs revenuecat droit plus | offre default | paquet mensuel $rc_monthly | paquet annuel $rc_annual | paquet fondateurs …
 //   Un code suivi de --fondateur donne le badge « Membre fondateur » (ex. : code FONDATEUR "Membres fondateurs" --fondateur)
 import fs from "fs";
 import vm from "vm";
@@ -29,6 +31,7 @@ const argv = process.argv.slice(2);
 const founderFlag = argv.includes("--fondateur");
 const [cmd, a, b, c] = argv.filter((x) => x !== "--fondateur");
 P.fondateurs = P.fondateurs || { places: 50, restantes: 50, essaiMois: 2, prix: 2.99, paiement: "", ouvert: true };
+P.revenuecat = P.revenuecat || { cle: "", droit: "plus", offre: "", paquets: { mensuel: "$rc_monthly", annuel: "$rc_annual", fondateurs: "" } };
 if (cmd === "code" && a) {
   P.codes = P.codes.filter((x) => x.h !== hashCode(a));
   P.codes.push(Object.assign({ h: hashCode(a), label: b || "Code offert" }, c ? { jusqua: c } : {}, founderFlag ? { fondateur: true } : {}));
@@ -54,12 +57,24 @@ if (cmd === "code" && a) {
 } else if (cmd === "fondateurs" && a === "fin") {
   P.fondateurs.ouvert = false;
   console.log("Offre fondateurs close : elle n'apparaît plus sur la page Géoconomic+.");
+} else if (cmd === "revenuecat" && a === "cle" && b) {
+  if (!/^rcb_/.test(b)) { console.log("La clé publique Web Billing commence par « rcb_ » (jamais la clé secrète « sk_ »)."); process.exit(1); }
+  P.revenuecat.cle = b;
+  console.log(`Clé RevenueCat enregistrée${/^rcb_sb_/.test(b) ? " (bac à sable : les paiements sont des tests)" : ""}. Les boutons « S'abonner » passent par RevenueCat.`);
+} else if (cmd === "revenuecat" && a === "droit" && b) {
+  P.revenuecat.droit = b; console.log(`Entitlement : ${b}.`);
+} else if (cmd === "revenuecat" && a === "offre" && b) {
+  P.revenuecat.offre = b === "courante" ? "" : b; console.log(`Offering : ${b}.`);
+} else if (cmd === "revenuecat" && a === "paquet" && ["mensuel", "annuel", "fondateurs"].includes(b) && c !== undefined) {
+  P.revenuecat.paquets[b] = c; console.log(`Paquet ${b} : ${c || "(aucun)"}.`);
+} else if (cmd === "revenuecat" && a === "retirer") {
+  P.revenuecat.cle = ""; console.log("RevenueCat débranché : retour aux liens de paiement.");
 } else if (cmd === "liste") {
   console.log("Codes :", P.codes.map((x) => x.label + (x.jusqua ? ` (jusqu'au ${x.jusqua})` : "")).join(", ") || "aucun");
   console.log("Proches :", P.invites.map((x) => x.label).join(", ") || "aucun");
   process.exit(0);
 } else {
-  console.log(fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").slice(0, 9).join("\n"));
+  console.log(fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").slice(0, 13).join("\n"));
   process.exit(1);
 }
 fs.writeFileSync(FILE, `// Géoconomic+ : prix, liens de paiement, codes offerts et proches invités.

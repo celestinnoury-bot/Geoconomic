@@ -77,6 +77,57 @@
   const hashMail = (m) => sha256("mail:" + String(m).trim().toLowerCase());
   const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
 
+  // ---------- Paiement par RevenueCat (Web Billing, via Stripe) ----------
+  // Actif dès qu'une clé publique « rcb_… » est dans data/plus.js (node tools/plus.mjs revenuecat cle …).
+  // Chaque appareil a un identifiant anonyme RevenueCat ; c'est RevenueCat qui dit si l'abonnement est actif.
+  const RC = (PLUS.revenuecat && PLUS.revenuecat.cle) ? PLUS.revenuecat : null;
+  const RC_SDK = "https://cdn.jsdelivr.net/npm/@revenuecat/purchases-js@1.65.0/dist/Purchases.es.js";
+  const RC_ID_KEY = "geoco.rc.id";
+  let rcReady = null;
+  function rcLoad() {
+    if (!RC) return Promise.resolve(null);
+    if (rcReady) return rcReady;
+    rcReady = import(RC_SDK).then(({ Purchases }) => {
+      let id = null;
+      try { id = localStorage.getItem(RC_ID_KEY); } catch (e) {}
+      if (!id) { id = Purchases.generateRevenueCatAnonymousAppUserId(); try { localStorage.setItem(RC_ID_KEY, id); } catch (e) {} }
+      return Purchases.configure({ apiKey: RC.cle, appUserId: id });
+    }).catch(() => null);
+    return rcReady;
+  }
+  // Au démarrage : on demande à RevenueCat si l'abonnement est actif (les codes offerts restent valables à côté).
+  async function rcSync() {
+    const rc = await rcLoad();
+    if (!rc) return;
+    try {
+      const ok = await rc.isEntitledTo(RC.droit || "plus");
+      if (ok && !isPlus()) { setPlus({ via: "revenuecat", label: "Abonnement" }); refreshLocks(); }
+      else if (!ok && plusState && plusState.via === "revenuecat") { setPlus(null); refreshLocks(); }
+    } catch (e) {}
+  }
+  async function rcBuy(kind, msg) {
+    const rc = await rcLoad();
+    if (!rc) { if (msg) msg.textContent = "Le paiement ne peut pas s'ouvrir ici. Réessaie depuis le site de Géoconomic."; return false; }
+    try {
+      const offerings = await rc.getOfferings();
+      const offering = (RC.offre && offerings.all[RC.offre]) || offerings.current;
+      const want = RC.paquets && RC.paquets[kind];
+      const pkg = offering && (offering.availablePackages.find((p) => p.identifier === want) || (kind === "annuel" ? offering.annual : offering.monthly));
+      if (!pkg) { if (msg) msg.textContent = "Cette offre n'est pas encore en vente."; return false; }
+      const res = await rc.purchase({ rcPackage: pkg });
+      if (res && res.customerInfo && res.customerInfo.entitlements.active[RC.droit || "plus"]) {
+        setPlus({ via: "revenuecat", label: kind === "annuel" ? "Abonnement annuel" : kind === "fondateurs" ? "Membre fondateur" : "Abonnement mensuel", fondateur: kind === "fondateurs" });
+        refreshLocks();
+        return true;
+      }
+    } catch (e) {
+      // Fermer la fenêtre de paiement n'est pas une erreur.
+      if (e && /cancel/i.test(String(e.errorCode || e.code || e.message || ""))) return false;
+      if (msg) msg.textContent = "Le paiement n'a pas abouti. Rien n'a été prélevé.";
+    }
+    return false;
+  }
+
   // Ce qui est réservé à Géoconomic+ : les cours d'approfondissement (plus: true dans data/content.js)
   // et les archives (tous les Focus et études de cas sauf le plus récent). Un aperçu reste gratuit.
   const plusCourse = (d) => !!(d && d.plus);
@@ -802,7 +853,9 @@
         <h2>${F.essaiMois} mois offerts, puis ${euros(F.prix)} par mois à vie.</h2>
         <p class="founder-sub">Au lieu de ${euros(PLUS.prix.mensuel)}, tant que tu restes abonné. Avec le badge « Membre fondateur » et ton avis sur les prochaines rubriques.</p>
         <div class="founder-bar" role="img" aria-label="${taken} places prises sur ${F.places}"><i style="width:${Math.min(100, (taken / F.places) * 100)}%"></i></div>
-        ${full ? "" : F.paiement
+        ${full ? "" : RC && RC.paquets && RC.paquets.fondateurs
+          ? `<button class="pill-btn blue lg" type="button" data-rc-buy="fondateurs">Devenir membre fondateur</button>`
+          : F.paiement
           ? `<a class="pill-btn blue lg" href="${F.paiement}" target="_blank" rel="noopener">Devenir membre fondateur</a>`
           : `<button class="pill-btn blue lg" type="button" disabled>Ouverture au lancement</button>`}
         <p class="founder-small">Carte bancaire demandée à l'inscription, rien n'est prélevé pendant ${F.essaiMois} mois. Un rappel t'est envoyé 7 jours avant la fin de l'essai. Résiliable à tout moment.</p>
@@ -811,7 +864,9 @@
 
   function renderAbonnement() {
     const yearSave = Math.round((PLUS.prix.mensuel * 12 - PLUS.prix.annuel) / PLUS.prix.mensuel);
-    const buy = (k) => PLUS.paiement && PLUS.paiement[k]
+    const buy = (k) => RC
+      ? `<button class="pill-btn blue" type="button" data-rc-buy="${k}">S'abonner</button>`
+      : PLUS.paiement && PLUS.paiement[k]
       ? `<a class="pill-btn blue" href="${PLUS.paiement[k]}" target="_blank" rel="noopener">S'abonner</a>`
       : `<button class="pill-btn blue" type="button" disabled>Bientôt disponible</button>`;
     const perks = `
@@ -859,7 +914,8 @@
             ${buy("annuel")}
           </div>
         </div>
-        ${PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel) ? "" : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
+        <p class="plus-msg" id="rc-msg" aria-live="polite"></p>
+        ${RC || (PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel)) ? `<p class="viz-cap" style="margin-top:18px">Paiement sécurisé par carte bancaire. Résiliable à tout moment.</p>` : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
 
         <div class="grid-2 plus-access">
           <form class="panel geo reveal" id="code-form" autocomplete="off">
@@ -877,13 +933,21 @@
         </div>
       </section>`;
 
+    app.querySelectorAll("[data-rc-buy]").forEach((b) => b.addEventListener("click", async () => {
+      const msg = app.querySelector("#rc-msg");
+      msg.textContent = ""; b.disabled = true;
+      const ok = await rcBuy(b.dataset.rcBuy, msg);
+      b.disabled = false;
+      if (ok) { msg.textContent = "Bienvenue ! Tout est débloqué."; msg.className = "plus-msg good"; drawStatus(); }
+      else if (msg.textContent) msg.className = "plus-msg bad";
+    }));
     const status = app.querySelector("#plus-status");
     function drawStatus() {
       status.innerHTML = isPlus() ? `
         <div class="plus-active reveal in">
           <span aria-hidden="true">✓</span>
           <div><b>${offre.name} est actif sur cet appareil.</b>${plusState.fondateur ? ` <span class="founder-badge">⭐ Membre fondateur</span>` : ""}<br><span>${plusState.label}${plusState.jusqua ? ` · jusqu'au ${formatDate(plusState.jusqua)}` : ""}</span></div>
-          <button class="more-btn" type="button" id="plus-off">Désactiver</button>
+          ${plusState.via === "revenuecat" ? "" : `<button class="more-btn" type="button" id="plus-off">Désactiver</button>`}
         </div>` : "";
       const off = status.querySelector("#plus-off");
       if (off) off.addEventListener("click", () => { setPlus(null); drawStatus(); refreshLocks(); });
@@ -2604,6 +2668,7 @@ function statGrid(figures, sources, theme = "geo") {
     const w = window.open(DUEL_ONLINE, "_blank");
     if (w) w.opener = null; else location.href = "duel.html";
   });
+  rcSync();
   window.addEventListener("hashchange", route);
   route();
   I18N.watch();

@@ -54,6 +54,46 @@ limité à 50 inscriptions (code promo à utilisations limitées), et l'e-mail d
 - L'accès est mémorisé **sur l'appareil** : un proche qui change de téléphone retape son code.
 - Une personne qui sait programmer pourrait contourner le verrou : la vraie protection viendra avec les comptes.
 
+## Le paiement avec RevenueCat (déjà branché dans l'appli)
+
+Le code est prêt : dès qu'une clé RevenueCat est enregistrée, les boutons « S'abonner » ouvrent la fenêtre de paiement
+de RevenueCat (carte bancaire, via Stripe), et l'appli demande à RevenueCat, à chaque ouverture, si l'abonnement est actif.
+Sans clé, rien ne change (liens de paiement ou « Bientôt disponible »).
+
+### Ce que tu dois créer (une fois)
+
+1. **Stripe** (stripe.com) : un compte avec ton statut (micro-entreprise : SIRET), ton IBAN et ta pièce d'identité.
+2. **RevenueCat** (revenuecat.com) : un compte gratuit, puis un projet « Géoconomic ».
+3. Dans le projet, ajoute une app de type **Web Billing** (« RevenueCat Billing ») et **connecte ton compte Stripe**.
+4. **Produits** (dans l'app Web Billing) : deux abonnements
+   - `plus_mensuel` : 3,99 €, tous les mois ;
+   - `plus_annuel` : 39,99 €, tous les ans ;
+   - (facultatif) `plus_fondateur` : 2,99 €, tous les mois, avec 2 mois d'essai gratuit.
+5. **Entitlement** : crée `plus` et attache-lui les produits.
+6. **Offering** : crée `default` (et marque-la « courante ») avec les paquets **Monthly** (`$rc_monthly` → plus_mensuel)
+   et **Annual** (`$rc_annual` → plus_annuel). Pour les fondateurs, un paquet personnalisé, par exemple `fondateurs`.
+7. **Clé** : dans *API keys*, copie la **clé publique** de l'app Web Billing, qui commence par `rcb_`.
+   Il y en a une de test (`rcb_sb_…`, bac à sable) : commence par elle. **Jamais la clé secrète** (`sk_…`).
+
+### Ce qu'on fait ensuite (ou tu me donnes la clé et je le fais)
+
+```
+node tools/plus.mjs revenuecat cle rcb_sb_…                 # clé de test d'abord
+node tools/plus.mjs revenuecat paquet fondateurs fondateurs # si tu as créé le paquet fondateurs
+node tools/plus.mjs revenuecat droit plus                   # seulement si ton entitlement a un autre nom
+```
+
+Puis on teste avec la carte de test Stripe `4242 4242 4242 4242` (date future, n'importe quel code), et on remplace
+par la clé de production (`rcb_…` sans `sb`) au lancement. `node tools/plus.mjs revenuecat retirer` débranche tout.
+
+### À savoir
+
+- Le paiement ne s'ouvrira probablement pas dans l'aperçu claude.ai (il bloque les connexions vers RevenueCat et Stripe) :
+  il faut l'appli **hébergée sur un vrai site** (voir « En attente » : hébergement public).
+- Chaque appareil a un identifiant anonyme : un abonné qui change de téléphone devra être relié à son compte
+  (étape suivante : des comptes, par exemple par e-mail, pour retrouver son abonnement partout).
+- Les codes offerts (FAMILLE2026…) continuent de marcher à côté.
+
 ## Le jour du lancement
 
 1. Créer un compte chez un prestataire de paiement (Stripe ou Lemon Squeezy) et deux produits : 3,99 €/mois et 39,99 €/an.

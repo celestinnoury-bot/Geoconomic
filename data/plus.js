@@ -30,5 +30,15 @@ window.GEOCO.plus = {
     "prix": 2.99,
     "paiement": "",
     "ouvert": true
+  },
+  "revenuecat": {
+    "cle": "",
+    "droit": "plus",
+    "offre": "",
+    "paquets": {
+      "mensuel": "$rc_monthly",
+      "annuel": "$rc_annual",
+      "fondateurs": ""
+    }
   }
 };
