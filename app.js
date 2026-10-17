@@ -1223,7 +1223,8 @@
   }
 
   // « L'enjeu de la semaine » : bloc partagé par la page Focus et les archives.
-  function weeklyBlock(f, w, week) {
+  // `between` : un bloc glissé juste sous « Pour aller plus loin » (le schéma de la chaîne dans le Focus), avant « À suivre ».
+  function weeklyBlock(f, w, week, between = "") {
     return `
       <section class="section alt weekly">
         <div class="wrap">
@@ -1235,7 +1236,7 @@
           ${w.paragraphs.map((p, i) => `<p class="copy reveal" style="margin-top:22px">${para(p, f.sources)}</p>${(w.refs || []).filter((r) => r.p === i).map((r) => { const a = byId(culture, r.article); const sec = a && a.sections[r.part - 1]; return a ? `<a class="weekly-ref reveal" href="#/articles/${a.id}/${r.part}"><span>Lire la suite dans l'article</span><b>${sec ? sec.title : a.title} ›</b></a>` : ""; }).join("")}`).join("")}
           ${(w.articles || []).map((id) => byId(culture, id)).filter(Boolean).map((a) => `<a class="news-card eco reveal weekly-article" href="#/articles/${a.id}"><p class="eyebrow">Pour aller plus loin · ${a.kind || "Article"}</p><h3>${a.title}</h3><span class="more">Lire l'analyse ›</span></a>`).join("")}
           ${w.article && byId(culture, w.article) ? `<a class="news-card eco reveal weekly-article" href="#/articles/${w.article}"><p class="eyebrow">Pour aller plus loin · ${byId(culture, w.article).kind || "Article"}</p><h3>${byId(culture, w.article).title}</h3><span class="more">Lire l'analyse ›</span></a>` : ""}
-          ${citeFree()}${w.toWatch && w.toWatch.length ? `
+          ${citeFree()}${between ? `</div></section>${between}<section class="section alt weekly"><div class="wrap">` : ""}${w.toWatch && w.toWatch.length ? `
           <div class="towatch reveal">
             <p class="eyebrow">À suivre</p>
             <ol>
@@ -1471,9 +1472,7 @@
         </div>
       </section>
 
-      ${chainBlock(f)}
-
-      ${f.weekly ? weeklyBlock(f, f.weekly, f.week) : ""}
+      ${f.weekly ? weeklyBlock(f, f.weekly, f.week, chainBlock(f)) : chainBlock(f)}
       ${archivedEnjeux().length ? `
       <section class="wrap" style="padding-bottom:8px">
         <a class="row enjeux-link reveal" href="#/enjeux"><div class="row-main"><div class="row-title">Les enjeux des semaines passées</div><div class="row-sub">${archivedEnjeux().length} enjeu${archivedEnjeux().length > 1 ? "x" : ""} archivé${archivedEnjeux().length > 1 ? "s" : ""}</div></div><span class="chev" aria-hidden="true">›</span></a>
