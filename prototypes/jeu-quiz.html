@@ -1951,6 +1951,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     { id: "lettre-m", type: "clues", tag: "Tout commence par M", title: "Toutes les réponses commencent par M", time: 240,
       intro: "Une définition, une réponse en M. Écris-les dans n'importe quel ordre.",
       items: [["Capitale de l'Espagne", "Madrid"], ["Capitale de la Russie", "Moscou"], ["Pays dont la capitale est Rabat", "Maroc"], ["Pays dont la capitale est Bamako", "Mali"], ["Pays dont la capitale est Oulan-Bator", "Mongolie"], ["Pays dont la capitale est Mexico", "Mexique"], ["Marché commun d'Amérique du Sud", "Mercosur"], ["Détroit entre la Malaisie et Sumatra", "Malacca"], ["Premier président noir d'Afrique du Sud", "Mandela", "nelson mandela"], ["Chancelière allemande de 2005 à 2021", "Merkel", "angela merkel"], ["Pays dont la capitale est Antananarivo", "Madagascar"], ["Pays dont la capitale est Kuala Lumpur", "Malaisie"]] },
+    { id: "dates", type: "dates", hidden: true, tag: "Dates", title: "Avant ou après : les dates du jour",
+      intro: "Cinq « avant ou après » et trois années à écrire (pile : la totalité des points, puis un cinquième de moins par année d'écart)." },
     { id: "actu", type: "actu", tag: "Actu", title: "Les pays de l'actu", count: 8,
       intro: "Une actu de Géoconomic, et un globe : clique sur le pays où elle se passe." },
     { id: "uranium", type: "rank", tag: "Énergie", title: "Uranium : les 5 premiers producteurs", unit: "tonnes d'uranium extraites en 2023",
@@ -1995,6 +1997,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     rank: { label: "Classement à reconstituer", ico: "bars", bg: "#22301f", fg: "#9fd88a" },
     qcm: { label: "Choix multiples", ico: "grid", bg: "#33213a", fg: "#d5a6ff" },
     clues: { label: "À écrire", ico: "pen", bg: "#3a2a1e", fg: "#ffb340" },
+    dates: { label: "Avant ou après", ico: "bars", bg: "#16243d", fg: "#7fb6ff" },
   };
   const QICO = {
     pen: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13.5 6.5l4 4"/></svg>',
@@ -2005,7 +2008,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   if (!S.quiz || typeof S.quiz !== "object") S.quiz = {};
   // « Tous les pays du monde » : la liste vient des données (ONU + Vatican + Palestine, par continent).
   { const m = QUIZZES.find((q) => q.id === "monde"); if (m && QD && QD.world) m.items = QD.world.map(([id, group]) => ({ id, group })); }
-  const quizSize = (q) => q.type === "list" || q.type === "clues" ? q.items.length : q.type === "actu" ? q.count : q.type === "rank" ? 5 : q.qs.length;
+  const quizSize = (q) => q.type === "list" || q.type === "clues" ? q.items.length : q.type === "actu" ? q.count : q.type === "rank" ? 5 : q.type === "dates" ? 8 : q.qs.length;
   const quizAvailable = (q) => q.items && !q.items.length ? false : q.type !== "actu" && !q.ind ? true : !!(QD && (q.type === "actu" ? QD.news.length >= q.count : QD.ind[q.ind]));
 
   let qzFilter = "all";
@@ -2016,7 +2019,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       <h2>Pays, capitales, matières premières</h2>
       <p class="muted">À écrire, à cliquer sur le globe, à remettre dans l'ordre ou à choix multiples. Jusqu'à ${QUIZ_PT} points par quiz, une fois par jour.</p>
       <div class="seg qz-filter">${[["all", "Tous"], ["write", "Écrire"], ["globe", "Globe"], ["rank", "Classer"], ["qcm", "QCM"]].map(([k, l]) => `<button data-qf="${k}" aria-pressed="${qzFilter === k}">${l}</button>`).join("")}</div>
-      <div class="qz-grid">${QUIZZES.filter(quizAvailable).filter((q) => qdPlayed() || q.id !== dayQuiz().id).filter((q) => qzFilter === "all" || QFILTER[qzFilter].includes(q.type)).map((q) => {
+      <div class="qz-grid">${QUIZZES.filter((q) => !q.hidden).filter(quizAvailable).filter((q) => qdPlayed() || q.id !== dayQuiz().id).filter((q) => qzFilter === "all" || QFILTER[qzFilter].includes(q.type)).map((q) => {
         const t = QTYPE[q.type], st = S.quiz[q.id];
         return `<button class="qz-card" data-quiz="${q.id}">
           <span class="qz-ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</span>
@@ -2035,9 +2038,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   const QD_PTS = { win: 30, draw: 10, lose: 0 };
   if (!S.qdScored || typeof S.qdScored !== "object") S.qdScored = {};
   if (!Array.isArray(S.qdList)) S.qdList = [];
+  // Le sujet change chaque jour et reste secret jusqu'au départ : un quiz du monde ou des dates (plus souvent tirées).
   function dayQuiz(day = today()) {
-    const c = QUIZZES.filter(quizAvailable).filter((q) => q.id !== "monde");
-    return c[hash("qd-" + day) % c.length];
+    const c = QUIZZES.filter(quizAvailable).filter((q) => q.id !== "monde" && q.id !== "dates");
+    const dates = QUIZZES.find((q) => q.id === "dates");
+    const pool = [...c, dates, dates, dates, dates];
+    return pool[hash("qd-" + day) % pool.length];
   }
   const qdPlayed = () => S.qd && S.qd.day === today();
   function qdCard() {
@@ -2045,8 +2051,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const mine = S.qdList.filter((x) => x.day === today());
     return `<section class="card qd-card">
       <p class="label" style="color:#ffb340">${ICON.swords} Duel du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
-      <h2>${esc(q.title)}</h2>
-      <p class="muted">Le même quiz pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}.</p>
+      <h2>${done ? esc(q.title) : "Sujet surprise"}</h2>
+      <p class="muted">${done ? "" : "Pays, capitales, globe, classement ou dates : tu découvres le sujet au départ. "}Le même pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}.</p>
       ${done ? `<p class="qd-done">Fait : <b>${S.qd.pct} %</b> en ${mmss(S.qd.secs || 0)}${S.qd.code ? ` · duel <b>${esc(S.qd.code)}</b>` : " · en solo"}. Nouveau duel dans ${msToMidnight()}.</p>
           ${mine.length ? `<div id="qd-mine">${mine.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">Chargement…</p></div>`).join("")}</div>` : ""}`
         : `<div class="btns">${shared ? `<button class="btn" id="qd-random">${ICON.dice} Adversaire au hasard</button><button class="btn gold" id="qd-friend">Défier un ami</button>` : ""}<button class="btn ghost" id="qd-solo">Jouer seul</button></div>
@@ -2242,7 +2248,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     qzOpen(`${qzTop(q)}
       <div class="splash qz-splash">
         <div class="ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</div>
-        <p class="label">${esc(t.label)} · ${quizSize(q)} ${q.type === "qcm" ? "questions" : q.type === "rank" ? "pays" : "à trouver"}</p>
+        <p class="label">${esc(t.label)} · ${quizSize(q)} ${q.type === "qcm" || q.type === "dates" ? "questions" : q.type === "rank" ? "pays" : "à trouver"}</p>
         ${kicker}<h1 class="big">${esc(q.title)}</h1>
         <p class="rules">${esc(q.intro)}${q.time ? ` Tu as ${mmss(q.time)}.` : ""}${QZCTX.duel ? " Même quiz pour vous deux : le meilleur score gagne, à égalité le plus rapide. Pas de pause en duel." : ""}</p>
         ${modes}${clockOpt}
@@ -2251,7 +2257,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     let mode = "write";
     play.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => { mode = b.dataset.mode; play.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
     play.querySelectorAll("[data-clock]").forEach((b) => (b.onclick = () => { QZCTX.noclock = b.dataset.clock === "off"; play.querySelectorAll("[data-clock]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
-    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q, mode) : q.type === "clues" ? runClues(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
+    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q, mode) : q.type === "clues" ? runClues(q) : q.type === "dates" ? runDates(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
   }
 
   function quizDone(q, pct, hints = 0, extra = "") {
@@ -2413,6 +2419,63 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     $("#qz-give").onclick = end;
     setTimeout(() => inp.focus(), 80);
     qzClock(q, end);
+  }
+
+  // Dates du jour (duel du jour) : 5 « avant ou après » et 3 années à écrire, les mêmes pour tous ce jour-là.
+  function runDates(q) {
+    const r = rng("qd-dates-" + today());
+    const pairs = drawPairs(5, r, { useSeen: false });
+    const years = drawYears(3, r, pairs);
+    const qs = buildAll([pairs[0], pairs[1], years[0], pairs[2], years[1], pairs[3], pairs[4], years[2]], "qd-" + today());
+    QZ = { k: 0, score: 0 };
+    function show() {
+      const x = qs[QZ.k];
+      const head = qzTop(q, `<span class="chip num">${QZ.k + 1}/${qs.length}</span>`);
+      if (x.kind === "order") {
+        qzOpen(`${head}<h2 class="question qz-q">Lequel est arrivé en premier ?</h2>
+          <div class="versus">${[x.a, x.b].map((f, k) => `<button class="ans fact" data-k="${k}"><span class="fact-cat ${f[1]}">${CAT[f[1]]}</span><span class="fact-text">${esc(f[2])}</span><span class="fact-year num" aria-hidden="true"></span></button>${k === 0 ? '<span class="or">ou</span>' : ""}`).join("")}</div>
+          <p class="note" id="qz-info" aria-live="polite"></p><div class="btns qz-tools"><button class="btn" id="qz-next" hidden></button></div>`);
+        play.querySelectorAll(".ans").forEach((b) => (b.onclick = () => {
+          const first = x.a[0] < x.b[0] ? 0 : 1, ok = +b.dataset.k === first;
+          play.querySelectorAll(".ans").forEach((y) => { const j = +y.dataset.k; y.disabled = true; y.querySelector(".fact-year").innerHTML = flap([x.a, x.b][j][0]); if (j === first) y.classList.add("good"); else if (y === b) y.classList.add("bad"); });
+          if (ok) QZ.score += 1;
+          $("#qz-info").innerHTML = `<b class="${ok ? "ok" : "ko"}">${ok ? cheer() : "Pas cette fois."}</b> ${Math.abs(x.a[0] - x.b[0])} an(s) d'écart.`;
+          done();
+        }));
+      } else {
+        qzOpen(`${head}<h2 class="question qz-q">En quelle année : ${esc(lower1(x.f[2]))} ?</h2>
+          <form class="type-box" id="qz-yf" autocomplete="off"><input id="qz-y" inputmode="numeric" maxlength="4" placeholder="Année" class="year-in num" aria-label="Année"><button class="btn wide" type="submit">Valider</button></form>
+          <p class="note" id="qz-info" aria-live="polite"></p><div class="btns qz-tools"><button class="btn" id="qz-next" hidden></button></div>`);
+        const inp = $("#qz-y");
+        inp.oninput = () => { inp.value = inp.value.replace(/[^0-9]/g, "").slice(0, 4); };
+        setTimeout(() => inp.focus(), 60);
+        $("#qz-yf").onsubmit = (e) => {
+          e.preventDefault();
+          if (!inp.value || inp.disabled) return;
+          const gap = Math.abs(+inp.value - x.y), part = Math.max(0, 1 - 0.2 * gap);
+          inp.disabled = true; play.querySelector("#qz-yf button").disabled = true;
+          inp.classList.add(gap === 0 ? "good" : part > 0 ? "near" : "bad");
+          QZ.score += part;
+          $("#qz-info").innerHTML = gap === 0 ? `<b class="ok">Pile ${x.y} !</b>` : `<b class="${part > 0 ? "ok" : "ko"}">C'était en ${x.y}</b> : à ${gap} an${gap > 1 ? "s" : ""}${part > 0 ? `, ${Math.round(part * 100)} % du point` : ""}.`;
+          done();
+        };
+      }
+    }
+    function done() {
+      const nx = $("#qz-next"); nx.hidden = false;
+      nx.textContent = QZ.k + 1 < qs.length ? "Suivante" : "Voir mon score";
+      nx.focus();
+      nx.onclick = () => {
+        QZ.k++;
+        if (QZ.k < qs.length) return show();
+        qzOpen(`${qzTop(q)}<p class="qz-prompt"><small>Terminé</small>${Math.round(QZ.score * 10) / 10} points sur ${qs.length}.</p><div class="qz-tools"></div>`);
+        const box = document.createElement("div");
+        box.innerHTML = quizDone(q, Math.round((QZ.score / qs.length) * 100));
+        play.querySelector(".qz-tools").replaceWith(box.firstElementChild);
+        bindEnd(q);
+      };
+    }
+    show();
   }
 
   // Les pays de l'actu : une actu, un clic sur le globe.
