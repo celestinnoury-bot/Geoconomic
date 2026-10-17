@@ -7,7 +7,7 @@ window.GEOCO = window.GEOCO || {};
 window.GEOCO.etudes = {
   // Offre : chaque lecteur peut écouter gratuitement `freeListens` épisodes de son choix,
   // ensuite il faut l'abonnement. Un épisode avec `free: true` reste toujours gratuit.
-  offre: { name: "Géoconomic+", freeListens: 2, price: null },
+  offre: { name: "Geonomix+", freeListens: 2, price: null },
 
   // Exemple d'épisode (à copier) :
   // {
@@ -27,7 +27,7 @@ window.GEOCO.etudes = {
   cas: [
     {
       id: "ormuz-plein",
-      author: "Rédaction Géoconomic (exemple)",
+      author: "Rédaction Geonomix (exemple)",
       date: "2026-10-08",
       theme: "mix",
       title: "Du détroit d'Ormuz à ton plein de gazole",

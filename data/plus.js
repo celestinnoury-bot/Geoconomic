@@ -1,4 +1,4 @@
-// Géoconomic+ : prix, liens de paiement, codes offerts et proches invités.
+// Geonomix+ : prix, liens de paiement, codes offerts et proches invités.
 // Ne pas modifier les listes à la main : utiliser node tools/plus.mjs (les codes et e-mails n'y sont qu'en empreinte).
 // Prototype : tant que le paiement et les comptes ne sont pas branchés, l'accès est mémorisé sur l'appareil.
 window.GEOCO = window.GEOCO || {};

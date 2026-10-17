@@ -1,4 +1,4 @@
-// Données des « Quiz du monde » de Géoconomic Duel, écrites dans prototypes/jeu-quiz.html
+// Données des « Quiz du monde » de Geonomix Duel, écrites dans prototypes/jeu-quiz.html
 // (bloc <script type="application/json" id="quiz-data">) : contours des pays pour le globe,
 // noms en français, inflation et croissance de l'onglet Chiffres, pays des dernières actus.
 // Usage : node tools/build-quiz-data.mjs (puis node tools/build-duel.mjs pour la page de l'appli).

@@ -959,7 +959,7 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .learn-title { font-size: 17px; font-weight: 600; line-height: 1.3; }
 .learn-card .chev { color: var(--muted); font-size: 22px; }
 
-/* ---------- Géoconomic+ : formules, codes et proches ---------- */
+/* ---------- Geonomix+ : formules, codes et proches ---------- */
 .plans-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 @media (max-width: 860px) { .plans-3 { grid-template-columns: 1fr; } }
 .plan-price small { font-family: var(--sans, inherit); font-size: 16px; font-weight: 500; color: var(--muted); }
@@ -981,7 +981,7 @@ h1, h2, h3, .headline, .title, .lead, .copy, .statement, .panel p, .bigstat, .ti
 .plus-active div span { color: var(--muted); }
 .news-card.locked { opacity: .75; }
 
-/* ---------- Contenu réservé à Géoconomic+ ---------- */
+/* ---------- Contenu réservé à Geonomix+ ---------- */
 .plus-tag { color: var(--gold); font-weight: 600; white-space: nowrap; }
 .paywall { margin: 8px 0 40px; padding: 28px 26px; border-radius: 24px; border: 1px solid rgba(245,200,107,.5);
   background: linear-gradient(180deg, rgba(245,200,107,.10), rgba(245,200,107,.02)); text-align: center; }
@@ -1228,7 +1228,7 @@ section.flash { animation: partFlash 1.6s ease-out; }
 @media (prefers-reduced-motion: reduce) { .rail-thumb svg { animation: none; } }
 .car-card, .ind-card { z-index: 6; }
 
-/* Accès au jeu Géoconomic Duel dans le bandeau : la couleur ambre du jeu */
+/* Accès au jeu Geonomix Duel dans le bandeau : la couleur ambre du jeu */
 .nav-actions .nav-duel { border-color: rgba(255, 150, 70, .55); color: #ffb066; }
 .nav-actions .nav-duel:hover { background: rgba(255, 150, 70, .12); }
 .nav-duel-m { display: none; }

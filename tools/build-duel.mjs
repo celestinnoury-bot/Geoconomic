@@ -1,4 +1,4 @@
-// Copie le prototype « Géoconomic Duel » (prototypes/jeu-quiz.html) en page de l'appli : duel.html.
+// Copie le prototype « Geonomix Duel » (prototypes/jeu-quiz.html) en page de l'appli : duel.html.
 // Ajoute le doctype, le viewport et un lien de retour vers l'appli.
 // Usage : node tools/build-duel.mjs (à relancer après chaque changement du prototype).
 import fs from "fs";
@@ -10,7 +10,7 @@ const head = `<!doctype html>
 <meta name="theme-color" content="#16110d">
 <link rel="icon" href="assets/icon.svg">
 `;
-const back = `<a class="back-app" href="./" aria-label="Retour à Géoconomic" title="Retour à Géoconomic"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>`;
+const back = `<a class="back-app" href="./" aria-label="Retour à Geonomix" title="Retour à Geonomix"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>`;
 const css = `.back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>`;

@@ -8,7 +8,7 @@ window.GEOCO.culture = [
     "id": "voiture-champ-de-bataille",
     "cover": "voiture",
     "plus": false,
-    "author": "Rédaction Géoconomic",
+    "author": "Rédaction Geonomix",
     "kind": "Enquête",
     "theme": "mix",
     "title": "Voiture électrique : une bataille vieille d'un siècle",
@@ -152,7 +152,7 @@ window.GEOCO.culture = [
   {
     id: "reserves-strategiques",
     cover: "barils",
-    author: "Rédaction Géoconomic (exemple)",
+    author: "Rédaction Geonomix (exemple)",
     kind: "Culture G",
     theme: "eco",
     title: "Les réserves stratégiques de pétrole : l'assurance-vie des pays",
@@ -202,7 +202,7 @@ window.GEOCO.culture = [
   {
     id: "cables-sous-marins",
     cover: "cables",
-    author: "Rédaction Géoconomic (exemple)",
+    author: "Rédaction Geonomix (exemple)",
     kind: "Culture G",
     theme: "geo",
     title: "Les câbles sous-marins : l'internet mondial tient à un fil",
@@ -252,7 +252,7 @@ window.GEOCO.culture = [
   {
     id: "barrage-renaissance",
     cover: "barrage",
-    author: "Rédaction Géoconomic (exemple)",
+    author: "Rédaction Geonomix (exemple)",
     kind: "Culture G",
     theme: "geo",
     title: "Le barrage de la Renaissance : la guerre de l'eau sur le Nil",

@@ -1,4 +1,4 @@
-// Gère l'accès à Géoconomic+ (data/plus.js) : codes à offrir et proches invités.
+// Gère l'accès à Geonomix+ (data/plus.js) : codes à offrir et proches invités.
 // Les codes et les e-mails ne sont jamais écrits en clair : seulement leur empreinte (SHA-256).
 // Usage :
 //   node tools/plus.mjs code FAMILLE2026 "Famille et amis" [AAAA-MM-JJ]   ajoute un code (date de fin facultative)
@@ -39,7 +39,7 @@ if (cmd === "code" && a) {
 } else if (cmd === "invite" && a) {
   P.invites = P.invites.filter((x) => x.h !== hashMail(a));
   P.invites.push({ h: hashMail(a), label: b || "Proche" });
-  console.log(`Proche ajouté (« ${b || "Proche"} ») : il ou elle tape son e-mail sur la page Géoconomic+.`);
+  console.log(`Proche ajouté (« ${b || "Proche"} ») : il ou elle tape son e-mail sur la page Geonomix+.`);
 } else if (cmd === "retirer" && a) {
   const n = P.codes.length + P.invites.length;
   P.codes = P.codes.filter((x) => x.h !== hashCode(a));
@@ -56,7 +56,7 @@ if (cmd === "code" && a) {
   console.log("Lien de paiement de l'offre fondateurs enregistré.");
 } else if (cmd === "fondateurs" && a === "fin") {
   P.fondateurs.ouvert = false;
-  console.log("Offre fondateurs close : elle n'apparaît plus sur la page Géoconomic+.");
+  console.log("Offre fondateurs close : elle n'apparaît plus sur la page Geonomix+.");
 } else if (cmd === "revenuecat" && a === "cle" && b) {
   if (!/^rcb_/.test(b)) { console.log("La clé publique Web Billing commence par « rcb_ » (jamais la clé secrète « sk_ »)."); process.exit(1); }
   P.revenuecat.cle = b;
@@ -77,7 +77,7 @@ if (cmd === "code" && a) {
   console.log(fs.readFileSync(new URL(import.meta.url), "utf8").split("\n").slice(0, 13).join("\n"));
   process.exit(1);
 }
-fs.writeFileSync(FILE, `// Géoconomic+ : prix, liens de paiement, codes offerts et proches invités.
+fs.writeFileSync(FILE, `// Geonomix+ : prix, liens de paiement, codes offerts et proches invités.
 // Ne pas modifier les listes à la main : utiliser node tools/plus.mjs (les codes et e-mails n'y sont qu'en empreinte).
 // Prototype : tant que le paiement et les comptes ne sont pas branchés, l'accès est mémorisé sur l'appareil.
 window.GEOCO = window.GEOCO || {};

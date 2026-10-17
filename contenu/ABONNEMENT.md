@@ -1,10 +1,10 @@
-# Géoconomic+ : prix, codes offerts et proches invités
+# Geonomix+ : prix, codes offerts et proches invités
 
 **Prix** : 3,99 €/mois ou 39,99 €/an (2 mois offerts). Ils se règlent dans `data/plus.js` (`prix`).
 
 ## Ce qui est gratuit, ce qui est réservé
 
-| Gratuit | Géoconomic+ |
+| Gratuit | Geonomix+ |
 |---|---|
 | L'actu, le globe, les chiffres, les conflits | |
 | Les cours pour débuter | Les cours d'approfondissement et leurs quiz (`plus: true` dans `data/content.js`) |
@@ -37,7 +37,7 @@ Le code de départ est **FAMILLE2026** (« Famille et amis », sans date de fin)
 ## Offre « Membres fondateurs » (les 50 premiers)
 
 2 mois offerts, puis **2,99 €/mois à vie** au lieu de 3,99 €, tant que l'abonnement continue ; badge « Membre fondateur ».
-La carte s'affiche en tête de la page Géoconomic+ avec le nombre de places restantes.
+La carte s'affiche en tête de la page Geonomix+ avec le nombre de places restantes.
 
 ```
 node tools/plus.mjs fondateurs restantes 37          # mettre à jour le compteur
@@ -63,7 +63,7 @@ Sans clé, rien ne change (liens de paiement ou « Bientôt disponible »).
 ### Ce que tu dois créer (une fois)
 
 1. **Stripe** (stripe.com) : un compte avec ton statut (micro-entreprise : SIRET), ton IBAN et ta pièce d'identité.
-2. **RevenueCat** (revenuecat.com) : un compte gratuit, puis un projet « Géoconomic ».
+2. **RevenueCat** (revenuecat.com) : un compte gratuit, puis un projet « Geonomix ».
 3. Dans le projet, ajoute une app de type **Web Billing** (« RevenueCat Billing ») et **connecte ton compte Stripe**.
 4. **Produits** (dans l'app Web Billing) : deux abonnements
    - `plus_mensuel` : 3,99 €, tous les mois ;

@@ -193,7 +193,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 @keyframes inkIn { from { opacity: 0; filter: blur(1.5px); } to { opacity: 1; filter: none; } }
 
 /* ===================== 3. GLOBE : le style de l'appli ===================== */
-/* Noir profond, verre dépoli, titres à empattements, dégradés éco et géo : la même famille que l'appli Géoconomic. */
+/* Noir profond, verre dépoli, titres à empattements, dégradés éco et géo : la même famille que l'appli Geonomix. */
 .p-globe { --bg: #000; --surface: #1c1c1e; --surface-2: #2c2c2e; --glass: rgba(30, 30, 32, .72); --line: rgba(255, 255, 255, .12); --text: #f5f5f7; --muted: #86868b; --blue: #2997ff; --gold: #f5c86b; --green: #30d158; --red: #ff453a;
   --eco: linear-gradient(90deg, #ffb340 0%, #ff6a3d 50%, #ff2d78 100%); --geo: linear-gradient(90deg, #64d2ff 0%, #5e5ce6 55%, #bf5af2 100%); }
 .p-globe .screen { background: var(--bg); color: var(--text); font: 400 14px/1.45 "Inter", -apple-system, "Helvetica Neue", sans-serif; }
@@ -269,8 +269,8 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 
 <div class="shell">
   <header class="intro">
-    <h1>Géoconomic Duel · trois directions</h1>
-    <p>Trois habillages complets du même jeu, pour choisir. Les trois restent sérieux, dans la famille de Géoconomic. Chacun change les couleurs, les polices, la façon de révéler les années et l'effet de chaque tranche du classement : 1 à 3, 4 et 5, 6 à 10, 11 à 20. Touche une carte dans l'écran « Manche » pour voir la révélation. Les joueurs du classement sont des exemples.</p>
+    <h1>Geonomix Duel · trois directions</h1>
+    <p>Trois habillages complets du même jeu, pour choisir. Les trois restent sérieux, dans la famille de Geonomix. Chacun change les couleurs, les polices, la façon de révéler les années et l'effet de chaque tranche du classement : 1 à 3, 4 et 5, 6 à 10, 11 à 20. Touche une carte dans l'écran « Manche » pour voir la révélation. Les joueurs du classement sont des exemples.</p>
   </header>
   <nav class="picker" role="tablist" aria-label="Directions">
     <button role="tab" data-p="paddock" id="tab-paddock"><b>1 · Paddock</b><span>Course automobile : feux de départ, tour de chronométrage</span></button>
@@ -347,7 +347,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
     },
     globe: {
       name: "Globe", pitch: "Le jeu reprend exactement le style de l'appli : noir profond, surfaces en verre dépoli, titres à empattements, dégradés éco et géo, et le globe avec ses repères lumineux.",
-      points: ["Mêmes couleurs, mêmes dégradés et même police de titres que l'appli : le jeu a l'air d'une rubrique de Géoconomic.", "Révélation : l'année apparaît en se mettant au point, dans le dégradé géo, puis en vert si tu as juste.", "Classement : dégradé géo avec flammes (1 à 3), or de l'appli avec flammes (4 et 5), dégradé éco (6 à 10), repère lumineux qui pulse comme sur le globe (11 à 20)."],
+      points: ["Mêmes couleurs, mêmes dégradés et même police de titres que l'appli : le jeu a l'air d'une rubrique de Geonomix.", "Révélation : l'année apparaît en se mettant au point, dans le dégradé géo, puis en vert si tu as juste.", "Classement : dégradé géo avec flammes (1 à 3), or de l'appli avec flammes (4 et 5), dégradé éco (6 à 10), repère lumineux qui pulse comme sur le globe (11 à 20)."],
       swatches: ["#000000", "#1c1c1e", "#2c2c2e", "#f5f5f7", "#2997ff", "#5e5ce6", "#ff6a3d", "#f5c86b"],
       fonts: ["Tinos (comme Times) · titres", "Inter / police système · textes et chiffres"],
     },
@@ -355,7 +355,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
 
   function home(p) {
     if (p === "paddock") return `
-      <div class="top"><span>Géoconomic <b>Duel</b></span><span>124 pts</span></div>
+      <div class="top"><span>Geonomix <b>Duel</b></span><span>124 pts</span></div>
       <div class="body">
         <div class="champ"><span class="p1">P1</span><div><span class="lab">${esc(TITLES[0])}</span><div style="font:900 18px 'Titillium Web';font-style:italic;text-transform:uppercase">Léa</div></div></div>
         <div><div class="lights" aria-hidden="true">${[0, 1, 2, 3, 4].map((i) => `<i style="--i:${i}"></i>`).join("")}</div><h1>Avant <span>ou</span> après</h1><p class="lead">Grand prix des dates · 7 manches. Lequel est arrivé en premier ?</p></div>
@@ -367,7 +367,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
     if (p === "journal") {
       const [f1, f2] = flames("journal", 1);
       return `
-      <div class="top"><span>Géoconomic · <b>Duel</b></span><span>Vendredi 16 octobre</span></div>
+      <div class="top"><span>Geonomix · <b>Duel</b></span><span>Vendredi 16 octobre</span></div>
       <div class="body">
         <div class="mast"><h1>Avant ou après</h1><p>Le jeu des dates · 7 manches</p></div>
         <div class="champ"><span class="lab">${esc(TITLES[0])}</span><div class="row t1" style="padding:0;border:0;justify-content:center;display:flex"><div class="who"><span class="fxw">${f1}<span class="nm">Léa</span>${f2}</span></div></div></div>
@@ -379,7 +379,7 @@ body { margin: 0; background: var(--board); color: var(--board-text); font: 15px
     }
     const [g1, g2] = flames("globe", 1);
     return `
-      <div class="top"><span>Géoconomic <b>Duel</b></span><span style="color:var(--gold)">124 pts</span></div>
+      <div class="top"><span>Geonomix <b>Duel</b></span><span style="color:var(--gold)">124 pts</span></div>
       <div class="body">
         <div class="champ"><span class="lab">${esc(TITLES[0])}</span><div class="row t1" style="padding:0;background:none"><div class="who"><span class="fxw">${g1}<span class="nm">Léa</span>${g2}</span></div></div></div>
         <div class="hero"><div class="arc" aria-hidden="true"><i style="left:70px;top:48px"></i><i style="left:150px;top:30px;animation-delay:.8s"></i><i style="left:190px;top:70px;animation-delay:1.6s"></i></div><span class="lab">Le jeu des dates</span><h1>Avant ou après.<br><span>Sept manches.</span></h1></div>

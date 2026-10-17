@@ -1,12 +1,12 @@
 <meta charset="utf-8">
-<title>Géoconomic Duel</title>
+<title>Geonomix Duel</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,700&family=Figtree:wght@400;500;600;700;800&display=swap">
 <style>
 /* Plateau de jeu télévisé, version poche : une colonne, des gros boutons « en relief », un bandeau de score en haut.
-   Un seul monde visuel, sombre, assumé (comme l'appli Géoconomic). */
+   Un seul monde visuel, sombre, assumé (comme l'appli Geonomix). */
 :root {
   --bg: #0a0d14;
   --panel: #131826;
@@ -522,7 +522,7 @@ main { padding-block: 26px 120px; }
 .stat { padding: 14px; }
 .card .label + h2 { margin-top: 6px !important; margin-bottom: 4px; }
 .btn.blue, .btn.gold, .btn.ghost { box-shadow: none; }
-/* ================= Style de l'appli Géoconomic, version sobre =================
+/* ================= Style de l'appli Geonomix, version sobre =================
    Noir profond, surfaces en verre dépoli, titres à empattements (comme l'appli), boutons pilule bleus,
    dégradé géo en seul accent. Peu d'animations : une révélation douce des années, rien qui clignote.
    (Ces règles viennent en dernier et remplacent l'habillage « tableau de gare ».) */
@@ -719,7 +719,7 @@ body.elite .brand b { background: linear-gradient(90deg, #d9a640, #f5c86b); -web
 .k-pts { font-size: 15px; margin-top: 2px; } .k1 .k-pts { font-size: 17px; }
 @media (prefers-reduced-motion: reduce) { .mt-row, .mt-row.hot .mt-nm small { animation: none; } }
 /* ================= Version chaleureuse =================
-   Même famille que Géoconomic (titres à empattements, pilules, surfaces arrondies), mais au coin du feu :
+   Même famille que Geonomix (titres à empattements, pilules, surfaces arrondies), mais au coin du feu :
    brun nuit au lieu du noir, ambre et corail (le dégradé « éco » de l'appli) au lieu du bleu, un léger grain,
    des pastilles colorées, des traits faits main. Le jeu se distingue ainsi des actus, restées bleu nuit. */
 :root {
@@ -1023,7 +1023,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         <svg class="logo-normal" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>
         <svg class="logo-elite" width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path class="logo-crown" d="M11.5 7.2 12.6 3l2.2 2.4L16 2.2l1.2 3.2L19.4 3l1.1 4.2z" fill="currentColor" stroke="none"/><circle cx="16" cy="17" r="7"/><path d="M9 17h14M16 10c2.4 2.7 2.4 11.3 0 14M16 10c-2.4 2.7-2.4 11.3 0 14"/><path d="M5.6 11c-1.6 4-1 8.6 2.4 12M26.4 11c1.6 4 1 8.6-2.4 12"/><path d="M4.6 14.2l2.2.7M4.8 18.2l2.2-.2M6.2 21.6l1.9-1M27.4 14.2l-2.2.7M27.2 18.2l-2.2-.2M25.8 21.6l-1.9-1"/></svg>
       </span>
-      <span>Géoconomic <b>Duel</b></span>
+      <span>Geonomix <b>Duel</b></span>
       <span class="grade-chip" id="grade-chip" hidden></span>
     </div>
     <div class="counters">
@@ -1787,7 +1787,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
         ${list ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${list}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
-        : `<p class="note">Le 1 contre 1 se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Géoconomic Duel en ligne ›</a></p>`}</div>
+        : `<p class="note">Le 1 contre 1 se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`}</div>
     </section>`;
   }
   function viewJouer() {
@@ -1986,7 +1986,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     { id: "dates", type: "dates", hidden: true, tag: "Dates", title: "Avant ou après : les dates du jour",
       intro: "Douze « avant ou après », des écarts les plus larges aux plus serrés. Mort subite : une erreur et la série s'arrête." },
     { id: "actu", type: "actu", tag: "Actu", title: "Les pays de l'actu", count: 8,
-      intro: "Une actu de Géoconomic, et un globe : clique sur le pays où elle se passe." },
+      intro: "Une actu de Geonomix, et un globe : clique sur le pays où elle se passe." },
     { id: "uranium", type: "rank", tag: "Énergie", title: "Uranium : les 5 premiers producteurs", unit: "tonnes d'uranium extraites en 2023",
       intro: "Classe-les du plus gros producteur au plus petit.", rows: [["398", 21109], ["124", 11001], ["516", 6986], ["036", 4693], ["860", 4000]], src: [SRC_WNA],
       note: "Ouzbékistan : estimation. À eux trois, Kazakhstan, Canada et Namibie produisent environ les trois quarts de l'uranium du monde." },
@@ -2108,7 +2108,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       ${done ? `<p class="qd-done">Fait : <b>${S.qd.pct} %</b> en ${mmss(S.qd.secs || 0)}${S.qd.code ? ` · duel <b>${esc(S.qd.code)}</b>` : " · en solo"}. Nouveau duel dans ${msToMidnight()}.</p>
           ${mine.length ? `<div id="qd-mine">${mine.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">Chargement…</p></div>`).join("")}</div>` : ""}`
         : `<div class="btns">${shared ? `<button class="btn" id="qd-random">${ICON.dice} Adversaire au hasard</button><button class="btn gold" id="qd-friend">Défier un ami</button>` : ""}<button class="btn ghost" id="qd-solo">Jouer seul</button></div>
-          ${shared ? `<div class="join"><input id="qd-code" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel reçu"><button class="btn ghost" id="qd-join">Rejoindre</button></div>` : `<p class="note">Le duel contre quelqu'un se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Géoconomic Duel en ligne ›</a></p>`}
+          ${shared ? `<div class="join"><input id="qd-code" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel reçu"><button class="btn ghost" id="qd-join">Rejoindre</button></div>` : `<p class="note">Le duel contre quelqu'un se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`}
           <p class="note" id="qd-msg" aria-live="polite"></p>`}
     </section>`;
   }
@@ -2751,7 +2751,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       if (rows.every((x) => Math.abs(x.v - v) >= 0.4)) rows.push({ id, v, d: ind.values[id][1] });
       if (rows.length === 5) break;
     }
-    return { rows, unit: ind.unit, src: [ind.src], note: `Chiffres de l'onglet Chiffres de Géoconomic (mis à jour le ${new Date(QD.updated).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}). Ils changent chaque jour.` };
+    return { rows, unit: ind.unit, src: [ind.src], note: `Chiffres de l'onglet Chiffres de Geonomix (mis à jour le ${new Date(QD.updated).toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}). Ils changent chaque jour.` };
   }
   function runRank(q) {
     const R = rankRows(q);

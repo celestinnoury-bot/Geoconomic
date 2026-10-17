@@ -93,7 +93,7 @@ td { padding: 1.3mm 0; border-bottom: .5px solid #ddd; vertical-align: top; }
 td.v { text-align: right; font-weight: 700; white-space: nowrap; padding-left: 2mm; }
 footer { margin-top: 4mm; padding-top: 2.5mm; border-top: .5px solid #161616; font-size: 7.8pt; color: #555; display: flex; justify-content: space-between; gap: 6mm; }
 </style></head><body><div class="page" id="page">
-<header><div class="mast">Géoconomic</div><div class="sub sans">La lettre du matin · l'économie et la géopolitique, expliquées</div></header>
+<header><div class="mast">Geonomix</div><div class="sub sans">La lettre du matin · l'économie et la géopolitique, expliquées</div></header>
 <div class="dateline sans"><span>${esc(longDate.charAt(0).toUpperCase() + longDate.slice(1))}</span><span>${items.length} actus · lecture 5 min</span></div>
 <div class="cols">
   <main>
@@ -115,7 +115,7 @@ footer { margin-top: 4mm; padding-top: 2.5mm; border-top: .5px solid #161616; fo
     ${latest.length ? `<div><h2 class="sans">Les derniers chiffres</h2><table class="sans">${latest.map((x) => `<tr><td>${esc(x.label)}<br><span style="color:#888">${esc(x.date)} · ${esc(x.source.short)}</span></td><td class="v">${esc(x.value)}</td></tr>`).join("")}</table></div>` : ""}
   </aside>
 </div>
-<footer class="sans"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Géoconomic.</span><span>Lettre n° ${esc(day)}</span></footer>
+<footer class="sans"><span>Chaque actu est expliquée en détail, avec toutes ses sources, dans l'application Geonomix.</span><span>Lettre n° ${esc(day)}</span></footer>
 </div></body></html>`;
 
 const autoStyle = Math.round(Date.parse(day) / 864e5) % 2 === 0 ? "journal" : "journal-couleur";

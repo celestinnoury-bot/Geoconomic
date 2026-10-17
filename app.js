@@ -48,14 +48,14 @@
       </div>`;
   }
   const podcast = etudes.podcast || [];
-  const offre = etudes.offre || { name: "Géoconomic+", freeListens: 2 };
+  const offre = etudes.offre || { name: "Geonomix+", freeListens: 2 };
 
   // ---------- Podcast : épisodes offerts, puis abonnement ----------
   // Compté sur l'appareil (pas de compte pour l'instant) : la liste des épisodes déjà écoutés.
   const LISTEN_KEY = "geoco.podcast.listened";
   let listened = [];
   try { listened = JSON.parse(localStorage.getItem(LISTEN_KEY) || "[]"); } catch (e) {}
-  // ---------- Géoconomic+ (prototype) ----------
+  // ---------- Geonomix+ (prototype) ----------
   // Accès mémorisé sur l'appareil après un code offert ou l'e-mail d'un proche invité (data/plus.js).
   // Le jour où le paiement et les comptes sont branchés, c'est le serveur qui dira qui est abonné.
   const PLUS = window.GEOCO.plus || { prix: { mensuel: 3.99, annuel: 39.99 }, paiement: {}, codes: [], invites: [] };
@@ -107,7 +107,7 @@
   }
   async function rcBuy(kind, msg) {
     const rc = await rcLoad();
-    if (!rc) { if (msg) msg.textContent = "Le paiement ne peut pas s'ouvrir ici. Réessaie depuis le site de Géoconomic."; return false; }
+    if (!rc) { if (msg) msg.textContent = "Le paiement ne peut pas s'ouvrir ici. Réessaie depuis le site de Geonomix."; return false; }
     try {
       const offerings = await rc.getOfferings();
       const offering = (RC.offre && offerings.all[RC.offre]) || offerings.current;
@@ -128,7 +128,7 @@
     return false;
   }
 
-  // Ce qui est réservé à Géoconomic+ : les cours d'approfondissement (plus: true dans data/content.js)
+  // Ce qui est réservé à Geonomix+ : les cours d'approfondissement (plus: true dans data/content.js)
   // et les archives (tous les Focus et études de cas sauf le plus récent). Un aperçu reste gratuit.
   const plusCourse = (d) => !!(d && d.plus);
   const courseLocked = (d) => plusCourse(d) && !isPlus();
@@ -439,7 +439,7 @@
       <section class="globe-hero" aria-label="Globe de l'actualité">
         <div class="globe" id="globe"></div>
         <div class="globe-overlay">
-          <p class="eyebrow">${today ? formatDate(today) : "Géoconomic"}</p>
+          <p class="eyebrow">${today ? formatDate(today) : "Geonomix"}</p>
           <h1 class="headline">Le monde, <span class="grad mix">aujourd'hui.</span></h1>
           <p class="globe-hint">${onGlobe.length} actus des deux dernières semaines. Touche un point lumineux pour comprendre ce qui s'y passe.</p>
         </div>
@@ -521,7 +521,7 @@
             </div>
           </div>
           <a class="panel eco reveal play duel-panel" href="duel.html" style="margin-top:20px">
-            <p class="eyebrow">Géoconomic Duel</p>
+            <p class="eyebrow">Geonomix Duel</p>
             <p>Avant ou après ? Affronte un ami sur des dates surprenantes, et relève le défi du jour.</p>
             <span class="pill-btn blue">Lancer un duel</span>
           </a>
@@ -826,7 +826,7 @@
     const l = lettres[0];
     if (!l) return "";
     return `
-      <a class="lettre-card reveal" href="${l.file}" download="Geoconomic-lettre-${l.date}.pdf" target="_blank" rel="noopener">
+      <a class="lettre-card reveal" href="${l.file}" download="Geonomix-lettre-${l.date}.pdf" target="_blank" rel="noopener">
         <span class="lettre-icon" aria-hidden="true">PDF</span>
         <span class="lettre-body">
           <span class="lettre-kicker">La lettre du matin · ${formatDate(l.date)}</span>
@@ -834,7 +834,7 @@
         </span>
         <span class="lettre-cta">Télécharger</span>
       </a>
-      ${l.fileDark ? `<a class="more-link lettre-dark" href="${l.fileDark}" download="Geoconomic-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre (PDF) ›</a>` : ""}
+      ${l.fileDark ? `<a class="more-link lettre-dark" href="${l.fileDark}" download="Geonomix-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre (PDF) ›</a>` : ""}
       ${lettres.length > 1 ? `<a class="more-link" href="#/lettres">Les lettres précédentes (${lettres.length - 1}) ›</a>` : ""}`;
   }
 
@@ -1019,13 +1019,13 @@
               <h3>${l.titles[0] || "La lettre du matin"}</h3>
               <span class="more">Les archives sont réservées aux abonnés ${offre.name} ›</span>
             </a>` : `
-            <a class="news-card reveal" href="${l.file}" download="Geoconomic-lettre-${l.date}.pdf" target="_blank" rel="noopener">
+            <a class="news-card reveal" href="${l.file}" download="Geonomix-lettre-${l.date}.pdf" target="_blank" rel="noopener">
               <p class="eyebrow">PDF · ${formatDate(l.date)}</p>
               <h3>${l.titles[0] || "La lettre du matin"}</h3>
               ${l.titles.length > 1 ? `<p class="summary">Aussi : ${l.titles.slice(1).join(" · ")}</p>` : ""}
               <span class="more">Télécharger ›</span>
             </a>
-            ${l.fileDark ? `<p style="margin:6px 0 0 6px"><a href="${l.fileDark}" download="Geoconomic-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre ›</a></p>` : ""}`).join("") || '<p class="empty">Première lettre bientôt.</p>'}
+            ${l.fileDark ? `<p style="margin:6px 0 0 6px"><a href="${l.fileDark}" download="Geonomix-lettre-${l.date}-sombre.pdf" target="_blank" rel="noopener">Version sombre ›</a></p>` : ""}`).join("") || '<p class="empty">Première lettre bientôt.</p>'}
         </div>
       </section>`;
   }
@@ -1788,7 +1788,7 @@
       const idee = String(f.get("idee") || "").trim();
       if (!idee) return;
       const body = `${idee}\n\n${f.get("lien") ? "Lien : " + f.get("lien") + "\n" : ""}${f.get("nom") ? "— " + f.get("nom") : ""}`;
-      location.href = `mailto:${auteur.contact}?subject=${encodeURIComponent("Idée de sujet pour Géoconomic")}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:${auteur.contact}?subject=${encodeURIComponent("Idée de sujet pour Geonomix")}&body=${encodeURIComponent(body)}`;
       app.querySelector("#idea-note").textContent = "Merci ! Votre messagerie s'ouvre avec le message prêt à envoyer.";
     });
   }
@@ -2422,7 +2422,7 @@ function statGrid(figures, sources, theme = "geo") {
       <section class="wrap hero">
         <p class="eyebrow">À propos</p>
         <h1 class="title">Le monde, sous une autre facette.<br><span class="grad mix">L'économie qui nous fait comprendre le monde.</span></h1>
-        <p class="lead">Géoconomic rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
+        <p class="lead">Geonomix rend l'actualité économique et géopolitique accessible à tout le monde. Économie et géopolitique sont liées : un détroit bloqué fait flamber l'essence, une guerre commerciale change le prix d'un téléphone, une mine en Afrique fait tourner les voitures électriques d'Europe.</p>
       </section>
 
       ${auteur ? `<section class="wrap" id="qui" style="padding-bottom:24px">${auteurBlock(false)}</section>` : ""}
@@ -2590,7 +2590,7 @@ function statGrid(figures, sources, theme = "geo") {
       <section class="wrap hero">
         <p class="eyebrow">Réglages</p>
         <h1 class="title">Langue et région.</h1>
-        <p class="lead">Par défaut, Géoconomic s'affiche dans la langue de ton téléphone et met en avant les actus de ta région, d'après ton fuseau horaire. Aucune localisation n'est demandée.</p>
+        <p class="lead">Par défaut, Geonomix s'affiche dans la langue de ton téléphone et met en avant les actus de ta région, d'après ton fuseau horaire. Aucune localisation n'est demandée.</p>
       </section>
       <section class="wrap settings">
         <h2 class="search-h">Langue</h2>
@@ -2658,7 +2658,7 @@ function statGrid(figures, sources, theme = "geo") {
     watchReveals();
   }
 
-  // Géoconomic Duel : sur claude.ai, on ouvre la version en ligne (classement commun à jour) ; ailleurs, la page duel.html.
+  // Geonomix Duel : sur claude.ai, on ouvre la version en ligne (classement commun à jour) ; ailleurs, la page duel.html.
   const DUEL_ONLINE = "https://claude.ai/artifact/Kg6VKz8e5mH1mDVf3Uu3dK";
   document.addEventListener("click", (e) => {
     const a = e.target.closest && e.target.closest('a[href="duel.html"]');

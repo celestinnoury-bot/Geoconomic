@@ -7,7 +7,7 @@ La rubrique **Étude de cas** est en tête de la page Actu. Elle a deux parties,
 
 Le plus récent va **en premier** dans chaque liste.
 
-**Offre du podcast :** chaque lecteur peut écouter **2 épisodes offerts** au choix (`offre.freeListens` dans `data/etudes.js`), ensuite il faut l'abonnement Géoconomic+ (page `#/abonnement`). Un épisode avec `free: true` reste toujours gratuit (bande-annonce, épisode spécial). Pour l'instant le compteur est gardé sur l'appareil du lecteur : un vrai blocage demandera des comptes et un paiement (au lancement public). Après chaque ajout, lance `node tools/check-content.mjs`.
+**Offre du podcast :** chaque lecteur peut écouter **2 épisodes offerts** au choix (`offre.freeListens` dans `data/etudes.js`), ensuite il faut l'abonnement Geonomix+ (page `#/abonnement`). Un épisode avec `free: true` reste toujours gratuit (bande-annonce, épisode spécial). Pour l'instant le compteur est gardé sur l'appareil du lecteur : un vrai blocage demandera des comptes et un paiement (au lancement public). Après chaque ajout, lance `node tools/check-content.mjs`.
 
 ---
 

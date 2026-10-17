@@ -13,7 +13,7 @@ je les mets au format de l'appli. Si tu veux écrire directement, suis ce modèl
 
 **Thème** : Économie / Géopolitique / Les deux
 
-**Accès** (facultatif) : gratuit ou Géoconomic+. Sans précision, un article sur deux est réservé aux abonnés (dans l'ordre de la liste : 1er gratuit, 2e réservé…). Un article réservé garde son accroche et le début de sa première partie en accès libre.
+**Accès** (facultatif) : gratuit ou Geonomix+. Sans précision, un article sur deux est réservé aux abonnés (dans l'ordre de la liste : 1er gratuit, 2e réservé…). Un article réservé garde son accroche et le début de sa première partie en accès libre.
 
 **Accroche** : 1 à 2 phrases. Pourquoi c'est intéressant, en quoi c'est peu connu.
 

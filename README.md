@@ -1,4 +1,4 @@
-# Géoconomic : comprendre le monde en 3 minutes
+# Geonomix : comprendre le monde en 3 minutes
 
 Une application qui **vulgarise l'actualité économique et géopolitique** pour la rendre accessible à tout le monde, sans jargon.
 
@@ -91,7 +91,7 @@ Tout le contenu est dans [`data/content.js`](data/content.js). Copier un dossier
 
 - [ ] Relire les actus, le Focus et les chiffres (surtout ceux signalés comme incertains)
 - [ ] Vérifier que les liens des sources s'ouvrent bien (certains n'ont pas pu être testés)
-- [ ] Remplacer ou signer les articles d'exemple (« Rédaction Géoconomic (exemple) »)
+- [ ] Remplacer ou signer les articles d'exemple (« Rédaction Geonomix (exemple) »)
 - [ ] Choisir l'hébergement public (GitHub Pages ou Netlify) et l'adresse du site
 - [ ] Mettre à jour la page « À propos » (contact, nom de l'auteur) si besoin
 
