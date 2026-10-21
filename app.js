@@ -105,6 +105,18 @@
       else if (!ok && plusState && plusState.via === "revenuecat") { setPlus(null); refreshLocks(); }
     } catch (e) {}
   }
+  // Cinématique de bienvenue (bienvenue.js) juste après l'abonnement ou un code valide.
+  function welcomePlus() {
+    if (!window.GeocoBienvenue) return;
+    const st = plusState || {};
+    window.GeocoBienvenue.play({
+      titre: I18N.t("Bienvenue dans Geonomix+"),
+      sous: st.fondateur ? "⭐ " + I18N.t("Membre fondateur") : (st.label ? I18N.t(st.label) : I18N.t("Tout est débloqué.")),
+      bouton: I18N.t("C'est parti"),
+      passer: I18N.t("Passer"),
+    });
+  }
+
   async function rcBuy(kind, msg) {
     const rc = await rcLoad();
     if (!rc) { if (msg) msg.textContent = "Le paiement ne peut pas s'ouvrir ici. Réessaie depuis le site de Geonomix."; return false; }
@@ -976,7 +988,7 @@
       msg.textContent = ""; b.disabled = true;
       const ok = await rcBuy(b.dataset.rcBuy, msg);
       b.disabled = false;
-      if (ok) { msg.textContent = "Bienvenue ! Tout est débloqué."; msg.className = "plus-msg good"; drawStatus(); }
+      if (ok) { msg.textContent = "Bienvenue ! Tout est débloqué."; msg.className = "plus-msg good"; drawStatus(); welcomePlus(); }
       else if (msg.textContent) msg.className = "plus-msg bad";
     }));
     const status = app.querySelector("#plus-status");
@@ -985,10 +997,13 @@
         <div class="plus-active reveal in">
           <span aria-hidden="true">✓</span>
           <div><b>${offre.name} est actif sur cet appareil.</b>${plusState.fondateur ? ` <span class="founder-badge">⭐ Membre fondateur</span>` : ""}<br><span>${plusState.label}${plusState.jusqua ? ` · jusqu'au ${formatDate(plusState.jusqua)}` : ""}</span></div>
+          <button class="more-btn" type="button" id="plus-intro">▶ Revoir la bienvenue</button>
           ${plusState.via === "revenuecat" ? "" : `<button class="more-btn" type="button" id="plus-off">Désactiver</button>`}
         </div>` : "";
       const off = status.querySelector("#plus-off");
       if (off) off.addEventListener("click", () => { setPlus(null); drawStatus(); refreshLocks(); });
+      const again = status.querySelector("#plus-intro");
+      if (again) again.addEventListener("click", welcomePlus);
     }
     drawStatus();
 
@@ -1010,6 +1025,7 @@
           msg.className = "plus-msg good";
           drawStatus();
           refreshLocks();
+          welcomePlus();
         } else {
           msg.textContent = hit ? "Ce code a expiré." : ko;
           msg.className = "plus-msg bad";
@@ -2691,7 +2707,7 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "recherche") renderSearch(param || "");
     else if (section === "reglages") renderSettings();
     else if (section === "lettres") renderLettres();
-    else if (section === "abonnement") renderAbonnement();
+    else if (section === "abonnement") { renderAbonnement(); if (param === "bienvenue") welcomePlus(); }
     else if (section === "anecdotes") renderAnecdotes(param);
     else if (section === "focus") renderFocus(param);
     else if (section === "enjeux") renderEnjeux(param, extra);
