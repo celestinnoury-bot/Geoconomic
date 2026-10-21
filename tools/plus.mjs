@@ -11,6 +11,7 @@
 //   node tools/plus.mjs fondateurs fin                                    clôt l'offre (la carte disparaît de la page)
 //   node tools/plus.mjs revenuecat cle rcb_…                              clé publique Web Billing de RevenueCat (active le paiement dans l'appli)
 //   node tools/plus.mjs revenuecat droit plus | offre default | paquet mensuel $rc_monthly | paquet annuel $rc_annual | paquet fondateurs …
+//   Un code suivi de --mois 2 donne l'accès pendant 2 mois à partir du jour où l'invité le saisit (sans --mois : gratuit sans limite)
 //   Un code suivi de --fondateur donne le badge « Membre fondateur » (ex. : code FONDATEUR "Membres fondateurs" --fondateur)
 import fs from "fs";
 import vm from "vm";
@@ -29,12 +30,15 @@ const hashMail = (m) => crypto.createHash("sha256").update("mail:" + String(m).t
 
 const argv = process.argv.slice(2);
 const founderFlag = argv.includes("--fondateur");
-const [cmd, a, b, c] = argv.filter((x) => x !== "--fondateur");
+const mi = argv.indexOf("--mois");
+const months = mi >= 0 ? Number(argv[mi + 1]) : 0;
+if (mi >= 0 && !(months > 0)) { console.error("--mois attend un nombre de mois, ex. --mois 2"); process.exit(1); }
+const [cmd, a, b, c] = argv.filter((x, i) => x !== "--fondateur" && !(mi >= 0 && (i === mi || i === mi + 1)));
 P.fondateurs = P.fondateurs || { places: 50, restantes: 50, essaiMois: 2, prix: 2.99, paiement: "", ouvert: true };
 P.revenuecat = P.revenuecat || { cle: "", droit: "plus", offre: "", paquets: { mensuel: "$rc_monthly", annuel: "$rc_annual", fondateurs: "" } };
 if (cmd === "code" && a) {
   P.codes = P.codes.filter((x) => x.h !== hashCode(a));
-  P.codes.push(Object.assign({ h: hashCode(a), label: b || "Code offert" }, c ? { jusqua: c } : {}, founderFlag ? { fondateur: true } : {}));
+  P.codes.push(Object.assign({ h: hashCode(a), label: b || "Code offert" }, c ? { jusqua: c } : {}, months ? { mois: months } : {}, founderFlag ? { fondateur: true } : {}));
   console.log(`Code ajouté : « ${b || "Code offert"} »${c ? ` jusqu'au ${c}` : ""}. À donner tel quel : ${a.trim().toUpperCase()}`);
 } else if (cmd === "invite" && a) {
   P.invites = P.invites.filter((x) => x.h !== hashMail(a));
@@ -70,7 +74,7 @@ if (cmd === "code" && a) {
 } else if (cmd === "revenuecat" && a === "retirer") {
   P.revenuecat.cle = ""; console.log("RevenueCat débranché : retour aux liens de paiement.");
 } else if (cmd === "liste") {
-  console.log("Codes :", P.codes.map((x) => x.label + (x.jusqua ? ` (jusqu'au ${x.jusqua})` : "")).join(", ") || "aucun");
+  console.log("Codes :", P.codes.map((x) => x.label + (x.mois ? ` (${x.mois} mois offerts)` : "") + (x.jusqua ? ` (jusqu'au ${x.jusqua})` : "")).join(", ") || "aucun");
   console.log("Proches :", P.invites.map((x) => x.label).join(", ") || "aucun");
   process.exit(0);
 } else {

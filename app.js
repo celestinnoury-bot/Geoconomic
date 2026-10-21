@@ -74,7 +74,6 @@
   }
   // Même règle que tools/plus.mjs.
   const hashCode = (c) => sha256("code:" + String(c).trim().toUpperCase().replace(/\s+/g, ""));
-  const hashMail = (m) => sha256("mail:" + String(m).trim().toLowerCase());
   const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
 
   // ---------- Paiement par RevenueCat (Web Billing, via Stripe) ----------
@@ -968,20 +967,12 @@
         <p class="plus-msg" id="rc-msg" aria-live="polite"></p>
         ${RC || (PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel)) ? `<p class="viz-cap" style="margin-top:18px">Paiement sécurisé par carte bancaire. Résiliable à tout moment. En t'abonnant, tu acceptes les <a href="#/cgu">conditions d'utilisation</a>.</p>` : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
 
-        <div class="grid-2 plus-access">
-          <form class="panel geo reveal" id="code-form" autocomplete="off">
-            <p class="eyebrow">Tu as un code ?</p>
-            <p>Un code offert débloque ${offre.name} sans carte bancaire.</p>
-            <div class="plus-field"><input id="code-input" type="text" placeholder="Ex. : CODE2026" aria-label="Code" autocapitalize="characters" spellcheck="false"><button class="pill-btn blue" type="submit">Valider</button></div>
-            <p class="plus-msg" id="code-msg" aria-live="polite"></p>
-          </form>
-          <form class="panel mix reveal" id="mail-form" autocomplete="off">
-            <p class="eyebrow">Tu es un proche invité ?</p>
-            <p>Entre l'adresse e-mail à laquelle tu as été invité.</p>
-            <div class="plus-field"><input id="mail-input" type="email" placeholder="prenom@exemple.fr" aria-label="Adresse e-mail" spellcheck="false"><button class="pill-btn blue" type="submit">Valider</button></div>
-            <p class="plus-msg" id="mail-msg" aria-live="polite"></p>
-          </form>
-        </div>
+        <form class="panel geo reveal plus-guest" id="code-form" autocomplete="off">
+          <p class="eyebrow">Tu es un invité ?</p>
+          <p>Entre le code qu'on t'a donné : il débloque ${offre.name} sans carte bancaire.</p>
+          <div class="plus-field"><input id="code-input" type="text" placeholder="Ton code d'invité" aria-label="Code d'invité" autocapitalize="characters" spellcheck="false"><button class="pill-btn blue" type="submit">Valider</button></div>
+          <p class="plus-msg" id="code-msg" aria-live="polite"></p>
+        </form>
       </section>`;
 
     app.querySelectorAll("[data-rc-buy]").forEach((b) => b.addEventListener("click", async () => {
@@ -1017,10 +1008,11 @@
         if (!v) return;
         const hit = await find(v);
         if (hit && (!hit.jusqua || hit.jusqua >= today())) {
-          // Code fondateur : l'essai dure le nombre de mois prévu, à partir d'aujourd'hui.
+          // Code à durée (ex. 2 mois offerts) ou code fondateur : l'accès dure ce nombre de mois, à partir d'aujourd'hui.
           let until = hit.jusqua || null;
-          if (hit.fondateur) {
-            const d = new Date(); d.setMonth(d.getMonth() + ((PLUS.fondateurs && PLUS.fondateurs.essaiMois) || 2));
+          const months = hit.mois || (hit.fondateur ? (PLUS.fondateurs && PLUS.fondateurs.essaiMois) || 2 : 0);
+          if (months) {
+            const d = new Date(); d.setMonth(d.getMonth() + months);
             until = d.toISOString().slice(0, 10);
           }
           setPlus({ via: ok, label: hit.label, jusqua: until, fondateur: !!hit.fondateur });
@@ -1037,8 +1029,6 @@
     }
     check(app.querySelector("#code-form"), app.querySelector("#code-input"), app.querySelector("#code-msg"),
       async (v) => { const h = await hashCode(v); return (PLUS.codes || []).find((c) => c.h === h); }, "code", "Ce code n'existe pas.");
-    check(app.querySelector("#mail-form"), app.querySelector("#mail-input"), app.querySelector("#mail-msg"),
-      async (v) => { const h = await hashMail(v); return (PLUS.invites || []).find((c) => c.h === h); }, "invite", "Cette adresse n'est pas sur la liste des invités.");
   }
 
   function renderAnecdotes(focusId) {
