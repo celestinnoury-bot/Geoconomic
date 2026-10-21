@@ -3,62 +3,104 @@
 // qui grossit en tournant, onde de choc, feu d'artifice autour du globe, puis la carte « Bienvenue ».
 // Usage : GeocoBienvenue.play({ titre, sous, bouton, onClose }). Toucher l'écran ou Échap pour passer.
 (function () {
-  const TEX = "assets/earth/earth-blue-marble.jpg";
+  const TEX = { color: "assets/earth/earth-blue-marble.jpg", topo: "assets/earth/earth-topology.png", clouds: "assets/earth/clouds-alpha.jpg" };
   const COLORS = ["#f5c86b", "#ff7a59", "#5aa9ff", "#3ddc97", "#ffffff", "#c58bff"];
-  let tex = null, texLoading = null;
+  // Textures réduites à TW × TH pour lire leurs pixels vite : couleurs, relief (blanc = haut, noir = océan), nuages.
+  const TW = 2048, TH = 1024;
+  let tex = null, topo = null, clouds = null, texLoading = null;
 
-  // Texture de la Terre réduite (1024 × 512) pour lire ses pixels vite.
-  function loadTex() {
-    if (texLoading) return texLoading;
-    texLoading = new Promise((resolve) => {
+  function readImage(src, gray) {
+    return new Promise((resolve) => {
       const img = new Image();
       img.onload = () => {
         try {
           const c = document.createElement("canvas");
-          c.width = 1024; c.height = 512;
+          c.width = TW; c.height = TH;
           const g = c.getContext("2d");
-          g.drawImage(img, 0, 0, 1024, 512);
-          tex = g.getImageData(0, 0, 1024, 512).data;
-        } catch (e) { tex = null; }
-        resolve(tex);
+          g.drawImage(img, 0, 0, TW, TH);
+          const d = g.getImageData(0, 0, TW, TH).data;
+          if (!gray) return resolve(d);
+          const out = new Uint8Array(TW * TH);
+          for (let i = 0; i < out.length; i++) out[i] = d[i * 4];
+          resolve(out);
+        } catch (e) { resolve(null); }
       };
       img.onerror = () => resolve(null);
-      img.src = TEX;
+      img.src = src;
     });
+  }
+  function loadTex() {
+    if (texLoading) return texLoading;
+    texLoading = Promise.all([
+      readImage(TEX.color).then((d) => (tex = d)),
+      readImage(TEX.topo, true).then((d) => (topo = d)),
+      readImage(TEX.clouds, true).then((d) => (clouds = d)),
+    ]);
     return texLoading;
   }
 
-  // Sphère pré-calculée (projection orthographique) : pour chaque pixel, latitude, écart de longitude et lumière.
-  const S = 360, TILT = 18 * Math.PI / 180;
+  // Sphère pré-calculée (projection orthographique). L'axe des pôles ne bouge pas à l'écran quand la Terre
+  // tourne : pour chaque pixel, on garde donc sa latitude, son écart de longitude, la lumière du soleil
+  // (dans le repère est / nord, pour le relief), le reflet du soleil sur la mer et le liseré d'atmosphère.
+  const S = 420, TILT = 18 * Math.PI / 180;
+  const SUN = (() => { const v = [-0.8, 0.34, 0.5], n = Math.hypot(...v); return v.map((x) => x / n); })();
   let table = null;
   function buildTable() {
-    table = { row: new Int16Array(S * S), dl: new Float32Array(S * S), shade: new Float32Array(S * S), alpha: new Float32Array(S * S) };
-    const L = [-0.55, 0.45, 0.7], ln = Math.hypot(...L);
+    const n = S * S;
+    table = { row: new Int32Array(n), dl: new Float32Array(n), ndl: new Float32Array(n), le: new Float32Array(n), ln: new Float32Array(n), spec: new Float32Array(n), rim: new Float32Array(n), alpha: new Float32Array(n) };
+    const A = [0, Math.cos(TILT), Math.sin(TILT)];
+    const H = (() => { const v = [SUN[0], SUN[1], SUN[2] + 1], m = Math.hypot(...v); return v.map((x) => x / m); })();
     for (let j = 0; j < S; j++) for (let i = 0; i < S; i++) {
       const k = j * S + i, x = (i + 0.5) / S * 2 - 1, y = 1 - (j + 0.5) / S * 2, r2 = x * x + y * y;
-      if (r2 > 1) { table.alpha[k] = 0; continue; }
-      const z = Math.sqrt(1 - r2);
-      const lat = Math.asin(z * Math.sin(TILT) + y * Math.cos(TILT));
+      if (r2 > 1) continue;
+      const z = Math.sqrt(1 - r2), P = [x, y, z];
+      const lat = Math.asin(z * A[2] + y * A[1]);
       table.dl[k] = Math.atan2(x, z * Math.cos(TILT) - y * Math.sin(TILT));
-      table.row[k] = Math.min(511, Math.max(0, Math.round((0.5 - lat / Math.PI) * 511)));
-      const d = (x * L[0] + y * L[1] + z * L[2]) / ln;
-      table.shade[k] = 0.28 + 0.9 * Math.max(0, d);
+      table.row[k] = Math.min(TH - 1, Math.max(0, Math.round((0.5 - lat / Math.PI) * (TH - 1)))) * TW;
+      // Est = axe × P, nord = P × est (vecteurs unitaires à la surface).
+      let e = [A[1] * P[2] - A[2] * P[1], A[2] * P[0] - A[0] * P[2], A[0] * P[1] - A[1] * P[0]];
+      const em = Math.hypot(...e) || 1; e = e.map((v) => v / em);
+      const nn = [P[1] * e[2] - P[2] * e[1], P[2] * e[0] - P[0] * e[2], P[0] * e[1] - P[1] * e[0]];
+      table.ndl[k] = SUN[0] * x + SUN[1] * y + SUN[2] * z;
+      table.le[k] = SUN[0] * e[0] + SUN[1] * e[1] + SUN[2] * e[2];
+      table.ln[k] = SUN[0] * nn[0] + SUN[1] * nn[1] + SUN[2] * nn[2];
+      table.spec[k] = Math.pow(Math.max(0, H[0] * x + H[1] * y + H[2] * z), 140) * 0.55;
+      table.rim[k] = Math.pow(1 - z, 2.4);
       table.alpha[k] = Math.min(1, (1 - Math.sqrt(r2)) * S * 0.5);
     }
   }
-  function drawSphere(ctx2, img, lon0) {
+  const BUMP = 0.034;
+  function drawSphere(ctx2, img, lon0, cloudLon) {
     if (!table) buildTable();
-    const out = img.data;
+    const out = img.data, T = table;
     for (let k = 0; k < S * S; k++) {
-      const a = table.alpha[k], o = k * 4;
+      const a = T.alpha[k], o = k * 4;
       if (!a) { out[o + 3] = 0; continue; }
-      let lon = table.dl[k] + lon0;
-      lon = ((lon / (2 * Math.PI) + 0.5) % 1 + 1) % 1;
-      const s = table.shade[k];
+      const u = ((((T.dl[k] + lon0) / (2 * Math.PI) + 0.5) % 1 + 1) % 1 * (TW - 1)) | 0;
+      const row = T.row[k], idx = row + u;
+      let r, g, b, light, spec = 0;
       if (tex) {
-        const t = (table.row[k] * 1024 + Math.min(1023, (lon * 1023) | 0)) * 4;
-        out[o] = Math.min(255, tex[t] * s); out[o + 1] = Math.min(255, tex[t + 1] * s); out[o + 2] = Math.min(255, tex[t + 2] * s + 6);
-      } else { out[o] = 30 * s; out[o + 1] = 90 * s; out[o + 2] = 190 * s; }
+        r = tex[idx * 4]; g = tex[idx * 4 + 1]; b = tex[idx * 4 + 2];
+        let ndl = T.ndl[k];
+        if (topo) {
+          // Relief : la pente (est-ouest, nord-sud) incline la surface vers le soleil ou à l'opposé.
+          const hE = topo[row + ((u + 1) & (TW - 1))], hW = topo[row + ((u - 1) & (TW - 1))];
+          const hN = topo[Math.max(0, row - TW) + u], hS = topo[Math.min((TH - 1) * TW, row + TW) + u];
+          ndl += ((hW - hE) * T.le[k] + (hS - hN) * T.ln[k]) * BUMP;
+          if (topo[idx] < 3) spec = T.spec[k];
+        }
+        // Jour, nuit et un terminateur doux.
+        const day = Math.max(0, Math.min(1, (ndl + 0.08) / 0.5));
+        light = 0.045 + 1.2 * Math.pow(Math.max(0, ndl), 0.85) + 0.12 * day;
+      } else { r = 30; g = 90; b = 190; light = 0.3 + Math.max(0, T.ndl[k]); }
+      r = r * light + spec * 255; g = g * light + spec * 240; b = b * light + spec * 215;
+      if (clouds) {
+        const uc = ((((T.dl[k] + cloudLon) / (2 * Math.PI) + 0.5) % 1 + 1) % 1 * (TW - 1)) | 0;
+        const c = clouds[row + uc] / 255 * 0.9, cl = 255 * (0.06 + Math.max(0, T.ndl[k]) * 1.02);
+        r += (cl - r) * c; g += (cl - g) * c; b += (cl * 1.02 - b) * c;
+      }
+      const rim = T.rim[k] * (0.25 + Math.max(0, T.ndl[k] + 0.3));
+      out[o] = Math.min(255, r + 70 * rim); out[o + 1] = Math.min(255, g + 140 * rim); out[o + 2] = Math.min(255, b + 255 * rim);
       out[o + 3] = 255 * a;
     }
     ctx2.putImageData(img, 0, 0);
@@ -102,7 +144,18 @@
       bg.gain.setValueAtTime(0.0001, t); bg.gain.exponentialRampToValueAtTime(0.25, t + 0.008); bg.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
       b.connect(bg).connect(master); b.start(t); b.stop(t + 0.35);
     }
-    return { ac, hit, crackle, close: () => { try { master.gain.setTargetAtTime(0, ac.currentTime, 0.15); setTimeout(() => ac.close(), 600); } catch (e) {} } };
+    function thunder(at, vol = 1) {
+      const t = ac.currentTime + at;
+      const c = noise(0.3), hp = ac.createBiquadFilter(), cg = ac.createGain();
+      hp.type = "highpass"; hp.frequency.value = 1100;
+      cg.gain.setValueAtTime(0.0001, t); cg.gain.exponentialRampToValueAtTime(0.32 * vol, t + 0.005); cg.gain.exponentialRampToValueAtTime(0.0001, t + 0.22);
+      c.connect(hp).connect(cg).connect(master); c.start(t);
+      const r = noise(1.8), lp = ac.createBiquadFilter(), rg = ac.createGain();
+      lp.type = "lowpass"; lp.frequency.value = 140;
+      rg.gain.setValueAtTime(0.0001, t + 0.03); rg.gain.exponentialRampToValueAtTime(0.7 * vol, t + 0.12); rg.gain.exponentialRampToValueAtTime(0.0001, t + 1.7);
+      r.connect(lp).connect(rg).connect(master); r.start(t + 0.03);
+    }
+    return { ac, hit, crackle, thunder, close: () => { try { master.gain.setTargetAtTime(0, ac.currentTime, 0.15); setTimeout(() => ac.close(), 600); } catch (e) {} } };
   }
 
   function play({ titre = "Bienvenue dans Geonomix+", sous = "", bouton = "C'est parti", passer = "Passer", onClose } = {}) {
@@ -135,7 +188,9 @@
     if (audio) { audio.hit(0.25, 95, 48, 0.55, 0.9); audio.hit(0.62, 70, 34, 1.4, 1); }
 
     const stars = Array.from({ length: 220 }, () => ({ a: Math.random() * Math.PI * 2, d: Math.random(), s: Math.random() * 1.4 + 0.3 }));
-    const rockets = [], sparks = [];
+    const rockets = [], sparks = [], bolts = [], storms = [];
+    let curR = 0, nextStrike = 0, nextStorm = 0, flash = 0;
+    const strikes = [[620, 2], [2550, 3]];
     let nextBurst = 2500, t0 = performance.now(), raf = 0, closing = false, cardShown = false;
     const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
 
@@ -152,6 +207,26 @@
         sparks.push({ x, y, px: x, py: y, vx: Math.cos(a) * v, vy: Math.sin(a) * v, life: 1, decay: 0.008 + Math.random() * 0.01, c: Math.random() < 0.25 ? c2 : c });
       }
       if (audio) audio.crackle(0);
+    }
+
+    // Éclair : ligne brisée (déplacement du point milieu) de l'espace jusqu'au bord de la Terre, avec des branches.
+    function jag(x1, y1, x2, y2, rough, depth) {
+      if (depth === 0) return [[x1, y1], [x2, y2]];
+      const mx = (x1 + x2) / 2 + (Math.random() - 0.5) * rough, my = (y1 + y2) / 2 + (Math.random() - 0.5) * rough;
+      return jag(x1, y1, mx, my, rough / 2, depth - 1).concat(jag(mx, my, x2, y2, rough / 2, depth - 1).slice(1));
+    }
+    function strike(now, cx, cy) {
+      const R = Math.max(curR, 70), ang = Math.random() * Math.PI * 2, far = R * (1.7 + Math.random() * 0.9), spread = (Math.random() - 0.5) * 0.5;
+      const x1 = cx + Math.cos(ang) * far, y1 = cy + Math.sin(ang) * far;
+      const x2 = cx + Math.cos(ang + spread) * R * 0.97, y2 = cy + Math.sin(ang + spread) * R * 0.97;
+      const main = jag(x1, y1, x2, y2, R * 0.35, 6), paths = [main];
+      for (let b = 0; b < 3; b++) {
+        const p = main[2 + ((Math.random() * (main.length - 6)) | 0)], a2 = Math.atan2(y2 - y1, x2 - x1) + (Math.random() - 0.5) * 1.4, l = R * (0.15 + Math.random() * 0.3);
+        paths.push(jag(p[0], p[1], p[0] + Math.cos(a2) * l, p[1] + Math.sin(a2) * l, l * 0.4, 4));
+      }
+      bolts.push({ paths, t: now, life: 520 + Math.random() * 260, end: [x2, y2] });
+      flash = Math.max(flash, 0.16);
+      if (audio) audio.thunder(0, 0.6 + Math.random() * 0.4);
     }
 
     function frame(now) {
@@ -183,11 +258,12 @@
       }
       const grow = reduce ? 1 : ease((t - 620) / 2000);
       if (grow > 0) {
-        const R = Math.max(2, Rmax * (0.02 + 0.98 * grow) * (1 + (reduce ? 0 : 0.04 * Math.sin(Math.min(1, Math.max(0, (t - 2620) / 500)) * Math.PI))));
+        const R = curR = Math.max(2, Rmax * (0.02 + 0.98 * grow) * (1 + (reduce ? 0 : 0.04 * Math.sin(Math.min(1, Math.max(0, (t - 2620) / 500)) * Math.PI))));
         const glow = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.35);
         glow.addColorStop(0, "rgba(90,169,255,.55)"); glow.addColorStop(1, "rgba(90,169,255,0)");
         ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2); ctx.fill();
-        drawSphere(sctx, simg, -1.9 + (reduce ? 0 : 1.6 * ease(t / 2600) + t * 0.00004));
+        const lon0 = -1.9 + (reduce ? 0 : 1.6 * ease(t / 2600) + t * 0.00004);
+        drawSphere(sctx, simg, lon0, lon0 + 0.4 + t * 0.00002);
         ctx.drawImage(sph, cx - R, cy - R, R * 2, R * 2);
       }
 
@@ -198,6 +274,43 @@
         ctx.beginPath(); ctx.arc(cx, cy, Rmax * (1 + k * 1.2), 0, Math.PI * 2); ctx.stroke();
         if (t < 2750) { ctx.fillStyle = `rgba(255,255,255,${0.35 * (1 - (t - 2550) / 200)})`; ctx.fillRect(0, 0, W, H); }
       }
+
+      // Éclairs : sur les deux coups, sur l'onde de choc, puis de temps en temps ; orages qui scintillent sur la Terre.
+      if (!reduce && !closing) {
+        while (strikes.length && t > strikes[0][0]) { const [, n] = strikes.shift(); for (let i = 0; i < n; i++) strike(now, cx, cy); nextStrike = t + 1400; }
+        if (!strikes.length && t > nextStrike) { strike(now, cx, cy); nextStrike = t + 1100 + Math.random() * 1700; }
+        if (grow > 0.4 && t > nextStorm) {
+          const a = Math.random() * Math.PI * 2, d = Math.sqrt(Math.random()) * 0.8 * curR;
+          storms.push({ x: cx + Math.cos(a) * d, y: cy + Math.sin(a) * d, t: now, life: 120 + Math.random() * 160, r: curR * (0.05 + Math.random() * 0.07) });
+          nextStorm = t + 180 + Math.random() * 520;
+        }
+      }
+      ctx.globalCompositeOperation = "lighter";
+      for (let i = storms.length - 1; i >= 0; i--) {
+        const st = storms[i], k = (now - st.t) / st.life;
+        if (k >= 1) { storms.splice(i, 1); continue; }
+        const al = (1 - k) * (Math.random() < 0.3 ? 0.35 : 0.9);
+        const g = ctx.createRadialGradient(st.x, st.y, 0, st.x, st.y, st.r);
+        g.addColorStop(0, `rgba(235,240,255,${al})`); g.addColorStop(0.35, `rgba(150,180,255,${al * 0.45})`); g.addColorStop(1, "rgba(120,150,255,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2); ctx.fill();
+      }
+      for (let i = bolts.length - 1; i >= 0; i--) {
+        const bo = bolts[i], k = (now - bo.t) / bo.life;
+        if (k >= 1) { bolts.splice(i, 1); continue; }
+        // Un vrai éclair clignote : flash, presque noir, second flash, puis il s'éteint.
+        const al = (k < 0.18 ? 1 : k < 0.3 ? 0.15 : k < 0.48 ? 0.95 : k < 0.56 ? 0.1 : (1 - k) * 1.6) * (Math.random() < 0.15 ? 0.5 : 1);
+        for (const [w, c] of [[14, `rgba(110,150,255,${al * 0.18})`], [6, `rgba(170,200,255,${al * 0.45})`], [2.2, `rgba(255,255,255,${al})`]]) {
+          ctx.lineWidth = w; ctx.strokeStyle = c; ctx.lineJoin = "round";
+          bo.paths.forEach((pts, n) => {
+            ctx.lineWidth = n ? w * 0.55 : w;
+            ctx.beginPath(); pts.forEach(([x, y], m) => (m ? ctx.lineTo(x, y) : ctx.moveTo(x, y))); ctx.stroke();
+          });
+        }
+        const g = ctx.createRadialGradient(bo.end[0], bo.end[1], 0, bo.end[0], bo.end[1], 40);
+        g.addColorStop(0, `rgba(220,230,255,${al * 0.8})`); g.addColorStop(1, "rgba(120,150,255,0)");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(bo.end[0], bo.end[1], 40, 0, Math.PI * 2); ctx.fill();
+      }
+      if (flash > 0.01) { ctx.fillStyle = `rgba(190,210,255,${flash})`; ctx.fillRect(0, 0, W, H); flash *= 0.8; }
 
       // Feu d'artifice : fusées qui montent, puis gerbes d'étincelles avec traînée.
       if (!reduce && t > nextBurst && !closing) {
