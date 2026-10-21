@@ -25,6 +25,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 ## Contenu et règles éditoriales
 
 - Faits **sourcés** `[n]` → `sources`, jamais de chiffre de mémoire ; ton neutre ; sujets « sous la surface du glacier ».
+- Articles (onglet Articles, `data/culture.js`) : **articles de fond longs** (demande de l'auteur : « le but c'est qu'on informe ») : 2 000 à 3 000 mots, 6-7 parties, résumé, chiffres clés, frise, encadrés, au moins 2 graphiques ou cartes, 10-15 sources. Réécrits ainsi le 21 oct. 2026 : réserves stratégiques, câbles sous-marins, barrage de la Renaissance (traductions en/es dans `contenu-2026-10-21.json`).
 - Actus : **faits marquants**, au plus 2 actus « chiffres » (inflation, taux…) par jour ; ids en minuscules sans accent.
 - Une actu sur les taux/douane/détroits/puces/sanctions/dollar renvoie au cours lié (encadré « Le cours pour comprendre »).
 - `node tools/check-content.mjs` doit afficher « Contenu OK » avant chaque commit.

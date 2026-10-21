@@ -504,52 +504,373 @@ window.GEOCO.culture = [
     ]
   },
   {
-    id: "cables-sous-marins",
-    cover: "cables",
-    author: "Rédaction Geonomix (exemple)",
-    kind: "Culture G",
-    theme: "geo",
-    title: "Les câbles sous-marins : l'internet mondial tient à un fil",
-    hook: "Tu penses que tes messages passent par des satellites ? En réalité, l'immense majorité traverse les océans dans des câbles posés au fond de la mer.",
-    sections: [
+    "id": "cables-sous-marins",
+    "cover": "cables",
+    "author": "Rédaction Geonomix",
+    "kind": "Culture G",
+    "theme": "geo",
+    "title": "Les câbles sous-marins : l'internet mondial tient à un fil",
+    "hook": "Tu crois que tes messages passent par des satellites ? Presque tout le trafic entre continents file en réalité au fond des océans, dans des câbles de fibre optique. Une infrastructure née au milieu du XIXᵉ siècle, discrète, fragile, et devenue un enjeu de puissance.",
+    "tldr": [
+      "==Environ 99 % du trafic internet entre continents== passe par des câbles posés au fond de la mer, pas par des satellites [1].",
+      "Le réseau s'allonge (==1,7 million de km en 2025==) et dépend de plus en plus des géants du numérique, qui utilisaient déjà deux tiers de la capacité internationale en 2020 [2][6].",
+      "Ancres, volcans, sabotages présumés : ==150 à 200 pannes par an==, une flotte de réparation qui vieillit, et un droit de la mer mal armé pour punir [2][9][15]."
+    ],
+    "keyFigures": [
       {
-        title: "L'autoroute invisible",
-        paragraphs: [
-          "Environ 99 % des données échangées entre continents passent par des câbles sous-marins en fibre optique [1]. Il y en a plusieurs centaines, qui font au total plus d'un million de kilomètres [1].",
-          "Un câble moderne n'est pas plus épais qu'un tuyau d'arrosage dans les grands fonds. Il est souvent posé à même le sol, à plusieurs kilomètres de profondeur."
+        "value": "99 %",
+        "label": "du trafic internet intercontinental passe par les câbles sous-marins",
+        "src": 1
+      },
+      {
+        "value": "1,7 million de km",
+        "label": "de câbles de télécommunication sous les mers en 2025",
+        "src": 2
+      },
+      {
+        "value": "570",
+        "label": "systèmes de câbles en service début 2025, et 81 en projet",
+        "src": 3
+      },
+      {
+        "value": "150 à 200",
+        "label": "pannes de câbles chaque année dans le monde",
+        "src": 2
+      }
+    ],
+    "timelineTitle": "Des câbles télégraphiques à la fibre optique",
+    "timeline": [
+      {
+        "when": "1850",
+        "text": "Premier câble télégraphique sous la Manche, entre l'Angleterre et la France, isolé à la gutta-percha [4]."
+      },
+      {
+        "when": "1858",
+        "text": "Premier câble transatlantique, de l'Irlande à Terre-Neuve. Le message de la reine Victoria met environ 17 heures à passer. Le câble lâche un mois plus tard [5]."
+      },
+      {
+        "when": "1866",
+        "text": "Le Great Eastern pose le premier câble transatlantique durable [5]."
+      },
+      {
+        "when": "1884",
+        "text": "Convention de Paris sur la protection des câbles télégraphiques sous-marins, ancêtre des règles actuelles [15]."
+      },
+      {
+        "when": "2020",
+        "text": "Google, Facebook, Amazon et Microsoft utilisent deux tiers de la capacité internationale [6]."
+      },
+      {
+        "when": "2022",
+        "text": "L'éruption d'un volcan sous-marin coupe Tonga du monde pendant cinq semaines [11]."
+      },
+      {
+        "when": "Février 2024",
+        "text": "En mer Rouge, trois câbles sont coupés, sans doute par l'ancre d'un cargo touché par les Houthis [10]."
+      },
+      {
+        "when": "Début 2025",
+        "text": "L'OTAN lance « Baltic Sentry » en mer Baltique, puis l'Union européenne adopte un plan d'action pour la sécurité des câbles [12][1]."
+      },
+      {
+        "when": "Novembre 2025",
+        "text": "Fin de la construction de 2Africa, environ 45 000 km autour de l'Afrique [7]."
+      }
+    ],
+    "sections": [
+      {
+        "title": "D'une sève d'arbre à la fibre optique",
+        "quote": "Des fils de cuivre enrobés de sève d'arbre : c'est ainsi qu'est né le premier réseau mondial.",
+        "paragraphs": [
+          "L'histoire commence avec une sève d'arbre. Au milieu du XIXᵉ siècle, les ingénieurs cherchent comment faire passer un fil électrique sous l'eau sans que le courant s'échappe. La réponse vient de la ==gutta-percha==, une sorte de plastique naturel tiré de la sève d'un arbre. En 1847, l'Allemand Werner von Siemens met au point une méthode pour en enrober les fils, et en 1850 un premier câble relie l'Angleterre à la France [4].",
+          "Le défi suivant, c'est l'Atlantique. L'homme d'affaires américain Cyrus Field fonde une compagnie en 1856. En 1858, un câble est posé de Valentia, en Irlande, à Heart's Content, à Terre-Neuve. La reine Victoria et le président américain James Buchanan échangent des messages : ==il faut environ 17 heures pour transmettre celui de la reine==. Un mois plus tard, le câble lâche, abîmé par une tension électrique trop forte [5].",
+          "En 1865, le Great Eastern, un paquebot géant en fer, embarque 2 300 milles nautiques de câble. Le câble casse en pleine mer et son extrémité est perdue. L'année suivante, la nouvelle tentative réussit : c'est le ==premier câble transatlantique durable==, et il transmet 80 fois plus vite que celui de 1858. Au milieu des années 1870, quatre autres câbles ont déjà été posés [5].",
+          "La gutta-percha venait surtout de territoires sous contrôle britannique. Résultat : ==l'industrie des câbles sous-marins est devenue presque entièrement britannique== [4]. Posséder les câbles, c'était contrôler la circulation des nouvelles, des ordres et des affaires : une forme de puissance discrète, qui reste d'actualité.",
+          "Le principe n'a pas changé : un fil posé au fond de la mer, d'une côte à l'autre. Mais le cuivre a laissé la place à la fibre optique, où l'information voyage sous forme de lumière. Aujourd'hui, ==environ 99 % du trafic internet entre continents== passe par ces câbles [1]. Les satellites ne transportent donc qu'une toute petite partie des échanges : ils servent surtout aux zones isolées, aux navires, aux avions, ou en secours quand un câble est coupé."
+        ],
+        "box": {
+          "label": "Le détail oublié",
+          "title": "Le plastique venu d'un arbre",
+          "text": "Bien avant le plastique, c'est la gutta-percha, une matière tirée de la sève d'un arbre, qui protégeait les fils électriques dans l'eau de mer. C'est elle qui a rendu possible l'expansion du réseau mondial de communications au XIXᵉ siècle, et la domination britannique sur cette industrie [4]."
+        }
+      },
+      {
+        "title": "Comment on pose, et on répare, un câble",
+        "quote": "Le réseau s'allonge, mais le nombre de pannes reste stable : 150 à 200 par an [2].",
+        "paragraphs": [
+          "Selon le cabinet spécialisé TeleGeography, on comptait début 2025 ==570 systèmes de câbles en service==, plus que n'importe quelle année depuis vingt ans, et 81 autres en projet [3]. Mis bout à bout, les câbles de télécommunication font environ ==1,7 million de kilomètres==, contre 1 million en 2014 [2]. C'est plus de quarante fois le tour de la Terre.",
+          "Un câble ne ressemble pas à un gros tuyau. En son cœur, quelques paires de fibres optiques, fines comme des cheveux, protégées par des couches de métal et de plastique. Dans les grands fonds, où rien ne le menace, il reste fin et léger. Près des côtes, là où passent ancres et chaluts, on l'entoure de fils d'acier et on l'enterre souvent sous le fond marin. Le long du parcours, des répéteurs alimentés en électricité depuis la côte renforcent régulièrement le signal lumineux.",
+          "Pour poser un câble, il faut un ==navire câblier== : un bateau spécialisé qui embarque des milliers de kilomètres de câble dans ses cuves et le déroule lentement en suivant un tracé étudié à l'avance. Quand un câble casse, un navire du même type doit venir le repêcher, parfois par plusieurs kilomètres de fond, réparer à bord, puis le reposer.",
+          "Le problème : ==ces navires sont rares et vieillissent==. Selon TeleGeography, environ deux tiers des navires de maintenance des câbles auront atteint la fin de leur vie d'ici 2040. Il faudrait près de ==3 milliards de dollars== pour en construire une vingtaine (15 pour remplacer les anciens, 5 de plus) et éviter que les réparations prennent du retard [9].",
+          "Fabriquer et poser ces câbles est un métier de spécialistes. Il a longtemps été dominé par trois entreprises : l'américaine SubCom, la française Alcatel Submarine Networks (ASN) et la japonaise NEC [14]. Le nouveau venu est chinois : HMN Tech, dont l'ancêtre appartenait en majorité à Huawei, s'est imposé en proposant des prix plus bas [14]."
+        ],
+        "visual": 0,
+        "box": {
+          "label": "Côté France",
+          "title": "ASN, un champion repris par l'État",
+          "text": [
+            "Alcatel Submarine Networks, basée en France, revendique plus de 750 000 km de câbles optiques installés dans le monde et une flotte de sept navires câbliers [8].",
+            "Le groupe finlandais Nokia, qui la possédait, a vendu 80 % de l'entreprise à l'État français, pour une valeur d'entreprise de 350 millions d'euros. La vente a été finalisée le 31 décembre 2024 [8]."
+          ]
+        }
+      },
+      {
+        "title": "Google, Meta, Microsoft, Amazon : les nouveaux maîtres des fonds marins",
+        "quote": "En 2020, quatre entreprises utilisaient deux tiers de toute la capacité internationale [6].",
+        "paragraphs": [
+          "Pendant plus d'un siècle, les câbles appartenaient à des compagnies de télécommunication, souvent nationales, réunies en consortiums pour partager la facture. Ce modèle existe toujours. Mais un acteur a pris une place centrale : les géants du numérique.",
+          "Selon TeleGeography, en 2020, ==Google, Facebook (devenu Meta), Amazon et Microsoft utilisaient environ deux tiers de toute la capacité internationale utilisée dans le monde==. Leur priorité : relier entre eux leurs centres de données et les grands points d'échange d'internet [6].",
+          "Leur poids varie beaucoup selon les routes. Sur l'Atlantique, entre l'Amérique du Nord et l'Europe, ils représentaient ==91 % de la capacité utilisée==, mais seulement 12 % entre l'Europe et l'Asie de l'Est [6].",
+          "Pourquoi construire ses propres câbles ? Vidéos, services de cloud et intelligence artificielle font grimper les volumes de données. Plutôt que de louer de la capacité à des opérateurs, ces entreprises préfèrent posséder leurs « tuyaux », choisir leurs routes et maîtriser leurs coûts. C'est la même logique qu'une usine qui achète sa propre flotte de camions plutôt que de passer par un transporteur.",
+          "Exemple : ==2Africa==, un projet dont Meta fait partie avec des opérateurs comme Orange, Vodafone, China Mobile International ou Telecom Egypt. Ce câble d'environ ==45 000 kilomètres== fait le tour de l'Afrique et la relie au Moyen-Orient, à l'Europe et à l'Asie. Il touche 33 pays et 46 points d'atterrissage, et sa construction a été déclarée terminée en novembre 2025 [7].",
+          "Pour l'Afrique, c'est un vrai changement : 2Africa est présenté comme le premier câble à relier directement l'Afrique de l'Est et l'Afrique de l'Ouest dans un seul système continu [7]. Plus de câbles, c'est en principe plus de concurrence entre fournisseurs, des prix de gros qui baissent, et moins de risque de coupure totale quand un câble casse.",
+          "Cette concentration pose aussi une question. Quand quelques entreprises privées utilisent ou possèdent une part croissante des « autoroutes » d'internet, leur poids face aux États et aux opérateurs grandit. Certains y voient une source d'efficacité et d'investissement, d'autres un risque de dépendance."
+        ],
+        "visual": 1
+      },
+      {
+        "title": "Les goulets d'étranglement d'internet",
+        "quote": "Comme le pétrole, les données passent par quelques détroits.",
+        "paragraphs": [
+          "Les câbles ne sont pas répartis au hasard. Ils suivent le chemin le plus court entre les grands centres économiques. Ils se concentrent donc dans quelques passages obligés, là où un canal, un détroit ou une côte bien placée attire tous les tracés.",
+          "Le plus sensible est la ==mer Rouge==. Pour aller d'Europe en Asie, la route la plus courte traverse la Méditerranée, passe par l'Égypte, puis descend la mer Rouge vers le détroit de Bab-el-Mandeb, au large du Yémen.",
+          "En février 2024, ce passage a montré sa fragilité. Le cargo Rubymar, touché par des missiles des Houthis à la mi-février, a dérivé avant de couler. Quelques jours plus tard, ==trois câbles (Seacom, AAE-1 et EIG)== ont été coupés dans la même zone. Selon les autorités américaines, l'ancre traînée par le navire en est la cause la plus probable [10].",
+          "D'après une estimation de l'opérateur hongkongais HGC, ces câbles transportaient environ ==un quart du trafic qui passe par la région==. Le trafic a été redirigé vers d'autres câbles. Mais la réparation s'est compliquée : il fallait des assurances et des garanties de sécurité pour envoyer un navire dans une zone de conflit [10].",
+          "À l'autre bout de la Méditerranée, ==Marseille== est devenue un grand carrefour européen des câbles venus d'Afrique, du Moyen-Orient et d'Asie. Le nouveau câble SeaMeWe-6, par exemple, relie Singapour à la France [14].",
+          "En Asie, ==Singapour== et le détroit de Malacca jouent le même rôle de nœud. Plus à l'est, le ==détroit de Luçon==, entre Taïwan et les Philippines, voit passer de nombreux câbles entre l'Asie du Nord-Est et le reste du monde. C'est une zone à la fois sismique et au cœur des tensions autour de Taïwan.",
+          "Ces goulets arrangent les opérateurs, qui mettent en commun stations d'arrivée et autorisations. Mais ils créent une fragilité : un seul accident peut toucher plusieurs câbles à la fois. C'est pourquoi de nouveaux projets cherchent des routes de contournement, comme 2Africa, qui fait le tour du continent africain [7]."
+        ],
+        "visual": 2
+      },
+      {
+        "title": "Accident, catastrophe ou sabotage ?",
+        "quote": "Le plus souvent, le coupable est une ancre ou un chalut. Le plus difficile, c'est de prouver le contraire.",
+        "paragraphs": [
+          "Selon le Comité international de protection des câbles (ICPC), qui réunit les acteurs du secteur, il y a ==150 à 200 pannes par an==, un nombre stable alors que le réseau s'allonge. ==70 à 80 % sont des accidents liés à l'activité humaine==, surtout la pêche et les ancres des navires. Le reste vient de catastrophes naturelles ou de défaillances techniques [2].",
+          "La nature peut frapper fort. Le 15 janvier 2022, l'éruption du volcan sous-marin Hunga Tonga-Hunga Ha'apai endommage le câble qui relie l'archipel de Tonga au reste du monde. Pendant ==cinq semaines==, le pays ne communique plus que par quelques liaisons satellites, jusqu'à la réparation du câble le 22 février [11].",
+          "En mer Baltique, la série d'incidents a pris une autre dimension. Selon un décompte de l'agence AP, ==au moins 11 câbles y ont été endommagés entre octobre 2023 et janvier 2025== [12]. Le cas le plus suivi : le 25 décembre 2024, le câble électrique Estlink 2, entre la Finlande et l'Estonie, et plusieurs câbles de télécommunication sont endommagés. La Finlande saisit le pétrolier Eagle S, qu'elle rattache à la « flotte fantôme » transportant du pétrole russe, et le soupçonne d'avoir traîné son ancre sur le fond [12].",
+          "Les enquêtes butent souvent sur la même question : était-ce voulu ? Dans plusieurs cas, les armateurs ont parlé d'accident, et les opérateurs rappellent que la pêche et les ancres restent les premières causes de dégâts dans ces eaux [12].",
+          "Autour de Taïwan, les coupures se répètent aussi. En février 2025, le câble Taïwan-Penghu n° 3 est retrouvé sectionné après le départ du Hong Tai 58, un navire immatriculé au Togo et commandé par un capitaine chinois. En juin 2025, un tribunal taïwanais condamne ce capitaine à ==trois ans de prison== [13].",
+          "Le capitaine a invoqué une mer agitée et dit ne pas savoir qu'un câble se trouvait là. Le tribunal a relevé que le câble figurait sur les cartes du navire [13]."
+        ],
+        "box": {
+          "label": "Pourquoi c'est compliqué",
+          "title": "Prouver un sabotage, une mission presque impossible",
+          "text": [
+            "Un navire qui laisse traîner son ancre peut abîmer un câble sans le vouloir. Pour parler de sabotage, il faut prouver l'intention : les traces du navire et l'état du fond marin ne suffisent pas toujours.",
+            "C'est pourquoi la condamnation prononcée à Taïwan en 2025 a été présentée comme une première sur l'île dans une affaire de câble sous-marin [13]."
+          ]
+        }
+      },
+      {
+        "title": "Une bataille sino-américaine sous la mer",
+        "quote": "Qui fabrique, pose et entretient les câbles ? Pour les États, la question est devenue stratégique.",
+        "paragraphs": [
+          "Les données qui circulent dans les câbles sont le plus souvent chiffrées. Mais pour les États, le constructeur d'un câble n'est pas un détail : il connaît le réseau, fournit les équipements et intervient pour l'entretien. D'où la crainte d'un accès aux données ou d'une coupure en cas de crise.",
+          "L'exemple le plus connu est ==SeaMeWe-6==, un câble d'environ ==600 millions de dollars== qui relie Singapour à la France en passant par une douzaine de pays. Le chinois HMN Tech devait le construire : son offre, autour de 500 millions de dollars, était environ un tiers moins chère que la première proposition de l'américain SubCom [14].",
+          "Selon une enquête de l'agence Reuters, le gouvernement américain, inquiet d'un risque d'espionnage chinois, a mené une campagne de pressions et d'incitations auprès des membres du consortium. Le contrat est finalement allé à SubCom. Entre-temps, le département américain du Commerce avait placé HMN Tech sur sa liste de sanctions, en l'accusant de fournir l'armée chinoise [14].",
+          "Toujours selon Reuters, ce n'est pas un cas isolé : Washington serait intervenu dans ==au moins six projets privés de câbles en Asie-Pacifique en quatre ans== [14]. Les opérateurs China Mobile et China Telecom ont, eux, quitté le consortium de SeaMeWe-6 [14].",
+          "Pour les pays situés entre les deux puissances, le choix devient délicat. Un câble chinois peut coûter moins cher, comme le montre l'offre de HMN Tech. Un câble construit par une entreprise occidentale évite des frictions avec Washington. Les câbles deviennent ainsi une pièce de la rivalité technologique, au même titre que la 5G ou les puces électroniques."
         ]
       },
       {
-        title: "Un nouveau terrain de rivalité",
-        paragraphs: [
-          "Les géants du numérique (Google, Meta, Microsoft, Amazon) financent désormais une grande partie des nouveaux câbles. Et les États surveillent de près qui les construit : les États-Unis ont écarté des entreprises chinoises de plusieurs projets [2].",
-          "Les câbles passent aussi par les mêmes points stratégiques que le pétrole : mer Rouge, canal de Suez, détroit de Malacca."
-        ]
-      },
-      {
-        title: "Fragiles et difficiles à protéger",
-        paragraphs: [
-          "En 2024, plusieurs câbles ont été endommagés en mer Rouge, sans doute par l'ancre d'un cargo coulé après une attaque des Houthis. En mer Baltique, des câbles ont été sectionnés à plusieurs reprises en 2024 et 2025, et des navires soupçonnés de sabotage [2].",
-          "Le problème : il est presque impossible de surveiller des milliers de kilomètres de câbles au fond de l'eau, et prouver un sabotage est très difficile."
+        "title": "Protéger l'invisible",
+        "quote": "Le droit de la mer oblige à punir, mais donne peu de moyens d'agir loin des côtes.",
+        "paragraphs": [
+          "Au large, les câbles sont protégés par un droit ancien. La convention de Paris de 1884 sur la protection des câbles télégraphiques sous-marins a inspiré l'article 113 de la convention des Nations unies sur le droit de la mer [15].",
+          "Cet article oblige les États à faire de la rupture ou de la dégradation d'un câble une infraction. Mais il ne leur donne pas le pouvoir de prendre des mesures contre des navires étrangers en haute mer [15]. Autrement dit : un pays peut voir son câble coupé loin de ses côtes sans pouvoir arrêter le navire suspect.",
+          "Les États réagissent donc autrement. En janvier 2025, l'OTAN a lancé la mission ==« Baltic Sentry »== : navires de guerre, avions de patrouille maritime et drones navals pour surveiller la Baltique et dissuader les sabotages [12].",
+          "Le 21 février 2025, la Commission européenne et la haute représentante de l'UE pour la politique étrangère ont présenté un ==plan d'action pour la sécurité des câbles sous-marins==. Il couvre les câbles de télécommunication et les câbles électriques, autour de quatre axes : prévention, détection, réponse et réparation, dissuasion. La dissuasion passe notamment par des sanctions contre les acteurs hostiles et la « flotte fantôme » [1].",
+          "L'autre réponse est économique : multiplier les routes pour qu'un câble coupé ne coupe pas tout, et construire de nouveaux navires de réparation. Un câble abîmé reste inutile tant qu'aucun navire ne peut aller le réparer [9].",
+          "Pour toi, ces câbles sont invisibles, mais ils sont derrière chaque vidéo en streaming, chaque paiement vers un site étranger, chaque appel en visio avec l'autre bout du monde. Dans les régions bien desservies, une coupure se traduit le plus souvent par un ralentissement, le temps que le trafic soit redirigé, comme en mer Rouge en 2024 [10]. Mais pour une île reliée par un seul câble, comme Tonga en 2022, une coupure peut tout arrêter [11].",
+          "À suivre : le renouvellement de la flotte de réparation, les enquêtes en Baltique et à Taïwan, et la course entre les États-Unis et la Chine pour tracer les câbles de demain."
         ]
       }
     ],
-    didYouKnow: "Chaque année, des dizaines de câbles sont endommagés, la plupart du temps par accident : ancres de bateaux et chalutiers de pêche en sont les premières causes [1].",
-    sources: [
-      { short: "TeleGeography", name: "TeleGeography, Submarine Cable Map et FAQ", url: "https://www.submarinecablemap.com/" },
-      { short: "CSIS", name: "CSIS, travaux sur la sécurité des câbles sous-marins", url: "https://www.csis.org/" }
-    ],
-    visuals: [
+    "didYouKnow": "Le premier câble transatlantique durable, posé en 1866, transmettait 80 fois plus vite que celui de 1858, qui n'avait fonctionné qu'un mois environ [5].",
+    "sources": [
       {
-        kind: "map",
-        title: "Trois points chauds des câbles sous-marins",
-        intro: "Touche un lieu pour zoomer.",
-        points: [
-          { name: "Marseille", coords: [5.37, 43.3], zoom: 16, text: "Un des plus grands carrefours de câbles au monde : plus d'une quinzaine de câbles y arrivent et relient l'Europe à l'Afrique, au Moyen-Orient et à l'Asie." },
-          { name: "Mer Rouge", coords: [42.5, 14.5], zoom: 22, text: "Passage obligé des câbles entre l'Europe et l'Asie. En 2024, plusieurs y ont été endommagés, probablement par l'ancre d'un cargo coulé après une attaque des Houthis." },
-          { name: "Mer Baltique", coords: [24.5, 59.4], zoom: 16, text: "Entre la Finlande, l'Estonie et la Suède, plusieurs câbles et gazoducs ont été endommagés en 2023, 2024 et 2025. Des navires ont été soupçonnés d'avoir raclé le fond avec leur ancre." }
+        "short": "Commission européenne",
+        "name": "Commission européenne, « Commission and High Representative present strong actions to enhance the security of submarine cables », 21 février 2025",
+        "url": "https://digital-strategy.ec.europa.eu/en/news/commission-and-high-representative-present-strong-actions-enhance-security-submarine-cables"
+      },
+      {
+        "short": "ICPC",
+        "name": "International Cable Protection Committee (ICPC), « Media enquiries » (questions-réponses sur les câbles sous-marins)",
+        "url": "https://iscpc.org/news/media-enquiries/"
+      },
+      {
+        "short": "TeleGeography",
+        "name": "TeleGeography, « How Many Submarine Cables Are There, Anyway? », 2025",
+        "url": "https://blog.telegeography.com/how-many-submarine-cables-are-there-anyway"
+      },
+      {
+        "short": "Science History Institute",
+        "name": "Science History Institute, Distillations, « Communicating Underwater »",
+        "url": "https://www.sciencehistory.org/stories/magazine/communicating-underwater/"
+      },
+      {
+        "short": "The Henry Ford",
+        "name": "The Henry Ford, « How Were Text Messages Sent in the 1800s? »",
+        "url": "https://www.thehenryford.org/collections/explore/articles/how-were-text-messages-sent-in-the-1800s"
+      },
+      {
+        "short": "TeleGeography",
+        "name": "TeleGeography, « 2021 International Bandwidth Trends: Demand Is Global, Networks Are Global », 2021",
+        "url": "https://blog.telegeography.com/2021-international-bandwidth-trends-demand-global-networks"
+      },
+      {
+        "short": "Telecom Egypt",
+        "name": "Telecom Egypt, « The Completion of 2Africa: A Consortium Milestone for Global Connectivity », novembre 2025",
+        "url": "https://ir.te.eg/en/CorporateNews/PressRelease/232/The-Completion-of-2Africa-A-Consortium-Milestone-for-Global-Connectivity"
+      },
+      {
+        "short": "TelecomTV",
+        "name": "TelecomTV, « Nokia completes its sale of ASN (Alcatel Submarine Networks) to the French state », janvier 2025",
+        "url": "https://www.telecomtv.com/content/nokia/nokia-completes-its-sale-of-asn-alcatel-submarine-networks-to-the-french-state-52044/"
+      },
+      {
+        "short": "TeleGeography",
+        "name": "TeleGeography, « It's Going to Take $3 Billion to Ensure Submarine Cable Repair Ships Can Keep the World Connected », 2025",
+        "url": "https://blog.telegeography.com/submarine-cable-maintenance-data"
+      },
+      {
+        "short": "gCaptain",
+        "name": "gCaptain (Bloomberg), « Rubymar Anchor Seen as Likely Cause of Severed Red Sea Cables », mars 2024",
+        "url": "https://gcaptain.com/rubymar-anchor-seen-as-likely-cause-of-severed-red-sea-cables/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Tonga internet reconnected five weeks after volcanic eruption », 23 février 2022",
+        "url": "https://www.aljazeera.com/news/2022/2/23/tonga-internet-reconnected-five-weeks-of-volcanic-eruption"
+      },
+      {
+        "short": "Defense News (AP)",
+        "name": "Defense News (Associated Press), « 11 Baltic cables damaged in 15 months, pushing NATO to boost security », 28 janvier 2025",
+        "url": "https://www.defensenews.com/global/europe/2025/01/28/11-baltic-cables-damaged-in-15-months-pushing-nato-to-boost-security/"
+      },
+      {
+        "short": "DCD",
+        "name": "DatacenterDynamics, « Ship's captain from China jailed for three years in Taiwan over subsea cable sabotage », juin 2025",
+        "url": "https://www.datacenterdynamics.com/en/news/ships-captain-from-china-jailed-for-three-years-in-taiwan-over-subsea-cable-sabotage/"
+      },
+      {
+        "short": "Light Reading",
+        "name": "Light Reading (d'après Reuters), « US hardball drove Chinese vendor from huge cable project: reports », 2023",
+        "url": "https://www.lightreading.com/cable-technology/us-hardball-drove-chinese-vendor-from-huge-cable-project-reports"
+      },
+      {
+        "short": "Völkerrechtsblog",
+        "name": "Völkerrechtsblog, « Seabed Warfare » (protection juridique des câbles : convention de 1884 et article 113 de la CNUDM)",
+        "url": "https://voelkerrechtsblog.org/de/seabed-warfare/"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Un réseau qui s'allonge",
+        "subtitle": "Longueur totale des câbles sous-marins de télécommunication, en millions de km",
+        "xLabel": "Année",
+        "unit": "Millions de km",
+        "decimals": 1,
+        "data": [
+          [
+            "2014",
+            1
+          ],
+          [
+            "2025",
+            1.7
+          ]
         ],
-        source: "TeleGeography ; presse internationale"
+        "source": "ICPC (International Cable Protection Committee). Sur la même période, le nombre de pannes est resté stable, autour de 150 à 200 par an."
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "La part des géants du numérique",
+        "subtitle": "Part de la capacité internationale utilisée par Google, Facebook, Amazon et Microsoft en 2020, en %",
+        "xLabel": "Route",
+        "unit": "%",
+        "decimals": 0,
+        "data": [
+          [
+            "Monde (environ deux tiers)",
+            67
+          ],
+          [
+            "Atlantique",
+            91
+          ],
+          [
+            "Europe-Asie de l'Est",
+            12
+          ]
+        ],
+        "source": "TeleGeography, International Bandwidth Trends (2021), données 2020. « Deux tiers » arrondi à 67 %."
+      },
+      {
+        "kind": "map",
+        "title": "Les points chauds des câbles sous-marins",
+        "intro": "Touche un lieu pour zoomer.",
+        "points": [
+          {
+            "name": "Mer Rouge",
+            "coords": [
+              42.5,
+              14.5
+            ],
+            "zoom": 22,
+            "text": "Passage le plus court entre l'Europe et l'Asie. En février 2024, trois câbles (Seacom, AAE-1, EIG) y ont été coupés, sans doute par l'ancre du cargo Rubymar, touché par des missiles des Houthis."
+          },
+          {
+            "name": "Marseille",
+            "coords": [
+              5.37,
+              43.3
+            ],
+            "zoom": 16,
+            "text": "Grand carrefour européen des câbles venus d'Afrique, du Moyen-Orient et d'Asie. Le câble SeaMeWe-6 relie Singapour à la France."
+          },
+          {
+            "name": "Golfe de Finlande",
+            "coords": [
+              25,
+              59.8
+            ],
+            "zoom": 16,
+            "text": "Le 25 décembre 2024, le câble électrique Estlink 2 et plusieurs câbles télécoms y sont endommagés. La Finlande saisit le pétrolier Eagle S. Au moins 11 câbles ont été abîmés en Baltique entre octobre 2023 et janvier 2025."
+          },
+          {
+            "name": "Taïwan et Penghu",
+            "coords": [
+              119.9,
+              23.4
+            ],
+            "zoom": 18,
+            "text": "En février 2025, le câble Taïwan-Penghu n° 3 est sectionné. En juin, le capitaine chinois du Hong Tai 58 est condamné à trois ans de prison."
+          },
+          {
+            "name": "Singapour",
+            "coords": [
+              103.8,
+              1.3
+            ],
+            "zoom": 18,
+            "text": "Nœud des câbles d'Asie du Sud-Est, au débouché du détroit de Malacca. Point de départ de SeaMeWe-6 vers la France."
+          },
+          {
+            "name": "Tonga",
+            "coords": [
+              -175.2,
+              -21.1
+            ],
+            "zoom": 18,
+            "text": "En janvier 2022, l'éruption d'un volcan sous-marin endommage le seul câble international de l'archipel : cinq semaines de coupure, avec seulement quelques liaisons satellites."
+          }
+        ],
+        "source": "gCaptain/Bloomberg (2024), Light Reading/Reuters (2023), Defense News/AP (2025), DatacenterDynamics (2025), Al Jazeera (2022)"
       }
     ]
   },
