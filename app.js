@@ -934,6 +934,7 @@
         <h1 class="title reveal">${offre.name}.<br><span class="grad mix">Pour aller plus loin.</span></h1>
         <p class="lead reveal">L'actu, le globe, les cours et la lettre du matin restent gratuits. ${offre.name} débloque tout le reste.</p>
         <div id="plus-status"></div>
+        ${isPlus() ? "" : `<p class="intro-demo"><button class="more-btn" type="button" id="plus-demo">▶ Voir la bienvenue des abonnés</button></p>`}
         ${founderCard()}
         <div class="plans plans-3">
           <div class="plan reveal">
@@ -991,6 +992,8 @@
       if (ok) { msg.textContent = "Bienvenue ! Tout est débloqué."; msg.className = "plus-msg good"; drawStatus(); welcomePlus(); }
       else if (msg.textContent) msg.className = "plus-msg bad";
     }));
+    const demo = app.querySelector("#plus-demo");
+    if (demo) demo.addEventListener("click", welcomePlus);
     const status = app.querySelector("#plus-status");
     function drawStatus() {
       status.innerHTML = isPlus() ? `
@@ -2707,7 +2710,7 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "recherche") renderSearch(param || "");
     else if (section === "reglages") renderSettings();
     else if (section === "lettres") renderLettres();
-    else if (section === "abonnement") { renderAbonnement(); if (param === "bienvenue") welcomePlus(); }
+    else if (section === "abonnement") { renderAbonnement(); if (param && param.startsWith("bienv")) welcomePlus(); }
     else if (section === "anecdotes") renderAnecdotes(param);
     else if (section === "focus") renderFocus(param);
     else if (section === "enjeux") renderEnjeux(param, extra);
