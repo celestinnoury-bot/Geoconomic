@@ -915,7 +915,7 @@
           </div>
         </div>
         <p class="plus-msg" id="rc-msg" aria-live="polite"></p>
-        ${RC || (PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel)) ? `<p class="viz-cap" style="margin-top:18px">Paiement sécurisé par carte bancaire. Résiliable à tout moment.</p>` : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
+        ${RC || (PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel)) ? `<p class="viz-cap" style="margin-top:18px">Paiement sécurisé par carte bancaire. Résiliable à tout moment. En t'abonnant, tu acceptes les <a href="#/cgu">conditions d'utilisation</a>.</p>` : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
 
         <div class="grid-2 plus-access">
           <form class="panel geo reveal" id="code-form" autocomplete="off">
@@ -2611,6 +2611,22 @@ function statGrid(figures, sources, theme = "geo") {
     }));
   }
 
+  // Conditions générales d'utilisation : texte dans data/cgu.js.
+  function renderCgu() {
+    const c = window.GEOCO.cgu;
+    if (!c) return renderNotFound();
+    app.innerHTML = `
+      <section class="wrap hero">
+        <p class="eyebrow">${I18N.t("Conditions d'utilisation")}</p>
+        <h1 class="title">Conditions générales d'utilisation</h1>
+        <p class="lead">Les règles du jeu, en clair : ce que propose Geonomix, ce que tu peux en faire, et ce que deviennent tes données.</p>
+        <p class="row-sub">Mise à jour : ${formatDate(c.maj)}</p>
+      </section>
+      <section class="wrap cgu">
+        ${c.sections.map((s) => `<h2 class="search-h">${s.titre}</h2>${s.texte.map((t) => `<p class="copy">${t}</p>`).join("")}`).join("")}
+      </section>`;
+  }
+
   function renderNotFound() {
     app.innerHTML = `<section class="wrap hero"><p class="empty">Cette page n'existe pas. <a href="#/">Retour à l'accueil</a></p></section>`;
   }
@@ -2642,6 +2658,7 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "focus") renderFocus(param);
     else if (section === "enjeux") renderEnjeux(param, extra);
     else if (section === "apropos") renderAbout();
+    else if (section === "cgu") renderCgu();
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();
