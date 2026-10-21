@@ -69,3 +69,4 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
 - Adresse e-mail pro pour le formulaire d'idées (`data/auteur.js`, `contact` vide).
 - Hébergement public, prestataire de paiement, statut micro-entreprise.
+- Stripe (reporté par l'auteur) : brancher le connecteur Stripe sur claude.ai et/ou autoriser `stripe.com` dans l'accès réseau de l'environnement, puis générer le plan avec `stripe_implementation_planner` (Payments + Billing ; Connect sans doute inutile). En attendant, des Payment Links collés avec `node tools/plus.mjs paiement mensuel|annuel <lien>` suffisent.
