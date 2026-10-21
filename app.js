@@ -312,28 +312,66 @@
   const mountVisuals = (visuals) => window.GeocoViz && window.GeocoViz.mountAll(visuals);
 
   // Photo d'en-tête facultative : { src, alt, credit }.
-  // Curseur de défilement au bord droit du globe et de la voiture : le doigt y fait défiler la page
-  // (au lieu de faire tourner la 3D) ; un toucher saute juste après la zone.
+  // Curseur de défilement au bord droit du globe et de la voiture : on attrape la pastille et on la fait
+  // glisser vers le bas ou le haut, la page suit (au lieu de faire tourner la 3D) ; un toucher descend juste
+  // après la zone, ou remonte en haut de la zone si on l'a déjà presque quittée (les flèches se retournent).
   const scrollRail = () => `<button type="button" class="scroll-rail" aria-label="Descendre"><span class="rail-thumb" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 6l5 5 5-5M7 13l5 5 5-5"/></svg></span></button>`;
   function updateRails() {
     document.querySelectorAll(".scroll-rail").forEach((rail) => {
       const host = rail.parentElement.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, (72 - host.top) / Math.max(1, host.height - 72)));
       rail.style.setProperty("--rail-p", p.toFixed(3));
+      const up = p > 0.5;
+      if (rail.classList.contains("up") !== up) {
+        rail.classList.toggle("up", up);
+        rail.setAttribute("aria-label", I18N.t(up ? "Remonter" : "Descendre"));
+      }
     });
   }
   window.addEventListener("scroll", updateRails, { passive: true });
-  document.addEventListener("click", (e) => {
-    const rail = e.target.closest && e.target.closest(".scroll-rail");
-    if (!rail) return;
+  const glideTo = (y) => {
     // Animation maison : un scroll « smooth » natif est parfois annulé juste après un toucher.
-    const from = window.scrollY, dist = rail.parentElement.getBoundingClientRect().bottom - 64, t0 = performance.now();
+    const from = window.scrollY, dist = y - from, t0 = performance.now();
     const step = (t) => {
       const k = Math.min(1, (t - t0) / 600);
       window.scrollTo(0, from + dist * (1 - Math.pow(1 - k, 3)));
       if (k < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
+  };
+  let railDrag = null, railDragged = false;
+  document.addEventListener("pointerdown", (e) => {
+    const rail = e.target.closest && e.target.closest(".scroll-rail");
+    if (!rail || e.button > 0) return;
+    // Course de la pastille (68 % du rail moins sa hauteur) ↔ hauteur de la zone à faire défiler.
+    const track = Math.max(40, rail.clientHeight * 0.68 - 58);
+    const host = rail.parentElement.getBoundingClientRect();
+    railDrag = { rail, id: e.pointerId, y: e.clientY, from: window.scrollY, k: Math.max(1, host.height - 72) / track, moved: false };
+    railDragged = false;
+    try { rail.setPointerCapture(e.pointerId); } catch (err) { /* rien */ }
+  });
+  document.addEventListener("pointermove", (e) => {
+    if (!railDrag || e.pointerId !== railDrag.id) return;
+    const dy = e.clientY - railDrag.y;
+    if (!railDrag.moved && Math.abs(dy) < 6) return;
+    railDrag.moved = true;
+    railDrag.rail.classList.add("dragging");
+    window.scrollTo(0, railDrag.from + dy * railDrag.k);
+  });
+  const railEnd = (e) => {
+    if (!railDrag || e.pointerId !== railDrag.id) return;
+    railDragged = railDrag.moved;
+    railDrag.rail.classList.remove("dragging");
+    railDrag = null;
+  };
+  document.addEventListener("pointerup", railEnd);
+  document.addEventListener("pointercancel", railEnd);
+  document.addEventListener("click", (e) => {
+    const rail = e.target.closest && e.target.closest(".scroll-rail");
+    if (!rail) return;
+    if (railDragged) { railDragged = false; return; }
+    const host = rail.parentElement.getBoundingClientRect();
+    glideTo(rail.classList.contains("up") ? window.scrollY + host.top - 64 : window.scrollY + host.bottom - 64);
   });
 
   function heroImage(img) {

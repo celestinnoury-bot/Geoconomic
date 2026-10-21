@@ -1202,7 +1202,7 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .scroll-rail {
   position: absolute; top: 0; right: 0; bottom: 0; width: 46px; z-index: 4;
   margin: 0; padding: 0; border: 0; background: transparent; cursor: pointer;
-  touch-action: pan-y; -webkit-user-select: none; user-select: none;
+  touch-action: none; -webkit-user-select: none; user-select: none;
   --rail-p: 0;
 }
 .scroll-rail::before {
@@ -1219,7 +1219,9 @@ section.flash { animation: partFlash 1.6s ease-out; }
   transition: border-color .2s var(--ease), background .2s var(--ease);
 }
 .rail-thumb svg { width: 18px; height: 18px; fill: none; stroke: var(--text); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; animation: nudge 1.8s var(--ease) infinite; }
-.scroll-rail:hover .rail-thumb, .scroll-rail:active .rail-thumb { border-color: var(--mint); background: rgba(61,220,151,.18); }
+.scroll-rail.up .rail-thumb svg { transform: rotate(180deg); animation: none; }
+.scroll-rail.dragging .rail-thumb { transform: scale(1.15); transition: transform .15s var(--ease); }
+.scroll-rail:hover .rail-thumb, .scroll-rail:active .rail-thumb, .scroll-rail.dragging .rail-thumb { border-color: var(--mint); background: rgba(61,220,151,.18); }
 .scroll-rail:focus-visible { outline: none; }
 .scroll-rail:focus-visible .rail-thumb { outline: 2px solid #2997ff; outline-offset: 2px; }
 .globe-hero .scroll-rail { top: calc(200px + env(safe-area-inset-top)); bottom: calc(60px + env(safe-area-inset-bottom)); }
