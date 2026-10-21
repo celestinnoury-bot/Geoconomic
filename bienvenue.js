@@ -144,6 +144,17 @@
       bg.gain.setValueAtTime(0.0001, t); bg.gain.exponentialRampToValueAtTime(0.25, t + 0.008); bg.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
       b.connect(bg).connect(master); b.start(t); b.stop(t + 0.35);
     }
+    function boom(at) {
+      const t = ac.currentTime + at;
+      const n = noise(3.2), lp = ac.createBiquadFilter(), g = ac.createGain();
+      lp.type = "lowpass"; lp.frequency.setValueAtTime(1400, t); lp.frequency.exponentialRampToValueAtTime(70, t + 2.6);
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(1.1, t + 0.03); g.gain.exponentialRampToValueAtTime(0.0001, t + 3.1);
+      n.connect(lp).connect(g).connect(master); n.start(t);
+      const o = ac.createOscillator(), og = ac.createGain();
+      o.frequency.setValueAtTime(70, t); o.frequency.exponentialRampToValueAtTime(28, t + 1.5);
+      og.gain.setValueAtTime(0.0001, t); og.gain.exponentialRampToValueAtTime(0.9, t + 0.02); og.gain.exponentialRampToValueAtTime(0.0001, t + 1.8);
+      o.connect(og).connect(master); o.start(t); o.stop(t + 1.9);
+    }
     function thunder(at, vol = 1) {
       const t = ac.currentTime + at;
       const c = noise(0.3), hp = ac.createBiquadFilter(), cg = ac.createGain();
@@ -155,7 +166,7 @@
       rg.gain.setValueAtTime(0.0001, t + 0.03); rg.gain.exponentialRampToValueAtTime(0.7 * vol, t + 0.12); rg.gain.exponentialRampToValueAtTime(0.0001, t + 1.7);
       r.connect(lp).connect(rg).connect(master); r.start(t + 0.03);
     }
-    return { ac, hit, crackle, thunder, close: () => { try { master.gain.setTargetAtTime(0, ac.currentTime, 0.15); setTimeout(() => ac.close(), 600); } catch (e) {} } };
+    return { ac, hit, crackle, thunder, boom, close: () => { try { master.gain.setTargetAtTime(0, ac.currentTime, 0.15); setTimeout(() => ac.close(), 600); } catch (e) {} } };
   }
 
   function play({ titre = "Bienvenue dans Geonomix+", sous = "", bouton = "C'est parti", passer = "Passer", onClose } = {}) {
@@ -185,7 +196,9 @@
     size(); addEventListener("resize", size);
     loadTex();
     const audio = reduce ? null : makeAudio();
-    if (audio) { audio.hit(0.25, 95, 48, 0.55, 0.9); audio.hit(0.62, 70, 34, 1.4, 1); }
+    // Une seconde de noir complet avant que tout commence.
+    const DELAY = reduce ? 0 : 1000, EX = 2350;
+    if (audio) { audio.hit(1.25, 95, 48, 0.55, 0.9); audio.hit(1.62, 70, 34, 1.4, 1); audio.boom(1 + EX / 1000); }
 
     const stars = Array.from({ length: 220 }, () => ({ a: Math.random() * Math.PI * 2, d: Math.random(), s: Math.random() * 1.4 + 0.3 }));
     const rockets = [], sparks = [], bolts = [], storms = [];
@@ -229,12 +242,91 @@
       if (audio) audio.thunder(0, 0.6 + Math.random() * 0.4);
     }
 
-    function frame(now) {
-      const t = now - t0;
+    // Planète rouille derrière la Terre, en haut à droite : elle se fissure (lave), puis explose
+    // (éclair, anneau de feu incliné, débris et braises, nuage qui s'estompe). La Terre passe devant.
+    const debris = [];
+    let cracks = null;
+    function drawPlanet(t, cx, cy, Re) {
+      const pr = Re * 0.42, px = cx + Re * 0.86, py = cy - Re * 0.82;
       ctx.globalCompositeOperation = "source-over";
-      ctx.fillStyle = "#020306"; ctx.fillRect(0, 0, W, H);
+      if (t < EX) {
+        const pre = Math.max(0, (t - (EX - 650)) / 650), jx = (Math.random() - 0.5) * pre * 3, jy = (Math.random() - 0.5) * pre * 3;
+        const g = ctx.createRadialGradient(px - pr * 0.45 + jx, py - pr * 0.4 + jy, pr * 0.05, px + jx, py + jy, pr);
+        g.addColorStop(0, "#e0874f"); g.addColorStop(0.45, "#a3401f"); g.addColorStop(0.85, "#4a160a"); g.addColorStop(1, "#1d0703");
+        ctx.fillStyle = g; ctx.beginPath(); ctx.arc(px + jx, py + jy, pr, 0, Math.PI * 2); ctx.fill();
+        ctx.save(); ctx.beginPath(); ctx.arc(px + jx, py + jy, pr, 0, Math.PI * 2); ctx.clip();
+        ctx.fillStyle = "rgba(40,10,4,.28)";
+        for (let b = -2; b <= 2; b++) { ctx.beginPath(); ctx.ellipse(px + jx, py + jy + b * pr * 0.34, pr * 1.1, pr * 0.07, -0.2, 0, Math.PI * 2); ctx.fill(); }
+        if (pre > 0) {
+          if (!cracks) cracks = Array.from({ length: 7 }, () => { const a = Math.random() * Math.PI * 2, a2 = a + (Math.random() - 0.5) * 2; return jag(Math.cos(a) * 0.15, Math.sin(a) * 0.15, Math.cos(a2) * 1.1, Math.sin(a2) * 1.1, 0.5, 4); });
+          ctx.globalCompositeOperation = "lighter";
+          ctx.strokeStyle = `rgba(255,${150 + 80 * pre},60,${pre})`; ctx.lineWidth = 1 + pre * 2.5;
+          cracks.forEach((c) => { ctx.beginPath(); c.forEach(([x, y], m) => (m ? ctx.lineTo(px + jx + x * pr, py + jy + y * pr) : ctx.moveTo(px + jx + x * pr, py + jy + y * pr))); ctx.stroke(); });
+          const h = ctx.createRadialGradient(px, py, 0, px, py, pr);
+          h.addColorStop(0, `rgba(255,200,120,${pre * 0.6})`); h.addColorStop(1, "rgba(255,90,30,0)");
+          ctx.fillStyle = h; ctx.fillRect(px - pr, py - pr, pr * 2, pr * 2);
+        }
+        ctx.restore();
+        return;
+      }
+      if (!debris.length) {
+        for (let i = 0; i < 150; i++) {
+          const a = Math.random() * Math.PI * 2, v = (0.8 + Math.random() * Math.random() * 4.5) * pr / 60;
+          debris.push({ x: px + Math.cos(a) * pr * 0.5 * Math.random(), y: py + Math.sin(a) * pr * 0.5 * Math.random(), vx: Math.cos(a) * v, vy: Math.sin(a) * v, r: Math.random() * Math.PI, vr: (Math.random() - 0.5) * 0.2, s: (Math.random() < 0.2 ? 4 : 1.5) + Math.random() * 3, ember: Math.random() < 0.55 });
+        }
+        flash = Math.max(flash, 0.35);
+      }
+      const k = (t - EX) / 1000;
+      ctx.globalCompositeOperation = "lighter";
+      // Nuage brûlant qui s'étale puis s'éteint.
+      const cloudR = pr * (1.2 + 3.5 * ease(k / 2.5)), ca = Math.max(0, 1 - k / 4);
+      const neb = ctx.createRadialGradient(px, py, 0, px, py, cloudR);
+      neb.addColorStop(0, `rgba(255,190,110,${0.55 * ca * ca})`); neb.addColorStop(0.4, `rgba(220,80,40,${0.35 * ca})`); neb.addColorStop(0.75, `rgba(120,40,140,${0.18 * ca})`); neb.addColorStop(1, "rgba(60,20,90,0)");
+      ctx.fillStyle = neb; ctx.beginPath(); ctx.arc(px, py, cloudR, 0, Math.PI * 2); ctx.fill();
+      // Éclair blanc du cœur.
+      if (k < 0.7) {
+        const fr = pr * (0.6 + k * 6), fa = 1 - k / 0.7;
+        const f = ctx.createRadialGradient(px, py, 0, px, py, fr);
+        f.addColorStop(0, `rgba(255,255,240,${fa})`); f.addColorStop(0.3, `rgba(255,210,140,${fa * 0.8})`); f.addColorStop(1, "rgba(255,120,40,0)");
+        ctx.fillStyle = f; ctx.beginPath(); ctx.arc(px, py, fr, 0, Math.PI * 2); ctx.fill();
+      }
+      // Anneau de feu incliné qui s'élargit.
+      if (k < 1.8) {
+        const rk = ease(k / 1.8), rx = pr * (1.1 + 9 * rk), al = 1 - k / 1.8;
+        ctx.lineWidth = 2 + 7 * al; ctx.strokeStyle = `rgba(255,160,80,${al * 0.75})`;
+        ctx.beginPath(); ctx.ellipse(px, py, rx, rx * 0.22, -0.42, 0, Math.PI * 2); ctx.stroke();
+        ctx.lineWidth = 1.2; ctx.strokeStyle = `rgba(140,190,255,${al * 0.6})`;
+        ctx.beginPath(); ctx.ellipse(px, py, rx * 1.08, rx * 0.24, -0.42, 0, Math.PI * 2); ctx.stroke();
+      }
+      // Débris : rochers sombres au bord rougeoyant, et braises.
+      for (const d of debris) {
+        d.x += d.vx; d.y += d.vy; d.vx *= 0.995; d.vy *= 0.995; d.r += d.vr;
+        const life = Math.max(0, 1 - k / (d.ember ? 2.2 : 3.5));
+        if (!life) continue;
+        if (d.ember) {
+          ctx.globalCompositeOperation = "lighter";
+          ctx.fillStyle = `rgba(255,${120 + ((d.s * 20) | 0)},50,${life})`;
+          ctx.beginPath(); ctx.arc(d.x, d.y, d.s * 0.45, 0, Math.PI * 2); ctx.fill();
+        } else {
+          ctx.globalCompositeOperation = "source-over";
+          ctx.save(); ctx.translate(d.x, d.y); ctx.rotate(d.r);
+          ctx.fillStyle = `rgba(60,22,12,${life})`; ctx.strokeStyle = `rgba(255,120,50,${life * Math.max(0.2, 1 - k)})`; ctx.lineWidth = 1;
+          ctx.beginPath(); ctx.moveTo(-d.s, -d.s * 0.6); ctx.lineTo(d.s * 0.9, -d.s * 0.8); ctx.lineTo(d.s * 0.7, d.s * 0.7); ctx.lineTo(-d.s * 0.8, d.s * 0.5); ctx.closePath(); ctx.fill(); ctx.stroke();
+          ctx.restore();
+        }
+      }
+      ctx.globalCompositeOperation = "source-over";
+    }
+
+    function frame(now) {
+      const t = now - t0 - DELAY;
+      ctx.globalCompositeOperation = "source-over";
+      ctx.fillStyle = t < 0 ? "#000" : "#020306"; ctx.fillRect(0, 0, W, H);
+      if (t < 0) { raf = requestAnimationFrame(frame); return; }
       // Sur un écran en hauteur, la Terre se place un peu plus haut pour laisser la carte de bienvenue dessous.
-      const cx = W / 2, cy = H * (H > W * 1.2 ? 0.4 : 0.47), Rmax = Math.min(W, H) * 0.36;
+      // L'explosion de la planète fait trembler l'image un instant.
+      const shake = !reduce && t > EX && t < EX + 700 ? (1 - (t - EX) / 700) * 7 : 0;
+      const cx = W / 2 + (Math.random() - 0.5) * shake, cy = H * (H > W * 1.2 ? 0.4 : 0.47) + (Math.random() - 0.5) * shake, Rmax = Math.min(W, H) * 0.36;
 
       // Étoiles : elles filent vers les bords pendant qu'on fonce vers la Terre.
       const warp = reduce ? 0 : Math.max(0, 1 - Math.abs(t - 1500) / 1100);
@@ -257,6 +349,7 @@
         ctx.fillStyle = g; ctx.fillRect(cx - 120, cy - 120, 240, 240);
       }
       const grow = reduce ? 1 : ease((t - 620) / 2000);
+      if (!reduce && grow > 0) drawPlanet(t, cx, cy, Rmax * (0.02 + 0.98 * grow));
       if (grow > 0) {
         const R = curR = Math.max(2, Rmax * (0.02 + 0.98 * grow) * (1 + (reduce ? 0 : 0.04 * Math.sin(Math.min(1, Math.max(0, (t - 2620) / 500)) * Math.PI))));
         const glow = ctx.createRadialGradient(cx, cy, R * 0.9, cx, cy, R * 1.35);
@@ -363,7 +456,7 @@
     root.querySelector(".intro-go").addEventListener("click", close);
     root.querySelector(".intro-skip").addEventListener("click", close);
     // Toucher l'écran avant la carte : on saute directement à la fin (carte + feu d'artifice).
-    cv.addEventListener("click", () => { if (!cardShown) { t0 = performance.now() - 2560; nextBurst = 2500; } });
+    cv.addEventListener("click", () => { if (!cardShown) { t0 = performance.now() - DELAY - 2560; nextBurst = 2500; } });
     return { close };
   }
 
