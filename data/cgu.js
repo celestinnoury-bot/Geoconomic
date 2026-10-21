@@ -8,7 +8,7 @@ window.GEOCO.cgu = {
     {
       titre: "1. Qui édite Geonomix ?",
       texte: [
-        "Geonomix (l'« application ») est éditée par Célestin Noury, [statut : micro-entrepreneur, SIRET à compléter], [adresse postale à compléter], joignable à [adresse e-mail à compléter].",
+        "Geonomix (l'« application ») est éditée par Célestin Noury, [statut : micro-entrepreneur, SIRET à compléter], [adresse postale à compléter], joignable à <a href=\"mailto:celestinnoury0@gmail.com\">celestinnoury0@gmail.com</a>.",
         "Directeur de la publication : Célestin Noury. Hébergeur : [nom, adresse et téléphone de l'hébergeur à compléter].",
         "Utiliser l'application, c'est accepter ces conditions. Si tu n'es pas d'accord, il suffit de ne pas l'utiliser."
       ]

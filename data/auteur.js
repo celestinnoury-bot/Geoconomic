@@ -8,7 +8,7 @@ window.GEOCO.auteur = {
   role: "Fondateur de Geonomix · Étudiant en économie",
   photo: "assets/auteur.jpg",
   // Adresse qui reçoit les idées de sujets (formulaire de la page Articles). À remplir.
-  contact: "",
+  contact: "celestinnoury0@gmail.com",
   cursus: "Ancien élève de classe préparatoire économie-gestion (CPGE D2) à Strasbourg, où j'ai étudié la macroéconomie et la microéconomie. Je termine ma licence d'économie en échange à l'Université de Montréal (2026-2027).",
   texte: [
     "J'ai créé Geonomix dans le prolongement de mes études. La prépa et la licence m'ont appris la rigueur scientifique : être logique, raisonner de façon rationnelle, partir des faits. J'ai voulu appliquer cette méthode à l'actualité économique et géopolitique, y compris celle qui fait rarement les gros titres. De la géopolitique, oui ; des opinions politiques, non.",
