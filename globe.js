@@ -60,7 +60,7 @@
     return spots;
   }
 
-  // Zoom : pincement à deux doigts sur mobile, Ctrl + molette (ou pincement du pavé tactile) sur
+  // Zoom : pincement à deux doigts (même posés sur une étiquette) et double toucher sur mobile, Ctrl + molette (ou pincement du pavé tactile) sur
   // ordinateur, et boutons + / −. La molette seule continue de faire défiler la page.
   function addZoom(world, container, controls) {
     controls.enableZoom = true;
@@ -79,10 +79,50 @@
       e.stopPropagation();
       controls.autoRotate = false;
       const pov = world.pointOfView();
-      const alt = Math.min(3.8, Math.max(0.25, pov.altitude * Number(b.dataset.z)));
+      const alt = clampAlt(pov.altitude * Number(b.dataset.z));
       world.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: alt }, 500);
     });
     container.appendChild(box);
+
+    // Pincement fait par nous : globe.gl ne le voit pas quand un doigt se pose sur une étiquette
+    // de pays (elles couvrent une bonne partie du globe sur téléphone). Double toucher : zoom sur ce point.
+    const clampAlt = (a) => Math.min(3.8, Math.max(0.25, a));
+    const pts = new Map();
+    let pinch = null, lastTap = null;
+    const spread = () => { const [a, b] = [...pts.values()]; return Math.hypot(a[0] - b[0], a[1] - b[1]) || 1; };
+    container.addEventListener("pointerdown", (e) => {
+      if (e.pointerType !== "touch" || e.target.closest(".globe-zoom")) return;
+      pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pts.size === 2) {
+        pinch = { d: spread(), alt: world.pointOfView().altitude };
+        controls.autoRotate = false;
+        controls.enabled = false;
+        lastTap = null;
+      }
+    }, { capture: true });
+    container.addEventListener("pointermove", (e) => {
+      if (!pts.has(e.pointerId)) return;
+      pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (!pinch || pts.size < 2) return;
+      const pov = world.pointOfView();
+      world.pointOfView({ lat: pov.lat, lng: pov.lng, altitude: clampAlt(pinch.alt * pinch.d / spread()) });
+    }, { capture: true });
+    const lift = (e) => {
+      if (!pts.delete(e.pointerId)) return;
+      if (pinch && pts.size < 2) { pinch = null; setTimeout(() => { if (!pinch) controls.enabled = true; }, 60); return; }
+      if (e.type !== "pointerup" || pts.size || e.target.closest(".globe-pin")) return;
+      const now = Date.now();
+      if (lastTap && now - lastTap.t < 320 && Math.hypot(e.clientX - lastTap.x, e.clientY - lastTap.y) < 30) {
+        lastTap = null;
+        const r = container.getBoundingClientRect();
+        const g = world.toGlobeCoords(e.clientX - r.left, e.clientY - r.top);
+        const pov = world.pointOfView();
+        controls.autoRotate = false;
+        world.pointOfView({ lat: g ? g.lat : pov.lat, lng: g ? g.lng : pov.lng, altitude: clampAlt(pov.altitude * 0.55) }, 450);
+      } else lastTap = { t: now, x: e.clientX, y: e.clientY };
+    };
+    container.addEventListener("pointerup", lift, { capture: true });
+    container.addEventListener("pointercancel", lift, { capture: true });
   }
 
   // Ajoute une couche de nuages qui tourne lentement, en réutilisant les classes three.js du globe.
