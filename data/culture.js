@@ -554,54 +554,421 @@ window.GEOCO.culture = [
     ]
   },
   {
-    id: "barrage-renaissance",
-    cover: "barrage",
-    author: "Rédaction Geonomix (exemple)",
-    kind: "Culture G",
-    theme: "geo",
-    title: "Le barrage de la Renaissance : la guerre de l'eau sur le Nil",
-    hook: "L'Éthiopie a construit le plus grand barrage d'Afrique. Pour l'Égypte, c'est une question de survie.",
-    sections: [
+    "id": "barrage-renaissance",
+    "cover": "barrage",
+    "author": "Rédaction Geonomix",
+    "kind": "Culture G",
+    "theme": "geo",
+    "title": "Le barrage de la Renaissance : la guerre de l'eau sur le Nil",
+    "hook": "L'Éthiopie a bâti le plus grand barrage hydroélectrique d'Afrique sur le Nil Bleu. Pour Addis-Abeba, c'est la lumière et la fierté retrouvée. Pour Le Caire, une « menace existentielle ». Entre les deux, le Soudan hésite. Comment un mur de béton est devenu l'un des grands bras de fer du continent.",
+    "tldr": [
+      "L'Égypte dépend du Nil pour ==97 % de son eau==, et plus de 80 % de cette eau naît sur les hauts plateaux éthiopiens [1][2].",
+      "Les traités de 1929 et 1959 partageaient le fleuve entre l'Égypte et le Soudan ==sans rien prévoir pour l'Éthiopie==, qui ne s'estime pas liée par eux [2].",
+      "Inauguré le 9 septembre 2025, le barrage peut stocker ==74 milliards de m³== et produire 5 150 MW, dans un pays où moins d'un habitant sur deux a un accès suffisant à l'électricité [1][9].",
+      "Quinze ans de négociations n'ont abouti à ==aucun accord contraignant== sur le remplissage et la gestion en cas de sécheresse [4][6][7]."
+    ],
+    "keyFigures": [
       {
-        title: "Un barrage géant",
-        paragraphs: [
-          "Le Grand barrage de la Renaissance éthiopienne a été construit sur le Nil Bleu, près de la frontière avec le Soudan. Lancé en 2011, il a été inauguré en septembre 2025 [1].",
-          "Pour l'Éthiopie, c'est un symbole de fierté nationale et une source d'électricité énorme pour un pays où une grande partie de la population n'y a pas encore accès."
+        "value": "97 %",
+        "label": "de l'eau de l'Égypte vient du Nil",
+        "src": 1
+      },
+      {
+        "value": "74 Mds m³",
+        "label": "la capacité du réservoir du barrage",
+        "src": 1
+      },
+      {
+        "value": "5 150 MW",
+        "label": "la puissance prévue, la plus grande d'Afrique",
+        "src": 1
+      },
+      {
+        "value": "91 %",
+        "label": "du financement venu de prêts de la banque publique éthiopienne",
+        "src": 11
+      }
+    ],
+    "timelineTitle": "Un siècle de dispute autour du Nil",
+    "timeline": [
+      {
+        "when": "1929",
+        "text": "Accord entre l'Égypte et la Grande-Bretagne (pour ses colonies) : 48 milliards de m³ par an pour l'Égypte, 4 pour le Soudan, et un droit de veto égyptien sur les ouvrages en amont [2]."
+      },
+      {
+        "when": "1959",
+        "text": "Accord Égypte-Soudan : 55,5 milliards de m³ pour l'Égypte, 18,5 pour le Soudan. L'Éthiopie n'est pas consultée [2]."
+      },
+      {
+        "when": "2011",
+        "text": "Lancement du chantier du Grand barrage de la Renaissance éthiopienne, sur le Nil Bleu [3]."
+      },
+      {
+        "when": "Mars 2015",
+        "text": "Déclaration de principes de Khartoum, signée par l'Égypte, l'Éthiopie et le Soudan [4]."
+      },
+      {
+        "when": "Février 2020",
+        "text": "Médiation américaine à Washington : l'Éthiopie demande un report du dernier round [6]."
+      },
+      {
+        "when": "Juillet 2020",
+        "text": "L'Éthiopie annonce avoir atteint son premier objectif de remplissage : 4,9 milliards de m³ [12]."
+      },
+      {
+        "when": "Septembre 2021",
+        "text": "Le Conseil de sécurité de l'ONU appelle à reprendre les négociations sous l'égide de l'Union africaine [7]."
+      },
+      {
+        "when": "Octobre 2024",
+        "text": "Entrée en vigueur de l'accord-cadre du bassin du Nil, sans l'Égypte ni le Soudan [5]."
+      },
+      {
+        "when": "9 septembre 2025",
+        "text": "Inauguration officielle du barrage. L'Égypte proteste auprès de l'ONU [1]."
+      }
+    ],
+    "sections": [
+      {
+        "title": "Un fleuve, deux Nils",
+        "quote": "L'eau qui arrive au Caire est, pour l'essentiel, de la pluie tombée en Éthiopie.",
+        "paragraphs": [
+          "Quand on pense au Nil, on imagine les pyramides et le delta égyptien. Mais le fleuve est une affaire régionale : son bassin s'étend sur une dizaine de pays, du lac Victoria à la Méditerranée. Dix d'entre eux sont membres de l'Initiative du bassin du Nil, l'organisme de coopération régionale [5].",
+          "Le Nil a en réalité deux grandes branches. Le Nil Blanc vient de la région des Grands Lacs, au cœur de l'Afrique de l'Est. Le Nil Bleu, lui, descend des hauts plateaux éthiopiens. Il est gonflé par les pluies d'été, très abondantes.",
+          "Les deux branches se rejoignent à Khartoum, la capitale du Soudan. À partir de là, il n'y a plus qu'un seul Nil, qui traverse le désert jusqu'à l'Égypte.",
+          "Le point clé, c'est le volume. Les hauts plateaux éthiopiens fournissent ==plus de 80 % de l'eau qui coule dans le Nil== [2]. Autrement dit, l'Égypte, tout en bas du fleuve, reçoit surtout de l'eau née en Éthiopie, tout en haut.",
+          "C'est toute la tension du dossier. Un pays d'amont, qui « possède » la source, et un pays d'aval, qui en dépend presque entièrement. Les spécialistes appellent cela une asymétrie amont-aval. On la retrouve sur beaucoup de grands fleuves partagés, mais rarement de façon aussi nette."
+        ],
+        "visual": 0
+      },
+      {
+        "title": "L'Égypte et les traités contestés",
+        "quote": "Pour Le Caire, le Nil n'est pas une ressource parmi d'autres : c'est presque la seule.",
+        "paragraphs": [
+          "L'Égypte est un pays presque sans pluie. Sa population vit massivement le long du fleuve et dans son delta. Elle dépend du Nil pour ==97 % de son eau== [1].",
+          "Le président Abdel Fattah al-Sissi a qualifié le barrage éthiopien de ==« menace existentielle »== pour la sécurité hydrique de son pays [1]. Le Caire craint qu'en cas de sécheresse, l'Éthiopie retienne de l'eau dans son réservoir au lieu de la laisser passer [1].",
+          "Pour comprendre la position égyptienne, il faut remonter à l'histoire. En 1929, l'Égypte signe un accord avec la Grande-Bretagne, qui agit alors au nom de ses colonies d'Afrique de l'Est et du Soudan. L'Égypte obtient ==48 milliards de m³ d'eau par an==, le Soudan 4 milliards, sur un débit moyen estimé à 84 milliards. Le texte lui donne aussi un droit de veto sur les grands travaux en amont [2].",
+          "En 1959, l'Égypte et le Soudan, devenu indépendant, signent un nouvel accord. Les parts montent à ==55,5 milliards de m³ pour l'Égypte et 18,5 milliards pour le Soudan== [2]. Ces deux pays se partagent ainsi presque tout le débit moyen du fleuve.",
+          "Problème : ces textes ne prévoient ==rien pour les autres pays du bassin==, pas même pour l'Éthiopie, d'où vient l'essentiel de l'eau [2]. Pour l'Égypte, ces accords fondent des « droits historiques » qu'il faut respecter. Pour les pays d'amont, ce sont des textes coloniaux ou bilatéraux qu'ils n'ont jamais signés, et qui ne les engagent donc pas [2].",
+          "Face à ces traités, les pays du bassin tentent de bâtir un cadre commun. L'Initiative du bassin du Nil réunit aujourd'hui dix pays : Burundi, RD Congo, Égypte, Éthiopie, Kenya, Ouganda, Rwanda, Soudan, Soudan du Sud et Tanzanie. L'Érythrée y est observatrice [5].",
+          "Ces discussions donnent naissance à un accord-cadre de coopération, souvent appelé « accord d'Entebbe », du nom de la ville ougandaise qui accueille le secrétariat de l'Initiative [5]. Pour les pays d'amont, il doit remplacer les parts fixées autrefois par un partage pensé à l'échelle de tout le bassin.",
+          "L'Égypte et le Soudan ne l'ont pas ratifié. L'accord-cadre est malgré tout ==entré en vigueur le 13 octobre 2024==, après sa ratification par le Burundi, l'Éthiopie, le Rwanda, la Tanzanie et l'Ouganda, puis l'adhésion du Soudan du Sud [5].",
+          "Il crée une ==Commission du bassin du Nil==, présentée comme la première organisation commune de gestion du fleuve [5]. Mais une commission sans les deux pays d'aval, qui consomment l'essentiel de l'eau, a une portée limitée. Le Nil se retrouve avec deux logiques juridiques qui s'opposent : celle des traités de 1929 et 1959, et celle de l'accord-cadre.",
+          "C'est dans ce contexte, au moment où l'ordre ancien est contesté, que l'Éthiopie lance son grand projet."
+        ],
+        "visual": 1,
+        "box": {
+          "kind": "archive",
+          "label": "Le texte qui fâche · 1929",
+          "title": "Un veto signé à Londres et au Caire",
+          "text": [
+            "L'accord de 1929 est conclu entre l'Égypte et la Grande-Bretagne. Londres signe pour l'Ouganda, le Kenya, le Tanganyika (l'actuelle Tanzanie) et le Soudan [2].",
+            "Il accorde à l'Égypte ==un droit de veto sur les projets de construction== sur le Nil et ses affluents. Les pays d'amont, devenus indépendants, répondent qu'ils n'étaient pas parties à ce texte et qu'il ne les lie pas [2]."
+          ]
+        }
+      },
+      {
+        "title": "Le GERD, chantier d'une nation",
+        "quote": "« Une grande réussite, pas seulement pour l'Éthiopie, mais pour tous les peuples noirs. » Abiy Ahmed, à l'inauguration [1].",
+        "paragraphs": [
+          "Le Grand barrage de la Renaissance éthiopienne, souvent appelé GERD (son sigle anglais), est construit sur le Nil Bleu, dans l'ouest de l'Éthiopie, non loin de la frontière soudanaise. Le chantier est lancé en 2011 [3].",
+          "Ses dimensions sont hors normes. Le réservoir peut contenir ==74 milliards de m³ d'eau==, presque autant que le débit moyen annuel du Nil estimé à l'époque des traités, 84 milliards de m³ [1][2]. La puissance prévue atteint ==5 150 mégawatts== [1]. C'est le plus grand barrage d'Afrique par la puissance, même s'il ne figure pas parmi les dix premiers au monde [1].",
+          "Le coût est estimé à ==environ 4 milliards de dollars== par l'AFP, les chiffres variant selon les sources [1]. Pour un pays aux revenus modestes, c'est une somme énorme.",
+          "Le financement est un élément central du récit éthiopien : le pays a payé son barrage avec ses propres ressources. Selon les chiffres du projet rapportés par la presse éthiopienne, ==91 % du financement==, soit environ 223 milliards de birrs, viennent de prêts de la Banque commerciale d'Éthiopie, une banque publique [11].",
+          "Les 9 % restants, environ 23,8 milliards de birrs, ont été apportés directement par la population, à travers ==des obligations et des dons== [11]. Des Éthiopiens ont ainsi prêté ou donné de l'argent pour « leur » barrage. C'est ce qui en a fait un symbole national bien au-delà de l'électricité.",
+          "Le remplissage s'est fait par étapes, pendant la saison des pluies, sans accord avec les voisins. En juillet 2020, l'Éthiopie annonce avoir atteint un premier objectif de ==4,9 milliards de m³==. En 2021, elle vise 13,5 milliards supplémentaires [12]. Le barrage est officiellement inauguré le ==9 septembre 2025== [1]."
+        ],
+        "visual": 3,
+        "box": {
+          "label": "Comment ça marche",
+          "title": "Remplir un réservoir, c'est retenir le fleuve",
+          "text": [
+            "Pour produire de l'électricité, un barrage a besoin d'une hauteur d'eau suffisante devant ses turbines. Il faut donc d'abord ==retenir une partie du débit== pendant plusieurs saisons des pluies.",
+            "Le GERD compte 13 turbines. Le deuxième objectif de remplissage, en 2021, devait permettre de faire tourner les deux premières [12]. Plus le remplissage est rapide, plus l'électricité arrive tôt, mais plus l'eau qui descend vers l'aval diminue pendant ces années-là. D'où l'importance du rythme, au cœur des négociations."
+          ]
+        }
+      },
+      {
+        "title": "L'électricité, l'argument éthiopien",
+        "quote": "Pour Addis-Abeba, le barrage n'enlève pas d'eau : il la fait passer par des turbines.",
+        "paragraphs": [
+          "Une grande partie de la population éthiopienne vit encore sans électricité fiable. Selon une enquête préliminaire de la Banque mondiale, seuls ==44 % des Éthiopiens== avaient en 2025 un accès à l'électricité au moins de base [9].",
+          "Cela laisse ==près de 71 millions de personnes== sans accès suffisant, surtout dans les campagnes et autour des villes [9].",
+          "L'argument éthiopien tient en une phrase : un barrage hydroélectrique ne « consomme » pas l'eau, il l'utilise pour faire tourner des turbines, puis la rend au fleuve. Une fois le réservoir rempli, l'eau continue donc de couler vers le Soudan et l'Égypte. Pour Addis-Abeba, refuser ce barrage reviendrait à condamner le pays à rester dans le noir pour protéger des accords qu'il n'a jamais signés.",
+          "Le barrage a aussi une dimension économique régionale. L'Éthiopie vend déjà son électricité à ses voisins. Sur l'exercice 2024-2025, ces exportations ont rapporté ==plus de 118 millions de dollars== [10].",
+          "Le Kenya est de loin le premier client, avec 86,3 millions de dollars, devant Djibouti (30,9 millions) et le Soudan (0,9 million) [10]. Pour un pays qui manque de devises étrangères, ces recettes comptent. Et l'électricité devient un outil d'influence : plus les voisins en achètent, plus ils ont intérêt à la stabilité du barrage."
+        ],
+        "visual": 2
+      },
+      {
+        "title": "Le Soudan, entre deux rives",
+        "quote": "Le Soudan a beaucoup à gagner du barrage, à une condition : savoir ce qui se passe en amont.",
+        "paragraphs": [
+          "Le Soudan est coincé entre les deux géants. Il est en aval de l'Éthiopie mais en amont de l'Égypte, avec qui il partage les accords de 1959. Sa position a souvent varié.",
+          "Le barrage peut l'aider. Le ministre soudanais de l'Irrigation a reconnu qu'il présentait des avantages : ==de l'électricité, moins d'inondations, moins de dépôts de limon== et une meilleure gestion du barrage soudanais de Roseires, situé un peu plus bas sur le Nil Bleu [14].",
+          "Mais il pose une condition : ==un accord juridiquement contraignant et un échange d'informations== [14]. Le Soudan veut connaître à l'avance les dates de remplissage et de lâchers d'eau, ainsi que les documents de sécurité, pour faire fonctionner Roseires sans risque [14]. Un réservoir aussi gros, si près de sa frontière, est aussi une question de sécurité pour les populations en aval.",
+          "En septembre et octobre 2025, juste après l'inauguration, des crues touchent le Soudan et l'Égypte. Le Caire accuse l'Éthiopie d'avoir provoqué ==une « crue d'origine humaine »== par des lâchers d'eau mal coordonnés. Addis-Abeba dément, qualifie ces accusations de « fausses » et met en cause la montée du Nil Blanc [13].",
+          "Tout cela se passe dans un pays en guerre. Depuis le 15 avril 2023, l'armée soudanaise et les Forces de soutien rapide, un groupe paramilitaire, s'affrontent pour le pouvoir. Dès janvier 2024, selon l'ONU, ==plus de 7,3 millions de personnes== avaient dû fuir leur foyer [15]. Un État en guerre a moins de moyens pour négocier, entretenir ses barrages et protéger ses habitants des crues."
         ]
       },
       {
-        title: "Pourquoi l'Égypte s'inquiète",
-        paragraphs: [
-          "L'Égypte tire l'essentiel de son eau douce du Nil. Or la majorité de l'eau du Nil vient des hauts plateaux éthiopiens, par le Nil Bleu [1].",
-          "Le Caire craint que l'Éthiopie puisse contrôler le débit du fleuve, surtout en période de sécheresse. Des années de négociations n'ont abouti à aucun accord contraignant."
+        "title": "Quinze ans de négociations sans accord",
+        "quote": "Tout le monde s'accorde sur un principe : ne pas causer de « dommage significatif ». Personne ne s'accorde sur ce qu'il veut dire.",
+        "paragraphs": [
+          "En mars 2015, les trois pays signent à Khartoum une ==Déclaration de principes==. L'un d'eux engage chaque pays à prendre les mesures appropriées pour ==ne pas causer de dommage significatif== aux autres. Si un dommage survient malgré tout, le pays responsable doit discuter avec le pays touché pour le réduire, et le cas échéant d'une compensation [4].",
+          "Le texte reste général. Il ne fixe ni le rythme de remplissage, ni les règles de gestion en cas de sécheresse, ni un mécanisme pour trancher les désaccords. Ce sont précisément les points qui bloquent depuis.",
+          "Les États-Unis tentent ensuite une médiation. En février 2020, à Washington, l'Éthiopie demande le report de ce qui devait être le dernier round. Le Trésor américain s'entretient alors seul avec l'Égypte et le Soudan, et déclare que ==le remplissage ne devrait pas avoir lieu sans accord== [6].",
+          "Les discussions sous l'égide de l'Union africaine s'enchaînent ensuite, sans résultat. L'Égypte et le Soudan portent le dossier devant l'ONU. Le 15 septembre 2021, après plus de quatorze mois de négociations intermittentes, le Conseil de sécurité adopte une ==déclaration présidentielle==, sa première prise de position sur le sujet [7].",
+          "Elle appelle à reprendre les négociations menées par l'Union africaine, pour aboutir à un accord contraignant [7]. La Tunisie avait d'abord proposé une résolution, mais faute d'accord entre les membres du Conseil, elle s'est rabattue sur ce texte moins fort [7].",
+          "Le vrai nœud, ce sont les sécheresses. Une étude publiée en 2020 dans Nature Communications a simulé plusieurs situations. Pendant le remplissage, le lac de retenue d'Assouan pourrait descendre à des niveaux inédits depuis des décennies, mais le risque supplémentaire de pénurie pour l'Égypte resterait ==relativement faible== [8].",
+          "En temps normal, une fois le réservoir plein, le barrage profiterait à l'Éthiopie et au Soudan sans réduire nettement l'eau de l'Égypte [8]. En revanche, une ==sécheresse de plusieurs années== demanderait une coordination étroite entre les trois pays pour limiter les dégâts [8]. C'est exactement ce que l'Égypte veut voir écrit noir sur blanc, et ce que l'Éthiopie refuse de figer, au nom de sa souveraineté."
         ]
       },
       {
-        title: "Un conflit qui en annonce d'autres",
-        paragraphs: [
-          "Avec le réchauffement climatique et la hausse de la population, l'eau devient une ressource stratégique. Le Nil n'est pas un cas isolé : le Tigre et l'Euphrate (Turquie, Syrie, Irak) ou le Mékong (Chine et Asie du Sud-Est) connaissent des tensions similaires."
+        "title": "Ce que le Nil dit des guerres de l'eau",
+        "quote": "Plus que d'une guerre de l'eau, le Nil est l'exemple d'une paix de l'eau qui n'arrive pas à s'écrire.",
+        "paragraphs": [
+          "Malgré les mots forts, le Nil n'a pas connu de guerre ouverte autour du barrage. Le conflit se joue avec des traités, des déclarations à l'ONU, des médiations et des chiffres de débit. C'est souvent le cas : l'eau tend plus de relations qu'elle ne déclenche de guerres.",
+          "Le dossier montre d'abord que ==la géographie donne du pouvoir==. Le pays qui contrôle la source peut construire sans demander la permission. Mais le pays d'aval a d'autres atouts : son poids diplomatique, ses alliances, son armée, et l'ancienneté de ses usages.",
+          "Il montre aussi que ==le droit international de l'eau reste flou==. Deux principes s'affrontent : l'usage « équitable et raisonnable », invoqué par l'amont, et l'interdiction de causer un « dommage significatif », mise en avant par l'aval. Les deux figurent dans la déclaration de 2015 [4], mais aucun juge n'est chargé de les concilier.",
+          "Enfin, le climat change la donne. Personne ne sait quand viendra la prochaine longue sécheresse sur les hauts plateaux éthiopiens. Le jour où elle arrivera, la question ne sera plus « faut-il un barrage ? », mais ==« qui garde l'eau quand il n'y en a pas assez pour tout le monde ? »== [8].",
+          "Le barrage de la Renaissance est désormais construit. Le débat ne porte plus sur son existence, mais sur ses règles de fonctionnement. Le Nil reste un fleuve commun ; c'est sa gestion qui ne l'est pas encore."
         ]
       }
     ],
-    didYouKnow: "Le Nil traverse ou borde onze pays. C'est l'un des plus longs fleuves du monde, avec l'Amazone.",
-    sources: [
-      { short: "Britannica", name: "Encyclopædia Britannica, « Grand Ethiopian Renaissance Dam »", url: "https://www.britannica.com/topic/Grand-Ethiopian-Renaissance-Dam" }
-    ],
-    visuals: [
+    "didYouKnow": "Le réservoir du barrage de la Renaissance peut contenir 74 milliards de m³ d'eau, presque autant que tout le débit moyen annuel du Nil estimé lors de l'accord de 1929 : 84 milliards de m³ [1][2].",
+    "sources": [
       {
-        kind: "map",
-        title: "Le Nil, de l'Éthiopie à la Méditerranée",
-        view: { center: [33, 20], span: 32 },
-        aspect: 3 / 4,
-        highlight: ["Ethiopia", "Sudan", "Egypt"],
-        intro: "Le Nil Bleu naît en Éthiopie, rejoint le Nil Blanc à Khartoum, puis traverse le Soudan et l'Égypte. Touche un lieu pour zoomer.",
-        points: [
-          { name: "Barrage de la Renaissance", coords: [35.09, 11.21], zoom: 8, text: "Sur le Nil Bleu, à une quinzaine de kilomètres de la frontière soudanaise. Le plus grand barrage hydroélectrique d'Afrique." },
-          { name: "Khartoum", coords: [32.53, 15.6], zoom: 8, text: "La capitale du Soudan, au confluent du Nil Bleu et du Nil Blanc. C'est ici que naît le Nil proprement dit." },
-          { name: "Assouan", coords: [32.88, 23.97], zoom: 8, text: "Le haut barrage d'Assouan, construit dans les années 1960, est la grande réserve d'eau de l'Égypte : le lac Nasser." },
-          { name: "Le Caire", coords: [31.24, 30.04], zoom: 8, text: "Plus de 20 millions d'habitants dans l'agglomération. Presque toute la population égyptienne vit le long du Nil et dans son delta." }
+        "short": "AFP / Al-Monitor",
+        "name": "AFP, « Ethiopia inaugurates Africa's biggest dam, drawing Egyptian protest », Al-Monitor, 9 septembre 2025",
+        "url": "https://www.al-monitor.com/originals/2025/09/ethiopia-inaugurates-africas-biggest-dam-drawing-egyptian-protest"
+      },
+      {
+        "short": "Brookings",
+        "name": "Mwangi S. Kimenyi et John Mukum Mbaku, « The limits of the new \"Nile Agreement\" », Brookings Institution, 28 avril 2015",
+        "url": "https://www.brookings.edu/articles/the-limits-of-the-new-nile-agreement"
+      },
+      {
+        "short": "Britannica",
+        "name": "Encyclopædia Britannica, « Grand Ethiopian Renaissance Dam »",
+        "url": "https://www.britannica.com/topic/Grand-Ethiopian-Renaissance-Dam"
+      },
+      {
+        "short": "FAOLEX",
+        "name": "Agreement on Declaration of Principles between Egypt, Ethiopia and Sudan on the GERDP, Khartoum, 23 mars 2015 (base FAOLEX de la FAO)",
+        "url": "https://faolex.fao.org/docs/pdf/bi203275.pdf"
+      },
+      {
+        "short": "Nile Basin Initiative",
+        "name": "Nile Basin Initiative, « Announcement of the Entry into force of the CFA on 13 October 2024 »",
+        "url": "https://nilebasin.org/sites/default/files/2024-10/Announcement%20of%20the%20Entry%20into%20force%20of%20the%20CFA%20%20on%2013%20October%202024.pdf"
+      },
+      {
+        "short": "Trésor américain",
+        "name": "U.S. Department of the Treasury, « Statement by Treasury Secretary Steven T. Mnuchin on the Grand Ethiopian Renaissance Dam », 28 février 2020",
+        "url": "https://home.treasury.gov/news/press-releases/sm907"
+      },
+      {
+        "short": "Security Council Report",
+        "name": "Security Council Report, « Security Council Presidential Statement on the Grand Ethiopian Renaissance Dam (GERD) », septembre 2021",
+        "url": "https://www.securitycouncilreport.org/whatsinblue/2021/09/security-council-presidential-statement-on-the-grand-ethiopian-renaissance-dam-gerd.php"
+      },
+      {
+        "short": "Nature Communications",
+        "name": "Kevin G. Wheeler, Marc Jeuland, Jim W. Hall, Edith Zagona et Dale Whittington, « Understanding and managing new risks on the Nile with the Grand Ethiopian Renaissance Dam », Nature Communications, 2020",
+        "url": "https://www.nature.com/articles/s41467-020-19089-x"
+      },
+      {
+        "short": "Banque mondiale",
+        "name": "Banque mondiale, « New World Bank Program to Expand Electricity Access to Six Million People Across Ethiopia », communiqué, août 2025",
+        "url": "https://www.worldbank.org/en/news/press-release/2025/08/04/new-world-bank-program-to-expand-electricity-access-to-six-million-people-across-ethiopia"
+      },
+      {
+        "short": "Le360 Afrique",
+        "name": "Le360 Afrique, « Éthiopie : l'exportation de l'électricité génère 118 millions de dollars au cours de l'exercice 2024/25 »",
+        "url": "https://afrique.le360.ma/economie/ethiopie-lexportation-de-lelectricite-genere-118-millions-de-dollars-au-cours-de-lexercice-202425_JAASFQDAT5F4LK3ZXPLRTZFIHI/"
+      },
+      {
+        "short": "Capital Ethiopia",
+        "name": "Capital Ethiopia, « Great Ethiopian Renaissance Dam completed, 91% funded by CBE loan », 7 septembre 2025",
+        "url": "https://capitalethiopia.com/2025/09/07/great-ethiopian-renaissance-dam-completed-91-funded-by-cbe-oan"
+      },
+      {
+        "short": "The East African",
+        "name": "The East African, « Ethiopia hits second-year target for filling Nile mega-dam », juillet 2021",
+        "url": "https://theeastafrican.co.ke/tea/news/eastern-africa/ethiopia-hits-second-year-target-for-filling-nile-dam-3478788"
+      },
+      {
+        "short": "The New Arab",
+        "name": "The New Arab, « Ethiopia hits back at \"false\" Egyptian claims over mega-dam », octobre 2025",
+        "url": "https://www.newarab.com/news/ethiopia-hits-back-false-egyptian-claims-over-mega-dam"
+      },
+      {
+        "short": "Radio Dabanga",
+        "name": "Radio Dabanga, « Minister: Agreement on GERD essential to safety of Sudan population »",
+        "url": "https://www.dabangasudan.org/en/all-news/article/minister-agreement-on-gerd-essential-to-safety-of-sudan-population"
+      },
+      {
+        "short": "Vatican News",
+        "name": "Vatican News, « UN: Sudan war has displaced more than 7.3 million people », janvier 2024",
+        "url": "https://vaticannews.va/en/world/news/2024-01/un-sudan-war-has-displaced-more-than-7-3-million-people.html"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "map",
+        "title": "Le Nil, de l'Éthiopie à la Méditerranée",
+        "view": {
+          "center": [
+            33,
+            20
+          ],
+          "span": 32
+        },
+        "aspect": 0.75,
+        "highlight": [
+          "Ethiopia",
+          "Sudan",
+          "Egypt"
         ],
-        source: "Encyclopædia Britannica"
+        "intro": "Le Nil Bleu descend des hauts plateaux éthiopiens, rejoint le Nil Blanc à Khartoum, puis traverse le Soudan et l'Égypte. Touche un lieu pour zoomer.",
+        "points": [
+          {
+            "name": "Barrage de la Renaissance",
+            "coords": [
+              35.09,
+              11.21
+            ],
+            "zoom": 8,
+            "text": "Sur le Nil Bleu, dans l'ouest de l'Éthiopie, près de la frontière soudanaise. Réservoir de 74 milliards de m³, 5 150 MW prévus."
+          },
+          {
+            "name": "Barrage de Roseires",
+            "coords": [
+              34.39,
+              11.8
+            ],
+            "zoom": 8,
+            "text": "Barrage soudanais sur le Nil Bleu, en aval du GERD. Khartoum réclame les données de remplissage et de lâchers pour le gérer sans risque."
+          },
+          {
+            "name": "Khartoum",
+            "coords": [
+              32.53,
+              15.6
+            ],
+            "zoom": 8,
+            "text": "La capitale du Soudan, au confluent du Nil Bleu et du Nil Blanc. C'est ici que naît le Nil proprement dit."
+          },
+          {
+            "name": "Assouan",
+            "coords": [
+              32.88,
+              23.97
+            ],
+            "zoom": 8,
+            "text": "Le haut barrage d'Assouan retient le lac Nasser, la grande réserve d'eau de l'Égypte."
+          },
+          {
+            "name": "Le Caire",
+            "coords": [
+              31.24,
+              30.04
+            ],
+            "zoom": 8,
+            "text": "Presque toute la population égyptienne vit le long du Nil et dans son delta. Le fleuve fournit 97 % de l'eau du pays."
+          },
+          {
+            "name": "Entebbe",
+            "coords": [
+              32.46,
+              0.05
+            ],
+            "zoom": 8,
+            "text": "Ville ougandaise, au bord du lac Victoria, où siège le secrétariat de l'Initiative du bassin du Nil."
+          }
+        ],
+        "source": "AFP (2025), Nile Basin Initiative, Radio Dabanga"
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Le partage du Nil, en chiffres",
+        "subtitle": "Débit moyen estimé du Nil, parts fixées par les accords de 1929 et 1959, et capacité du réservoir éthiopien, en milliards de m³",
+        "xLabel": "Repère",
+        "unit": "Milliards de m³",
+        "decimals": 1,
+        "data": [
+          [
+            "Débit moyen du Nil",
+            84
+          ],
+          [
+            "Égypte 1929",
+            48
+          ],
+          [
+            "Égypte 1959",
+            55.5
+          ],
+          [
+            "Soudan 1929",
+            4
+          ],
+          [
+            "Soudan 1959",
+            18.5
+          ],
+          [
+            "Réservoir du GERD",
+            74
+          ]
+        ],
+        "source": "Brookings (2015) pour le débit et les accords de 1929 et 1959 ; AFP (2025) pour la capacité du réservoir. Le débit est annuel, le réservoir est un stock : la comparaison donne un ordre de grandeur."
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "À qui l'Éthiopie vend son électricité",
+        "subtitle": "Recettes des exportations d'électricité, exercice 2024-2025, en millions de dollars",
+        "xLabel": "Pays acheteur",
+        "unit": "Millions de dollars",
+        "decimals": 1,
+        "data": [
+          [
+            "Kenya",
+            86.3
+          ],
+          [
+            "Djibouti",
+            30.9
+          ],
+          [
+            "Soudan",
+            0.9
+          ]
+        ],
+        "source": "Le360 Afrique, d'après Ethiopian Electric Power (exercice 2024-2025)"
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Qui a payé le barrage ?",
+        "subtitle": "Sources de financement du GERD, en milliards de birrs",
+        "xLabel": "Source",
+        "unit": "Milliards de birrs",
+        "decimals": 1,
+        "data": [
+          [
+            "Prêts de la banque publique (CBE)",
+            223
+          ],
+          [
+            "Obligations et dons de la population",
+            23.8
+          ]
+        ],
+        "source": "Capital Ethiopia (septembre 2025), d'après les chiffres du projet"
       }
     ]
   }
