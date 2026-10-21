@@ -150,52 +150,356 @@ window.GEOCO.culture = [
     ]
   },
   {
-    id: "reserves-strategiques",
-    cover: "barils",
-    author: "Rédaction Geonomix (exemple)",
-    kind: "Culture G",
-    theme: "eco",
-    title: "Les réserves stratégiques de pétrole : l'assurance-vie des pays",
-    hook: "La France a des millions de barils cachés dans des cuves, prêts à servir en cas de crise. D'où vient cette idée ?",
-    sections: [
+    "id": "reserves-strategiques",
+    "cover": "barils",
+    "author": "Rédaction Geonomix",
+    "kind": "Culture G",
+    "theme": "eco",
+    "title": "Les réserves stratégiques de pétrole : l'assurance-vie des pays",
+    "hook": "Des centaines de millions de barils dorment sous le sel du Texas, dans des cuves françaises ou au Japon. Nés du choc de 1973, ces stocks n'ont servi que six fois en cinquante ans. En 2026, ils sont devenus une arme contre la crise d'Ormuz, et même contre le prix du gazole.",
+    "tldr": [
+      "Après l'embargo de 1973, les pays importateurs créent l'AIE et s'obligent à garder ==au moins 90 jours d'importations nettes== en stock [1][6].",
+      "Ces réserves n'ont servi collectivement que six fois. La plus grosse opération date de mars 2026 : ==400 millions de barils== face au quasi-blocage du détroit d'Ormuz [3].",
+      "Un stock ne remplace pas une production : il ==fait gagner du temps==, coûte cher à entretenir, et chaque utilisation laisse le pays moins protégé pour la crise suivante [11][13]."
+    ],
+    "keyFigures": [
       {
-        title: "Né d'un traumatisme : 1973",
-        paragraphs: [
-          "En octobre 1973, pendant la guerre du Kippour, les pays arabes producteurs de pétrole décrètent un embargo contre les pays qui soutiennent Israël. Le prix du baril est multiplié par quatre en quelques mois : c'est le premier choc pétrolier [1].",
-          "Les pays occidentaux découvrent alors à quel point ils dépendent du pétrole importé. En 1974, ils créent l'Agence internationale de l'énergie (AIE) pour se coordonner face aux crises [1]."
+        "value": "90 jours",
+        "label": "d'importations nettes : le stock minimum exigé par l'AIE",
+        "src": 6
+      },
+      {
+        "value": "400 millions",
+        "label": "de barils : la plus grande libération de l'histoire (mars 2026)",
+        "src": 3
+      },
+      {
+        "value": "283 millions",
+        "label": "de barils dans la réserve américaine début octobre 2026, au plus bas depuis 1982",
+        "src": 11
+      },
+      {
+        "value": "10 millions",
+        "label": "de barils de gazole sortis des stocks français à partir de fin octobre 2026",
+        "src": 8
+      }
+    ],
+    "timelineTitle": "Cinquante ans de stocks d'urgence",
+    "timeline": [
+      {
+        "when": "Oct. 1973",
+        "text": "Embargo des pays arabes producteurs. Le baril passe d'environ 2,90 à 11,65 dollars en quelques mois [2]."
+      },
+      {
+        "when": "Nov. 1974",
+        "text": "Signature de l'accord qui crée l'Agence internationale de l'énergie (AIE) [1]."
+      },
+      {
+        "when": "1975",
+        "text": "Les États-Unis créent leur réserve stratégique de pétrole [9]."
+      },
+      {
+        "when": "1991",
+        "text": "Guerre du Golfe : première action collective de l'AIE [3]."
+      },
+      {
+        "when": "2005 et 2011",
+        "text": "Ouragan Katrina, puis guerre en Libye : nouvelles libérations coordonnées [3]."
+      },
+      {
+        "when": "Mars et avril 2022",
+        "text": "Invasion de l'Ukraine : deux actions, 182,7 millions de barils au total [4]."
+      },
+      {
+        "when": "Mars 2026",
+        "text": "Crise d'Ormuz : les 32 pays de l'AIE mettent 400 millions de barils sur le marché, un record [3]."
+      },
+      {
+        "when": "Oct. 2026",
+        "text": "Le G7 s'accorde sur 100 millions de barils de gazole et de brut de plus [15] ; la France sort 10 millions de barils de gazole de ses stocks [8]."
+      }
+    ],
+    "sections": [
+      {
+        "title": "1973 : le jour où le robinet s'est fermé",
+        "quote": "Les pays riches découvrent qu'ils n'ont aucun plan si le pétrole cesse d'arriver.",
+        "paragraphs": [
+          "En octobre 1973, pendant la guerre du Kippour, les pays arabes producteurs de pétrole décrètent un embargo contre les pays qui soutiennent Israël. Le prix du baril passe d'environ 2,90 dollars avant l'embargo à ==11,65 dollars en janvier 1974== : il est presque multiplié par quatre [2].",
+          "Pour l'Europe, le Japon et les États-Unis, le choc est double. Le carburant devient cher, et surtout, personne ne sait combien de temps la pénurie va durer. Chaque pays se débrouille seul, ce qui pousse encore les prix vers le haut.",
+          "Les pays importateurs en tirent une leçon : il faut ==des stocks à soi, et un chef d'orchestre== pour les utiliser ensemble. Le 18 novembre 1974, ils signent l'accord qui crée l'Agence internationale de l'énergie (AIE), chargée d'abord de garantir l'approvisionnement en pétrole [1].",
+          "Les États-Unis vont plus loin : en 1975, en réaction directe à l'embargo, ils créent leur propre réserve stratégique, la Strategic Petroleum Reserve [9].",
+          "L'idée de départ est simple. Un pays qui importe son pétrole ne contrôle ni les puits, ni les détroits, ni les guerres. Il peut seulement se donner du temps. Une réserve stratégique, c'est donc une assurance : on paie chaque année pour un sinistre qu'on espère ne jamais vivre."
+        ],
+        "box": {
+          "kind": "archive",
+          "label": "Le détail oublié",
+          "title": "Un prix multiplié par quatre",
+          "text": "Avant l'embargo, le baril valait environ 2,90 dollars. En janvier 1974, il en valait 11,65 [2]. C'est ce que les économistes appellent le premier choc pétrolier."
+        }
+      },
+      {
+        "title": "La règle des 90 jours, et comment on ouvre les vannes",
+        "quote": "Un pays de l'AIE doit pouvoir tenir au moins 90 jours sans importer de pétrole.",
+        "paragraphs": [
+          "La règle de base de l'AIE tient en une phrase : chaque pays membre doit garder des stocks égaux à ==au moins 90 jours de ses importations nettes== de pétrole [6]. Un pays qui produit lui-même une partie de son pétrole importe moins, donc il doit stocker moins.",
+          "L'Union européenne a sa propre règle, plus exigeante. Depuis une directive de 2009, chaque État doit détenir la plus grande de deux quantités : ==90 jours d'importations nettes ou 61 jours de consommation intérieure==. L'obligation devait être respectée au plus tard le 31 décembre 2012 [5].",
+          "Ces stocks ne sont pas tous dans les mains de l'État. Les pays de l'AIE détiennent plus de ==1,2 milliard de barils de stocks publics==, et environ 600 millions de barils de plus sont gardés par les entreprises pétrolières parce que la loi les y oblige [3].",
+          "En cas de crise, l'AIE peut lancer une « action collective ». Les pays membres se réunissent, évaluent combien de pétrole manque sur le marché, puis décident ensemble d'un volume à libérer [3]. Chaque gouvernement choisit ensuite comment fournir sa part.",
+          "Il existe deux grands moyens. Le premier : l'État vend ou prête le pétrole de ses propres réserves. Le second : il ==abaisse le stock minimum imposé aux entreprises==, qui peuvent alors vendre ce qu'elles gardaient en réserve. En mars 2022, plus des deux tiers de l'effort sont venus de stocks publics, et près d'un tiers de la baisse des obligations des entreprises [4].",
+          "Le Japon a utilisé ce second levier en 2026 : il a abaissé de 70 à 55 jours le stock obligatoire de ses raffineurs et négociants, ce qui leur a permis de remettre ce pétrole sur le marché [13]."
         ]
       },
       {
-        title: "La règle des 90 jours",
-        paragraphs: [
-          "Chaque pays membre de l'AIE doit garder en stock l'équivalent d'au moins 90 jours de ses importations nettes de pétrole. En cas de crise, ces stocks peuvent être libérés de façon coordonnée [1].",
-          "En France, une partie de ces stocks est détenue par un organisme spécialisé, financé par une petite part du prix que tu paies à la pompe."
-        ]
+        "title": "En France : des cuves payées à la pompe",
+        "quote": "Une fraction de centime par litre, pour une assurance de plusieurs mois.",
+        "paragraphs": [
+          "En France, la loi oblige les opérateurs pétroliers à garder en permanence des stocks stratégiques. Le volume est fixé à ==29,5 % des quantités vendues l'année précédente==, soit environ 108 jours de ventes [7].",
+          "Deux organismes s'en occupent. Le Comité professionnel des stocks stratégiques pétroliers (CPSSP), chargé depuis une loi de 1992 de financer le système, et la SAGESS, une société anonyme créée à l'initiative des pétroliers, qui achète, vend et stocke pour le compte du CPSSP [6].",
+          "Au total, la France garde ==environ 16 millions de tonnes d'hydrocarbures==, et la SAGESS en détient les deux tiers [6]. Devant les députés, en avril 2026, son PDG situait le niveau réel du pays entre 100 et 110 jours [7].",
+          "Qui paie ? Toi, un peu, à chaque plein. Les coûts sont supportés par les distributeurs de carburant, sans passer par le budget de l'État, et la gestion des stocks coûte ==environ 0,75 centime par litre== [7]. Une goutte dans le prix final, mais sur des milliards de litres, cela finance des millions de tonnes en réserve.",
+          "Ces stocks ont été achetés au fil des années, parfois il y a longtemps. Selon Matignon, le gazole sorti en octobre 2026 avait été acquis à ==0,28 euro le litre==, alors que le marché le payait alors 1,10 euro [6]. C'est ce qui permet de le revendre à prix coûtant tout en faisant baisser les prix."
+        ],
+        "visual": 3,
+        "box": {
+          "kind": "info",
+          "label": "Bon à savoir",
+          "title": "Brut ou produits finis ?",
+          "text": [
+            "Stocker du pétrole brut ne suffit pas : en cas de crise, il faut encore des raffineries pour le transformer en essence, gazole ou kérosène. Si elles sont touchées, ou si le pays importe surtout des carburants déjà raffinés, le brut ne sert pas à grand-chose.",
+            "C'est pourquoi l'Union européenne impose de garder au moins 30 jours de stocks, ou un tiers de l'obligation, sous forme de produits raffinés [5]. En 2022, les stocks publics libérés étaient surtout du brut, tandis que la baisse des obligations des entreprises libérait surtout des produits finis [4]."
+          ]
+        }
       },
       {
-        title: "Une arme rarement utilisée",
-        paragraphs: [
-          "Les libérations coordonnées restent exceptionnelles : guerre du Golfe en 1991, ouragan Katrina en 2005, guerre civile en Libye en 2011, invasion de l'Ukraine en 2022… et la crise d'Ormuz en 2026 [1][2].",
-          "Leur limite : un stock ne remplace pas une production. Il sert à gagner du temps, pas à résoudre la crise."
+        "title": "Ailleurs : dômes de sel, records japonais et secret chinois",
+        "quote": "Chaque pays stocke à sa façon, selon sa géologie, sa dépendance et ses secrets.",
+        "paragraphs": [
+          "La réserve américaine est la plus célèbre. Le pétrole y dort dans des ==cavernes creusées dans le sel==, sur quatre sites de la côte du golfe du Mexique : Bryan Mound et Big Hill au Texas, West Hackberry et Bayou Choctaw en Louisiane. Sa capacité est d'environ 713,5 millions de barils, et elle peut débiter jusqu'à 4,4 millions de barils par jour pendant 90 jours, avant que le rythme ne baisse [9].",
+          "Cette réserve a beaucoup servi ces dernières années. Au printemps 2022, Washington annonce une vente de 180 millions de barils, la plus grosse de son histoire ; en octobre, le stock tombe à 405 millions de barils, son plus bas niveau depuis 1984 [10]. En 2026, un nouvel accord prévoit de sortir 172 millions de barils : début octobre, il ne reste plus que ==283 millions de barils==, le niveau le plus bas depuis octobre 1982 [11].",
+          "Le Japon, qui importe presque tout son pétrole, a choisi d'être le mieux protégé. Fin 2025, il détenait ==254 jours de consommation==, soit 470 millions de barils : 146 jours dans des stocks d'État, 101 jours chez les entreprises privées et 7 jours dans des stocks communs avec des pays producteurs [13].",
+          "En mars 2026, Tokyo annonce sa plus grosse libération : 45 jours de consommation, près de 20 % de ses réserves. Le record précédent, 25 jours, datait du séisme et du tsunami de 2011 [13].",
+          "La Chine, elle, ne publie pas ses chiffres. L'agence américaine d'information sur l'énergie (EIA) estime que ses stocks atteignaient ==près de 1,4 milliard de barils== fin 2025, en comptant les stocks commerciaux que les compagnies d'État doivent garder pour les urgences. La part détenue directement par l'État serait d'environ 360 millions de barils [14].",
+          "Pékin a accumulé ce pétrole très vite : environ 1,1 million de barils par jour en moyenne en 2025, selon la même estimation [14]. Mais faute de chiffres officiels, il est difficile de savoir quand et comment la Chine puise dans ses réserves."
+        ],
+        "visual": 1,
+        "box": {
+          "kind": "info",
+          "label": "Comment ça marche",
+          "title": "Pourquoi du sel ?",
+          "text": "Les dômes de sel forment des cavernes étanches, creusées en dissolvant le sel avec de l'eau douce, qu'on peut agrandir si besoin [9]. C'est beaucoup moins cher que de construire des cuves en acier pour des centaines de millions de barils."
+        }
+      },
+      {
+        "title": "Six fois en cinquante ans",
+        "quote": "« Pour la première fois », les stocks servent à protéger le pouvoir d'achat. Roland Lescure, ministre de l'Économie, octobre 2026 [7].",
+        "paragraphs": [
+          "Les actions collectives de l'AIE sont rares. Avant 2026, il n'y en avait eu que cinq : la guerre du Golfe en 1991, l'ouragan Katrina en 2005, la guerre en Libye en 2011, et deux fois en 2022 après l'invasion de l'Ukraine par la Russie [3].",
+          "En 2022, les pays de l'AIE décident d'abord, le 1er mars, de libérer 60 millions de barils ; ils en mettent finalement près de 62,7 millions. Le 1er avril, ils ajoutent 120 millions. Au total, ==182,7 millions de barils==, dont environ les trois quarts viennent de stocks publics [4].",
+          "Puis vient 2026. Avec la guerre au Moyen-Orient, les exportations de pétrole brut et de carburants par le détroit d'Ormuz tombent à ==moins de 10 % de leur niveau d'avant le conflit==. Le 11 mars, les 32 pays de l'AIE décident à l'unanimité de mettre 400 millions de barils sur le marché, plus du double de 2022 [3].",
+          "Cela ne suffit pas à calmer la pénurie de gazole. Le 2 octobre 2026, le G7 s'accorde pour libérer 100 millions de barils de gazole et de brut supplémentaires sur quatre mois, avec ==une grosse part de gazole dans les 20 premiers jours== [15].",
+          "La France y prend sa part. Le gouvernement sort 10 millions de barils de gazole, environ un cinquième du gazole que détenait la SAGESS fin 2024 [7]. Ils sont vendus à prix coûtant aux distributeurs, répartis selon leurs parts de marché de 2025, à partir du 28 octobre, pour une opération de trois mois, de novembre à janvier [8].",
+          "C'est un changement de nature. Ces stocks devaient éviter une pénurie physique. En 2026, ils servent aussi, ==pour la première fois en France, à faire baisser le prix payé à la pompe==, comme l'a souligné le ministre de l'Économie [7]."
+        ],
+        "visual": 0
+      },
+      {
+        "title": "Est-ce que ça fait vraiment baisser les prix ?",
+        "quote": "Un stock fait gagner du temps. Il ne rouvre pas un détroit.",
+        "paragraphs": [
+          "Les effets existent, mais ils sont modestes. Après la grande vente américaine de 2022, le Trésor américain a estimé qu'elle avait fait baisser l'essence ==de 13 à 31 cents par gallon== (environ 3,8 litres), tout en reconnaissant qu'on ne sait pas exactement quelle part de la baisse du brut est arrivée jusqu'à la pompe [12].",
+          "Le marché réagit surtout aux annonces. Après la décision du G7 du 2 octobre 2026, le Brent recule de 1,48 %, à 100,8 dollars le baril [15]. Une baisse réelle, mais faible face à la flambée provoquée par la crise d'Ormuz.",
+          "En France, le gouvernement espère une baisse de ==12 à 18 centimes par litre de gazole==, soit une dizaine d'euros d'économie par plein en moyenne. Le patron de TotalEnergies table plutôt sur 8 à 12 centimes dans son réseau [8].",
+          "La limite est physique : un stock est fini. Au Japon, un analyste résume que ces réserves stabilisent les prix à court terme, mais qu'elles ==servent surtout à gagner du temps== et ne peuvent pas compenser une longue perturbation à Ormuz [13].",
+          "Chaque libération affaiblit aussi la protection suivante. Aux États-Unis, la réserve est à son plus bas depuis 1982 [11]. Si une nouvelle crise éclatait demain, il resterait moins de barils pour y répondre."
+        ],
+        "visual": 2
+      },
+      {
+        "title": "Les débats : coût, usage politique, transition",
+        "quote": "Une assurance que l'on paie tous les ans, et que l'on hésite à utiliser.",
+        "paragraphs": [
+          "Premier débat : le coût. Stocker des millions de tonnes immobilise de l'argent, des cuves et des cavernes, pour un pétrole qui ne sert presque jamais. En France, la facture passe par le prix à la pompe [7] ; aux États-Unis, la réserve appartient à l'État fédéral [9]. Ses défenseurs répondent que c'est le prix d'une assurance.",
+          "Deuxième débat : à quoi doivent servir ces stocks ? Pour certains, uniquement aux vraies ruptures d'approvisionnement. Pour d'autres, ils peuvent aussi amortir une flambée des prix. L'usage français d'octobre 2026, présenté comme une mesure de pouvoir d'achat, a relancé cette question [7]. Le PDG de la SAGESS rappelait d'ailleurs en avril qu'il ne s'agissait « pas de ventes », mais de prêts à restituer ; le gouvernement précise qu'une cession reste juridiquement possible [6].",
+          "Troisième débat : la reconstitution. Un stock vidé doit être racheté, idéalement quand les prix sont bas. Aux États-Unis, l'administration propose désormais de ==prêter du pétrole aux entreprises==, 40 millions de barils dans sa dernière offre, plutôt que de le vendre [11]. Le Japon, lui, doit remonter des réserves qu'il a fortement entamées en 2026 [13].",
+          "Quatrième débat : la transition énergétique. Si les pays consomment moins de pétrole, leurs importations baissent, et la règle des 90 jours exige mécaniquement moins de stocks. Mais tant que camions, avions et tracteurs roulent au gazole et au kérosène, la dépendance reste forte, surtout pour les produits raffinés.",
+          "Enfin, le pétrole n'est plus la seule énergie qu'on stocke par précaution. Le gaz aussi se stocke avant l'hiver, avec d'autres règles. Pour toi, la leçon est concrète : quand une crise éclate loin d'ici, une partie de ce qui se passe à la station dépend de cuves et de cavernes que tu ne verras jamais."
         ]
       }
     ],
-    didYouKnow: "Les réserves stratégiques des États-Unis sont stockées dans d'immenses cavités creusées dans des dômes de sel souterrains, au Texas et en Louisiane.",
-    sources: [
-      { short: "AIE", name: "Agence internationale de l'énergie, « Oil security »", url: "https://www.iea.org/topics/oil-security" },
-      { short: "The National", name: "The National, accord du G7 sur les réserves (2 oct. 2026)", url: "https://www.thenationalnews.com/business/energy/2026/10/02/g7-members-agree-to-release-100-million-barrels-of-diesel-and-other-reserves/" }
-    ],
-    visuals: [
+    "didYouKnow": "Le déstockage français de 2026 ne vise pas que les automobilistes : il couvre aussi le gazole non routier des agriculteurs et du BTP, ainsi que le fioul de chauffage, et plus de 300 stations rurales reçoivent une aide [8].",
+    "sources": [
       {
-        kind: "chart",
-        type: "bar",
-        title: "Les grandes libérations coordonnées de l'AIE",
-        subtitle: "Volume total décidé, en millions de barils",
-        xLabel: "Crise",
-        unit: "Millions de barils",
-        decimals: 0,
-        data: [["Golfe 1991", 17.3], ["Katrina 2005", 60], ["Libye 2011", 60], ["Ukraine 2022", 182.7]],
-        source: "Agence internationale de l'énergie (cumul des deux actions de mars et avril 2022 pour l'Ukraine)"
+        "short": "AIE",
+        "name": "Agence internationale de l'énergie, « History of the IEA »",
+        "url": "https://www.iea.org/about/history"
+      },
+      {
+        "short": "Reuters / Kuwait Times",
+        "name": "Reuters, « Biggest global oil supply disruptions in history, says IEA », repris par Kuwait Times (2026)",
+        "url": "https://kuwaittimes.com/article/41058/business/biggest-global-oil-supply-disruptions-in-history-says-iea/"
+      },
+      {
+        "short": "AIE",
+        "name": "AIE, « IEA Member countries to carry out largest ever oil stock release amid market disruptions from Middle East conflict » (11 mars 2026)",
+        "url": "https://iea.org/news/iea-member-countries-to-carry-out-largest-ever-oil-stock-release-amid-market-disruptions-from-middle-east-conflict"
+      },
+      {
+        "short": "AIE",
+        "name": "AIE, « An update on Member Countries' Contributions to IEA Collective Stock Draw » (2022)",
+        "url": "https://www.iea.org/news/an-update-on-member-countries-contributions-to-iea-collective-stock-draw"
+      },
+      {
+        "short": "Parlement européen",
+        "name": "Parlement européen, Observatoire législatif, fiche « Niveau minimal de stocks de pétrole brut et/ou de produits pétroliers » (directive 2009/119/CE)",
+        "url": "https://oeil.europarl.europa.eu/oeil/fr/document-summary?id=1087983"
+      },
+      {
+        "short": "Public Sénat",
+        "name": "Public Sénat, « Prix de l'essence : qu'est-ce que la réserve stratégique que le gouvernement envisage de mobiliser ? » (2026)",
+        "url": "https://www.publicsenat.fr/actualites/economie/prix-de-lessence-quest-ce-que-la-reserve-strategique-que-le-gouvernement-envisage-de-mobiliser"
+      },
+      {
+        "short": "Selectra",
+        "name": "Selectra, « Stocks stratégiques de pétrole : la SAGESS et les 90 jours » (octobre 2026)",
+        "url": "https://selectra.info/energie/actualites/marche/stocks-strategiques-petrole-sagess-90-jours"
+      },
+      {
+        "short": "Connaissance des énergies (AFP)",
+        "name": "AFP, « Le gouvernement assure que les prix du gazole baisseront dès le 1er novembre », Connaissance des énergies (12 oct. 2026)",
+        "url": "https://www.connaissancedesenergies.org/afp/le-gouvernement-assure-que-les-prix-du-gazole-baisseront-des-le-1er-novembre-261012"
+      },
+      {
+        "short": "Fox Business",
+        "name": "Fox Business, « The US Strategic Petroleum Reserve: 5 facts »",
+        "url": "https://www.foxbusiness.com/markets/the-us-strategic-petroleum-reserve-5-facts"
+      },
+      {
+        "short": "EIA",
+        "name": "U.S. Energy Information Administration, Today in Energy (24 oct. 2022), vente de 180 millions de barils de la réserve stratégique",
+        "url": "https://www.eia.gov/todayinenergy/detail.php?id=54359"
+      },
+      {
+        "short": "Reuters / BOE Report",
+        "name": "Reuters, « Oil stocks in US Strategic Petroleum Reserve fall to lowest level since 1982 », BOE Report (5 oct. 2026)",
+        "url": "https://boereport.com/2026/10/05/oil-stocks-in-us-strategic-petroleum-reserve-fall-to-lowest-level-since-1982-4/"
+      },
+      {
+        "short": "Trésor américain",
+        "name": "U.S. Department of the Treasury, « The Price Impact of the Strategic Petroleum Reserve Release » (26 juillet 2022)",
+        "url": "https://fraser.stlouisfed.org/files/docs/publications/treaspr/2022/2022-07-26_jy0887.pdf"
+      },
+      {
+        "short": "Nippon.com",
+        "name": "Nippon.com, « Japan Set for Record Oil Reserve Release » (2026)",
+        "url": "https://www.nippon.com/en/japan-data/h02732/"
+      },
+      {
+        "short": "Enerdata",
+        "name": "Enerdata, « US EIA estimates China holds largest strategic oil reserves in the world » (2026)",
+        "url": "https://www.enerdata.net/publications/daily-energy-news/us-eia-estimates-china-holds-largest-strategic-oil-reserves-world.html"
+      },
+      {
+        "short": "The National",
+        "name": "The National, « G7 members agree to release 100 million barrels of diesel and other reserves » (2 oct. 2026)",
+        "url": "https://www.thenationalnews.com/business/energy/2026/10/02/g7-members-agree-to-release-100-million-barrels-of-diesel-and-other-reserves/"
+      }
+    ],
+    "visuals": [
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Les libérations coordonnées depuis 2022",
+        "subtitle": "Volume mis sur le marché par les pays de l'AIE et du G7, en millions de barils",
+        "xLabel": "Décision",
+        "unit": "Millions de barils",
+        "decimals": 1,
+        "data": [
+          [
+            "Mars 2022",
+            62.7
+          ],
+          [
+            "Avril 2022",
+            120
+          ],
+          [
+            "Mars 2026",
+            400
+          ],
+          [
+            "G7, oct. 2026",
+            100
+          ]
+        ],
+        "source": "AIE (2022 et 11 mars 2026) ; The National (2 oct. 2026) pour l'accord du G7"
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "La réserve américaine se vide",
+        "subtitle": "Pétrole brut dans la Strategic Petroleum Reserve, en millions de barils",
+        "xLabel": "Repère",
+        "unit": "Millions de barils",
+        "decimals": 1,
+        "data": [
+          [
+            "Capacité",
+            713.5
+          ],
+          [
+            "Oct. 2022",
+            405
+          ],
+          [
+            "Oct. 2026",
+            283
+          ]
+        ],
+        "source": "Fox Business (capacité) ; EIA (14 oct. 2022) ; Reuters d'après le département de l'Énergie (début oct. 2026)"
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Japon : 254 jours d'avance fin 2025",
+        "subtitle": "Réserves de pétrole du Japon au 31 décembre 2025, en jours de consommation",
+        "xLabel": "Détenteur",
+        "unit": "Jours de consommation",
+        "decimals": 0,
+        "data": [
+          [
+            "État",
+            146
+          ],
+          [
+            "Entreprises",
+            101
+          ],
+          [
+            "Stocks communs",
+            7
+          ]
+        ],
+        "source": "Nippon.com (2026), d'après le gouvernement japonais"
+      },
+      {
+        "kind": "chart",
+        "type": "bar",
+        "title": "Un gazole acheté bien moins cher",
+        "subtitle": "Prix du gazole des stocks stratégiques français, en euros par litre",
+        "xLabel": "Prix",
+        "unit": "Euros par litre",
+        "decimals": 2,
+        "data": [
+          [
+            "Prix d'achat",
+            0.28
+          ],
+          [
+            "Marché, oct. 2026",
+            1.1
+          ]
+        ],
+        "source": "Matignon, cité par Public Sénat (octobre 2026)"
       }
     ]
   },
