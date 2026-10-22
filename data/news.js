@@ -381,8 +381,125 @@ window.GEOCO.news = [
         "short": "Rio Times",
         "name": "The Rio Times, « Ghana Restates Plan to End Raw Ore Exports » (oct. 2026)",
         "url": "https://www.riotimesonline.com/ghana-2030-raw-mineral-export-ban/"
+      },
+      {
+        "short": "USITC",
+        "name": "Commission du commerce international des États-Unis (USITC), « Nickel and Indonesia, part 1 » (note d'information)",
+        "url": "https://www.usitc.gov/publications/332/executive_briefings/ebot_nickel_and_indonesia_part_1.pdf"
+      },
+      {
+        "short": "AIE",
+        "name": "Agence internationale de l'énergie (AIE), « Prohibition of the export of nickel ore » (fiche de politique publique)",
+        "url": "https://www.iea.org/policies/16084-prohibition-of-the-export-of-nickel-ore"
+      },
+      {
+        "short": "Commission européenne",
+        "name": "Commission européenne, « WT/DS592 – Indonesia – Export restrictions on raw materials for the production of stainless steel »",
+        "url": "https://policy.trade.ec.europa.eu/enforcement-and-protection/dispute-settlement/wto-dispute-settlement/wto-disputes-cases-involving-eu/wtds592-indonesia-export-restrictions-raw-materials-production-stainless-steel-and-subsidies-new_en"
+      },
+      {
+        "short": "The Conversation",
+        "name": "The Conversation, « Indonesia's claim that banning nickel exports spurs downstreaming is questionable » (2022)",
+        "url": "https://theconversation.com/indonesias-claim-that-banning-nickel-exports-spurs-downstreaming-is-questionable-180229"
+      },
+      {
+        "short": "AP / Manufacturing.net",
+        "name": "Associated Press (repris par Manufacturing.net), « Indonesia Tightens Control on World's Largest Nickel Supply as U.S. Scrambles for Critical Minerals »",
+        "url": "https://www.manufacturing.net/supply-chain/news/22960938/indonesia-tightens-control-on-worlds-largest-nickel-supply-as-us-scrambles-for-critical-minerals"
+      },
+      {
+        "short": "MyJoyOnline",
+        "name": "MyJoyOnline, « President Mahama puts mining firms on notice over 2030 raw mineral ore export ban » (oct. 2026)",
+        "url": "https://www.myjoyonline.com/president-mahama-puts-mining-firms-on-notice-over-2030-raw-mineral-ore-export-ban/"
+      },
+      {
+        "short": "Graphic Online",
+        "name": "Graphic Online, « GIADEC makes significant progress towards developing an integrated aluminium industry » (2022)",
+        "url": "https://www.graphic.com.gh/business/business-news/giadec-makes-significant-progress-towards-developing-an-integrated-aluminium-industry.html"
+      },
+      {
+        "short": "SMM",
+        "name": "Shanghai Metals Market (SMM), « Import of Ghana Manganese Ore Under Dual Squeeze » (2026)",
+        "url": "https://news.metal.com/newscontent/104089301-smm-analysisimport-of-ghana-manganese-ore-under-dual-squeeze-resonance-of-price-signals-and-policy-uncertainties"
+      },
+      {
+        "short": "News Ghana",
+        "name": "News Ghana, « Ghana Manganese Company unveils US$450 million refinery plan » (2024)",
+        "url": "https://www.newsghana.com.gh/ghana-manganese-company-unveils-us450-million-refinery-plan/"
+      },
+      {
+        "short": "Mining Weekly",
+        "name": "Mining Weekly, « Ghana's Parliament ratifies Atlantic Lithium's Ewoyaa mining lease » (20 mars 2026)",
+        "url": "https://www.miningweekly.com/article/ghanas-parliament-ratifies-atlantic-lithiums-ewoyaa-mining-lease-2026-03-20"
+      },
+      {
+        "short": "Ecofin",
+        "name": "Agence Ecofin, « Ghana greenlights $185 million Ewoyaa lithium project » (mars 2026)",
+        "url": "https://www.ecofinagency.com/news-industry/2303-53985-ghana-greenlights-185-million-ewoyaa-lithium-project"
+      },
+      {
+        "short": "MyJoyOnline",
+        "name": "MyJoyOnline, « Why Ghana has banned unrefined gold exports – GoldBod official provides details » (2026)",
+        "url": "https://www.myjoyonline.com/why-ghana-has-banned-unrefined-gold-exports-goldbod-official-provides-details/"
+      },
+      {
+        "short": "MyJoyOnline",
+        "name": "MyJoyOnline, « Govt must put its skin in the game – Chamber of Mines demands tax, power relief for local gold refining » (2026)",
+        "url": "https://www.myjoyonline.com/govt-must-put-its-skin-in-the-game-chamber-of-mines-demands-tax-power-relief-for-local-gold-refining/"
       }
-    ]
+    ],
+    "deep": {
+      "context": {
+        "title": "Le précédent indonésien : six ans sans nickel brut",
+        "paragraphs": [
+          "L'idée n'est pas neuve. L'Indonésie a appliqué dès 2014 une loi de 2009 qui interdisait d'exporter le minerai non transformé, dont le nickel [5]. Elle a rouvert la porte en 2017 au minerai pauvre (moins de 1,7 % de nickel), puis a tout refermé le 1er janvier 2020 [6].",
+          "Le résultat est spectaculaire. Selon S&P Global Market Intelligence, la part de l'Indonésie dans l'offre mondiale de nickel est passée de 31,5 % en 2020 à environ 60 % en 2024 [9]. Les fonderies se sont multipliées, financées en grande partie par des capitaux étrangers [8].",
+          "Le bilan reste discuté. Le président Joko Widodo affirmait que les exportations liées au nickel étaient passées de 2,1 à 30 milliards de dollars ; des économistes notent que ces chiffres n'ont pas été détaillés et qu'un métal transformé contient aussi le prix de l'énergie et des autres intrants [8]. L'Union européenne a porté plainte à l'OMC : le panel lui a donné raison le 30 novembre 2022, mais l'Indonésie a fait appel le 8 décembre devant un organe d'appel qui ne fonctionne plus, ce qui bloque l'affaire [7]."
+        ]
+      },
+      "explainer": {
+        "title": "Comment ça marche : « transformer sur place »",
+        "text": "Un minerai passe par plusieurs étapes avant de devenir un métal. Pour l'aluminium : on extrait la bauxite, une raffinerie en tire l'alumine (une poudre blanche), puis une fonderie la transforme en métal grâce à beaucoup d'électricité. Le Ghana possède le début et la fin de la chaîne, mais pas le milieu : une mine de bauxite à Awaso et la fonderie VALCO à Tema, sans raffinerie. En 2022, toute la bauxite d'Awaso partait donc à l'étranger, pendant que VALCO importait son alumine [11]. Une interdiction d'exporter le brut oblige à construire le maillon manquant sur place. Pour le manganèse, l'entreprise qui exploite la mine de Nsuta, filiale du groupe chinois Tianyuan, a présenté un projet de raffinerie d'environ 450 millions de dollars [13]. Pour l'or, c'est déjà fait : depuis le 1er septembre 2026, l'or « doré » des négociants agréés doit être raffiné au Ghana avant l'export [16]."
+      },
+      "numbers": {
+        "title": "Les chiffres de fond",
+        "items": [
+          {
+            "value": "5,3 Mt",
+            "label": "minerai de manganèse importé du Ghana par la Chine en 2025, 16 % de ses achats de ce minerai (douanes chinoises citées par SMM) [12]"
+          },
+          {
+            "value": "185 M$",
+            "label": "coût annoncé de la mine de lithium d'Ewoyaa, où l'État ghanéen détient 13 % (Ecofin) [15]"
+          },
+          {
+            "value": "≈ 60 %",
+            "label": "part de l'Indonésie dans l'offre mondiale de nickel en 2024, contre 31,5 % en 2020 (S&P Global) [9]"
+          }
+        ]
+      },
+      "watch": {
+        "title": "Les étapes à surveiller",
+        "items": [
+          {
+            "when": "Au Parlement",
+            "what": "Le projet de loi minière déposé au Parlement permettrait au ministre d'interdire l'export de minerais bruts, mais seulement par un règlement à part, et sans date butoir [10]."
+          },
+          {
+            "when": "Décision d'investissement à Ewoyaa",
+            "what": "Le Parlement a ratifié le bail de la première mine de lithium du pays le 20 mars 2026 ; reste à boucler le financement avant la décision finale d'investissement [14]."
+          },
+          {
+            "when": "Janvier 2029",
+            "what": "Fin du mandat de John Mahama, qui ne peut pas se représenter : l'échéance de 2030 reviendra à son successeur [10]."
+          },
+          {
+            "when": "D'ici là",
+            "what": "Les compagnies minières demandent déjà des baisses de taxes et une électricité plus sûre pour raffiner l'or sur place ; les mêmes demandes reviendront pour les autres minerais [17]."
+          }
+        ]
+      }
+    }
   },
   {
     "id": "2026-10-22-burkina-faso-ghana-reduit-carburant",
@@ -685,8 +802,121 @@ window.GEOCO.news = [
         "short": "Fortune",
         "name": "Fortune, « EU indefinitely freezes Russian assets to prevent Hungary and Slovakia blocking billions for Ukraine » (13 déc. 2025)",
         "url": "https://fortune.com/2025/12/13/eu-indefinitely-freezes-russian-assets-prevent-hungary-slovakia-billions-euros-ukraine/"
+      },
+      {
+        "short": "Euroclear",
+        "name": "Euroclear, « Euroclear delivers Q1 2026 results » (communiqué, 8 mai 2026)",
+        "url": "https://www.euroclear.com/newsandinsights/en/press/2026/mr-12-euroclear-delivers-q1-2026-results.html"
+      },
+      {
+        "short": "Euroclear",
+        "name": "Euroclear, « Euroclear delivers strong 2025 results » (communiqué, 4 févr. 2026)",
+        "url": "https://www.euroclear.com/newsandinsights/en/press/2026/mr-06-euroclear-delivers-strong-2025-results.html"
+      },
+      {
+        "short": "Financial Forum",
+        "name": "Revue bancaire et financière (Financial Forum), « The impact of the sanctions against Russia and Russian countermeasures »",
+        "url": "https://financialforum.be/fr/articles/the-impact-of-the-sanctions-against-russia-and-russian-countermeasures"
+      },
+      {
+        "short": "bne IntelliNews",
+        "name": "bne IntelliNews, « EU outlines structure of reparations loan backed by frozen Russian assets for Ukraine » (déc. 2025)",
+        "url": "https://www.intellinews.com/eu-outlines-structure-of-reparations-loan-backed-by-frozen-russian-assets-for-ukraine-415282"
+      },
+      {
+        "short": "APA",
+        "name": "APA, « Commission unveils €165B loan to Ukraine using Russian frozen assets » (3 déc. 2025)",
+        "url": "https://en.apa.az/europe/commission-unveils-eur165b-loan-to-ukraine-using-russian-frozen-assets-485346"
+      },
+      {
+        "short": "NV",
+        "name": "The New Voice of Ukraine (NV), « EU chooses joint borrowing for Ukraine, puts Russian assets on ice » (19 déc. 2025)",
+        "url": "https://english.nv.ua/amp/eu-chooses-joint-borrowing-for-ukraine-puts-russian-assets-on-ice-50569735.html"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star (dépêche), « Belgium rejects renewed push on frozen Russian assets » (3 sept. 2026)",
+        "url": "https://www.thestar.com.my/news/world/2026/09/03/belgium-rejects-renewed-push-on-frozen-russian-assets"
+      },
+      {
+        "short": "Interfax-Ukraine",
+        "name": "Interfax-Ukraine, « Zelenskyy urges EU to resolve issue of Russia's frozen assets to prevent them from being returned to Russia » (oct. 2026)",
+        "url": "https://en.interfax.com.ua/news/general/1221570.html"
+      },
+      {
+        "short": "Courthouse News",
+        "name": "Courthouse News Service, « Zelenskyy asks for $78 billion in European aid for Ukraine » (oct. 2026)",
+        "url": "https://www.courthousenews.com/zelenskyy-asks-for-78-billion-in-european-aid-for-ukraine/"
+      },
+      {
+        "short": "Meduza",
+        "name": "Meduza, « Moscow court orders Belgian depositary Euroclear to pay massive damages to Russia's central bank » (15 mai 2026)",
+        "url": "https://meduza.io/en/news/2026/05/15/moscow-court-orders-belgian-depositary-euroclear-to-pay-massive-damages-to-russia-s-central-bank"
+      },
+      {
+        "short": "Interfax-Ukraine",
+        "name": "Interfax-Ukraine, « Belgian PM convinced EU won't revive plan to use frozen Russian assets for Ukraine » (oct. 2026)",
+        "url": "https://en.interfax.com.ua/news/general/1224317.html"
+      },
+      {
+        "short": "A News",
+        "name": "A News, « Belgian premier says EU will not propose using frozen Russian assets for Ukraine » (21 oct. 2026)",
+        "url": "https://anews.com.tr/world/2026/10/21/belgian-premier-says-eu-will-not-propose-using-frozen-russian-assets-for-ukraine"
+      },
+      {
+        "short": "Kyiv Post",
+        "name": "Kyiv Post, « EU Leaders Stall Reparation Loan Talks as Belgium Insists on Legal Guarantees » (2025)",
+        "url": "https://www.kyivpost.com/post/62907"
       }
-    ]
+    ],
+    "deep": {
+      "explainer": {
+        "title": "Comment ça marche : de l'argent gelé qui rapporte",
+        "text": "Euroclear est un dépositaire central de titres : une sorte de coffre-fort où les banques centrales et les investisseurs du monde entier gardent leurs obligations. Quand les sanctions ont bloqué la Banque centrale de Russie en 2022, ses titres sont restés chez Euroclear. En arrivant à échéance, ils ne remboursent pas la Russie : l'argent reste sur les comptes d'Euroclear Bank, qui devra le rendre le jour où les sanctions seront levées [6]. Euroclear replace cet argent, ce qui lui rapporte des intérêts : 5 milliards d'euros de revenus en 2025, en baisse de 26 % avec la baisse des taux [5]. Depuis 2024, une règle européenne oblige à reverser ces bénéfices exceptionnels à un fonds pour l'Ukraine : 6,6 milliards d'euros versés à fin mars 2026, le reste étant gardé en réserve contre les risques [4]. Fin mars 2026, sur les 237 milliards d'euros du bilan d'Euroclear Bank, 200 milliards étaient des avoirs russes sous sanctions [4]. Le « prêt de réparation », proposé par la Commission le 3 décembre 2025 pour 165 milliards d'euros [8], allait plus loin : il s'agissait d'échanger cet argent contre des obligations émises par l'UE et de le prêter à l'Ukraine, qui ne l'aurait remboursé que si la Russie payait des réparations [7]."
+      },
+      "sides": {
+        "title": "Qui dit quoi",
+        "items": [
+          {
+            "who": "La Belgique",
+            "says": "Bart De Wever exigeait que les 26 autres pays garantissent tout le prêt pour que la Belgique ne paie pas seule en cas de procès [16]. En septembre 2026, son ministre des Affaires étrangères Maxime Prévot jugeait encore qu'utiliser ces avoirs « par un procédé proche de la confiscation » comportait « des risques importants » [10]."
+          },
+          {
+            "who": "Les partisans de l'utilisation",
+            "says": "La Pologne, les Pays-Bas, l'Espagne et la Suède ont écrit à la Commission fin août 2026 pour lui demander d'étudier de nouvelles façons d'utiliser ces avoirs ; la cheffe de la diplomatie de l'UE, Kaja Kallas, a dit que la discussion continuerait [10]."
+          },
+          {
+            "who": "L'Ukraine",
+            "says": "Volodymyr Zelensky demande que la totalité des avoirs reste protégée et puisse servir, de peur qu'ils ne soient un jour rendus à la Russie [11]. Il a demandé aux Européens environ 78 milliards de dollars pour l'an prochain [12]."
+          },
+          {
+            "who": "La Russie",
+            "says": "Sa banque centrale a attaqué Euroclear à Moscou. Le 15 mai 2026, un tribunal moscovite lui a accordé environ 18 170 milliards de roubles (200 milliards d'euros) ; Euroclear ne reconnaît pas ce tribunal et a annoncé faire appel [13]."
+          }
+        ]
+      },
+      "watch": {
+        "title": "Ce qui peut encore bouger",
+        "items": [
+          {
+            "when": "Budget ukrainien de 2027",
+            "what": "Le prêt de 90 milliards couvre 2026 et 2027 [3] ; la nouvelle demande de Kiev pose la question d'un financement supplémentaire, et donc des avoirs russes [12]."
+          },
+          {
+            "when": "Prochains sommets européens",
+            "what": "Selon De Wever, la Commission s'est engagée à ne pas rouvrir le dossier, mais il n'exclut pas qu'un autre pays le remette sur la table [14][15]."
+          },
+          {
+            "when": "Appel d'Euroclear",
+            "what": "Euroclear conteste le jugement de Moscou et a annoncé faire appel ; la Banque centrale russe elle-même juge la décision non définitive [13]."
+          },
+          {
+            "when": "Fin de la guerre",
+            "what": "Les dirigeants européens ont prévu que les avoirs restent immobilisés jusqu'à ce que la Russie cesse la guerre et indemnise l'Ukraine [9]."
+          }
+        ]
+      }
+    }
   },
   {
     "id": "2026-10-21-samarkand-asie-centrale-minerais",
