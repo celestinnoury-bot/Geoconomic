@@ -225,10 +225,13 @@
   const isNear = (n) => n.region === I18N.region;
   const nearFirst = (list) => list.map((n, i) => [n, i]).sort((a, b) => (b[0].date > a[0].date) - (b[0].date < a[0].date) || isNear(b[0]) - isNear(a[0]) || a[1] - b[1]).map((x) => x[0]);
 
+  // Pastille de thème des actus : orange = économie, bleu-violet = géopolitique, les deux couleurs = les deux.
+  const themeChip = (t) => `<span class="theme-chip ${t}"><i aria-hidden="true"></i>${THEMES[t]}</span>`;
+
   function newsCard(n) {
     return `
       <a class="news-card ${n.theme} reveal${isNear(n) ? " near" : ""}" href="#/actu/${n.id}">
-        <p class="eyebrow">${isNear(n) ? `<span class="near-badge">📍 Près de chez toi</span> · ` : ""}${THEMES[n.theme]}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
+        <p class="eyebrow">${themeChip(n.theme)}${isNear(n) ? ` <span class="near-badge">📍 Près de chez toi</span>` : ""}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
         <h3>${n.title}</h3>
         <p class="summary">${n.summary}</p>
         <span class="more">Comprendre en 2 min ›</span>
@@ -444,7 +447,7 @@
   function tickerHTML() {
     const items = nearFirst(news.slice(0, 14)).map((n) => {
       const where = (n.geo && n.geo[0] && (n.geo[0].label || n.geo[0].name)) || n.region || "";
-      return `<a class="tk-item" href="#/actu/${n.id}"><b>${where}</b>${n.title}</a>`;
+      return `<a class="tk-item ${n.theme}" href="#/actu/${n.id}"><b>${where}</b>${n.title}</a>`;
     });
     const nums = ((window.GEOCO.indicators && window.GEOCO.indicators.latest) || []).map((x) =>
       `<a class="tk-item tk-num" href="${x.link}"><b>${x.value}</b>${x.label}</a>`);
@@ -1263,7 +1266,7 @@
     app.innerHTML = `
       <section class="wrap hero">
         <a class="back" href="#/actu">‹ Actu</a>
-        <p class="eyebrow reveal">${formatDate(n.date)} · ${THEMES[n.theme]}</p>
+        <p class="eyebrow reveal">${themeChip(n.theme)} ${formatDate(n.date)}</p>
         <h1 class="title reveal">${n.title}</h1>
         <p class="lead reveal">${n.summary}</p>
         ${doss[0] ? learnCard(doss[0]) : ""}

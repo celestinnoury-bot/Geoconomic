@@ -1278,3 +1278,31 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .intro-plus.show .intro-skip { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .intro-plus, .intro-plus.out { animation: none; } }
 .intro-demo { margin: 14px 0 0; }
+
+/* ---------- Code couleur des actus : économie (orange), géopolitique (bleu-violet), les deux ---------- */
+:root { --c-eco: #ff8a3d; --c-geo: #7d7bff; }
+.theme-chip {
+  display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px 3px 8px; border-radius: 999px; margin-right: 4px;
+  font: 700 11px/1.4 var(--font); letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; white-space: nowrap;
+}
+.theme-chip i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.theme-chip.eco { color: #ffb27a; background: rgba(255,138,61,.14); box-shadow: inset 0 0 0 1px rgba(255,138,61,.45); }
+.theme-chip.eco i { background: var(--c-eco); box-shadow: 0 0 8px var(--c-eco); }
+.theme-chip.geo { color: #b3b2ff; background: rgba(125,123,255,.15); box-shadow: inset 0 0 0 1px rgba(125,123,255,.5); }
+.theme-chip.geo i { background: var(--c-geo); box-shadow: 0 0 8px var(--c-geo); }
+.theme-chip.mix { color: #fff; background: linear-gradient(90deg, rgba(255,138,61,.2), rgba(125,123,255,.2)); box-shadow: inset 0 0 0 1px rgba(200,170,255,.45); }
+.theme-chip.mix i { width: 14px; border-radius: 4px; background: linear-gradient(90deg, var(--c-eco) 50%, var(--c-geo) 50%); }
+/* Liseré coloré à gauche des cartes d'actus, et halo de la couleur du thème. */
+.news-card.eco, .news-card.geo, .news-card.mix { padding-left: 30px; }
+.news-card.eco::after, .news-card.geo::after, .news-card.mix::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 6px; }
+.news-card.eco::after { background: linear-gradient(180deg, #ffb340, var(--c-eco)); }
+.news-card.geo::after { background: linear-gradient(180deg, #64d2ff, var(--c-geo)); }
+.news-card.mix::after { background: linear-gradient(180deg, var(--c-eco) 0 50%, var(--c-geo) 50% 100%); }
+.news-card.eco { --tile-glow: #ff6a3d; box-shadow: inset 0 0 0 1px rgba(255,138,61,.18); }
+.news-card.geo { --tile-glow: #5e5ce6; box-shadow: inset 0 0 0 1px rgba(125,123,255,.2); }
+.news-card.mix { box-shadow: inset 0 0 0 1px rgba(200,170,255,.18); }
+.news-card.mix::before { opacity: .32; background: radial-gradient(70% 80% at 100% 0%, #ff6a3d 0%, transparent 60%), radial-gradient(70% 80% at 100% 100%, #5e5ce6 0%, transparent 60%); }
+/* Bandeau défilant : le lieu prend la couleur du thème. */
+.tk-item.eco b { color: #ffb27a; }
+.tk-item.geo b { color: #b3b2ff; }
+.tk-item.mix b { background: linear-gradient(90deg, #ffb27a, #b3b2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
