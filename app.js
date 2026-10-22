@@ -231,7 +231,7 @@
   function newsCard(n) {
     return `
       <a class="news-card ${n.theme} reveal${isNear(n) ? " near" : ""}" href="#/actu/${n.id}">
-        <p class="eyebrow">${themeChip(n.theme)}${isNear(n) ? ` <span class="near-badge">📍 Près de chez toi</span>` : ""}${n.region ? ` · ${n.region}` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
+        <p class="eyebrow">${themeChip(n.theme)}${isNear(n) ? ` <span class="near-badge">📍 Près de chez toi</span>` : ""}${n.region ? ` · ${n.region}` : ""}${n.deep ? ` · <span class="deep-badge">＋ ${I18N.t("Approfondi")}</span>` : ""}${episodesFor("news", n.id).length ? ` · <span class="pod-badge">🎙️ En podcast</span>` : ""}</p>
         <h3>${n.title}</h3>
         <p class="summary">${n.summary}</p>
         <span class="more">Comprendre en 2 min ›</span>
@@ -1257,6 +1257,40 @@
       </a>`;
   }
 
+  // « Pour aller plus loin » sous une actu (champ `deep` de data/news.js) : des blocs facultatifs, rendus dans
+  // l'ordre où ils sont écrits, pour varier d'une actu à l'autre : contexte, positions des acteurs côte à côte,
+  // échéances à surveiller, encadré « comment ça marche », chiffres de fond.
+  function deepBlock(n) {
+    const d = n.deep;
+    if (!d) return "";
+    const src = n.sources, words = JSON.stringify(d).split(/\s+/).length;
+    const blocks = Object.entries(d).map(([kind, b]) => {
+      if (kind === "context") return `
+        <div class="deep-part"><p class="eyebrow">${I18N.t("Le contexte")}</p>${b.title ? `<h3>${b.title}</h3>` : ""}
+          ${b.paragraphs.map((t) => `<p class="copy">${para(t, src)}</p>`).join("")}</div>`;
+      if (kind === "sides") return `
+        <div class="deep-part"><p class="eyebrow">${I18N.t("Les positions")}</p>${b.title ? `<h3>${b.title}</h3>` : ""}
+          <div class="deep-sides">${b.items.map((x, i) => `<div class="deep-side s${i % 4}"><b>${x.who}</b><p>${cite(x.says, src)}</p></div>`).join("")}</div></div>`;
+      if (kind === "watch") return `
+        <div class="deep-part"><p class="eyebrow">${I18N.t("À surveiller")}</p>${b.title ? `<h3>${b.title}</h3>` : ""}
+          <ol class="deep-watch">${b.items.map((x) => `<li><span class="deep-when">${x.when}</span><span>${cite(x.what, src)}</span></li>`).join("")}</ol></div>`;
+      if (kind === "explainer") return `
+        <aside class="art-box deep-part"><p class="eyebrow">${I18N.t("Comment ça marche")}</p>${b.title ? `<h3>${b.title}</h3>` : ""}
+          ${(Array.isArray(b.text) ? b.text : [b.text]).map((t) => `<p>${cite(t, src)}</p>`).join("")}</aside>`;
+      if (kind === "numbers") return `
+        <div class="deep-part"><p class="eyebrow">${I18N.t("Les chiffres de fond")}</p>${b.title ? `<h3>${b.title}</h3>` : ""}
+          <div class="deep-numbers ${n.theme}">${b.items.map((x) => `<div><span class="grad ${n.theme}">${x.value}</span><p>${cite(x.label, src)}</p></div>`).join("")}</div></div>`;
+      return "";
+    }).join("");
+    return `
+      <section class="section deep">
+        <div class="wrap">
+          <p class="eyebrow reveal">${I18N.t("Pour aller plus loin")} · ${I18N.t("{n} min de lecture").replace("{n}", Math.max(2, Math.round(words / 200)))}</p>
+          <div class="reveal">${blocks}</div>
+        </div>
+      </section>`;
+  }
+
   function renderNews(id) {
     const n = byId(news, id);
     if (!n) return renderNotFound();
@@ -1290,6 +1324,8 @@
           ${n.why.map((p) => `<p class="copy reveal">${para(p, n.sources)}</p>`).join("")}
         </div>
       </section>
+
+      ${deepBlock(n)}
 
       <section class="wrap">
         <div class="panel ${n.theme} reveal">

@@ -1306,3 +1306,21 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .tk-item.eco b { color: #ffb27a; }
 .tk-item.geo b { color: #b3b2ff; }
 .tk-item.mix b { background: linear-gradient(90deg, #ffb27a, #b3b2ff); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* ---------- Actu : « Pour aller plus loin » (champ deep) ---------- */
+.deep { border-top: 1px solid var(--hairline); }
+.deep-part + .deep-part { margin-top: 34px; }
+.deep-part h3 { font-family: var(--serif); font-size: 24px; line-height: 1.2; margin: 4px 0 12px; }
+.deep-sides { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+.deep-side { background: var(--surface); border-radius: 18px; padding: 16px 18px; border-top: 3px solid var(--c, #7d7bff); }
+.deep-side b { display: block; font-size: 13px; letter-spacing: .06em; text-transform: uppercase; color: var(--c, #7d7bff); margin-bottom: 6px; }
+.deep-side p { margin: 0; color: var(--text); font-size: 16px; line-height: 1.45; }
+.deep-side.s0 { --c: #ff8a3d; } .deep-side.s1 { --c: #7d7bff; } .deep-side.s2 { --c: #3ddc97; } .deep-side.s3 { --c: #f5c86b; }
+.deep-watch { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--hairline); }
+.deep-watch li { position: relative; padding: 0 0 16px 18px; display: grid; gap: 2px; font-size: 16px; line-height: 1.45; }
+.deep-watch li::before { content: ""; position: absolute; left: -6px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 10px rgba(245,200,107,.6); }
+.deep-when { color: var(--gold); font-weight: 700; font-size: 14px; }
+.deep-numbers { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 14px; }
+.deep-numbers span { font: 800 30px/1.1 var(--font); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.deep-numbers p { margin: 4px 0 0; color: var(--muted); font-size: 14px; line-height: 1.4; }
+.deep-badge { color: #3ddc97; font-weight: 700; }

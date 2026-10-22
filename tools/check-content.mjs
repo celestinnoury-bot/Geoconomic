@@ -56,6 +56,14 @@ news.forEach((n, i) => {
   if (!Array.isArray(n.figures) || !n.figures.length) err(w, "au moins 1 chiffre");
   checkSources(w, n.sources);
   [...(n.points || []), ...(n.why || []), n.summary, n.forMe].forEach((t) => checkCites(w, t, n.sources));
+  // « Pour aller plus loin » : toutes les phrases sont sourcées comme le reste de l'actu.
+  if (n.deep) {
+    const d = n.deep, texts = [...((d.context && d.context.paragraphs) || []), ...((d.sides && d.sides.items) || []).map((x) => x.says),
+      ...((d.watch && d.watch.items) || []).map((x) => x.what), ...[].concat((d.explainer && d.explainer.text) || []), ...((d.numbers && d.numbers.items) || []).map((x) => x.label)];
+    texts.forEach((t) => checkCites(w + " (plus loin)", t, n.sources));
+    const known = new Set(["context", "sides", "watch", "explainer", "numbers"]);
+    Object.keys(d).forEach((k) => { if (!known.has(k)) err(w, `bloc « ${k} » inconnu dans deep`); });
+  }
   (n.figures || []).forEach((f) => { if (f.src && !n.sources[f.src - 1]) err(w, `chiffre « ${f.value} » : src ${f.src} inexistante`); });
   (n.dossiers || []).forEach((d) => { if (!dossierIds.has(d)) err(w, `cours inconnu « ${d} »`); });
   (n.culture || []).forEach((c) => { if (!cultureIds.has(c)) err(w, `article inconnu « ${c} »`); });
