@@ -75,8 +75,78 @@ window.GEOCO.news = [
         "short": "NewsNation",
         "name": "NewsNation, « US orders diplomats to leave Saudi Arabia » (oct. 2026)",
         "url": "https://www.newsnationnow.com/world/us-orders-diplomats-leave-saudi-arabia/"
+      },
+      {
+        "short": "Al-Monitor (Reuters)",
+        "name": "Al-Monitor (dépêche Reuters), « Saudi says it intercepted Houthi missiles fired south, test years-long truce » (juil. 2026)",
+        "url": "https://www.al-monitor.com/originals/2026/07/saudi-says-it-intercepted-houthi-missiles-fired-south-test-years-long-truce"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Yemen fighting expands as Houthis attack Saudi airport: What to know » (11 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/11/yemen-fighting-expands-as-houthis-attack-saudi-airport-what-to-know"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Saudi Arabia says 12 killed, 300 wounded in Houthi attack on Riyadh airport » (10 oct. 2026)",
+        "url": "https://www.aljazeera.com/amp/news/2026/10/10/attack-on-airport-in-saudi-capital-riyadh-leaves-several-injured"
+      },
+      {
+        "short": "Département d'État",
+        "name": "U.S. Department of State, Foreign Affairs Manual, 3 FAM 3770 (départs autorisés et ordonnés)",
+        "url": "https://fam.state.gov/fam/03fam/03fam3770.html"
+      },
+      {
+        "short": "US Navy",
+        "name": "U.S. Naval Forces Central Command, fiche « Departure » (allocations en cas de départ autorisé ou ordonné)",
+        "url": "https://www.cusnc.navy.mil/Portals/17/Departure%20Flyer%20%2811%20x%208_5%20in%29.pdf"
+      },
+      {
+        "short": "The National",
+        "name": "The National, « From fragile truce to new Houthi threats: how Yemen crisis reignited » (13 juil. 2026)",
+        "url": "https://www.thenationalnews.com/news/mena/2026/07/13/from-fragile-truce-to-new-houthi-threats-how-yemen-crisis-reignited/"
+      },
+      {
+        "short": "Hürriyet Daily News",
+        "name": "Hürriyet Daily News, « Saudi Arabia faces further Houthi attacks after calls for halt » (oct. 2026)",
+        "url": "https://www.hurriyetdailynews.com/saudi-arabia-faces-further-houthi-attacks-after-calls-for-halt-228002"
       }
-    ]
+    ],
+    "deep": {
+      "context": {
+        "title": "Quatre ans de trêve, puis la rechute",
+        "paragraphs": [
+          "Depuis le printemps 2022, une trêve informelle tenait entre l'Arabie saoudite et les Houthis, après des années de guerre au Yémen et des attaques houthies contre des installations énergétiques saoudiennes [5]. Le 13 juillet 2026, les Houthis ont tiré des missiles vers l'aéroport d'Abha, dans le sud du royaume, en accusant Riyad d'avoir bombardé un aéroport qu'ils contrôlent. C'était la première attaque revendiquée contre le royaume depuis le début de la trêve [5].",
+          "Le contexte s'était déjà tendu au sud du Yémen : fin 2025, un mouvement séparatiste soutenu par les Émirats arabes unis a pris le contrôle d'une grande partie du sud du pays [5]. En janvier 2026, les Émirats ont mis fin à leur présence antiterroriste au Yémen après une frappe saoudienne sur des véhicules de leurs forces [10]. Les deux alliés d'hier ne jouent donc plus la même partie.",
+          "L'escalade a culminé le 10 octobre : la frappe sur l'aéroport King Khalid de Riyad était la troisième de la semaine contre cet aéroport. Parmi les 12 morts figuraient quatre Saoudiens et des victimes de sept autres nationalités, dont un Américain [7]. La coalition menée par Riyad a parlé de crime de guerre ; les Houthis, eux, n'ont pas revendiqué cette frappe [6]."
+        ]
+      },
+      "explainer": {
+        "title": "« Personnel non essentiel » : ce que dit vraiment l'ordre",
+        "text": "Le Département d'État a deux crans avant la fermeture d'une ambassade. Le premier, le « départ autorisé », est volontaire : les employés et leurs familles peuvent partir aux frais de l'État, mais ceux qui le veulent restent [8]. Le second, choisi ici, est le « départ ordonné » : il est obligatoire et sert à réduire le nombre d'Américains présents sur place [8]. Les familles reçoivent alors des aides pour se loger et vivre ailleurs le temps de la crise [9]. L'ambassade, elle, reste ouverte : seuls les postes jugés indispensables (sécurité, consulat d'urgence, direction) restent pourvus. Passer d'un cran à l'autre est donc un signal : Washington juge que le risque ne se limite plus à quelques incidents."
+      },
+      "watch": {
+        "title": "Ce qui peut se passer ensuite",
+        "items": [
+          {
+            "when": "Dans les prochains jours",
+            "what": "Selon quatre responsables américains, d'autres représentations dans le Golfe vont aussi demander à des familles de partir : la mesure pourrait s'étendre au-delà du royaume [1]."
+          },
+          {
+            "when": "La riposte saoudienne",
+            "what": "Après la frappe du 10 octobre, la coalition a promis de répondre « fermement » [7]. Une riposte d'ampleur pourrait relancer les tirs vers les villes saoudiennes."
+          },
+          {
+            "when": "Les aéroports hors du conflit ?",
+            "what": "Les Houthis se disent prêts à des mesures réciproques pour tenir les aéroports, les ports et les sites humanitaires à l'écart des combats [7]. Un accord limité de ce type serait un premier pas vers une désescalade."
+          },
+          {
+            "when": "Les sites pétroliers",
+            "what": "Les Houthis affirment avoir visé deux installations de Saudi Aramco, dont le complexe de Khurais au sud-est de Riyad ; ces affirmations n'ont pas été vérifiées [11]. Une attaque confirmée sur le pétrole serait suivie de près par les marchés."
+          }
+        ]
+      }
+    }
   },
   {
     "id": "2026-10-22-liban-qatar-centrales-electriques-gnl",
@@ -144,8 +214,111 @@ window.GEOCO.news = [
         "short": "The National",
         "name": "The National, « World Bank says Middle East economy to contract 2.1% in 2026 on Iran war » (6 oct. 2026)",
         "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Qatar announces ‘massive’ solar plant project in Lebanon » (16 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/16/qatar-announces-massive-solar-plant-project-in-lebanon"
+      },
+      {
+        "short": "Ministère de l'Énergie (Liban)",
+        "name": "Ministère libanais de l'Énergie et de l'Eau / EDL, présentation du plan électrique (31 mars 2022)",
+        "url": "https://energyandwater.gov.lb/mediafiles/articles/doc-100777-2022_03_31_10_19_47.pdf"
+      },
+      {
+        "short": "Banque mondiale",
+        "name": "Banque mondiale, document de projet sur le secteur électrique libanais (avril 2023)",
+        "url": "https://documents1.worldbank.org/curated/en/099050223040511121/pdf/P1805010e52d050b0a2420997c31f1dfe0.pdf"
+      },
+      {
+        "short": "BLOMInvest",
+        "name": "BLOMInvest Bank, « Turning the Lights On: Solutions for Lebanon's Electricity Crisis » (févr. 2026)",
+        "url": "https://blog.blominvestbank.com/wp-content/uploads/2026/02/Turning-the-Lights-On-Solutions-for-Lebanons-Electricity-Crisis.pdf"
+      },
+      {
+        "short": "L'Orient-Le Jour",
+        "name": "L'Orient Today, « EDL to issue new tariffs in February 2023 »",
+        "url": "https://today.lorientlejour.com/article/1318304/edl-to-issue-new-tariffs-in-february-2023.html"
+      },
+      {
+        "short": "Power Technology",
+        "name": "Power Technology, « Lebanon energy reform plan »",
+        "url": "https://www.power-technology.com/comment/lebanon-energy-reform-plan/"
+      },
+      {
+        "short": "Wikipédia",
+        "name": "Wikipédia (en), « Arab Gas Pipeline »",
+        "url": "https://en.wikipedia.org/wiki/Arab_Gas_Pipeline"
+      },
+      {
+        "short": "Al Arabiya",
+        "name": "Al Arabiya, « Egypt's natural gas to reach Lebanon by year end: Minister » (14 sept. 2021)",
+        "url": "https://english.alarabiya.net/News/middle-east/2021/09/14/Egypt-s-natural-gas-to-reach-Lebanon-by-year-end-Minister"
+      },
+      {
+        "short": "BNN Bloomberg (Reuters)",
+        "name": "BNN Bloomberg (dépêche Reuters), « Egyptian gas to reach Lebanon by year-end, says minister » (14 sept. 2021)",
+        "url": "https://www.bnnbloomberg.ca/egyptian-gas-to-reach-lebanon-by-year-end-says-minister-1.1652109"
+      },
+      {
+        "short": "L'Orient-Le Jour",
+        "name": "L'Orient Today, « Gas imports to Lebanon: Jordan gives green light, what happens next »",
+        "url": "https://today.lorientlejour.com/article/1546905/gas-imports-to-lebanon-jordan-gives-green-light-what-happens-next.html"
+      },
+      {
+        "short": "Libnanews",
+        "name": "Libnanews, « L'électricité du Liban frappée par le choc pétrolier » (2026)",
+        "url": "https://en.libnanews.com/l-electricity-from-lebanon-hit-by-oil-shock/"
       }
-    ]
+    ],
+    "deep": {
+      "numbers": {
+        "title": "Une compagnie publique à bout de souffle",
+        "items": [
+          {
+            "value": "2 à 3 h",
+            "label": "d'électricité publique par jour en moyenne à partir de mi-2021, selon la Banque mondiale [7]"
+          },
+          {
+            "value": "≈ 40 %",
+            "label": "de l'électricité perdue sur le réseau en 2021 (pertes techniques et vols), selon le ministère de l'Énergie [6]"
+          },
+          {
+            "value": "43 Md$",
+            "label": "ajoutés à la dette publique par les subventions à Électricité du Liban de 1994 à 2020 [8]"
+          },
+          {
+            "value": "1994",
+            "label": "année du dernier changement de tarif avant la nouvelle grille annoncée par EDL pour février 2023 [9]"
+          }
+        ]
+      },
+      "context": {
+        "title": "Le gazoduc qui devait déjà tout régler",
+        "paragraphs": [
+          "L'idée d'alimenter le Liban en gaz par la Syrie n'est pas neuve. Le gazoduc arabe, long d'environ 1 200 km, a été construit par étapes pour exporter le gaz égyptien vers la Jordanie, la Syrie et le Liban ; le gaz arrive régulièrement au Liban à partir d'octobre 2009 [11].",
+          "Le flux s'est vite tari : l'Égypte, qui consommait de plus en plus, a réduit ses exportations, puis des attaques contre le tuyau pendant la guerre en Syrie ont coupé la route vers le Liban [13]. En 2021, les ministres de quatre pays ont voulu relancer le projet pour alimenter la centrale de Deir Ammar, d'une capacité de 450 MW [12]. La Banque mondiale devait financer l'accord, mais à condition que le Liban relève ses tarifs et crée une autorité de régulation de l'électricité ; faute de régulateur, elle n'a pas donné son feu vert [10].",
+          "Dans l'intervalle, EDL a remonté sa production : fin février 2026, elle fournissait en moyenne 7 à 9 heures de courant par jour. Le choc pétrolier régional l'a de nouveau fait chuter, à environ deux heures par jour dans certaines zones comme Tripoli [15]. Selon L'Orient-Le Jour, le tronçon Syrie-Liban du gazoduc n'est toujours pas en service et sa remise en état se poursuit [14]."
+        ]
+      },
+      "sides": {
+        "title": "Qui veut quoi",
+        "items": [
+          {
+            "who": "Doha",
+            "says": "Le Premier ministre qatari, en visite à Beyrouth le 16 octobre, a annoncé une centrale solaire qu'il a qualifiée de « massive », développée par QatarEnergy avec le français TotalEnergies comme premier projet [5]. Le document vu par Reuters cherche à attirer des capitaux privés [1]."
+          },
+          {
+            "who": "Le gouvernement de Nawaf Salam",
+            "says": "Le Premier ministre affirme que le Qatar financera, construira et fera tourner le projet sans que le Trésor libanais avance d'argent, et veut le soumettre vite au Conseil des ministres [5]."
+          },
+          {
+            "who": "La Banque mondiale et les bailleurs",
+            "says": "Ils lient depuis des années leur aide à des réformes : hausse de tarifs restés bas pendant des décennies et autorité de régulation indépendante, chargée de fixer les prix et de surveiller les contrats avec le privé [10]. En 2022, le tarif moyen encaissé restait sous 1 centime le kWh, pour un coût d'environ 30 centimes [6]."
+          }
+        ]
+      }
+    }
   },
   {
     "id": "2026-10-22-ghana-fin-exportation-minerais-bruts-2030",
