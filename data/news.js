@@ -15,6 +15,1461 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-22-arabie-saoudite-diplomates-americains-partent",
+    "date": "2026-10-22",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Riyad, Arabie saoudite",
+        "label": "Riyad",
+        "coords": [
+          46.68,
+          24.71
+        ]
+      }
+    ],
+    "title": "Les États-Unis font partir leurs diplomates non essentiels d'Arabie saoudite, sous les frappes des Houthis",
+    "summary": "Washington ordonne aux employés non urgents de son gouvernement et à leurs familles de quitter le royaume. Les attaques des Houthis (rebelles du Yémen) touchent des aéroports et un champ pétrolier.",
+    "points": [
+      "Le Département d'État a ordonné le 21 octobre le départ des employés non urgents du gouvernement américain et de leurs familles en Arabie saoudite, uniquement dans ce pays [1][3].",
+      "Selon Reuters, l'ordre suit des attaques : au moins un mort et huit blessés à l'aéroport civil de Dammam, et deux morts dans une attaque de drone sur un champ pétrolier ; plus tôt ce mois-ci, une frappe sur l'aéroport de Riyad avait fait 12 morts et plus de 300 blessés [1][2].",
+      "Quatre responsables américains disent que les représentations d'autres pays du Golfe vont aussi demander à des familles de partir [1]. Les employés américains doivent demander une autorisation spéciale pour utiliser un aéroport du pays [3]."
+    ],
+    "why": [
+      "La première phrase à retenir : quand un pays retire ses diplomates, il dit que la situation de sécurité est pire que prévu, y compris dans un allié proche et grand producteur de pétrole [1][2].",
+      "L'ambassade tournait déjà avec peu de monde depuis des mois, et l'armée américaine réduit discrètement sa présence dans la région, selon CBS [2][4]. Pour l'économie, un Golfe plus risqué veut dire des assurances plus chères et un pétrole plus nerveux."
+    ],
+    "forMe": "Le Golfe fournit une grande part du pétrole du monde. Si les voyages, les aéroports ou les champs pétroliers y sont menacés, le prix de l'essence peut remonter même en France.",
+    "figures": [
+      {
+        "value": "12",
+        "label": "morts lors de la frappe de début octobre sur l'aéroport de Riyad (plus de 300 blessés)",
+        "src": 2
+      },
+      {
+        "value": "8",
+        "label": "blessés à l'aéroport de Dammam, avec au moins un mort",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "ABC News",
+        "name": "ABC News (Australie), « US orders embassy staff, families to leave Saudi Arabia amid Houthi strikes » (22 oct. 2026)",
+        "url": "https://www.abc.net.au/news/2026-10-22/us-diplomats-to-leave-saudi-arabia-amid-houthi-strikes/107295684"
+      },
+      {
+        "short": "CBS News",
+        "name": "CBS News, « U.S. ordering some government staff to depart Saudi Arabia, reducing military footprint in Middle East » (oct. 2026)",
+        "url": "https://www.cbsnews.com/news/us-saudi-arabia-ordered-departure-houthis/"
+      },
+      {
+        "short": "Washington Times",
+        "name": "The Washington Times, « Non-essential U.S. personnel, families told to leave Saudi Arabia amid growing Houthi strikes » (21 oct. 2026)",
+        "url": "https://www.washingtontimes.com/news/2026/oct/21/non-essential-us-personnel-families-told-leave-saudi-arabia-amid/"
+      },
+      {
+        "short": "NewsNation",
+        "name": "NewsNation, « US orders diplomats to leave Saudi Arabia » (oct. 2026)",
+        "url": "https://www.newsnationnow.com/world/us-orders-diplomats-leave-saudi-arabia/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-liban-qatar-centrales-electriques-gnl",
+    "date": "2026-10-22",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Beyrouth, Liban",
+        "label": "Liban",
+        "coords": [
+          35.5,
+          33.89
+        ]
+      }
+    ],
+    "title": "Le Qatar propose au Liban deux centrales électriques et vingt ans de gaz pour sortir de ses coupures de courant",
+    "summary": "Un projet de plan vu par Reuters prévoit deux centrales construites en trois ans. Rien n'est encore signé : les deux gouvernements doivent l'approuver.",
+    "points": [
+      "Le projet, vu par Reuters, prévoit que le Qatar construise deux centrales à gaz, à Deir Ammar (nord) et à Zahrani (sud), de 825 mégawatts chacune, en trois ans [1][2].",
+      "QatarEnergy fournirait le gaz naturel liquéfié pendant 20 ans, par un navire-terminal flottant et par le gazoduc arabe qui passe par la Syrie. Le plan ajoute 800 MW de solaire et 440 MW d'éolien [1][2].",
+      "Le financement viendrait de capitaux privés et non de l'argent public libanais ; les paiements restent à négocier. Le Premier ministre Nawaf Salam veut présenter le plan au gouvernement bientôt [1][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : le Liban, ruiné et souvent dans le noir, pourrait voir son électricité financée par le Qatar plutôt que par son État [1][3].",
+      "C'est un projet de plan, pas un contrat : il doit être approuvé par Beyrouth et Doha, et les plans électriques libanais ont souvent buté sur les tarifs et la gestion de la compagnie publique [1]. La Banque mondiale prévoit que l'économie libanaise recule de 6,4 % cette année [4]."
+    ],
+    "forMe": "Quand un pays n'a pas d'électricité fiable, ses entreprises ferment et ses habitants partent. Le gaz du Qatar qui passe par la Syrie montre aussi que les routes de l'énergie se redessinent autour du détroit d'Ormuz.",
+    "figures": [
+      {
+        "value": "2 × 825 MW",
+        "label": "deux centrales à gaz prévues en trois ans",
+        "src": 1
+      },
+      {
+        "value": "20 ans",
+        "label": "durée du contrat de gaz naturel liquéfié proposé par QatarEnergy",
+        "src": 2
+      },
+      {
+        "value": "−6,4 %",
+        "label": "recul de l'économie libanaise prévu cette année par la Banque mondiale",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Devdiscourse (Reuters)",
+        "name": "Devdiscourse (dépêche Reuters), « EXCLUSIVE-Qatari electricity lifeline for Lebanon includes two power plants, LNG supply deal » (oct. 2026)",
+        "url": "https://www.devdiscourse.com/article/international/3994809-exclusive-qatari-electricity-lifeline-for-lebanon-includes-two-power-plantslng-supply-deal"
+      },
+      {
+        "short": "OilPrice",
+        "name": "OilPrice.com, « Qatar Offers Lebanon 2 Gas Plants and 20 Years of LNG Piped Through Syria » (oct. 2026)",
+        "url": "https://oilprice.com/Latest-Energy-News/World-News/Qatar-Offers-Lebanon-2-Gas-Plants-and-20-Years-of-LNG-Piped-Through-Syria.html"
+      },
+      {
+        "short": "Modern Diplomacy",
+        "name": "Modern Diplomacy, « Qatar Offers Lebanon Energy Lifeline With Two Power Plants and LNG Supply Deal » (19 oct. 2026)",
+        "url": "https://moderndiplomacy.eu/2026/10/19/qatar-offers-lebanon-energy-lifeline-with-two-power-plants-and-lng-supply-deal/"
+      },
+      {
+        "short": "The National",
+        "name": "The National, « World Bank says Middle East economy to contract 2.1% in 2026 on Iran war » (6 oct. 2026)",
+        "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-ghana-fin-exportation-minerais-bruts-2030",
+    "date": "2026-10-22",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Accra, Ghana",
+        "label": "Ghana",
+        "coords": [
+          -0.19,
+          5.6
+        ]
+      }
+    ],
+    "title": "Le Ghana veut cesser d'exporter ses minerais bruts d'ici 2030 : bauxite, manganèse, fer et lithium",
+    "summary": "Le président Mahama l'a annoncé lundi à Accra. Les entreprises devront transformer sur place, mais aucune loi n'est encore publiée.",
+    "points": [
+      "Le président John Dramani Mahama a annoncé le 19 octobre, lors d'un sommet minier à Accra, que le Ghana supprimera d'ici 2030 les exportations de minerais non transformés [1][2].",
+      "Cela concerne la bauxite (le minerai de l'aluminium), le manganèse, le fer et le lithium. Les investisseurs devront financer la transformation sur place, avec ces obligations inscrites dans leurs contrats [1][3].",
+      "Aucune loi, aucun règlement ni aucune liste de minerais n'est encore publié ; Mahama promet des mesures juridiques et un calendrier transparent [1][3]. Le pays interdit déjà l'export de ferraille et de métaux non ferreux [3]."
+    ],
+    "why": [
+      "La première phrase à retenir : le plus gros producteur d'or d'Afrique veut garder la valeur ajoutée chez lui, au lieu de vendre la roche brute [1][4].",
+      "L'idée est d'avoir des usines, des emplois et plus de revenus, mais elle a un prix : transformer exige de l'électricité et des investisseurs prêts à attendre. Pour l'or, l'effet direct serait limité, car les grandes mines fondent déjà leur minerai en lingots (doré) avant l'export [4]."
+    ],
+    "forMe": "L'aluminium, le manganèse (acier) et le lithium (batteries) se retrouvent dans les voitures et les smartphones. Si plusieurs pays africains imitent le Ghana, ces matières peuvent coûter plus cher à importer brutes, mais viendraient plus souvent déjà raffinées.",
+    "figures": [
+      {
+        "value": "2030",
+        "label": "date visée pour la fin des exportations de minerais bruts",
+        "src": 1
+      },
+      {
+        "value": "4",
+        "label": "minerais cités : bauxite, manganèse, fer, lithium",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Ghana to End Unprocessed Mineral Exports by 2030, President Mahama Says » (19 oct. 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-19/ghana-plans-to-ban-raw-mineral-exports-by-2030-president-says"
+      },
+      {
+        "short": "GNA",
+        "name": "Agence de presse ghanéenne GNA, « Ghana targets 2030 to end raw mineral ore exports » (oct. 2026)",
+        "url": "https://gna.org.gh/2026/10/ghana-targets-2030-to-end-raw-mineral-ore-exports/"
+      },
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « Ghana plans to ban exports of unprocessed minerals by 2030 » (20 oct. 2026)",
+        "url": "https://nairametrics.com/2026/10/20/ghana-plans-to-ban-exports-of-unprocessed-minerals-by-2030/"
+      },
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Ghana Restates Plan to End Raw Ore Exports » (oct. 2026)",
+        "url": "https://www.riotimesonline.com/ghana-2030-raw-mineral-export-ban/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-burkina-faso-ghana-reduit-carburant",
+    "date": "2026-10-22",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Ouagadougou, Burkina Faso",
+        "label": "Burkina Faso",
+        "coords": [
+          -1.52,
+          12.37
+        ]
+      }
+    ],
+    "title": "Le Burkina Faso et le Mali privés de moitié de leur carburant : le Ghana garde le sien",
+    "summary": "Le distributeur public ghanéen réduit ses ventes de diesel et d'essence à ses voisins du Sahel, qui n'ont pas de mer. Le Burkina n'a reçu que la moitié de ce qu'il demandait.",
+    "points": [
+      "Le distributeur public ghanéen BOST réduit depuis août ses exportations de diesel et d'essence vers le Burkina Faso et le Mali, pour protéger l'approvisionnement du Ghana [1][2].",
+      "Pour juillet et août, le Burkina n'a reçu que 40 000 tonnes de carburant sur les 80 000 demandées [3].",
+      "Le directeur de BOST résume : « Le carburant est disponible, mais à un coût élevé » [2]."
+    ],
+    "why": [
+      "La première phrase à retenir : deux pays du Sahel, qui se disent souverains, dépendent d'un voisin côtier pour faire rouler leurs camions et leurs générateurs [3].",
+      "Le Burkina et le Mali ne sont pas reliés à la mer : quand un pays de transit garde son carburant, les prix montent et les coupures arrivent. Cette tension arrive dans un monde où le pétrole est plus cher à cause de la crise d'Ormuz [1][3]."
+    ],
+    "forMe": "Le carburant manquant ralentit les mines d'or et le transport de marchandises du Sahel. Cela pèse sur l'or et l'uranium qui sortent de la région, et sur les migrations quand l'économie locale s'étouffe.",
+    "figures": [
+      {
+        "value": "40 000 t",
+        "label": "carburant livré au Burkina Faso en juillet-août, sur 80 000 demandées",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Adom Online",
+        "name": "Adom Online, « BOST cuts fuel exports to Burkina Faso and Mali to protect local supply » (2026)",
+        "url": "https://www.adomonline.com/bost-cuts-fuel-exports-to-burkina-faso-and-mali-to-protect-local-supply/"
+      },
+      {
+        "short": "MyJoyOnline",
+        "name": "MyJoyOnline, « BOST cuts fuel exports to Burkina Faso and Mali to protect local supply » (2026)",
+        "url": "https://www.myjoyonline.com/bost-cuts-fuel-exports-to-burkina-faso-and-mali-to-protect-local-supply/"
+      },
+      {
+        "short": "Afrik.com",
+        "name": "Afrik.com, « Mali et Burkina Faso : la souveraineté de l'AES rattrapée par sa dépendance au carburant » (2026)",
+        "url": "https://www.afrik.com/mali-burkina-faso-souverainete-aes-carburant-ghana"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-haiti-soldats-salvadoriens-disparus",
+    "date": "2026-10-22",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Croix-des-Bouquets, Haïti",
+        "label": "Haïti",
+        "coords": [
+          -72.22,
+          18.58
+        ]
+      }
+    ],
+    "title": "Haïti : quatre soldats salvadoriens de la force anti-gangs disparus après une embuscade",
+    "summary": "Leur véhicule a brûlé près de Port-au-Prince. El Salvador cherche ses soldats sous le feu des gangs.",
+    "points": [
+      "Quatre militaires salvadoriens de la Force de répression des gangs, soutenue par l'ONU, ont fui leur véhicule en feu à Croix-des-Bouquets, au nord de Port-au-Prince, et sont portés disparus [1][2].",
+      "L'armée salvadorienne dit avoir tenté plusieurs fois de les rejoindre par terre et par air ; ses hélicoptères ont essuyé des tirs [1][2].",
+      "Le porte-parole de l'ONU, Stéphane Dujarric, a condamné l'attaque et demandé leur libération [1]. Une dépêche titrée sur le président Nayib Bukele rapporte qu'il annonce une opération militaire pour récupérer les soldats [3]."
+    ],
+    "why": [
+      "La première phrase à retenir : la force internationale qui doit reprendre Haïti aux gangs perd déjà des hommes, et un pays d'Amérique centrale se retrouve en première ligne [1][2].",
+      "Les sources ne disent pas encore si les quatre sont captifs ou cachés. Plus l'attaque dure, plus la capitale est coupée du reste du pays, ce qui bloque aide et marchandises [1][2]."
+    ],
+    "forMe": "Haïti est à deux heures d'avion de la Floride. Quand l'État s'effondre, la nourriture manque et les départs en bateau augmentent, ce qui nourrit les débats sur la migration jusqu'en Europe.",
+    "figures": [
+      {
+        "value": "4",
+        "label": "soldats salvadoriens portés disparus",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Search under way for four soldiers missing after gang attack in Haiti » (19 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/19/search-under-way-for-four-soldiers-missing-after-gang-attack-in-haiti"
+      },
+      {
+        "short": "Devdiscourse",
+        "name": "Devdiscourse, « Four Salvadoran air force members missing after gang ambush in Haiti » (oct. 2026)",
+        "url": "https://www.devdiscourse.com/article/international/3994931-four-salvadoran-air-force-members-missing-after-gang-ambush-in-haiti"
+      },
+      {
+        "short": "Daily Independent (AP)",
+        "name": "Daily Independent, « El Salvador's Bukele announces military operation to rescue hostages held by gangs in Haiti » (oct. 2026)",
+        "url": "https://yourvalley.net/stories/el-salvadors-bukele-announces-military-operation-to-rescue-hostages-held-by-gangs-in-haiti,731775"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-sri-lanka-chine-quitte-hub-colombo",
+    "date": "2026-10-22",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Colombo, Sri Lanka",
+        "label": "Sri Lanka",
+        "coords": [
+          79.85,
+          6.93
+        ]
+      }
+    ],
+    "title": "Sri Lanka : une entreprise d'État chinoise abandonne son grand centre logistique du port de Colombo",
+    "summary": "Le projet de 392 millions de dollars continue, mais il faut trouver un autre investisseur.",
+    "points": [
+      "China Merchants Port Holdings se retire du centre logistique prévu au port de Colombo, a annoncé l'autorité portuaire du Sri Lanka le 19 octobre, selon l'AFP [1][2].",
+      "Le projet de 392 millions de dollars, signé en 2023, donnait 70 % à China Merchants, 15 % à l'autorité portuaire et 15 % à une entreprise de construction sri-lankaise [1][3]. L'autorité cherche un nouvel investisseur pour le site de 150 000 m² et passera par un partenariat public-privé [1][2].",
+      "Les chiffres divergent : un média sri-lankais parle d'environ 280 millions de dollars [2]. China Merchants dit que mettre fin au projet est dans l'intérêt des parties [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : un grand groupe chinois renonce à un projet au Sri Lanka, pays que la Chine avait aidé et où elle est très présente [1][3].",
+      "C'était le premier grand investissement étranger annoncé après l'effondrement de l'économie sri-lankaise en 2022 [1][3]. China Merchants continue d'exploiter un terminal à conteneurs de 500 millions de dollars à Colombo [1]."
+    ],
+    "forMe": "Colombo est une escale importante des cargos entre l'Asie et l'Europe. Quand un projet de port s'arrête, la concurrence entre grandes puissances pour ces routes devient visible.",
+    "figures": [
+      {
+        "value": "392 M$",
+        "label": "valeur du centre logistique abandonné (un média local cite environ 280 M$)",
+        "src": 3
+      },
+      {
+        "value": "70 %",
+        "label": "part prévue pour China Merchants",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Deccan Chronicle",
+        "name": "Deccan Chronicle, « China Exits Sri Lanka Port Logistics Venture in Major Setback » (oct. 2026)",
+        "url": "https://www.deccanchronicle.com/world/china-exits-sri-lanka-port-logistics-venture-in-major-setback-1997154"
+      },
+      {
+        "short": "Ada Derana",
+        "name": "Ada Derana, déclaration de l'autorité portuaire sur le centre logistique de Colombo (oct. 2026)",
+        "url": "https://adaderana.lk/news/250181"
+      },
+      {
+        "short": "Hellenic Shipping News",
+        "name": "Hellenic Shipping News, « Sri Lanka, China to build $392mln logistics hub at Colombo Port » (2023)",
+        "url": "https://www.hellenicshippingnews.com/sri-lanka-china-to-build-392mln-logistics-hub-at-colombo-port/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-inde-nouvelle-zelande-accord-libre-echange",
+    "date": "2026-10-22",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Wellington, Nouvelle-Zélande",
+        "label": "Nouvelle-Zélande",
+        "coords": [
+          174.78,
+          -41.29
+        ]
+      },
+      {
+        "name": "New Delhi, Inde",
+        "label": "Inde",
+        "coords": [
+          77.21,
+          28.61
+        ]
+      }
+    ],
+    "title": "L'Inde et la Nouvelle-Zélande ouvrent leurs marchés : laine et charbon sans droits de douane",
+    "summary": "Leur accord de libre-échange devait entrer en vigueur le 20 octobre, après neuf mois de négociations.",
+    "points": [
+      "L'accord, signé à New Delhi le 27 avril et ratifié le 21 septembre, devait s'appliquer à partir du 20 octobre [1][2]. Les sources consultées datent d'avant cette date et ne confirment pas encore l'entrée en vigueur.",
+      "L'Inde obtient un accès sans droits de douane pour toutes ses lignes de produits ; certains produits indiens payaient jusqu'à 10 % [1][3].",
+      "La Nouvelle-Zélande dit que 57 % de ses exportations vers l'Inde, dont la laine et le charbon, seront sans droits dès le premier jour, avec un second palier au 1er janvier 2027 [3][4]."
+    ],
+    "why": [
+      "La première phrase à retenir : l'Inde multiplie les accords commerciaux au moment où les droits de douane américains changent la donne [1][3].",
+      "Les deux pays veulent à peu près doubler leurs échanges et se sont engagés à faire le point un an après l'entrée en vigueur [4]."
+    ],
+    "forMe": "Quand des pays se mettent d'accord sans passer par les États-Unis ni l'Europe, les routes du commerce se diversifient. À long terme, cela peut changer d'où viennent la laine, le bois ou les médicaments vendus en France.",
+    "figures": [
+      {
+        "value": "57 %",
+        "label": "exportations néo-zélandaises vers l'Inde sans droits de douane dès le premier jour",
+        "src": 3
+      },
+      {
+        "value": "100 %",
+        "label": "lignes de produits indiens sans droits de douane en Nouvelle-Zélande",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Deccan Herald",
+        "name": "Deccan Herald, « India-New Zealand FTA comes into force on October 20 » (2026)",
+        "url": "https://www.deccanherald.com/business/india-new-zealand-fta-comes-into-force-on-october-20-4188622"
+      },
+      {
+        "short": "All India Radio",
+        "name": "All India Radio / Newsonair, « India-New Zealand free trade agreement finalised, comes into force on Oct 20: Piyush Goyal » (21 sept. 2026)",
+        "url": "https://newsonair.gov.in/india-new-zealand-free-trade-agreement-finalised-comes-into-force-on-oct-20-piyush-goyal/"
+      },
+      {
+        "short": "Maritime Gateway",
+        "name": "Maritime Gateway, « India-New Zealand FTA kicks in from October 20 with duty-free access for all Indian exports » (2026)",
+        "url": "https://www.maritimegateway.com/india-new-zealand-fta-kicks-in-from-october-20-with-duty-free-access-for-all-indian-exports/"
+      },
+      {
+        "short": "MFAT",
+        "name": "Ministère néo-zélandais des Affaires étrangères et du Commerce, résumé de l'accord de libre-échange Nouvelle-Zélande–Inde (2026)",
+        "url": "https://www.mfat.govt.nz/assets/Trade-agreements/NZ-India-FTA/New-Zealand-India-Free-Trade-Agreement-Summary.pdf"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-22-belgique-avoirs-russes-gel-ukraine",
+    "date": "2026-10-22",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Bruxelles, Belgique",
+        "label": "Belgique",
+        "coords": [
+          4.35,
+          50.85
+        ]
+      }
+    ],
+    "title": "Belgique : le Premier ministre assure que Bruxelles renonce à utiliser les avoirs russes gelés pour l'Ukraine",
+    "summary": "Plus de 190 milliards d'euros russes dorment surtout en Belgique. Bart De Wever pense que la Commission européenne ne proposera plus de s'en servir.",
+    "points": [
+      "Devant le Parlement belge, après le dernier sommet européen, Bart De Wever a dit être confiant que la Commission ne proposera plus de financer l'Ukraine avec les avoirs russes, selon l'agence russe TASS [1]. Ce n'est pas une décision officielle de la Commission.",
+      "Environ 193 milliards d'euros, fin septembre, sont conservés surtout chez Euroclear, une société financière belge [2].",
+      "En décembre 2025, l'UE avait gelé ces avoirs sans limite de temps, et les dirigeants avaient choisi d'emprunter 90 milliards d'euros pour l'Ukraine sur deux ans [2][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : l'idée d'utiliser l'argent russe gelé pour l'Ukraine, qui divisait l'Europe, semble abandonnée au profit de l'emprunt [1][3].",
+      "La Belgique craignait des représailles de la Russie, car l'argent est chez elle. L'information vient d'une seule dépêche, d'une agence d'État russe : à confirmer par une source belge ou européenne [1]."
+    ],
+    "forMe": "C'est de la dette européenne commune, donc de l'argent public européen, qui finance l'aide à l'Ukraine, plutôt que l'argent russe gelé.",
+    "figures": [
+      {
+        "value": "193 Md€",
+        "label": "avoirs russes gelés fin septembre, surtout chez Euroclear",
+        "src": 2
+      },
+      {
+        "value": "90 Md€",
+        "label": "prêt européen à l'Ukraine décidé en décembre 2025, sur deux ans",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "TASS",
+        "name": "TASS, « Belgian PM expects European Commission to end calls for seizing Russian assets » (21 oct. 2026)",
+        "url": "https://tass.com/world/2205825"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « EU indefinitely freezes hundreds of billions in Russian funds » (12 déc. 2025)",
+        "url": "https://www.aljazeera.com/news/2025/12/12/eu-looks-set-to-indefinitely-freeze-hundreds-of-billions-in-russian-funds"
+      },
+      {
+        "short": "Fortune",
+        "name": "Fortune, « EU indefinitely freezes Russian assets to prevent Hungary and Slovakia blocking billions for Ukraine » (13 déc. 2025)",
+        "url": "https://fortune.com/2025/12/13/eu-indefinitely-freezes-russian-assets-prevent-hungary-slovakia-billions-euros-ukraine/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-samarkand-asie-centrale-minerais",
+    "date": "2026-10-21",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Samarcande, Ouzbékistan",
+        "label": "Samarcande",
+        "coords": [
+          66.96,
+          39.65
+        ]
+      },
+      {
+        "name": "Bichkek, Kirghizistan",
+        "label": "Kirghizistan",
+        "coords": [
+          74.59,
+          42.87
+        ]
+      },
+      {
+        "name": "Douchanbé, Tadjikistan",
+        "label": "Tadjikistan",
+        "coords": [
+          68.78,
+          38.56
+        ]
+      },
+      {
+        "name": "Achgabat, Turkménistan",
+        "label": "Turkménistan",
+        "coords": [
+          58.38,
+          37.95
+        ]
+      }
+    ],
+    "title": "Samarcande : Washington part chercher les minerais d'Asie centrale, là où la Chine est déjà installée",
+    "summary": "Le chef de la diplomatie américaine a réuni cinq pays d'Asie centrale. Au menu : une route commerciale qui évite la Russie et les minerais critiques.",
+    "points": [
+      "Marco Rubio a lancé lundi à Samarcande (Ouzbékistan) des discussions avec les ministres des Affaires étrangères de l'Ouzbékistan, du Kazakhstan, du Kirghizistan, du Tadjikistan et du Turkménistan, avant de partir pour l'Inde [1][2].",
+      "Les États-Unis et les cinq pays ont publié une déclaration commune qui soutient les investissements dans la route commerciale transcaspienne, une coopération industrielle plus étroite et des douanes simplifiées. Les parties voient aussi plus de possibilités pour extraire et transformer des minerais [2][3].",
+      "L'Ouzbékistan a signé les accords Artemis (coopération spatiale), et Marco Rubio a rencontré le ministre kazakh des Affaires étrangères sur le commerce, l'énergie, les minerais critiques et la technologie [1]. Des entreprises chinoises ont déjà signé plusieurs accords dans l'énergie, que Washington cherche à contrebalancer [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : les États-Unis veulent leur part des minerais d'Asie centrale, une région enclavée où la Chine et la Russie pèsent depuis longtemps [1][3].",
+      "La route transcaspienne passe par la mer Caspienne et le Caucase au lieu de la Russie : c'est ce qui la rend intéressante pour les pays enclavés qui veulent vendre ailleurs. Pour l'instant, la déclaration est un soutien politique : les chiffres des investissements ne sont pas annoncés dans les sources consultées [2][3]."
+    ],
+    "forMe": "Les minerais critiques entrent dans les batteries, les puces et les armes. Plus les grandes puissances se les disputent, plus leurs prix peuvent devenir instables, et cela finit par se voir sur le prix des voitures électriques et de l'électronique.",
+    "figures": [
+      {
+        "value": "5",
+        "label": "pays d'Asie centrale réunis autour du secrétaire d'État américain (Ouzbékistan, Kazakhstan, Kirghizistan, Tadjikistan, Turkménistan)",
+        "src": 2
+      },
+      {
+        "value": "100",
+        "label": "entreprises américaines dans la délégation de Marco Rubio, selon Daryo (d'autres médias en citent plus de 200)",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Manila Times",
+        "name": "The Manila Times, « US looks to boost foothold in Central Asia » (20 oct. 2026)",
+        "url": "https://www.manilatimes.net/2026/10/20/world/asia-oceania/us-looks-to-boost-foothold-in-central-asia/2449111"
+      },
+      {
+        "short": "Département d'État",
+        "name": "Département d'État américain, « C5+1: Historic Partnership, Prosperous Future » (oct. 2026)",
+        "url": "https://www.state.gov/releases/office-of-the-spokesman/2026/10/c51-historic-partnership-prosperous-future/"
+      },
+      {
+        "short": "Euronews",
+        "name": "Euronews, « Rubio puts Trans-Caspian trade and critical minerals at centre of Central Asia talks » (19 oct. 2026)",
+        "url": "https://www.euronews.com/2026/10/19/rubio-puts-trans-caspian-trade-and-critical-minerals-at-centre-of-central-asia-talks"
+      },
+      {
+        "short": "Daryo",
+        "name": "Daryo, « Marco Rubio to visit Uzbekistan with 100 company delegation » (28 sept. 2026)",
+        "url": "https://daryo.uz/en/2026/09/28/marco-rubio-to-visit-uzbekistan-with-100-company-delegation/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-inde-petrole-russe-droits-de-douane-rubio",
+    "date": "2026-10-21",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Bombay, Inde",
+        "label": "Inde",
+        "coords": [
+          72.88,
+          19.08
+        ]
+      },
+      {
+        "name": "Jamnagar, Inde",
+        "label": "Jamnagar",
+        "coords": [
+          70.07,
+          22.47
+        ]
+      }
+    ],
+    "title": "Pétrole russe : Washington suspend sa menace de droits de douane jusqu'à 100 % et envoie Rubio voir la plus grande raffinerie indienne",
+    "summary": "Une loi américaine permettrait de taxer jusqu'à 100 % les produits des plus gros acheteurs de pétrole russe, dont l'Inde. Elle est en pause, le temps d'une visite à Bombay et Jamnagar.",
+    "points": [
+      "La loi sur les sanctions viserait les cinq plus gros importateurs de pétrole ou de gaz russes, dont l'Inde et la Chine, avec des droits de douane pouvant atteindre 100 % sur les produits qu'ils vendent aux États-Unis. Elle est pour l'instant suspendue [1][2].",
+      "Marco Rubio, qui a qualifié l'Inde d'« allié important », explique que Donald Trump veut profiter d'une fenêtre de 60 jours pour mesurer l'effet de ces droits. L'ambassadeur américain Sergio Gor attend une décision d'ici une dizaine de jours [1][2].",
+      "Le secrétaire d'État était attendu mardi à Bombay, puis à la raffinerie de Jamnagar, au programme de l'énergie ; il saute New Delhi, ce qui irrite en Inde [2][3]. Le ministre indien du Commerce affirme que la première phase de l'accord commercial est conclue et en cours de rédaction juridique [2]."
+    ],
+    "why": [
+      "Washington tient dans sa main un outil très fort : taxer les pays qui achètent du pétrole russe. Mais s'en servir contre l'Inde, un partenaire de poids, risquerait de fâcher un allié et de renchérir les produits indiens [1][2].",
+      "Les droits de douane américains sur les produits indiens ont déjà été relevés à 50 % en 2025 à cause du pétrole russe, puis ramenés à 18 % [2]. Le commerce entre les deux pays a crû de près de 12 % en 2025, à environ 240 milliards de dollars [3]. Les résultats des discussions de mardi ne figurent pas dans les sources consultées."
+    ],
+    "forMe": "Si des droits de douane de 100 % frappaient l'Inde ou la Chine, des produits comme les médicaments génériques, les textiles ou l'électronique pourraient coûter plus cher en magasin. La menace reste suspendue : une décision est attendue dans les prochains jours.",
+    "figures": [
+      {
+        "value": "100 %",
+        "label": "niveau maximal des droits de douane prévus par la loi sur les acheteurs de pétrole russe (suspendue)",
+        "src": 1
+      },
+      {
+        "value": "18 %",
+        "label": "droits de douane américains sur les produits indiens, après 50 % en 2025",
+        "src": 2
+      },
+      {
+        "value": "240 Md$",
+        "label": "commerce entre les États-Unis et l'Inde en 2025 (+12 %), selon un analyste cité par Al Jazeera",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane",
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Open Magazine",
+        "name": "Open The Magazine, « Rubio Leaves for India, Calls It an ‘Important Ally’ as US Pauses Russia-Linked Tariff Threat » (oct. 2026)",
+        "url": "https://openthemagazine.com/world/rubio-leaves-for-india-calls-it-an-important-ally-as-us-pauses-russia-linked-tariff-threat"
+      },
+      {
+        "short": "Republic",
+        "name": "Republic World, « ‘India an Important Ally’: Rubio Says Trump Studying Impact of Possible Tariffs » (18 oct. 2026)",
+        "url": "https://www.republicworld.com/india/india-an-important-ally-rubio-says-trump-studying-impact-of-possible-tariffs-on-countries-like-india-2026-10-18-139164"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Why Marco Rubio’s visit to Mumbai has ruffled feathers in India » (18 oct. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/18/why-marco-rubios-visit-to-mumbai-has-ruffled-feathers-in-india"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-bangladesh-croissance-fmi-plus-faible-depuis-1989",
+    "date": "2026-10-21",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Dacca, Bangladesh",
+        "label": "Bangladesh",
+        "coords": [
+          90.41,
+          23.81
+        ]
+      }
+    ],
+    "title": "Bangladesh : la croissance pourrait tomber à son plus bas niveau en près de quarante ans",
+    "summary": "Le FMI prévoit seulement 3,2 % de croissance pour l'exercice 2026-2027 et une inflation proche de 11 %.",
+    "points": [
+      "Dans ses prévisions d'octobre, publiées le 13 octobre aux réunions du FMI et de la Banque mondiale à Bangkok, le FMI table sur 3,2 % de croissance au Bangladesh pour l'exercice 2026-2027, contre 4,3 % annoncés en avril [1][2].",
+      "Si cela se confirme, ce serait la croissance annuelle la plus faible depuis l'exercice 1988-1989 (3,11 %) [1].",
+      "Le FMI prévoit aussi une inflation moyenne de 10,9 %, plus haute que les 8,6 % de la Banque mondiale. En septembre, l'inflation était de 8,34 % selon l'institut statistique du pays [1]. La Banque mondiale (3,4 %) et la Banque asiatique de développement (4 %) ont aussi revu leurs prévisions à la baisse [1][2]."
+    ],
+    "why": [
+      "La première phrase à retenir : un pays qui a longtemps grandi vite se retrouve avec une croissance faible et des prix qui montent en même temps [1].",
+      "Pour une économie qui habille une grande partie du monde, un tel ralentissement pèse sur les salaires, les emplois et les commandes [1]. Les trois grandes institutions s'accordent sur le sens (moins de croissance), mais pas sur l'ampleur : c'est pourquoi il faut lire ces chiffres comme des prévisions, pas des résultats [1][2]."
+    ],
+    "forMe": "Une grande part des vêtements vendus en France est cousue au Bangladesh. Un pays qui ralentit et dont les coûts montent peut, à terme, faire bouger les prix des vêtements ou les délais de livraison.",
+    "figures": [
+      {
+        "value": "3,2 %",
+        "label": "croissance prévue par le FMI en 2026-2027 (4,3 % en avril)",
+        "src": 1
+      },
+      {
+        "value": "10,9 %",
+        "label": "inflation moyenne prévue par le FMI pour 2026-2027",
+        "src": 1
+      },
+      {
+        "value": "8,34 %",
+        "label": "inflation observée en septembre 2026",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Dhaka Tribune",
+        "name": "Dhaka Tribune, « IMF: Bangladesh's GDP growth may drop to 3.2% in FY27 »",
+        "url": "https://www.dhakatribune.com/business/421987/imf-bangladesh-s-inflation-may-rise-to-10.9%25"
+      },
+      {
+        "short": "Asia News Network",
+        "name": "Asia News Network, « IMF joins World Bank, Asia Development Bank in lowering Bangladesh growth outlook »",
+        "url": "https://asianews.network/?p=307720"
+      },
+      {
+        "short": "Prothom Alo",
+        "name": "Prothom Alo, « Inflation may rise to nearly 11pc this fiscal year, IMF forecasts »",
+        "url": "https://en.prothomalo.com/business/local/gtiqn8o3y4"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-irak-kirkouk-bp-champs-petrole",
+    "date": "2026-10-21",
+    "region": "Moyen-Orient",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Kirkouk, Irak",
+        "label": "Irak",
+        "coords": [
+          44.39,
+          35.47
+        ]
+      }
+    ],
+    "title": "Irak : BP revient aux commandes des quatre grands champs pétroliers de Kirkouk",
+    "summary": "Les champs passent des sociétés d'État irakiennes à un organisme commun avec BP, qui vise 450 000 barils par jour.",
+    "points": [
+      "Jeudi 15 octobre, l'exploitation des quatre grands champs de Kirkouk est passée des sociétés d'État North Oil et North Gas à un organisme d'exploitation commun avec BP. Le ministre irakien du Pétrole a supervisé le transfert par visioconférence [1][2].",
+      "L'objectif est de porter la production à 450 000 barils par jour. Le contrat avait été activé en octobre 2025, avec une production de départ d'environ 328 000 barils par jour [2][3].",
+      "En mars, BP avait retiré son personnel pour des raisons de sécurité pendant la guerre régionale, et la société d'État North Oil Company avait repris l'exploitation des champs [3]. La prochaine étape comprend la formation du personnel du ministère et le transfert de savoir-faire [2]."
+    ],
+    "why": [
+      "La première phrase à retenir : l'Irak fait revenir un géant occidental sur ses plus vieux champs, au moment où le pétrole se vend très cher [1][2].",
+      "Le pays est un grand producteur, mais ses voies d'exportation dépendent du détroit d'Ormuz, aujourd'hui sous tension. Produire plus à Kirkouk n'a de sens que si le pétrole peut sortir [2]."
+    ],
+    "forMe": "Plus de pétrole irakien sur le marché peut aider à calmer les prix du carburant. Mais tant que le détroit d'Ormuz reste fragile, l'effet à la pompe reste incertain.",
+    "figures": [
+      {
+        "value": "450 000",
+        "label": "barils par jour visés à Kirkouk",
+        "src": 2
+      },
+      {
+        "value": "328 000",
+        "label": "barils par jour de production de départ prévue au contrat de 2025",
+        "src": 3
+      },
+      {
+        "value": "4",
+        "label": "grands champs de Kirkouk concernés",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Shafaq News",
+        "name": "Shafaq News, « BP partnership takes over Kirkuk's four oilfields »",
+        "url": "https://shafaq.com/en/Economy/BP-partnership-takes-over-Kirkuk-s-four-oilfields"
+      },
+      {
+        "short": "Iraqi News",
+        "name": "Iraqi News, 15 octobre 2026",
+        "url": "https://www.iraqinews.com/?p=239949"
+      },
+      {
+        "short": "Rudaw",
+        "name": "Rudaw, « Energy giant BP withdraws from four Kirkuk oil, gas fields; NOC takes over amid regional war » (16 mars 2026)",
+        "url": "https://www.rudaw.net/english/business/16032026"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-riyad-conference-investissement-houthis",
+    "date": "2026-10-21",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Riyad, Arabie saoudite",
+        "label": "Riyad",
+        "coords": [
+          46.72,
+          24.71
+        ]
+      }
+    ],
+    "title": "Riyad : sous les missiles houthis, la vitrine des investisseurs passe en partie à distance",
+    "summary": "L'Arabie saoudite laisse des dirigeants suivre sa grande conférence d'investissement en ligne, après des attaques sur la capitale.",
+    "points": [
+      "Selon des sources citées par The Standard, l'Arabie saoudite laisse des dirigeants assister à sa conférence d'investissement FII à distance, après des attaques [1]. Des patrons du pétrole se sont retirés, mais le forum reste prévu en personne [2].",
+      "Les houthis ont touché le principal aéroport de Riyad, et l'Arabie saoudite a intercepté de nouvelles attaques de missiles houthis sur la capitale [2]. Le Misk Global Forum du mois prochain a été annulé, et la 6e édition du festival du film de la mer Rouge est repoussée au 4e trimestre 2027, sans que ses organisateurs invoquent la guerre [2][3].",
+      "Dans sa note du 19 octobre, BNP Paribas prévoit pour 2026 une baisse de 2 % du PIB de la région Moyen-Orient–Afrique du Nord et de 4,8 % pour les pays du Golfe, seul Oman gardant une croissance positive (4,1 %) [4]."
+    ],
+    "why": [
+      "La première phrase à retenir : même le pays qui veut devenir la vitrine économique du Golfe doit désormais adapter ses grands rendez-vous à la guerre [1][2].",
+      "Ces événements servent à attirer les capitaux étrangers. Les voir réduits ou annulés montre que le risque sécuritaire pèse sur les projets de diversification de l'économie saoudienne [2][4]. Les chiffres de BNP sont une prévision d'une banque, pas un résultat."
+    ],
+    "forMe": "Quand le Golfe est instable, le pétrole reste cher. Le Brent s'échangeait autour de 108 dollars le baril le 19 octobre [4]. Cela finit par se voir dans le prix du carburant et des billets d'avion.",
+    "figures": [
+      {
+        "value": "−4,8 %",
+        "label": "baisse du PIB attendue en 2026 dans les pays du Golfe (BNP Paribas)",
+        "src": 4
+      },
+      {
+        "value": "−2 %",
+        "label": "baisse du PIB attendue en 2026 au Moyen-Orient et en Afrique du Nord (BNP Paribas)",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "The Standard",
+        "name": "The Standard (HK), « Saudi Arabia to let executives attend FII conference remotely after attacks, sources say »",
+        "url": "https://www.thestandard.com.hk/world/article/345474/Saudi-Arabia-to-let-executives-attend-FII-conference-remotely-after-attacks-sources-say"
+      },
+      {
+        "short": "Energy Connects",
+        "name": "Energy Connects, « Saudi Arabia intercepts new Houthi missile attacks on Riyadh » (oct. 2026)",
+        "url": "https://www.energyconnects.com/news/gas-lng/2026/october/saudi-arabia-intercepts-new-houthi-missile-attacks-on-riyadh/"
+      },
+      {
+        "short": "Al-Monitor",
+        "name": "Al-Monitor, « Saudi Arabia pauses star-studded Red Sea film festival as Houthis hit kingdom » (sept. 2026)",
+        "url": "https://www.al-monitor.com/originals/2026/09/saudi-arabia-pauses-star-studded-red-sea-film-festival-houthis-hit-kingdom"
+      },
+      {
+        "short": "BNP Paribas",
+        "name": "BNP Paribas, EcoNews du 19 octobre 2026",
+        "url": "https://economic-research.bnpparibas.com/html/en-US/EcoNews-19-October-2026-10/19/2026,53859"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-soudan-frappe-drone-frontiere-soudan-du-sud",
+    "date": "2026-10-21",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Frontière Soudan – Soudan du Sud",
+        "label": "Soudan",
+        "coords": [
+          29.5,
+          10
+        ]
+      }
+    ],
+    "title": "Soudan : une frappe de drone fait plus de 150 morts près de la frontière du Soudan du Sud",
+    "summary": "Un nouveau drame dans la guerre au Soudan, signalé par la revue de presse africaine d'OkayAfrica du 20 octobre.",
+    "points": [
+      "OkayAfrica rapporte, dans son tour d'horizon africain du 20 octobre, qu'une frappe de drone a tué plus de 150 personnes près de la frontière entre le Soudan et le Soudan du Sud [1].",
+      "Les sources consultées ne permettent pas, à ce stade, de confirmer le lieu exact, l'auteur de la frappe ni le bilan définitif : ils sont à vérifier avant toute reprise [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : la guerre au Soudan continue de faire des victimes civiles par dizaines et par centaines, avec des drones [1].",
+      "Les sources consultées ne donnent pas d'autres précisions sur les conséquences économiques de cette frappe : l'actu sera à compléter dès que des sources dédiées seront disponibles."
+    ],
+    "forMe": "Cette guerre est loin, mais elle touche l'un des pays les plus pauvres du monde et des routes de transport du pétrole africain. Elle rappelle que la sécurité d'un pays peut vite décider de ce qu'il peut vendre.",
+    "figures": [
+      {
+        "value": "150+",
+        "label": "morts dans la frappe de drone, bilan à confirmer",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "OkayAfrica",
+        "name": "OkayAfrica, « Today in Africa — October 20, 2026 »",
+        "url": "https://www.okayafrica.com/today-in-africa-october-20-2026-drone-strike-kills-more-than-150-near-sudan-south-sudan-border-dangote-plans-free-refinery-shares-for-nearly-778000-women/1440901"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-21-ue-sommet-gaz-140-pourcent-mesures-energie",
+    "date": "2026-10-21",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Bruxelles, Belgique",
+        "label": "Bruxelles",
+        "coords": [
+          4.35,
+          50.85
+        ]
+      }
+    ],
+    "title": "Le gaz coûte 140 % plus cher qu'en février : les Européens sortent leurs mesures d'urgence avant l'hiver",
+    "summary": "Au sommet de mi-octobre, les dirigeants de l'UE ont décidé de premières mesures sur l'énergie, alors que le budget 2028-2034 divise.",
+    "points": [
+      "Ursula von der Leyen a indiqué que les prix du gaz dans l'UE ont augmenté de 140 % depuis février et que le gazole a doublé. Elle a cité des chèques énergie pour les familles modestes en France et en Roumanie [1].",
+      "Les dirigeants ont convenu de mesures à court terme : prolonger le cadre temporaire des aides d'État, repousser d'un an certaines obligations du règlement sur le méthane, lancer un dialogue sur les capacités de raffinage et renforcer les achats groupés d'énergie [2][3].",
+      "Les discussions sur le budget européen 2028-2034 restent tendues : le Conseil veut un accord avant la fin 2026 pour que l'argent circule sans interruption dès janvier 2028 [2][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : l'Europe entre dans l'hiver avec un gaz beaucoup plus cher et répond par des mesures de court terme plutôt que par une réforme profonde [1][2].",
+      "Les aides d'État permettent aux gouvernements de soutenir leurs entreprises et leurs ménages, mais elles coûtent de l'argent public à un moment où le budget commun est disputé [2][3]."
+    ],
+    "forMe": "Un gaz plus cher se retrouve sur les factures de chauffage et d'électricité, et dans le prix de produits qui demandent beaucoup d'énergie. Les États peuvent compenser en partie avec des aides, financées par l'impôt.",
+    "figures": [
+      {
+        "value": "+140 %",
+        "label": "hausse des prix du gaz dans l'UE depuis février, selon Ursula von der Leyen",
+        "src": 1
+      },
+      {
+        "value": "×2",
+        "label": "prix du gazole, doublé selon la présidente de la Commission",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Lovguiden (Commission)",
+        "name": "Lovguiden, « Von der Leyen : gaspriser op 140 % » (6 oct. 2026)",
+        "url": "https://lovguiden.dk/en/det-offentlige/europa-kommissionen-press-corner/2026-10-06-von-der-leyen-gaspriser-op-140-maalrettet-stoette-og-faelles-energiindkoeb"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star, « EU summit exposes budget tensions as bloc outlines energy relief measures » (17 oct. 2026)",
+        "url": "https://www.thestar.com.my/news/world/2026/10/17/eu-summit-exposes-budget-tensions-as-bloc-outlines-energy-relief-measures"
+      },
+      {
+        "short": "Lovguiden (Conseil)",
+        "name": "Lovguiden, Conseil de l'UE : sommet du 16 octobre 2026 (énergie, budget)",
+        "url": "https://www.lovguiden.dk/en/det-offentlige/raadet-for-den-europaeiske-union/2026-10-16-eu-topmoede-energipriser-ets2-naeste-eu-budget-og-montenegro"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-chine-croissance-exports-t3",
+    "date": "2026-10-19",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Pékin, Chine",
+        "label": "Chine",
+        "coords": [
+          116.4,
+          39.9
+        ]
+      }
+    ],
+    "title": "La Chine accélère grâce à ses exportations, mais ses habitants dépensent toujours peu",
+    "summary": "L'économie chinoise a progressé de 4,5 % entre juillet et septembre, mieux que prévu. Ce sont les ventes à l'étranger qui portent la croissance, pas la consommation des ménages.",
+    "points": [
+      "La Chine annonce 4,5 % de croissance sur un an pour le troisième trimestre, au-dessus des prévisions. Au deuxième trimestre, elle était à 4,3 %, la progression la plus lente en plus de trois ans [1][2].",
+      "Ce sont les exportations qui ont tiré le trimestre. Selon l'analyse de l'agence AP, la Chine est en passe de dépasser son excédent commercial record de 1 200 milliards de dollars de l'an dernier [1].",
+      "La demande intérieure reste faible, pesée par une crise de l'immobilier qui dure depuis des années. Un économiste cité par AP juge même ce chiffre de croissance « de moins en moins fiable » pour mesurer la santé de l'économie [1]."
+    ],
+    "why": [
+      "Le chiffre est bon, mais il cache un déséquilibre : la Chine produit beaucoup et vend le surplus au reste du monde, alors que ses propres habitants consomment peu [1].",
+      "Pékin s'est fixé une croissance de 4,5 % à 5 % pour 2026, et le FMI vient de ramener sa propre prévision à 4,5 %, tout juste le bas de la cible [1]. Plus la Chine exporte, plus ses partenaires, Europe en tête, s'inquiètent de voir leurs usines concurrencées."
+    ],
+    "forMe": "Quand la Chine vend plus qu'elle n'achète, ses produits arrivent en masse en Europe, à des prix bas : c'est bon pour ton porte-monnaie, mais cela met la pression sur les usines européennes et nourrit les débats sur les droits de douane.",
+    "figures": [
+      {
+        "value": "4,5 %",
+        "label": "croissance de la Chine au 3e trimestre, sur un an",
+        "src": 1
+      },
+      {
+        "value": "4,3 %",
+        "label": "croissance du trimestre précédent, la plus faible en plus de trois ans",
+        "src": 1
+      },
+      {
+        "value": "1 200",
+        "label": "milliards de dollars : excédent commercial record de l’an dernier, bientôt dépassé selon AP",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "AP / US News",
+        "name": "AP via US News, « China's Economy Accelerates on Robust Exports as Domestic Weakness Persists »",
+        "url": "https://www.usnews.com/news/business/articles/2026-10-18/chinas-economy-grew-4-5-in-the-previous-quarter-better-than-forecasts"
+      },
+      {
+        "short": "AP / 1News",
+        "name": "AP via 1News, « China's economy grew 4.5% in previous quarter, better than forecasts »",
+        "url": "https://www.1news.co.nz/2026/10/19/chinas-economy-grew-45-in-previous-quarter-better-than-forecasts/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-guyana-croissance-petrole",
+    "date": "2026-10-19",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Georgetown, Guyana",
+        "label": "Guyana",
+        "coords": [
+          -58.15,
+          6.8
+        ]
+      }
+    ],
+    "title": "Guyana : le petit pays qui grandit de près de 24 % par an grâce à son pétrole",
+    "summary": "La Banque mondiale relève sa prévision de croissance du Guyana à 23,7 % pour 2026, la plus rapide de la région, portée par le pétrole en mer.",
+    "points": [
+      "Dans sa mise à jour d'octobre sur l'Amérique latine et les Caraïbes, la Banque mondiale prévoit 23,7 % de croissance pour le Guyana en 2026. En avril, elle annonçait 16,3 % [1][2].",
+      "Le pays avait déjà vu son économie grandir de 33,8 % en 2023 puis de 43,8 % en 2024, et la Banque estime 19,3 % pour 2025 [1].",
+      "Le gouvernement est plus prudent : son budget 2026 table sur 16,2 % de croissance, avec un pétrole en hausse de 17,9 %, soit environ 840 000 barils par jour contre 715 000 en 2025 [3]."
+    ],
+    "why": [
+      "Le moteur, c'est le pétrole extrait au large des côtes : la Banque mondiale estime que le Guyana tire à lui seul la croissance de toute la sous-région [1].",
+      "L'écart entre 23,7 % (Banque mondiale) et 16,2 % (gouvernement) rappelle qu'une prévision n'est pas un résultat. Et un pays qui dépend autant d'une seule ressource reste exposé si le prix du baril ou la production baisse [1][3]."
+    ],
+    "forMe": "Quand le baril monte, comme en ce moment, certains petits pays producteurs s'enrichissent très vite. Mais ces revenus dépendent d'une seule ressource : si le prix ou la production baisse, la croissance retombe.",
+    "figures": [
+      {
+        "value": "23,7 %",
+        "label": "croissance prévue du Guyana en 2026 par la Banque mondiale (16,3 % en avril)",
+        "src": 1
+      },
+      {
+        "value": "43,8 %",
+        "label": "croissance de l'économie du Guyana en 2024",
+        "src": 1
+      },
+      {
+        "value": "840 000",
+        "label": "barils de pétrole par jour attendus en 2026 selon le budget (715 000 en 2025)",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « World Bank Lifts Guyana Growth to 23.7% »",
+        "url": "https://www.riotimesonline.com/guyana-world-bank-growth-forecast-23-7-percent-2026-2"
+      },
+      {
+        "short": "Guyana Chronicle",
+        "name": "Guyana Chronicle, « Guyana continues to lead regional growth » (6 oct. 2026)",
+        "url": "https://guyanachronicle.com/2026/10/06/guyana-continues-to-lead-regional-growth/"
+      },
+      {
+        "short": "OilNOW",
+        "name": "OilNOW, « Oil to remain dominant driver of Guyana's 16.2% growth in 2026 – Finance Minister »",
+        "url": "https://oilnow.gy/?p=91631"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-cacao-cote-divoire-ghana-prix",
+    "date": "2026-10-19",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Abidjan, Côte d'Ivoire",
+        "label": "Côte d'Ivoire",
+        "coords": [
+          -4.02,
+          5.35
+        ]
+      },
+      {
+        "name": "Accra, Ghana",
+        "label": "Ghana",
+        "coords": [
+          -0.19,
+          5.6
+        ]
+      }
+    ],
+    "title": "Cacao : la Côte d'Ivoire baisse de 57 % le prix payé aux planteurs, le Ghana le relève",
+    "summary": "Après l'effondrement des cours, les deux premiers producteurs mondiaux de cacao font des choix opposés. Les planteurs ivoiriens toucheront beaucoup moins, les ghanéens un peu plus.",
+    "points": [
+      "La Côte d'Ivoire a confirmé le 2 septembre que les planteurs recevraient 1 200 francs CFA le kilo pour la saison 2026-2027, soit 57 % de moins que les 2 800 francs du début de la saison précédente [1].",
+      "Le Ghana fait l'inverse : il a légèrement relevé son prix, à 42 400 cédis la tonne, grâce à une nouvelle loi qui garantit aux producteurs au moins 70 % de la valeur à l'export de leurs fèves [1].",
+      "Les deux pays subissent le même choc : le cacao avait atteint un record de 12 906 dollars la tonne en décembre 2024, puis est tombé sous 3 000 dollars en février 2026. Tous deux vendent aussi une grande partie de leur récolte à l'avance [1]."
+    ],
+    "why": [
+      "L'explication habituelle est financière : la Côte d'Ivoire avait vendu une partie de sa récolte à l'avance à bas prix, alors que le Ghana avait déjà baissé son prix en février [1].",
+      "L'auteur de l'analyse y ajoute une autre raison : le rapport de force entre planteurs, État et acheteurs n'est pas le même dans les deux pays [1]. Pour des millions de familles, c'est la différence entre un revenu qui tient et un revenu qui s'effondre."
+    ],
+    "forMe": "Le cacao est la matière première du chocolat. Quand les prix mondiaux s'envolent puis retombent, ce sont les planteurs d'Afrique de l'Ouest qui encaissent le choc, bien avant que le prix de ta tablette ne change.",
+    "figures": [
+      {
+        "value": "− 57 %",
+        "label": "baisse du prix payé aux planteurs ivoiriens (1 200 francs CFA le kilo)",
+        "src": 1
+      },
+      {
+        "value": "12 906 $",
+        "label": "record du cacao en décembre 2024, la tonne",
+        "src": 1
+      },
+      {
+        "value": "70 %",
+        "label": "part minimale de la valeur export garantie aux producteurs ghanéens par la nouvelle loi",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "African Arguments",
+        "name": "African Arguments, « Same Cocoa Crash, Opposite Answers: what Ghana and Côte d'Ivoire Reveal about Power in Global Trade » (oct. 2026)",
+        "url": "https://africanarguments.org/2026/10/same-cocoa-crash-opposite-answers-what-ghana-and-cote-divoire-reveal-about-power-in-global-trade/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-serbie-nis-raffinerie-sanctions",
+    "date": "2026-10-19",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Belgrade, Serbie",
+        "label": "Serbie",
+        "coords": [
+          20.46,
+          44.82
+        ]
+      }
+    ],
+    "title": "Serbie : la seule raffinerie du pays tourne sous dérogation américaine, jusqu'au 30 octobre",
+    "summary": "Le pétrolier serbe NIS, détenu par des Russes, est sous sanctions américaines. Washington lui permet de continuer à importer du brut jusqu'à la vente à un groupe hongrois.",
+    "points": [
+      "La Serbie a obtenu des États-Unis une nouvelle dérogation aux sanctions pour NIS : l'entreprise peut continuer à importer du pétrole brut jusqu'au 30 octobre, en attendant la vente de sa part russe majoritaire au hongrois MOL [1].",
+      "NIS exploite l'unique raffinerie de Serbie, qui couvre environ 80 % des besoins du pays [1].",
+      "Washington a sanctionné NIS en octobre 2025 pour frapper l'énergie russe, et exigé que Gazprom Neft et Gazprom cèdent leurs parts, soit 56 % au total. MOL a signé un accord provisoire en janvier et s'est engagé à garder la raffinerie de Pančevo ouverte [1][2]."
+    ],
+    "why": [
+      "Le pétrole arrive par l'oléoduc Janaf, qui passe par la Croatie : sans autorisation américaine, ce robinet peut se fermer. Et l'on ne sait pas encore si la dérogation sera prolongée ni si la vente est conclue [1].",
+      "C'est un exemple de la façon dont les sanctions visent une entreprise… et touchent tout un pays qui en dépend pour son carburant [1][2]."
+    ],
+    "forMe": "Les sanctions ne frappent pas que la Russie : elles se répercutent sur des pays tiers et sur leurs prix de carburant. C'est ce même type de chaîne qui relie des décisions prises à Washington au prix du plein dans toute l'Europe centrale.",
+    "figures": [
+      {
+        "value": "30/10",
+        "label": "date limite de la dérogation américaine accordée à NIS (30 octobre)",
+        "src": 1
+      },
+      {
+        "value": "≈ 80 %",
+        "label": "des besoins de la Serbie couverts par sa seule raffinerie",
+        "src": 1
+      },
+      {
+        "value": "56 %",
+        "label": "part de NIS détenue par les russes Gazprom Neft et Gazprom, à vendre à MOL",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "SRN News",
+        "name": "SRN News, « Serbia secures US sanctions waiver for its Russian-owned NIS oil firm, energy minister says »",
+        "url": "https://srnnews.com/serbia-secures-us-sanctions-waiver-for-its-russian-owned-nis-oil-firm-energy-minister-says/"
+      },
+      {
+        "short": "Hungarian Conservative",
+        "name": "Hungarian Conservative, « Hungary's MOL Strikes Deal to Buy Russian Majority Stake in Serbia's Oil Firm NIS »",
+        "url": "https://www.hungarianconservative.com/articles/current/nis-mol-gazprom-oil-company-energy-us-sanctions/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-malaisie-ue-libre-echange-palme",
+    "date": "2026-10-19",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Kuala Lumpur, Malaisie",
+        "label": "Malaisie",
+        "coords": [
+          101.69,
+          3.14
+        ]
+      }
+    ],
+    "title": "Malaisie–Europe : l'accord de libre-échange est fait à 80 %, mais l'huile de palme bloque encore",
+    "summary": "Kuala Lumpur vise une signature fin juin 2027 avec l'Union européenne. Les négociations durent depuis 2010, et l'accord ne s'appliquerait pas avant 2029.",
+    "points": [
+      "Le ministre malaisien du Commerce, Johari Abdul Ghani, a annoncé le 13 octobre que son pays veut signer l'accord avec l'Union européenne d'ici fin juin 2027. Près de 80 % des négociations sont terminées [1].",
+      "Les discussions ont commencé en 2010, bloquées en 2012 après sept séries de négociations à cause de désaccords sur l'huile de palme, puis repris en 2025 après une annonce du Premier ministre Anwar Ibrahim et d'Ursula von der Leyen [1].",
+      "Selon une analyse du MVO, l'accord ne s'appliquerait sans doute pas avant le second semestre 2029 : la relecture juridique, la traduction et la ratification prendront au moins 18 à 24 mois. Et l'accord UE-Indonésie donne déjà un accès préférentiel à l'huile de palme indonésienne [2]."
+    ],
+    "why": [
+      "L'huile de palme est le nœud du dossier : l'Europe pose des règles environnementales et la Malaisie estime qu'elles pénalisent son produit phare [1][2].",
+      "Chaque accord signé par un concurrent désavantage ceux qui n'en ont pas. La Malaisie se presse donc de conclure, sous peine de payer plus de droits de douane que l'Indonésie pendant la période de transition [2]."
+    ],
+    "forMe": "L'huile de palme est dans beaucoup de produits de tous les jours (biscuits, pâtes à tartiner, cosmétiques). Un accord pourrait faciliter ses échanges, mais il doit concilier commerce et protection des forêts, un sujet sur lequel les Européens sont très regardants.",
+    "figures": [
+      {
+        "value": "≈ 80 %",
+        "label": "des négociations Malaisie–UE déjà terminées",
+        "src": 1
+      },
+      {
+        "value": "06/2027",
+        "label": "objectif de signature fixé par le ministre malaisien (fin juin 2027)",
+        "src": 1
+      },
+      {
+        "value": "2010",
+        "label": "année du début des discussions, interrompues de 2012 à 2025",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "The Edge Malaysia",
+        "name": "The Edge Malaysia, édition du 13 octobre 2026 (déclarations de Johari Abdul Ghani)",
+        "url": "https://theedgemalaysia.com/node/821620"
+      },
+      {
+        "short": "MVO",
+        "name": "MVO, « EU–Malaysia: liberalising trade in palm oil »",
+        "url": "https://mvoketenorganisatie.h5mag.com/mvo_magazine_3_2026_en/eu-malaysia_liberalising_trade_in_palm_oil"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-iran-plan-sept-jours-ormuz",
+    "date": "2026-10-19",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Téhéran, Iran",
+        "label": "Iran",
+        "coords": [
+          51.39,
+          35.69
+        ]
+      }
+    ],
+    "title": "Iran : le plan en sept jours pour rouvrir Ormuz reste sur la table, Washington en doute",
+    "summary": "Téhéran propose de rouvrir le détroit en échange de la fin du blocus naval américain et d'une levée des sanctions pétrolières. Le ministre iranien dit que l'offre tient toujours.",
+    "points": [
+      "L'Iran a présenté aux États-Unis, par des intermédiaires, un plan en sept jours : arrêt des combats, réouverture du détroit d'Ormuz et reprise des négociations sur le nucléaire [3].",
+      "Selon le ministre Abbas Araghchi, les premières étapes prendraient quatre à cinq jours, le détroit rouvrirait le sixième jour et les discussions sur un accord final commenceraient le septième. Téhéran demande en échange la levée du blocus naval américain, une dérogation sur ses ventes de pétrole et le dégel d'environ 12 milliards de dollars d'avoirs [2][3].",
+      "Le département d'État américain affirme que le détroit est déjà ouvert, et Mike Pompeo juge l'offre « probablement pas sérieuse ». Le Wall Street Journal a rapporté que Donald Trump l'aurait rejetée. Le 18 octobre, Abbas Araghchi a répété que la proposition restait sur la table [1][2][3]."
+    ],
+    "why": [
+      "Les deux camps ne décrivent même pas la situation de la même façon : pour Washington, Ormuz est ouvert, pour Téhéran, il faut négocier pour le rouvrir [3]. Tant que ce désaccord dure, les pétroliers hésitent et le baril reste cher.",
+      "Le plan lie trois sujets qui bloquent : le détroit, le nucléaire et les sanctions. Un accord sur l'un obligerait à avancer sur les deux autres [2][3]."
+    ],
+    "forMe": "Ormuz est un passage clé du pétrole du Golfe. Quand ce passage est incertain, le prix du carburant que tu paies en France peut monter quelques semaines plus tard.",
+    "figures": [
+      {
+        "value": "7",
+        "label": "jours : durée du plan iranien (détroit rouvert le 6e jour, négociations le 7e)",
+        "src": 2
+      },
+      {
+        "value": "≈ 12",
+        "label": "milliards de dollars d’avoirs iraniens gelés que l’Iran demande de libérer",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes",
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Fox News",
+        "name": "Fox News, suivi en direct de la guerre États-Unis–Iran du 18 octobre 2026",
+        "url": "https://www.foxnews.com/live-news/us-iran-war-peace-talks-oil-strait-hormuz-trump-october-18"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Iran says it awaits US response on seven-day roadmap to end war » (25 sept. 2026)",
+        "url": "https://www.aljazeera.com/news/2026/9/25/iran-says-it-awaits-us-response-on-seven-day-roadmap-to-end-war"
+      },
+      {
+        "short": "ABC News (WJLA)",
+        "name": "ABC News, « Iran pitches seven day roadmap for ceasefire, renewed nuclear talks »",
+        "url": "https://wjla.com/news/nation-world/iran-pitches-seven-day-roadmap-for-ceasefire-renewed-nuclear-talks-strait-hormuz-tehran-nuclear-xi-jinping"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-ukraine-locomotives-ble-fer",
+    "date": "2026-10-19",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Kiev, Ukraine",
+        "label": "Ukraine",
+        "coords": [
+          30.52,
+          50.45
+        ]
+      }
+    ],
+    "title": "Ukraine : à court de locomotives, le pays peine à exporter son blé et son fer",
+    "summary": "Les frappes russes sur les trains ont presque vidé la réserve de locomotives. Kiev cherche des machines auprès de pays européens qui utilisent le même écartement de rails.",
+    "points": [
+      "Selon le Financial Times, citant le ministre de l'Agriculture Taras Vyssotski, l'Ukraine a presque épuisé sa réserve de locomotives à cause des frappes russes. Kiev discute avec des pays européens qui ont le même écartement de rails [1][2].",
+      "La Russie a intensifié ses attaques contre les trains qui transportent du blé et du minerai de fer, deux grandes exportations ukrainiennes. L'opérateur portuaire TIS a perdu trois locomotives près du port de Pivdennyi [1][2].",
+      "Depuis le début de l'invasion, 533 locomotives d'Ukrzaliznytsia et 75 d'entreprises privées ont été endommagées, selon des données du ministère citées par Radio Liberty. La Slovaquie en propose trois et la Lituanie trois autres [3][1]."
+    ],
+    "why": [
+      "Un champ de blé ne suffit pas : il faut des trains pour amener les grains jusqu'aux ports. Même si les ports de la mer Noire fonctionnent, le dernier maillon ferroviaire peut bloquer [1].",
+      "Les autorités estiment que les machines disponibles peuvent assurer le fonctionnement normal du réseau pour l'instant, mais la réserve de secours est presque épuisée [1][2]."
+    ],
+    "forMe": "L'Ukraine est un grand exportateur de céréales. Si ses trains manquent, ses livraisons de blé et de maïs peuvent ralentir, ce qui pèse sur les prix mondiaux de l'alimentation.",
+    "figures": [
+      {
+        "value": "533",
+        "label": "locomotives d'Ukrzaliznytsia endommagées depuis le début de l'invasion",
+        "src": 3
+      },
+      {
+        "value": "6",
+        "label": "locomotives proposées par la Slovaquie (3) et la Lituanie (3)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Meduza",
+        "name": "Meduza, « Russian strikes leave Ukraine with almost no spare locomotives, further complicating grain exports » (5 oct. 2026)",
+        "url": "https://meduza.io/en/news/2026/10/05/russian-strikes-leave-ukraine-with-almost-no-spare-locomotives-further-complicating-grain-exports"
+      },
+      {
+        "short": "Kurs / FT",
+        "name": "Kurs, reprenant le Financial Times : « Ukraine has almost exhausted its locomotive reserve due to Russian strikes »",
+        "url": "https://kurs.com.ua/en/novost/1482607-ukrayina-maizhe-vicherpala-rezerv-lokomotiviv-cherez-rosiiski-udari-ft"
+      },
+      {
+        "short": "United24",
+        "name": "United24 Media, « Russian strikes damage 533 Ukrainian rail locomotives, forcing Kyiv to seek replacements »",
+        "url": "https://united24media.com/war-in-ukraine/russian-strikes-damage-533-ukrainian-rail-locomotives-forcing-kyiv-to-seek-replacements-23130"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-19-kenya-airways-sauvetage",
+    "date": "2026-10-19",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Nairobi, Kenya",
+        "label": "Kenya",
+        "coords": [
+          36.82,
+          -1.29
+        ]
+      }
+    ],
+    "title": "Kenya sauve sa compagnie aérienne : 11 avions sur 34 sont cloués au sol",
+    "summary": "Le gouvernement kényan accorde 350 millions de dollars à Kenya Airways et transforme une partie de sa dette en capital. La compagnie cherche encore un investisseur stratégique.",
+    "points": [
+      "Le gouvernement kényan a approuvé un prêt d'actionnaire de 350 millions de dollars pour Kenya Airways, remboursable sur dix ans maximum et convertible en capital. L'argent doit servir à payer des dettes urgentes et à remettre des avions en service [1][2].",
+      "Il a aussi validé la conversion d'environ 122 milliards de shillings (près de 940 millions de dollars) de prêts publics en instrument assimilé à du capital. Cela n'apporte pas d'argent frais, mais allège la dette de la compagnie [1][2].",
+      "Onze des 34 avions de la compagnie sont cloués au sol, dont deux Boeing 787-8, avec une remise en service visée début 2027. Elle cherche au moins 1,5 milliard de dollars auprès d'un investisseur stratégique, attendu au premier trimestre 2027 [1][2]."
+    ],
+    "why": [
+      "Une compagnie nationale est un symbole, mais aussi un outil économique : elle relie le pays au monde pour le tourisme, les fleurs ou le café exportés. Sans avions, ces flux ralentissent [1].",
+      "Les mesures restent soumises à des approbations d'actionnaires et de régulateurs : le sauvetage n'est donc pas encore terminé [1]."
+    ],
+    "forMe": "Les compagnies publiques en difficulté sont un classique, de l'Afrique à l'Europe. Cela montre pourquoi les États hésitent entre les soutenir avec l'argent public et les laisser trouver un partenaire privé.",
+    "figures": [
+      {
+        "value": "350",
+        "label": "millions de dollars : prêt d’actionnaire approuvé pour Kenya Airways",
+        "src": 1
+      },
+      {
+        "value": "11/34",
+        "label": "avions de la compagnie actuellement cloués au sol",
+        "src": 1
+      },
+      {
+        "value": "1,5",
+        "label": "milliard de dollars de capital frais recherché auprès d’un investisseur stratégique",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Zawya",
+        "name": "Zawya, « Kenya approves $350mln in shareholder financing for Kenya Airways »",
+        "url": "https://zawya.com/en/economy/kenyas-approves-350mln-in-shareholder-financing-for-kenya-airways-1587023"
+      },
+      {
+        "short": "Business Daily",
+        "name": "Business Daily Africa, « State approves Sh45bn financing for struggling KQ »",
+        "url": "https://www.businessdailyafrica.com/bd/corporate/companies/state-approves-sh45bn-financing-for-struggling-kq-5626396"
+      }
+    ]
+  },
+  {
     "id": "2026-10-17-petrole-110-dollars-ormuz-ukraine",
     "date": "2026-10-17",
     "region": "Moyen-Orient",
@@ -4381,913 +5836,6 @@ window.GEOCO.news = [
     ]
   },
   {
-    "id": "2026-10-07-gazole-reserves",
-    "date": "2026-10-07",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Paris",
-        "coords": [
-          2.35,
-          48.86
-        ]
-      }
-    ],
-    "title": "La France ouvre ses réserves de gazole pour faire baisser les prix à la pompe",
-    "summary": "Le Premier ministre Sébastien Lecornu annonce la mise sur le marché de 10 millions de barils de gazole stockés par l'État, sur trois mois.",
-    "points": [
-      "Le gazole coûte en moyenne 2,37 € le litre en France, un niveau record lié à la guerre au Moyen-Orient [4].",
-      "L'État va puiser dans ses stocks stratégiques : 10 millions de barils, vendus à prix coûtant pendant trois mois [1].",
-      "Objectif affiché : une baisse de 12 à 18 centimes par litre à la pompe [1]."
-    ],
-    "why": [
-      "Ce gazole a été acheté avant la flambée des prix. En le revendant à son prix d'achat, l'État injecte du carburant moins cher sur le marché, ce qui fait mécaniquement baisser les prix [1].",
-      "La France n'agit pas seule. Le 2 octobre, les pays du G7 se sont mis d'accord pour libérer ensemble 100 millions de barils de pétrole et de gazole sur quatre mois, en coordination avec l'Agence internationale de l'énergie [3]. Selon Goldman Sachs, cela ne compenserait qu'environ la moitié de la flambée du gazole [3]."
-    ],
-    "forMe": "Si tu roules au diesel, le plein d'un réservoir de 50 litres pourrait coûter 6 à 9 € de moins. Mais c'est une mesure temporaire : tant que le détroit d'Ormuz reste perturbé, les prix restent sous pression.",
-    "figures": [
-      {
-        "value": "10 M",
-        "label": "de barils de gazole libérés par la France",
-        "src": 1
-      },
-      {
-        "value": "2,37 €",
-        "label": "le prix moyen du litre de gazole en France début octobre",
-        "src": 4
-      },
-      {
-        "value": "-12 à -18 c",
-        "label": "la baisse attendue par litre",
-        "src": 1
-      },
-      {
-        "value": "100 M",
-        "label": "de barils libérés par l'ensemble du G7",
-        "src": 3
-      }
-    ],
-    "visuals": [
-      {
-        "kind": "chart",
-        "type": "bar",
-        "title": "Les barils libérés, à l'échelle",
-        "subtitle": "En millions de barils",
-        "xLabel": "Qui",
-        "unit": "Millions de barils",
-        "decimals": 0,
-        "data": [
-          [
-            "France",
-            10
-          ],
-          [
-            "Tout le G7",
-            100
-          ]
-        ],
-        "source": "Boursorama ; The National (octobre 2026)"
-      }
-    ],
-    "culture": [
-      "reserves-strategiques"
-    ],
-    "dossiers": [
-      "routes-maritimes",
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Boursorama",
-        "name": "Boursorama, « La France va libérer 10 millions de barils de gazole de ses réserves » (7 oct. 2026)",
-        "url": "https://www.boursorama.com/actualite-economique/actualites/la-france-va-liberer-10-million-de-barils-de-gazole-de-ses-reserves-dit-lecornu-5d78402d6440a6dedbd1248647cdd411"
-      },
-      {
-        "short": "franceinfo",
-        "name": "franceinfo, allocution du Premier ministre (7 oct. 2026)",
-        "url": "https://www.franceinfo.fr/politique/gouvernement-de-sebastien-lecornu/direct-lycees-carburants-budget-suivez-l-allocution-du-premier-ministre-sebastien-lecornu_8227246.html"
-      },
-      {
-        "short": "The National",
-        "name": "The National, « G7 members agree to release 100 million barrels » (2 oct. 2026)",
-        "url": "https://www.thenationalnews.com/business/energy/2026/10/02/g7-members-agree-to-release-100-million-barrels-of-diesel-and-other-reserves/"
-      },
-      {
-        "short": "AFP",
-        "name": "AFP via La DH, « Gazole : nouveau record du prix moyen à la pompe dans l'UE » (1er oct. 2026)",
-        "url": "https://www.dhnet.be/dernieres-depeches/2026/10/01/gazole-nouveau-record-du-prix-moyen-a-la-pompe-dans-lue-analyse-afp-de-donnees-officielles-DWX2HN25IRGE5BAFEKWZKVOPAI/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-ormuz",
-    "date": "2026-10-07",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Détroit d'Ormuz",
-        "label": "Ormuz",
-        "coords": [
-          56.4,
-          26.5
-        ]
-      }
-    ],
-    "routes": [
-      {
-        "to": [
-          121.5,
-          31.2
-        ],
-        "name": "vers la Chine"
-      },
-      {
-        "to": [
-          139.7,
-          35.6
-        ],
-        "name": "vers le Japon"
-      },
-      {
-        "to": [
-          72.9,
-          19
-        ],
-        "name": "vers l'Inde"
-      },
-      {
-        "to": [
-          4.4,
-          51.9
-        ],
-        "name": "vers l'Europe"
-      }
-    ],
-    "title": "Ormuz : le pétrole repasse, mais la menace iranienne pèse toujours",
-    "summary": "Les exportations du Golfe repartent, mais l'Iran veut contrôler le détroit et faire payer les navires. Le baril de Brent reste au-dessus de 100 dollars.",
-    "points": [
-      "Depuis les frappes américaines et israéliennes contre l'Iran à partir du 28 février 2026, Téhéran a bloqué ou menacé le détroit d'Ormuz [2].",
-      "Un cessez-le-feu (avril) puis un accord en juin devaient rouvrir le passage, mais l'Iran veut désormais encaisser des « frais de passage » [2].",
-      "Début octobre, le Brent dépasse encore 100 dollars le baril, même si les exportations du Golfe reprennent [3]."
-    ],
-    "why": [
-      "Avant le conflit, près de 20 millions de barils de pétrole passaient chaque jour par ce détroit, soit environ un cinquième de la consommation mondiale [1]. Au plus fort de la crise, le nombre de pétroliers desservant le Golfe s'est effondré de 95 % selon l'Organisation mondiale du commerce [2].",
-      "Même quand les bateaux repassent, le risque coûte cher : les assurances explosent, les pétroliers manquent et les trajets s'allongent. C'est cette « prime de risque » qui maintient les prix hauts [3]."
-    ],
-    "forMe": "C'est la cause directe des prix records à la pompe, et une des raisons pour lesquelles l'inflation repart. Tant qu'Ormuz n'est pas sécurisé, ton budget carburant et chauffage reste exposé.",
-    "figures": [
-      {
-        "value": "> 100 $",
-        "label": "le prix du baril de Brent début octobre 2026",
-        "src": 3
-      },
-      {
-        "value": "≈ 20 M",
-        "label": "de barils par jour passaient par Ormuz avant la guerre",
-        "src": 1
-      },
-      {
-        "value": "-95 %",
-        "label": "de pétroliers vers le Golfe au plus fort de la crise",
-        "src": 2
-      }
-    ],
-    "visuals": [
-      {
-        "kind": "map",
-        "title": "Le détroit d'Ormuz et les routes de contournement",
-        "view": {
-          "center": [
-            52,
-            25.5
-          ],
-          "span": 26
-        },
-        "highlight": [
-          "Iran",
-          "Oman",
-          "United Arab Emirates",
-          "Saudi Arabia",
-          "Qatar",
-          "Kuwait",
-          "Iraq",
-          "Bahrain"
-        ],
-        "intro": "Touche un lieu pour zoomer. Les pays en couleur bordent le golfe Persique.",
-        "points": [
-          {
-            "name": "Détroit d'Ormuz",
-            "coords": [
-              56.4,
-              26.5
-            ],
-            "zoom": 6,
-            "text": "Une quarantaine de kilomètres de large au plus étroit, entre l'Iran et la péninsule omanaise de Musandam. Les navires y empruntent deux couloirs de circulation d'environ 3 km chacun."
-          },
-          {
-            "name": "Fujaïrah",
-            "coords": [
-              56.33,
-              25.12
-            ],
-            "zoom": 8,
-            "text": "Port des Émirats situé après le détroit. Un oléoduc depuis Habshan permet d'y exporter une partie du pétrole émirien sans passer par Ormuz."
-          },
-          {
-            "name": "Yanbu",
-            "coords": [
-              38.06,
-              24.09
-            ],
-            "zoom": 14,
-            "text": "Terminal saoudien sur la mer Rouge, au bout de l'oléoduc Est-Ouest qui traverse l'Arabie. C'est l'autre grande porte de sortie qui évite Ormuz… mais elle débouche près de Bab-el-Mandeb, une autre zone à risque."
-          },
-          {
-            "name": "Ras Tanura",
-            "coords": [
-              50.16,
-              26.64
-            ],
-            "zoom": 8,
-            "text": "L'un des plus grands terminaux pétroliers du monde, sur la côte saoudienne du Golfe. Le pétrole chargé ici doit passer par Ormuz."
-          }
-        ],
-        "source": "Congressional Research Service ; Agence américaine d'information sur l'énergie (EIA)"
-      }
-    ],
-    "culture": [
-      "cables-sous-marins"
-    ],
-    "dossiers": [
-      "routes-maritimes",
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "CRS",
-        "name": "Congressional Research Service, « The Strait of Hormuz: Security Developments and Impacts on Oil, Gas, and Other Commodities »",
-        "url": "https://www.congress.gov/crs-product/R45281"
-      },
-      {
-        "short": "House of Commons Library",
-        "name": "House of Commons Library, « Israel/US-Iran conflict 2026: Reopening the Strait of Hormuz »",
-        "url": "https://commonslibrary.parliament.uk/research-briefings/cbp-10636/"
-      },
-      {
-        "short": "Gulf News",
-        "name": "Gulf News, « Oil prices split as Brent tops $102 » (5 oct. 2026)",
-        "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-droits-de-douane",
-    "date": "2026-10-07",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Droits de douane : le déficit commercial américain au plus haut depuis 2025",
-    "summary": "Malgré les droits de douane de Donald Trump, les États-Unis n'ont jamais autant importé depuis mars 2025. Et Washington rembourse des milliards aux importateurs.",
-    "geo": [
-      {
-        "name": "Washington",
-        "coords": [
-          -77.04,
-          38.9
-        ]
-      },
-      {
-        "name": "Pékin",
-        "coords": [
-          116.4,
-          39.9
-        ]
-      }
-    ],
-    "points": [
-      "En août, le déficit commercial des États-Unis a atteint 105,6 milliards de dollars, son plus haut niveau depuis mars 2025, juste avant les grandes hausses de droits de douane [1].",
-      "En cause, notamment : les importations de matériel pour l'intelligence artificielle, qui ont fait grimper les achats à l'étranger de 4,3 % en un mois [1].",
-      "Le 6 octobre, l'administration a ouvert une nouvelle phase de remboursement des droits de douane jugés illégaux par la Cour suprême [2]."
-    ],
-    "why": [
-      "Les droits de douane devaient réduire le déficit commercial. Le 20 février 2026, la Cour suprême a jugé, par 6 voix contre 3, que la loi utilisée par Donald Trump (IEEPA) ne lui permettait pas d'imposer ces taxes [2]. Environ 122 milliards de dollars de remboursements ont déjà été validés pour les importateurs [2].",
-      "Les droits de douane n'ont pas disparu pour autant : d'autres lois permettent de taxer l'acier, l'automobile ou les médicaments. Le taux moyen appliqué aux importations américaines tourne autour de 11 %, ce qui coûterait environ 1 100 dollars par an à chaque ménage américain selon le Yale Budget Lab [3].",
-      "Avec la Chine, la trêve tient : le 27 septembre, les deux pays se sont mis d'accord pour baisser les droits de douane sur 77 catégories de produits, comme les jouets, les fours à micro-ondes ou le linge de maison [2]."
-    ],
-    "forMe": "Les règles changent sans cesse : des taxes sont annulées, d'autres apparaissent. Cette incertitude pèse sur les entreprises françaises qui vendent aux États-Unis (vins, cosmétiques, luxe, aéronautique), et donc sur les emplois qui en dépendent.",
-    "figures": [
-      {
-        "value": "105,6 Md$",
-        "label": "le déficit commercial américain en août 2026",
-        "src": 1
-      },
-      {
-        "value": "≈ 122 Md$",
-        "label": "de droits de douane remboursés aux importateurs",
-        "src": 2
-      },
-      {
-        "value": "≈ 11 %",
-        "label": "le taux moyen des droits de douane américains",
-        "src": 3
-      },
-      {
-        "value": "6-3",
-        "label": "le vote de la Cour suprême contre les droits de douane IEEPA",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "droits-de-douane",
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "CNBC",
-        "name": "CNBC, « Trade deficit hits $105.6 billion, widest since just before Trump tariffs » (6 oct. 2026)",
-        "url": "https://www.cnbc.com/2026/10/06/trade-deficit-hits-105point6-billion-widest-since-just-before-trump-tariffs-enacted-last-year.html"
-      },
-      {
-        "short": "CalChamber",
-        "name": "California Chamber of Commerce, « Trade Update – October 6, 2026 »",
-        "url": "https://advocacy.calchamber.com/2026/10/06/trade-update-october-6-2026/"
-      },
-      {
-        "short": "CFR",
-        "name": "Council on Foreign Relations, « Before the Midterms: What Americans Think About Trade and Tariffs »",
-        "url": "https://cfr.org/articles/before-the-midterms-what-americans-think-about-trade-and-tariffs"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-zone-euro-inflation",
-    "date": "2026-10-07",
-    "region": "Europe",
-    "theme": "eco",
-    "title": "Zone euro : l'inflation bondit à 3,8 %, tirée par l'énergie",
-    "summary": "La hausse des prix s'accélère nettement en septembre dans les pays de l'euro. Le choc pétrolier venu d'Ormuz se diffuse à toute l'économie.",
-    "geo": [
-      {
-        "name": "Francfort (BCE)",
-        "coords": [
-          8.68,
-          50.11
-        ]
-      }
-    ],
-    "points": [
-      "Selon la première estimation d'Eurostat publiée le 2 octobre, les prix ont augmenté de 3,8 % sur un an en septembre, contre 3,2 % en août [1].",
-      "L'énergie s'envole : +18,8 % sur un an, après +14,3 % en août [1].",
-      "Certains pays sont plus touchés : 5,1 % en Grèce, 4,9 % en Espagne, 4,2 % en Italie [2][3]."
-    ],
-    "why": [
-      "L'objectif de la Banque centrale européenne est une inflation proche de 2 %. On en est presque au double. La BCE, installée à Francfort, pourrait être tentée de relever ses taux, comme la Fed américaine l'a fait en septembre [1].",
-      "Le dilemme est difficile : monter les taux freine les prix, mais aussi une économie déjà fragile, surtout en Allemagne. Les services (+3,2 %) et l'alimentation (+1,4 %) accélèrent aussi, signe que la hausse de l'énergie commence à se transmettre au reste des prix [1]."
-    ],
-    "forMe": "Le carburant et le chauffage coûtent plus cher, et si la BCE remonte ses taux, les crédits immobiliers aussi. En revanche, les livrets d'épargne pourraient mieux rapporter.",
-    "figures": [
-      {
-        "value": "3,8 %",
-        "label": "l'inflation en zone euro en septembre 2026",
-        "src": 1
-      },
-      {
-        "value": "+18,8 %",
-        "label": "la hausse des prix de l'énergie sur un an",
-        "src": 1
-      },
-      {
-        "value": "2 %",
-        "label": "l'objectif de la BCE",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Eurostat via Asianet",
-        "name": "Asianet Newsable, « Euro area inflation jumps to 3.8% in September, driven by energy » (estimation rapide d'Eurostat, 2 oct. 2026)",
-        "url": "https://newsable.asianetnews.com/business/euro-area-inflation-jumps-to-3-8-in-september-driven-by-energy-articleshow-hzzngdy"
-      },
-      {
-        "short": "To Vima",
-        "name": "To Vima, « Inflation in Greece jumps to 5.1% in September »",
-        "url": "https://www.tovima.com/finance/inflation-in-greece-jumps-to-5-1-in-september/"
-      },
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, inflation des pays du G20",
-        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=g20"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-allemagne",
-    "date": "2026-10-07",
-    "region": "Europe",
-    "theme": "eco",
-    "title": "Allemagne : le moteur de l'Europe cale sous le choc de l'énergie",
-    "summary": "Première économie européenne, l'Allemagne frôle la récession. Son industrie, très gourmande en énergie, souffre de la flambée des prix.",
-    "geo": [
-      {
-        "name": "Berlin",
-        "coords": [
-          13.4,
-          52.52
-        ]
-      }
-    ],
-    "points": [
-      "Le FMI ne prévoit plus que 0,7 % de croissance en Allemagne cette année [1].",
-      "L'institut économique DIW a averti en juin d'une possible récession technique (deux trimestres de recul), à cause du choc énergétique lié à la guerre en Iran [2].",
-      "En juillet, la production industrielle a nettement reculé, selon la Bundesbank, qui cite aussi le faible niveau de l'eau dans les fleuves [3]."
-    ],
-    "why": [
-      "L'industrie allemande (chimie, acier, automobile) consomme énormément d'énergie. Quand le gaz et le pétrole flambent, ses coûts explosent et elle devient moins compétitive face à la Chine ou aux États-Unis [2].",
-      "Le faible niveau du Rhin, autoroute fluviale de l'industrie allemande, oblige les péniches à charger moins, ce qui renchérit le transport du charbon, des produits chimiques ou de l'acier [3]."
-    ],
-    "forMe": "Quand l'Allemagne ralentit, toute l'Europe le sent : c'est le premier client et le premier fournisseur de la France. Moins de commandes allemandes, c'est moins d'activité pour les entreprises françaises.",
-    "figures": [
-      {
-        "value": "0,7 %",
-        "label": "la croissance prévue en Allemagne en 2026 (FMI)",
-        "src": 1
-      },
-      {
-        "value": "3,3 %",
-        "label": "l'inflation en Allemagne en septembre",
-        "src": 4
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Euronews",
-        "name": "Euronews, prévisions du FMI pour l'Europe (8 juil. 2026)",
-        "url": "https://www.euronews.com/business/2026/07/08/economy-imf-forecasts-modest-growth-for-italy-cuts-estimates-for-france-and-germany"
-      },
-      {
-        "short": "MarketScreener",
-        "name": "MarketScreener, « Germany risks recession as Iran energy shock hits growth, DIW economists say »",
-        "url": "https://uk.marketscreener.com/news/germany-risks-recession-as-iran-energy-shock-hits-growth-diw-economists-say-ce7f5cdad089f321"
-      },
-      {
-        "short": "Bundesbank",
-        "name": "Bundesbank, « German economy: recovery slowing temporarily, energy prices driving inflation »",
-        "url": "https://www.bundesbank.de/en/tasks/topics/german-economy-recovery-slowing-temporarily-energy-prices-driving-inflation-1008384"
-      },
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, inflation des pays du G20",
-        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=g20"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-suez",
-    "date": "2026-10-07",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "title": "Le canal de Suez profite de la crise d'Ormuz",
-    "summary": "Ormuz bloqué, le pétrole saoudien passe par la mer Rouge. Résultat : le trafic et les recettes du canal de Suez remontent en flèche.",
-    "geo": [
-      {
-        "name": "Canal de Suez",
-        "label": "Suez",
-        "coords": [
-          32.34,
-          30.6
-        ]
-      }
-    ],
-    "points": [
-      "En juillet, le canal a rapporté 505 millions de dollars à l'Égypte, soit 42 % de plus qu'un an plus tôt, un record depuis fin 2023 [1].",
-      "1 340 navires l'ont traversé ce mois-là, 27 % de plus qu'en juillet 2025, dont 526 pétroliers [1].",
-      "L'Autorité du canal vise 5,8 à 6 milliards de dollars de recettes en 2026, contre 4,1 milliards en 2025 [2]."
-    ],
-    "why": [
-      "Avec la fermeture d'Ormuz, l'Arabie saoudite exporte davantage par son oléoduc Est-Ouest, qui débouche sur la mer Rouge. Une partie de ces pétroliers remonte ensuite vers l'Europe par Suez [2].",
-      "C'est un retournement pour l'Égypte : depuis fin 2023, les attaques des Houthis en mer Rouge avaient fait fuir les navires et coûté des milliards au pays. Mais le trafic reste encore inférieur à son niveau d'avant la crise [3]."
-    ],
-    "forMe": "Ce qui est une catastrophe pour l'un est une aubaine pour l'autre : les crises redessinent les routes commerciales, et donc les gagnants et les perdants de l'économie mondiale.",
-    "figures": [
-      {
-        "value": "505 M$",
-        "label": "de recettes du canal en juillet 2026",
-        "src": 1
-      },
-      {
-        "value": "+42 %",
-        "label": "sur un an",
-        "src": 1
-      },
-      {
-        "value": "≈ 6 Md$",
-        "label": "de recettes visées pour 2026",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "gCaptain",
-        "name": "gCaptain, « Suez Canal revival gathers pace as Hormuz crisis reroutes ships »",
-        "url": "https://gcaptain.com/suez-canal-revival-gathers-pace-as-hormuz-crisis-reroutes-ships/"
-      },
-      {
-        "short": "Al-Monitor",
-        "name": "Al-Monitor, « Suez Canal traffic soars as Hormuz disruptions reroute energy trade » (juin 2026)",
-        "url": "https://www.al-monitor.com/originals/2026/06/suez-canal-traffic-soars-hormuz-disruptions-reroute-energy-trade"
-      },
-      {
-        "short": "The New Arab",
-        "name": "The New Arab, « Hormuz disruption proves Egypt's 'silver lining' as Suez Canal traffic rises »",
-        "url": "https://www.newarab.com/news/egypt-sees-silver-lining-hormuz-closure-suez-traffic-rises"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-opep",
-    "date": "2026-10-07",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "title": "OPEP+ : les producteurs de pétrole marquent une pause",
-    "summary": "Après quatre mois de hausse, les grands producteurs ont gelé leur production pour octobre. Mais avec Ormuz bloqué, leur pouvoir sur les prix s'est réduit.",
-    "geo": [
-      {
-        "name": "Riyad",
-        "label": "Arabie saoudite",
-        "coords": [
-          46.68,
-          24.71
-        ]
-      }
-    ],
-    "points": [
-      "Le 6 septembre, sept pays de l'OPEP+ (Arabie saoudite, Russie, Irak, Koweït, Kazakhstan, Algérie, Oman) ont décidé de maintenir leur production d'octobre au niveau de septembre [1][2].",
-      "Ils venaient de terminer l'annulation d'une baisse de production de 1,65 million de barils par jour décidée en 2023 [3].",
-      "Les Émirats arabes unis, qui participaient à ces décisions, ont quitté l'OPEP en mai [3]."
-    ],
-    "why": [
-      "Normalement, l'OPEP+ fait varier sa production pour influencer les prix. Mais tant que le détroit d'Ormuz est perturbé, une partie de son pétrole ne peut tout simplement pas sortir du Golfe : produire plus ne change pas grand-chose [3].",
-      "Le départ des Émirats affaiblit le cartel. Les sept pays restants se réunissent chaque mois ; la réunion du 4 octobre devait fixer la production de novembre [2]."
-    ],
-    "forMe": "Les décisions prises à Riyad et à Vienne se retrouvent sur ton ticket de caisse à la station-service, quelques semaines plus tard.",
-    "figures": [
-      {
-        "value": "≈ 31 M",
-        "label": "de barils par jour : la production d'octobre des sept pays",
-        "src": 3
-      },
-      {
-        "value": "1,65 M",
-        "label": "de barils par jour de baisse de 2023 entièrement annulée",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "OPEP",
-        "name": "OPEP, communiqué du 6 septembre 2026",
-        "url": "https://www.opec.org/pr-detail/613-6-september-2026.html"
-      },
-      {
-        "short": "Gulf News",
-        "name": "Gulf News, « OPEC+ keeps October oil output quota unchanged from September levels »",
-        "url": "https://gulfnews.com/business/energy/opec-keeps-october-oil-output-quota-unchanged-from-september-levels-1.500665366"
-      },
-      {
-        "short": "Nairametrics",
-        "name": "Nairametrics, « OPEC+ pauses oil output hikes after four straight monthly increases » (6 sept. 2026)",
-        "url": "https://nairametrics.com/2026/09/06/opec-pauses-oil-output-hikes-after-four-straight-monthly-increases/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-turquie",
-    "date": "2026-10-07",
-    "region": "Moyen-Orient",
-    "theme": "eco",
-    "title": "Turquie : l'inflation reste autour de 30 %",
-    "summary": "Les prix augmentent encore de près d'un tiers en un an. La banque centrale garde son taux directeur à 37 %.",
-    "geo": [
-      {
-        "name": "Ankara",
-        "label": "Turquie",
-        "coords": [
-          32.85,
-          39.93
-        ]
-      }
-    ],
-    "points": [
-      "L'inflation turque est passée de 31,5 % en août à 29,7 % en septembre [1][2].",
-      "Le 10 septembre, la banque centrale a laissé son taux directeur à 37 %, pour la cinquième fois de suite [3].",
-      "Elle prévoit encore 28 % d'inflation à la fin de l'année [3]."
-    ],
-    "why": [
-      "Un taux à 37 % paraît énorme, mais il faut le comparer à l'inflation : si les prix montent de 30 %, prêter à 37 % ne rapporte « que » 7 % en réalité. C'est ce qu'on appelle le taux d'intérêt réel.",
-      "La Turquie paie encore les années où elle baissait ses taux malgré l'inflation. Sa monnaie, la livre, a perdu énormément de valeur, ce qui renchérit tout ce qu'elle importe, à commencer par l'énergie."
-    ],
-    "forMe": "Pour un touriste européen, la Turquie paraît bon marché. Pour les Turcs, c'est l'inverse : leurs salaires peinent à suivre les prix d'une année sur l'autre.",
-    "figures": [
-      {
-        "value": "29,7 %",
-        "label": "l'inflation en Turquie en septembre 2026",
-        "src": 2
-      },
-      {
-        "value": "37 %",
-        "label": "le taux directeur de la banque centrale",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, inflation en Turquie",
-        "url": "https://tradingeconomics.com/turkey/inflation-cpi"
-      },
-      {
-        "short": "Trading Economics (G20)",
-        "name": "Trading Economics, inflation des pays du G20",
-        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=g20"
-      },
-      {
-        "short": "bne IntelliNews",
-        "name": "bne IntelliNews, « Turkish central bank sticks to 37% policy rate for fifth straight time »",
-        "url": "https://new.intellinews.com/articles/turkish-central-bank-sticks-to-37-policy-rate-for-fifth-straight-time-467058"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-philippines",
-    "date": "2026-10-07",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Philippines : l'inflation grimpe à 7,2 %, au plus haut depuis trois ans",
-    "summary": "Le riz et le carburant font flamber les prix dans l'archipel, très dépendant des importations d'énergie.",
-    "geo": [
-      {
-        "name": "Manille",
-        "label": "Philippines",
-        "coords": [
-          120.98,
-          14.6
-        ]
-      }
-    ],
-    "points": [
-      "L'inflation a atteint 7,2 % en septembre aux Philippines, son niveau le plus élevé depuis trois ans [1][2].",
-      "En août, elle était de 6,1 %, avec un prix du riz en hausse de 19,4 % sur un an [3].",
-      "Les transports (+13,5 % en août) souffrent de la hausse des carburants [3]."
-    ],
-    "why": [
-      "Les Philippines importent presque tout leur pétrole, en grande partie du Golfe. Quand Ormuz est bloqué, le pays est en première ligne.",
-      "Le riz est l'aliment de base de 115 millions de Philippins. Quand son prix augmente de près de 20 %, ce sont les ménages les plus modestes qui trinquent le plus, car l'alimentation pèse lourd dans leur budget."
-    ],
-    "forMe": "C'est l'autre visage de la crise d'Ormuz : en Europe on parle du prix du plein, en Asie du Sud-Est c'est le prix du riz qui inquiète.",
-    "figures": [
-      {
-        "value": "7,2 %",
-        "label": "l'inflation aux Philippines en septembre 2026",
-        "src": 1
-      },
-      {
-        "value": "+19,4 %",
-        "label": "le prix du riz sur un an en août",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Philstar",
-        "name": "Philstar, « Philippine inflation jumps to 7.2% in September 2026 » (6 oct. 2026)",
-        "url": "https://www.philstar.com/business/2026/10/06/2561305/philippine-inflation-jumps-72-september-2026"
-      },
-      {
-        "short": "Rappler",
-        "name": "Rappler, « Inflation soars to 7.2% as food, fuel prices climb in September 2026 »",
-        "url": "https://www.rappler.com/business/inflation-rate-philippines-september-2026/"
-      },
-      {
-        "short": "Daily Tribune",
-        "name": "Daily Tribune, « Inflation eases to 6.1% as rice prices surge » (4 sept. 2026)",
-        "url": "https://tribune.net.ph/2026/09/04/inflation-eases-to-61-as-rice-prices-surge"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-canada",
-    "date": "2026-10-07",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Washington interdit près d'un milliard de dollars de produits canadiens",
-    "summary": "Alcools, produits laitiers, motos : les États-Unis bloquent certaines importations canadiennes en représailles. Une escalade entre voisins et alliés.",
-    "geo": [
-      {
-        "name": "Ottawa",
-        "label": "Canada",
-        "coords": [
-          -75.7,
-          45.42
-        ]
-      }
-    ],
-    "points": [
-      "Depuis le 29 septembre, les États-Unis interdisent l'importation de près d'un milliard de dollars de produits canadiens [1].",
-      "87 % de cette somme concerne des boissons alcoolisées : Washington répond ainsi aux provinces canadiennes qui ont retiré l'alcool américain de leurs rayons [1].",
-      "Sont aussi visés certains produits laitiers et les motos Can-Am de Bombardier [1]."
-    ],
-    "why": [
-      "Le montant est faible face aux 880 milliards de dollars d'échanges annuels entre les deux pays. Mais le symbole est fort : le Canada est le premier partenaire commercial des États-Unis et un allié historique [1].",
-      "C'est la logique de la guerre commerciale : une taxe entraîne une riposte, qui entraîne une contre-riposte. Les consommateurs des deux côtés finissent par payer plus cher ou par avoir moins de choix."
-    ],
-    "forMe": "L'Europe connaît la même logique avec les États-Unis. Comprendre ce bras de fer, c'est comprendre pourquoi le prix de certains produits importés peut changer du jour au lendemain.",
-    "figures": [
-      {
-        "value": "≈ 1 Md$",
-        "label": "de produits canadiens interdits",
-        "src": 1
-      },
-      {
-        "value": "87 %",
-        "label": "de boissons alcoolisées",
-        "src": 1
-      },
-      {
-        "value": "880 Md$",
-        "label": "d'échanges annuels entre les deux pays",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "AP via ABC News",
-        "name": "Associated Press via ABC News, « US ban on $1 billion worth of Canadian imports goes into effect » (29 sept. 2026)",
-        "url": "https://abcnews.com/Business/wireStory/motorcycles-booze-us-ban-1-billion-worth-canadian-136843738"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-chine",
-    "date": "2026-10-07",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Chine : les exportations tiennent, l'immobilier s'enfonce",
-    "summary": "La deuxième économie mondiale croît plus vite que prévu grâce à ses exportations, mais la crise immobilière et la faible consommation pèsent toujours.",
-    "geo": [
-      {
-        "name": "Shanghai",
-        "coords": [
-          121.47,
-          31.23
-        ]
-      }
-    ],
-    "points": [
-      "Le FMI a relevé en juillet sa prévision de croissance chinoise pour 2026, de 4,4 % à 4,6 % [1].",
-      "Les indicateurs de l'immobilier (mises en chantier, ventes, investissements) sont 50 à 80 % sous leurs sommets de 2020-2021, selon Goldman Sachs [2].",
-      "Les prix à la consommation n'augmentent que de 0,8 % sur un an, signe d'une demande intérieure faible [3]."
-    ],
-    "why": [
-      "L'immobilier a longtemps été le moteur de la Chine et le principal placement des ménages. Quand les prix des logements baissent, les familles se sentent plus pauvres et consomment moins [2].",
-      "Pour compenser, la Chine mise sur ses exportations, notamment de produits high-tech (voitures électriques, panneaux solaires, batteries). Cela crée des tensions avec ses partenaires, qui accusent Pékin d'inonder leurs marchés [4]."
-    ],
-    "forMe": "Les produits chinois bon marché aident à contenir l'inflation en Europe, mais ils mettent aussi en difficulté certaines usines européennes, notamment dans l'automobile.",
-    "figures": [
-      {
-        "value": "4,6 %",
-        "label": "la croissance prévue en Chine en 2026 (FMI)",
-        "src": 1
-      },
-      {
-        "value": "-50 à -80 %",
-        "label": "l'immobilier par rapport aux sommets de 2020-2021",
-        "src": 2
-      },
-      {
-        "value": "0,8 %",
-        "label": "l'inflation en Chine",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "FMI",
-        "name": "FMI, conférence de presse de la mise à jour de juillet 2026",
-        "url": "https://www.imf.org/en/news/articles/2026/07/08/tr070826-weo-press-briefing-transcript-july-8-2026"
-      },
-      {
-        "short": "Goldman Sachs",
-        "name": "Goldman Sachs, « China's economy is forecast to grow faster than expected in 2026 »",
-        "url": "https://www.goldmansachs.com/insights/articles/chinas-economy-is-forecast-to-grow-faster-than-expected-in-2026"
-      },
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, inflation des pays du G20",
-        "url": "https://tradingeconomics.com/country-list/inflation-rate?continent=g20"
-      },
-      {
-        "short": "OCDE",
-        "name": "OCDE, Perspectives économiques, juin 2026 : Chine",
-        "url": "https://www.oecd.org/en/publications/2026/06/oecd-economic-outlook-volume-2026-issue-1_8be0dba6/full-report/china_6526c66b.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-niger-uranium",
-    "date": "2026-10-07",
-    "theme": "geo",
-    "region": "Afrique",
-    "title": "Niger : la junte garde l'uranium que la France exploitait",
-    "summary": "Le Niger a confié à une société d'État la grande mine d'uranium que le groupe français Orano exploitait depuis des décennies.",
-    "geo": [
-      {
-        "name": "Arlit (Niger)",
-        "label": "Niger",
-        "coords": [
-          7.39,
-          18.74
-        ]
-      }
-    ],
-    "points": [
-      "En juin 2025, la junte au pouvoir à Niamey a nationalisé la mine de la Somaïr, dont Orano détenait 63,4 % [2].",
-      "En août 2026, le permis minier a été attribué à Tsumco, une société d'État créée après la nationalisation [1].",
-      "Un tribunal d'arbitrage international a demandé au Niger de ne pas vendre cet uranium, mais Niamey affirme son « droit légitime » à le mettre sur le marché [3]."
-    ],
-    "why": [
-      "L'uranium sert de combustible aux centrales nucléaires. Le Niger en a longtemps été l'un des grands fournisseurs pour la France et l'Europe. Depuis le coup d'État de 2023, la junte s'est éloignée de Paris et rapprochée de la Russie [3].",
-      "C'est un exemple de « nationalisme des ressources » : de plus en plus de pays pauvres mais riches en minerais veulent garder davantage de la valeur de leur sous-sol, au lieu de la laisser aux entreprises étrangères."
-    ],
-    "forMe": "Près de 70 % de l'électricité française vient du nucléaire. La France diversifie ses achats d'uranium (Kazakhstan, Canada, Australie), mais la perte du Niger montre que l'énergie dépend aussi de la géopolitique.",
-    "figures": [
-      {
-        "value": "63,4 %",
-        "label": "la part d'Orano dans la mine avant la nationalisation",
-        "src": 2
-      },
-      {
-        "value": "2025",
-        "label": "nationalisation de la Somaïr",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Niger awards former Orano-operated uranium mine to state company » (22 août 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-08-22/niger-awards-former-orano-operated-uranium-mine-to-state-company"
-      },
-      {
-        "short": "Mining.com",
-        "name": "Mining.com, « Niger ready to return Orano-produced uranium after mine takeover » (fév. 2026)",
-        "url": "https://www.mining.com/web/niger-ready-to-return-orano-produced-uranium-after-mine-takeover/"
-      },
-      {
-        "short": "bne IntelliNews",
-        "name": "bne IntelliNews, « Niger puts nationalised Somair uranium on global market amid standoff with France's Orano »",
-        "url": "https://www.intellinews.com/niger-puts-nationalised-somair-uranium-on-global-market-amid-standoff-with-france-s-orano-414385/"
-      }
-    ]
-  },
-  {
     "id": "2026-10-07-rdc-cobalt",
     "date": "2026-10-07",
     "theme": "geo",
@@ -5349,156 +5897,41 @@ window.GEOCO.news = [
     ]
   },
   {
-    "id": "2026-10-07-zambie-cuivre",
+    "id": "2026-10-07-indonesie-nickel",
     "date": "2026-10-07",
     "theme": "eco",
-    "region": "Afrique",
-    "title": "Zambie : le cuivre au plus haut, le pays rêve d'un million de tonnes",
-    "summary": "Le cuivre bat des records de prix, porté par l'électrification du monde. La Zambie veut en profiter pour relancer une économie fragile.",
+    "region": "Asie",
+    "title": "Indonésie : le pays du nickel serre la vis",
+    "summary": "Premier producteur mondial de nickel, l'Indonésie réduit sa production et contrôle davantage ses exportations. Les prix remontent.",
     "geo": [
       {
-        "name": "Copperbelt (Zambie)",
-        "label": "Zambie",
+        "name": "Sulawesi (Indonésie)",
+        "label": "Indonésie",
         "coords": [
-          28.2,
-          -12.8
+          121.9,
+          -2.8
         ]
       }
     ],
     "points": [
-      "La Zambie a produit un record de 890 346 tonnes de cuivre en 2025, en hausse de 8 % [1].",
-      "Au premier semestre 2026, la production n'a progressé que de 0,45 %, à 447 182 tonnes : l'objectif d'un million de tonnes cette année sera difficile à atteindre [2].",
-      "Le cuivre a atteint un prix record à Londres à la mi-septembre [2]."
+      "L'Indonésie a réduit d'environ un tiers son quota de production de minerai de nickel pour 2026 [1].",
+      "À partir du 1er janvier 2027, certains produits du nickel ne pourront plus être exportés que par des entreprises d'État [2].",
+      "Le prix du nickel a dépassé 18 000 dollars la tonne, au plus haut depuis deux ans [3]."
     ],
     "why": [
-      "Le cuivre est le métal de l'électricité : câbles, réseaux, moteurs, éoliennes, voitures électriques. Plus le monde s'électrifie, plus il en faut. La Zambie vise 3 millions de tonnes d'ici 2031 [1].",
-      "Le pays a fait défaut sur sa dette en 2020 et dépend énormément du cuivre, qui représente l'essentiel de ses exportations. Ses mines souffrent aussi des coupures d'électricité liées aux sécheresses, car son courant vient surtout des barrages."
+      "Depuis 2020, l'Indonésie interdit d'exporter son minerai brut : elle oblige les industriels à construire des usines de transformation sur place, souvent avec des capitaux chinois. Le pays est ainsi devenu un géant du nickel [3].",
+      "En limitant maintenant la production, Jakarta fait comme l'OPEP avec le pétrole : moins de volume pour des prix plus élevés."
     ],
-    "forMe": "Les prix du cuivre se retrouvent dans le coût des installations électriques, des voitures et des bornes de recharge. C'est l'un des métaux les plus surveillés par les industriels.",
+    "forMe": "Le nickel entre dans l'acier inoxydable de ta cuisine et dans beaucoup de batteries de voitures électriques. Quand l'Indonésie bouge, ces prix bougent.",
     "figures": [
       {
-        "value": "890 346 t",
-        "label": "de cuivre produites en 2025, un record",
+        "value": "≈ -1/3",
+        "label": "de quota de production de nickel en 2026",
         "src": 1
       },
       {
-        "value": "3 Mt",
-        "label": "l'objectif de production en 2031",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Zambia restates copper ambition after posting record output » (27 janv. 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-01-27/zambia-restates-copper-ambition-after-posting-record-output"
-      },
-      {
-        "short": "Zambia Monitor",
-        "name": "Zambia Monitor, « Copper production edges up in first half of 2026 »",
-        "url": "https://www.zambiamonitor.com/copper-production-edges-up-in-first-half-of-2026-zambia-ministry-official-says/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-guinee-simandou",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Afrique",
-    "title": "Guinée : Simandou, la montagne de fer qui fait trembler l'Australie",
-    "summary": "Le plus grand gisement de fer inexploité du monde exporte enfin vers la Chine. Un tournant pour la Guinée et pour le marché de l'acier.",
-    "geo": [
-      {
-        "name": "Simandou (Guinée)",
-        "label": "Guinée",
-        "coords": [
-          -8.9,
-          8.6
-        ]
-      }
-    ],
-    "points": [
-      "La première cargaison de minerai de Simandou est partie début décembre 2025 [3].",
-      "En mai 2026, les exportations ont atteint environ 2,2 millions de tonnes sur le mois, un record [2].",
-      "Wood Mackenzie prévoit environ 16 millions de tonnes exportées en 2026, pour une capacité finale de 120 millions de tonnes par an [1]."
-    ],
-    "why": [
-      "Le projet, porté notamment par Rio Tinto et des groupes chinois, a nécessité plus de 600 km de voie ferrée et un nouveau port. Son minerai très riche intéresse la Chine, qui veut moins dépendre du fer australien [1].",
-      "Pour la Guinée, l'un des pays les plus pauvres du monde, c'est une chance historique, à condition que les revenus profitent vraiment à la population."
-    ],
-    "forMe": "Le fer sert à faire l'acier de nos voitures, immeubles et ponts. Une nouvelle source géante peut faire baisser son prix mondial et changer les rapports de force entre la Chine et l'Australie.",
-    "figures": [
-      {
-        "value": "120 Mt",
-        "label": "de capacité annuelle visée",
-        "src": 1
-      },
-      {
-        "value": "≈ 16 Mt",
-        "label": "d'exportations prévues en 2026",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Wood Mackenzie",
-        "name": "Wood Mackenzie, « Simandou iron ore 2026 »",
-        "url": "https://www.woodmac.com/press-releases/simandou-iron-ore-2026/"
-      },
-      {
-        "short": "Miningmx",
-        "name": "Miningmx, « Simandou iron ore exports surge in ramp-up milestone »",
-        "url": "https://www.miningmx.com/news/ferrous-metals/65528-simandou-iron-ore-exports-surge-in-ramp-up-milestone/"
-      },
-      {
-        "short": "S&P Global",
-        "name": "S&P Global, première cargaison de Simandou arrivée en Chine (janv. 2026)",
-        "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/011926-simandous-first-shipment-with-200000-mt-high-grade-iron-ore-arrives-in-china"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-mali-or",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Afrique",
-    "title": "Mali : la grande mine d'or repart après deux ans de bras de fer",
-    "summary": "Le géant canadien Barrick et la junte malienne ont fait la paix. La mine de Loulo-Gounkoto tourne de nouveau, et un accord vient d'éviter une grève.",
-    "geo": [
-      {
-        "name": "Loulo (Mali)",
-        "label": "Mali",
-        "coords": [
-          -11.48,
-          13
-        ]
-      }
-    ],
-    "points": [
-      "Le 27 septembre, Barrick a signé un accord avec les syndicats de la mine, écartant une menace de grève [1].",
-      "En février 2026, le Mali avait renouvelé le permis de la mine pour dix ans, après un an et demi de conflit [3].",
-      "Barrick prévoit d'y produire 260 000 à 290 000 onces d'or en 2026 [2]."
-    ],
-    "why": [
-      "Le Mali a adopté en 2023 un nouveau code minier pour récupérer une plus grande part des richesses. Barrick a refusé, l'État a saisi de l'or et la mine a été fermée en janvier 2025, avant un accord en novembre 2025 [2].",
-      "L'or représente environ 80 % des exportations du Mali [2]. Avec un prix de l'or très élevé, chaque mois d'arrêt coûtait très cher à l'un des pays les plus pauvres du monde."
-    ],
-    "forMe": "L'or est une valeur refuge : quand le monde est instable, son prix monte. Il fait vivre des pays entiers comme le Mali, mais attise aussi les convoitises et les conflits.",
-    "figures": [
-      {
-        "value": "≈ 80 %",
-        "label": "des exportations du Mali viennent de l'or",
-        "src": 2
-      },
-      {
-        "value": "10 ans",
-        "label": "durée du permis renouvelé en 2026",
+        "value": "> 18 000 $",
+        "label": "la tonne de nickel, au plus haut depuis deux ans",
         "src": 3
       }
     ],
@@ -5506,199 +5939,19 @@ window.GEOCO.news = [
     "dossiers": [],
     "sources": [
       {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Barrick Mining reaches deal with Mali unions, averting strikes » (27 sept. 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-09-27/barrick-mining-reaches-deal-with-mali-unions-averting-strikes"
+        "short": "Argus",
+        "name": "Argus Media, « Indonesia to cut nickel mining quota in 2026 »",
+        "url": "https://www.argusmedia.com/news-and-insights/latest-market-news/2787275-indonesia-to-cut-nickel-mining-quota-in-2026"
       },
       {
-        "short": "Ecofin",
-        "name": "Agence Ecofin, « Barrick confirms gold production restart at Mali's Loulo-Gounkoto mine in 2026 »",
-        "url": "https://www.ecofinagency.com/news-industry/0602-52638-barrick-confirms-gold-production-restart-at-mali-s-loulo-gounkoto-mine-in-2026"
+        "short": "SMM",
+        "name": "SMM, « Indonesia government officially releases new export controls on FeNi and NPI » (juil. 2026)",
+        "url": "https://news.metal.com/newscontent/103996838-smm-tin-nhanh-niken-chính-phủ-indonesia-chính-thức-công-bố-các-biện-pháp-kiểm-soát-xuất-khẩu-mới-đối-với-feni-và-npi"
       },
       {
-        "short": "Semafor",
-        "name": "Semafor, « Mali agrees gold mining deal extension after standoff with Barrick » (16 fév. 2026)",
-        "url": "https://www.semafor.com/article/02/16/2026/mali-agrees-gold-mining-deal-extension-after-standoff-with-barrick"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-senegal-dette",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Afrique",
-    "title": "Sénégal : la dette cachée qui fait trembler le pays",
-    "summary": "Après la découverte d'une dette dissimulée par l'ancien gouvernement, le Sénégal négocie avec le FMI et ses créanciers pour éviter l'asphyxie.",
-    "geo": [
-      {
-        "name": "Dakar",
-        "label": "Sénégal",
-        "coords": [
-          -17.45,
-          14.69
-        ]
-      }
-    ],
-    "points": [
-      "Un audit a révélé que la dette atteignait 99,7 % du PIB fin 2023, et non 74,4 % comme annoncé [2].",
-      "Le 1er septembre, le Sénégal et le FMI ont conclu un accord préliminaire pour un prêt d'environ 2,2 milliards de dollars sur trois ans [1].",
-      "Le pays va restructurer sa dette extérieure. L'agence S&P a abaissé sa note à « CC », proche du défaut de paiement [4]."
-    ],
-    "why": [
-      "Quand un État découvre qu'il doit beaucoup plus que prévu, les investisseurs prennent peur et ne prêtent plus qu'à des taux très élevés. Le pays doit alors couper des dépenses ou négocier des délais avec ses créanciers [1].",
-      "Le gouvernement veut allonger la durée de remboursement plutôt qu'effacer une partie de la dette. Mais la population ressent déjà la crise : des manifestations contre la vie chère ont eu lieu début septembre [3]."
-    ],
-    "forMe": "La France a aussi une dette élevée (plus de 110 % du PIB). La différence : elle emprunte dans sa propre monnaie, l'euro, et inspire plus confiance. L'histoire du Sénégal montre pourquoi cette confiance vaut de l'or.",
-    "figures": [
-      {
-        "value": "99,7 %",
-        "label": "la dette réelle du Sénégal, en % du PIB, fin 2023",
-        "src": 2
-      },
-      {
-        "value": "2,2 Md$",
-        "label": "le prêt négocié avec le FMI",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Senegal to rework debt as it reaches new IMF deal » (1er sept. 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-09-01/senegal-imf-reach-staff-agreement-on-2-2-billion-loan-program"
-      },
-      {
-        "short": "CNBC Africa",
-        "name": "CNBC Africa, « Senegal's hidden debt crisis and attempts to resolve it »",
-        "url": "https://www.cnbcafrica.com/2026/senegals-hidden-debt-crisis-and-attempts-to-resolve-it-3"
-      },
-      {
-        "short": "Semafor",
-        "name": "Semafor, « Senegal seeks more time to pay off debt » (9 sept. 2026)",
-        "url": "https://www.semafor.com/article/09/09/2026/senegal-seeks-more-time-to-pay-off-debt"
-      },
-      {
-        "short": "Pan African Visions",
-        "name": "Pan African Visions, « Senegal's $2.2 billion IMF lifeline comes with a $13 billion debt shadow »",
-        "url": "https://panafricanvisions.com/2026/09/senegals-2-2-billion-imf-lifeline-comes-with-a-13-billion-debt-shadow/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-nigeria-dangote",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Afrique",
-    "title": "Nigeria : la raffinerie géante qui inverse le commerce du carburant",
-    "summary": "Grand producteur de pétrole, le Nigeria importait pourtant son essence. Grâce à la raffinerie Dangote, il en exporte désormais, jusqu'en Europe.",
-    "geo": [
-      {
-        "name": "Lagos",
-        "label": "Nigeria",
-        "coords": [
-          3.4,
-          6.45
-        ]
-      }
-    ],
-    "points": [
-      "En mars 2026, le Nigeria est devenu pour la première fois exportateur net d'essence, grâce à la raffinerie Dangote [2].",
-      "Ses exportations de produits pétroliers vers l'Europe ont bondi de 767 % depuis 2023, à 130 000 barils par jour au deuxième trimestre 2026, selon l'agence américaine de l'énergie [1].",
-      "La raffinerie, près de Lagos, peut traiter environ 650 000 barils de pétrole brut par jour, l'une des plus grandes du monde [1]."
-    ],
-    "why": [
-      "Pendant des décennies, le Nigeria exportait son pétrole brut puis rachetait l'essence raffinée à l'étranger, plus chère. Raffiner sur place permet de garder cette valeur et d'économiser des devises [2].",
-      "Avec la crise d'Ormuz, l'Europe cherche d'autres fournisseurs de carburant : le timing est idéal. Mais la raffinerie peine parfois à obtenir assez de pétrole brut nigérian et de dollars [3]."
-    ],
-    "forMe": "Une partie du gazole et de l'essence vendus en Europe pourrait bientôt venir d'Afrique de l'Ouest. C'est une nouvelle route de l'énergie qui se dessine.",
-    "figures": [
-      {
-        "value": "+767 %",
-        "label": "d'exportations de carburants vers l'Europe depuis 2023",
-        "src": 1
-      },
-      {
-        "value": "≈ 650 000",
-        "label": "barils de brut raffinés par jour (capacité)",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Nairametrics",
-        "name": "Nairametrics, « Dangote refinery drives 767% surge in Nigeria's petroleum exports to Europe » (25 août 2026)",
-        "url": "https://nairametrics.com/2026/08/25/dangote-refinery-drives-767-surge-in-nigerias-petroleum-exports-to-europe/"
-      },
-      {
-        "short": "News Ghana",
-        "name": "News Ghana, « Dangote refinery turns Nigeria into net petrol exporter for first time »",
-        "url": "https://www.newsghana.com.gh/dangote-refinery-turns-nigeria-into-net-petrol-exporter-for-first-time/"
-      },
-      {
-        "short": "Ground News",
-        "name": "Ground News, « Dangote refinery ramps up fuel exports as crude shortages, forex squeeze bite »",
-        "url": "https://ground.news/article/dangote-refinery-ramps-up-fuel-exports-as-crude-shortages-forex-squeeze-bite"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-kazakhstan-uranium",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Asie",
-    "title": "Kazakhstan : le roi de l'uranium dose sa production",
-    "summary": "Premier producteur mondial d'uranium, le Kazakhstan augmente sa production, mais refuse d'« inonder le marché d'uranium bon marché ».",
-    "geo": [
-      {
-        "name": "Kazakhstan",
-        "coords": [
-          68.3,
-          44
-        ]
-      }
-    ],
-    "points": [
-      "Kazatomprom, la compagnie nationale, a produit 13 291 tonnes d'uranium au premier semestre 2026, 9 % de plus qu'un an plus tôt [1].",
-      "Elle vise 27 500 à 29 000 tonnes sur l'année [1].",
-      "Mais elle a abaissé son plafond de production de 32 777 à 29 697 tonnes, pour ne pas faire chuter les prix [2]."
-    ],
-    "why": [
-      "Avec la relance du nucléaire dans le monde (pour le climat et l'indépendance énergétique), la demande d'uranium augmente. Le Kazakhstan, coincé entre la Russie et la Chine, est un fournisseur clé, y compris pour l'Europe.",
-      "Comme l'OPEP avec le pétrole, il préfère vendre un peu moins mais plus cher. Son patron l'a dit clairement : pas question d'« inonder le marché d'uranium bon marché » [1]."
-    ],
-    "forMe": "Après la perte du Niger, le Kazakhstan est devenu encore plus important pour faire tourner les centrales nucléaires européennes, donc pour notre électricité.",
-    "figures": [
-      {
-        "value": "13 291 t",
-        "label": "d'uranium produites au 1er semestre 2026",
-        "src": 1
-      },
-      {
-        "value": "+9 %",
-        "label": "sur un an",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "World Nuclear News",
-        "name": "World Nuclear News, « Mid-year updates from major uranium producers » (août 2026)",
-        "url": "https://www.world-nuclear-news.org/articles/mid-year-updates-from-major-uranium-producers"
-      },
-      {
-        "short": "World Nuclear News",
-        "name": "World Nuclear News, « Kazatomprom to lower uranium production in 2026 »",
-        "url": "https://www.world-nuclear-news.org/articles/kazatomprom-to-lower-uranium-production-in-2026"
+        "short": "The Oregon Group",
+        "name": "The Oregon Group, « Can nickel prices hit $25,000 in 2026? »",
+        "url": "https://theoregongroup.com/commodities/nickel/can-nickel-prices-hit-25000-in-2026/"
       }
     ]
   },
@@ -5764,1507 +6017,63 @@ window.GEOCO.news = [
     ]
   },
   {
-    "id": "2026-10-07-birmanie-terres-rares",
-    "date": "2026-10-07",
-    "theme": "geo",
-    "region": "Asie",
-    "title": "Birmanie : la guerre pour les mines de terres rares",
-    "summary": "Dans le nord de la Birmanie, l'armée tente de reprendre aux rebelles une région minière qui fournit une grande partie des terres rares lourdes du monde.",
-    "geo": [
-      {
-        "name": "Kachin (Birmanie)",
-        "label": "Birmanie",
-        "coords": [
-          97.9,
-          25.8
-        ]
-      }
-    ],
-    "points": [
-      "En octobre 2024, l'Armée pour l'indépendance kachin a pris le contrôle de la ceinture minière près de la frontière chinoise [1].",
-      "Depuis mai 2026, la junte birmane mène une offensive pour reprendre ces mines [1].",
-      "Cette région produit environ la moitié des terres rares lourdes du monde, essentielles aux éoliennes et aux voitures électriques [1]."
-    ],
-    "why": [
-      "Les terres rares extraites en Birmanie partent presque toutes en Chine pour y être raffinées. Qui contrôle ces mines a donc un poids sur toute la chaîne mondiale [1].",
-      "L'extraction, souvent illégale, pollue lourdement les rivières et les forêts. Des habitants manifestent pour exiger le départ des entreprises minières chinoises [2]."
-    ],
-    "forMe": "La « transition verte » repose aussi sur des mines dans des zones de guerre, avec des dégâts environnementaux importants. C'est l'envers du décor des technologies propres.",
-    "figures": [
-      {
-        "value": "≈ 50 %",
-        "label": "des terres rares lourdes du monde viennent de cette région",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "semi-conducteurs"
-    ],
-    "sources": [
-      {
-        "short": "Asia News Network",
-        "name": "Asia News Network (Reuters), « Myanmar junta pushes to retake rare-earth belt near China border »",
-        "url": "https://asianews.network/myanmar-junta-pushes-to-retake-rare-earth-belt-near-china-border/"
-      },
-      {
-        "short": "BNI",
-        "name": "BNI Online, « Kachin residents demand Chinese rare-earth mining companies stop operations »",
-        "url": "https://www.bnionline.net/en/node/97753"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-indonesie-nickel",
+    "id": "2026-10-07-guinee-simandou",
     "date": "2026-10-07",
     "theme": "eco",
-    "region": "Asie",
-    "title": "Indonésie : le pays du nickel serre la vis",
-    "summary": "Premier producteur mondial de nickel, l'Indonésie réduit sa production et contrôle davantage ses exportations. Les prix remontent.",
-    "geo": [
-      {
-        "name": "Sulawesi (Indonésie)",
-        "label": "Indonésie",
-        "coords": [
-          121.9,
-          -2.8
-        ]
-      }
-    ],
-    "points": [
-      "L'Indonésie a réduit d'environ un tiers son quota de production de minerai de nickel pour 2026 [1].",
-      "À partir du 1er janvier 2027, certains produits du nickel ne pourront plus être exportés que par des entreprises d'État [2].",
-      "Le prix du nickel a dépassé 18 000 dollars la tonne, au plus haut depuis deux ans [3]."
-    ],
-    "why": [
-      "Depuis 2020, l'Indonésie interdit d'exporter son minerai brut : elle oblige les industriels à construire des usines de transformation sur place, souvent avec des capitaux chinois. Le pays est ainsi devenu un géant du nickel [3].",
-      "En limitant maintenant la production, Jakarta fait comme l'OPEP avec le pétrole : moins de volume pour des prix plus élevés."
-    ],
-    "forMe": "Le nickel entre dans l'acier inoxydable de ta cuisine et dans beaucoup de batteries de voitures électriques. Quand l'Indonésie bouge, ces prix bougent.",
-    "figures": [
-      {
-        "value": "≈ -1/3",
-        "label": "de quota de production de nickel en 2026",
-        "src": 1
-      },
-      {
-        "value": "> 18 000 $",
-        "label": "la tonne de nickel, au plus haut depuis deux ans",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Argus",
-        "name": "Argus Media, « Indonesia to cut nickel mining quota in 2026 »",
-        "url": "https://www.argusmedia.com/news-and-insights/latest-market-news/2787275-indonesia-to-cut-nickel-mining-quota-in-2026"
-      },
-      {
-        "short": "SMM",
-        "name": "SMM, « Indonesia government officially releases new export controls on FeNi and NPI » (juil. 2026)",
-        "url": "https://news.metal.com/newscontent/103996838-smm-tin-nhanh-niken-chính-phủ-indonesia-chính-thức-công-bố-các-biện-pháp-kiểm-soát-xuất-khẩu-mới-đối-với-feni-và-npi"
-      },
-      {
-        "short": "The Oregon Group",
-        "name": "The Oregon Group, « Can nickel prices hit $25,000 in 2026? »",
-        "url": "https://theoregongroup.com/commodities/nickel/can-nickel-prices-hit-25000-in-2026/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-pakistan",
-    "date": "2026-10-07",
-    "theme": "eco",
-    "region": "Asie",
-    "title": "Pakistan : 250 millions d'habitants face au choc pétrolier",
-    "summary": "Très dépendant du pétrole du Golfe et sous perfusion du FMI, le Pakistan est l'un des pays les plus exposés à la crise d'Ormuz.",
-    "geo": [
-      {
-        "name": "Islamabad",
-        "label": "Pakistan",
-        "coords": [
-          73.05,
-          33.7
-        ]
-      }
-    ],
-    "points": [
-      "Le pays ne dispose que de 10 à 14 jours de réserves stratégiques de carburant [2].",
-      "En mars, le gouvernement a augmenté l'essence et le diesel de 55 roupies par litre d'un coup [2].",
-      "En mai, le FMI a versé 1,1 milliard de dollars dans le cadre de son programme d'aide de 7 milliards [1]."
-    ],
-    "why": [
-      "Le Pakistan importe l'essentiel de son énergie et a peu de devises en réserve. Chaque hausse de 10 dollars du baril alourdit sa facture d'importation d'environ 2 milliards de dollars par an [2].",
-      "Le pays sert aussi de médiateur entre les États-Unis et l'Iran, son voisin. Mais les négociations piétinent, et avec elles l'espoir d'une baisse rapide des prix [1]."
-    ],
-    "forMe": "Quand le pétrole flambe, les pays pauvres et importateurs souffrent bien plus que l'Europe : pour eux, c'est parfois une question de coupures d'électricité et de pénuries.",
-    "figures": [
-      {
-        "value": "10-14 j",
-        "label": "de réserves stratégiques de carburant",
-        "src": 2
-      },
-      {
-        "value": "7 Md$",
-        "label": "le programme d'aide du FMI",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "SCMP",
-        "name": "South China Morning Post, « Pakistan's IMF-backed recovery under pressure as US-Iran mediation stalls »",
-        "url": "https://www.scmp.com/week-asia/economics/article/3352061/pakistans-imf-backed-recovery-under-pressure-us-iran-mediation-stalls"
-      },
-      {
-        "short": "Nukta",
-        "name": "Nukta, « Pakistan faces fresh economic shock as Hormuz closure drives oil surge »",
-        "url": "https://nukta.com/pakistan-faces-fresh-economic-shock-as-hormuz-closure-drives-oil-surge"
-      },
-      {
-        "short": "Arab News",
-        "name": "Arab News, « Pakistan warns prolonged Hormuz crisis could fuel inflation, hurt growth in developing countries »",
-        "url": "https://www.arabnews.pk/node/2641560"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-fed",
-    "date": "2026-10-07",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Washington",
-        "coords": [
-          -77.04,
-          38.9
-        ]
-      }
-    ],
-    "title": "La Fed remonte ses taux pour la première fois depuis trois ans",
-    "summary": "Les marchés attendent cette semaine le compte rendu de la réunion de septembre, où la banque centrale américaine a relevé ses taux à l'unanimité.",
-    "points": [
-      "Le 16 septembre, la Réserve fédérale américaine (Fed) a relevé ses taux d'un quart de point, à 3,75 %-4 % [1].",
-      "C'est sa première hausse depuis 2023, votée à l'unanimité (12 voix contre 0) [2].",
-      "Raison principale : l'inflation reste trop élevée, poussée par la flambée du pétrole [2]."
-    ],
-    "why": [
-      "« L'inflation est trop élevée, et depuis trop longtemps », a résumé le président de la Fed, Kevin Warsh [2]. L'indicateur d'inflation préféré de la Fed dépasse 3 % chaque mois depuis le début de l'année, loin de son objectif de 2 % [1].",
-      "C'est un tournant : il y a un an, la Fed baissait encore ses taux. Le choc pétrolier a renversé la tendance. Ses responsables prévoient en moyenne une seule autre hausse cette année [1]."
-    ],
-    "forMe": "Quand la Fed monte ses taux, le dollar a tendance à se renforcer : les voyages aux États-Unis et le pétrole (payé en dollars) coûtent plus cher en euros. La BCE peut aussi être tentée de suivre, ce qui renchérirait les crédits en Europe.",
-    "figures": [
-      {
-        "value": "3,75-4 %",
-        "label": "le nouveau taux directeur de la Fed",
-        "src": 1
-      },
-      {
-        "value": "12-0",
-        "label": "un vote unanime",
-        "src": 2
-      },
-      {
-        "value": "> 3 %",
-        "label": "l'inflation sous-jacente (PCE) chaque mois de 2026",
-        "src": 1
-      }
-    ],
-    "visuals": [
-      {
-        "kind": "chart",
-        "type": "line",
-        "title": "Le taux directeur de la Fed",
-        "subtitle": "Borne haute de la fourchette, en fin d'année (septembre pour 2026)",
-        "xLabel": "Année",
-        "unit": "Taux (%)",
-        "suffix": " %",
-        "decimals": 2,
-        "data": [
-          [
-            "2021",
-            0.25
-          ],
-          [
-            "2022",
-            4.5
-          ],
-          [
-            "2023",
-            5.5
-          ],
-          [
-            "2024",
-            4.5
-          ],
-          [
-            "2025",
-            3.75
-          ],
-          [
-            "2026",
-            4
-          ]
-        ],
-        "source": "Réserve fédérale américaine ; CNBC (16 sept. 2026)"
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux",
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "CNBC",
-        "name": "CNBC, « Fed rate decision September 2026 » (16 sept. 2026)",
-        "url": "https://www.cnbc.com/2026/09/16/fed-rate-decision-september-2026.html"
-      },
-      {
-        "short": "NPR",
-        "name": "NPR, « The Fed raises interest rates for the first time in over three years » (16 sept. 2026)",
-        "url": "https://www.npr.org/2026/09/16/nx-s1-5968724/federal-reserve-interest-rates-inflation-economy"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-venezuela-raffinerie-cardon",
-    "date": "2026-10-07",
-    "region": "Amériques",
-    "theme": "mix",
-    "title": "Venezuela : incendie dans une raffinerie géante, en pleine crise des coupures d'électricité",
-    "summary": "La raffinerie de Cardón, deuxième du pays, a été mise à l'arrêt d'urgence après un incendie. Au même moment, les coupures de courant à répétition alimentent des manifestations dans plusieurs villes.",
-    "geo": [
-      {
-        "name": "Punto Fijo, Venezuela",
-        "label": "Venezuela",
-        "coords": [
-          -70.21,
-          11.69
-        ]
-      }
-    ],
-    "points": [
-      "La compagnie pétrolière publique PDVSA a confirmé un incendie et l'arrêt d'urgence de la raffinerie de Cardón, dans l'État de Falcón, le 6 octobre [1].",
-      "Selon PDVSA, le feu est parti de la rupture d'une conduite de gaz naturel ; l'entreprise a suspendu ses unités pour des inspections et créé un comité chargé d'en établir les causes [2].",
-      "Les coupures d'électricité, en partie organisées par le gouvernement pour rationner le courant, provoquent des concerts de casseroles et des blocages de routes, comme à Valencia le 2 octobre [4]."
-    ],
-    "why": [
-      "Le Venezuela possède d'énormes réserves de pétrole, mais ses installations vieillissent : à Cardón, une unité de distillation et une unité de craquage étaient déjà arrêtées depuis septembre faute de pétrole brut à traiter, selon des informations attribuées à Reuters [3]. Chaque panne réduit la production de carburant pour le marché intérieur.",
-      "Le gouvernement de la présidente par intérim Delcy Rodríguez attribue la crise électrique au phénomène climatique El Niño, aux sanctions étrangères et à des sabotages, des explications contestées par des ingénieurs interrogés par Al Jazeera [4]. Le mécontentement social pèse sur une transition politique encore sans date d'élection."
-    ],
-    "forMe": "Chaque incident sur ses raffineries rappelle à quel point l'offre mondiale reste fragile. Et une crise énergétique qui s'éternise pousse aussi des Vénézuéliens à émigrer, un mouvement qui touche déjà toute l'Amérique du Sud et l'Espagne.",
-    "figures": [
-      {
-        "value": "2e",
-        "label": "raffinerie du pays par la taille (Cardón)",
-        "src": 1
-      },
-      {
-        "value": "310 000",
-        "label": "barils/jour de capacité installée",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "El Impulso",
-        "name": "El Impulso, « PDVSA confirma incendio y paralización de emergencia en la refinería Cardón » (7 octobre 2026)",
-        "url": "https://www.elimpulso.com/2026/10/07/pdvsa-confirma-incendio-y-paralizacion-de-emergencia-en-la-refineria-cardon-7oct/"
-      },
-      {
-        "short": "MVS / EFE",
-        "name": "MVS Noticias (EFE), « Controlan incendio en la refinería Cardón tras fractura en tubería de gas en Venezuela » (6 octobre 2026)",
-        "url": "https://mvsnoticias.com/mundo/2026/10/6/controlan-incendio-en-la-refineria-cardon-tras-fractura-en-tuberia-de-gas-en-venezuela-748856.html"
-      },
-      {
-        "short": "Energy News Beat",
-        "name": "Energy News Beat, « Venezuela's Cardón Refinery Halted After Fire, Taking 310,000 bpd Offline » (octobre 2026)",
-        "url": "https://energynewsbeat.co/downstream/venezuelas-cardon-refinery-halted-after-fire-taking-310000-bpd-offline/"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « 'We are desperate': Venezuela's power cuts fuel growing public anger » (6 octobre 2026)",
-        "url": "https://www.aljazeera.com/news/longform/2026/10/6/we-are-desperate-venezuelas-power-cuts-fuel-growing-public-anger"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-bolivie-inflation-fmi",
-    "date": "2026-10-07",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Bolivie : fin de la subvention au diesel, prêt du FMI… la banque centrale maintient son objectif d'inflation",
-    "summary": "Malgré la forte hausse du prix du diesel, la Banque centrale de Bolivie prévoit toujours 9,2 % d'inflation fin 2026. Le pays vient d'obtenir un prêt de 1,9 milliard de dollars du FMI.",
-    "geo": [
-      {
-        "name": "La Paz, Bolivie",
-        "label": "Bolivie",
-        "coords": [
-          -68.15,
-          -16.5
-        ]
-      }
-    ],
-    "points": [
-      "La Banque centrale de Bolivie a maintenu le 7 octobre sa prévision de 9,2 % d'inflation pour fin 2026, estimant que des hausses de prix plus faibles que prévu en août et septembre compensent l'effet du diesel [1].",
-      "Après la suppression de la subvention, le litre de diesel est passé de 9,80 à 17,95 bolivianos ; l'inflation de septembre a pourtant été limitée à 0,85 % sur un mois [2].",
-      "Le conseil du FMI a approuvé le 2 octobre un programme de 36 mois d'environ 1,9 milliard de dollars, avec un premier versement immédiat d'environ 214 millions [3]."
-    ],
-    "why": [
-      "La Bolivie a longtemps vécu de ses exportations de gaz pour financer des carburants vendus à prix bas. Avec moins de dollars, l'État ne parvient plus à payer ses importations de carburant, d'où les pénuries et la fin des subventions : un sacrifice exigé dans le cadre du soutien du FMI, qui veut assainir les finances publiques [3].",
-      "Le FMI espère que son programme entraînera environ 4 milliards de dollars de financements supplémentaires d'autres institutions [4]. Mais des économistes jugent la prévision de la banque centrale optimiste : l'un d'eux estime que l'inflation pourrait finir l'année entre 17 % et 20 % [2]."
-    ],
-    "forMe": "Ce qui se passe en Bolivie montre ce que coûte la fin des carburants subventionnés : le prix à la pompe peut presque doubler d'un coup. C'est aussi un test pour le FMI, dont les plans d'aide s'accompagnent souvent de mesures douloureuses pour la population.",
-    "figures": [
-      {
-        "value": "9,2 %",
-        "label": "inflation prévue fin 2026 par la banque centrale",
-        "src": 1
-      },
-      {
-        "value": "+83 %",
-        "label": "hausse du prix du diesel (9,80 à 17,95 Bs/litre)",
-        "src": 2
-      },
-      {
-        "value": "1,9 Md$",
-        "label": "programme du FMI sur 36 mois",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Red Uno",
-        "name": "Red Uno de Bolivia, « BCB ratifica una inflación de 9,2% para el cierre de 2026 » (7 octobre 2026)",
-        "url": "https://www.reduno.com.bo/economia/bcb-ratifica-una-inflacion-de-9-2-para-el-cierre-de-2026-2026107165242"
-      },
-      {
-        "short": "Infobae",
-        "name": "Infobae, « Bolivia registra 0,85% de inflación en septiembre pese al alza en el precio del diésel » (6 octobre 2026)",
-        "url": "https://www.infobae.com/america/america-latina/2026/10/06/bolivia-registra-085-de-inflacion-en-septiembre-pese-al-alza-en-el-precio-del-diesel/"
-      },
-      {
-        "short": "Mirage News / FMI",
-        "name": "Mirage News (communiqué du FMI), « IMF Approves 36-Month Loan Program for Bolivia » (octobre 2026)",
-        "url": "https://www.miragenews.com/imf-approves-36-month-loan-program-for-bolivia-1754669/"
-      },
-      {
-        "short": "Latin Times",
-        "name": "Latin Times, « IMF Deal Unlocks $1.9 Billion for Bolivia and Could Mobilize Another $4 Billion in Funding » (octobre 2026)",
-        "url": "https://www.latintimes.com/imf-deal-unlocks-19-billion-bolivia-could-mobilize-another-4-billion-funding-599905"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-fidji-chine-corruption",
-    "date": "2026-10-07",
-    "region": "Asie",
-    "theme": "geo",
-    "title": "Fidji : Washington accuse un relais de Pékin d'avoir corrompu des Fidjiens",
-    "summary": "Le département d'État américain a sanctionné Zhao Fugang, directeur d'un centre de services pour les Chinois d'outre-mer aux Fidji, l'accusant d'avoir versé des pots-de-vin au profit d'intérêts chinois. Il dément.",
-    "geo": [
-      {
-        "name": "Suva, Fidji",
-        "label": "Fidji",
-        "coords": [
-          178.44,
-          -18.14
-        ]
-      }
-    ],
-    "points": [
-      "Le 7 octobre, le département d'État a désigné publiquement Zhao Fugang, directeur de l'Overseas Chinese Service Center aux Fidji, pour « corruption significative » [1].",
-      "Washington l'accuse d'avoir versé des pots-de-vin à des citoyens fidjiens pour servir des intérêts gouvernementaux, commerciaux et criminels basés en Chine ; lui et sa famille proche sont désormais en principe interdits d'entrée aux États-Unis [1].",
-      "Zhao Fugang dément ces accusations, qu'il juge « non étayées », et souligne qu'aucune autorité fidjienne ne l'a interrogé ni inculpé [2]."
-    ],
-    "why": [
-      "Les îles du Pacifique sont devenues un terrain de rivalité entre la Chine d'un côté, les États-Unis et l'Australie de l'autre. L'ambassade américaine à Suva estime que ces agissements ont exposé les Fidji à une « influence étrangère malveillante » d'acteurs gouvernementaux, commerciaux et criminels chinois [3].",
-      "Pékin présente ses centres de services pour les Chinois d'outre-mer comme de simples guichets administratifs (renouvellement de permis de conduire, par exemple), tandis que des ONG de défense des droits humains les accusent de servir de relais à l'influence chinoise, y compris contre des dissidents [2]. Les accusations n'ont pas été prouvées devant un tribunal."
-    ],
-    "forMe": "La France est elle aussi une puissance du Pacifique, avec la Nouvelle-Calédonie, la Polynésie française et Wallis-et-Futuna. La compétition d'influence entre la Chine et les Occidentaux dans cette région touche donc directement des territoires français et leurs voisins.",
-    "figures": [
-      {
-        "value": "7 octobre 2026",
-        "label": "date de la désignation par le département d'État",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Département d'État",
-        "name": "U.S. Department of State, « Designation of Fijian Resident for Involvement in Significant Corruption on Behalf of China-Based Actors » (7 octobre 2026)",
-        "url": "https://www.state.gov/releases/office-of-the-spokesman/2026/10/designation-of-fijian-resident-for-involvement-in-significant-corruption-on-behalf-of-china-based-actors"
-      },
-      {
-        "short": "ABC",
-        "name": "ABC News (Australie), « US sanctions Fijian businessman over alleged corruption tied to China » (8 octobre 2026)",
-        "url": "https://www.abc.net.au/news/2026-10-08/us-sanctions-fijian-businessman-alleged-corruption-china/107241542"
-      },
-      {
-        "short": "HKFP / AFP",
-        "name": "Hong Kong Free Press, « US says Fiji-based Chinese official paid bribes for Beijing » (8 octobre 2026)",
-        "url": "https://hongkongfp.com/2026/10/08/us-says-fiji-based-chinese-official-paid-bribes-for-beijing/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-irak-devaluation-dinar",
-    "date": "2026-10-07",
-    "region": "Moyen-Orient",
-    "theme": "eco",
-    "title": "Irak : le dinar dévalué de 13 % pour pouvoir payer les fonctionnaires",
-    "summary": "La Banque centrale d'Irak a affaibli le dinar face au dollar, car les perturbations du détroit d'Ormuz ont fait chuter les recettes pétrolières. L'objectif : obtenir plus de dinars pour chaque dollar de pétrole vendu.",
-    "geo": [
-      {
-        "name": "Bagdad, Irak",
-        "label": "Irak",
-        "coords": [
-          44.37,
-          33.31
-        ]
-      }
-    ],
-    "points": [
-      "Le 7 octobre, la Banque centrale a fixé le taux officiel à 1 520 dinars pour un dollar, contre environ 1 320 depuis 2023, soit une dévaluation d'environ 13 % approuvée par le gouvernement [1].",
-      "Selon le ministère des Finances, le déficit public a atteint environ 22 milliards de dollars sur les sept premiers mois de 2026 [2].",
-      "Selon un économiste de Bagdad, les recettes de l'État n'ont couvert qu'environ 76 % des salaires publics et des aides sociales sur la même période [3]."
-    ],
-    "why": [
-      "L'Irak vit presque entièrement du pétrole, vendu en dollars, alors que l'État paie ses fonctionnaires en dinars. Avec un dinar plus faible, chaque dollar de pétrole rapporte davantage de dinars, ce qui aide à financer les dépenses intérieures quand les exportations reculent à cause des perturbations dans le détroit d'Ormuz [1].",
-      "Le revers de la médaille : les importations coûtent plus cher et le pouvoir d'achat des ménages baisse [1]. Un économiste de l'université Al-Iraqia estime que le changement de taux revient à réduire « d'environ 13 % » la valeur réelle des salaires des fonctionnaires [3]. La Banque centrale assure que ses réserves de devises restent suffisantes [1]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Une dévaluation, c'est un peu comme si ton salaire restait le même mais que tout ce qui vient de l'étranger devenait plus cher. Cette décision montre aussi à quel point les tensions autour du détroit d'Ormuz, par où passe une grande partie du pétrole mondial, pèsent sur les pays producteurs… et sur le prix de l'énergie que tu paies.",
-    "figures": [
-      {
-        "value": "1 520",
-        "label": "dinars pour un dollar (contre ~1 320)",
-        "src": 1
-      },
-      {
-        "value": "~22 Md$",
-        "label": "déficit public sur 7 mois en 2026",
-        "src": 2
-      },
-      {
-        "value": "76 %",
-        "label": "part des salaires et aides couverte par les recettes",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "dollar",
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Al-Monitor",
-        "name": "Al-Monitor, Iraq devalues dinar 13% as Hormuz disruption hits oil revenue (7 octobre 2026)",
-        "url": "https://www.al-monitor.com/originals/2026/10/iraq-devalues-dinar-13-hormuz-disruption-hits-oil-revenue"
-      },
-      {
-        "short": "AGBI",
-        "name": "AGBI, Iraq devalues dinar to help meet spending commitments (octobre 2026)",
-        "url": "https://www.agbi.com/finance/2026/10/iraq-devalues-dinar-to-help-meet-spending-commitments/"
-      },
-      {
-        "short": "964media",
-        "name": "964media, Economists warn devaluation will raise costs and dampen demand, question budget's export assumption (octobre 2026)",
-        "url": "https://en.964media.com/53515/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-norvege-budget",
-    "date": "2026-10-07",
-    "region": "Europe",
-    "theme": "eco",
-    "title": "Norvège : le pays va puiser 608 milliards de couronnes dans son fonds pétrolier en 2027",
-    "summary": "Le gouvernement norvégien a présenté son projet de budget 2027, qui prévoit un prélèvement record sur le plus grand fonds souverain du monde, tout en restant sous la limite fixée par sa règle budgétaire.",
-    "geo": [
-      {
-        "name": "Oslo, Norvège",
-        "label": "Norvège",
-        "coords": [
-          10.75,
-          59.91
-        ]
-      }
-    ],
-    "points": [
-      "Le projet de budget 2027, présenté le 7 octobre 2026, prévoit de retirer 608,4 milliards de couronnes (environ 63,6 milliards de dollars) du fonds pétrolier, contre 583,4 milliards dans le budget révisé 2026 [1].",
-      "Ce retrait représente 2,7 % de la valeur du fonds, le même taux que prévu pour 2026 [2].",
-      "Le gouvernement table sur une croissance de 1,7 % en 2027, contre 1,1 % attendue en 2026 [2].",
-      "Le budget doit encore être négocié avec quatre partis du centre et de gauche (SP, SV, Rødt et MDG) au Parlement [2]."
-    ],
-    "why": [
-      "La Norvège vit en partie de la rente de son pétrole placée dans un gigantesque fonds souverain : chaque année, l'État y prélève de quoi financer plus d'un quart de ses dépenses [3]. Un fonds souverain est une sorte de « tirelire » publique investie en actions, obligations et immobilier dans le monde entier.",
-      "Le pays s'impose une règle : ne pas dépenser plus de 3 % de la valeur du fonds par an, pour préserver la richesse des générations futures [2]. Avec 2,7 %, le gouvernement reste prudent, et estime que son budget aura un effet neutre sur l'activité économique [2]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le fonds norvégien détient des parts dans des milliers d'entreprises, y compris de grands groupes français du CAC 40. Sa gestion prudente est souvent citée en exemple dans les débats français sur la dette : la Norvège dépense les revenus de son épargne, pas l'épargne elle-même.",
-    "figures": [
-      {
-        "value": "608,4 Md NOK",
-        "label": "Prélèvement prévu sur le fonds en 2027",
-        "src": 1
-      },
-      {
-        "value": "2,7 %",
-        "label": "Part de la valeur du fonds dépensée (plafond : 3 %)",
-        "src": 2
-      },
-      {
-        "value": "+1,7 %",
-        "label": "Croissance prévue en 2027",
-        "src": 2
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "OilPrice",
-        "name": "Norway Plans to Tap $63.7 Billion From Its Oil Fund in 2027 (octobre 2026)",
-        "url": "https://oilprice.com/Latest-Energy-News/World-News/Norway-Plans-to-Tap-637-Billion-From-Its-Oil-Fund-in-2027.html"
-      },
-      {
-        "short": "Bytes Europe",
-        "name": "Norway plans to spend $63.6 billion from wealth fund in 2027 (octobre 2026)",
-        "url": "https://www.byteseu.com/2430778/"
-      },
-      {
-        "short": "Mediabias",
-        "name": "Norway proposes increased withdrawal from sovereign wealth fund (octobre 2026)",
-        "url": "https://mediabias.news/politics/norway-proposes-increased-withdrawal-from-sovereign-wealth-fund"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-07-japon-taux",
-    "date": "2026-10-07",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Japon : les taux d'emprunt à 30 ans battent un record, la Première ministre Takaichi tente de rassurer",
-    "summary": "Inquiets des projets de dépenses de Sanae Takaichi, les investisseurs ont poussé le taux de la dette japonaise à 30 ans à un sommet historique. La Première ministre promet de revoir ses plans si les marchés s'emballent.",
-    "geo": [
-      {
-        "name": "Tokyo, Japon",
-        "label": "Japon",
-        "coords": [
-          139.69,
-          35.69
-        ]
-      }
-    ],
-    "points": [
-      "Le 5 octobre 2026, le taux des obligations d'État japonaises à 30 ans a atteint le record de 4,235 % [1].",
-      "Le même jour, le taux à 10 ans tournait autour de 3,08 % et celui à 2 ans autour de 1,9 % [2].",
-      "Le 7 octobre, Sanae Takaichi a déclaré au Parlement qu'en cas de mouvement inattendu des taux, le gouvernement pourrait restructurer ses projets et revoir dépenses et recettes [3].",
-      "Takaichi a indiqué que, lors de sa rencontre avec Donald Trump, on lui avait fait valoir que la faiblesse du yen pénalisait le commerce américain [4]."
-    ],
-    "why": [
-      "Quand les investisseurs doutent de la capacité d'un État à tenir ses finances, ils exigent un intérêt plus élevé pour lui prêter, surtout sur de longues durées [2]. Or la dette publique japonaise représente environ deux fois la taille de son économie, la plus élevée des pays développés [1].",
-      "Le contexte pèse aussi sur le yen : Tokyo et Washington ont mené une intervention commune sur le marché des changes pour soutenir la monnaie japonaise, une première en 28 ans [4]. La Première ministre veut baisser la taxe sur l'alimentation sans émettre de nouvelle dette, mais n'a pas détaillé comment [1]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Les épargnants et les fonds japonais sont de gros prêteurs dans le monde entier, y compris à la France. Si les taux montent fortement au Japon, ils peuvent rapatrier leur argent, ce qui pousse à la hausse les taux d'emprunt ailleurs, et donc à terme le coût des crédits.",
-    "figures": [
-      {
-        "value": "4,235 %",
-        "label": "Taux record des obligations japonaises à 30 ans (5 oct.)",
-        "src": 1
-      },
-      {
-        "value": "≈ 3,08 %",
-        "label": "Taux à 10 ans",
-        "src": 2
-      },
-      {
-        "value": "28 ans",
-        "label": "Première intervention commune Japon-États-Unis sur le yen depuis",
-        "src": 4
-      }
-    ],
-    "dossiers": [
-      "inflation-taux",
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "IndexBox",
-        "name": "Takaichi Vows Fiscal Discipline as Japan's 30-Year Bond Yield Hits Record High (octobre 2026)",
-        "url": "https://www.indexbox.io/blog/japan-pm-takaichi-pledges-bond-issuance-control-as-30-year-jgb-yield-hits-record-4235/"
-      },
-      {
-        "short": "Finimize",
-        "name": "Japan's 30-Year Bond Yield Hit A Record Ahead Of Takaichi's Speech (octobre 2026)",
-        "url": "https://finimize.com/content/japans-30-year-bond-yield-hit-a-record-ahead-of-takaichis-speech"
-      },
-      {
-        "short": "Bloomberg",
-        "name": "Takaichi Says Japan May Review Spending if Yields Move Sharply (7 octobre 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-10-07/takaichi-says-japan-may-review-spending-if-yields-move-sharply"
-      },
-      {
-        "short": "Japan Times",
-        "name": "Takaichi told during Trump talks that weak yen was hurting U.S. trade (2 octobre 2026)",
-        "url": "https://www.japantimes.co.jp/news/2026/10/02/japan/politics/takaichi-trump-talks-weak-yen/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-06-bangladesh-banque-mondiale",
-    "date": "2026-10-06",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Bangladesh : la Banque mondiale abaisse sa prévision à 3,4 %, plombée par l'énergie et les banques",
-    "summary": "Dans son rapport d'octobre, la Banque mondiale prévoit une croissance de seulement 3,4 % pour l'exercice 2026-2027 au Bangladesh, loin de sa moyenne passée. Pénuries de gaz et banques fragiles freinent l'économie.",
-    "geo": [
-      {
-        "name": "Dacca, Bangladesh",
-        "label": "Bangladesh",
-        "coords": [
-          90.41,
-          23.81
-        ]
-      }
-    ],
-    "points": [
-      "La Banque mondiale prévoit 3,4 % de croissance pour l'exercice 2026-2027 (juillet 2026 à juin 2027), soit 1,2 point de moins que sa précédente prévision, puis un léger rebond à 3,9 % en 2027-2028 [1].",
-      "La croissance a déjà ralenti à 3,4 % lors de l'exercice 2025-2026, selon le rapport [2].",
-      "Le gaz importé sous forme liquéfiée (GNL) couvre environ un tiers de la demande, et des pannes sur les terminaux flottants de Maheshkhali ont obligé de nombreuses usines à tourner au ralenti ou à s'arrêter [1]."
-    ],
-    "why": [
-      "Le pays vit une crise de l'énergie : la production de gaz locale baisse, et les coupures de courant pénalisent l'industrie [1]. Le secteur bancaire, jugé fragile, prête peu : le crédit au secteur privé ne progresse plus que d'environ 4,5 %, au plus bas depuis des décennies [3].",
-      "La Banque mondiale recommande des réformes dans trois domaines (banques, énergie, recettes fiscales), notamment des audits de la qualité des actifs bancaires pour déterminer quelles banques sont viables [1]. Ces prévisions restent très en dessous de l'objectif de 6,5 % fixé par le gouvernement [4]."
-    ],
-    "forMe": "Une bonne partie de tes t-shirts, jeans ou pulls vient sans doute du Bangladesh. Si les usines manquent de gaz et d'électricité, les délais de livraison et les coûts de production des marques de mode peuvent augmenter, avec un effet possible sur les prix en magasin.",
-    "figures": [
-      {
-        "value": "3,4 %",
-        "label": "croissance prévue en 2026-2027",
-        "src": 1
-      },
-      {
-        "value": "-1,2 point",
-        "label": "révision par rapport à la prévision précédente",
-        "src": 1
-      },
-      {
-        "value": "~4,5 %",
-        "label": "croissance du crédit au secteur privé",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Daily Star",
-        "name": "The Daily Star, « Growth to stay below 4% until FY28 on energy, banking woes » (octobre 2026)",
-        "url": "https://www.thedailystar.net/business/economy/news/growth-stay-below-4-until-fy28-energy-banking-woes-4292321"
-      },
-      {
-        "short": "Xinhua",
-        "name": "Xinhua, « World Bank sees Bangladesh FY27 GDP growth at 3.4 pct » (6 octobre 2026)",
-        "url": "https://www.xinhuanet.com/english/asiapacific/20261006/ebe71dfe05be4da3ae7cff29f19609bd/c.html"
-      },
-      {
-        "short": "Financial Express",
-        "name": "The Financial Express (Bangladesh), « WB lowers Bangladesh GDP growth to 3.4pc for FY27 » (octobre 2026)",
-        "url": "https://today.thefinancialexpress.com.bd/first-page/wb-lowers-bangladesh-gdp-growth-to-34pc-for-fy27-1791309792"
-      },
-      {
-        "short": "TBS",
-        "name": "The Business Standard, « Bangladesh GDP projected to grow at 3.4%, second lowest in South Asia » (octobre 2026)",
-        "url": "https://www.tbsnews.net/economy/bangladesh-see-lowest-gdp-growth-south-asia-after-afghanistan-wb-1564406"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-06-canada-etats-unis-guerre-commerciale",
-    "date": "2026-10-06",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Canada–États-Unis : la guerre des droits de douane s'installe",
-    "summary": "Depuis l'échec des négociations fin août, Washington taxe à 50 % une série de produits canadiens et interdit désormais certains d'entre eux, tandis qu'Ottawa riposte. Les exportateurs canadiens ont accéléré leurs envois avant la hausse, gonflant l'excédent commercial d'août.",
-    "geo": [
-      {
-        "name": "Ottawa, Canada",
-        "label": "Canada",
-        "coords": [
-          -75.7,
-          45.42
-        ]
-      }
-    ],
-    "points": [
-      "Le Premier ministre Mark Carney a suspendu les négociations commerciales avec les États-Unis le 21 août au soir, juste avant l'entrée en vigueur, le 22 août, de droits de douane de 50 % sur environ 28 milliards de dollars de produits canadiens [1].",
-      "Ces taxes visent notamment les crosses de hockey, les matériaux de construction, les alcools et certains vêtements [1].",
-      "Le Canada a riposté le 8 septembre avec des droits de 15 % à 50 % sur près de 20 milliards de dollars de produits américains, les taux les plus élevés frappant l'acier, l'aluminium et le fer, les meubles, les motos et les vêtements [2].",
-      "Washington a répliqué en interdisant à partir du 29 septembre l'importation de certains produits canadiens : boissons alcoolisées, certains produits laitiers, mélasse, bières sans alcool et motos [3][4].",
-      "Donald Trump a aussi promis de doubler, de 25 % à 50 %, les droits sur les voitures et pièces automobiles canadiennes à partir du 1er janvier 2027 [2].",
-      "En août, les exportations canadiennes vers les États-Unis ont bondi de 8,1 % et l'excédent avec eux a atteint 11,2 milliards de dollars canadiens, un plus haut depuis 19 mois, sans doute gonflé par des envois anticipés avant la hausse [5]."
-    ],
-    "why": [
-      "Ce conflit est la rupture la plus nette entre deux pays parmi les plus intégrés économiquement au monde. Carney reproche aux États-Unis d'avoir ajouté, dans les dernières heures, des exigences sur l'automobile, sur les autres partenariats commerciaux du Canada et sur la protection de la culture et de la langue française ; Washington accuse au contraire Ottawa d'être revenu sur ses engagements [1].",
-      "Les droits américains « section 232 » de 50 % sur l'acier, l'aluminium et le cuivre continuent par ailleurs de s'appliquer sans exemption pour le Canada [6]. Le bois d'œuvre canadien cumule de son côté droits antidumping, droits compensateurs et nouveaux droits, pour des taux combinés dépassant 40 % [7].",
-      "Le bond des exportations d'août pourrait n'être qu'un effet d'anticipation : Statistique Canada prévient qu'une partie de cette vigueur reflète le calendrier des échanges plutôt qu'une hausse durable de la demande, et les chiffres de septembre seront plus parlants [5]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Canada cherche à vendre davantage ailleurs qu'aux États-Unis, et l'Europe fait partie des débouchés évidents grâce à l'accord de libre-échange UE-Canada. Pour les entreprises françaises, cela peut ouvrir des portes, mais aussi accroître la concurrence sur certains marchés. Pour toi, l'impact direct reste limité, sauf si tu travailles dans l'export ou dans des secteurs comme le vin ou les produits laitiers, où le jeu des taxes entre Ottawa et Washington rebat les cartes.",
-    "figures": [
-      {
-        "value": "50 %",
-        "label": "Droits américains sur environ 28 milliards de dollars de produits canadiens depuis le 22 août",
-        "src": 1
-      },
-      {
-        "value": "+8,1 %",
-        "label": "Hausse des exportations canadiennes vers les États-Unis en août",
-        "src": 5
-      },
-      {
-        "value": "11,2 Md$ CA",
-        "label": "Excédent commercial du Canada avec les États-Unis en août",
-        "src": 5
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "NBC News",
-        "name": "Canadian prime minister suspends trade talks with U.S., setting new 50% tariffs in motion (août 2026)",
-        "url": "https://www.nbcnews.com/business/economy/trump-canada-tariffs-carney-rcna593510"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "As Canada's retaliatory tariffs on US goods take effect, tensions soar (8 septembre 2026)",
-        "url": "https://www.aljazeera.com/news/2026/9/8/canadas-retaliatory-tariffs-on-20bn-of-us-goods-take-effect"
-      },
-      {
-        "short": "Maison-Blanche",
-        "name": "Fact Sheet: President Donald J. Trump Responds to Canada's Retaliation (septembre 2026)",
-        "url": "https://www.whitehouse.gov/fact-sheets/2026/09/fact-sheet-president-donald-j-trump-responds-to-canadas-retaliation/"
-      },
-      {
-        "short": "Dorsey & Whitney",
-        "name": "White House Ups the Ante with Section 338 Import Bans Against Canadian Products (septembre 2026)",
-        "url": "https://www.dorsey.com/newsresources/publications/client-alerts/2026/9/section-338-import-ban"
-      },
-      {
-        "short": "BNN Bloomberg / Reuters",
-        "name": "Canada's trade surplus surprisingly widens to over four-year high in August (6 octobre 2026)",
-        "url": "https://www.bnnbloomberg.ca/business/economics/2026/10/06/canadas-trade-surplus-surprisingly-widens-to-over-four-year-high-in-august/"
-      },
-      {
-        "short": "Congressional Research Service",
-        "name": "U.S.-Canada Trade Relations (2026)",
-        "url": "https://www.congress.gov/crs-product/IF12595"
-      },
-      {
-        "short": "Daily Commercial News",
-        "name": "A tariff exemption was Canada's salvation in 2025. It's 'absolutely' at risk in 2026 (janvier 2026)",
-        "url": "https://canada.constructconnect.com/dcn/news/economic/2026/01/a-tariff-exemption-was-canadas-salvation-in-2025-its-absolutely-at-risk-in-2026"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-06-qatar-banque-mondiale",
-    "date": "2026-10-06",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "title": "Qatar : l'économie devrait s'effondrer de 20,9 % en 2026, selon la Banque mondiale",
-    "summary": "Frappé par la guerre avec l'Iran et le blocage du détroit d'Ormuz, le Qatar devrait connaître sa pire année économique depuis cinquante ans, d'après les nouvelles prévisions de la Banque mondiale.",
-    "geo": [
-      {
-        "name": "Doha, Qatar",
-        "label": "Qatar",
-        "coords": [
-          51.53,
-          25.29
-        ]
-      }
-    ],
-    "points": [
-      "La Banque mondiale prévoit une contraction de 20,9 % du PIB du Qatar en 2026, après une croissance de 1,8 % en 2025 : sa pire performance en cinq décennies [1].",
-      "La production mensuelle moyenne de gaz du pays a chuté d'environ 67 % entre mars et juillet en raison des dégâts sur ses sites [1].",
-      "Des frappes en mars ont mis hors service près de 17 % de la capacité d'exportation de gaz naturel liquéfié (GNL) du Qatar [2].",
-      "À l'échelle de la région, l'économie devrait reculer de 2,1 % en 2026 et celle des pays du Golfe de 4,3 % [1][3]."
-    ],
-    "why": [
-      "Le Qatar est l'un des grands exportateurs mondiaux de GNL, du gaz refroidi pour être transporté par bateau. Ses exportations passent par le détroit d'Ormuz, où le trafic reste quasi nul : en moyenne trois pétroliers par jour fin septembre selon l'outil PortWatch du FMI [2].",
-      "La prévision suppose une réouverture progressive du détroit à partir du 31 décembre, ce qui permettrait un fort rebond en 2027 [2]. Mais certaines installations endommagées pourraient mettre des années à être entièrement réparées [3]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Qatar fournit une partie du gaz liquéfié importé par l'Europe. Moins de gaz qatari sur le marché, c'est une pression à la hausse sur les prix de l'énergie, qui peut se retrouver sur ta facture de chauffage ou d'électricité.",
-    "figures": [
-      {
-        "value": "-20,9 %",
-        "label": "PIB du Qatar prévu en 2026",
-        "src": 1
-      },
-      {
-        "value": "-67 %",
-        "label": "Production mensuelle de gaz (mars-juillet)",
-        "src": 1
-      },
-      {
-        "value": "-2,1 %",
-        "label": "Économie de la région Moyen-Orient en 2026",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "The National",
-        "name": "World Bank says Middle East economy to contract 2.1% in 2026 on Iran war (6 octobre 2026)",
-        "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
-      },
-      {
-        "short": "JFeed",
-        "name": "Strait of Hormuz Blockade: Qatar's Gas Revenue Crisis (octobre 2026)",
-        "url": "https://www.jfeed.com/middleeast/strait-hormuz-blockade-qatar"
-      },
-      {
-        "short": "Economy Middle East",
-        "name": "World Bank revises 2026 outlook for GCC economies (octobre 2026)",
-        "url": "https://economymiddleeast.com/news/world-bank-revises-2026-outlook-for-gcc-economies-sees-uae-growth-rebounding-to-9-5-percent-in-2027-saudi-arabia-to-7-9-percent/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-05-japon-quitte-chine",
-    "date": "2026-10-05",
-    "region": "Asie",
-    "theme": "mix",
-    "title": "Chine : les entreprises japonaises partent à un rythme record",
-    "summary": "Le nombre d'entreprises japonaises présentes en Chine est tombé à son plus bas niveau depuis le début des relevés, selon l'institut Teikoku Databank. Tensions diplomatiques autour de Taïwan, ralentissement chinois et droits de douane américains poussent au départ.",
-    "geo": [
-      {
-        "name": "Shanghai, Chine",
-        "label": "Shanghai",
-        "coords": [
-          121.47,
-          31.23
-        ]
-      }
-    ],
-    "points": [
-      "Teikoku Databank a recensé 10 118 entreprises japonaises ayant une filiale, une usine ou un bureau en Chine en juin 2026, soit 22,4 % de moins qu'en 2024 [1][2].",
-      "Entre 2024 et 2026, un record de 4 137 entreprises japonaises ont quitté la Chine, contre seulement 1 221 arrivées [1].",
-      "Shanghai, premier pôle japonais en Chine, a perdu 1 085 implantations en deux ans, et certaines entreprises déplacent leur production vers le Vietnam, l'Asie du Sud-Est ou le Japon [1]."
-    ],
-    "why": [
-      "Les relations sino-japonaises se sont dégradées depuis que la Première ministre Sanae Takaichi a déclaré au Parlement, en novembre 2025, que le Japon pourrait intervenir militairement en cas de crise autour de Taïwan [1]. S'y ajoutent le ralentissement de l'économie chinoise, les droits de douane américains, la hausse des salaires et l'effondrement de l'immobilier [1].",
-      "Teikoku cite aussi la « coercition économique » comme les restrictions sur les terres rares, la loi chinoise anti-espionnage révisée et la concurrence de rivaux chinois soutenus par l'État [3]. Pékin a réagi par la voix du vice-Premier ministre He Lifeng, qui assure que la Chine « accueille toujours » les entreprises japonaises [1]."
-    ],
-    "forMe": "Ce mouvement illustre la « diversification » des chaînes d'approvisionnement hors de Chine que suivent aussi de nombreuses entreprises européennes. Pour toi, cela peut signifier des produits fabriqués de plus en plus au Vietnam ou en Asie du Sud-Est plutôt qu'en Chine, et un risque accru pour les entreprises trop dépendantes d'un seul pays.",
-    "figures": [
-      {
-        "value": "10 118",
-        "label": "entreprises japonaises présentes en Chine (juin 2026)",
-        "src": 1
-      },
-      {
-        "value": "-22,4 %",
-        "label": "en deux ans",
-        "src": 2
-      },
-      {
-        "value": "4 137",
-        "label": "retraits de Chine entre 2024 et 2026",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "CNBC",
-        "name": "CNBC, « Why Japanese companies are retreating from China at a record pace » (5 octobre 2026)",
-        "url": "https://www.cnbc.com/2026/10/05/japanese-companies-leaving-china-takaichi-comment-taiwan.html"
-      },
-      {
-        "short": "Digitimes",
-        "name": "Digitimes, « Japanese firms cut China presence 22.4% as trade risks mount » (2 octobre 2026)",
-        "url": "https://www.digitimes.com/news/a20261002PD240/2026-production-sales-manufacturing-market.html"
-      },
-      {
-        "short": "SCMP",
-        "name": "South China Morning Post, « Japanese business presence in China down nearly 30% from peak in 2012: survey » (septembre 2026)",
-        "url": "https://www.scmp.com/economy/china-economy/article/3369164/japanese-firms-pull-back-china-amid-geopolitical-tensions-supply-chains-shifts"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-05-aceum-revision-annuelle",
-    "date": "2026-10-05",
-    "region": "Amériques",
-    "theme": "mix",
-    "title": "Libre-échange nord-américain : l'ACEUM entre dans l'ère des révisions annuelles",
-    "summary": "Faute d'accord pour prolonger le traité commercial entre États-Unis, Mexique et Canada en juillet, Washington lance la consultation publique pour la révision de 2027. Le pacte reste en vigueur, mais sous surveillance permanente.",
-    "geo": [
-      {
-        "name": "Monterrey, Mexique",
-        "label": "Mexique",
-        "coords": [
-          -100.32,
-          25.69
-        ]
-      },
-      {
-        "name": "Toronto, Canada",
-        "label": "Canada",
-        "coords": [
-          -79.38,
-          43.65
-        ]
-      }
-    ],
-    "points": [
-      "L'ACEUM (Accord Canada–États-Unis–Mexique, appelé USMCA en anglais) est le traité de libre-échange qui lie les trois pays ; un réexamen conjoint était prévu le 1er juillet 2026 [1].",
-      "Ce jour-là, les États-Unis ont déclaré ne pas accepter de « renouveler l'accord dans sa forme actuelle » : l'accord reste en vigueur mais est désormais réexaminé chaque année [1].",
-      "Sans renouvellement, l'accord prendra fin le 1er juillet 2036, au terme de sa durée de 16 ans [1].",
-      "Le 5 octobre, le représentant américain au Commerce (USTR) a publié au Journal officiel américain un appel à commentaires pour la révision annuelle de 2027, sur l'application de l'accord, son respect et les mesures à proposer [2][3].",
-      "Les contributions écrites sont attendues jusqu'au 12 janvier 2027 ; la date de l'audition publique n'est pas encore fixée [1].",
-      "Le Mexique est le seul pays à faire avancer formellement des discussions de révision avec Washington, les négociations canadiennes étant suspendues depuis le 22 août [4]."
-    ],
-    "why": [
-      "Le passage à des révisions annuelles crée une incertitude durable : les entreprises qui ont investi au Mexique ou au Canada pour profiter d'un accès privilégié au marché américain ne savent plus si ces règles tiendront jusqu'en 2036 [1][4].",
-      "Cette incertitude pèse sur le « nearshoring », la relocalisation de production près des États-Unis, notamment au Mexique, que l'ACEUM devait encourager. L'USTR demande d'ailleurs des avis sur les conditions d'investissement en Amérique du Nord et sur la sécurité économique régionale [3].",
-      "La révision devient aussi un levier de négociation pour Washington, qui discute en parallèle des baisses de droits de douane sectoriels (acier, automobile) avec Mexico et reste en conflit ouvert avec Ottawa [4]."
-    ],
-    "forMe": "Et moi, dans tout ça ? L'Amérique du Nord est l'un des plus grands marchés du monde, et beaucoup d'entreprises européennes y produisent, notamment au Mexique. Un accord révisé chaque année, c'est moins de visibilité pour elles, donc des investissements plus prudents. À terme, cela peut peser sur les prix de produits fabriqués là-bas, des voitures aux appareils électroniques.",
-    "figures": [
-      {
-        "value": "12 janvier 2027",
-        "label": "Date limite des commentaires publics pour la révision de 2027",
-        "src": 1
-      },
-      {
-        "value": "2036",
-        "label": "Fin de l'accord en l'absence de renouvellement",
-        "src": 1
-      },
-      {
-        "value": "16 ans",
-        "label": "Durée initiale de l'ACEUM",
-        "src": 1
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "Expeditors",
-        "name": "USTR Requests Public Comments on 2027 USMCA Joint Review (octobre 2026)",
-        "url": "https://info.expeditors.com/newsflash/ustr-requests-public-comments-on-2027-usmca-joint-review"
-      },
-      {
-        "short": "Federal Register",
-        "name": "Request for Public Comments and Notice of Public Hearing Relating to the Operation of the USMCA (5 octobre 2026)",
-        "url": "https://www.federalregister.gov/documents/2026/10/05/2026-20341/request-for-public-comments-and-notice-of-public-hearing-relating-to-the-operation-of-the-agreement"
-      },
-      {
-        "short": "USTR",
-        "name": "USTR Seeks Public Comment on the 2027 Joint Review of USMCA (octobre 2026)",
-        "url": "https://ustr.gov/about/policy-offices/press-office/press-releases/2026/october/ustr-seeks-public-comment-2027-joint-review-usmca"
-      },
-      {
-        "short": "Supply Chain Dive",
-        "name": "USTR initiates next stage of USMCA review (octobre 2026)",
-        "url": "https://supplychaindive.com/news/ustr-initiates-next-stage-of-usmca-review/832285"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-05-moldavie-ue",
-    "date": "2026-10-05",
-    "region": "Europe",
-    "theme": "geo",
-    "title": "Moldavie : l'UE débloque 157 millions d'euros et salue l'avancée des négociations d'adhésion",
-    "summary": "Lors du 10e Conseil d'association UE-Moldavie à Bruxelles, l'Union a annoncé un nouveau versement à Chisinau et salué l'ouverture de deux premiers blocs de négociations, tout en insistant sur la réforme de la justice.",
-    "geo": [
-      {
-        "name": "Chisinau, Moldavie",
-        "label": "Moldavie",
-        "coords": [
-          28.86,
-          47.01
-        ]
-      }
-    ],
-    "points": [
-      "Le 10e Conseil d'association UE-Moldavie s'est tenu à Bruxelles le 5 octobre 2026, présidé par la cheffe de la diplomatie européenne Kaja Kallas, face au Premier ministre moldave Vasile Tofan [1].",
-      "L'UE a annoncé le versement de 157 millions d'euros au titre de son plan de croissance pour la Moldavie [2].",
-      "Les deux parties ont salué l'ouverture récente des « clusters » 1 (fondamentaux) et 6 (relations extérieures) des négociations d'adhésion [2].",
-      "L'UE a insisté sur la nécessité d'une justice indépendante, notamment via le contrôle (« vetting ») des juges et procureurs [2]."
-    ],
-    "why": [
-      "Ce petit pays coincé entre la Roumanie et l'Ukraine avance pas à pas vers l'Union européenne : les négociations sont découpées en grands blocs thématiques (« clusters »), et deux d'entre eux viennent d'être ouverts [2]. Chaque bloc impose d'aligner les lois moldaves sur les règles européennes.",
-      "L'argent européen est conditionné aux réformes : justice, lutte contre la corruption, administration [3]. Les discussions ont aussi porté sur la sécurité, la résilience énergétique du pays et son intégration progressive au marché intérieur européen [3]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Si la Moldavie rejoint un jour l'UE, une partie du budget européen, auquel la France contribue largement, servira à financer son rattrapage. C'est aussi un enjeu de sécurité à la frontière orientale de l'Europe.",
-    "figures": [
-      {
-        "value": "157 M€",
-        "label": "Versement européen annoncé",
-        "src": 2
-      },
-      {
-        "value": "2",
-        "label": "Blocs de négociation d'adhésion ouverts (1 et 6)",
-        "src": 2
-      },
-      {
-        "value": "10e",
-        "label": "Conseil d'association UE-Moldavie",
-        "src": 1
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "SEAE",
-        "name": "EU High Representative Kaja Kallas chairs 10th EU–Moldova Association Council in Brussels (5 octobre 2026)",
-        "url": "https://www.eeas.europa.eu/eeas/eu-high-representative-kaja-kallas-chairs-10th-eu-moldova-association-council-brussels_en"
-      },
-      {
-        "short": "Commission européenne",
-        "name": "The EU and Moldova reiterate their strong partnership and announce the disbursement of €157 million (5 octobre 2026)",
-        "url": "https://enlargement.ec.europa.eu/news/european-union-and-moldova-reiterate-their-strong-partnership-and-announce-disbursement-eur157-2026-10-05_en"
-      },
-      {
-        "short": "DevelopmentAid",
-        "name": "EU disburses €157 million to Moldova under Growth Plan at 10th Association Council (octobre 2026)",
-        "url": "https://www.developmentaid.org/news-stream/post/211176/eu-disburses-e157-million-to-moldova-under-growth-plan-at-10th-association-council"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-05-kirghizistan-sanctions",
-    "date": "2026-10-05",
-    "region": "Asie",
-    "theme": "mix",
-    "title": "Kirghizistan : Bichkek ferme des dizaines d'entreprises pour éviter les sanctions internationales",
-    "summary": "Les autorités kirghizes ont engagé la liquidation de 16 sociétés soupçonnées de servir au contournement de sanctions, et les banques ont fermé les comptes de plus de 220 entreprises.",
-    "geo": [
-      {
-        "name": "Bichkek, Kirghizistan",
-        "label": "Kirghizistan",
-        "coords": [
-          74.59,
-          42.87
-        ]
-      }
-    ],
-    "points": [
-      "Le 2 octobre 2026, après l'examen d'environ 40 entreprises, les dossiers de 16 d'entre elles ont été transmis à la justice en vue de leur liquidation [1].",
-      "La banque ABank a rompu ses relations avec environ 100 entreprises et Eldik Bank a bloqué les comptes d'environ 126 sociétés [1][2].",
-      "Les autorités préparent une « liste noire » de personnes et d'entreprises présentant un risque élevé de sanctions [2].",
-      "Le ministère de l'Économie a par ailleurs lancé la liquidation forcée d'environ 35 autres entités [3]."
-    ],
-    "why": [
-      "Le but affiché est d'empêcher que le système bancaire kirghiz soit utilisé pour contourner des sanctions internationales [1]. Pour un petit pays très dépendant du commerce extérieur, être lui-même visé par des « sanctions secondaires » (des punitions contre ceux qui aident un pays sanctionné à commercer) pourrait couper ses banques du système financier mondial.",
-      "La future liste noire doit permettre de surveiller les échanges et les partenaires commerciaux avant que les transactions n'aient lieu [2]. Les tribunaux doivent encore se prononcer sur les liquidations [1]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Les sanctions décidées par l'Europe et les États-Unis ne valent que si elles ne sont pas contournées via des pays tiers. Ce qui se passe à Bichkek montre comment ces règles s'appliquent jusqu'en Asie centrale, et pourquoi les entreprises françaises doivent vérifier qui sont leurs clients finaux.",
-    "figures": [
-      {
-        "value": "16",
-        "label": "Entreprises envoyées devant la justice pour liquidation",
-        "src": 1
-      },
-      {
-        "value": "220+",
-        "label": "Entreprises dont les comptes ont été fermés",
-        "src": 2
-      },
-      {
-        "value": "35",
-        "label": "Autres entités en liquidation forcée",
-        "src": 3
-      }
-    ],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "24.kg",
-        "name": "Sanctions risks: Operations of 16 companies terminated in Kyrgyzstan (octobre 2026)",
-        "url": "https://24.kg/en/article/sanctions-risks-operations-of-16-companies-terminated-in-kyrgyzstan"
-      },
-      {
-        "short": "Open.kg",
-        "name": "In Kyrgyzstan, accounts of over 220 companies have been closed and a blacklist is being prepared (octobre 2026)",
-        "url": "https://open.kg/en/news/economy/127226-v-kyrgyzstane-zakryli-scheta-svyshe-220-kompanij-i-gotovjat-chernyj-spisok.html"
-      },
-      {
-        "short": "AKIpress",
-        "name": "Kyrgyzstan initiates forced liquidation of 35 companies over high sanctions risks (octobre 2026)",
-        "url": "https://akipress.com/news:923300:Kyrgyzstan_initiates_forced_liquidation_of_35_companies_over_high_sanctions_risks/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-04-argentine-bessent-soutien",
-    "date": "2026-10-04",
-    "region": "Amériques",
-    "theme": "mix",
-    "title": "Argentine : Washington se dit prêt à aider de nouveau Milei, alors que l'économie ralentit",
-    "summary": "Le secrétaire américain au Trésor, Scott Bessent, n'exclut pas un nouveau soutien financier à l'Argentine. Les marchés s'inquiètent d'une activité en recul et des lourdes échéances de dette de 2027.",
-    "geo": [
-      {
-        "name": "Buenos Aires, Argentine",
-        "label": "Argentine",
-        "coords": [
-          -58.38,
-          -34.6
-        ]
-      }
-    ],
-    "points": [
-      "Interrogé par le média Axios, Scott Bessent a affirmé que les États-Unis pourraient de nouveau soutenir financièrement l'Argentine si nécessaire, comme en octobre 2025, sans annoncer de montant ni de conditions [1].",
-      "Le « risque pays », qui mesure la prime exigée par les investisseurs pour prêter à l'Argentine, a atteint 655 points le 2 octobre, son plus haut depuis dix mois, avant de redescendre à 573 points le 6 octobre [2].",
-      "L'activité économique a reculé de 2,9 % en juillet par rapport à juin, sa plus forte baisse mensuelle depuis la pandémie de 2020 [3]."
-    ],
-    "why": [
-      "Le président Javier Milei a fortement réduit l'inflation, mais l'économie peine à repartir et le pays doit rembourser beaucoup en 2027 : un soutien américain rassure les marchés. Les réserves brutes de la banque centrale atteignaient environ 48,65 milliards de dollars le 5 octobre, mais les réserves « nettes », une fois les dettes déduites, ne seraient que d'environ 11,9 milliards selon des cabinets privés [4].",
-      "Pour Washington, l'Argentine est aussi un enjeu géopolitique : Scott Bessent estime que sa stabilisation a provoqué « un changement d'ère » en Amérique latine et présente Milei comme un grand allié des États-Unis [1]."
-    ],
-    "forMe": "Ce qui se joue en Argentine, c'est l'influence des États-Unis en Amérique du Sud face à la Chine. Pour toi, l'impact direct est faible, mais c'est un bon exemple de la façon dont le dollar et le Trésor américain servent aussi d'outils d'influence politique.",
-    "figures": [
-      {
-        "value": "655 pts",
-        "label": "risque pays au 2 octobre, plus haut en 10 mois",
-        "src": 2
-      },
-      {
-        "value": "-2,9 %",
-        "label": "activité en juillet par rapport à juin",
-        "src": 3
-      },
-      {
-        "value": "48,65 Md$",
-        "label": "réserves brutes de la banque centrale (5 oct.)",
-        "src": 4
-      }
-    ],
-    "dossiers": [
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "Infobae",
-        "name": "Infobae, « El secretario del Tesoro de EE.UU. afirmó que en caso de ser necesario volvería a apoyar financieramente a la Argentina » (4 octobre 2026)",
-        "url": "https://www.infobae.com/economia/2026/10/04/el-secretario-del-tesoro-de-eeuu-afirmo-que-en-caso-de-ser-necesario-volveria-a-apoyar-financieramente-a-la-argentina/"
-      },
-      {
-        "short": "Infobae",
-        "name": "Infobae, « El riesgo país argentino volvió a caer con fuerza ante una mejoría del ánimo inversor » (6 octobre 2026)",
-        "url": "https://www.infobae.com/economia/2026/10/06/mercados-vuelve-a-caer-fuerte-el-riesgo-pais-argentino-ante-una-mejoria-del-animo-inversor/"
-      },
-      {
-        "short": "Infobae",
-        "name": "Infobae, « La actividad económica registró una caída de 2,9% en julio » (24 septembre 2026)",
-        "url": "https://www.infobae.com/economia/2026/09/24/la-actividad-economica-registro-una-caida-de-29-en-julio/"
-      },
-      {
-        "short": "El Argentino Diario",
-        "name": "El Argentino Diario, « Riesgo país en máximos y reservas en duda » (6 octobre 2026)",
-        "url": "https://elargentinodiario.com.ar/politica/gremiales/06/10/2026/riesgo-pais-en-maximos-y-reservas-en-duda-la-bazuca-de-caputo/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-04-vietnam-croissance",
-    "date": "2026-10-04",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Vietnam : près de 10 % de croissance au 3e trimestre, du jamais-vu depuis quatre ans",
-    "summary": "L'économie vietnamienne a progressé de 9,95 % sur un an entre juillet et septembre, portée par l'industrie, les exportations et les investissements étrangers. Hanoï vise au moins 10 % sur l'année.",
-    "geo": [
-      {
-        "name": "Hanoï, Vietnam",
-        "label": "Vietnam",
-        "coords": [
-          105.85,
-          21.03
-        ]
-      }
-    ],
-    "points": [
-      "Le PIB du Vietnam a augmenté de 9,95 % sur un an au troisième trimestre, au-dessus de la prévision médiane de 8,65 % des économistes interrogés par Bloomberg [1][2].",
-      "Sur les neuf premiers mois, la croissance atteint 9,01 %, avec une industrie et une construction en hausse de 12,5 % au troisième trimestre [1][3].",
-      "Les exportations de biens ont bondi de 24,5 % sur neuf mois, à 434,3 milliards de dollars, et les investissements étrangers enregistrés ont atteint 50,36 milliards de dollars (+76,4 %) [4]."
-    ],
-    "why": [
-      "Le Vietnam profite du déplacement des usines hors de Chine : les investissements étrangers effectivement versés (21,07 milliards de dollars) sont au plus haut depuis cinq ans [4]. Pour atteindre l'objectif officiel d'au moins 10 % sur 2026, la croissance devra dépasser 10 % au quatrième trimestre [2].",
-      "Ce succès a un revers : l'excédent commercial avec les États-Unis, premier marché du Vietnam, a grimpé de 23,8 % à 122,6 milliards de dollars, ce qui pourrait raviver les tensions alors que Washington mène des enquêtes commerciales (dites « Section 301 ») susceptibles de déboucher sur des sanctions douanières [5]."
-    ],
-    "forMe": "Regarde les étiquettes de tes vêtements, chaussures ou de ton téléphone : « Made in Vietnam » y est de plus en plus fréquent. La santé de l'économie vietnamienne et ses relations commerciales avec les États-Unis influencent donc les prix et la disponibilité de nombreux produits du quotidien en France.",
-    "figures": [
-      {
-        "value": "+9,95 %",
-        "label": "croissance du PIB au 3e trimestre 2026",
-        "src": 1
-      },
-      {
-        "value": "434,3 Md$",
-        "label": "exportations sur neuf mois (+24,5 %)",
-        "src": 4
-      },
-      {
-        "value": "122,6 Md$",
-        "label": "excédent commercial avec les États-Unis",
-        "src": 5
-      }
-    ],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "VietnamPlus",
-        "name": "VietnamPlus, « Vietnam posts GDP growth of 9.95% in Q3 » (octobre 2026)",
-        "url": "https://en.vietnamplus.vn/vietnam-posts-gdp-growth-of-995-in-q3-post353039.vnp"
-      },
-      {
-        "short": "Nation Thailand",
-        "name": "The Nation Thailand, « Vietnam GDP growth hits 9.95% in Q3 2026 beating forecasts » (octobre 2026)",
-        "url": "https://www.nationthailand.com/news/asean/40071822"
-      },
-      {
-        "short": "VnExpress",
-        "name": "VnExpress International, « GDP expands 9.95% in Q3 » (octobre 2026)",
-        "url": "https://e.vnexpress.net/news/business/economy/gdp-expands-9-95-in-q3-5127935.html"
-      },
-      {
-        "short": "Fibre2Fashion",
-        "name": "Fibre2Fashion, « Vietnam's GDP grows 9.95% in Q3 as goods trade rises » (octobre 2026)",
-        "url": "https://www.fibre2fashion.com/news/economics/vietnam-s-gdp-grows-9-95-in-q3-as-goods-trade-rises-313941-newsdetails.htm"
-      },
-      {
-        "short": "Briefs",
-        "name": "Briefs, « Vietnam GDP Soars 9.95% in Q3 » (octobre 2026)",
-        "url": "https://www.briefs.co/news/vietnam-gdp-jumps-9-95-in-q3-as-exports-and-investment-roar/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-04-soudan-camions-pam",
-    "date": "2026-10-04",
     "region": "Afrique",
-    "theme": "mix",
-    "title": "Soudan : un chauffeur de l'ONU tué, les convois de nourriture pris pour cible au Kordofan",
-    "summary": "Une frappe aérienne a touché deux camions d'aide alimentaire de l'ONU dans le Kordofan du Sud, tuant un chauffeur. Le même week-end, le Conseil des droits de l'homme de l'ONU a prolongé d'un an son enquête sur la guerre au Soudan.",
+    "title": "Guinée : Simandou, la montagne de fer qui fait trembler l'Australie",
+    "summary": "Le plus grand gisement de fer inexploité du monde exporte enfin vers la Chine. Un tournant pour la Guinée et pour le marché de l'acier.",
     "geo": [
       {
-        "name": "Kadugli, Kordofan du Sud, Soudan",
-        "label": "Kordofan du Sud",
+        "name": "Simandou (Guinée)",
+        "label": "Guinée",
         "coords": [
-          29.72,
-          11.01
+          -8.9,
+          8.6
         ]
       }
     ],
     "points": [
-      "Le 3 octobre, une attaque aérienne a frappé deux camions sous contrat avec le Programme alimentaire mondial (PAM) entre Dilling et Kadugli, tuant un chauffeur ; le PAM n'a pas désigné d'auteur et demande une enquête impartiale [1].",
-      "Selon l'ONU, 17 camions de nourriture ont été détruits et 8 chauffeurs tués dans des attaques contre des convois humanitaires au Soudan en deux ans ; la coordinatrice humanitaire Denise Brown a jugé l'attaque « scandaleuse » [2].",
-      "Le 5 octobre, le Conseil des droits de l'homme de l'ONU a prolongé d'un an sa mission d'enquête sur le Soudan, par 28 voix pour, 10 contre et 9 abstentions [3][4]."
+      "La première cargaison de minerai de Simandou est partie début décembre 2025 [3].",
+      "En mai 2026, les exportations ont atteint environ 2,2 millions de tonnes sur le mois, un record [2].",
+      "Wood Mackenzie prévoit environ 16 millions de tonnes exportées en 2026, pour une capacité finale de 120 millions de tonnes par an [1]."
     ],
     "why": [
-      "Le Kordofan est la région où la guerre entre l'armée soudanaise et les Forces de soutien rapide (FSR, un groupe paramilitaire) fait le plus peser la menace de la faim : la famine y a été confirmée à Kadugli par l'IPC, l'organisme de référence sur l'insécurité alimentaire [5]. Quand les camions sont attaqués, c'est l'unique ligne de ravitaillement de villes assiégées qui est menacée [2].",
-      "Sur le plan diplomatique, le vote à Genève montre un soutien plus large à l'enquête de l'ONU, avec pour la première fois la Gambie, Maurice et le Malawi parmi les pays favorables, selon Human Rights Watch [4]. Le gouvernement soudanais s'y est opposé au nom de sa souveraineté [3]."
+      "Le projet, porté notamment par Rio Tinto et des groupes chinois, a nécessité plus de 600 km de voie ferrée et un nouveau port. Son minerai très riche intéresse la Chine, qui veut moins dépendre du fer australien [1].",
+      "Pour la Guinée, l'un des pays les plus pauvres du monde, c'est une chance historique, à condition que les revenus profitent vraiment à la population."
     ],
-    "forMe": "Et moi, dans tout ça ? Le Soudan vit l'une des pires crises humanitaires du monde, mais on en parle très peu en France. Ce qui s'y joue — la sécurité des convois d'aide, l'enquête de l'ONU sur les crimes de guerre — conditionne aussi les départs de réfugiés vers les pays voisins et, au-delà, vers l'Europe. Suivre ces petites nouvelles, c'est comprendre pourquoi la crise dure.",
+    "forMe": "Le fer sert à faire l'acier de nos voitures, immeubles et ponts. Une nouvelle source géante peut faire baisser son prix mondial et changer les rapports de force entre la Chine et l'Australie.",
     "figures": [
       {
-        "value": "17",
-        "label": "camions de nourriture détruits en deux ans",
-        "src": 2
-      },
-      {
-        "value": "8",
-        "label": "chauffeurs tués en deux ans dans des attaques de convois",
-        "src": 2
-      },
-      {
-        "value": "28-10-9",
-        "label": "vote pour / contre / abstentions à Genève",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "PAM",
-        "name": "Programme alimentaire mondial, Sudan : WFP Strongly Condemns Attack on Trucks in South Kordofan, Killing One Driver, via allAfrica (4 octobre 2026)",
-        "url": "https://allafrica.com/stories/202610040063.html"
-      },
-      {
-        "short": "ONU Info",
-        "name": "ONU Info, Sudan : Driver killed in aerial attack on aid trucks in South Kordofan (octobre 2026)",
-        "url": "https://news.un.org/en/story/2026/10/1168519"
-      },
-      {
-        "short": "QNA",
-        "name": "Qatar News Agency, Human Rights Council Condemns Sudan Conflict, Extends Fact-Finding Mission (6 octobre 2026)",
-        "url": "https://qna.org.qa/en/News-Area/News/2026-10/6/human-rights-council-condemns-sudan-conflict-extends-fact-finding-mission"
-      },
-      {
-        "short": "HRW",
-        "name": "Human Rights Watch, Countries Demonstrate Record Support for UN Sudan Probe Renewal (7 octobre 2026)",
-        "url": "https://www.hrw.org/news/2026/10/07/countries-demonstrate-record-support-for-un-sudan-probe-renewal"
-      },
-      {
-        "short": "FAO",
-        "name": "FAO, Famine conditions confirmed in Sudan's El Fasher and Kadugli",
-        "url": "https://www.fao.org/newsroom/detail/famine-conditions-confirmed-in-sudan-fasher-and-kadugli-as-hunger-and-malnutrition-ease-where-conflict-subsides/en"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-04-sri-lanka-fmi",
-    "date": "2026-10-04",
-    "region": "Asie",
-    "theme": "eco",
-    "title": "Sri Lanka : accord avec le FMI pour un nouveau versement de 345 millions de dollars",
-    "summary": "Trois ans après sa faillite, le Sri Lanka a obtenu un accord technique avec le FMI sur la septième revue de son programme d'aide, à condition de présenter un budget 2027 conforme.",
-    "geo": [
-      {
-        "name": "Colombo, Sri Lanka",
-        "label": "Sri Lanka",
-        "coords": [
-          79.86,
-          6.93
-        ]
-      }
-    ],
-    "points": [
-      "Le FMI a annoncé le 4 octobre 2026 un accord au niveau des services sur la septième revue du programme d'aide au Sri Lanka [1].",
-      "Une fois validé par le conseil d'administration du FMI, il débloquera environ 345 millions de dollars, portant l'aide totale versée à environ 2,7 milliards de dollars [1].",
-      "L'activité a progressé de 4,2 % au deuxième trimestre 2026, onzième trimestre consécutif de croissance solide, et l'inflation était de 8 % sur un an en septembre [1].",
-      "Les cinquième et sixième revues avaient été approuvées ensemble le 27 mai 2026, après un report lié au cyclone Ditwah [2]."
-    ],
-    "why": [
-      "Le FMI prête par tranches, chacune conditionnée à des réformes vérifiées lors de « revues ». Pour ce versement, Colombo doit présenter au Parlement un budget 2027 conforme au programme, et ses partenaires doivent confirmer les financements et les progrès de la restructuration de la dette [1].",
-      "Le FMI juge l'économie résiliente, mais cite comme risque l'incertitude sur l'intensité et la durée de la guerre au Moyen-Orient [1], qui renchérit l'énergie importée par l'île."
-    ],
-    "forMe": "Et moi, dans tout ça ? Le Sri Lanka est une destination touristique prisée des Français et un fournisseur de thé et de textile. Son redressement montre aussi comment fonctionne le FMI, dont la France est l'un des principaux actionnaires.",
-    "figures": [
-      {
-        "value": "345 M$",
-        "label": "Tranche débloquée après validation du FMI",
+        "value": "120 Mt",
+        "label": "de capacité annuelle visée",
         "src": 1
       },
       {
-        "value": "+4,2 %",
-        "label": "Croissance au 2e trimestre 2026",
-        "src": 1
-      },
-      {
-        "value": "8 %",
-        "label": "Inflation sur un an en septembre",
+        "value": "≈ 16 Mt",
+        "label": "d'exportations prévues en 2026",
         "src": 1
       }
     ],
+    "culture": [],
     "dossiers": [
-      "inflation-taux"
+      "routes-maritimes"
     ],
     "sources": [
       {
-        "short": "FMI",
-        "name": "IMF Reaches Staff-Level Agreement on the Seventh Review under the EFF with Sri Lanka (4 octobre 2026)",
-        "url": "https://www.imf.org/en/news/articles/2026/10/04/pr26318-sri-lanka-imf-reaches-sla-on-7th-review-under-the-eff"
+        "short": "Wood Mackenzie",
+        "name": "Wood Mackenzie, « Simandou iron ore 2026 »",
+        "url": "https://www.woodmac.com/press-releases/simandou-iron-ore-2026/"
       },
       {
-        "short": "Business News",
-        "name": "IMF Reaches 07th Review Agreement as Sri Lanka Moves Into Next Growth Phase (5 octobre 2026)",
-        "url": "https://businessnews.lk/2026/10/05/sri-lanka-imf-seventh-review-agreement/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-03-equateur-coupures-industrie",
-    "date": "2026-10-03",
-    "region": "Amériques",
-    "theme": "eco",
-    "title": "Équateur : plus de 9 000 entreprises privées d'électricité 48 heures d'affilée",
-    "summary": "Pour éviter que ses barrages hydroélectriques ne se vident pendant la saison sèche, l'Équateur impose des coupures de courant de 48 heures aux entreprises. Les PME du froid et de l'alimentaire souffrent.",
-    "geo": [
-      {
-        "name": "Quito, Équateur",
-        "label": "Équateur",
-        "coords": [
-          -78.47,
-          -0.18
-        ]
-      }
-    ],
-    "points": [
-      "Plus de 9 000 entreprises équatoriennes subissent des coupures d'électricité de 48 heures pendant deux semaines [1].",
-      "La mesure vise à préserver le niveau d'eau des réservoirs qui alimentent les centrales hydroélectriques, dans un contexte lié au phénomène El Niño [1].",
-      "Le dispositif a démarré le 22 septembre avec des coupures de 24 heures, avant d'être porté à 48 heures en octobre [2]."
-    ],
-    "why": [
-      "L'Équateur produit l'essentiel de son électricité grâce à l'eau des barrages : quand la pluie manque, le pays doit choisir entre couper les ménages ou l'industrie. Le gouvernement a choisi de faire porter l'effort sur les entreprises [1].",
-      "Les plus touchées sont les petites et moyennes industries qui doivent garder leurs produits au froid, comme les laiteries ou les fabricants de glaces et de charcuterie, car elles n'ont pas de groupes électrogènes capables de remplacer tout le réseau [2]. La demande d'électricité a baissé d'environ 300 mégawatts, mais le grand réservoir de Mazar reste sous pression [3]."
-    ],
-    "forMe": "Des usines et chambres froides à l'arrêt peuvent perturber des produits exportés jusqu'en Europe. Cette crise rappelle surtout que le changement climatique fragilise aussi la production d'énergie « propre » comme l'hydroélectricité.",
-    "figures": [
-      {
-        "value": "9 000+",
-        "label": "entreprises concernées par les coupures",
-        "src": 1
+        "short": "Miningmx",
+        "name": "Miningmx, « Simandou iron ore exports surge in ramp-up milestone »",
+        "url": "https://www.miningmx.com/news/ferrous-metals/65528-simandou-iron-ore-exports-surge-in-ramp-up-milestone/"
       },
       {
-        "value": "48 h",
-        "label": "durée de chaque coupure",
-        "src": 1
-      },
-      {
-        "value": "300 MW",
-        "label": "baisse de la demande d'électricité",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Infobae / EFE",
-        "name": "Infobae (EFE), « Más de 9.000 empresas en Ecuador tendrán cortes de energía de 48 horas durante dos semanas » (3 octobre 2026)",
-        "url": "https://www.infobae.com/america/agencias/2026/10/03/mas-de-9000-empresas-en-ecuador-tendran-cortes-de-energia-de-48-horas-durante-dos-semanas/"
-      },
-      {
-        "short": "El Comercio",
-        "name": "El Comercio, « Ecuador expande los cortes de electricidad para industrias programados desde octubre » (octobre 2026)",
-        "url": "https://www.elcomercio.com/actualidad/negocios/ecuador-expande-los-cortes-de-electricidad-para-industrias-programados-desde-octubre/"
-      },
-      {
-        "short": "Expreso",
-        "name": "Expreso, « La demanda eléctrica de Ecuador bajó 300 MW, pero Mazar sigue bajo presión » (octobre 2026)",
-        "url": "https://www.expreso.ec/economia-y-negocios/demanda-electrica-ecuador-300-mw-mazar-sigue-presion-298280.html"
+        "short": "S&P Global",
+        "name": "S&P Global, première cargaison de Simandou arrivée en Chine (janv. 2026)",
+        "url": "https://www.spglobal.com/energy/en/news-research/latest-news/metals/011926-simandous-first-shipment-with-200000-mt-high-grade-iron-ore-arrives-in-china"
       }
     ]
   }

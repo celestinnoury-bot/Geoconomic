@@ -2,6 +2,36 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-22",
+    "file": "lettres/2026-10-22.pdf",
+    "titles": [
+      "Les États-Unis font partir leurs diplomates non essentiels d'Arabie saoudite, sous les frappes des Houthis",
+      "Le Qatar propose au Liban deux centrales électriques et vingt ans de gaz pour sortir de ses coupures de courant",
+      "Le Ghana veut cesser d'exporter ses minerais bruts d'ici 2030 : bauxite, manganèse, fer et lithium"
+    ],
+    "fileDark": "lettres/2026-10-22-sombre.pdf"
+  },
+  {
+    "date": "2026-10-21",
+    "file": "lettres/2026-10-21.pdf",
+    "titles": [
+      "Samarcande : Washington part chercher les minerais d'Asie centrale, là où la Chine est déjà installée",
+      "Pétrole russe : Washington suspend sa menace de droits de douane jusqu'à 100 % et envoie Rubio voir la plus grande raffinerie indienne",
+      "Bangladesh : la croissance pourrait tomber à son plus bas niveau en près de quarante ans"
+    ],
+    "fileDark": "lettres/2026-10-21-sombre.pdf"
+  },
+  {
+    "date": "2026-10-19",
+    "file": "lettres/2026-10-19.pdf",
+    "titles": [
+      "La Chine accélère grâce à ses exportations, mais ses habitants dépensent toujours peu",
+      "Guyana : le petit pays qui grandit de près de 24 % par an grâce à son pétrole",
+      "Cacao : la Côte d'Ivoire baisse de 57 % le prix payé aux planteurs, le Ghana le relève"
+    ],
+    "fileDark": "lettres/2026-10-19-sombre.pdf"
+  },
+  {
     "date": "2026-10-17",
     "file": "lettres/2026-10-17.pdf",
     "titles": [
@@ -105,9 +135,9 @@ window.GEOCO.lettres = [
     "date": "2026-10-07",
     "file": "lettres/2026-10-07.pdf",
     "titles": [
-      "La France ouvre ses réserves de gazole pour faire baisser les prix à la pompe",
-      "Ormuz : le pétrole repasse, mais la menace iranienne pèse toujours",
-      "Droits de douane : le déficit commercial américain au plus haut depuis 2025"
+      "RDC : le pays du cobalt ferme le robinet pour faire monter les prix",
+      "Indonésie : le pays du nickel serre la vis",
+      "Terres rares : la Chine tient le monde entier, échéance le 10 novembre"
     ],
     "fileDark": "lettres/2026-10-07-sombre.pdf"
   }
