@@ -70,10 +70,11 @@
     }
   }
   const BUMP = 0.034;
-  function drawSphere(ctx2, img, lon0, cloudLon) {
+  // k0..k1 : partie des pixels à calculer (on peut étaler le calcul sur plusieurs images) ; put : afficher.
+  function drawSphere(ctx2, img, lon0, cloudLon, k0 = 0, k1 = S * S, put = true) {
     if (!table) buildTable();
     const out = img.data, T = table;
-    for (let k = 0; k < S * S; k++) {
+    for (let k = k0; k < k1; k++) {
       const a = T.alpha[k], o = k * 4;
       if (!a) { out[o + 3] = 0; continue; }
       const u = ((((T.dl[k] + lon0) / (2 * Math.PI) + 0.5) % 1 + 1) % 1 * (TW - 1)) | 0;
@@ -103,7 +104,7 @@
       out[o] = Math.min(255, r + 70 * rim); out[o + 1] = Math.min(255, g + 140 * rim); out[o + 2] = Math.min(255, b + 255 * rim);
       out[o + 3] = 255 * a;
     }
-    ctx2.putImageData(img, 0, 0);
+    if (put) ctx2.putImageData(img, 0, 0);
   }
 
   // Sons fabriqués avec Web Audio : deux coups graves (« ta-doum ») et des crépitements pour le feu d'artifice.
@@ -197,8 +198,9 @@
     document.documentElement.classList.add("intro-lock");
     const cv = root.querySelector("canvas"), ctx = cv.getContext("2d");
     const sph = document.createElement("canvas"); sph.width = sph.height = S;
-    const sctx = sph.getContext("2d"), simg = sctx.createImageData(S, S);
-    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    const sctx = sph.getContext("2d"), simg = sctx.createImageData(S, S), wimg = sctx.createImageData(S, S);
+    // 1,5 au plus : presque aussi net sur téléphone, et bien moins de pixels à remplir (plus fluide).
+    const dpr = Math.min(1.5, window.devicePixelRatio || 1);
     let W = 0, H = 0;
     const size = () => { W = innerWidth; H = innerHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); };
     size(); addEventListener("resize", size);
@@ -207,7 +209,7 @@
     // Calendrier : 1 s de noir complet, puis le noir fond depuis le centre (MELT) pendant qu'on file dans
     // l'hyperespace ; à XT on en sort net (façon Star Wars) devant la Terre, qui finit de s'approcher à SETTLE ;
     // la planète derrière se fissure puis explose à EX, lentement.
-    const DELAY = reduce ? 0 : 1000, MELT = 1500, XT = 1700, SETTLE = 3000, EX = 3900;
+    const DELAY = reduce ? 0 : 1000, MELT = 1500, XT = 1700, SETTLE = 4300, EX = 5200;
     if (audio) {
       audio.hyper(DELAY / 1000, XT / 1000);
       audio.hit((DELAY + 120) / 1000, 95, 48, 0.55, 0.7);
@@ -217,8 +219,8 @@
 
     const stars = Array.from({ length: 220 }, () => ({ a: Math.random() * Math.PI * 2, d: Math.random(), s: Math.random() * 1.4 + 0.3 }));
     const rockets = [], sparks = [], bolts = [], storms = [];
-    let curR = 0, nextStrike = 0, nextStorm = 0, flash = 0, exitFlash = false;
-    const strikes = [[XT + 60, 2], [EX + 150, 3]];
+    let prog = null, curR = 0, nextStrike = 0, nextStorm = 0, flash = 0, exitFlash = false;
+    const strikes = [[SETTLE - 100, 2], [EX + 150, 3]];
     let nextBurst = EX + 1400, t0 = performance.now(), raf = 0, closing = false, cardShown = false;
     const ease = (x) => 1 - Math.pow(1 - Math.min(1, Math.max(0, x)), 3);
 
@@ -356,14 +358,14 @@
       }
       pctx.putImageData(pimg, 0, 0);
     }
-    let lastBlast = 0;
+    let lastBlast = 0, pframe = 0;
     function drawPlanet(t, cx, cy, Re) {
       if (!ptex) buildPlanet();
       const pr = Re * 0.42, px = cx + Re * 0.86, py = cy - Re * 0.82, lon0 = 1 + t * 0.00012;
       if (t < EX) {
         const pre = Math.max(0, (t - (EX - PRE)) / PRE), sh = pre * pre * 4;
         const jx = (Math.random() - 0.5) * sh, jy = (Math.random() - 0.5) * sh;
-        renderPlanet(lon0, Math.min(1, pre * 1.3) * (0.85 + Math.random() * 0.15 * pre));
+        if (!(pframe++ & 1)) renderPlanet(lon0, Math.min(1, pre * 1.3) * (0.85 + Math.random() * 0.15 * pre));
         ctx.globalCompositeOperation = "source-over";
         ctx.drawImage(pcv, px - pr + jx, py - pr + jy, pr * 2, pr * 2);
         if (pre > 0.25) {
@@ -381,21 +383,33 @@
         // Photo de la planète au moment où elle cède (lave à fond) : chaque bloc en garde un morceau.
         renderPlanet(lon0, 1);
         snap = document.createElement("canvas"); snap.width = snap.height = PS; snap.getContext("2d").drawImage(pcv, 0, 0);
-        const n = 9, cuts = Array.from({ length: n }, (_, i) => (i / n) * Math.PI * 2 + (Math.random() - 0.5) * 0.4);
-        const core = [(Math.random() - 0.5) * 0.2, (Math.random() - 0.5) * 0.2];
-        const crack = (a) => { const pts = []; for (let q = 1; q <= 5; q++) { const r = q / 6, w = (Math.random() - 0.5) * 0.2; pts.push([core[0] * (1 - r) + Math.cos(a + w) * r, core[1] * (1 - r) + Math.sin(a + w) * r]); } return pts; };
-        const edges = cuts.map(crack);
-        chunks = cuts.map((a0, i) => {
-          const a1 = cuts[(i + 1) % n] + (i === n - 1 ? Math.PI * 2 : 0), mid = (a0 + a1) / 2;
-          const shape = [core, ...edges[i]];
-          for (let s2 = 0; s2 <= 8; s2++) { const a = a0 + (a1 - a0) * (s2 / 8); shape.push([Math.cos(a), Math.sin(a)]); }
-          shape.push(...edges[(i + 1) % n].slice().reverse());
+        const n = 18, cuts = Array.from({ length: n }, (_, i) => (i / n) * Math.PI * 2 + (Math.random() - 0.5) * 0.22);
+        const core = [(Math.random() - 0.5) * 0.15, (Math.random() - 0.5) * 0.15];
+        // Fractures rayonnantes (du cœur au bord) et, sur chacune, le point où passe la fracture circulaire.
+        const crack = (a) => { const pts = [core]; for (let q = 1; q <= 6; q++) { const r = q / 7, w = (Math.random() - 0.5) * 0.16; pts.push([core[0] * (1 - r) + Math.cos(a + w) * r, core[1] * (1 - r) + Math.sin(a + w) * r]); } pts.push([Math.cos(a), Math.sin(a)]); return pts; };
+        const edges = cuts.map(crack), RING = 3; // fracture circulaire à ~3/7 du rayon
+        const ringLine = (p, q2) => { const m = [(p[0] + q2[0]) / 2 * (0.93 + Math.random() * 0.14), (p[1] + q2[1]) / 2 * (0.93 + Math.random() * 0.14)]; return [m]; };
+        const piece = (shape, glow, mid, inner) => {
           const gx = shape.reduce((t2, p2) => t2 + p2[0], 0) / shape.length, gy = shape.reduce((t2, p2) => t2 + p2[1], 0) / shape.length;
-          const cracks2 = [[core, ...edges[i]], [core, ...edges[(i + 1) % n]]];
-          return { shape, cracks2, gx, gy, mid, v: 0.22 + Math.random() * 0.3, vr: (Math.random() - 0.5) * 0.32, sc: 0.012 + Math.random() * 0.02 };
+          return { shape, glow, gx, gy, mid, inner,
+            v: inner ? 0.1 + Math.random() * 0.22 : 0.3 + Math.random() * 0.45, vr: (Math.random() - 0.5) * (inner ? 0.5 : 0.35),
+            tumble: 0.3 + Math.random() * 0.9, ph: Math.random() * 6.3, zoom: (Math.random() - 0.4) * 0.09 };
+        };
+        chunks = [];
+        cuts.forEach((a0, i) => {
+          const j = (i + 1) % n, a1 = cuts[j] + (i === n - 1 ? Math.PI * 2 : 0), mid = (a0 + a1) / 2;
+          const eA = edges[i], eB = edges[j], ring = ringLine(eA[RING], eB[RING]);
+          const arc = []; for (let s2 = 1; s2 < 7; s2++) { const a = a0 + (a1 - a0) * (s2 / 7); arc.push([Math.cos(a), Math.sin(a)]); }
+          // Croûte : de la fracture circulaire jusqu'au bord (garde la vraie surface).
+          const outer = [...eA.slice(RING), ...arc, ...eB.slice(RING).reverse(), ...ring.slice().reverse()];
+          const outerGlow = [eA.slice(RING), eB.slice(RING), [eB[RING], ...ring, eA[RING]]];
+          chunks.push(piece(outer, outerGlow, mid, false));
+          // Manteau : du cœur à la fracture circulaire (roche en fusion).
+          const inner = [...eA.slice(0, RING + 1), ...ring.slice().reverse(), ...eB.slice(0, RING + 1).reverse()];
+          chunks.push(piece(inner, [inner.concat([inner[0]])], mid + (Math.random() - 0.5) * 0.4, true));
         });
-        motes = Array.from({ length: 320 }, () => { const a = Math.random() * Math.PI * 2; return { a, v: 0.4 + Math.pow(Math.random(), 2) * 3.4, r0: Math.random() * 0.6, s: 0.5 + Math.random() * 1.8, life: 2.5 + Math.random() * 4.5, hot: Math.random() < 0.7, tilt: 0.7 + Math.random() * 0.3 }; });
-        puffs = Array.from({ length: 16 }, (_, i) => ({ a: Math.random() * Math.PI * 2, d: Math.random() * 0.7, g: 1.4 + Math.random() * 1.6, s: 0.7 + Math.random() * 0.6, rot: Math.random() * 6.3, vr: (Math.random() - 0.5) * 0.25, kind: i % 3 }));
+        motes = Array.from({ length: 240 }, () => { const a = Math.random() * Math.PI * 2; return { a, v: 0.4 + Math.pow(Math.random(), 2) * 3.4, r0: Math.random() * 0.6, s: 0.5 + Math.random() * 1.8, life: 2.5 + Math.random() * 4.5, hot: Math.random() < 0.7, tilt: 0.7 + Math.random() * 0.3 }; });
+        puffs = Array.from({ length: 11 }, (_, i) => ({ a: Math.random() * Math.PI * 2, d: Math.random() * 0.7, g: 1.4 + Math.random() * 1.6, s: 0.7 + Math.random() * 0.6, rot: Math.random() * 6.3, vr: (Math.random() - 0.5) * 0.25, kind: i % 3 }));
         flash = Math.max(flash, 0.3);
       }
       const heat = Math.max(0, 1 - k / 2.4), smoke = Math.max(0, 1 - k / 7.5);
@@ -431,29 +445,47 @@
         ctx.lineWidth = 1; ctx.strokeStyle = `rgba(150,190,255,${al * 0.4})`;
         ctx.beginPath(); ctx.ellipse(px, py, rx * 1.1, rx * 0.22, -0.42, 0, Math.PI * 2); ctx.stroke();
       }
-      // 5) Blocs de croûte : la vraie surface de la planète, la face cassée qui rougeoie puis refroidit.
-      const cool = Math.max(0, 1 - k / 2.8), fade = Math.max(0, 1 - Math.max(0, k - 4) / 3);
+      // 5) 36 blocs : croûte (vraie surface de la planète) et manteau en fusion. Chacun s'écarte, tourne et
+      //    bascule (il s'aplatit quand il se présente de profil, et s'assombrit), certains viennent vers nous.
+      const cool = Math.max(0, 1 - k / 3), fade = Math.max(0, 1 - Math.max(0, k - 4.5) / 3);
       for (const c of chunks) {
         if (!fade) break;
         const dist = pr * drift(c.v, k, 0.3), ox = px + c.gx * pr + Math.cos(c.mid) * dist, oy = py + c.gy * pr + Math.sin(c.mid) * dist;
-        const sc = Math.max(0.6, 1 - c.sc * k * 4);
-        ctx.save(); ctx.translate(ox, oy); ctx.rotate(c.vr * k); ctx.scale(sc, sc); ctx.globalAlpha = fade;
-        ctx.beginPath(); c.shape.forEach(([x, y], m) => { const X = (x - c.gx) * pr, Y = (y - c.gy) * pr; m ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }); ctx.closePath();
-        ctx.save(); ctx.clip();
+        const sc = Math.max(0.5, 1 + c.zoom * k), flip = Math.cos(c.ph + c.tumble * k), squash = 0.25 + 0.75 * Math.abs(flip);
+        ctx.save(); ctx.translate(ox, oy); ctx.rotate(c.vr * k); ctx.scale(sc, sc * squash); ctx.globalAlpha = fade;
+        // Contour et cassures tracés une fois pour toutes (Path2D), réutilisés à chaque image.
+        if (!c.path) {
+          const mk = (pts, close) => { const P = new Path2D(); pts.forEach(([x, y], m) => (m ? P.lineTo((x - c.gx) * pr, (y - c.gy) * pr) : P.moveTo((x - c.gx) * pr, (y - c.gy) * pr))); if (close) P.closePath(); return P; };
+          c.path = mk(c.shape, true); c.glowPath = new Path2D(); c.glow.forEach((g) => c.glowPath.addPath(mk(g, false)));
+        }
+        ctx.save(); ctx.clip(c.path);
         ctx.globalCompositeOperation = "source-over";
-        ctx.drawImage(snap, -c.gx * pr - pr, -c.gy * pr - pr, pr * 2, pr * 2);
-        // La lave du bloc s'assombrit en refroidissant, et la face tournée vers l'explosion reste éclairée.
-        ctx.fillStyle = `rgba(20,6,4,${0.3 * (1 - cool)})`; ctx.fill();
-        const inner = ctx.createLinearGradient(-c.gx * pr, -c.gy * pr, -c.gx * pr + Math.cos(c.mid) * pr, -c.gy * pr + Math.sin(c.mid) * pr);
-        inner.addColorStop(0, `rgba(255,170,80,${0.7 * cool})`); inner.addColorStop(0.5, `rgba(255,90,30,${0.2 * cool})`); inner.addColorStop(1, "rgba(0,0,0,0)");
-        ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = inner; ctx.fill();
+        if (!c.inner) {
+          ctx.drawImage(snap, -c.gx * pr - pr, -c.gy * pr - pr, pr * 2, pr * 2);
+          ctx.fillStyle = `rgba(14,4,3,${0.25 * (1 - cool) + 0.55 * (1 - squash)})`; ctx.fill(c.path);
+        } else {
+          // Roche en fusion : sombre, veinée d'orange qui s'éteint.
+          const mg = ctx.createRadialGradient(-c.gx * pr, -c.gy * pr, 0, -c.gx * pr, -c.gy * pr, pr * 0.6);
+          mg.addColorStop(0, `rgb(${60 + 190 * cool},${20 + 110 * cool},${10 + 30 * cool})`); mg.addColorStop(1, `rgb(${40 + 120 * cool},${14 + 40 * cool},8)`);
+          ctx.fillStyle = mg; ctx.fill(c.path);
+          if (cool > 0.05) {
+            ctx.globalCompositeOperation = "lighter"; ctx.globalAlpha = fade * 0.55 * cool;
+            ctx.drawImage(sprites[1], -c.gx * pr - pr * 0.6, -c.gy * pr - pr * 0.6, pr * 1.2, pr * 1.2);
+            ctx.globalAlpha = fade; ctx.globalCompositeOperation = "source-over";
+          }
+          ctx.fillStyle = `rgba(10,3,2,${0.5 * (1 - squash)})`; ctx.fill(c.path);
+        }
+        if (cool > 0.02) {
+          const inner = ctx.createLinearGradient(-c.gx * pr, -c.gy * pr, -c.gx * pr + Math.cos(c.mid) * pr, -c.gy * pr + Math.sin(c.mid) * pr);
+          inner.addColorStop(0, `rgba(255,170,80,${0.6 * cool})`); inner.addColorStop(0.5, `rgba(255,90,30,${0.18 * cool})`); inner.addColorStop(1, "rgba(0,0,0,0)");
+          ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = inner; ctx.fill(c.path);
+        }
         ctx.restore();
-        ctx.globalCompositeOperation = "lighter";
-        // Seules les cassures rougeoient (pas le bord extérieur, qui reste la surface de la planète).
-        ctx.lineJoin = "round"; ctx.lineCap = "round";
-        for (const [w, a2] of [[(4 + 5 * cool) / sc, 0.25], [(1 + 1.6 * cool) / sc, 1]]) {
-          ctx.lineWidth = w; ctx.strokeStyle = `rgba(255,${110 + 110 * cool},50,${(0.04 + 0.85 * cool) * a2})`;
-          for (const cr of c.cracks2) { ctx.beginPath(); cr.forEach(([x, y], m) => { const X = (x - c.gx) * pr, Y = (y - c.gy) * pr; m ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y); }); ctx.stroke(); }
+        // Seules les cassures rougeoient.
+        ctx.lineJoin = "round"; ctx.lineCap = "round"; ctx.globalCompositeOperation = "lighter";
+        for (const [w, a2] of cool > 0.3 ? [[(3.5 + 4 * cool) / sc, 0.22], [(0.9 + 1.4 * cool) / sc, 1]] : [[(0.9 + 1.4 * cool) / sc, 1]]) {
+          ctx.lineWidth = w; ctx.strokeStyle = `rgba(255,${110 + 110 * cool},50,${(0.03 + 0.85 * cool) * a2})`;
+          ctx.stroke(c.glowPath);
         }
         ctx.restore();
       }
@@ -465,7 +497,7 @@
         if (!life) continue;
         const d = pr * (m.r0 + drift(m.v, k, 0.4)), x = px + Math.cos(m.a) * d, y = py + Math.sin(m.a) * d * m.tilt;
         ctx.fillStyle = m.hot ? `rgba(255,${130 + 90 * life},${60 + 60 * life},${life})` : `rgba(170,140,190,${life * 0.45})`;
-        ctx.beginPath(); ctx.arc(x, y, m.s * (m.hot ? 0.6 + 0.4 * life : 1), 0, Math.PI * 2); ctx.fill();
+        const ms = m.s * (m.hot ? 0.6 + 0.4 * life : 1) * 1.6; ctx.fillRect(x - ms / 2, y - ms / 2, ms, ms);
       }
       ctx.globalCompositeOperation = "source-over";
     }
@@ -502,10 +534,12 @@
       ctx.lineCap = "round";
       const diag = Math.hypot(W, H);
       for (const s of stars) {
-        s.d += inHyper ? 0.006 + 0.03 * hyperK * s.d : 0.00025;
+        // Pendant le zoom vers la Terre, les étoiles s'écartent un peu (on avance), avec de courtes traînées.
+        const zs = reduce || t < XT ? 0 : (() => { const uu = Math.min(1, (t - XT) / (SETTLE - XT)); return uu >= 1 ? 0 : (uu < 0.5 ? 12 * uu * uu : 3 * Math.pow(-2 * uu + 2, 2)) / 3; })();
+        s.d += inHyper ? 0.006 + 0.03 * hyperK * s.d : 0.00025 + zs * 0.006 * s.d;
         if (s.d > 1) s.d -= 1;
         const r = s.d * diag * 0.6, x = cx + Math.cos(s.a) * r, y = cy + Math.sin(s.a) * r;
-        const len = inHyper ? r * (0.15 + 0.75 * hyperK) : r * 0.9 * (1 - snap) * (1 - snap);
+        const len = inHyper ? r * (0.15 + 0.75 * hyperK) : r * 0.9 * (1 - snap) * (1 - snap) + r * 0.12 * zs;
         ctx.strokeStyle = inHyper || snap < 1 ? `rgba(${190 + 60 * s.d},${215 + 35 * s.d},255,${0.35 + s.d * 0.65})` : `rgba(210,225,255,${0.25 + s.d * 0.7})`;
         ctx.lineWidth = s.s * (inHyper ? 1.2 : 1);
         ctx.beginPath(); ctx.moveTo(x, y); ctx.lineTo(x - Math.cos(s.a) * len, y - Math.sin(s.a) * len); ctx.stroke();
@@ -517,9 +551,11 @@
       }
       if (!reduce && t >= XT && !exitFlash) { exitFlash = true; flash = Math.max(flash, 0.3); }
 
-      // Sortie d'hyperespace : la Terre surgit déjà proche, puis freine fort (exponentielle) jusqu'à sa place.
-      const grow = reduce ? 1 : t < XT ? 0 : 1 - Math.pow(2, -10 * Math.min(1, (t - XT) / (SETTLE - XT)));
-      const scale = 0.32 + 0.68 * grow;
+      // Sortie d'hyperespace : la Terre apparaît d'abord au loin (petite bille bleue), on s'en approche
+      // doucement, puis le zoom accélère et ralentit en arrivant (courbe en S) jusqu'à sa place à SETTLE.
+      const u = reduce ? 1 : t < XT ? 0 : Math.min(1, (t - XT) / (SETTLE - XT));
+      const grow = u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2;
+      const scale = 0.05 + 0.95 * grow;
       if (!reduce && grow > 0) drawPlanet(t, cx, cy, Rmax * scale);
       if (grow > 0) {
         const R = curR = Math.max(2, Rmax * scale);
@@ -527,7 +563,17 @@
         glow.addColorStop(0, "rgba(90,169,255,.55)"); glow.addColorStop(1, "rgba(90,169,255,0)");
         ctx.fillStyle = glow; ctx.beginPath(); ctx.arc(cx, cy, R * 1.35, 0, Math.PI * 2); ctx.fill();
         const lon0 = -1.9 + (reduce ? 0 : 1.1 * grow + t * 0.00004);
-        drawSphere(sctx, simg, lon0, lon0 + 0.4 + t * 0.00002);
+        // Économie de calcul (plus d'images par seconde) : pendant le zoom, la Terre est recalculée à chaque
+        // image ; une fois arrivée, elle tourne lentement et son calcul est étalé sur 4 images (dans une image
+        // de travail, affichée quand elle est complète), pour laisser du temps à l'explosion.
+        if (u < 1 || reduce) { drawSphere(sctx, simg, lon0, lon0 + 0.4 + t * 0.00002); prog = null; }
+        else {
+          if (!prog) prog = { k: 0, lon: lon0, cl: lon0 + 0.4 + t * 0.00002 };
+          const step = Math.ceil((S * S) / 4), k1 = Math.min(S * S, prog.k + step);
+          drawSphere(sctx, wimg, prog.lon, prog.cl, prog.k, k1, false);
+          prog.k = k1;
+          if (k1 >= S * S) { sctx.putImageData(wimg, 0, 0); prog = null; }
+        }
         ctx.drawImage(sph, cx - R, cy - R, R * 2, R * 2);
         if (!reduce) blastRim(cx, cy, R);
       }
