@@ -5,6 +5,8 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 ## Où on en est
 
+- **Site public (GitHub Pages, activé le 24 oct. 2026)** : https://celestinnoury-bot.github.io/Geoconomic/ , construit depuis la branche `claude/geoeconomic-news-app-9exkx9`, dossier racine (`.nojekyll`) : chaque push met le site à jour. Le réseau de la session ne peut pas l'ouvrir (github.io refusé) ; vérifier le déploiement avec les runs « pages build and deployment ».
+
 - Branche de travail : `claude/geoeconomic-news-app-9exkx9` (ne jamais pousser ailleurs, pas de pull request sans demande).
 - Aperçu privé publié sur claude.ai : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT
   (`python3 tools/build-preview.py` puis republier `.preview/index.html` avec `root` = `.preview` et les fichiers modifiés dans `files`).
@@ -73,7 +75,7 @@ Contact de l'auteur (donné le 21 oct. 2026) : celestinnoury0@gmail.com, dans `d
 ## En attente de l'auteur
 
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
-- Hébergement public : **GitHub Pages** prévu (dépôt public), adresse https://celestinnoury-bot.github.io/Geoconomic/ une fois activé par l'auteur (Settings → Pages → Deploy from a branch → `claude/geoeconomic-news-app-9exkx9`, dossier `/ (root)`) ; `.nojekyll` à la racine. Ensuite : nom de domaine (ex. geonomix.fr) possible.
+- Nom de domaine (ex. geonomix.fr) à brancher sur le site GitHub Pages, si l'auteur le souhaite.
 - Prestataire de paiement (Stripe en mode test relié à RevenueCat le 24 oct. 2026 ; Paddle évoqué pour la TVA européenne), statut micro-entreprise.
 - CGU (`data/cgu.js`) : compléter les crochets (SIRET, adresse, hébergeur, médiateur de la consommation) et faire relire avant le lancement.
 - Stripe (reporté par l'auteur) : brancher le connecteur Stripe sur claude.ai et/ou autoriser `stripe.com` dans l'accès réseau de l'environnement, puis générer le plan avec `stripe_implementation_planner` (Payments + Billing ; Connect sans doute inutile). En attendant, des Payment Links collés avec `node tools/plus.mjs paiement mensuel|annuel <lien>` suffisent.
