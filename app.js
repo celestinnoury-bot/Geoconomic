@@ -368,6 +368,12 @@
     if (!railDrag || e.pointerId !== railDrag.id) return;
     const dy = e.clientY - railDrag.y;
     if (!railDrag.moved && Math.abs(dy) < 6) return;
+    if (!railDrag.moved) {
+      // Pendant qu'on le tient, le curseur reste fixe à l'écran (comme une vraie barre de défilement) :
+      // sinon il remonte avec la page et part à l'opposé du doigt.
+      const r = railDrag.rail.getBoundingClientRect();
+      Object.assign(railDrag.rail.style, { position: "fixed", top: r.top + "px", left: r.left + "px", width: r.width + "px", height: r.height + "px", right: "auto", bottom: "auto" });
+    }
     railDrag.moved = true;
     railDrag.rail.classList.add("dragging");
     window.scrollTo(0, railDrag.from + dy * railDrag.k);
@@ -376,6 +382,8 @@
     if (!railDrag || e.pointerId !== railDrag.id) return;
     railDragged = railDrag.moved;
     railDrag.rail.classList.remove("dragging");
+    ["position", "top", "left", "width", "height", "right", "bottom"].forEach((k) => (railDrag.rail.style[k] = ""));
+    updateRails();
     railDrag = null;
   };
   document.addEventListener("pointerup", railEnd);
