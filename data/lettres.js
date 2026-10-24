@@ -2,6 +2,26 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-24",
+    "file": "lettres/2026-10-24.pdf",
+    "titles": [
+      "La France emprunte à plus de 5 % pour la première fois depuis 2002",
+      "Quand Ormuz s'est fermé, la Chine a acheté la moitié du pétrole brésilien",
+      "L'Australie offre des drones de mer à Fidji pour surveiller son océan"
+    ],
+    "fileDark": "lettres/2026-10-24-sombre.pdf"
+  },
+  {
+    "date": "2026-10-23",
+    "file": "lettres/2026-10-23.pdf",
+    "titles": [
+      "L'Afrique du Sud rogne sa taxe sur l'essence et le diesel, mais abaisse sa prévision de croissance",
+      "Au Sénégal, une grève générale de trois jours touche jusqu'à l'électricien public",
+      "Qatar, Pakistan, Turquie et Indonésie mettent leurs usines d'armement en commun"
+    ],
+    "fileDark": "lettres/2026-10-23-sombre.pdf"
+  },
+  {
     "date": "2026-10-22",
     "file": "lettres/2026-10-22.pdf",
     "titles": [

@@ -15,6 +15,1181 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-24-france-taux-5-pourcent-premiere-fois-depuis-2002",
+    "date": "2026-10-24",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Paris, France",
+        "label": "France",
+        "coords": [
+          2.35,
+          48.86
+        ]
+      }
+    ],
+    "title": "La France emprunte à plus de 5 % pour la première fois depuis 2002",
+    "summary": "Le taux auquel l'État français emprunte sur dix ans a franchi les 5 %, un niveau qu'on n'avait plus vu depuis vingt-quatre ans. L'écart avec l'Allemagne est le plus large depuis 2011.",
+    "points": [
+      "Le 22 octobre, le taux des obligations françaises à dix ans a dépassé 5 % pour la première fois depuis 2002, au niveau de celui des États-Unis, autour de 5,1 % [1][2].",
+      "L'écart avec l'Allemagne, le meilleur élève de la zone euro, a dépassé 160 points de base, son plus haut depuis novembre 2011 ; le 23 octobre, la France empruntait à environ 5,05 % contre 3,33 % pour l'Allemagne, soit un écart de 1,72 point [1][3].",
+      "Cette tension arrive avant la décision de la Banque centrale européenne : elle a relevé ses taux deux fois cette année, à 2,5 %, et l'inflation de la zone euro a atteint 3,8 % en septembre. Les syndicats appellent à une grande mobilisation le 5 novembre [4]."
+    ],
+    "why": [
+      "La première phrase à retenir : prêter à la France coûte désormais aussi cher que prêter aux États-Unis, ce qui pèse sur le budget de l'État pour des années [1].",
+      "Quand les investisseurs réclament plus d'intérêts pour prêter à un pays, c'est qu'ils craignent pour ses finances ou sa stabilité politique. Les sources citent l'inquiétude sur le budget et sur l'agitation sociale [2][4]. Plus la dette coûte cher, plus l'État doit payer d'intérêts, et moins il lui reste pour les écoles, les hôpitaux ou les routes."
+    ],
+    "forMe": "Les taux de l'État servent de référence aux banques : si la France emprunte plus cher, les crédits immobiliers et ceux des entreprises ont tendance à suivre.",
+    "figures": [
+      {
+        "value": "5 %",
+        "label": "seuil franchi par le taux français à dix ans, une première depuis 2002",
+        "src": 1
+      },
+      {
+        "value": "1,72 point",
+        "label": "écart entre le taux français (5,05 %) et allemand (3,33 %) au 23 octobre",
+        "src": 3
+      },
+      {
+        "value": "3,8 %",
+        "label": "inflation de la zone euro en septembre",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "FXStreet",
+        "name": "FXStreet, « France's 10-year yield moves above 5.10% level » (22 octobre 2026)",
+        "url": "https://www.fxstreet.com/analysis/frances-10-year-yield-moves-above-510-level-202610220948"
+      },
+      {
+        "short": "Yahoo Finance",
+        "name": "Yahoo Finance, « Euro zone bond yields rise as French borrowing costs hit 24-year high » (2026)",
+        "url": "https://finance.yahoo.com/markets/world-indices/articles/french-bonds-lead-euro-zone-092141406.html"
+      },
+      {
+        "short": "Ideal Investisseur",
+        "name": "Ideal Investisseur, « OAT / Bund spread today » (23 octobre 2026)",
+        "url": "https://www.ideal-investisseur.fr/en/markets/oat-bund-spread.html"
+      },
+      {
+        "short": "Euronews",
+        "name": "Euronews, « France's bond drama takes centre stage ahead of ECB rate decision » (23 octobre 2026)",
+        "url": "https://www.euronews.com/2026/10/23/frances-bond-drama-takes-centre-stage-ahead-of-ecb-rate-decision"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-bresil-chine-moitie-petrole-ormuz",
+    "date": "2026-10-24",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Brasília, Brésil",
+        "label": "Brésil",
+        "coords": [
+          -47.93,
+          -15.78
+        ]
+      }
+    ],
+    "title": "Quand Ormuz s'est fermé, la Chine a acheté la moitié du pétrole brésilien",
+    "summary": "Privée d'une partie du pétrole du Golfe par la guerre en Iran, la Chine s'est tournée vers le Brésil : ses achats de brut brésilien ont atteint un record, tout comme les échanges entre les deux pays.",
+    "points": [
+      "D'après les données du Conseil d'affaires Brésil-Chine pour janvier-septembre, la Chine a pris la moitié de tout le brut exporté par le Brésil, près de sept fois la part de l'Inde, deuxième acheteur [1][2].",
+      "Les ventes de pétrole brésilien à la Chine ont bondi de 49 % pour atteindre 21,8 milliards de dollars : 27 % de volume en plus et des prix en hausse de 16,8 % [1].",
+      "Les échanges entre les deux pays ont atteint un record de 143 milliards de dollars en neuf mois (142 selon d'autres médias qui citent les mêmes données). La hausse ralentit depuis que les pétroliers du Golfe naviguent de nouveau [1][2][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : la fermeture d'un détroit au Moyen-Orient a enrichi un pays d'Amérique du Sud, parce que les acheteurs ont cherché du pétrole ailleurs [1].",
+      "L'avenir reste ouvert : si l'Iran attaque de nouveau les navires dans le détroit, la Chine pourrait de nouveau se tourner vers le Brésil [3]. Le pays est aussi en pleine campagne : le second tour de la présidentielle a lieu dimanche 25 octobre [4]."
+    ],
+    "forMe": "Le pétrole que la Chine n'achète plus au Golfe, d'autres le paient plus cher. Les routes du pétrole se redessinent et cela finit par se voir sur le prix du plein.",
+    "figures": [
+      {
+        "value": "50 %",
+        "label": "part du brut brésilien acheté par la Chine (janvier-septembre)",
+        "src": 1
+      },
+      {
+        "value": "21,8 Md$",
+        "label": "ventes de pétrole brésilien à la Chine, en hausse de 49 %",
+        "src": 1
+      },
+      {
+        "value": "143 Md$",
+        "label": "échanges Brésil-Chine en neuf mois, un record",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "SCMP",
+        "name": "South China Morning Post, « China bought half of Brazil's oil exports as Iran war shut Hormuz, driving sales to record » (2026)",
+        "url": "https://scmp.com/news/china/article/3371064/china-bought-half-brazils-oil-exports-iran-war-shut-hormuz-driving-sales-record"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star, « China bought half of Brazil's oil exports as Iran war shut Hormuz, driving sales to record » (23 octobre 2026)",
+        "url": "https://thestar.com.my/aseanplus/aseanplus-news/2026/10/23/china-bought-half-of-brazils-oil-exports-as-iran-war-shut-hormuz-driving-sales-to-record"
+      },
+      {
+        "short": "ChinaPulse",
+        "name": "ChinaPulse, « Brazil Logs Record Oil Sales to China After Strait of Hormuz Crisis » (17 octobre 2026)",
+        "url": "https://www.chinapulse.com/data-news/2026/10/17/brazil-logs-record-oil-sales-to-china-after-strait-of-hormuz-crisis/"
+      },
+      {
+        "short": "Gulf News",
+        "name": "Gulf News, « 'Never again Bolsonaro': thousands march ahead of Brazil election runoff » (2026)",
+        "url": "https://gulfnews.com/world/americas/never-again-bolsonaro-thousands-march-ahead-of-brazil-election-runoff-1.500702397"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-fidji-drones-de-mer-australie",
+    "date": "2026-10-24",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Suva, Fidji",
+        "label": "Fidji",
+        "coords": [
+          178.44,
+          -18.14
+        ]
+      }
+    ],
+    "title": "L'Australie offre des drones de mer à Fidji pour surveiller son océan",
+    "summary": "Canberra va donner à l'armée fidjienne des bateaux sans équipage qui restent des mois en mer. Objectif affiché : traquer les trafics de drogue dans le Pacifique.",
+    "points": [
+      "L'Australie va offrir à l'armée de Fidji des drones de surface « Bluebottle », dans le cadre du partenariat Waqa Moana, un effort mené par le Pacifique contre le crime organisé et le trafic de drogue [1][2].",
+      "Ces navires sans équipage fonctionnent aux énergies renouvelables et peuvent rester plus de 180 jours en mer ; ils doivent arriver à Fidji début 2027 [1][2].",
+      "L'annonce a été répétée à Suva le 23 octobre par le haut-commissaire d'Australie, Peter Roberts, aux côtés du ministre fidjien de la Défense, Pio Tikoduadua [3]. En 2025, la marine néo-zélandaise avait déjà fait patrouiller deux Bluebottle dans les eaux fidjiennes pendant trois mois [4]."
+    ],
+    "why": [
+      "La première phrase à retenir : un petit archipel obtient des yeux sur un océan immense grâce à des bateaux sans équipage, offerts par un voisin [1].",
+      "Les pays du Pacifique ont de très grandes zones maritimes mais peu de moyens pour les surveiller. Les drones offerts par l'Australie renforcent aussi son influence dans une région où les grandes puissances se disputent les alliances [2]."
+    ],
+    "forMe": "Les routes de la drogue et du commerce passent aussi par le Pacifique ; les surveiller coûte cher, et ces drones montrent comment les pays s'y prennent désormais.",
+    "figures": [
+      {
+        "value": "180 jours",
+        "label": "durée possible d'une mission en mer, sans équipage",
+        "src": 1
+      },
+      {
+        "value": "début 2027",
+        "label": "arrivée prévue des drones à Fidji",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Star",
+        "name": "The Star, « Fiji to deploy solar-powered Australian military drones at sea » (16 octobre 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/16/fiji-to-deploy-solar-powered-australian-military-drones-at-sea"
+      },
+      {
+        "short": "PINA",
+        "name": "Pacific Islands News Association, « Australian sea drones to combat Pacific drug crime » (16 octobre 2026)",
+        "url": "https://pina.com.fj/2026/10/16/australian-sea-drones-to-combat-pacific-drug-crime/"
+      },
+      {
+        "short": "Islands Business",
+        "name": "Islands Business, « PACNEWS THREE, 23 OCTOBER 2026 »",
+        "url": "https://islandsbusiness.com/pacnews/pacnews-three-23-october-2026/"
+      },
+      {
+        "short": "NZDF",
+        "name": "Force de défense néo-zélandaise, « Navy trio work alongside Fiji in piloting uncrewed vessels »",
+        "url": "https://www.nzdf.mil.nz/navy/navy-news/navy-trio-work-alongside-fiji-in-piloting-uncrewed-vessels/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-jordanie-fusillade-eglise-karak",
+    "date": "2026-10-24",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Karak, Jordanie",
+        "label": "Jordanie",
+        "coords": [
+          35.7,
+          31.18
+        ]
+      }
+    ],
+    "title": "Jordanie : des hommes armés ouvrent le feu dans une église du sud, au moins sept morts",
+    "summary": "Une fusillade a frappé une église du gouvernorat de Karak pendant des funérailles. Le bilan est d'au moins sept morts et 34 blessés.",
+    "points": [
+      "Le 23 octobre, des hommes armés ont ouvert le feu dans une église du gouvernorat de Karak, dans le sud de la Jordanie, pendant des funérailles : au moins sept personnes sont mortes et 34 ont été blessées [1].",
+      "L'Arabie saoudite a condamné une attaque « lâche » contre l'église [2].",
+      "Les sources consultées ne disent pas encore qui est derrière l'attaque ni pourquoi [1][2]."
+    ],
+    "why": [
+      "La première phrase à retenir : un pays qui passe pour un îlot de calme dans une région en guerre vient d'être frappé sur son sol [1].",
+      "Pour l'économie jordanienne, la sécurité compte : plus un pays semble sûr, plus les touristes et les investisseurs viennent. Les enquêteurs n'ont pas encore dit qui était responsable, il est donc trop tôt pour mesurer les conséquences [1][2]."
+    ],
+    "forMe": "Si tu prépares un voyage au Moyen-Orient, consulte les conseils aux voyageurs du ministère des Affaires étrangères avant de réserver.",
+    "figures": [
+      {
+        "value": "7 morts",
+        "label": "au moins, selon le dernier bilan connu",
+        "src": 1
+      },
+      {
+        "value": "34",
+        "label": "blessés",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « At least seven killed after gunmen open fire at church in Jordan » (23 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/23/at-least-seven-killed-after-gunmen-open-fire-at-church-in-jordan"
+      },
+      {
+        "short": "Arab News",
+        "name": "Arab News, « Saudi Arabia condemns cowardly Jordan church attack amid international outcry »",
+        "url": "https://arabnews.com/saudi-arabia/saudi-arabia-condemns-cowardly-jordan-church-attack-amid-international-outcry-3007957"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-ukraine-starshield-satellites-propres",
+    "date": "2026-10-24",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Kyiv, Ukraine",
+        "label": "Ukraine",
+        "coords": [
+          30.52,
+          50.45
+        ]
+      }
+    ],
+    "title": "Ukraine : après la coupure de Starshield, Kyiv veut son propre réseau de satellites",
+    "summary": "Depuis la restriction du réseau militaire américain Starshield, l'armée ukrainienne se sait dépendante d'un outil qu'elle ne contrôle pas. Kyiv prépare un système indépendant.",
+    "points": [
+      "Starshield, la version militaire de Starlink, est partagée avec l'Ukraine par le Pentagone depuis 2024, ce qui lui a coûté des milliards de dollars [1][2].",
+      "Mi-octobre, la connexion a été restreinte pour les systèmes qui vont au-dessus d'une certaine vitesse, ce qui a touché les drones et la défense antiaérienne autour de Kyiv. Une source du ministère ukrainien de la Défense dit qu'elle est rétablie, mais Volodymyr Zelensky affirme qu'elle ne l'est pas entièrement [2][3].",
+      "Volodymyr Zelensky accuse Washington, Elon Musk répond que Starshield appartient au gouvernement américain, et Donald Trump nie être intervenu. Des sénateurs demandent une enquête de l'inspecteur général du Pentagone. Le 23 octobre, l'Ukraine a annoncé préparer un système satellitaire indépendant [1][2][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : l'Ukraine a découvert qu'une partie de sa défense dépend d'un réseau dont d'autres tiennent l'interrupteur [3].",
+      "Plus un pays dépend d'une technologie étrangère pour se défendre, plus ses alliés peuvent peser sur lui. C'est ce qui pousse Kyiv à vouloir ses propres satellites, comme d'autres pays cherchent à produire eux-mêmes leurs puces ou leur énergie [1][3]."
+    ],
+    "forMe": "Les satellites guident aussi ton téléphone, tes paiements et les avions. Qui les contrôle a un pouvoir énorme, et l'Europe réfléchit elle aussi à ne plus dépendre d'un seul fournisseur.",
+    "figures": [
+      {
+        "value": "2024",
+        "label": "année où le Pentagone a commencé à partager Starshield avec l'Ukraine",
+        "src": 2
+      },
+      {
+        "value": "des milliards",
+        "label": "de dollars coûtés au Pentagone depuis, selon NPR",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Ukraine plans independent satellite system as Starlink issues persist » (23 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/23/ukraine-plans-independent-satellite-system-as-starlink-issues-persist"
+      },
+      {
+        "short": "NPR / OPB",
+        "name": "NPR via OPB, « Ukraine and the U.S. are at odds over Starshield. Here's what to know » (18 octobre 2026)",
+        "url": "https://www.opb.org/article/2026/10/18/ukraine-and-the-u-s-are-at-odds-over-starshield-here-s-what-to-know/"
+      },
+      {
+        "short": "Al Jazeera (Starshield)",
+        "name": "Al Jazeera, « What is Starshield, and who limited Ukraine's access to it? » (15 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/15/what-is-starshield-and-who-limited-ukraines-access-to-it"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-coree-du-sud-propose-pourparlers-frontiere",
+    "date": "2026-10-24",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Séoul, Corée du Sud",
+        "label": "Corée du Sud",
+        "coords": [
+          126.98,
+          37.57
+        ]
+      }
+    ],
+    "title": "Séoul propose à Pyongyang de tracer enfin la frontière et de rétablir les lignes directes",
+    "summary": "Après l'explosion d'une mine nord-coréenne côté sud de la frontière, Séoul propose des pourparlers militaires. Un précédent appel est resté sans réponse.",
+    "points": [
+      "Le 23 octobre, le ministère sud-coréen de la Défense a proposé officiellement des pourparlers militaires pour vérifier ensemble l'emplacement exact de la ligne de démarcation, rétablir les lignes de communication militaires et éviter les accrochages accidentels [1][2].",
+      "Séoul cite une explosion du 21 septembre, où un militaire sud-coréen a été gravement blessé par une mine nord-coréenne posée au sud de la ligne ; Pyongyang dément [1][3].",
+      "Les discussions pourraient se tenir à Panmunjom, éventuellement avec le Commandement de l'ONU. Séoul avait déjà fait une offre semblable en novembre 2025, restée sans réponse ; aucune réponse du Nord n'était connue au moment de la rédaction [1][3]."
+    ],
+    "why": [
+      "La première phrase à retenir : sur l'une des frontières les plus armées du monde, il n'y a même pas d'accord sur l'emplacement exact de la ligne [1].",
+      "Sans lignes directes entre les armées, un incident minime peut devenir un affrontement. La presse locale doute que le Nord accepte [2][3]."
+    ],
+    "forMe": "Une tension durable dans la péninsule coréenne inquiète les marchés et les entreprises installées en Corée du Sud ; c'est pourquoi chaque tentative de dialogue compte.",
+    "figures": [
+      {
+        "value": "21 sept.",
+        "label": "explosion de mine qui a déclenché la proposition",
+        "src": 1
+      },
+      {
+        "value": "nov. 2025",
+        "label": "date de l'offre précédente, restée sans réponse",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « South Korea proposes military talks with North to ease border tensions after DMZ blast » (23 octobre 2026)",
+        "url": "https://www.malaymail.com/news/world/2026/10/23/south-korea-proposes-military-talks-with-north-to-ease-border-tensions-after-dmz-blast/240305"
+      },
+      {
+        "short": "Seoul Economic Daily",
+        "name": "Seoul Economic Daily, « Seoul Proposes Military Talks With North Korea on Border Line, Hotlines » (23 octobre 2026)",
+        "url": "https://en.sedaily.com/politics/2026/10/23/seoul-proposes-military-talks-with-north-korea-on-border"
+      },
+      {
+        "short": "JoongAng",
+        "name": "Korea JoongAng Daily, « South Korea proposes military talks with North Korea over disputed border line »",
+        "url": "https://www.koreajoongangdaily.com/korea/seoul-proposes-talks-with-pyongyang-over-disputed-mdl-but-response-unlikely/12935843"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-etats-unis-budget-defense-1500-milliards",
+    "date": "2026-10-24",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Washington, États-Unis",
+        "label": "États-Unis",
+        "coords": [
+          -77.04,
+          38.91
+        ]
+      }
+    ],
+    "title": "Le Pentagone demande 1 500 milliards de dollars pour rattraper la Chine dans les drones et l'IA",
+    "summary": "Le ministre américain de la Défense, Pete Hegseth, défend cette demande comme un « investissement d'une génération » pour rattraper la Chine dans les drones, la robotique et l'intelligence artificielle.",
+    "points": [
+      "Devant l'association de l'armée de terre américaine, Pete Hegseth a présenté la demande d'environ 1 500 milliards de dollars comme « critique » pour ne pas prendre de retard sur la Chine en autonomie, robotique et intelligence artificielle [1][2].",
+      "Le détail publié par un site spécialisé : 756 milliards pour de nouvelles capacités, 100 milliards pour l'aviation, 18 milliards pour le bouclier antimissile « Golden Dome » et 10 milliards pour les navires. Le Pentagone prévoit aussi un commandement de la guerre autonome d'ici octobre 2027 [1][3].",
+      "Le budget doit encore être voté par le Congrès. Un sondage cité par une association estime que près de 60 % des Américains le jugent trop grand [4]."
+    ],
+    "why": [
+      "La première phrase à retenir : Washington demande une somme gigantesque pour ses armées, et la Chine est désignée comme la raison [1].",
+      "Un tel budget peut tirer vers le haut les commandes d'armes, de drones et de puces, et pousse les autres pays à dépenser davantage. Des experts critiquent toutefois un budget décidé par le montant plutôt que par une stratégie [3]."
+    ],
+    "forMe": "Quand Washington dépense plus pour ses armées, ses alliés en Europe sont poussés à suivre, et ces dépenses se paient avec les impôts ou la dette.",
+    "figures": [
+      {
+        "value": "1 500 Md$",
+        "label": "budget de défense demandé par le Pentagone",
+        "src": 1
+      },
+      {
+        "value": "18 Md$",
+        "label": "prévus pour le bouclier antimissile Golden Dome",
+        "src": 3
+      },
+      {
+        "value": "~60 %",
+        "label": "des Américains qui jugent le budget trop grand, selon un sondage cité par Common Dreams",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "SCMP",
+        "name": "South China Morning Post, « Hegseth calls US$1.5 trillion defence budget 'critical' to counter China » (2026)",
+        "url": "https://scmp.com/news/us/politics/article/3370924/hegseth-calls-us15-trillion-defence-budget-critical-to-counter-china"
+      },
+      {
+        "short": "The Star",
+        "name": "The Star, « Hegseth calls US$1.5 trillion defence budget 'critical' to counter China » (23 octobre 2026)",
+        "url": "https://thestar.com.my/aseanplus/aseanplus-news/2026/10/23/hegseth-calls-us15-trillion-defence-budget-critical-to-counter-china"
+      },
+      {
+        "short": "Defence Blog",
+        "name": "Defence Blog, « Hegseth calls $1.5T defense budget a 'generational down payment' »",
+        "url": "https://defence-blog.com/hegseth-calls-1-5t-defense-budget-a-generational-down-payment/"
+      },
+      {
+        "short": "Common Dreams",
+        "name": "Common Dreams, « Hegseth Pentagon budget video »",
+        "url": "https://www.commondreams.org/news/hegseth-pentagon-budget-video"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-kenya-dangote-oleoduc-raffinerie-lamu",
+    "date": "2026-10-24",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Nairobi, Kenya",
+        "label": "Kenya",
+        "coords": [
+          36.82,
+          -1.29
+        ]
+      }
+    ],
+    "title": "Dangote s'offre un quart de l'oléoduc du Kenya, avant sa raffinerie géante",
+    "summary": "L'homme le plus riche d'Afrique achète près de 25 % de Kenya Pipeline Company pour 327 millions de dollars, quelques semaines après le lancement de sa raffinerie à Lamu.",
+    "points": [
+      "Aliko Dangote a annoncé le 21 octobre à Londres qu'il prenait environ 25 % (24,76 % selon un journal kényan) de Kenya Pipeline Company pour 42,5 milliards de shillings, soit 327,4 millions de dollars [1][2].",
+      "Les actions viennent d'investisseurs liés à l'État, dont le fonds de sécurité sociale NSSF et des caisses de retraite ; Dangote n'a pas dit laquelle de ses sociétés les achète [1][2].",
+      "L'entreprise, 100 % publique, a vendu 65 % de son capital en Bourse plus tôt cette année. Les travaux de la raffinerie de 16 milliards de dollars de Lamu ont commencé le 30 septembre : 700 000 barils par jour et 1 000 mégawatts d'électricité [2][3][4]."
+    ],
+    "why": [
+      "La première phrase à retenir : Dangote veut contrôler à la fois le raffinage et le transport du pétrole en Afrique de l'Est [1][2].",
+      "Le Kenya privatise peu à peu un bien stratégique. Le projet de Lamu doit à terme produire du carburant sur place [3][4]. Dangote pourrait obtenir une place au conseil de l'oléoduc et un mot à dire sur ses investissements [2]."
+    ],
+    "forMe": "Si l'Afrique raffine elle-même son pétrole, elle achète moins de carburant importé : cela peut réduire la pression sur les prix mondiaux.",
+    "figures": [
+      {
+        "value": "24,76 %",
+        "label": "part de Kenya Pipeline achetée par Dangote",
+        "src": 2
+      },
+      {
+        "value": "327 M$",
+        "label": "prix de la participation",
+        "src": 1
+      },
+      {
+        "value": "16 Md$",
+        "label": "coût de la raffinerie de Lamu",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Africanews",
+        "name": "Africanews, « Nigeria's Dangote group buys stake in Kenya's oil pipeline network » (21 octobre 2026)",
+        "url": "https://www.africanews.com/2026/10/21/nigerias-dangote-group-buys-stake-in-kenyas-oil-pipeline-network/"
+      },
+      {
+        "short": "Nation",
+        "name": "Nation, « Dangote widens energy bet with 24.76pc KPC stake »",
+        "url": "https://nation.africa/kenya/business/dangote-widens-energy-bet-with-24-76pc-kpc-stake-5640832"
+      },
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « Dangote acquires 25% stake in Kenya Pipeline Company for $327 million » (21 octobre 2026)",
+        "url": "https://nairametrics.com/2026/10/21/dangote-acquires-25-stake-in-kenya-pipeline-company-for-327-million/"
+      },
+      {
+        "short": "The Kenya Times",
+        "name": "The Kenya Times, « Ruto Lamu address at the Dangote refinery groundbreaking » (30 septembre 2026)",
+        "url": "https://thekenyatimes.com/latest-kenya-times-news/ruto-lamu-address-at-the-dangote-refinery-groundbreaking/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-24-nigeria-ebola-premier-cas-abuja",
+    "date": "2026-10-24",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Abuja, Nigeria",
+        "label": "Nigeria",
+        "coords": [
+          7.49,
+          9.08
+        ]
+      }
+    ],
+    "title": "Ebola arrive à Abuja : le Nigeria confirme son premier cas et suit 44 contacts",
+    "summary": "Une femme venue d'Ouganda a été testée positive à Abuja. L'épidémie, partie du Congo en mai, touche désormais l'ouest de l'Afrique.",
+    "points": [
+      "Le 20 octobre, le Nigeria a confirmé à Abuja son premier cas de l'épidémie : une femme arrivée d'Ouganda, dont les symptômes ont commencé le 7 octobre et qui est isolée depuis son admission dans une clinique privée le 11 octobre [1][2].",
+      "Le ministre de la Santé, Muhammad Pate, dit suivre 44 personnes qui ont été en contact avec elle. L'Ouganda répond n'avoir aucun cas actif confirmé et que la femme n'y a fait que passer en venant du Congo ; le lieu de contamination reste à établir [1][2].",
+      "Le virus en cause est la souche Bundibugyo, déclarée au Congo en mai. Le Kenya a signalé neuf cas, l'Africa CDC réunit un sommet extraordinaire le 28 octobre, et l'OMS parle d'une épidémie « complexe » [1][3][4]."
+    ],
+    "why": [
+      "La première phrase à retenir : le virus a franchi une nouvelle frontière et atteint désormais la capitale d'un pays d'Afrique de l'Ouest [2].",
+      "Quand une épidémie s'étend, les contrôles dans les aéroports et les alertes de voyage peuvent freiner les déplacements et le commerce de la région. L'OMS conseille à tous les pays voisins de rester prêts [3][4]."
+    ],
+    "forMe": "Le risque pour la France reste faible à ce stade, mais les voyageurs doivent suivre les recommandations officielles et signaler tout symptôme au retour d'une zone touchée.",
+    "figures": [
+      {
+        "value": "44",
+        "label": "contacts du premier cas suivis par les autorités nigérianes",
+        "src": 1
+      },
+      {
+        "value": "9",
+        "label": "cas signalés au Kenya",
+        "src": 1
+      },
+      {
+        "value": "28 oct.",
+        "label": "sommet extraordinaire de l'Africa CDC",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "AP via NY1",
+        "name": "Associated Press via NY1, « Nigeria records first Ebola case, health authorities say » (20 octobre 2026)",
+        "url": "https://ny1.com/nyc/all-boroughs/ap-top-news/2026/10/20/nigeria-records-first-ebola-case-health-authorities-say"
+      },
+      {
+        "short": "Africanews",
+        "name": "Africanews, « Nigeria confirms first Ebola case as outbreak spreads across Africa » (21 octobre 2026)",
+        "url": "https://www.africanews.com/2026/10/21/nigeria-confirms-first-ebola-case-as-outbreak-spreads-across-africa/"
+      },
+      {
+        "short": "Africanews (OMS)",
+        "name": "Africanews, « WHO: Africa facing 'complex' Ebola outbreak after Nigeria reports first case » (23 octobre 2026)",
+        "url": "https://www.africanews.com/2026/10/23/who-africa-facing-complex-ebola-outbreak-after-nigeria-reports-first-case/"
+      },
+      {
+        "short": "Boston 25",
+        "name": "Associated Press via Boston 25 News, « Africa CDC calls an Ebola crisis summit as Nigeria records its first case »",
+        "url": "https://www.boston25news.com/news/health/africa-cdc-calls-an/UTIISPM2SU4CNDI3RCU3E6KP3I/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-afrique-du-sud-taxe-carburant-croissance",
+    "date": "2026-10-23",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Pretoria, Afrique du Sud",
+        "label": "Afrique du Sud",
+        "coords": [
+          28.19,
+          -25.75
+        ]
+      }
+    ],
+    "title": "L'Afrique du Sud rogne sa taxe sur l'essence et le diesel, mais abaisse sa prévision de croissance",
+    "summary": "Le ministre des Finances annonce un allègement temporaire de la taxe sur les carburants, d'environ 10 milliards de rands. Dans le même discours, le Trésor revoit sa croissance 2026 à la baisse.",
+    "points": [
+      "Le 21 octobre, le ministre des Finances Enoch Godongwana a présenté son budget de mi-année avec un allègement temporaire de la taxe sur les carburants, d'environ 10 milliards de rands [1][3].",
+      "La taxe baisse de 1,50 rand par litre pour l'essence et de 3 rands pour le diesel du 4 novembre au 1er décembre ; des baisses plus petites durent ensuite jusqu'au 5 janvier 2027 [3][4].",
+      "Le Trésor ramène sa prévision de croissance pour 2026 à 1,2 %, contre 1,6 % en février, en citant les prix du carburant, les tensions géopolitiques et le phénomène El Niño [1][5]."
+    ],
+    "why": [
+      "La première phrase à retenir : un État choisit de renoncer à de l'argent public pour que le plein coûte moins cher, au moment même où il admet que son économie ralentit [1][4].",
+      "Le coût de la mesure est compensé par de l'argent qui allait au Fonds central de l'énergie et qui retourne au budget de l'État [2]. La dette publique, elle, s'est stabilisée à 78,4 % du PIB en 2025/26 et doit redescendre à 76,6 % d'ici 2030, selon le ministre [3]."
+    ],
+    "forMe": "Quand le pétrole renchérit, un pays doit arbitrer entre aider les automobilistes et garder ses comptes en ordre. C'est le dilemme de tout État face à un pétrole cher.",
+    "figures": [
+      {
+        "value": "10 Md rands",
+        "label": "coût de l'allègement temporaire de la taxe sur les carburants",
+        "src": 1
+      },
+      {
+        "value": "1,2 %",
+        "label": "croissance prévue en 2026 (contre 1,6 % prévu en février)",
+        "src": 5
+      },
+      {
+        "value": "78,4 %",
+        "label": "dette publique en % du PIB en 2025/26, selon le ministre",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Mail & Guardian",
+        "name": "Mail & Guardian, « Budget 2026: Godongwana announces R10bn in temporary fuel relief » (2026)",
+        "url": "https://mg.co.za/news/south-africa/2026-10-21-budget-2026-godongwana-announces-r10bn-in-temporary-fuel-relief/"
+      },
+      {
+        "short": "EWN",
+        "name": "EWN, « MTBPS 2026: Treasury cuts 2026 growth forecast to 1.2%, unveils R5.1bn for GBV and temporary fuel relief » (2026)",
+        "url": "https://www.ewn.co.za/mtbps-2026-treasury-cuts-2026-growth-forecast-to-12-unveils-r51bn-for-gbv-and-temporary-fuel-relief"
+      },
+      {
+        "short": "Daily Maverick",
+        "name": "Daily Maverick, « Rising revenue allows for fuel levy relief, El Niño readiness in Godongwana's mini-budget » (2026)",
+        "url": "https://www.dailymaverick.co.za/article/2026-10-21-rising-revenue-allows-for-fuel-levy-relief-el-nino-readiness-in-godongwanas-mini-budget/"
+      },
+      {
+        "short": "Mail & Guardian",
+        "name": "Mail & Guardian, « Fuel relief buys time but growth runs on empty » (2026)",
+        "url": "https://mg.co.za/news/south-africa/2026-10-22-fuel-relief-buys-time-but-growth-runs-on-empty/"
+      },
+      {
+        "short": "Africa Insider",
+        "name": "Africa Insider, « 2026 Medium-Term Budget: Fuel levy cuts, debt and key changes you need to know » (2026)",
+        "url": "https://www.africaninsider.com/business/2026-medium-term-budget-fuel-levy-cuts-debt-and-key-changes-you-need-to-know/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-senegal-greve-generale-senelec",
+    "date": "2026-10-23",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Dakar, Sénégal",
+        "label": "Sénégal",
+        "coords": [
+          -17.47,
+          14.69
+        ]
+      }
+    ],
+    "title": "Au Sénégal, une grève générale de trois jours touche jusqu'à l'électricien public",
+    "summary": "Un front de syndicats arrête le travail les 21, 22 et 23 octobre. Chez Senelec, ils refusent la découpe de l'entreprise en filiales et réclament que l'État paie ce qu'il lui doit.",
+    "points": [
+      "Le Front syndical pour la défense du travail (FSDT) a lancé une grève générale de 72 heures, les 21, 22 et 23 octobre, dans le public, le privé et l'informel [1].",
+      "À Senelec, l'électricien public, le syndicat SUTELEC rejoint le mouvement. Il refuse que l'entreprise soit divisée en filiales, réclame une prime (la PRAB, près de 3 milliards de francs CFA selon les syndicats) et demande que l'État règle une dette que les syndicats chiffrent à plus de 600 milliards de francs CFA [1][3].",
+      "La direction de Senelec dit n'avoir reçu aucun préavis formel et appelle au dialogue [2]. Début octobre, le ministre de l'Énergie avait indiqué que l'entreprise deviendrait une société holding (maison mère) d'ici fin 2027 [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : quand l'électricité d'un pays est au cœur d'un bras de fer entre syndicats et État, c'est toute l'économie qui peut ralentir [1][2].",
+      "Les chiffres de la dette de l'État envers Senelec viennent des syndicats et n'ont pas été confirmés par une source officielle. L'ampleur réelle de la grève n'est pas confirmée par une source indépendante [1]."
+    ],
+    "forMe": "Une entreprise d'électricité en difficulté financière, c'est des coupures possibles et des investissements retardés. Cela touche aussi les entreprises françaises ou européennes qui produisent ou investissent au Sénégal.",
+    "figures": [
+      {
+        "value": "72 h",
+        "label": "durée de la grève générale, du 21 au 23 octobre",
+        "src": 1
+      },
+      {
+        "value": "600 Md FCFA",
+        "label": "dette de l'État envers Senelec selon les syndicats (non confirmé)",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Financial Afrik",
+        "name": "Financial Afrik, « Sénégal : à la Senelec, trois jours de grève dans le cadre d'une grève générale du FSDT » (2026)",
+        "url": "https://www.financialafrik.com/2026/10/19/senegal-a-la-senelec-trois-jours-de-greve-dans-le-cadre-dune-greve-generale-du-fsdt/"
+      },
+      {
+        "short": "Senego",
+        "name": "Senego, « Senelec : la direction dit n'avoir reçu aucun préavis formel et appelle au dialogue » (2026)",
+        "url": "https://senego.com/senelec-la-direction-dit-navoir-recu-aucun-preavis-formel-et-appelle-au-dialogue_2015412.html"
+      },
+      {
+        "short": "Senego",
+        "name": "Senego, « Senelec : le SUTELEC rejoint la grève de 72 heures du FSDT » (2026)",
+        "url": "https://senego.com/senelec-le-sutelec-rejoint-la-greve-de-72-heures-du-fsdt_2015028.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-badr-pacte-defense-qatar-pakistan-turquie-indonesie",
+    "date": "2026-10-23",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Doha, Qatar",
+        "label": "Qatar",
+        "coords": [
+          51.53,
+          25.29
+        ]
+      }
+    ],
+    "title": "Qatar, Pakistan, Turquie et Indonésie mettent leurs usines d'armement en commun",
+    "summary": "Quatre pays de régions très différentes signent à Doha le pacte « Badr » pour produire et former ensemble. Ce n'est pas une alliance militaire : personne ne promet de défendre l'autre.",
+    "points": [
+      "Le 21 octobre à Doha, le Qatar, le Pakistan, la Turquie et l'Indonésie ont signé le protocole d'accord « Badr » sur l'industrie de défense [1][2].",
+      "Il prévoit de la production militaire commune, des formations techniques et militaires communes et de la recherche, pour que chaque pays puisse utiliser les capacités de défense des trois autres [1].",
+      "Les comptes rendus insistent : c'est une coopération industrielle et non un pacte de défense mutuelle, distinct de l'accord séparé entre la Turquie, le Pakistan et l'Arabie saoudite. Le texte complet n'est pas public [1][4]."
+    ],
+    "why": [
+      "La première phrase à retenir : quatre pays veulent produire des armes ensemble plutôt que seulement en acheter, en partageant technologies et chaînes d'approvisionnement [3][4].",
+      "L'agence turque des achats de défense (SSB) explique que le pacte transforme des projets déjà existants entre deux pays en un cadre à quatre. Parmi eux : des drones et blindés turcs pour le Qatar, des corvettes construites pour la marine pakistanaise et un char développé avec l'Indonésie [3]. Le ministre qatari a aussi dit que le Qatar annoncerait bientôt un site de production de défense [1]."
+    ],
+    "forMe": "Quand de nouveaux pays fabriquent leurs armes eux-mêmes, le marché mondial change : moins de commandes pour les vendeurs traditionnels, plus de concurrence, et des budgets de défense qui se tournent vers d'autres fournisseurs.",
+    "figures": [
+      {
+        "value": "4",
+        "label": "pays signataires : Qatar, Pakistan, Turquie, Indonésie",
+        "src": 1
+      },
+      {
+        "value": "21 oct.",
+        "label": "date de signature à Doha du protocole « Badr »",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "AzerNews",
+        "name": "AzerNews, « Türkiye, Qatar, Pakistan and Indonesia sign 'Badr' defense cooperation agreement » (2026)",
+        "url": "https://www.azernews.az/region/265954.html"
+      },
+      {
+        "short": "TRT World",
+        "name": "TRT World, « Türkiye, Qatar, Indonesia and Pakistan sign 'Badr' defence cooperation accord » (2026)",
+        "url": "https://www.trtworld.com/article/57751af983b2"
+      },
+      {
+        "short": "A News",
+        "name": "A News, « Türkiye, Qatar, Pakistan and Indonesia to ink defense industry pact » (2026)",
+        "url": "https://www.anews.com.tr/world/2026/10/20/turkiye-qatar-pakistan-and-indonesia-to-ink-defense-industry-pact"
+      },
+      {
+        "short": "IR-IA",
+        "name": "IR-IA, « Turkiye, Qatar, Pakistan and Indonesia sign Badr defense industry cooperation pact » (2026)",
+        "url": "https://www.ir-ia.com/news/turkiye-qatar-pakistan-and-indonesia-sign-badr-defense-industry-cooperation-pact/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-canada-turquie-partenariat-strategique",
+    "date": "2026-10-23",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Ottawa, Canada",
+        "label": "Canada",
+        "coords": [
+          -75.7,
+          45.42
+        ]
+      },
+      {
+        "name": "Ankara, Turquie",
+        "label": "Ankara",
+        "coords": [
+          32.86,
+          39.93
+        ]
+      }
+    ],
+    "title": "Le Canada cherche en Turquie du gaz, du nucléaire et des armes pour moins dépendre des États-Unis",
+    "summary": "À Ankara, le Premier ministre Mark Carney et Recep Tayyip Erdoğan lancent un « partenariat stratégique » avec un plan d'action de trois ans. Des négociations de libre-échange s'ouvrent le mois prochain.",
+    "points": [
+      "Le 22 octobre à Ankara, Mark Carney et Recep Tayyip Erdoğan ont lancé le partenariat stratégique Canada-Turquie, bâti sur quatre piliers : commerce et investissement, défense et sécurité, énergie, liens entre les peuples, avec un plan d'action de trois ans [1][2].",
+      "Ils veulent avancer sur le gaz naturel liquéfié, le nucléaire civil, les énergies renouvelables et les minerais critiques. Carney a dit vouloir vendre à la Turquie des réacteurs Candu, des minerais critiques et du gaz liquéfié [1].",
+      "Les agences de crédit à l'exportation des deux pays, EDC et Türk Eximbank, signent un accord pour des projets communs dans des pays tiers, et les négociations d'un accord de libre-échange commenceront le mois prochain [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : le Canada cherche d'autres clients et partenaires pour réduire sa dépendance aux États-Unis, et il se tourne vers la Turquie [4].",
+      "Avant la visite, la presse annonçait de grands contrats. Les textes officiels parlent surtout d'engagements à coopérer, et aucun contrat précis sur un réacteur n'y figure [1][3]."
+    ],
+    "forMe": "Quand deux alliés de l'OTAN se rapprochent sur le gaz et le nucléaire, cela dessine de nouvelles routes de l'énergie et de nouveaux marchés d'armement, qui touchent aussi les prix en Europe.",
+    "figures": [
+      {
+        "value": "4",
+        "label": "piliers du partenariat : commerce, défense, énergie, liens entre les peuples",
+        "src": 1
+      },
+      {
+        "value": "3 ans",
+        "label": "durée du plan d'action commun",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Carney, Erdogan launch 'strong and resilient' Canada-Türkiye partnership » (2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/22/carney-and-erdogan-launch-strong-and-resilient-canada-turkiye-partnership"
+      },
+      {
+        "short": "Premier ministre du Canada",
+        "name": "Cabinet du Premier ministre du Canada, « Statement by Prime Minister Carney and President Recep Tayyip Erdoğan » (2026)",
+        "url": "https://www.pm.gc.ca/en/news/statements/2026/10/22/statement-prime-minister-carney-and-president-recep-tayyip-erdogan"
+      },
+      {
+        "short": "The Globe and Mail",
+        "name": "The Globe and Mail, « Canada, Turkey announce strategic partnership to deepen energy, defence and trade ties » (2026)",
+        "url": "https://www.theglobeandmail.com/canada/article-canada-turkey-carney-strategic-partnership-defence-energy-trade/"
+      },
+      {
+        "short": "The Print",
+        "name": "The Print, « Canada, Turkey sign 'strategic partnership' as part of Carney push to cut reliance on US » (2026)",
+        "url": "https://theprint.in/world/canada-turkey-sign-strategic-partnership-as-part-of-carney-push-to-cut-reliance-on-us/3079179/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-equateur-colombie-petrole-oleoducs-reprise",
+    "date": "2026-10-23",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Quito, Équateur",
+        "label": "Équateur",
+        "coords": [
+          -78.47,
+          -0.18
+        ]
+      },
+      {
+        "name": "Bogotá, Colombie",
+        "label": "Colombie",
+        "coords": [
+          -74.07,
+          4.71
+        ]
+      }
+    ],
+    "title": "L'Équateur laisse de nouveau passer le pétrole colombien dans ses oléoducs, après neuf mois de guerre commerciale",
+    "summary": "Petroecuador reprend le transport du brut colombien, interrompu depuis janvier. Les deux voisins s'étaient affrontés à coups de droits de douane.",
+    "points": [
+      "Petroecuador a repris le transport du brut d'Ecopetrol et d'Amerisur dans ses oléoducs, après une suspension commencée en janvier [1][3].",
+      "Les livraisons avaient été arrêtées le 23 janvier, après une décision qui faisait passer le tarif de transport du pétrole étranger sur l'oléoduc SOTE de 3 à 30 dollars [1][5].",
+      "L'Équateur transporte en moyenne 11 900 barils par jour de brut colombien, ce qui doit lui rapporter environ 1,4 million de dollars par mois, soit 16,8 millions de dollars par an [1][2]."
+    ],
+    "why": [
+      "La première phrase à retenir : un oléoduc peut devenir une arme commerciale, et la réouverture marque la fin d'une bataille entre deux voisins andins [1][3].",
+      "Le conflit a aussi touché les droits de douane : l'Équateur a annoncé des droits de 30 % sur les produits colombiens, et la Colombie a riposté [4]. Après des mois de tarifs et une décision de la Communauté andine, Quito et Bogotá se parlent de nouveau [4]."
+    ],
+    "forMe": "Les routes du pétrole ne passent pas que par de grands détroits : un tuyau entre deux petits pays peut aussi bloquer des exportations. Cela rappelle pourquoi les prix de l'énergie dépendent de la politique.",
+    "figures": [
+      {
+        "value": "11 900",
+        "label": "barils par jour de brut colombien transportés en moyenne",
+        "src": 1
+      },
+      {
+        "value": "16,8 M$",
+        "label": "revenu annuel attendu pour l'Équateur",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "droits-de-douane"
+    ],
+    "sources": [
+      {
+        "short": "Vanguardia",
+        "name": "Vanguardia, « Ecuador reinicia el paso de petróleo colombiano por oleoductos tras suspensión por aranceles » (2026)",
+        "url": "https://www.vanguardia.com/colombia/2026/10/17/ecuador-reinicia-el-paso-de-petroleo-colombiano-por-oleoductos-tras-suspension-por-aranceles/"
+      },
+      {
+        "short": "El Universo",
+        "name": "El Universo, « Ecuador retoma el transporte de crudo colombiano y prevé ingresos por $ 16,8 millones anuales » (2026)",
+        "url": "https://www.eluniverso.com/economia/produccion/reactivacion-transporte-crudo-oleoductos-sote-osla-ingresos-anuales-168-millones-colombia-ecuador-2026-nota/"
+      },
+      {
+        "short": "Portafolio",
+        "name": "Portafolio, « Ecuador reanuda transporte de petróleo colombiano, tras nueve meses de suspensión por guerra arancelaria » (2026)",
+        "url": "https://www.portafolio.co/energia/ecuador-reanuda-transporte-de-petroleo-colombiano-tras-nueve-meses-de-suspension-por-guerra-arancelaria-504648"
+      },
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Ecuador and Its Neighbours in the Andes » (2026)",
+        "url": "https://www.riotimesonline.com/ecuador-in-andes-explained-2026/"
+      },
+      {
+        "short": "France 24",
+        "name": "France 24, « Ecuador sube un 900% la tarifa de transporte del crudo colombiano y crece la guerra arancelaria » (2026)",
+        "url": "https://www.france24.com/es/am%C3%A9rica-latina/20260127-ecuador-sube-un-900-la-tarifa-de-transporte-del-crudo-colombiano-en-medio-de-la-disputa-arancelaria"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-taiwan-micron-greve-puces-memoire",
+    "date": "2026-10-23",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Taoyuan, Taïwan",
+        "label": "Taïwan",
+        "coords": [
+          121.3,
+          24.99
+        ]
+      }
+    ],
+    "title": "À Taïwan, les ouvriers de Micron, un géant des puces d'IA, se mettent en grève pour partager les bénéfices",
+    "summary": "Le syndicat de l'usine de Taoyuan a annoncé un arrêt de travail jeudi 22 octobre. Il demande un partage des bénéfices permanent. L'usine fabrique des mémoires pour l'intelligence artificielle.",
+    "points": [
+      "Le syndicat de Micron à Taoyuan avait annoncé qu'il ferait grève jeudi 22 octobre, en soutien au syndicat de Taichung qui négocie avec la direction [1].",
+      "Un bulletin cite Nikkei Asia : les salariés ont quitté l'usine à 9 h pour un arrêt de 24 heures [3].",
+      "Au vote, 1 994 adhérents, soit 99 % des votants, ont approuvé la grève. Micron avait proposé une prime de 1 million de dollars taïwanais (environ 31 400 dollars) par salarié, mais le syndicat veut un mécanisme permanent de partage des profits [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : une grève dans une usine de mémoires, ces puces au cœur des serveurs d'intelligence artificielle, peut peser sur toute la chaîne mondiale [1].",
+      "L'administration du parc scientifique du centre de Taïwan a averti que la grève pourrait toucher l'économie du pays, et le président Lai Ching-te a appelé les deux camps à négocier « sincèrement » [1]. La durée de la grève n'avait pas été annoncée à la date du 20 octobre [1]."
+    ],
+    "forMe": "Les mémoires de Micron (DRAM et HBM) se retrouvent dans les serveurs d'IA, les ordinateurs et les téléphones. Un blocage durable pourrait rendre certains composants plus rares et plus chers.",
+    "figures": [
+      {
+        "value": "99 %",
+        "label": "des votants (1 994 adhérents) pour la grève",
+        "src": 1
+      },
+      {
+        "value": "1 M TWD",
+        "label": "prime proposée par Micron (≈ 31 400 $), jugée insuffisante par le syndicat",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "semi-conducteurs"
+    ],
+    "sources": [
+      {
+        "short": "The Star",
+        "name": "The Star (Reuters), « Micron union in Taiwan to launch strike as bonus dispute escalates » (2026)",
+        "url": "https://www.thestar.com.my/tech/tech-news/2026/10/20/micron-union-in-taiwan-to-launch-strike-as-bonus-dispute-escalates"
+      },
+      {
+        "short": "The Standard",
+        "name": "The Standard (Hong Kong), « Micron union in Taiwan to launch strike as bonus dispute escalates » (2026)",
+        "url": "https://www.thestandard.com.hk/china/article/345911/Micron-union-in-Taiwan-to-launch-strike-as-bonus-dispute-escalates"
+      },
+      {
+        "short": "AI Weekly",
+        "name": "AI Weekly, « AI News for October 22, 2026 — Daily Edition » (2026)",
+        "url": "https://aiweekly.co/ai-news-today/edition/2026-10-22"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-pakistan-afghanistan-commerce-frontiere-fermee",
+    "date": "2026-10-23",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Torkham, frontière Pakistan-Afghanistan",
+        "label": "Pakistan",
+        "coords": [
+          71.09,
+          34.11
+        ]
+      }
+    ],
+    "title": "Pakistan-Afghanistan : un an de frontière fermée, et le commerce entre les deux pays s'effondre de 74 %",
+    "summary": "Le Pakistan a stoppé tout commerce avec l'Afghanistan en octobre 2025. Les échanges sont tombés de 1,3 milliard à 358 millions de dollars, et les exportateurs pakistanais perdent des millions chaque mois.",
+    "points": [
+      "Selon les données officielles pakistanaises publiées le 19 octobre, les échanges avec l'Afghanistan ont chuté d'environ 74 % en 2025-26, de 1,3 milliard à environ 358 millions de dollars [1][3].",
+      "Le Pakistan a stoppé toute activité commerciale avec l'Afghanistan depuis le 10 octobre 2025 ; le point de passage de Torkham est fermé depuis des affrontements meurtriers [2][3].",
+      "Les exportateurs pakistanais perdent environ 50 milliards de roupies (≈ 177 millions de dollars) par mois, selon Arab News. Un cessez-le-feu a été annoncé le 19 octobre, mais le commerce reste suspendu [2]."
+    ],
+    "why": [
+      "La première phrase à retenir : une frontière fermée coûte cher aux deux côtés, et le Pakistan risque de perdre durablement les marchés afghan et d'Asie centrale [2].",
+      "Les responsables pakistanais disent que les routes commerciales resteront fermées tant que les problèmes de sécurité ne seront pas réglés [2]. Le cessez-le-feu n'est signalé que par une seule source, il est donc à prendre avec prudence [2]."
+    ],
+    "forMe": "Quand un grand couloir commercial se ferme, les échanges se déplacent vers d'autres routes plus longues et plus chères. C'est un exemple de plus de la fragilité des routes de l'Asie centrale.",
+    "figures": [
+      {
+        "value": "−74 %",
+        "label": "baisse des échanges Pakistan-Afghanistan en 2025-26",
+        "src": 1
+      },
+      {
+        "value": "358 M$",
+        "label": "échanges en 2025-26 (1,3 Md$ l'année d'avant)",
+        "src": 3
+      },
+      {
+        "value": "177 M$",
+        "label": "pertes mensuelles estimées des exportateurs pakistanais",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Minute Mirror",
+        "name": "Minute Mirror, « Pakistan-Afghanistan trade plunges 74% as crossings stay shut » (2026)",
+        "url": "https://minutemirror.com.pk/pakistan-afghanistan-trade-plunges-74-647312/"
+      },
+      {
+        "short": "Arab News Pakistan",
+        "name": "Arab News Pakistan, « Industry leaders say prolonged shutdown risks long-term loss of Afghan, Central Asian markets » (2026)",
+        "url": "https://www.arabnews.pk/node/2628600/pakistan"
+      },
+      {
+        "short": "UNI",
+        "name": "UNI, « Af-Pak trade: drastic decline » (2026)",
+        "url": "https://www.uniindia.com/world/af-pak-trade-drastic-decline/219503"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-bulgarie-deficit-eurostat-doutes-euro",
+    "date": "2026-10-23",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Sofia, Bulgarie",
+        "label": "Bulgarie",
+        "coords": [
+          23.32,
+          42.7
+        ]
+      }
+    ],
+    "title": "Bulgarie : Eurostat relève le déficit de 2025 à 4 % et doute des chiffres du nouveau pays de l'euro",
+    "summary": "L'office européen de statistiques a revu à la hausse le déficit bulgare de 2025 et pose des questions sur la qualité des données. La Bulgarie est déjà sous procédure européenne pour déficit excessif.",
+    "points": [
+      "Le 21 octobre, Eurostat a relevé de 0,5 point le déficit public bulgare de 2025, à 4 % du PIB, et a mis en doute la qualité des données transmises par Sofia [1].",
+      "L'Union européenne a ouvert une procédure pour déficit excessif contre la Bulgarie sept mois après son entrée dans la zone euro [2].",
+      "Le Conseil de l'UE avait demandé à la Bulgarie de présenter des mesures correctives avant le 15 octobre 2026 [3]. On ne sait pas encore si elle l'a fait."
+    ],
+    "why": [
+      "La première phrase à retenir : un pays qui vient d'entrer dans l'euro se voit reprocher à la fois un déficit trop grand et des chiffres peu fiables [1][2].",
+      "Dans la zone euro, les règles budgétaires sont partagées : un déficit jugé excessif peut déclencher une procédure et des demandes de corrections [2][3]."
+    ],
+    "forMe": "Quand un membre de la zone euro dérape, cela concerne tous ceux qui partagent la monnaie : la confiance des marchés et les règles budgétaires se discutent ensemble.",
+    "figures": [
+      {
+        "value": "4 %",
+        "label": "déficit public bulgare 2025 selon Eurostat (révisé de +0,5 point)",
+        "src": 1
+      },
+      {
+        "value": "7 mois",
+        "label": "entre l'entrée dans l'euro et l'ouverture de la procédure",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "SeeNews",
+        "name": "SeeNews, « EU revises Bulgaria's 2025 budget gap to 4% of GDP » (2026)",
+        "url": "https://seenews.com/news/eu-revises-bulgarias-2025-budget-gap-to-4-percent-of-gdp-1303438"
+      },
+      {
+        "short": "EU Alive",
+        "name": "EU Alive, « EU opens excessive deficit procedure against Bulgaria seven months after eurozone accession » (2026)",
+        "url": "https://eualive.net/eu-opens-excessive-deficit-procedure-against-bulgaria-as-new-budget-comes-under-scrutiny/"
+      },
+      {
+        "short": "Conseil de l'UE",
+        "name": "Conseil de l'Union européenne, « Excessive deficit procedure » (2026)",
+        "url": "https://www.consilium.europa.eu/en/policies/excessive-deficit-procedure/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-23-kazakhstan-azerbaidjan-couloir-du-milieu-rail",
+    "date": "2026-10-23",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Astana, Kazakhstan",
+        "label": "Kazakhstan",
+        "coords": [
+          71.43,
+          51.17
+        ]
+      },
+      {
+        "name": "Bakou, Azerbaïdjan",
+        "label": "Azerbaïdjan",
+        "coords": [
+          49.87,
+          40.41
+        ]
+      }
+    ],
+    "title": "Kazakhstan et Azerbaïdjan s'accordent sur un « couloir du milieu » plus simple entre la Chine et l'Europe",
+    "summary": "Les deux pays signent un accord pour que trains et bateaux sur la route Chine-Europe via la mer Caspienne se coordonnent mieux. D'autres pays pourront les rejoindre.",
+    "points": [
+      "Le 20 octobre, le Kazakhstan et l'Azerbaïdjan ont signé un accord pour simplifier l'exploitation ferroviaire du « couloir du milieu », la route de marchandises entre la Chine et l'Europe [1].",
+      "Les deux pays s'engagent sur une capacité minimale garantie, dont le chiffre n'est pas publié, et sur la priorité donnée aux navires de l'autre dans leurs ports [1].",
+      "L'accord prévoit un document de transport unique pour le trajet train-bateau, et d'autres pays pourront le rejoindre [1]."
+    ],
+    "why": [
+      "La première phrase à retenir : un seul papier et des priorités garanties, c'est ce qui rend une route de transport vraiment utilisable pour les entreprises [1].",
+      "Le montant garanti n'est pas public, donc on ne peut pas encore mesurer l'effet sur les volumes [1]."
+    ],
+    "forMe": "Plus cette route est simple et prévisible, plus elle peut servir d'alternative aux routes maritimes, aujourd'hui perturbées par les tensions autour d'Ormuz.",
+    "figures": [
+      {
+        "value": "1",
+        "label": "document de transport unique prévu pour le trajet train-bateau",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "RailFreight",
+        "name": "RailFreight, « New agreement standardises Middle Corridor operations, more countries can join » (2026)",
+        "url": "https://www.railfreight.com/railfreight/2026/10/20/new-agreement-standardises-middle-corridor-operations-more-countries-can-join/"
+      }
+    ]
+  },
+  {
     "id": "2026-10-22-arabie-saoudite-diplomates-americains-partent",
     "date": "2026-10-22",
     "region": "Moyen-Orient",
@@ -5442,799 +6617,6 @@ window.GEOCO.news = [
         "short": "RTTNews",
         "name": "RTTNews, inflation en Croatie, estimation rapide de septembre 2026",
         "url": "https://www.rttnews.com/story.aspx?Id=3696106"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-thailande-inflation",
-    "date": "2026-10-09",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Bangkok",
-        "label": "Thaïlande",
-        "coords": [
-          100.5,
-          13.75
-        ]
-      }
-    ],
-    "title": "Thaïlande : l'inflation grimpe à 2,82 %, tirée par l'énergie",
-    "summary": "Les prix thaïlandais montent un peu plus vite en septembre, surtout à cause du carburant. La banque centrale, elle, ne bouge pas.",
-    "points": [
-      "En septembre, l'inflation thaïlandaise est passée à 2,82 % sur un an, contre 2,53 % en août, un peu moins que les 3,10 % attendus par les marchés [1].",
-      "L'énergie explique à elle seule 1,85 point de cette hausse, soit plus de 60 % de l'accélération [1].",
-      "Le ministère du Commerce s'attend à une nouvelle hausse au dernier trimestre et table sur 1,8 % à 2,2 % sur l'année [1]. La banque centrale garde son taux à 1 % depuis sa baisse de février, alors que celles de Corée du Sud, d'Indonésie et des Philippines ont déjà relevé les leurs [2]."
-    ],
-    "why": [
-      "L'inflation, c'est la hausse générale des prix. Quand le pétrole est cher, tout ce qui se transporte coûte plus cher : carburant, nourriture, billets.",
-      "La Thaïlande est dans une situation à part : sa croissance reste faible, donc sa banque centrale hésite à relever ses taux et risquer de la freiner encore. D'autres pays d'Asie ont fait le choix inverse."
-    ],
-    "forMe": "Si tu pars en Thaïlande, les prix locaux montent un peu, mais le pays reste dans sa zone de confort (entre 1 et 3 %). Le vrai signal est ailleurs : le pétrole cher touche aussi les économies asiatiques qui fabriquent ce que tu achètes.",
-    "figures": [
-      {
-        "value": "2,82 %",
-        "label": "l'inflation en Thaïlande en septembre 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "1 %",
-        "label": "le taux directeur de la banque centrale, inchangé depuis février",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "The Nation",
-        "name": "The Nation (Thaïlande), « Fuel and fresh food lift Thai September inflation to 2.82% as 2026 forecast narrows to 1.8–2.2% »",
-        "url": "https://www.nationthailand.com/business/economy/40071923"
-      },
-      {
-        "short": "The Star",
-        "name": "The Star, « Thai central bank keeps key interest rate unchanged » (26 août 2026)",
-        "url": "https://www.thestar.com.my/business/business-news/2026/08/26/thai-central-bank-keeps-key-interest-rate-unchanged"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-perou-taux",
-    "date": "2026-10-09",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Lima",
-        "label": "Pérou",
-        "coords": [
-          -77.04,
-          -12.05
-        ]
-      }
-    ],
-    "title": "Pérou : la banque centrale garde son taux à 4,25 %, l'inflation dépasse la cible",
-    "summary": "À Lima, les prix montent plus vite que ce que vise la banque centrale. Elle choisit pourtant de ne pas relever son taux.",
-    "points": [
-      "La banque centrale du Pérou a maintenu son taux directeur à 4,25 % [1].",
-      "À Lima, l'inflation a atteint 4,55 % en septembre, au-dessus de la fourchette visée par la banque, de 1 % à 3 % [1].",
-      "La Bourse de Lima était fermée le 8 octobre pour un jour férié (bataille d'Angamos) [1]."
-    ],
-    "why": [
-      "Une banque centrale a un objectif : ici, des prix qui montent de 1 à 3 % par an. Quand l'inflation dépasse cette zone, elle peut relever son taux pour freiner le crédit. Là, elle attend et observe.",
-      "Le pétrole au-dessus de 100 dollars le baril pèse sur les prix de nombreux pays d'Amérique latine importateurs de carburant [2]."
-    ],
-    "forMe": "Tu n'es pas touché directement, mais le Pérou fait partie des pays où la hausse du coût de la vie s'installe à cause de l'énergie : un signe de plus que le choc pétrolier se diffuse partout.",
-    "figures": [
-      {
-        "value": "4,25 %",
-        "label": "le taux directeur de la banque centrale du Pérou",
-        "src": 1
-      },
-      {
-        "value": "4,55 %",
-        "label": "l'inflation à Lima en septembre 2026 (cible : 1 à 3 %)",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Latin American Pulse for Thursday, October 8, 2026 »",
-        "url": "https://riotimesonline.com/latin-american-pulse-for-thursday-october-8-2026"
-      },
-      {
-        "short": "Rio Times (ouverture)",
-        "name": "The Rio Times, « Mexican Peso Slides 1.2% as LatAm Opens » (9 oct. 2026)",
-        "url": "https://www.riotimesonline.com/latam-pre-open-friday-october-9-2026"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-colombie-inflation",
-    "date": "2026-10-09",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Bogotá",
-        "label": "Colombie",
-        "coords": [
-          -74.07,
-          4.71
-        ]
-      }
-    ],
-    "title": "Colombie : l'inflation atteint 6,29 % en septembre",
-    "summary": "Les prix colombiens ont augmenté de plus de 6 % en un an, ce qui devient la principale inquiétude du pays.",
-    "points": [
-      "La Colombie a publié mercredi son inflation de septembre : 6,29 % sur un an [1].",
-      "Les analystes de la région y voient la première inquiétude économique du pays [1].",
-      "Le baril de Brent, au-dessus de 100 dollars, soutient le Mexique et la Colombie, mais pèse sur les importateurs de carburant comme le Brésil [2]."
-    ],
-    "why": [
-      "Plus de 6 %, c'est un coût de la vie qui grimpe vite : ton salaire peut perdre du pouvoir d'achat si on ne l'augmente pas autant.",
-      "Pour un pays qui vend du pétrole, un baril cher rapporte des devises, mais n'empêche pas les prix intérieurs de monter."
-    ],
-    "forMe": "L'inflation colombienne ne change pas directement tes prix en France : c'est un repère pour voir que la poussée des prix de l'énergie touche aussi l'Amérique latine.",
-    "figures": [
-      {
-        "value": "6,29 %",
-        "label": "l'inflation en Colombie sur un an, en septembre 2026",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Latin American Pulse for Thursday, October 8, 2026 »",
-        "url": "https://riotimesonline.com/latin-american-pulse-for-thursday-october-8-2026"
-      },
-      {
-        "short": "Rio Times (ouverture)",
-        "name": "The Rio Times, « Mexican Peso Slides 1.2% as LatAm Opens » (9 oct. 2026)",
-        "url": "https://www.riotimesonline.com/latam-pre-open-friday-october-9-2026"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-uemoa-croissance",
-    "date": "2026-10-09",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Dakar (siège de la BCEAO)",
-        "label": "UEMOA",
-        "coords": [
-          -17.44,
-          14.69
-        ]
-      }
-    ],
-    "title": "UEMOA : la croissance se maintient à 6 % au deuxième trimestre",
-    "summary": "Les huit pays d'Afrique de l'Ouest qui partagent le franc CFA continuent de croître vite, à peine moins que le trimestre précédent.",
-    "points": [
-      "Au deuxième trimestre 2026, l'UEMOA a enregistré une croissance de 6 %, en léger ralentissement par rapport aux 6,1 % du trimestre précédent [1].",
-      "Les résultats ont été présentés à Dakar le 2 octobre [1]."
-    ],
-    "why": [
-      "L'UEMOA est l'union économique de plusieurs pays d'Afrique de l'Ouest qui partagent une même monnaie, le franc CFA. Une croissance de 6 % est élevée comparée à l'Europe.",
-      "Cela ne veut pas dire que chaque habitant s'enrichit au même rythme : la population augmente vite aussi."
-    ],
-    "forMe": "Une zone qui croît à ce rythme devient un partenaire commercial de plus en plus important pour la France et l'Europe, qui en sont des clients et fournisseurs historiques.",
-    "figures": [
-      {
-        "value": "6 %",
-        "label": "la croissance de l'UEMOA au 2e trimestre 2026 (6,1 % au trimestre précédent)",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Africa24",
-        "name": "Africa24, « Afrique : la croissance se maintient à 6 % à fin juin 2026 dans l'UEMOA »",
-        "url": "https://africa24tv.com/afrique-la-croissance-se-maintient-a-6-a-fin-juin-2026-dans-lumeoa/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-georgie-inflation",
-    "date": "2026-10-09",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Tbilissi",
-        "label": "Géorgie",
-        "coords": [
-          44.79,
-          41.72
-        ]
-      }
-    ],
-    "title": "Géorgie : l'inflation reste à 5,6 %, portée par les transports",
-    "summary": "Les prix géorgiens montent toujours aussi vite en septembre : les transports coûtent près d'un cinquième de plus qu'il y a un an.",
-    "points": [
-      "En Géorgie, l'inflation annuelle est restée à 5,6 % en septembre 2026, comme en août [1].",
-      "Sur un mois, les prix ont augmenté de 0,4 % [1].",
-      "Les transports sont le principal moteur : +18,7 % sur un an contre +15,2 % en août, alors que les prix de l'alimentation ralentissent (+3,4 % contre +5,0 %) [1]."
-    ],
-    "why": [
-      "La Géorgie, au bord de la mer Noire, est un petit pays de transit entre l'Europe et l'Asie. Quand le carburant monte, ses transports le ressentent tout de suite.",
-      "Que l'alimentation ralentisse est une bonne nouvelle pour les ménages, mais les transports la compensent."
-    ],
-    "forMe": "Tu en entends peu parler, mais la Géorgie illustre un effet très concret du pétrole cher : se déplacer et transporter des marchandises coûte nettement plus cher, partout.",
-    "figures": [
-      {
-        "value": "5,6 %",
-        "label": "l'inflation annuelle en Géorgie, septembre 2026",
-        "src": 1
-      },
-      {
-        "value": "+18,7 %",
-        "label": "la hausse des prix des transports sur un an",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, « Georgia Inflation Holds Steady in September »",
-        "url": "https://tradingeconomics.com/georgia/inflation-cpi/news/589036"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-islande-taux",
-    "date": "2026-10-09",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Reykjavik",
-        "label": "Islande",
-        "coords": [
-          -21.94,
-          64.15
-        ]
-      }
-    ],
-    "title": "Islande : la banque centrale garde son taux à 8 %, l'inflation monte à 5,9 %",
-    "summary": "Même avec un taux très élevé, les prix islandais accélèrent : c'est leur plus haut niveau depuis deux ans.",
-    "points": [
-      "Le 7 octobre, la banque centrale d'Islande a maintenu son taux directeur à 8 % [1].",
-      "L'inflation atteint 5,9 %, son plus haut niveau en deux ans [1].",
-      "Tous les membres du comité de politique monétaire ont voté pour garder ce taux, en invoquant l'incertitude sur l'économie mondiale et le marché du travail [1]."
-    ],
-    "why": [
-      "Un taux de 8 % est très élevé en Europe. Pourtant, il ne suffit pas à faire reculer les prix : la banque centrale garde donc une politique stricte plutôt que de la desserrer.",
-      "C'est un exemple de ce que vivent beaucoup de petites économies ouvertes : elles dépendent des prix mondiaux de l'énergie et ne peuvent pas les contrôler."
-    ],
-    "forMe": "Si tu voyages en Islande, tout y est déjà cher, et ça continue de grimper. Pour les Islandais, emprunter pour acheter un logement coûte très cher.",
-    "figures": [
-      {
-        "value": "8 %",
-        "label": "le taux directeur de la banque centrale d'Islande",
-        "src": 1
-      },
-      {
-        "value": "5,9 %",
-        "label": "l'inflation, la plus haute depuis deux ans",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Iceland Review",
-        "name": "Iceland Review, « Iceland Holds Key Interest Rate at 8% in October 2026 »",
-        "url": "https://www.icelandreview.com/news/iceland-interest-rate-8-percent-october-2026/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-roumanie-banque-mondiale",
-    "date": "2026-10-09",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Bucarest",
-        "label": "Roumanie",
-        "coords": [
-          26.1,
-          44.43
-        ]
-      }
-    ],
-    "title": "Roumanie : l'économie devrait reculer d'environ 0,5 % en 2026",
-    "summary": "La Banque mondiale voit l'Europe de l'Est ralentir. La Roumanie, qui doit réduire ses déficits, est la plus touchée.",
-    "points": [
-      "Selon un compte rendu du 8 octobre de la prévision de la Banque mondiale, la Roumanie devrait se contracter d'environ 0,5 %, à cause des économies budgétaires et du coût de l'énergie [1].",
-      "La Pologne tient mieux, avec environ 3,6 % de croissance portée par l'investissement public (défense, infrastructures) et les fonds européens [1].",
-      "La Roumanie et la Hongrie seraient les seuls pays d'Europe centrale et orientale à réduire leur déficit public l'an prochain [2]."
-    ],
-    "why": [
-      "Un déficit, c'est quand un État dépense plus qu'il ne gagne. Le réduire est utile à long terme, mais cela freine l'économie à court terme : moins de dépenses publiques, moins de commandes, moins d'emplois.",
-      "L'énergie chère aggrave le problème, car elle renchérit la production sans que l'État puisse compenser."
-    ],
-    "forMe": "La Roumanie fait partie de l'Union européenne : quand un pays membre ralentit, la conjoncture n'est pas la même partout en Europe, et ce que tu lis sur « l'économie européenne » cache de grands écarts entre pays.",
-    "figures": [
-      {
-        "value": "−0,5 %",
-        "label": "la contraction attendue de l'économie roumaine",
-        "src": 1
-      },
-      {
-        "value": "3,6 %",
-        "label": "la croissance de la Pologne selon le même compte rendu",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Montenapo Daily",
-        "name": "Montenapo Daily, « Banca Mondiale : l'Europa orientale e l'Asia centrale rallentano nel 2026 » (8 oct. 2026)",
-        "url": "https://montenapodaily.com/en/2026/10/08/banca-mondiale-leuropa-orientale-e-lasia-centrale-rallentano-nel-2026"
-      },
-      {
-        "short": "FXStreet",
-        "name": "FXStreet (ING), « Fiscal discipline varies across CEE » (8 oct. 2026)",
-        "url": "https://fxstreet.com/analysis/fiscal-discipline-varies-across-cee-202610080619"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-09-egypte-banque-mondiale",
-    "date": "2026-10-09",
-    "region": "Moyen-Orient",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Le Caire",
-        "label": "Égypte",
-        "coords": [
-          31.24,
-          30.04
-        ]
-      }
-    ],
-    "title": "Égypte : l'une des rares économies de la région qui devrait croître",
-    "summary": "Alors que le Moyen-Orient se contracte à cause de la guerre en Iran, la Banque mondiale prévoit environ 5,1 % de croissance pour l'Égypte.",
-    "points": [
-      "La Banque mondiale prévoit une contraction de 2,1 % pour la région Moyen-Orient et Afrique du Nord en 2026, et de 4,3 % en moyenne pour les pays du Golfe [1].",
-      "L'Égypte fait exception : elle devrait croître de 5,1 % [1].",
-      "L'inflation urbaine égyptienne a ralenti à 14,5 % en août, contre 14,9 % en juillet [2]."
-    ],
-    "why": [
-      "La guerre autour de l'Iran et la fermeture d'Ormuz ont fait chuter la production de pétrole du Golfe. L'Égypte, qui n'est pas un grand exportateur, est moins exposée, et profite de certains flux comme le canal de Suez.",
-      "Une croissance forte avec une inflation encore élevée, c'est une économie qui avance, mais dont les habitants sentent toujours le prix des produits de base."
-    ],
-    "forMe": "L'Égypte est un pays clé pour les routes maritimes vers l'Europe et une destination de vacances populaire : sa stabilité économique compte pour les voyages comme pour les prix du transport.",
-    "figures": [
-      {
-        "value": "5,1 %",
-        "label": "la croissance prévue de l'Égypte par la Banque mondiale",
-        "src": 1
-      },
-      {
-        "value": "14,5 %",
-        "label": "l'inflation urbaine en Égypte en août 2026",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes",
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "The National",
-        "name": "The National, « World Bank says Middle East economy to contract 2.1% in 2026 on Iran war » (6 oct. 2026)",
-        "url": "https://www.thenationalnews.com/business/economy/2026/10/06/world-bank-says-middle-east-economy-to-contract-21-in-2026-on-iran-war/"
-      },
-      {
-        "short": "Trading Economics",
-        "name": "Trading Economics, « Egypt Inflation Rate Below Forecasts » (août 2026)",
-        "url": "https://tradingeconomics.com/egypt/inflation-cpi/news/582605"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-inde-taux",
-    "date": "2026-10-08",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Mumbai (Banque centrale d'Inde)",
-        "label": "Inde",
-        "coords": [
-          72.88,
-          19.07
-        ]
-      }
-    ],
-    "title": "L'Inde relève ses taux pour la première fois en près de quatre ans",
-    "summary": "La banque centrale indienne passe son taux directeur de 5,25 % à 5,50 % pour contenir l'inflation, alors que le pétrole reste cher.",
-    "points": [
-      "Le 7 octobre, la banque centrale d'Inde (RBI) a relevé son taux directeur de 0,25 point, à 5,50 %, sa première hausse en près de quatre ans [1][2].",
-      "Le comité a voté à l'unanimité et adopte une posture de « resserrement calibré » : il serre la vis, mais par petites touches [2].",
-      "Pour l'exercice 2026-2027, la RBI prévoit une croissance de 7,1 % ; selon la presse indienne, les baisses de taux ne sont plus à l'ordre du jour à court terme [1]."
-    ],
-    "why": [
-      "Le taux directeur est le prix auquel la banque centrale prête aux banques. En le relevant, elle rend le crédit plus cher : on emprunte et on dépense moins, ce qui freine la hausse des prix.",
-      "L'Inde importe l'essentiel de son pétrole. Quand le baril reste cher, les prix montent et la banque centrale réagit, comme d'autres le font dans le monde. Les analystes cités par la presse y voient une réponse aux risques d'inflation, au pétrole cher et aux pressions sur la monnaie [2]."
-    ],
-    "forMe": "Tu ne verras pas l'effet directement, mais l'Inde est l'un des moteurs de la croissance mondiale. Des taux plus élevés là-bas peuvent ralentir un peu sa demande, et la crise énergétique pèse sur beaucoup de pays à la fois.",
-    "figures": [
-      {
-        "value": "5,50 %",
-        "label": "le nouveau taux directeur de la banque centrale d'Inde (contre 5,25 %)",
-        "src": 1
-      },
-      {
-        "value": "7,1 %",
-        "label": "la croissance prévue par la RBI pour l'exercice 2026-2027",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Business Standard",
-        "name": "Business Standard, « RBI MPC hikes repo rate by 25 bps to 5.5%, near-term cuts 'off the table' » (7 oct. 2026)",
-        "url": "https://www.business-standard.com/finance/news/rbi-mpc-october-2026-repo-rate-hike-inflation-growth-gdp-sanjay-malhotra-126100700222_1.html"
-      },
-      {
-        "short": "Upstox",
-        "name": "Upstox, « RBI MPC October Meeting 2026 Highlights » (7 oct. 2026)",
-        "url": "https://upstox.com/news/market-news/economy/rbi-mpc-meeting-october-7-2026-live-updates-governor-sanjay-malhotra-speech-repo-rate-hike-key-highlights/liveblog-201398/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-kenya-taux",
-    "date": "2026-10-08",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Nairobi",
-        "label": "Kenya",
-        "coords": [
-          36.82,
-          -1.29
-        ]
-      }
-    ],
-    "title": "Kenya : la banque centrale garde son taux à 8,75 %, l'énergie reste la menace",
-    "summary": "Avec une inflation proche du haut de sa cible, la banque centrale kényane ne bouge pas et garde la possibilité de durcir.",
-    "points": [
-      "Le 7 octobre, le comité de politique monétaire de la banque centrale du Kenya a laissé son taux directeur à 8,75 % [1][2].",
-      "L'inflation est remontée à 6,8 % en septembre, près du haut de la fourchette visée (2,5 % à 7,5 %) [3].",
-      "La banque centrale table sur une croissance de 5 % et dit garder ses options ouvertes si les pressions sur les prix s'intensifient [2]."
-    ],
-    "why": [
-      "Tenir son taux, c'est dire : « ni plus cher, ni moins cher pour le moment ». La banque centrale ne veut pas baisser, car l'inflation approche de sa limite haute, mais elle ne veut pas non plus freiner une économie qui avance.",
-      "Le Kenya importe son carburant : le prix de l'énergie est le principal risque cité. Le dernier changement de taux remonte à février 2026, quand il avait été baissé [2]."
-    ],
-    "forMe": "Si tu consommes du thé ou du café kényan, ou si tu as des proches dans la diaspora, c'est le pouvoir d'achat des Kényans qui est en jeu : le carburant cher renchérit transports et alimentation.",
-    "figures": [
-      {
-        "value": "8,75 %",
-        "label": "le taux directeur du Kenya, inchangé",
-        "src": 1
-      },
-      {
-        "value": "6,8 %",
-        "label": "l'inflation au Kenya en septembre 2026",
-        "src": 3
-      },
-      {
-        "value": "5 %",
-        "label": "la croissance projetée par la banque centrale",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Banque centrale du Kenya",
-        "name": "Central Bank of Kenya, « MPC retains the CBR at 8.75 percent » (7 oct. 2026)",
-        "url": "https://www.centralbank.go.ke/2026/10/07/mpc-retains-the-cbr-at-8-75-percent-3/"
-      },
-      {
-        "short": "People Daily",
-        "name": "People Daily, « CBK holds interest rate at 8.75% as Kenya growth forecast rises to 5% »",
-        "url": "https://peopledaily.digital/business/cbk-holds-interest-rate-at-8-75-as-kenya-growth-forecast-rises-to-5"
-      },
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Kenya Holds Interest Rate at 8.75% » (oct. 2026)",
-        "url": "https://www.riotimesonline.com/kenya-central-bank-holds-rate-8-75-october-2026"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-bresil-election",
-    "date": "2026-10-08",
-    "region": "Amériques",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Brasilia",
-        "label": "Brésil",
-        "coords": [
-          -47.93,
-          -15.78
-        ]
-      }
-    ],
-    "title": "Brésil : un second tour serré, les marchés réagissent",
-    "summary": "Flávio Bolsonaro devance de peu Lula au premier tour de la présidentielle ; le duel final aura lieu le 25 octobre.",
-    "points": [
-      "Au premier tour, Flávio Bolsonaro a obtenu 47,03 % des voix et Lula 45,16 % ; aucun n'atteint la majorité, il y aura un second tour [1][3].",
-      "Les marchés brésiliens se sont envolés après le scrutin, puis la Bourse de São Paulo (Ibovespa) a reculé de 0,7 % à 204 302 points lors de la séance suivante [1][2].",
-      "Le dollar reste sous la barre des 5 réais et le second tour est prévu le 25 octobre [1]."
-    ],
-    "why": [
-      "Le Brésil est la plus grande économie d'Amérique latine et un géant agricole et minier (soja, minerai de fer, pétrole). Ses choix économiques comptent bien au-delà de ses frontières.",
-      "Les marchés financiers réagissent aux résultats parce que les deux candidats défendent des politiques différentes sur les dépenses de l'État et les impôts. Nous ne prenons pas parti : nous expliquons pourquoi les investisseurs surveillent ce vote de près."
-    ],
-    "forMe": "Le Brésil exporte du soja, du café et du minerai de fer. Une secousse sur sa monnaie ou sa Bourse peut jouer sur les prix de certaines matières premières, jusque dans ton assiette.",
-    "figures": [
-      {
-        "value": "47,03 %",
-        "label": "Flávio Bolsonaro au premier tour",
-        "src": 1
-      },
-      {
-        "value": "45,16 %",
-        "label": "Lula au premier tour",
-        "src": 1
-      },
-      {
-        "value": "-0,7 %",
-        "label": "l'Ibovespa lors de la séance suivante",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Latin American Pulse for Wednesday, October 7, 2026 »",
-        "url": "https://www.riotimesonline.com/latin-american-pulse-for-wednesday-october-7-2026/"
-      },
-      {
-        "short": "Rio Times (Bourse)",
-        "name": "The Rio Times, « LatAm Opens After Ibovespa's 0.7% Drop » (8 oct. 2026)",
-        "url": "https://www.riotimesonline.com/latam-pre-open-thursday-october-8-2026/"
-      },
-      {
-        "short": "Ground News",
-        "name": "Ground News, « Brazil election goes to run-off as right-wing Flávio Bolsonaro wins first round »",
-        "url": "https://ground.news/article/79efcb62-170d-4be3-b25d-011b374d584f"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-mozambique-bad",
-    "date": "2026-10-08",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Maputo",
-        "label": "Mozambique",
-        "coords": [
-          32.57,
-          -25.97
-        ]
-      }
-    ],
-    "title": "Mozambique : l'économie s'est contractée en 2025, la reprise sera lente",
-    "summary": "La Banque africaine de développement estime que le PIB a reculé de 0,2 % en 2025 et ne prévoit qu'un rebond modeste.",
-    "points": [
-      "Selon la Banque africaine de développement (BAD), l'économie mozambicaine a reculé de 0,2 % en 2025, après +2,1 % en 2024 [1].",
-      "La BAD prévoit une croissance de 0,5 % en 2026 puis 1,5 % en 2027 [1].",
-      "Elle signale un risque d'inflation lié à la hausse du carburant et des transports, notamment à cause des perturbations dans le détroit d'Ormuz [1]."
-    ],
-    "why": [
-      "Quand la croissance est inférieure à celle de la population, chacun s'appauvrit en moyenne. Avec 0,5 % de croissance prévue en 2026, la reprise reste très fragile.",
-      "Le Mozambique est loin du Golfe, mais il subit la crise énergétique : le carburant importé coûte plus cher, et cela se répercute sur le transport des marchandises et sur les prix."
-    ],
-    "forMe": "C'est un exemple de ce que la crise d'Ormuz fait à des pays dont on parle peu : le choc touche aussi ceux qui sont très loin de la zone de conflit.",
-    "figures": [
-      {
-        "value": "-0,2 %",
-        "label": "la croissance du Mozambique en 2025 (estimation BAD)",
-        "src": 1
-      },
-      {
-        "value": "+0,5 %",
-        "label": "la croissance prévue en 2026",
-        "src": 1
-      },
-      {
-        "value": "+1,5 %",
-        "label": "la croissance prévue en 2027",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "BAD",
-        "name": "Banque africaine de développement, « Country Focus Report 2026 – Mozambique » (7 oct. 2026)",
-        "url": "https://www.afdb.org/en/documents/country-focus-report-2026-mozambique-mobilizing-97343"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-coree-exports",
-    "date": "2026-10-08",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Séoul",
-        "label": "Corée du Sud",
-        "coords": [
-          126.98,
-          37.57
-        ]
-      }
-    ],
-    "title": "Corée du Sud : des exportations record grâce aux puces de l'IA",
-    "summary": "Les ventes à l'étranger ont bondi de 83,5 % en septembre, et la Banque mondiale relève sa prévision pour l'Asie de l'Est, tout en alertant sur la dépendance à l'IA.",
-    "points": [
-      "En septembre, les exportations sud-coréennes ont atteint un record de 120,9 milliards de dollars, +83,5 % sur un an [1][2].",
-      "Les puces électroniques ont à elles seules rapporté 60,3 milliards de dollars, plus de 260 % de hausse sur un an [1][2].",
-      "La Banque mondiale a relevé à 4,5 % sa prévision de croissance 2026 pour l'Asie de l'Est et le Pacifique, mais prévient que les produits liés à l'IA tirent l'essentiel des exportations de la région [3]."
-    ],
-    "why": [
-      "Les puces servent à entraîner et faire tourner l'intelligence artificielle. La Corée du Sud en fabrique une grande part, donc elle profite à plein de cette demande.",
-      "Mais c'est un risque : si tout repose sur un seul produit, un ralentissement de l'IA frapperait fort. C'est ce que souligne la Banque mondiale, qui note que les échanges hors IA sont faibles dans la région [3]."
-    ],
-    "forMe": "Les puces coréennes sont dans ton téléphone, ton ordinateur et de plus en plus dans les voitures. Leur prix et leur disponibilité peuvent influencer ce que tu paies pour ces appareils.",
-    "figures": [
-      {
-        "value": "120,9 Md$",
-        "label": "les exportations sud-coréennes en septembre (record)",
-        "src": 1
-      },
-      {
-        "value": "+83,5 %",
-        "label": "leur hausse sur un an",
-        "src": 1
-      },
-      {
-        "value": "4,5 %",
-        "label": "la croissance 2026 prévue par la Banque mondiale pour l'Asie de l'Est et le Pacifique",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "semi-conducteurs"
-    ],
-    "sources": [
-      {
-        "short": "Korea Times",
-        "name": "The Korea Times, « Korea's Sept. exports hit record $120.9 bil. on robust chip sales » (1er oct. 2026)",
-        "url": "https://www.koreatimes.co.kr/economy/20261001/koreas-sept-exports-hit-record-1209-bil-on-robust-chip-sales"
-      },
-      {
-        "short": "The Standard",
-        "name": "The Standard (Hong Kong), « South Korea's monthly exports top US$120 billion for the first time on record chip sales »",
-        "url": "https://www.thestandard.com.hk/finance/article/344355/South-Koreas-monthly-exports-top-US120-billion-for-the-first-time-on-record-chip-sales"
-      },
-      {
-        "short": "CNBC",
-        "name": "CNBC, « World Bank warns of AI concentration risks as it lifts East Asia and Pacific growth outlook to 4.5% » (6 oct. 2026)",
-        "url": "https://www.cnbc.com/2026/10/06/world-bank-east-asia-growth-inflation-ai-exports-.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-08-madagascar-russie-electricite",
-    "date": "2026-10-08",
-    "region": "Afrique",
-    "theme": "mix",
-    "title": "Madagascar : face aux coupures de courant, des générateurs russes achetés sans appel d'offres",
-    "summary": "Pour lutter contre les délestages, le gouvernement malgache autorise la compagnie publique Jirama à acheter 18 groupes électrogènes à une société russe sans mise en concurrence, sur fond de rapprochement avec Moscou.",
-    "geo": [
-      {
-        "name": "Antananarivo, Madagascar",
-        "label": "Madagascar",
-        "coords": [
-          47.52,
-          -18.88
-        ]
-      }
-    ],
-    "points": [
-      "Un décret adopté le 6 octobre 2026 permet à la Jirama d'acheter directement 18 générateurs diesel à la société russe Malmekhservice, sans appel d'offres [1].",
-      "Le ministère de l'Énergie n'a précisé ni le montant de la transaction ni la puissance des machines [1] ; selon une source proche du dossier, chaque groupe ferait 1 MW, soit 18 MW au total [2].",
-      "Ce choix découle de la prolongation de l'état d'urgence énergétique décidée en Conseil des ministres le 29 septembre, qui permet d'alléger les procédures d'achat [2].",
-      "Sur le réseau d'Antananarivo, les coupures tournantes durent désormais trois heures [2]."
-    ],
-    "why": [
-      "Madagascar manque cruellement d'électricité et la Jirama peine à suivre : les délestages pèsent sur les ménages comme sur les entreprises [2]. L'état d'urgence permet d'acheter vite, mais pose la question de la transparence des dépenses publiques [2].",
-      "L'opération s'inscrit dans un rapprochement diplomatique entre Madagascar et la Russie [1][2]. En parallèle, le pays cherche à lever jusqu'à 5 milliards de dollars avec le gestionnaire d'actifs Gemcorp pour financer énergie, infrastructures et mines [3]."
-    ],
-    "forMe": "Et moi, dans tout ça ? Madagascar est un partenaire historique de la France, qui y a de nombreuses entreprises et une forte diaspora. Le choix de fournisseurs russes illustre la concurrence d'influence qui se joue en Afrique, y compris dans l'océan Indien, près de La Réunion et Mayotte.",
-    "figures": [
-      {
-        "value": "18",
-        "label": "Générateurs diesel achetés à une société russe",
-        "src": 1
-      },
-      {
-        "value": "3 h",
-        "label": "Durée des coupures tournantes à Antananarivo",
-        "src": 2
-      },
-      {
-        "value": "5 Md$",
-        "label": "Financement recherché avec Gemcorp",
-        "src": 3
-      }
-    ],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Bloomberg",
-        "name": "Madagascar Skips Tender for Power Equipment as Russia Ties Grow (8 octobre 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-10-08/madagascar-skips-tender-for-power-equipment-as-russia-ties-grow"
-      },
-      {
-        "short": "Newsmada",
-        "name": "Pénurie d'électricité : Malmekhservice, le fournisseur russe imposé à la Jirama (8 octobre 2026)",
-        "url": "https://newsmada.com/2026/10/08/penurie-delectricite-malmekhservice-le-fournisseur-russe-impose-a-la-jirama/"
-      },
-      {
-        "short": "Bloomberg",
-        "name": "Gemcorp Joins Madagascar to Raise $5 Billion for Energy, Mining (6 octobre 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-10-06/gemcorp-joins-madagascar-to-raise-5-billion-for-energy-mining"
       }
     ]
   },
