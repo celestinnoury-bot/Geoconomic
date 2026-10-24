@@ -73,6 +73,7 @@ Contact de l'auteur (donné le 21 oct. 2026) : celestinnoury0@gmail.com, dans `d
 ## En attente de l'auteur
 
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
-- Hébergement public, prestataire de paiement, statut micro-entreprise.
+- Hébergement public : **GitHub Pages** prévu (dépôt public), adresse https://celestinnoury-bot.github.io/Geoconomic/ une fois activé par l'auteur (Settings → Pages → Deploy from a branch → `claude/geoeconomic-news-app-9exkx9`, dossier `/ (root)`) ; `.nojekyll` à la racine. Ensuite : nom de domaine (ex. geonomix.fr) possible.
+- Prestataire de paiement (Stripe en mode test relié à RevenueCat le 24 oct. 2026 ; Paddle évoqué pour la TVA européenne), statut micro-entreprise.
 - CGU (`data/cgu.js`) : compléter les crochets (SIRET, adresse, hébergeur, médiateur de la consommation) et faire relire avant le lancement.
 - Stripe (reporté par l'auteur) : brancher le connecteur Stripe sur claude.ai et/ou autoriser `stripe.com` dans l'accès réseau de l'environnement, puis générer le plan avec `stripe_implementation_planner` (Payments + Billing ; Connect sans doute inutile). En attendant, des Payment Links collés avec `node tools/plus.mjs paiement mensuel|annuel <lien>` suffisent.
