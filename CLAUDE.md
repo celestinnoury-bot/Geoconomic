@@ -5,7 +5,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 ## Où on en est
 
-- **Site public (GitHub Pages, activé le 24 oct. 2026)** : https://geonomixapp.github.io/Geonomix/ (le 25 oct. 2026, l'auteur a renommé son compte GitHub `celestinnoury-bot` → `geonomixapp` et le dépôt `Geoconomic` → `Geonomix` ; l'ancienne adresse git redirige, la session reste autorisée sous l'ancien nom `celestinnoury-bot/geoconomic` ; pour l'adresse la plus courte https://geonomixapp.github.io il faudrait nommer le dépôt `geonomixapp.github.io`), construit depuis la branche `claude/geoeconomic-news-app-9exkx9`, dossier racine (`.nojekyll`) : chaque push met le site à jour. Le réseau de la session ne peut pas l'ouvrir (github.io refusé) ; vérifier le déploiement avec les runs « pages build and deployment ».
+- **Site public (GitHub Pages, activé le 24 oct. 2026)** : **https://geonomixapp.github.io** (le 25 oct. 2026, l'auteur a renommé son compte GitHub `celestinnoury-bot` → `geonomixapp` et le dépôt `Geoconomic` → `geonomixapp.github.io`, d'où l'adresse courte ; l'ancienne adresse git redirige, la session reste autorisée sous l'ancien nom `celestinnoury-bot/geoconomic`), construit depuis la branche `claude/geoeconomic-news-app-9exkx9`, dossier racine (`.nojekyll`) : chaque push met le site à jour. Le réseau de la session ne peut pas l'ouvrir (github.io refusé) ; vérifier le déploiement avec les runs « pages build and deployment ».
 
 - Branche de travail : `claude/geoeconomic-news-app-9exkx9` (ne jamais pousser ailleurs, pas de pull request sans demande).
 - Aperçu privé publié sur claude.ai : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT
