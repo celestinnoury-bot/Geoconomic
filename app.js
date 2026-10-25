@@ -353,41 +353,59 @@
     };
     requestAnimationFrame(step);
   };
-  let railDrag = null, railDragged = false;
-  document.addEventListener("pointerdown", (e) => {
-    const rail = e.target.closest && e.target.closest(".scroll-rail");
-    if (!rail || e.button > 0) return;
+  // Glisser le curseur. Au doigt, on passe par les évènements tactiles (touchmove bloqué) : sur iPhone et iPad,
+  // les évènements « pointer » laissent Safari faire défiler la page en même temps, d'où des sauts.
+  // Dès qu'on le touche, le curseur se fige à l'écran (comme une vraie barre de défilement) et la pastille suit le doigt.
+  let railDrag = null, railDragged = false, railFrame = 0;
+  function railStart(rail, y) {
     // Course de la pastille (68 % du rail moins sa hauteur) ↔ hauteur de la zone à faire défiler.
     const track = Math.max(40, rail.clientHeight * 0.68 - 58);
-    const host = rail.parentElement.getBoundingClientRect();
-    railDrag = { rail, id: e.pointerId, y: e.clientY, from: window.scrollY, k: Math.max(1, host.height - 72) / track, moved: false };
+    const host = rail.parentElement.getBoundingClientRect(), r = rail.getBoundingClientRect();
+    railDrag = { rail, y, from: window.scrollY, k: Math.max(1, host.height - 72) / track, moved: false, to: window.scrollY };
     railDragged = false;
-    try { rail.setPointerCapture(e.pointerId); } catch (err) { /* rien */ }
-  });
-  document.addEventListener("pointermove", (e) => {
-    if (!railDrag || e.pointerId !== railDrag.id) return;
-    const dy = e.clientY - railDrag.y;
+    Object.assign(rail.style, { position: "fixed", top: r.top + "px", left: r.left + "px", width: r.width + "px", height: r.height + "px", right: "auto", bottom: "auto" });
+  }
+  function railMove(y) {
+    if (!railDrag) return;
+    const dy = y - railDrag.y;
     if (!railDrag.moved && Math.abs(dy) < 6) return;
-    if (!railDrag.moved) {
-      // Pendant qu'on le tient, le curseur reste fixe à l'écran (comme une vraie barre de défilement) :
-      // sinon il remonte avec la page et part à l'opposé du doigt.
-      const r = railDrag.rail.getBoundingClientRect();
-      Object.assign(railDrag.rail.style, { position: "fixed", top: r.top + "px", left: r.left + "px", width: r.width + "px", height: r.height + "px", right: "auto", bottom: "auto" });
-    }
     railDrag.moved = true;
     railDrag.rail.classList.add("dragging");
-    window.scrollTo(0, railDrag.from + dy * railDrag.k);
-  });
-  const railEnd = (e) => {
-    if (!railDrag || e.pointerId !== railDrag.id) return;
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    railDrag.to = Math.max(0, Math.min(max, railDrag.from + dy * railDrag.k));
+    // Une seule mise à jour par image, pour rester fluide.
+    if (!railFrame) railFrame = requestAnimationFrame(() => { railFrame = 0; if (railDrag) window.scrollTo(0, railDrag.to); });
+  }
+  function railEnd() {
+    if (!railDrag) return;
     railDragged = railDrag.moved;
+    setTimeout(() => { railDragged = false; }, 400);
     railDrag.rail.classList.remove("dragging");
     ["position", "top", "left", "width", "height", "right", "bottom"].forEach((k) => (railDrag.rail.style[k] = ""));
-    updateRails();
     railDrag = null;
-  };
-  document.addEventListener("pointerup", railEnd);
-  document.addEventListener("pointercancel", railEnd);
+    updateRails();
+  }
+  document.addEventListener("touchstart", (e) => {
+    const rail = e.target.closest && e.target.closest(".scroll-rail");
+    if (rail && e.touches.length === 1) railStart(rail, e.touches[0].clientY);
+  }, { passive: true });
+  document.addEventListener("touchmove", (e) => {
+    if (!railDrag) return;
+    e.preventDefault();
+    railMove(e.touches[0].clientY);
+  }, { passive: false });
+  document.addEventListener("touchend", railEnd);
+  document.addEventListener("touchcancel", railEnd);
+  // Souris et stylet.
+  document.addEventListener("pointerdown", (e) => {
+    const rail = e.pointerType !== "touch" && e.button === 0 && e.target.closest && e.target.closest(".scroll-rail");
+    if (!rail) return;
+    railStart(rail, e.clientY);
+    try { rail.setPointerCapture(e.pointerId); } catch (err) { /* rien */ }
+  });
+  document.addEventListener("pointermove", (e) => { if (e.pointerType !== "touch") railMove(e.clientY); });
+  document.addEventListener("pointerup", (e) => { if (e.pointerType !== "touch") railEnd(); });
+  document.addEventListener("pointercancel", (e) => { if (e.pointerType !== "touch") railEnd(); });
   document.addEventListener("click", (e) => {
     const rail = e.target.closest && e.target.closest(".scroll-rail");
     if (!rail) return;
