@@ -883,8 +883,8 @@
     app.innerHTML = `
       <section class="globe-hero country-hero" aria-label="${c.name}">
         <div class="globe" id="globe"></div>
-        <div class="country-head">
-          <a class="back" href="#/">‹ ${I18N.t("Tout le globe")}</a>
+        <button type="button" class="back-arrow" aria-label="${I18N.t("Revenir en arrière")}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <div class="country-head country-head-title">
           <h1 class="title"><span class="country-flag">${c.flag}</span> ${c.name}</h1>
           <p class="country-sub">${local ? I18N.t("{n} actus dans le pays").replace("{n}", local) : I18N.t("Pas d'actu récente dans le pays")}${far ? ` · ${I18N.t("{n} ailleurs qui le concernent").replace("{n}", far)}` : ""}</p>
         </div>
@@ -2998,6 +2998,13 @@ function statGrid(figures, sources, theme = "geo") {
     if (w) w.opener = null; else location.href = "duel.html";
   });
   rcSync();
+  // Nombre de pages vues dans l'appli : la flèche de retour revient à la page d'avant s'il y en a une.
+  let pagesSeen = 0;
+  window.addEventListener("hashchange", () => { pagesSeen++; });
+  document.addEventListener("click", (e) => {
+    if (!(e.target.closest && e.target.closest(".back-arrow"))) return;
+    pagesSeen > 0 && history.length > 1 ? history.back() : (location.hash = "#/");
+  });
   window.addEventListener("hashchange", route);
   route();
   I18N.watch();
