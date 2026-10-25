@@ -429,7 +429,19 @@
   "Pas d'actu récente ici pour l'instant.": "Por ahora no hay noticias recientes aquí.",
   "Voir ses chiffres ›": "Ver sus cifras ›",
   "Tout le globe": "Todo el globo",
-  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "No se encontró nada. Prueba un país (Canadá, Ghana…) o una palabra (petróleo, tipos…)."
+  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "No se encontró nada. Prueba un país (Canadá, Ghana…) o una palabra (petróleo, tipos…).",
+  "Aujourd'hui": "Hoy",
+  "Hier": "Ayer",
+  "Il y a {n} jours": "Hace {n} días",
+  "Voir les jours d'avant": "Ver los días anteriores",
+  "{n} actus dans le pays": "{n} noticias en el país",
+  "Pas d'actu récente dans le pays": "Sin noticias recientes en el país",
+  "{n} ailleurs qui le concernent": "{n} en otros lugares que le afectan",
+  "Dans le pays": "En el país",
+  "Ce qui s'y passe.": "Lo que pasa allí.",
+  "Ailleurs, mais ça le concerne": "En otro lugar, pero le afecta",
+  "Les conséquences du reste du monde.": "Las consecuencias del resto del mundo.",
+  "Ses chiffres": "Sus cifras"
  },
  "months": {
   "janvier": "enero",

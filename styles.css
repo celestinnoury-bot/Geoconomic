@@ -1389,3 +1389,18 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .globe-hero.gs-on .globe-zoom { bottom: 150px; }
 @keyframes gsUp { from { opacity: 0; transform: translateY(16px); } }
 @media (min-width: 900px) { .gs-strip { justify-content: center; } }
+
+/* ---------- Page d'un pays ---------- */
+.country-hero { height: 74vh; height: 74svh; min-height: 520px; }
+.country-hero .globe { top: calc(176px + env(safe-area-inset-top)); bottom: 0; }
+.country-head { position: absolute; left: 0; right: 0; top: calc(84px + env(safe-area-inset-top)); z-index: 2; max-width: 980px; margin: 0 auto; padding: 0 20px; pointer-events: none; }
+.country-head .back { pointer-events: auto; }
+.country-head .title { margin: 6px 0 2px; font-size: clamp(30px, 6vw, 44px); line-height: 1.1; }
+.country-flag { font-size: .9em; }
+.country-sub { margin: 0; color: var(--gold); font-size: 15px; font-weight: 600; }
+.country-hero.sheet-open .country-head { opacity: .25; }
+.day-group + .day-group { margin-top: 30px; }
+.day-label { font: 700 13px/1.2 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--gold); margin: 22px 0 12px; }
+.day-label span { color: var(--muted); font-weight: 500; letter-spacing: 0; text-transform: none; margin-left: 8px; }
+.day-more { margin-top: 24px; }
+.country-figs { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 12px; }

@@ -433,7 +433,19 @@
   "Pas d'actu récente ici pour l'instant.": "No recent news here for now.",
   "Voir ses chiffres ›": "See its figures ›",
   "Tout le globe": "Whole globe",
-  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "Nothing found. Try a country (Canada, Ghana…) or a word (oil, rates…)."
+  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "Nothing found. Try a country (Canada, Ghana…) or a word (oil, rates…).",
+  "Aujourd'hui": "Today",
+  "Hier": "Yesterday",
+  "Il y a {n} jours": "{n} days ago",
+  "Voir les jours d'avant": "See earlier days",
+  "{n} actus dans le pays": "{n} news in the country",
+  "Pas d'actu récente dans le pays": "No recent news in the country",
+  "{n} ailleurs qui le concernent": "{n} elsewhere that affect it",
+  "Dans le pays": "In the country",
+  "Ce qui s'y passe.": "What is happening there.",
+  "Ailleurs, mais ça le concerne": "Elsewhere, but it matters there",
+  "Les conséquences du reste du monde.": "The knock-on effects from the rest of the world.",
+  "Ses chiffres": "Its figures"
  },
  "months": {
   "janvier": "Jan.",

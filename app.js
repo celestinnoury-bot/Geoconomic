@@ -505,7 +505,6 @@
           <form class="globe-search" role="search" autocomplete="off">
             <svg class="gs-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
             <input type="search" class="gs-input" enterkeyhint="search" aria-label="${I18N.t("Chercher un pays ou un événement")}" placeholder="${I18N.t("Un pays ou un événement (ex. Canada, pétrole)")}">
-            <div class="gs-active" hidden></div>
             <div class="gs-suggest" role="listbox" hidden></div>
           </form>
         </div>
@@ -513,7 +512,6 @@
           ${onGlobe.map((n) => `<a class="tagpill" href="#/actu/${n.id}">${n.geo[0].name} · ${n.title}</a>`).join("")}
         </div>
         <div class="globe-sheet" hidden></div>
-        <div class="gs-strip" hidden></div>
         ${scrollRail()}
         <a class="scroll-hint" href="#/" data-scroll="feed"><span>Toute l'actu</span><span class="arrow" aria-hidden="true">↓</span></a>
         ${tickerHTML()}
@@ -694,31 +692,33 @@
       const name = (a2 && dn && dn.of(a2)) || indNames[String(Number(f.id))] || f.properties.name;
       const keys = [name, f.properties.name, a2 && dnFr && dnFr.of(a2), indNames[String(Number(f.id))], ...(EXTRA[a2] || [])].filter(Boolean).map(foldS);
       const flag = /^[A-Z]{2}$/.test(a2) ? String.fromCodePoint(...[...a2].map((c) => 127397 + c.charCodeAt(0))) : "🌍";
-      return { f, id: String(Number(f.id)), a2, name, keys: [...new Set(keys)], flag, news: [] };
+      return { f, id: String(Number(f.id)), a2, name, keys: [...new Set(keys)], flag, news: [], related: [] };
     });
     // Rattache chaque actu à ses pays : le lieu tombe dans le pays, ou le nom du pays est dans le lieu ou le titre.
     const contains = window.GeocoGlobe && window.GeocoGlobe.contains;
     // Chaque pays garde, pour chaque actu, seulement les lieux qui sont chez lui (sinon un point au centre du pays).
     news.forEach((n) => {
       const hit = new Map();
-      const add = (x, g) => { if (!hit.has(x)) hit.set(x, []); if (g) hit.get(x).push(g); };
+      // Dans le pays, chaque point porte le nom de sa ville (« Washington » plutôt que « États-Unis »).
+      const add = (x, g) => { if (!hit.has(x)) hit.set(x, []); if (g) hit.get(x).push(Object.assign({}, g, { label: g.name.split(",")[0].trim() })); };
       (n.geo || []).forEach((g) => {
         const c = contains && countryIdx.find((x) => contains(x.f, g.coords[0], g.coords[1]));
         if (c) add(c, g);
         const gn = foldS(g.name);
         countryIdx.forEach((x) => { if (x !== c && x.keys.some((k) => k.length > 3 && gn.includes(k))) add(x, null); });
       });
-      const t = " " + foldS(n.title) + " ";
-      countryIdx.forEach((x) => { if (x.keys.some((k) => k.length > 3 && t.includes(" " + k + " "))) add(x, null); });
       hit.forEach((geos, x) => x.news.push(Object.assign({}, n, { geo: geos })));
+      // Ailleurs, mais ça le concerne : le pays est cité dans le titre, le résumé ou l'explication.
+      const body = " " + foldS([n.title, n.summary, ...(n.points || []), ...(n.why || [])].join(" ")) + " ";
+      countryIdx.forEach((x) => { if (!hit.has(x) && x.keys.some((k) => k.length > 3 && body.includes(" " + k + " "))) x.related.push(n); });
     });
     return countryIdx;
   }
 
-  function globeSearch(globe, { hero, el, openSheet, closeSheet, setCountry }) {
+  function globeSearch(globe, { hero, el }) {
     const form = hero.querySelector(".globe-search");
     if (!form) return;
-    const input = form.querySelector(".gs-input"), box = form.querySelector(".gs-suggest"), pill = form.querySelector(".gs-active");
+    const input = form.querySelector(".gs-input"), box = form.querySelector(".gs-suggest");
     let results = [];
     const dateShort = (d) => new Date(d + "T12:00:00").toLocaleDateString(LOCALE, { day: "numeric", month: "short" });
 
@@ -727,12 +727,12 @@
       if (q.length < 2) { box.hidden = true; results = []; return; }
       const idx = countriesIndex();
       const countries = idx.filter((c) => c.keys.some((k) => k.startsWith(q) || (q.length > 3 && k.includes(q))))
-        .sort((a, b) => (b.keys.some((k) => k.startsWith(q)) - a.keys.some((k) => k.startsWith(q))) || b.news.length - a.news.length).slice(0, 4);
+        .sort((a, b) => (b.keys.some((k) => k.startsWith(q)) - a.keys.some((k) => k.startsWith(q))) || (b.news.length + b.related.length) - (a.news.length + a.related.length)).slice(0, 4);
       const words = q.split(" ").filter((w) => w.length > 1);
       const events = news.filter((n) => { const t = foldS(n.title + " " + n.summary + " " + (n.geo || []).map((g) => g.name).join(" ")); return words.every((w) => t.includes(w)); }).slice(0, 5);
       results = [...countries.map((c) => ({ kind: "country", c })), ...events.map((n) => ({ kind: "news", n }))];
       box.innerHTML = results.length ? results.map((r, i) => r.kind === "country"
-        ? `<button type="button" class="gs-item" data-i="${i}" role="option"><span class="gs-flag">${r.c.flag}</span><span class="gs-main"><b>${r.c.name}</b><small>${r.c.news.length ? I18N.t("{n} actus").replace("{n}", r.c.news.length) : I18N.t("Pas d'actu récente")}</small></span><span class="gs-go">›</span></button>`
+        ? `<button type="button" class="gs-item" data-i="${i}" role="option"><span class="gs-flag">${r.c.flag}</span><span class="gs-main"><b>${r.c.name}</b><small>${r.c.news.length + r.c.related.length ? I18N.t("{n} actus").replace("{n}", r.c.news.length + r.c.related.length) : I18N.t("Pas d'actu récente")}</small></span><span class="gs-go">›</span></button>`
         : `<button type="button" class="gs-item news ${r.n.theme}" data-i="${i}" role="option"><span class="gs-flag">📰</span><span class="gs-main"><b>${r.n.title}</b><small>${(r.n.geo && r.n.geo[0] && r.n.geo[0].name) || ""} · ${dateShort(r.n.date)}</small></span><span class="gs-go">›</span></button>`).join("")
         : `<p class="gs-none">${I18N.t("Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).")}</p>`;
       box.hidden = false;
@@ -756,41 +756,11 @@
       a.onfinish = () => chip.remove();
     }
 
-    const strip = hero.querySelector(".gs-strip"), overlay = hero.querySelector(".globe-overlay");
-    // La barre de recherche coulisse en haut du globe ; le titre s'efface pour laisser le pays au premier plan.
-    function slideUp(on) {
-      if (!on) { form.style.transform = ""; hero.classList.remove("gs-on"); return; }
-      const dy = overlay.getBoundingClientRect().top - form.getBoundingClientRect().top + (parseFloat(getComputedStyle(form).marginTop) || 0);
-      hero.classList.add("gs-on");
-      form.style.transform = `translateY(${Math.min(0, dy)}px)`;
-    }
-    function showStrip(c, pts) {
-      const seen = new Set(), list = c.news.filter((n) => !seen.has(n.id) && seen.add(n.id));
-      strip.innerHTML = list.length
-        ? list.map((n) => `<button type="button" class="gs-card ${n.theme}" data-id="${n.id}"><span class="gs-card-place">${(n.geo[0] && (n.geo[0].label || n.geo[0].name)) || c.name} · ${dateShort(n.date)}</span><span class="gs-card-title">${n.title}</span></button>`).join("")
-        : `<div class="gs-card empty"><span class="gs-card-title">${I18N.t("Pas d'actu récente ici pour l'instant.")}</span><a href="#/chiffres/inflation/${c.id}">${I18N.t("Voir ses chiffres ›")}</a></div>`;
-      strip.hidden = false;
-      strip.querySelectorAll(".gs-card[data-id]").forEach((b) => b.addEventListener("click", () => {
-        const p = pts.find((x) => x.items.some((it) => it.news.id === b.dataset.id));
-        p ? globe.focus(p) : (location.hash = "#/actu/" + b.dataset.id);
-      }));
-    }
-
+    // Pays choisi : son nom glisse vers le globe, puis sa page s'ouvre (le globe y zoome sur lui).
     function pickCountry(c) {
       box.hidden = true; input.blur();
       fly(`${c.flag} ${c.name}`);
-      setCountry(c);
-      closeSheet();
-      slideUp(true);
-      const pts = globe.focusCountry(c.f, c.news, c.name);
-      form.classList.add("active");
-      input.hidden = true;
-      pill.hidden = false;
-      pill.innerHTML = `<span class="gs-flag">${c.flag}</span><b>${c.name}</b><small>${c.news.length ? I18N.t("{n} actus").replace("{n}", c.news.length) : I18N.t("Pas d'actu récente")}</small><button type="button" class="gs-x" aria-label="${I18N.t("Tout le globe")}">×</button>`;
-      pill.querySelector(".gs-x").addEventListener("click", clear);
-      // Une fois le pays en place, ses actus défilent en petites cartes en bas (le pays reste visible).
-      strip.hidden = true;
-      setTimeout(() => { if (form.classList.contains("active")) showStrip(c, pts); }, 1400);
+      setTimeout(() => { location.hash = "#/pays/" + c.id; }, 350);
     }
 
     function pickNews(n) {
@@ -800,16 +770,6 @@
       if (!p) { location.hash = "#/actu/" + n.id; return; }
       fly(g.label || g.name);
       globe.focus(p);
-    }
-
-    function clear() {
-      setCountry(null);
-      slideUp(false);
-      strip.hidden = true;
-      form.classList.remove("active");
-      pill.hidden = true; input.hidden = false; input.value = ""; box.hidden = true;
-      closeSheet();
-      globe.clearCountry();
     }
 
     input.addEventListener("input", suggest);
@@ -835,12 +795,24 @@
     const sheet = app.querySelector(".globe-sheet");
     if (!el || !window.GeocoGlobe) return hero && hero.classList.add("no-webgl");
 
-    let searchCountry = null;
+    const { openSheet } = globeSheet(hero, sheet, () => currentGlobe && currentGlobe.reset());
+
+    try {
+      currentGlobe = await window.GeocoGlobe.mount(el, items, { onOpen: openSheet, region: I18N.region });
+    } catch (e) {
+      currentGlobe = null;
+    }
+    if (!currentGlobe) { hero.classList.add("no-webgl"); return; }
+    globeSearch(currentGlobe, { hero, el });
+    pauseOffscreen(hero);
+  }
+
+  // Volet d'actus qui s'ouvre quand on touche un point du globe (accueil et page d'un pays).
+  function globeSheet(hero, sheet, onClose) {
     function closeSheet() {
       sheet.hidden = true;
       hero.classList.remove("sheet-open");
-      // Pendant une recherche de pays, on reste sur le pays : on en sort avec le ✕ de la barre.
-      if (currentGlobe && !searchCountry) currentGlobe.reset();
+      if (onClose) onClose();
     }
     function openSheet(place) {
       const multi = place.names.length > 1;
@@ -861,26 +833,107 @@
       hero.classList.add("sheet-open");
       sheet.querySelector(".sheet-close").addEventListener("click", closeSheet);
     }
+    return { openSheet, closeSheet };
+  }
 
-    try {
-      currentGlobe = await window.GeocoGlobe.mount(el, items, { onOpen: openSheet, region: I18N.region });
-    } catch (e) {
-      currentGlobe = null;
-    }
-    if (!currentGlobe) { hero.classList.add("no-webgl"); return; }
-    globeSearch(currentGlobe, { hero, el, openSheet, closeSheet, setCountry: (c) => (searchCountry = c) });
-
+  function pauseOffscreen(hero) {
     // Le globe ne tourne que lorsqu'il est visible : économise la batterie.
     // On garde une référence à CE globe : après un changement de page, l'observateur s'arrête
     // au lieu de mettre en pause le globe d'une autre page.
     const homeGlobe = currentGlobe;
-    if ("IntersectionObserver" in window) {
+    if (homeGlobe && "IntersectionObserver" in window) {
       const io = new IntersectionObserver(([entry]) => {
         if (currentGlobe !== homeGlobe || !document.body.contains(hero)) return io.disconnect();
         entry.isIntersecting ? homeGlobe.world.resumeAnimation() : homeGlobe.world.pauseAnimation();
       });
       io.observe(hero);
     }
+  }
+
+  // ---------- Page d'un pays (#/pays/<code ISO numérique>) ----------
+  // En haut, le globe zoomé sur le pays en relief, ses actus en points lumineux ville par ville ; dessous,
+  // ses actus rangées par jour (aujourd'hui, hier, il y a 2 jours…), puis celles d'ailleurs qui le concernent,
+  // et ses derniers chiffres. Les longues listes s'affichent par paquets (« Voir plus »).
+  const relDay = (d) => {
+    const n = Math.round((Date.parse(new Date().toISOString().slice(0, 10)) - Date.parse(d)) / 864e5);
+    return n <= 0 ? I18N.t("Aujourd'hui") : n === 1 ? I18N.t("Hier") : n < 7 ? I18N.t("Il y a {n} jours").replace("{n}", n) : formatDate(d);
+  };
+  function dayGroups(list, key) {
+    const seen = new Set(), uniq = list.filter((n) => !seen.has(n.id) && seen.add(n.id)).sort((a, b) => (a.date < b.date ? 1 : -1));
+    const days = [...new Set(uniq.map((n) => n.date))];
+    let shown = 0;
+    const html = days.map((d) => {
+      const items = uniq.filter((n) => n.date === d);
+      const block = `<div class="day-group${shown >= 5 ? " later" : ""}" ${shown >= 5 ? "hidden" : ""} data-more="${key}">
+          <p class="day-label">${relDay(d)}${relDay(d) !== formatDate(d) ? ` <span>${formatDate(d)}</span>` : ""}</p>
+          ${items.map(newsCard).join("")}
+        </div>`;
+      shown += items.length;
+      return block;
+    }).join("");
+    return html + (shown > 5 && days.length > 1 ? `<button type="button" class="more-btn day-more" data-key="${key}">${I18N.t("Voir les jours d'avant")} ›</button>` : "");
+  }
+
+  async function renderCountry(id) {
+    const c = countriesIndex().find((x) => x.id === String(Number(id)));
+    if (!c) return renderNotFound();
+    const ind = window.GEOCO.indicators;
+    const figs = ind ? ind.list.map((x) => ({ x, v: x.values[c.id] })).filter((o) => o.v) : [];
+    const local = c.news.length, far = c.related.length;
+    app.innerHTML = `
+      <section class="globe-hero country-hero" aria-label="${c.name}">
+        <div class="globe" id="globe"></div>
+        <div class="country-head">
+          <a class="back" href="#/">‹ ${I18N.t("Tout le globe")}</a>
+          <h1 class="title"><span class="country-flag">${c.flag}</span> ${c.name}</h1>
+          <p class="country-sub">${local ? I18N.t("{n} actus dans le pays").replace("{n}", local) : I18N.t("Pas d'actu récente dans le pays")}${far ? ` · ${I18N.t("{n} ailleurs qui le concernent").replace("{n}", far)}` : ""}</p>
+        </div>
+        <div class="globe-sheet" hidden></div>
+        ${scrollRail()}
+      </section>
+
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">${I18N.t("Dans le pays")}</p>
+          <h2 class="title reveal">${I18N.t("Ce qui s'y passe.")}</h2>
+          ${local ? dayGroups(c.news, "local") : `<p class="copy">${I18N.t("Pas d'actu récente ici pour l'instant.")}</p>`}
+        </div>
+      </section>
+
+      ${far ? `
+      <section class="section alt">
+        <div class="wrap">
+          <p class="eyebrow reveal">${I18N.t("Ailleurs, mais ça le concerne")}</p>
+          <h2 class="title reveal">${I18N.t("Les conséquences du reste du monde.")}</h2>
+          ${dayGroups(c.related, "far")}
+        </div>
+      </section>` : ""}
+
+      ${figs.length ? `
+      <section class="section">
+        <div class="wrap">
+          <p class="eyebrow reveal">${I18N.t("Ses chiffres")}</p>
+          <div class="country-figs">
+            ${figs.map(({ x, v }) => `<a class="latest reveal ${x.id === "croissance" ? "eco" : "geo"}" href="#/chiffres/${x.id}/${c.id}"><span class="latest-group">${x.title}</span><span class="latest-value">${String(v.v).replace(".", ",")} ${x.unit}</span><span class="latest-meta">${v.d || ""}</span></a>`).join("")}
+          </div>
+        </div>
+      </section>` : ""}`;
+    app.querySelectorAll(".day-more").forEach((b) => b.addEventListener("click", () => {
+      app.querySelectorAll(`.day-group.later[data-more="${b.dataset.key}"]`).forEach((g) => { g.hidden = false; g.querySelectorAll(".reveal").forEach((r) => r.classList.add("in")); });
+      b.remove();
+    }));
+
+    const hero = app.querySelector(".country-hero"), el = app.querySelector("#globe");
+    if (!window.GeocoGlobe) return hero.classList.add("no-webgl");
+    // Toucher un point ouvre ses actus ; en fermant, on reste sur le pays.
+    let g = null, view = null;
+    const { openSheet } = globeSheet(hero, app.querySelector(".globe-sheet"), () => g && view && g.world.pointOfView(view, 1000));
+    try { g = await window.GeocoGlobe.mount(el, [], { onOpen: openSheet, region: I18N.region }); } catch (e) { g = null; }
+    if (!g || !document.body.contains(el)) return hero.classList.add("no-webgl");
+    currentGlobe = g;
+    g.focusCountry(c.f, c.news, c.name);
+    setTimeout(() => { view = g.world.pointOfView(); }, 1800);
+    pauseOffscreen(hero);
   }
 
   // ---------- Dossier ----------
@@ -2917,6 +2970,7 @@ function statGrid(figures, sources, theme = "geo") {
     else if (section === "enjeux") renderEnjeux(param, extra);
     else if (section === "apropos") renderAbout();
     else if (section === "cgu") renderCgu();
+    else if (section === "pays") renderCountry(param);
     else if (section === "lexique") renderLexique(param);
     else if (section === "quiz") param ? renderQuiz(param) : renderQuizIndex();
     else renderHome();

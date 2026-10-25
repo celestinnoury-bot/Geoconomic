@@ -528,7 +528,7 @@
           const lngs = main.map((c) => dl(c[0]));
           const extent = Math.max(Math.max(...lats) - Math.min(...lats), (Math.max(...lngs) - Math.min(...lngs)) * Math.cos((cLat * Math.PI) / 180));
           const portrait = container.clientWidth / Math.max(1, container.clientHeight) < 0.9;
-          const alt = Math.min(2.4, Math.max(0.3, extent / 34 + (portrait ? 0.35 : 0.1)));
+          const alt = Math.min(2.2, Math.max(0.3, extent / 44 + (portrait ? 0.3 : 0.08)));
           world.pointOfView({ lat: cLat - extent * 0.08, lng: cLng, altitude: alt }, 1700);
           // Le pays sort du globe : il apparaît à plat puis monte doucement.
           feature.__alt = 0.002;
