@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-25",
+    "file": "lettres/2026-10-25.pdf",
+    "titles": [
+      "En Géorgie, le parti au pouvoir demande à la justice d’interdire cinq partis d’opposition",
+      "Albanie : cinq mois de manifestations pour sauver une lagune et ses flamants roses",
+      "Somalie : jusqu’à 874 000 personnes pourraient fuir des inondations, et l’aide manque"
+    ],
+    "fileDark": "lettres/2026-10-25-sombre.pdf"
+  },
+  {
     "date": "2026-10-24",
     "file": "lettres/2026-10-24.pdf",
     "titles": [

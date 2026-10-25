@@ -15,6 +15,492 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-25-georgie-proces-interdire-opposition",
+    "date": "2026-10-25",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Batumi, Géorgie",
+        "label": "Géorgie",
+        "coords": [
+          41.64,
+          41.65
+        ]
+      }
+    ],
+    "title": "En Géorgie, le parti au pouvoir demande à la justice d’interdire cinq partis d’opposition",
+    "summary": "La Cour constitutionnelle géorgienne a tenu à Batumi trois jours d’audience sur une demande d’interdire les cinq principaux partis d’opposition. Elle a jusqu’à juin 2027 pour trancher, sans appel possible.",
+    "points": [
+      "Du 21 au 23 octobre, la Cour constitutionnelle a examiné à Batumi la demande de 88 députés du parti au pouvoir, Rêve géorgien, qui veulent faire interdire cinq formations d’opposition : le Mouvement national uni, Coalition pour le changement, Géorgie forte–Lelo, les Fédéralistes et Gakharia pour la Géorgie [1][2].",
+      "Les députés accusent ces partis d’avoir violé l’article 23 de la Constitution, qui interdit les partis cherchant à renverser ou à changer par la force l’ordre constitutionnel ; quatre partis se défendent devant la cour, un cinquième boycotte la procédure [2].",
+      "La cour, qui ne compte que 7 juges en poste sur 9, doit rendre sa décision d’ici juin 2027 ; elle sera définitive et sans appel en Géorgie [2]. L’opposition parle d’une manœuvre pour écarter ses principaux concurrents avant les prochaines élections [1][2]."
+    ],
+    "why": [
+      "À retenir : si la cour suit le pouvoir, la Géorgie, candidate à l’Union européenne, se retrouverait sans ses principaux partis d’opposition [1][2].",
+      "Le pays est aussi un maillon du « couloir du milieu » qui relie l’Asie centrale à l’Europe sans passer par la Russie : le jour même, les ministres des Affaires étrangères de cinq pays d’Asie centrale étaient à Batumi pour parler de transport et de transit vers la mer Noire [3][4]. Un pays qui veut attirer ces routes et ces investissements est observé de près par ses partenaires."
+    ],
+    "forMe": "Pour toi, pas d’effet direct à court terme. Mais la décision pèsera sur les relations entre la Géorgie et l’Union européenne, et donc sur les routes commerciales qui passent par le Caucase.",
+    "figures": [
+      {
+        "value": "88",
+        "label": "députés du parti au pouvoir qui demandent l’interdiction",
+        "src": 2
+      },
+      {
+        "value": "5",
+        "label": "partis d’opposition visés",
+        "src": 1
+      },
+      {
+        "value": "juin 2027",
+        "label": "date limite pour la décision de la cour, sans appel possible",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Reuters",
+        "name": "Reuters, « Georgian court begins hearing lawsuit seeking ban on major opposition parties » (21 octobre 2026)",
+        "url": "https://www.internazionale.it/ultime-notizie-reuters/2026/10/21/georgian-court-begins-hearing-lawsuit-seeking-ban-on-major-opposition-parties"
+      },
+      {
+        "short": "Arab News",
+        "name": "Arab News, « Georgia’s top court hears lawsuit to ban main opposition parties in latest crackdown on dissent » (octobre 2026)",
+        "url": "https://www.arabnews.pk/world/georgias-top-court-hears-lawsuit-to-ban-main-opposition-parties-in-latest-crackdown-on-dissent-3004877"
+      },
+      {
+        "short": "Georgia Today",
+        "name": "Georgia Today, « Batumi to host meeting of Central Asian foreign ministers »",
+        "url": "https://georgiatoday.ge/batumi-to-host-meeting-of-central-asian-foreign-ministers"
+      },
+      {
+        "short": "OC Media",
+        "name": "OC Media, « Friday, 23 October 2026 »",
+        "url": "https://oc-media.org/friday-23-october-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-albanie-flamants-roses-lagune",
+    "date": "2026-10-25",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Tirana, Albanie",
+        "label": "Albanie",
+        "coords": [
+          19.82,
+          41.33
+        ]
+      }
+    ],
+    "title": "Albanie : cinq mois de manifestations pour sauver une lagune et ses flamants roses",
+    "summary": "Depuis le 23 mai, des Albanais manifestent contre un méga-projet touristique près de la lagune de Narta. Le 24 octobre, la police a de nouveau affronté les manifestants à Tirana.",
+    "points": [
+      "Le mouvement, surnommé la « révolution des flamants roses », est né le 23 mai dans le village de Zvërnec, près de la lagune de Narta, contre des projets de complexes de luxe auxquels l’investisseur américain Jared Kushner est associé [2][3].",
+      "La plus grande manifestation, le 20 juin, aurait rassemblé plus de 250 000 personnes selon les médias albanais [3].",
+      "Le 24 octobre, la police a utilisé des canons à eau et des gaz lacrymogènes contre des manifestants qui réclament la démission du Premier ministre Edi Rama [1]."
+    ],
+    "why": [
+      "À retenir : un projet d’investissement étranger est devenu en Albanie la plus longue contestation de la rue de ces dernières années [1][2].",
+      "Le Premier ministre présente ces projets comme une chance d’attirer des investisseurs et de faire du pays une destination de tourisme haut de gamme ; ses opposants y voient des terres protégées offertes à des investisseurs riches sans vrai débat public. La zone abrite des espèces menacées comme le phoque moine et plus de 200 espèces d’oiseaux, et la structure anticorruption albanaise (SPAK) enquête sur les contrats de vente des terrains [2][3]."
+    ],
+    "forMe": "Si tu pars en vacances sur la côte albanaise, la région de Vlora est directement concernée par ces projets de tourisme de luxe.",
+    "figures": [
+      {
+        "value": "23 mai",
+        "label": "début du mouvement, à Zvërnec",
+        "src": 2
+      },
+      {
+        "value": "250 000+",
+        "label": "manifestants le 20 juin, selon les médias albanais",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "ANSA",
+        "name": "ANSA, « Clashes broke out in Tirana between police and protesters » (24 octobre 2026)",
+        "url": "https://ansa.it/nuova_europa/en/news/countries/albania/2026/10/24/clashes-broke-out-in-tirana-between-police-and-protesters_3d80ad2f-6ccc-466e-a18f-e19f4acb2613.html"
+      },
+      {
+        "short": "Wanted in Rome",
+        "name": "Wanted in Rome, « Thousands rally across Albania in “Flamingo Revolution” against the Kushner resort project »",
+        "url": "https://www.wantedinrome.com/news/hundreds-of-thousands-rally-across-albania-in-flamingo-revolution-against-kushner-resort-project.html"
+      },
+      {
+        "short": "Rosa-Luxemburg-Stiftung",
+        "name": "Rosa-Luxemburg-Stiftung, « Understanding Albania’s Flamingo Revolution »",
+        "url": "https://www.rosalux.de/en/news/id/54893/understanding-albanias-flamingo-revolution"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-somalie-inondations-874000-deplaces",
+    "date": "2026-10-25",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Beledweyne, Somalie",
+        "label": "Somalie",
+        "coords": [
+          45.2,
+          4.74
+        ]
+      }
+    ],
+    "title": "Somalie : jusqu’à 874 000 personnes pourraient fuir des inondations, et l’aide manque",
+    "summary": "L’agence de l’ONU pour les migrations craint que près de 874 000 Somaliens soient déplacés d’ici la fin de l’année, surtout par des crues liées à El Niño. Elle n’a réuni que 14 % des fonds nécessaires.",
+    "points": [
+      "L’OIM et le Conseil danois pour les réfugiés estiment que 874 319 personnes pourraient être déplacées entre octobre et décembre, dont 92 % à cause des inondations [1].",
+      "Les zones les plus menacées sont Beledweyne, avec près de 229 000 personnes à risque, et Galkayo, avec environ 82 000 [1][2].",
+      "L’OIM n’a obtenu que 14 % des 16,62 millions de dollars dont elle a besoin pour se préparer aux crues liées à El Niño ; son responsable en Somalie prévient que la fenêtre pour réduire l’impact se referme [1]."
+    ],
+    "why": [
+      "À retenir : on sait où l’eau va frapper, mais l’argent pour s’y préparer n’est pas là [1].",
+      "Une crue qui chasse des familles de leurs champs et de leurs villes détruit aussi les récoltes, le bétail et les routes. Cela fait monter les prix de la nourriture et pousse davantage de gens à dépendre de l’aide."
+    ],
+    "forMe": "Pas d’effet direct pour toi. Mais les chocs climatiques en Afrique de l’Est pèsent sur les prix alimentaires et sur les migrations dans la région.",
+    "figures": [
+      {
+        "value": "874 319",
+        "label": "personnes qui pourraient être déplacées d’octobre à décembre",
+        "src": 1
+      },
+      {
+        "value": "14 %",
+        "label": "part des 16,62 millions de dollars nécessaires déjà obtenue par l’OIM",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Anadolu",
+        "name": "Anadolu, « UN agency warns nearly 874,000 could be displaced by floods in Somalia » (21 octobre 2026)",
+        "url": "https://www.anews.com.tr/world/2026/10/21/un-agency-warns-nearly-874000-could-be-displaced-by-floods-in-somalia/amp"
+      },
+      {
+        "short": "Arab News",
+        "name": "Arab News, « 800,000 Somalis threatened by flooding displacement: UN »",
+        "url": "https://www.arabnews.pk/world/800000-somalis-threatened-by-flooding-displacement-un-3004894"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-thailande-cambodge-frontiere-maritime",
+    "date": "2026-10-25",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Golfe de Thaïlande",
+        "label": "Thaïlande",
+        "coords": [
+          101.2,
+          10.8
+        ]
+      }
+    ],
+    "title": "Thaïlande et Cambodge : un médiateur de l’ONU tente de tracer leur frontière en mer",
+    "summary": "À La Haye, les deux pays ont accepté de ne plus s’accuser en public pendant la médiation sur leur frontière maritime. La troisième réunion est prévue du 24 au 27 novembre à Kuala Lumpur.",
+    "points": [
+      "Le Cambodge a lancé en juin une procédure de conciliation prévue par la Convention des Nations unies sur le droit de la mer, après que la Thaïlande a annulé un accord de 2001 sur la frontière maritime et l’exploitation commune des ressources de la zone disputée [1].",
+      "À la deuxième réunion, du 14 au 18 octobre à La Haye, les deux pays ont convenu de mesures de confiance, dont le droit de répondre aux informations jugées fausses [1].",
+      "Le ministre thaïlandais des Affaires étrangères, Sihasak Phuangketkeow, veut que le processus reste limité au tracé de la frontière ; la commission a rappelé que certains engagements pris n’ont pas été pleinement tenus [1][2]."
+    ],
+    "why": [
+      "À retenir : deux voisins qui ont connu des tensions ont choisi une médiation internationale plutôt que la confrontation [1][2].",
+      "Une frontière en mer décide qui peut forer, pêcher et poser des câbles dans la zone. Tant qu’elle n’est pas tracée, les ressources du fond marin restent bloquées. La prochaine étape est la réunion de novembre à Kuala Lumpur [1][3]."
+    ],
+    "forMe": "Pas d’effet direct pour toi, mais c’est un exemple de règlement d’un différend sans passer par la force.",
+    "figures": [
+      {
+        "value": "14-18 oct.",
+        "label": "deuxième réunion de la commission, à La Haye",
+        "src": 1
+      },
+      {
+        "value": "24-27 nov.",
+        "label": "troisième réunion prévue, à Kuala Lumpur",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Asia News Network",
+        "name": "Asia News Network, « Cambodia, Thailand agree on UNCLOS “confidence-building measures” »",
+        "url": "https://asianews.network/?p=309084"
+      },
+      {
+        "short": "Khaosod English",
+        "name": "Khaosod English, « Thailand insists sea boundary talks with Cambodia must stay within UNCLOS scope » (18 octobre 2026)",
+        "url": "https://www.khaosodenglish.com/politics/2026/10/18/thailand-insists-sea-boundary-talks-with-cambodia-must-stay-within-unclos-scope/"
+      },
+      {
+        "short": "Malay Mail",
+        "name": "Malay Mail, « Second Cambodia-Thailand conciliation meeting set for Oct 14-18 in The Hague » (10 octobre 2026)",
+        "url": "https://malaymail.com/news/world/2026/10/10/second-cambodia-thailand-conciliation-meeting-set-for-oct-14-18-in-the-hague/238526"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-zambie-minerais-contre-sante-washington",
+    "date": "2026-10-25",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Lusaka, Zambie",
+        "label": "Zambie",
+        "coords": [
+          28.28,
+          -15.39
+        ]
+      }
+    ],
+    "title": "Zambie : Lusaka refuse de payer sa santé avec ses minerais et négocie à part avec Washington",
+    "summary": "La Zambie a signé un accord de santé avec les États-Unis puis séparé de ce texte la négociation sur ses minerais critiques, qui se poursuit.",
+    "points": [
+      "À la cérémonie de signature de l’accord de santé, qui apporte 1,5 milliard de dollars de financement américain, le ministre zambien des Affaires étrangères, Mulambo Haimbe, a déclaré que les textes sur la santé et sur les minerais critiques « devaient être dissociés, et cela a été fait » [1][2].",
+      "L’accord sur les minerais est encore en cours de négociation ; le ministre n’a pas donné de détails [1][2].",
+      "En mai, la Zambie avait accusé Washington de conditionner l’accès à ses minerais à la conclusion de l’accord de santé, ce que l’ambassadeur américain de l’époque avait qualifié de faux [1][3]."
+    ],
+    "why": [
+      "À retenir : le pays du cuivre refuse que son sous-sol serve de monnaie d’échange pour une aide sanitaire [1][3].",
+      "La Zambie est un grand producteur de cuivre, un métal clé pour les câbles, les batteries et les moteurs électriques. Les États-Unis cherchent à sécuriser ce type de ressources face à la Chine. Cette actu date du 8 octobre ; nous la signalons ici car la négociation reste ouverte."
+    ],
+    "forMe": "Le cuivre sert à fabriquer presque tous les appareils électriques : ce qui se décide en Zambie peut influencer, à long terme, leur prix.",
+    "figures": [
+      {
+        "value": "1,5 milliard $",
+        "label": "financement américain prévu par l’accord de santé",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Mining Weekly (Reuters)",
+        "name": "Mining Weekly (Reuters), « Zambia says it is negotiating US minerals deal after decoupling from health pact » (8 octobre 2026)",
+        "url": "https://www.miningweekly.com/article/zambia-says-it-is-negotiating-us-minerals-deal-after-decoupling-from-health-pact-2026-10-08-1"
+      },
+      {
+        "short": "Kitco (Reuters)",
+        "name": "Kitco (Reuters), « Zambia says it is negotiating US minerals deal after “decoupling” from health pact » (8 octobre 2026)",
+        "url": "https://www.kitco.com/news/off-the-wire/2026-10-08/zambia-says-it-negotiating-us-minerals-deal-after-decoupling-health"
+      },
+      {
+        "short": "ADN",
+        "name": "ADN, « Zambia blasts the US over a health deal in exchange for critical minerals » (5 mai 2026)",
+        "url": "https://www.adn.com/nation-world/2026/05/05/zambia-blasts-the-us-over-a-2-billion-health-deal-in-exchange-for-critical-minerals/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-bresil-second-tour-taxe-essence",
+    "date": "2026-10-25",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Brasília, Brésil",
+        "label": "Brésil",
+        "coords": [
+          -47.93,
+          -15.78
+        ]
+      }
+    ],
+    "title": "Brésil : le jour du second tour, l’essence est sans taxe fédérale",
+    "summary": "Avant le second tour de dimanche, Lula a supprimé pour 30 jours la taxe fédérale sur l’essence. Le pays vote pour choisir entre Lula et Flávio Bolsonaro.",
+    "points": [
+      "Le gouvernement a supprimé pendant 30 jours, avec prolongation possible, la taxe fédérale sur l’essence de 0,89 real par litre ; il a aussi prolongé l’exonération sur l’éthanol et augmenté ses aides [1][2].",
+      "Les importateurs de diesel reçoivent 1,40 real de plus par litre pendant 30 jours [1][3]. La présidence dit que le coût sera compensé par des « recettes extraordinaires » tirées des exportations de pétrole [1].",
+      "Les prix des carburants ont grimpé depuis que la guerre avec l’Iran a commencé fin février [1]. Flávio Bolsonaro accuse Lula d’« irresponsabilité » et prévient que le diesel pourrait monter après l’élection [1]."
+    ],
+    "why": [
+      "À retenir : un pays producteur de pétrole utilise ses recettes pétrolières pour faire baisser le prix à la pompe juste avant de voter [1].",
+      "Quand le pétrole monte, les gouvernements sont tentés de baisser les taxes pour protéger le pouvoir d’achat. Cela coûte cher à l’État, et les prix peuvent remonter quand la mesure s’arrête."
+    ],
+    "forMe": "Le Brésil est un grand fournisseur de soja, de café et de pétrole : l’élection influencera les prix de ce que tu achètes.",
+    "figures": [
+      {
+        "value": "0,89 real",
+        "label": "taxe fédérale par litre d’essence supprimée pendant 30 jours",
+        "src": 1
+      },
+      {
+        "value": "1,40 real",
+        "label": "aide supplémentaire par litre de diesel importé, pendant 30 jours",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Arab News",
+        "name": "Arab News, « Brazil’s Lula scraps gasoline tax ahead of runoff election » (octobre 2026)",
+        "url": "https://www.arabnews.pk/world/brazils-lula-scraps-gasoline-tax-ahead-of-runoff-election-3003773"
+      },
+      {
+        "short": "Qatar Tribune",
+        "name": "Qatar Tribune, « Brazil expands fuel subsidies before presidential vote »",
+        "url": "https://www.qatar-tribune.com/article/258630/business/brazil-expands-fuel-subsidies-before-presidential-vote"
+      },
+      {
+        "short": "Arise News",
+        "name": "Arise News, « Brazil cuts fuel taxes ahead of Lula’s presidential runoff »",
+        "url": "https://www.arise.tv/brazil-cuts-fuel-taxes-ahead-of-lulas-presidential-runoff/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-petrole-116-dollars-hormuz-deux-versions",
+    "date": "2026-10-25",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Détroit d’Ormuz",
+        "label": "Ormuz",
+        "coords": [
+          56.5,
+          26.5
+        ]
+      }
+    ],
+    "title": "Pétrole à 116 dollars : Washington dit que le Golfe exporte plus qu’avant la guerre, les relevés de navires disent le contraire",
+    "summary": "Le baril de Brent a clôturé vendredi autour de 116,7 dollars. Le Trésor américain affirme que les exportations du Golfe dépassent leur niveau d’avant-guerre, mais un suivi des navires compte quatre passages en un jour à Ormuz.",
+    "points": [
+      "Le Brent a terminé vendredi autour de 116,7 à 116,9 dollars, en hausse d’environ 3 % ; depuis le début de l’année, il a pris environ 80 % [2][3][1].",
+      "Le secrétaire au Trésor américain, Scott Bessent, affirme que les exportations de pétrole du Golfe ont dépassé leur niveau d’avant-guerre, autour de 17 à 18 millions de barils par jour, en comptant les routes par Ormuz, le golfe d’Oman et la mer Rouge [3]. Le 20 octobre, le secrétaire à l’Énergie Chris Wright parlait d’environ 80 % du niveau d’avant-guerre [1].",
+      "Un site de suivi n’a relevé que 4 passages de navires commerciaux à Ormuz le 18 octobre, contre environ 85 par jour avant la crise ; les Gardiens de la Révolution disent que deux superpétroliers ont heurté des mines, sans confirmation indépendante [2]."
+    ],
+    "why": [
+      "À retenir : les chiffres officiels et les relevés de navires ne racontent pas la même histoire, et le prix du pétrole reste très haut [2][3].",
+      "Au moins 18 navires ont été attaqués en deux semaines selon la société Kpler, ce qui maintient une prime de risque dans les prix [1]. Les chiffres du gouvernement américain mélangent plusieurs routes, alors que le suivi ne compte que les passages à Ormuz : les deux peuvent être vrais en même temps, mais pas comparables."
+    ],
+    "forMe": "Un pétrole cher fait monter le prix de l’essence, du diesel et, à terme, de nombreux produits transportés par camion ou par bateau.",
+    "figures": [
+      {
+        "value": "~116,7 $",
+        "label": "prix du baril de Brent à la clôture de vendredi",
+        "src": 3
+      },
+      {
+        "value": "+80 %",
+        "label": "hausse du Brent depuis le début de l’année",
+        "src": 1
+      },
+      {
+        "value": "4 / 85",
+        "label": "passages à Ormuz le 18 octobre, contre environ 85 par jour avant la crise",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Energy Connects",
+        "name": "Energy Connects, « Oil wavers near five-month high as Iran threats vie with flows » (octobre 2026)",
+        "url": "https://www.energyconnects.com/news/oil/2026/october/oil-wavers-near-five-month-high-as-iran-threats-vie-with-flows/"
+      },
+      {
+        "short": "Straits Daily Brief",
+        "name": "Straits Daily Brief, « Strait of Hormuz News, October 24, 2026 »",
+        "url": "https://straits.live/briefs/2026-10-24"
+      },
+      {
+        "short": "Fox News",
+        "name": "Fox News, « Netanyahu calls for US and Israel to overthrow Iran as Brent crude hits five-month high » (23 octobre 2026)",
+        "url": "https://www.foxnews.com/live-news/us-iran-war-israel-netanyahu-oil-prices-10-23-26"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-25-inde-jio-record-introduction-en-bourse",
+    "date": "2026-10-25",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Mumbai, Inde",
+        "label": "Inde",
+        "coords": [
+          72.88,
+          19.08
+        ]
+      }
+    ],
+    "title": "Inde : l’introduction en Bourse de Jio bat le record du pays",
+    "summary": "Jio Platforms, le géant des télécoms du milliardaire Mukesh Ambani, lève 30 213 crores de roupies, la plus grosse introduction en Bourse de l’histoire de l’Inde. Sa cotation est attendue le 28 octobre.",
+    "points": [
+      "L’opération, d’un montant de 30 213 crores de roupies, dépasse le précédent record, celui de Hyundai Motor India en 2024 avec 27 800 crores ; la fourchette de prix est de 1 065 à 1 119 roupies l’action [1].",
+      "Selon l’AFP, les 197,5 premiers millions d’actions ont été demandés en 100 minutes ; Bloomberg, cité par la Börsen-Zeitung, parle de demandes dépassant 20 milliards de dollars [2][3].",
+      "L’attribution des actions est attendue le 26 octobre et la cotation à Bourse le 28 octobre, des dates indicatives [1][3]."
+    ],
+    "why": [
+      "À retenir : l’Inde dispose désormais d’un marché capable d’avaler la plus grosse introduction de son histoire, malgré les doutes sur la valorisation [1][2].",
+      "Une introduction en Bourse permet à une entreprise de vendre des parts au public pour financer sa croissance. Le succès de celle-ci sert de test de l’appétit des investisseurs pour l’Inde, alors que le pétrole cher pèse sur beaucoup de pays émergents [2]."
+    ],
+    "forMe": "Pas d’effet direct pour toi, sauf si tu possèdes des fonds qui investissent en Inde ; mais c’est un signal sur la confiance des investisseurs dans les pays émergents.",
+    "figures": [
+      {
+        "value": "30 213 crores",
+        "label": "montant de l’opération, en roupies : un record indien",
+        "src": 1
+      },
+      {
+        "value": "100 min",
+        "label": "temps pour demander les 197,5 premiers millions d’actions",
+        "src": 2
+      },
+      {
+        "value": "20 Md$",
+        "label": "demandes selon Bloomberg, citées par la Börsen-Zeitung",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Chittorgarh",
+        "name": "Chittorgarh, « Jio Platforms IPO Details »",
+        "url": "https://www.chittorgarh.com/ipo/jio-platforms-ipo/"
+      },
+      {
+        "short": "Techniques de l’Ingénieur (AFP)",
+        "name": "AFP, « Inde : succès de la souscription pour Jio avant introduction en Bourse »",
+        "url": "https://www.techniques-ingenieur.fr/actualite/breves-afp/inde-succes-de-la-souscription-pour-jio-avant-introduction-en-bourse-165158/"
+      },
+      {
+        "short": "Börsen-Zeitung",
+        "name": "Börsen-Zeitung, « IPO von Jio Platforms stellt Indiens Kapitalmarkt auf die Probe »",
+        "url": "https://www.boersen-zeitung.de/unternehmen-branchen/ipo-von-jio-platforms-stellt-indiens-kapitalmarkt-auf-die-probe"
+      }
+    ]
+  },
+  {
     "id": "2026-10-24-france-taux-5-pourcent-premiere-fois-depuis-2002",
     "date": "2026-10-24",
     "region": "Europe",
