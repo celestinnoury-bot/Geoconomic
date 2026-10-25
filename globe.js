@@ -34,13 +34,15 @@
 
   // Regroupe les actus par lieu, puis les lieux trop proches (moins de ~8°) en un seul point,
   // pour que les étiquettes ne se chevauchent pas. Chaque actu garde le nom de son lieu.
-  function placesFrom(news) {
+  // gap : écart minimal (en degrés) entre deux points ; plus petit quand on regarde un seul pays, pour que
+  // chaque ville garde son point (Vancouver, Ottawa…).
+  function placesFrom(news, gap = 8) {
     const spots = [];
     news.forEach((n) => (n.geo || []).forEach((g) => {
       const [lng, lat] = g.coords;
       const near = spots.find((p) => {
         const dx = (lng - p.lng) * Math.cos((lat * Math.PI) / 180), dy = lat - p.lat;
-        return Math.hypot(dx, dy) < 8;
+        return Math.hypot(dx, dy) < gap;
       });
       const entry = { news: n, place: g.name };
       const short = g.label || g.name;
@@ -394,6 +396,7 @@
     mountIndicators,
     mountFlows,
     classOf,
+    contains,
     // container : élément qui reçoit le globe ; onOpen(place) : appelé quand on touche un lieu.
     async mount(container, news, { onOpen, region } = {}) {
       if (!webglOK()) { container.classList.add("no-webgl"); return null; }
@@ -401,6 +404,7 @@
       if (!document.body.contains(container)) return null;
 
       const places = placesFrom(news);
+      let countryMode = null;
       const arcs = [];
       news.forEach((n) => (n.routes || []).forEach((r) => {
         const from = n.geo && n.geo[0];
@@ -449,6 +453,13 @@
       controls.autoRotateSpeed = 0.45;
       addZoom(world, container, controls);
       controls.enableDamping = true;
+      // Pays recherché : posé en relief au premier plan (vide tant qu'on n'a rien cherché).
+      world.polygonsData([])
+        .polygonAltitude((f) => f.__alt || 0)
+        .polygonCapColor(() => "rgba(255,196,92,0.62)")
+        .polygonSideColor(() => "rgba(255,150,50,0.45)")
+        .polygonStrokeColor(() => "#ffe2a3")
+        .polygonsTransitionDuration(1100);
 
             // Sur un écran étroit (téléphone), on recule pour voir toute la Terre.
       const homeAlt = () => (container.clientWidth / Math.max(1, container.clientHeight) < 0.9 ? 3.4 : 2.3);
@@ -459,7 +470,9 @@
 
       function focus(p) {
         controls.autoRotate = false;
-        world.pointOfView({ lat: p.lat - 8, lng: p.lng, altitude: 1.35 }, 1400);
+        // Dans un pays, on se rapproche du point sans reculer.
+        const alt = countryMode ? Math.min(world.pointOfView().altitude, 1.35) : 1.35;
+        world.pointOfView({ lat: p.lat - (countryMode ? alt * 3 : 8), lng: p.lng, altitude: alt }, 1400);
         if (onOpen) onOpen(p);
       }
 
@@ -498,6 +511,42 @@
         reset() {
           world.pointOfView({ lat: homeLat, lng: homeLng, altitude: homeAlt() }, 1400);
           controls.autoRotate = true;
+        },
+        // Recherche d'un pays : la caméra file vers lui, il monte en relief, et ses actus s'affichent ville par ville.
+        // feature : le pays (GeoJSON) ; list : ses actus. Renvoie les points affichés.
+        focusCountry(feature, list, label) {
+          countryMode = feature;
+          controls.autoRotate = false;
+          const polys = feature.geometry.type === "Polygon" ? [feature.geometry.coordinates] : feature.geometry.coordinates;
+          // Centre et taille d'après la plus grande partie du pays (pas les îles lointaines).
+          const area = (r) => Math.abs(r.reduce((a, [x, y], i) => { const [x2, y2] = r[(i + 1) % r.length]; return a + x * y2 - x2 * y; }, 0));
+          const main = polys.map((p) => p[0]).sort((a, b) => area(b) - area(a))[0];
+          const lats = main.map((c) => c[1]), cLat = (Math.min(...lats) + Math.max(...lats)) / 2;
+          const sx = main.reduce((a, c) => a + Math.cos((c[0] * Math.PI) / 180), 0), sy = main.reduce((a, c) => a + Math.sin((c[0] * Math.PI) / 180), 0);
+          const cLng = (Math.atan2(sy, sx) * 180) / Math.PI;
+          const dl = (x) => { let d = x - cLng; while (d > 180) d -= 360; while (d < -180) d += 360; return d; };
+          const lngs = main.map((c) => dl(c[0]));
+          const extent = Math.max(Math.max(...lats) - Math.min(...lats), (Math.max(...lngs) - Math.min(...lngs)) * Math.cos((cLat * Math.PI) / 180));
+          const portrait = container.clientWidth / Math.max(1, container.clientHeight) < 0.9;
+          const alt = Math.min(2.4, Math.max(0.3, extent / 34 + (portrait ? 0.35 : 0.1)));
+          world.pointOfView({ lat: cLat - extent * 0.08, lng: cLng, altitude: alt }, 1700);
+          // Le pays sort du globe : il apparaît à plat puis monte doucement.
+          feature.__alt = 0.002;
+          world.polygonsData([feature]);
+          setTimeout(() => { if (countryMode === feature) { feature.__alt = 0.035; world.polygonAltitude((f) => f.__alt || 0); } }, 650);
+          // Une actu sans lieu précis dans le pays se place au centre du pays.
+          const here = list.map((n) => (n.geo && n.geo.length ? n : Object.assign({}, n, { geo: [{ name: label || "", coords: [cLng, cLat] }] })));
+          const pts = placesFrom(here, Math.max(0.6, extent / 12));
+          // Ondes plus petites quand on est près du sol.
+          world.ringMaxRadius(Math.max(0.5, Math.min(5, extent / 7))).htmlAltitude(0.045).htmlElementsData(pts).ringsData(pts);
+          return pts;
+        },
+        clearCountry() {
+          const f = countryMode;
+          countryMode = null;
+          if (f) { f.__alt = 0; world.polygonAltitude((x) => x.__alt || 0); setTimeout(() => { if (!countryMode) world.polygonsData([]); }, 1150); }
+          world.ringMaxRadius(5).htmlAltitude(0.015).htmlElementsData(places).ringsData(places);
+          this.reset();
         },
         destroy() {
           try { world.pauseAnimation(); world.renderer().dispose(); } catch (e) {}

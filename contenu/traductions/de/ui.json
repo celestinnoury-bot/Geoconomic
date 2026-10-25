@@ -427,7 +427,14 @@
   "À surveiller": "Was zu beobachten ist",
   "Comment ça marche": "So funktioniert es",
   "Les chiffres de fond": "Die Hintergrundzahlen",
-  "Approfondi": "Vertieft"
+  "Approfondi": "Vertieft",
+  "Chercher un pays ou un événement": "Land oder Ereignis suchen",
+  "Un pays ou un événement (ex. Canada, pétrole)": "Ein Land oder Ereignis (z. B. Kanada, Öl)",
+  "Pas d'actu récente": "Keine aktuellen Meldungen",
+  "Pas d'actu récente ici pour l'instant.": "Hier gibt es im Moment keine aktuellen Meldungen.",
+  "Voir ses chiffres ›": "Seine Zahlen ansehen ›",
+  "Tout le globe": "Ganzer Globus",
+  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "Nichts gefunden. Versuche ein Land (Kanada, Ghana…) oder ein Wort (Öl, Zinsen…)."
  },
  "months": {
   "janvier": "Januar",

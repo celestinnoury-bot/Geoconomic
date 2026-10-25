@@ -423,7 +423,14 @@
   "À surveiller": "O que acompanhar",
   "Comment ça marche": "Como funciona",
   "Les chiffres de fond": "Os números de fundo",
-  "Approfondi": "Aprofundado"
+  "Approfondi": "Aprofundado",
+  "Chercher un pays ou un événement": "Procurar um país ou um acontecimento",
+  "Un pays ou un événement (ex. Canada, pétrole)": "Um país ou um acontecimento (ex. Canadá, petróleo)",
+  "Pas d'actu récente": "Sem notícias recentes",
+  "Pas d'actu récente ici pour l'instant.": "Por enquanto não há notícias recentes aqui.",
+  "Voir ses chiffres ›": "Ver os seus números ›",
+  "Tout le globe": "Todo o globo",
+  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "Nada encontrado. Tenta um país (Canadá, Gana…) ou uma palavra (petróleo, juros…)."
  },
  "months": {
   "janvier": "janeiro",

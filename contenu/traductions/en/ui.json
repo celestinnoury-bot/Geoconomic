@@ -426,7 +426,14 @@
   "À surveiller": "What to watch",
   "Comment ça marche": "How it works",
   "Les chiffres de fond": "Key background figures",
-  "Approfondi": "In depth"
+  "Approfondi": "In depth",
+  "Chercher un pays ou un événement": "Search a country or an event",
+  "Un pays ou un événement (ex. Canada, pétrole)": "A country or an event (e.g. Canada, oil)",
+  "Pas d'actu récente": "No recent news",
+  "Pas d'actu récente ici pour l'instant.": "No recent news here for now.",
+  "Voir ses chiffres ›": "See its figures ›",
+  "Tout le globe": "Whole globe",
+  "Rien trouvé. Essaie un pays (Canada, Ghana…) ou un mot (pétrole, taux…).": "Nothing found. Try a country (Canada, Ghana…) or a word (oil, rates…)."
  },
  "months": {
   "janvier": "Jan.",
