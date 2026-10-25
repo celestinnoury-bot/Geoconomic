@@ -73,9 +73,12 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 
 Contact de l'auteur (donné le 21 oct. 2026) : celestinnoury0@gmail.com, dans `data/auteur.js` (`contact`, formulaire d'idées) et `data/cgu.js`.
 
+- **Statistiques de visite** (demande de l'auteur) : GoatCounter, sans cookie (`stat()` dans app.js) : pages vues par route (`/actu`, `/pays/124`…), évènements `installation` (appli ajoutée à l'écran d'accueil) et `ouverture-appli-installee` ; actif quand `goatcounter` (code du compte) est rempli dans `data/auteur.js`, jamais dans l'aperçu claude.ai ; mentionné dans les CGU (article 7).
+
 ## En attente de l'auteur
 
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
+- Créer le compte GoatCounter et donner son code (à mettre dans `data/auteur.js`, `goatcounter`).
 - Nom de domaine (ex. geonomix.fr) à brancher sur le site GitHub Pages, si l'auteur le souhaite.
 - Prestataire de paiement (Stripe en mode test relié à RevenueCat le 24 oct. 2026 ; Paddle évoqué pour la TVA européenne), statut micro-entreprise.
 - CGU (`data/cgu.js`) : compléter les crochets (SIRET, adresse, hébergeur, médiateur de la consommation) et faire relire avant le lancement.

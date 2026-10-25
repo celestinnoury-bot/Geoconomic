@@ -2998,6 +2998,31 @@ function statGrid(figures, sources, theme = "geo") {
     if (w) w.opener = null; else location.href = "duel.html";
   });
   rcSync();
+  // ---------- Statistiques de visite (GoatCounter, sans cookie) ----------
+  // Actif quand `goatcounter` est rempli dans data/auteur.js, et jamais dans l'aperçu claude.ai.
+  // Chaque page de l'appli (#/actu, #/pays/124…) compte comme une page vue ; on compte aussi les installations
+  // sur l'écran d'accueil et les ouvertures depuis l'appli installée.
+  const GC = auteur && auteur.goatcounter && !window.claude ? auteur.goatcounter : "";
+  const gcQueue = [];
+  function stat(path, title, event) {
+    if (!GC) return;
+    const send = () => window.goatcounter.count({ path, title: title || path, event: !!event });
+    window.goatcounter && window.goatcounter.count ? send() : gcQueue.push(send);
+  }
+  if (GC) {
+    window.goatcounter = { no_onload: true };
+    const sc = document.createElement("script");
+    sc.async = true; sc.src = "https://gc.zgo.at/count.js";
+    sc.dataset.goatcounter = `https://${GC}.goatcounter.com/count`;
+    sc.onload = () => gcQueue.splice(0).forEach((f) => f());
+    document.head.appendChild(sc);
+    const standalone = (window.matchMedia && matchMedia("(display-mode: standalone)").matches) || navigator.standalone;
+    if (standalone) stat("ouverture-appli-installee", "Ouverture depuis l'appli installée", true);
+    window.addEventListener("appinstalled", () => stat("installation", "Appli installée", true));
+    window.addEventListener("hashchange", () => stat("/" + (location.hash.replace(/^#\/?/, "") || "")));
+    stat("/" + (location.hash.replace(/^#\/?/, "") || ""));
+  }
+
   // Nombre de pages vues dans l'appli : la flèche de retour revient à la page d'avant s'il y en a une.
   let pagesSeen = 0;
   window.addEventListener("hashchange", () => { pagesSeen++; });

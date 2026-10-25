@@ -62,6 +62,7 @@ window.GEOCO.cgu = {
         "Pour l'abonnement, un identifiant anonyme propre à ton appareil est transmis à RevenueCat, et l'e-mail que tu donnes au paiement est traité par Stripe ; ces prestataires agissent selon leurs propres politiques de confidentialité.",
         "Dans le jeu en ligne, ton pseudo, tes points et tes réponses aux quiz sont enregistrés pour faire fonctionner le classement et les duels.",
         "Les polices d'écriture sont chargées depuis Google Fonts, ce qui transmet ton adresse IP à Google.",
+        "Pour savoir combien de personnes utilisent l'application, on compte les visites avec GoatCounter, un outil de statistiques sans cookie : il enregistre la page vue, le pays, le type d'appareil et le site d'où l'on vient, sans identifier personne. On compte aussi, de la même façon, les installations de l'application sur l'écran d'accueil.",
         "Conformément au RGPD, tu peux demander l'accès, la rectification ou l'effacement de tes données (par exemple ton pseudo et tes scores) en écrivant à l'éditeur. Tu peux aussi saisir la CNIL (cnil.fr)."
       ]
     },
