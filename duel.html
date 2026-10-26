@@ -309,7 +309,7 @@ button.fact-mini { color: var(--text); font-family: var(--body); cursor: pointer
 .versus .or { padding: 2px 0; }
 .ans.fact { display: grid; gap: 8px; padding: 18px; min-height: 120px; align-content: center; }
 .fact-cat { justify-self: start; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; padding: 3px 8px; border-radius: 99px; background: var(--panel-2); }
-.fact-cat.tech { color: #7fe3ff; } .fact-cat.eco { color: #ffb37a; } .fact-cat.conso { color: #ff9cc8; } .fact-cat.soc { color: #a9adff; }
+.fact-cat.tech { color: #7fe3ff; } .fact-cat.eco { color: #ffb37a; } .fact-cat.conso { color: #ff9cc8; } .fact-cat.soc { color: #a9adff; } .fact-cat.hist { color: #f5c86b; }
 .fact-text { font-size: 19px; line-height: 1.3; }
 .fact-year { font-family: var(--display); font-weight: 800; font-size: 30px; line-height: 1; }
 .fact-year:empty { display: none; }
@@ -410,7 +410,7 @@ h1, h2, h3, .brand, .label, .btn, .chip, .tab, .vs, .pts, .code, .ch-pts, .stat 
 .ans.good { background: #142a1b; border-color: var(--mint); color: var(--text); }
 .ans.bad { background: #2c1513; border-color: var(--red); color: var(--text); }
 .fact-cat { border-radius: 2px; background: var(--flap); font-family: var(--display); letter-spacing: .12em; }
-.fact-cat.tech, .fact-cat.eco, .fact-cat.conso, .fact-cat.soc { color: var(--muted); }
+.fact-cat.tech, .fact-cat.eco, .fact-cat.conso, .fact-cat.soc, .fact-cat.hist { color: var(--muted); }
 .fact-text { font-family: var(--body); font-weight: 600; }
 .fact-year { display: inline-flex; gap: 3px; font-size: 30px; }
 .fact-year i { position: relative; display: inline-grid; place-items: center; width: 1.05em; height: 1.35em; font: 700 1em var(--display); font-style: normal; color: var(--text); background: var(--flap); border-radius: 3px; overflow: hidden; animation: flapIn .42s cubic-bezier(.3, 1.4, .5, 1) both; animation-delay: calc(var(--k) * 90ms); transform-origin: 50% 50%; }
@@ -1068,7 +1068,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   // [année, catégorie, fait, note facultative affichée après la réponse]
   const FACTS = [
     [1972, "tech", "Le brevet de la valise à roulettes (Bernard Sadow)", "Trois ans après les premiers pas sur la Lune : on savait aller sur la Lune avant de mettre des roues aux valises."],
-    [1969, "tech", "Les premiers pas de l'homme sur la Lune", ""],
+    [1969, "tech", "Les premiers pas de l'homme sur la Lune", "", 1],
     [1843, "tech", "Le premier brevet de fax (Alexander Bain)", "Le fax est plus ancien que le téléphone, breveté en 1876."],
     [1876, "tech", "Le brevet du téléphone de Graham Bell", ""],
     [1823, "tech", "Le premier briquet (la lampe de Döbereiner)", "Le briquet a précédé l'allumette à friction de trois ans."],
@@ -1077,7 +1077,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     [1855, "tech", "Le premier ouvre-boîte (Robert Yeates)", "Plus de quarante ans après la boîte de conserve."],
     [1863, "tech", "L'ouverture du premier métro du monde, à Londres", "Deux ans avant l'abolition de l'esclavage aux États-Unis."],
     [1865, "soc", "L'abolition de l'esclavage aux États-Unis (13ᵉ amendement)", ""],
-    [1903, "tech", "Le premier vol motorisé des frères Wright", ""],
+    [1903, "tech", "Le premier vol motorisé des frères Wright", "", 1],
     [1952, "tech", "Le premier vol commercial d'un avion de ligne à réaction (le Comet)", ""],
     [1974, "eco", "Le premier article scanné avec un code-barres (un paquet de chewing-gums)", ""],
     [1992, "tech", "Le premier SMS envoyé", "Son texte : « Merry Christmas »."],
@@ -1097,7 +1097,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     [1954, "tech", "La première centrale nucléaire reliée au réseau (Obninsk, URSS)", ""],
     [1859, "eco", "Le premier puits de pétrole commercial (Drake, Pennsylvanie)", ""],
     [1867, "tech", "Le brevet de la dynamite (Alfred Nobel)", ""],
-    [1879, "tech", "L'ampoule électrique d'Edison", ""],
+    [1879, "tech", "L'ampoule électrique d'Edison", "", 1],
     [1895, "tech", "La première projection publique du cinématographe des frères Lumière", ""],
     [1888, "tech", "Le premier appareil photo Kodak", ""],
     [1948, "tech", "Le premier appareil photo instantané Polaroid", ""],
@@ -1114,7 +1114,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     [1974, "conso", "L'invention du Rubik's Cube", ""],
     [1984, "conso", "La sortie de Tetris", "Créé par un ingénieur soviétique, Alekseï Pajitnov."],
     [1989, "conso", "La sortie de la Game Boy", ""],
-    [2007, "tech", "La présentation du premier iPhone", ""],
+    [2007, "tech", "La présentation du premier iPhone", "", 1],
     [2005, "tech", "La mise en ligne de YouTube", ""],
     [2001, "tech", "Le lancement de Wikipédia", ""],
     [1998, "eco", "La création de Google", ""],
@@ -1150,26 +1150,27 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     [1938, "conso", "Le lancement du Nescafé", ""],
     [1964, "conso", "La naissance de la marque Nutella", ""],
     [1974, "conso", "Le premier œuf Kinder Surprise", ""],
-    [1944, "soc", "Le droit de vote des femmes en France", ""],
+    [1944, "soc", "Le droit de vote des femmes en France", "", 1],
     [1965, "soc", "En France, les femmes mariées peuvent ouvrir un compte en banque sans l'accord de leur mari", "Quatre ans seulement avant les premiers pas sur la Lune."],
     [1971, "soc", "Le droit de vote des femmes en Suisse, au niveau fédéral", ""],
     [2018, "soc", "Le droit de conduire pour les femmes en Arabie saoudite", ""],
     [1977, "soc", "La dernière exécution à la guillotine en France", "Un an après la création d'Apple, et la même année que la sortie de Star Wars."],
-    [1981, "soc", "L'abolition de la peine de mort en France", ""],
+    [1981, "soc", "L'abolition de la peine de mort en France", "", 1],
     [1973, "soc", "La ceinture de sécurité obligatoire à l'avant en France, hors agglomération", ""],
     [2008, "soc", "L'interdiction de fumer dans les bars et restaurants en France", ""],
-    [1896, "soc", "Les premiers Jeux olympiques modernes", ""],
+    [1896, "soc", "Les premiers Jeux olympiques modernes", "", 1],
     [1903, "soc", "Le premier Tour de France", ""],
-    [1930, "soc", "La première Coupe du monde de football", ""],
-    [1922, "soc", "La fin de l'Empire ottoman", ""],
-    [1804, "soc", "Le Code civil de Napoléon", ""],
+    [1930, "soc", "La première Coupe du monde de football", "", 1],
+    [1922, "soc", "La fin de l'Empire ottoman", "", 1],
+    [1804, "soc", "Le Code civil de Napoléon", "", 1],
     [1808, "soc", "La création du baccalauréat", ""],
     [1863, "soc", "La fondation de la Croix-Rouge", ""],
     [1901, "soc", "Les premiers prix Nobel", ""],
     [1929, "conso", "La première aventure de Tintin", ""],
     [1928, "conso", "Le premier dessin animé de Mickey", ""],
   ];
-  const CAT = { tech: "Technique", eco: "Économie", conso: "Conso", soc: "Société" };
+  const CAT = { tech: "Technique", eco: "Économie", conso: "Conso", soc: "Société", hist: "Histoire" };
+  const known = (i) => FACTS[i][4] === 1;
   const QCM_TIMER = 15;
   const MATCH_Q = 7, DAILY_ORDER = 3, DAILY_YEARS = 2, TIMER = 12, YEAR_TIMER = 25, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
   const PTS = { win: 58, draw: 7, lose: 0 };
@@ -1254,6 +1255,13 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const used = new Set(), out = [];
     const pool = shuffle(PAIRS, r);
     const tiers = [pool.filter((id) => gapOf(id) <= 12), pool.filter((id) => gapOf(id) > 12)];
+    // La première paire oppose deux faits connus (demande de l'auteur : commencer par des repères connus, pas plus faciles).
+    const famous = pool.filter((id) => id.slice(1).split("_").every((x) => known(+x)));
+    for (const pass of [true, false]) for (const tier of [famous.filter((id) => gapOf(id) <= 12), famous]) for (const id of tier) {
+      if (out.length) break;
+      if (pass && useSeen && seen.has(id)) continue;
+      out.push(id); id.slice(1).split("_").forEach((x) => used.add(x));
+    }
     for (const pass of [true, false]) for (const tier of tiers) for (const id of tier) {
       if (out.length >= n) return out;
       if (pass && useSeen && seen.has(id)) continue;
@@ -1265,7 +1273,9 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
   function drawYears(n, r, excludeIds) {
     const used = new Set(excludeIds.flatMap((id) => id.slice(1).split("_")));
-    return shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i))).slice(0, n).map((i) => "y" + i);
+    const pool = shuffle(FACTS.map((f, i) => i), r).filter((i) => !used.has(String(i)));
+    const first = pool.find(known);
+    return (first === undefined ? pool : [first, ...pool.filter((i) => i !== first)]).slice(0, n).map((i) => "y" + i);
   }
   // Année affichée en cases à volets, comme un tableau d'affichage de gare.
   const flap = (y) => String(y).split("").map((d, k) => `<i style="--k:${k}">${d}</i>`).join("");
@@ -1283,7 +1293,10 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   function drawQcm(n, r = Math.random, { useSeen = true } = {}) {
     const ids = shuffle([...qcmById().keys()], r);
     const fresh = useSeen ? ids.filter((id) => !seen.has(id)) : ids;
-    return [...fresh, ...ids.filter((id) => !fresh.includes(id))].slice(0, n);
+    const all = [...fresh, ...ids.filter((id) => !fresh.includes(id))];
+    // La première question de culture porte sur un sujet connu (niveau 1).
+    const first = all.find((id) => qcmById().get(id)[3] === 1);
+    return (first ? [first, ...all.filter((id) => id !== first)] : all).slice(0, n);
   }
   // Un match : 3 « avant ou après », 2 questions « culture du monde » et 2 années à écrire (3ᵉ et 6ᵉ manches), où le plus proche emporte le point.
   function matchIds() {
@@ -2036,6 +2049,21 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
         ["Le GATT, l'ancêtre de l'OMC, est signé en…", ["1947", "1919", "1960", "1995"], "", 3],
         ["Quel pays a connu l'hyperinflation la plus forte jamais mesurée, en 1946 ?", ["La Hongrie", "L'Allemagne", "Le Zimbabwe", "Le Venezuela"], "", 3],
       ], src: [{ short: "FMI, histoire", url: "https://www.imf.org/fr/About/history" }, { short: "Banque d'Angleterre", url: "https://www.bankofengland.co.uk/" }] },
+    { id: "pouvoir", type: "qcm", tag: "Histoire", title: "Ils ont pris le pouvoir", intro: "Révolutions, coups d'État, indépendances : des noms connus d'abord, puis plus pointus.",
+      qs: [
+        ["Quel officier prend la tête de l'Égypte après le renversement du roi Farouk, puis nationalise le canal de Suez en 1956 ?", ["Gamal Abdel Nasser", "Anouar el-Sadate", "Hosni Moubarak", "Mohammed Naguib"], "", 1],
+        ["Qui prend le pouvoir à Cuba en 1959 ?", ["Fidel Castro", "Che Guevara", "Fulgencio Batista", "Raúl Castro"], "", 1],
+        ["Qui proclame la République populaire de Chine en 1949 ?", ["Mao Zedong", "Tchang Kaï-chek", "Deng Xiaoping", "Sun Yat-sen"], "", 1],
+        ["Qui mène la révolution islamique en Iran en 1979 ?", ["L'ayatollah Khomeini", "Ali Khamenei", "Mohammad Reza Pahlavi", "Mohammad Mossadegh"], "", 1],
+        ["Qui devient en 1994 le premier président noir de l'Afrique du Sud ?", ["Nelson Mandela", "Desmond Tutu", "Thabo Mbeki", "Jacob Zuma"], "", 1],
+        ["Qui succède à Nasser à la tête de l'Égypte en 1970 ?", ["Anouar el-Sadate", "Hosni Moubarak", "Mohammed Naguib", "Mohamed Morsi"], "", 2],
+        ["Quel général prend le pouvoir au Chili par le coup d'État de 1973 ?", ["Augusto Pinochet", "Salvador Allende", "Juan Perón", "Jorge Videla"], "", 2],
+        ["Qui fonde la Turquie moderne sur les ruines de l'Empire ottoman ?", ["Mustafa Kemal Atatürk", "Enver Pacha", "İsmet İnönü", "Recep Tayyip Erdoğan"], "", 2],
+        ["Quel dirigeant soviétique lance la perestroïka ?", ["Mikhaïl Gorbatchev", "Leonid Brejnev", "Boris Eltsine", "Iouri Andropov"], "", 2],
+        ["Qui est le premier président de l'Égypte, avant Nasser ?", ["Mohammed Naguib", "Anouar el-Sadate", "Le roi Farouk", "Saad Zaghloul"], "", 3],
+        ["Quel Premier ministre iranien nationalise le pétrole en 1951, avant d'être renversé en 1953 ?", ["Mohammad Mossadegh", "Mohammad Reza Pahlavi", "Akbar Hachemi Rafsandjani", "Mehdi Bazargan"], "", 3],
+        ["Qui est le premier président de l'Algérie indépendante ?", ["Ahmed Ben Bella", "Houari Boumédiène", "Ferhat Abbas", "Abdelaziz Bouteflika"], "", 3],
+      ] },
     { id: "gaulle", type: "qcm", tag: "Histoire", title: "L'histoire de Charles de Gaulle", intro: "De l'appel du 18 juin à Colombey : douze questions.",
       qs: QS_GAULLE, src: [{ short: "Fondation Charles de Gaulle", url: "https://www.charles-de-gaulle.org/" }, { short: "Élysée", url: "https://www.elysee.fr/charles-de-gaulle" }] },
     { id: "eco", type: "qcm", tag: "Économie", title: "Monnaies, sièges et matières premières", intro: "Huit questions pour briller au dîner.",
@@ -2636,10 +2664,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   function runDates(q) {
     // Mort subite : douze « avant ou après », du plus large écart (accessible) au plus serré (pointu).
     const r = rng("qd-dates-" + today());
+    // Les six premières opposent des repères connus (Nasser, Suez, le mur de Berlin…), les suivantes des faits de niche.
     const BANDS_GAP = [[25, 30], [18, 24], [12, 17], [7, 11], [4, 6], [1, 3]], used = new Set(), ids = [];
-    for (const [lo, hi] of BANDS_GAP) {
+    for (const [bi, [lo, hi]] of BANDS_GAP.entries()) {
       let n = 0;
-      for (const id of shuffle(PAIRS, r)) {
+      const pool = shuffle(PAIRS, r), fam = pool.filter((id) => id.slice(1).split("_").every((x) => known(+x)));
+      for (const id of bi < 3 ? [...fam, ...pool] : pool) {
         const g = gapOf(id), [a, b] = id.slice(1).split("_");
         if (g < lo || g > hi || used.has(a) || used.has(b)) continue;
         ids.push(id); used.add(a); used.add(b);
