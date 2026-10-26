@@ -78,6 +78,8 @@ Contact de l'auteur (donné le 21 oct. 2026) : celestinnoury0@gmail.com, dans `d
 
 ## En attente de l'auteur
 
+- **Idée mise de côté (26 oct. 2026), à ressortir dès que l'auteur en reparle** : pour le classement du Duel, des **avatars qui font une course sur un échiquier** (chaque joueur a son avatar, il avance sur les cases selon ses points). Rien n'est fait ; l'auteur donnera les détails.
+
 - Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
 - Créer le compte GoatCounter et donner son code (à mettre dans `data/auteur.js`, `goatcounter`).
 - Nom de domaine (ex. geonomix.fr) à brancher sur le site GitHub Pages, si l'auteur le souhaite.
