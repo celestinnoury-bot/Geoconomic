@@ -86,25 +86,24 @@ section { display: grid; gap: 14px; }
 .faces small { margin-left: 8px; font-size: 13px; color: #c7c7d1; }
 
 /* Duel : trois cartes illustrées */
-.opps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.opps { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .opp { border: 0; border-radius: 22px; padding: 14px 10px 14px; display: grid; justify-items: center; gap: 4px; text-align: center; position: relative; overflow: hidden; transition: transform .2s var(--spring); }
 .opp:hover { transform: translateY(-3px) rotate(-1deg); }
 .opp:active { transform: scale(.96); }
 .opp.inc { background: linear-gradient(170deg, #0f2a4a, #0a1424); }
-.opp.bot { background: linear-gradient(170deg, #4a2410, #1f0f08); }
 .opp.ami { background: linear-gradient(170deg, #2a1f5c, #120e28); }
 .opp .ill { width: 74px; height: 74px; margin-bottom: 4px; }
 .opp b { font-family: var(--display); font-size: 18px; font-weight: 800; }
 .opp small { font-size: 12px; color: rgba(255,255,255,.65); line-height: 1.3; }
-.eye { animation: blink 4s infinite; transform-origin: center; transform-box: fill-box; }
-@keyframes blink { 0%, 92%, 100% { transform: scaleY(1); } 95% { transform: scaleY(.1); } }
 .ping { transform-origin: center; transform-box: fill-box; animation: ping 2.2s infinite var(--ease); }
 @keyframes ping { 0% { transform: scale(.4); opacity: 1; } 100% { transform: scale(2.4); opacity: 0; } }
 
 .revenge { display: flex; align-items: center; gap: 12px; background: var(--surface); border-radius: 20px; padding: 12px 14px; }
 .bubble { position: relative; background: var(--surface-2); border-radius: 16px 16px 16px 4px; padding: 9px 12px; font-size: 14px; flex: 1; min-width: 0; }
 .bubble small { display: block; color: var(--muted); font-size: 12px; }
-.revenge .btn { padding: 10px 16px; font-size: 14px; }
+.revenge { flex-wrap: wrap; }
+.revenge .btn { padding: 11px 16px; font-size: 15px; flex: 1 0 100%; }
+.revenge .btn[disabled] { background: var(--surface-2); color: var(--muted); cursor: default; }
 
 /* Mini-jeux : affiches */
 .feature { position: relative; border: 0; width: 100%; text-align: left; border-radius: 26px; overflow: hidden; padding: 0; background: #120a06; display: grid; grid-template-columns: 1fr 150px; min-height: 190px; transition: transform .2s var(--spring); }
@@ -268,21 +267,17 @@ section { display: grid; gap: 14px; }
     <div class="opps">
       <button class="opp inc" data-open="inconnu">
         <svg class="ill" viewBox="0 0 80 80" aria-hidden="true"><circle cx="40" cy="40" r="28" fill="#123b6b" stroke="#2997ff" stroke-width="2"/><path d="M12 40h56M40 12c-10 9-10 47 0 56M40 12c10 9 10 47 0 56" fill="none" stroke="#2997ff" stroke-width="1.6" opacity=".7"/><circle cx="54" cy="28" r="4" fill="#64d2ff"/><circle class="ping" cx="54" cy="28" r="4" fill="none" stroke="#64d2ff" stroke-width="2"/><circle cx="27" cy="48" r="3" fill="#ffb340"/></svg>
-        <b>Un inconnu</b><small>Quelqu'un, quelque part</small>
-      </button>
-      <button class="opp bot" data-open="bot">
-        <svg class="ill" viewBox="0 0 80 80" aria-hidden="true"><path d="M40 10v8" stroke="#ff8a3d" stroke-width="3" stroke-linecap="round"/><circle cx="40" cy="9" r="4" fill="#ffb340"/><rect x="16" y="20" width="48" height="40" rx="16" fill="#6b3418" stroke="#ff8a3d" stroke-width="2"/><ellipse class="eye" cx="31" cy="38" rx="5" ry="6" fill="#ffe0c2"/><ellipse class="eye" cx="49" cy="38" rx="5" ry="6" fill="#ffe0c2"/><path d="M32 50q8 6 16 0" fill="none" stroke="#ffe0c2" stroke-width="3" stroke-linecap="round"/><rect x="10" y="34" width="6" height="12" rx="3" fill="#ff8a3d"/><rect x="64" y="34" width="6" height="12" rx="3" fill="#ff8a3d"/></svg>
-        <b>Un bot</b><small>Il t'attend déjà</small>
+        <b>Un inconnu</b><small>Un joueur de ton niveau, quelque part dans le monde</small>
       </button>
       <button class="opp ami" data-open="ami">
         <svg class="ill" viewBox="0 0 80 80" aria-hidden="true"><circle cx="30" cy="34" r="13" fill="#5e5ce6"/><circle cx="52" cy="38" r="13" fill="#bf5af2" stroke="#120e28" stroke-width="3"/><path d="M10 68c2-12 10-17 20-17s18 5 20 17" fill="#5e5ce6"/><path d="M34 70c2-12 9-16 18-16s16 4 18 16" fill="#bf5af2" stroke="#120e28" stroke-width="3"/></svg>
-        <b>Un ami</b><small>Tu lui donnes un code</small>
+        <b>Un ami</b><small>Quelqu'un que tu connais : tu lui donnes un code</small>
       </button>
     </div>
     <div class="revenge">
       <span class="av" style="background:#ff6a3d">ML</span>
-      <div class="bubble">« 4 à 3, tu veux ta revanche ? »<small>Margaux, hier soir</small></div>
-      <button class="btn" data-play-duel="Margaux">Revanche</button>
+      <div class="bubble">« 4 à 3, tu veux ta revanche ? »<small>Margaux · match fini il y a 2 h 28</small></div>
+      <button class="btn" data-play-duel="Margaux" id="rev" disabled>Revanche</button>
     </div>
   </section>
 
@@ -302,7 +297,7 @@ section { display: grid; gap: 14px; }
 
     <div class="feed" aria-label="En ce moment">
       <div><span class="av" style="background:#30a46c">IN</span>Inès vient de trouver les 27 pays de l'UE<time>il y a 3 min</time></div>
-      <div><span class="av" style="background:#5e5ce6">TH</span>Thomas a battu le bot Économiste en chef<time>il y a 12 min</time></div>
+      <div><span class="av" style="background:#5e5ce6">TH</span>Thomas a gagné 5 à 2 contre Jules<time>il y a 12 min</time></div>
     </div>
 
     <p class="muted" style="font-size:14px;font-weight:600">Toujours là</p>
@@ -331,17 +326,6 @@ section { display: grid; gap: 14px; }
   <button class="btn ghost wide" data-close>Annuler</button>
 </div></div>
 
-<div class="sheet" id="sh-bot" role="dialog" aria-label="Duel contre un bot"><div class="card">
-  <div class="grab"></div>
-  <h3>Choisis ton bot</h3>
-  <p class="muted">Pour s'entraîner sans attendre personne. Les points comptent à moitié.</p>
-  <div class="levels" role="group" aria-label="Niveau du bot">
-    <button class="lvl" aria-pressed="false"><span class="face">:)</span><span><b>Le stagiaire</b><small>Confond encore Niger et Nigeria</small></span></button>
-    <button class="lvl" aria-pressed="true"><span class="face">:|</span><span><b>L'analyste</b><small>Solide, mais hésite sur les dates</small></span></button>
-    <button class="lvl" aria-pressed="false"><span class="face">B)</span><span><b>L'économiste en chef</b><small>A tout lu. Vraiment tout.</small></span></button>
-  </div>
-  <button class="btn wide" data-play-duel="bot">Lancer le duel</button>
-</div></div>
 
 <div class="sheet" id="sh-ami" role="dialog" aria-label="Duel contre un ami"><div class="card">
   <div class="grab"></div>
@@ -428,6 +412,10 @@ section { display: grid; gap: 14px; }
   $("#today").textContent = now.toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" });
   const tick = () => { const d = new Date(), m = new Date(d); m.setHours(24, 0, 0, 0); const s = Math.floor((m - d) / 1000); $("#reset").textContent = `encore ${Math.floor(s / 3600)} h ${String(Math.floor(s / 60) % 60).padStart(2, "0")}`; };
   tick(); setInterval(tick, 20000);
+  // Revanche possible 4 h après la fin du match (ici, un match fini il y a 2 h 28)
+  const revAt = Date.now() + (4 * 60 - 148) * 60000;
+  const revTick = () => { const m = Math.max(0, Math.ceil((revAt - Date.now()) / 60000)); const b = $("#rev"); b.disabled = m > 0; b.textContent = m > 0 ? `Revanche dans ${Math.floor(m / 60)} h ${String(m % 60).padStart(2, "0")}` : "Revanche"; };
+  revTick(); setInterval(revTick, 20000);
   const left = (8 - (now.getDay() || 7)) % 7 || 7;
   $("#week-left").textContent = `nouveaux jeux dans ${left} j`;
 
@@ -463,7 +451,7 @@ section { display: grid; gap: 14px; }
   $$(".lvl").forEach((b) => (b.onclick = () => $$(".lvl").forEach((x) => x.setAttribute("aria-pressed", x === b))));
   $$("[data-play-duel]").forEach((b) => (b.onclick = () => {
     hide(); const w = b.dataset.playDuel;
-    if (w === "bot") duelDemo("L'analyste", ":|", "#6b3418"); else if (w === "Margaux") duelDemo("Margaux", "ML", "#ff6a3d"); else duelDemo("Ton ami", "?", "var(--grad-geo)");
+    if (w === "Margaux") duelDemo("Margaux", "ML", "#ff6a3d"); else duelDemo("Ton ami", "?", "var(--grad-geo)");
   }));
   const code = Array.from({ length: 5 }, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[(Math.random() * 32) | 0]).join("");
   $("#code").innerHTML = [...code].map((c, i) => `<span style="--r:${[-3, 2, -1, 3, -2][i]}deg">${c}</span>`).join("");
@@ -592,10 +580,10 @@ section { display: grid; gap: 14px; }
         <p class="note">Démo : 3 questions pour voir le rythme.</p>`;
       game.classList.add("on"); $("#g-x").onclick = closeGame;
       $$(".choice", gin).forEach((b) => (b.onclick = () => {
-        const right = Q.a[1] < Q.b[1] ? "avant" : "apres", ok = b.dataset.c === right, bot = Math.random() < .65;
+        const right = Q.a[1] < Q.b[1] ? "avant" : "apres", ok = b.dataset.c === right, other = Math.random() < .65;
         $$(".choice", gin).forEach((x) => { x.disabled = true; if (x.dataset.c === right) x.classList.add("right"); else if (x === b) x.classList.add("wrong"); });
-        if (daily) { if (ok) me += 20; } else { me += ok ? 1 : 0; him += bot ? 1 : 0; }
-        $("#say").innerHTML = `${ok ? "<b style=\"color:var(--green)\">Bien vu !</b>" : "<b style=\"color:#ff8a80\">Raté…</b>"} ${Q.a[1]} et ${Q.b[1]}.${daily ? "" : ` ${who} ${bot ? "a trouvé aussi." : "s'est trompé."}`}`;
+        if (daily) { if (ok) me += 20; } else { me += ok ? 1 : 0; him += other ? 1 : 0; }
+        $("#say").innerHTML = `${ok ? "<b style=\"color:var(--green)\">Bien vu !</b>" : "<b style=\"color:#ff8a80\">Raté…</b>"} ${Q.a[1]} et ${Q.b[1]}.${daily ? "" : ` ${who} ${other ? "a trouvé aussi." : "s'est trompé."}`}`;
         setTimeout(() => { q++; q < 3 ? draw() : end(); }, 1700);
       }));
     };
