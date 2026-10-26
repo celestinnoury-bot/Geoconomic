@@ -1165,6 +1165,12 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   const QCM_TIMER = 15;
   const MATCH_Q = 7, DAILY_ORDER = 3, DAILY_YEARS = 2, TIMER = 12, YEAR_TIMER = 25, MAX_GAP = 30, COOLDOWN = 4 * 3600 * 1000;
   const PTS = { win: 58, draw: 7, lose: 0 };
+  // Défaite qui coûte (demande de l'auteur) : à partir de 100 points, une défaite enlève 10 points ; à partir de 150, 15.
+  const LOSS_STEPS = [[150, 15], [100, 10]];
+  const lossOf = (pts) => (LOSS_STEPS.find(([min]) => pts >= min) || [0, 0])[1];
+  // Points réellement gagnés ou perdus pour un résultat déjà compté (la pénalité est gardée dans S.lost au moment du match).
+  const deltaOf = (code, out, lost = S.lost) => (out === "lose" ? -(lost[code] || 0) : PTS[out]);
+  const signed = (n) => (n > 0 ? `+${n}` : n < 0 ? `−${-n}` : "0");
   const DAILY_PT = 15;
 
   // Textes de fin de match, prêts à traduire (la langue suit celle du téléphone).
@@ -1209,6 +1215,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   if (!Array.isArray(S.seen)) S.seen = [];
   if (!Array.isArray(S.matches)) S.matches = [];
   if (!S.scored || typeof S.scored !== "object") S.scored = {};
+  if (!S.lost || typeof S.lost !== "object") S.lost = {};
+  if (!S.qdLost || typeof S.qdLost !== "object") S.qdLost = {};
   const seen = new Set(S.seen);
   const save = () => { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) {} };
   function markSeen(id) { if (!id || seen.has(id)) return; seen.add(id); S.seen.push(id); if (S.seen.length > 3000) seen.delete(S.seen.shift()); }
@@ -1495,7 +1503,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
   }
 
   // ================= Mode 1 : le 1 contre 1 en différé =================
-  // Chacun joue les mêmes 7 duels quand il veut. Celui qui en situe le plus gagne : victoire 58 points, égalité 7, défaite 0.
+  // Chacun joue les mêmes 7 duels quand il veut. Celui qui en situe le plus gagne : victoire 58 points, égalité 7, défaite 0 (puis −10 dès 100 points, −15 dès 150).
   // On peut défier un ami par code, ou prendre le match d'un joueur au hasard qui attend un adversaire.
   const CODE_CHARS = "ABCDEFGHJKMNPQRSTUVWXYZ23456789";
   const newCode = () => Array.from({ length: 5 }, () => CODE_CHARS[Math.floor(Math.random() * CODE_CHARS.length)]).join("");
@@ -1546,7 +1554,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const oname = ghost ? names[ghost.uid] || "Ton adversaire" : "Ton adversaire";
     startGame({
       mode: "match", qs: [{ kind: "splash", kicker: `Match ${code}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
-        rules: `${MATCH_Q} manches. Trois « avant ou après » et deux questions de culture du monde : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 58 points, égalité 7.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
+        rules: `${MATCH_Q} manches. Trois « avant ou après » et deux questions de culture du monde : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 58 points, égalité 7${lossOf(S.points) ? `, défaite −${lossOf(S.points)} (tu as plus de ${lossOf(S.points) === 15 ? 150 : 100} points)` : ""}.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
       opponent: { name: oname, short: oname.charAt(0).toUpperCase() }, ghost: ghost ? ghost.res : null,
       onEnd: (g) => {
         const res = cleanRes(g.res);
@@ -1558,7 +1566,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
           const out = outcome(sa, sb);
           scoreMatch(code, out);
           return Object.assign({ kicker: `Match ${code} · ${sa} manches contre ${sb}`, title: t(out), text: t(out + "Sub"),
-            stats: [[`${sa}–${sb}`, "manches"], [`+${PTS[out]}`, "points"], [`${S.wins}-${S.draws}-${S.losses}`, "V-N-D"]] }, RESULT_LOOK[out]);
+            stats: [[`${sa}–${sb}`, "manches"], [signed(deltaOf(code, out)), "points"], [`${S.wins}-${S.draws}-${S.losses}`, "V-N-D"]] }, RESULT_LOOK[out]);
         }
         return { kicker: `Match ${code}`, title: `${g.correct}/${MATCH_Q - 2} bien situés`, icon: ICON.clock, bg: "var(--blue)", fg: "#021327",
           text: "Ton adversaire n'a pas encore joué. Le résultat et tes points arrivent dès qu'il a fini.",
@@ -1572,7 +1580,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     if (S.scored[code]) return;
     S.scored[code] = out;
     if (out === "win") S.wins++; else if (out === "draw") S.draws++; else S.losses++;
-    addPoints(PTS[out]);
+    if (out === "lose") S.lost[code] = Math.min(lossOf(S.points), S.points);
+    addPoints(deltaOf(code, out));
   }
   // Tableau manche par manche : vert si le joueur a pris le point ; « D » marque une manche date (au plus proche).
   function roundsGrid(ra, rb, oname) {
@@ -1607,7 +1616,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       scoreMatch(code, out);
       const oname = names[other.uid] || "Ton adversaire";
       const wait = Math.max(mine.at || 0, other.at || 0) + COOLDOWN - Date.now();
-      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +58 points" : out === "draw" ? "Égalité · +7 points" : "Défaite · 0 point"}</p>
+      el.innerHTML = `<p class="label">${out === "win" ? "Victoire · +58 points" : out === "draw" ? "Égalité · +7 points" : S.lost[code] ? `Défaite · −${S.lost[code]} points` : "Défaite · 0 point"}</p>
         <h3 style="font-size:24px;margin:6px 0">${esc(t(out))}</h3>
         <p class="muted">${sa} manche${sa > 1 ? "s" : ""} pour toi, ${sb} pour ${esc(oname)}.</p>
         ${roundsGrid(cleanRes(mine.res), cleanRes(other.res), oname)}
@@ -1789,7 +1798,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     const shared = !!(db && me);
     const list = S.matches.map((c) => {
       const s = S.scored[c];
-      return `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="mstate ${s || "wait"}">${s === "win" ? "Gagné · +58" : s === "draw" ? "Égalité · +7" : s === "lose" ? "Perdu" : "En attente"}</span></button>`;
+      return `<button class="duel-item" data-match="${c}"><b>${c}</b><span class="mstate ${s || "wait"}">${s === "win" ? "Gagné · +58" : s === "draw" ? "Égalité · +7" : s === "lose" ? (S.lost[c] ? `Perdu · −${S.lost[c]}` : "Perdu") : "En attente"}</span></button>`;
     }).join("");
     return `<section class="card mode duel-card">
       <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
@@ -1861,7 +1870,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
           <div class="stat"><b class="num">${FACTS.length}</b><span>faits datés</span></div>
           <div class="stat"><b class="num">${fmt(PAIRS.length)}</b><span>duels possibles</span></div>
         </div>
-        <p class="note" style="margin-top:12px">Points : 1 contre 1, victoire 58, égalité 7, défaite 0. Défi du jour : 15 par bonne réponse ; pour les années à écrire, 15 pile puis 3 de moins par année d'écart (12, 9, 6, 3)</p></section>
+        <p class="note" style="margin-top:12px">Points : 1 contre 1, victoire 58, égalité 7, défaite 0 ; dès 100 points, une défaite en enlève 10, dès 150, 15 (aussi au duel du jour). Défi du jour : 15 par bonne réponse ; pour les années à écrire, 15 pile puis 3 de moins par année d'écart (12, 9, 6, 3)</p></section>
     </div>`;
   }
 
@@ -2132,7 +2141,7 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
     return `<section class="card qd-card">
       <p class="label" style="color:#ffb340">${ICON.swords} Duel du jour · ${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</p>
       <h2>${done ? esc(q.title) : "Sujet surprise"}</h2>
-      <p class="muted">${done ? "" : "Pays, capitales, globe, classement ou dates : tu découvres le sujet au départ. "}Le même pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}.</p>
+      <p class="muted">${done ? "" : "Pays, capitales, globe, classement ou dates : tu découvres le sujet au départ. "}Le même pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}${lossOf(S.points) ? `, défaite −${lossOf(S.points)}` : ""}.</p>
       ${done ? `<p class="qd-done">Fait : <b>${S.qd.pct} %</b> en ${mmss(S.qd.secs || 0)}${S.qd.code ? ` · duel <b>${esc(S.qd.code)}</b>` : " · en solo"}. Nouveau duel dans ${msToMidnight()}.</p>
           ${mine.length ? `<div id="qd-mine">${mine.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">Chargement…</p></div>`).join("")}</div>` : ""}`
         : `<div class="btns">${shared ? `<button class="btn" id="qd-random">${ICON.dice} Adversaire au hasard</button><button class="btn gold" id="qd-friend">Défier un ami</button>` : ""}<button class="btn ghost" id="qd-solo">Jouer seul</button></div>
@@ -2203,8 +2212,13 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
       const oid = other.id.slice(code.length + 1);
       await resolveNames([oid]);
       const out = mine.pct !== other.pct ? (mine.pct > other.pct ? "win" : "lose") : mine.secs !== other.secs ? (mine.secs < other.secs ? "win" : "lose") : "draw";
-      if (!S.qdScored[code]) { S.qdScored[code] = out; if (QD_PTS[out]) addPoints(QD_PTS[out]); else save(); }
-      const head = out === "win" ? `Gagné · +${QD_PTS.win}` : out === "draw" ? `Égalité · +${QD_PTS.draw}` : t("lose");
+      if (!S.qdScored[code]) {
+        S.qdScored[code] = out;
+        if (out === "lose") S.qdLost[code] = Math.min(lossOf(S.points), S.points);
+        const d = out === "lose" ? -S.qdLost[code] : QD_PTS[out];
+        if (d) addPoints(d); else save();
+      }
+      const head = out === "win" ? `Gagné · +${QD_PTS.win}` : out === "draw" ? `Égalité · +${QD_PTS.draw}` : S.qdLost[code] ? `${t("lose")} · −${S.qdLost[code]}` : t("lose");
       el.innerHTML = `<p class="qd-out ${out}"><b>${esc(head)}</b></p>
         <div class="qd-vs"><span>Toi<b class="num">${mine.pct} %</b><small>${mmss(mine.secs)}</small></span><span>${esc(nameOf(oid))}<b class="num">${other.pct} %</b><small>${mmss(other.secs)}</small></span></div>
         ${mine.pct === other.pct ? `<p class="note">Même score : ${out === "draw" ? "même temps aussi." : "le plus rapide l'emporte."}</p>` : ""}`;
