@@ -1,0 +1,511 @@
+<title>Geonomix Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Maquette du nouveau Geonomix Duel, aux couleurs de l'appli : fond noir, cartes gris Apple, bleu de l'appli,
+   orange = éco, bleu-violet = géo (même code couleur que les actus). Une colonne, trois blocs : défi du jour, duel, mini-jeux. */
+:root {
+  --bg: #000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --hairline: rgba(255, 255, 255, .12);
+  --text: #f5f5f7;
+  --muted: #8e8e93;
+  --blue: #0071e3;
+  --blue-text: #2997ff;
+  --gold: #f5c86b;
+  --green: #30d158;
+  --red: #ff453a;
+  --c-eco: #ff8a3d;
+  --c-geo: #7d7bff;
+  --grad-eco: linear-gradient(90deg, #ffb340 0%, #ff6a3d 50%, #ff2d78 100%);
+  --grad-geo: linear-gradient(90deg, #64d2ff 0%, #5e5ce6 55%, #bf5af2 100%);
+  --grad-mix: linear-gradient(90deg, #66d4cf 0%, #2997ff 60%, #5e5ce6 100%);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --ease: cubic-bezier(.25, .1, .25, 1);
+  color-scheme: dark;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { background: var(--bg); color: var(--text); font: 16px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+button:focus-visible, input:focus-visible { outline: 2px solid var(--blue-text); outline-offset: 2px; }
+.wrap { max-width: 540px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { margin: 0; letter-spacing: -.02em; text-wrap: balance; }
+p { margin: 0; }
+.num { font-variant-numeric: tabular-nums; }
+.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.muted { color: var(--muted); }
+
+/* Barre du haut, comme l'appli */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 6; background: rgba(0,0,0,.78); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--hairline); }
+.top .wrap { display: flex; align-items: center; gap: 12px; height: 52px; }
+.back { width: 34px; height: 34px; border-radius: 50%; border: 0; background: var(--surface); display: grid; place-items: center; }
+.back svg { width: 18px; height: 18px; }
+.brand { font-weight: 700; font-size: 17px; flex: 1; }
+.brand span { background: var(--grad-mix); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.chips { display: flex; gap: 8px; }
+.chip { display: flex; align-items: center; gap: 5px; padding: 5px 10px; border-radius: 999px; background: var(--surface); font-size: 14px; font-weight: 600; }
+.chip svg { width: 15px; height: 15px; }
+
+main { padding-block: 18px 120px; display: grid; gap: 34px; }
+section { display: grid; gap: 12px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.sec-head h2 { font-size: 22px; }
+.link { background: none; border: 0; padding: 0; color: var(--blue-text); font-size: 15px; }
+
+/* Défi du jour */
+.daily { position: relative; overflow: hidden; border-radius: 22px; background: var(--surface); padding: 20px; display: grid; gap: 14px; }
+.daily::before { content: ""; position: absolute; inset: -40% -30% auto auto; width: 320px; height: 320px; border-radius: 50%; background: radial-gradient(circle, rgba(94,92,230,.45), transparent 65%); pointer-events: none; }
+.daily > * { position: relative; }
+.daily-top { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.timer-pill { font-size: 13px; color: var(--muted); }
+.daily h3 { font-size: 26px; line-height: 1.15; }
+.pts-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
+.pt { border-radius: 12px; background: rgba(255,255,255,.06); padding: 9px 4px 8px; text-align: center; }
+.pt b { display: block; font-size: 17px; }
+.pt small { font-size: 11px; color: var(--muted); }
+.daily-foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.btn { border: 0; border-radius: 999px; padding: 13px 22px; font-weight: 600; font-size: 16px; background: var(--blue); color: #fff; transition: transform .12s var(--ease), background .2s; }
+.btn:active { transform: scale(.97); }
+.btn.light { background: var(--text); color: #000; }
+.btn.ghost { background: var(--surface-2); color: var(--text); }
+.btn.wide { width: 100%; }
+
+/* Duel : trois adversaires */
+.versus { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.opp { border: 0; border-radius: 18px; background: var(--surface); padding: 16px 10px 14px; display: grid; justify-items: center; gap: 8px; text-align: center; transition: transform .12s var(--ease), background .2s; }
+.opp:active { transform: scale(.97); }
+.opp:hover { background: var(--surface-2); }
+.opp .ico { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; }
+.opp .ico svg { width: 24px; height: 24px; }
+.opp b { font-size: 15px; }
+.opp small { font-size: 12px; color: var(--muted); line-height: 1.3; }
+.ico.inc { background: rgba(41,151,255,.16); color: var(--blue-text); }
+.ico.bot { background: rgba(255,138,61,.16); color: var(--c-eco); }
+.ico.ami { background: rgba(125,123,255,.18); color: var(--c-geo); }
+.rule { font-size: 13px; color: var(--muted); }
+
+/* Mini-jeux : rotation */
+.feature { border: 0; text-align: left; width: 100%; border-radius: 22px; padding: 0; overflow: hidden; background: var(--surface); display: grid; }
+.feature .band { height: 6px; }
+.feature .in { padding: 16px 18px 18px; display: grid; gap: 8px; }
+.feature h3 { font-size: 21px; }
+.meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); align-items: center; }
+.meta span { display: inline-flex; align-items: center; gap: 5px; }
+.meta svg { width: 14px; height: 14px; }
+.tag { font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; }
+.tag.eco { color: var(--c-eco); background: rgba(255,138,61,.14); }
+.tag.geo { color: var(--c-geo); background: rgba(125,123,255,.16); }
+.tag.mix { color: #66d4cf; background: rgba(102,212,207,.14); }
+.tag.new { color: #000; background: var(--gold); }
+
+.filters { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-bottom: 2px; }
+.filters::-webkit-scrollbar { display: none; }
+.f { flex: none; border: 0; border-radius: 999px; padding: 7px 14px; background: var(--surface); color: var(--text); font-size: 14px; font-weight: 500; }
+.f[aria-pressed="true"] { background: var(--text); color: #000; }
+
+.list { display: grid; border-radius: 18px; overflow: hidden; background: var(--surface); }
+.row { border: 0; background: none; text-align: left; display: grid; grid-template-columns: 40px 1fr auto; align-items: center; gap: 12px; padding: 12px 14px; border-top: 1px solid var(--hairline); }
+.row:first-child { border-top: 0; }
+.row:hover { background: rgba(255,255,255,.03); }
+.row .ty { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; }
+.row .ty svg { width: 20px; height: 20px; }
+.ty.eco { background: rgba(255,138,61,.14); color: var(--c-eco); }
+.ty.geo { background: rgba(125,123,255,.16); color: var(--c-geo); }
+.ty.mix { background: rgba(102,212,207,.14); color: #66d4cf; }
+.row .tt { min-width: 0; display: grid; gap: 2px; }
+.row .tt b { font-size: 15px; font-weight: 600; }
+.row .tt small { font-size: 13px; color: var(--muted); }
+.row .rt { text-align: right; display: grid; gap: 2px; justify-items: end; }
+.row .rt b { font-size: 15px; }
+.row .rt small { font-size: 12px; color: var(--muted); }
+.leaves { color: var(--gold) !important; }
+.done-mark { color: var(--green) !important; }
+
+.random { display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px dashed var(--hairline); background: none; border-radius: 16px; padding: 14px; color: var(--blue-text); font-weight: 600; }
+.random svg { width: 18px; height: 18px; }
+
+/* Onglets du bas */
+.tabs { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; background: rgba(28,28,30,.86); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid var(--hairline); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.tabs .wrap { display: grid; grid-template-columns: repeat(3, 1fr); }
+.tab { border: 0; background: none; padding: 9px 4px 11px; display: grid; justify-items: center; gap: 3px; font-size: 11px; font-weight: 500; color: var(--muted); }
+.tab svg { width: 24px; height: 24px; }
+.tab[aria-current="page"] { color: var(--blue-text); }
+
+/* Feuilles (bas d'écran) */
+.scrim { position: fixed; inset: 0; z-index: 20; background: rgba(0,0,0,.55); opacity: 0; transition: opacity .25s var(--ease); }
+.scrim.on { opacity: 1; }
+.sheet { position: fixed; left: 0; right: 0; bottom: 0; z-index: 21; transform: translateY(105%); transition: transform .34s var(--ease); }
+.sheet.on { transform: none; }
+.sheet .card { max-width: 540px; margin: 0 auto; background: var(--surface); border-radius: 24px 24px 0 0; padding: 10px max(18px, env(safe-area-inset-left, 0px)) calc(22px + env(safe-area-inset-bottom, 0px)) max(18px, env(safe-area-inset-right, 0px)); display: grid; gap: 16px; }
+.grab { width: 38px; height: 5px; border-radius: 3px; background: var(--surface-2); margin: 0 auto 4px; }
+.sheet h3 { font-size: 22px; }
+.levels { display: grid; gap: 8px; }
+.lvl { border: 1px solid var(--hairline); background: none; border-radius: 16px; padding: 13px 14px; text-align: left; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; align-items: center; }
+.lvl[aria-pressed="true"] { border-color: var(--blue-text); background: rgba(41,151,255,.08); }
+.lvl b { font-size: 16px; }
+.lvl small { grid-column: 1; font-size: 13px; color: var(--muted); }
+.lvl .pct { grid-row: 1 / span 2; grid-column: 2; font-size: 13px; color: var(--muted); }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--surface-2); border-radius: 12px; padding: 3px; }
+.seg button { border: 0; background: none; border-radius: 9px; padding: 8px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.seg button[aria-pressed="true"] { background: #48484a; color: var(--text); }
+.code { display: flex; justify-content: center; gap: 8px; }
+.code span { width: 46px; height: 58px; border-radius: 12px; background: var(--surface-2); display: grid; place-items: center; font-size: 28px; font-weight: 700; }
+.code-in { width: 100%; text-align: center; letter-spacing: .3em; text-transform: uppercase; font-size: 26px; font-weight: 700; background: var(--surface-2); border: 0; border-radius: 14px; padding: 14px; }
+.search-anim { display: grid; justify-items: center; gap: 14px; padding: 8px 0 4px; text-align: center; }
+.radar { width: 120px; height: 120px; border-radius: 50%; position: relative; background: radial-gradient(circle, rgba(41,151,255,.14) 0 30%, transparent 31%), radial-gradient(circle, transparent 0 58%, rgba(41,151,255,.12) 59% 60%, transparent 61%); border: 1px solid rgba(41,151,255,.3); overflow: hidden; }
+.radar::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(41,151,255,.5), transparent 30%); animation: spin 1.6s linear infinite; }
+@keyframes spin { to { transform: rotate(1turn); } }
+.found { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 16px; background: var(--surface-2); width: 100%; text-align: left; }
+.avatar { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: var(--grad-geo); color: #fff; flex: none; }
+
+/* Écran de jeu (façon JetPunk) */
+.game { position: fixed; inset: 0; z-index: 30; background: var(--bg); overflow-y: auto; transform: translateY(100%); transition: transform .38s var(--ease); }
+.game.on { transform: none; }
+.game .wrap { padding-block: calc(14px + env(safe-area-inset-top, 0px)) calc(30px + env(safe-area-inset-bottom, 0px)); display: grid; gap: 16px; }
+.g-top { display: flex; align-items: center; gap: 10px; }
+.g-top h2 { font-size: 17px; flex: 1; min-width: 0; }
+.score-bar { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 10px; background: var(--surface); border-radius: 18px; padding: 12px 16px; }
+.score-bar .big { font-size: 28px; font-weight: 700; }
+.score-bar .lbl { font-size: 12px; color: var(--muted); }
+.score-bar .r { text-align: right; }
+.prog { height: 4px; border-radius: 2px; background: var(--surface-2); overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0; background: var(--grad-eco); transition: width .3s var(--ease); }
+.answer { width: 100%; background: var(--surface); border: 1px solid var(--hairline); border-radius: 16px; padding: 15px 16px; font-size: 18px; }
+.answer.ok { animation: ok .45s var(--ease); }
+@keyframes ok { 0% { border-color: var(--green); box-shadow: 0 0 0 4px rgba(48,209,88,.25); } 100% { border-color: var(--hairline); box-shadow: none; } }
+.slots { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.slot { border-radius: 12px; background: var(--surface); padding: 11px 12px; font-size: 15px; min-height: 44px; display: flex; align-items: center; gap: 8px; }
+.slot.got { background: rgba(48,209,88,.14); color: var(--text); animation: pop .35s var(--ease); }
+.slot.miss { background: rgba(255,69,58,.12); color: #ff8a80; }
+.slot .n { color: var(--muted); font-size: 12px; width: 18px; }
+@keyframes pop { 0% { transform: scale(.94); } 100% { transform: none; } }
+.end { display: grid; gap: 12px; text-align: center; background: var(--surface); border-radius: 20px; padding: 20px; }
+.end .big { font-size: 40px; font-weight: 700; }
+
+/* Question du défi */
+.q-card { background: var(--surface); border-radius: 22px; padding: 20px; display: grid; gap: 16px; }
+.q-card h3 { font-size: 22px; line-height: 1.25; }
+.choices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.choice { border: 1px solid var(--hairline); background: var(--surface-2); border-radius: 16px; padding: 18px 10px; font-size: 20px; font-weight: 700; }
+.choice small { display: block; font-size: 13px; font-weight: 500; color: var(--muted); margin-top: 2px; }
+.choice.right { border-color: var(--green); background: rgba(48,209,88,.14); }
+.choice.wrong { border-color: var(--red); background: rgba(255,69,58,.12); }
+.dots { display: flex; gap: 6px; justify-content: center; }
+.dots i { width: 28px; height: 4px; border-radius: 2px; background: var(--surface-2); }
+.dots i.on { background: var(--blue-text); }
+
+.note { font-size: 13px; color: var(--muted); text-align: center; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <button class="back" aria-label="Retour à Geonomix"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+    <div class="brand">Geonomix <span>Duel</span></div>
+    <div class="chips">
+      <span class="chip num" title="Tes points"><svg viewBox="0 0 24 24" fill="#f5c86b"><path d="M12 2l2.9 6.2 6.8.8-5 4.6 1.3 6.7L12 17l-6 3.3 1.3-6.7-5-4.6 6.8-.8z"/></svg>1 284</span>
+      <span class="chip num" title="Jours d'affilée"><svg viewBox="0 0 24 24" fill="#ff8a3d"><path d="M12 2c1 4 5 5.5 5 10a5 5 0 0 1-10 0c0-2 1-3.5 2-4.5 0 2 1 3 2 3 0-3-1-5 1-8.5z"/></svg>6</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- 1. Le défi du jour : mêmes questions pour tous, mêmes points par question -->
+  <section aria-labelledby="h-daily">
+    <div class="daily">
+      <div class="daily-top">
+        <span class="eyebrow">Défi du jour · <span id="today"></span></span>
+        <span class="timer-pill num" id="reset">Nouveau défi dans —</span>
+      </div>
+      <h3 id="h-daily">5 questions, les mêmes pour tout le monde</h3>
+      <div class="pts-row" aria-label="Chaque question vaut 20 points">
+        <div class="pt"><b class="num">20</b><small>Avant / après</small></div>
+        <div class="pt"><b class="num">20</b><small>Avant / après</small></div>
+        <div class="pt"><b class="num">20</b><small>Culture</small></div>
+        <div class="pt"><b class="num">20</b><small>Année</small></div>
+        <div class="pt"><b class="num">20</b><small>Année</small></div>
+      </div>
+      <div class="daily-foot">
+        <p class="muted" style="font-size:14px">20 points par bonne réponse · 100 au maximum</p>
+        <button class="btn light" id="go-daily">Jouer le défi</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Le duel : choisir son adversaire -->
+  <section aria-labelledby="h-duel">
+    <div class="sec-head"><h2 id="h-duel">Duel</h2><span class="rule">7 manches · victoire +58</span></div>
+    <div class="versus">
+      <button class="opp" data-open="inconnu">
+        <span class="ico inc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <b>Un inconnu</b><small>Un joueur au hasard</small>
+      </button>
+      <button class="opp" data-open="bot">
+        <span class="ico bot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4M9 13h.01M15 13h.01M9 17h6"/></svg></span>
+        <b>Un bot</b><small>Tout de suite, 3 niveaux</small>
+      </button>
+      <button class="opp" data-open="ami">
+        <span class="ico ami"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0M17 4.5a3.5 3.5 0 0 1 0 7M18.5 14.5a6.5 6.5 0 0 1 3 5.5"/></svg></span>
+        <b>Un ami</b><small>Avec un code</small>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. Les mini-jeux, en rotation façon JetPunk -->
+  <section aria-labelledby="h-games">
+    <div class="sec-head"><h2 id="h-games">Mini-jeux</h2><span class="rule">jusqu'à 20 pts chacun, 1 fois par jour</span></div>
+
+    <p class="eyebrow">À la une aujourd'hui</p>
+    <button class="feature" id="feature" data-game="opep">
+      <span class="band" style="background:var(--grad-eco)"></span>
+      <span class="in">
+        <span class="meta"><span class="tag eco">Pétrole</span><span class="tag new">Points ×2 aujourd'hui</span></span>
+        <h3>Les 11 pays de l'OPEP</h3>
+        <span class="muted" style="font-size:14px">Le cartel compte 11 membres depuis le départ des Émirats arabes unis, en mai 2026. Combien en connais-tu ?</span>
+        <span class="meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h7"/></svg>Écrire ou toucher le globe</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2M9 2h6"/></svg>4 min</span>
+          <span>Moyenne des joueurs : 64 %</span>
+        </span>
+      </span>
+    </button>
+
+    <div class="sec-head" style="margin-top:8px"><p class="eyebrow">Au programme cette semaine</p><span class="rule" id="week-left"></span></div>
+    <div class="filters" role="group" aria-label="Type de jeu">
+      <button class="f" aria-pressed="true" data-f="all">Tous</button>
+      <button class="f" aria-pressed="false" data-f="ecrire">Écrire</button>
+      <button class="f" aria-pressed="false" data-f="globe">Globe</button>
+      <button class="f" aria-pressed="false" data-f="classer">Classer</button>
+      <button class="f" aria-pressed="false" data-f="qcm">QCM</button>
+    </div>
+    <div class="list" id="week"></div>
+
+    <p class="eyebrow" style="margin-top:8px">Les classiques, toujours là</p>
+    <div class="list" id="classics"></div>
+
+    <button class="random" id="random"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>Un mini-jeu au hasard</button>
+    <p class="note">Chaque lundi, 6 mini-jeux changent. Ceux qui partent reviennent plus tard dans l'année.</p>
+  </section>
+</main>
+
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap">
+    <button class="tab" aria-current="page"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 12h4M8 10v4M15 13h.01M18 11h.01"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>Jouer</button>
+    <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0V4zM7 6H4a3 3 0 0 0 3 4M17 6h3a3 3 0 0 1-3 4"/></svg>Classement</button>
+    <button class="tab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>Moi</button>
+  </div>
+</nav>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="sheet" id="sh-inconnu" role="dialog" aria-label="Duel contre un inconnu"><div class="card">
+  <div class="grab"></div>
+  <div class="search-anim" id="search">
+    <div class="radar"></div>
+    <h3>On cherche un adversaire…</h3>
+    <p class="muted">Un joueur de ton niveau, n'importe où dans le monde.</p>
+  </div>
+  <button class="btn ghost wide" data-close>Annuler</button>
+</div></div>
+
+<div class="sheet" id="sh-bot" role="dialog" aria-label="Duel contre un bot"><div class="card">
+  <div class="grab"></div>
+  <h3>Contre un bot</h3>
+  <p class="muted">Pour s'entraîner sans attendre. Les points comptent à moitié.</p>
+  <div class="levels" role="group" aria-label="Niveau du bot">
+    <button class="lvl" aria-pressed="false"><b>Stagiaire</b><small>Se trompe souvent, répond lentement</small><span class="pct">≈ 40 %</span></button>
+    <button class="lvl" aria-pressed="true"><b>Analyste</b><small>Bon niveau, quelques erreurs</small><span class="pct">≈ 65 %</span></button>
+    <button class="lvl" aria-pressed="false"><b>Économiste en chef</b><small>Presque imbattable sur les dates</small><span class="pct">≈ 85 %</span></button>
+  </div>
+  <button class="btn wide" data-play-duel>Lancer le duel</button>
+</div></div>
+
+<div class="sheet" id="sh-ami" role="dialog" aria-label="Duel contre un ami"><div class="card">
+  <div class="grab"></div>
+  <h3>Contre un ami</h3>
+  <div class="seg" role="group"><button aria-pressed="true" data-seg="creer">Créer un code</button><button aria-pressed="false" data-seg="rejoindre">J'ai un code</button></div>
+  <div id="seg-creer" style="display:grid;gap:14px">
+    <p class="muted">Donne ce code à ton ami. Il l'entre dans « J'ai un code » et le duel commence.</p>
+    <div class="code num" id="code"></div>
+    <button class="btn wide" id="copy">Copier le code</button>
+  </div>
+  <div id="seg-rejoindre" hidden style="display:grid;gap:14px">
+    <p class="muted">Entre le code que ton ami t'a donné.</p>
+    <input class="code-in" id="code-in" maxlength="5" placeholder="•••••" autocomplete="off" aria-label="Code du duel">
+    <button class="btn wide" data-play-duel>Rejoindre</button>
+  </div>
+</div></div>
+
+<!-- Écran de jeu : liste à écrire, chrono, cases qui se remplissent -->
+<div class="game" id="game" role="dialog" aria-label="Partie">
+  <div class="wrap" id="game-in"></div>
+</div>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const fold = s => s.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z]/g, "");
+
+  /* Catalogue (les vrais mini-jeux du Duel) ; t = thème (eco/geo/mix), k = type */
+  const GAMES = [
+    { id: "opep", title: "Les 11 pays de l'OPEP", tag: "Pétrole", t: "eco", k: "ecrire", min: 4, avg: 64 },
+    { id: "ue", title: "Les 27 pays de l'Union européenne", tag: "Europe", t: "geo", k: "ecrire", min: 6, avg: 71 },
+    { id: "chine", title: "Les 14 voisins de la Chine", tag: "Frontières", t: "geo", k: "globe", min: 4, avg: 48 },
+    { id: "enclaves", title: "Les 16 pays d'Afrique sans accès à la mer", tag: "Afrique", t: "mix", k: "globe", min: 4, avg: 39 },
+    { id: "capb", title: "Les capitales qui commencent par B", tag: "Capitales", t: "geo", k: "ecrire", min: 5, avg: 41 },
+    { id: "caspienne", title: "Les 5 pays autour de la Caspienne", tag: "Énergie", t: "eco", k: "globe", min: 2, avg: 77 },
+    { id: "nil", title: "Les 11 pays du bassin du Nil", tag: "Eau", t: "mix", k: "globe", min: 4, avg: 52 },
+    { id: "uranium", title: "Uranium : les 5 premiers producteurs", tag: "Énergie", t: "eco", k: "classer", min: 2, avg: 33 },
+    { id: "inflation", title: "Inflation : du plus haut au plus bas", tag: "Chiffres", t: "eco", k: "classer", min: 2, avg: 45 },
+    { id: "croissance", title: "Croissance 2026 : de la plus forte à la plus faible", tag: "Chiffres", t: "eco", k: "classer", min: 2, avg: 42 },
+    { id: "capitales", title: "Capitales piégeuses", tag: "Capitales", t: "geo", k: "qcm", min: 3, avg: 58 },
+    { id: "histeco", title: "Monnaies, krachs et accords", tag: "Histoire économique", t: "eco", k: "qcm", min: 4, avg: 47 },
+    { id: "gaulle", title: "L'histoire de Charles de Gaulle", tag: "Histoire", t: "geo", k: "qcm", min: 4, avg: 55 },
+    { id: "eco", title: "Monnaies, sièges et matières premières", tag: "Économie", t: "eco", k: "qcm", min: 3, avg: 61 },
+    { id: "lettre-p", title: "Toutes les réponses commencent par P", tag: "Lettre", t: "mix", k: "ecrire", min: 4, avg: 36 },
+    { id: "lettre-u", title: "Toutes les réponses commencent par U", tag: "Lettre", t: "mix", k: "ecrire", min: 3, avg: 44 }
+  ];
+  const CLASSICS = [
+    { id: "monde", title: "Tous les pays du monde", tag: "Le grand classique", t: "geo", k: "ecrire", min: 15, avg: 38, best: "142/195" },
+    { id: "actu", title: "Les pays de l'actu", tag: "Actu · change chaque jour", t: "mix", k: "globe", min: 3, avg: 69 }
+  ];
+  const KIND = { ecrire: "Écrire", globe: "Globe", classer: "Classer", qcm: "QCM" };
+  const ICON = {
+    ecrire: '<path d="M4 20h4L19 9l-4-4L4 16v4zM13.5 6.5l4 4"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    classer: '<path d="M4 6h10M4 12h7M4 18h4M17 4v16M14 17l3 3 3-3"/>',
+    qcm: '<rect x="3" y="4" width="8" height="7" rx="2"/><rect x="13" y="4" width="8" height="7" rx="2"/><rect x="3" y="13" width="8" height="7" rx="2"/><rect x="13" y="13" width="8" height="7" rx="2"/>'
+  };
+
+  /* Rotation : 6 jeux par semaine (lundi), tirés en suivant le numéro de semaine ; la une change chaque jour */
+  const now = new Date();
+  const weekNo = Math.floor((now - new Date(2026, 0, 5)) / 6048e5);
+  const start = (weekNo * 6) % GAMES.length;
+  const WEEK = Array.from({ length: 6 }, (_, i) => GAMES[(start + i) % GAMES.length]);
+  const daysLeft = (8 - (now.getDay() || 7)) % 7 || 7;
+  $("#week-left").textContent = `Change dans ${daysLeft} j`;
+  $("#today").textContent = now.toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
+
+  const row = (g, i, isWeek) => `<button class="row" data-game="${g.id}" data-k="${g.k}">
+    <span class="ty ${g.t}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ICON[g.k]}</svg></span>
+    <span class="tt"><b>${g.title}</b><small>${g.tag} · ${KIND[g.k]} · ${g.min} min</small></span>
+    <span class="rt">${g.best ? `<b class="num">${g.best}</b><small>ton record</small>` : i === 1 ? `<b class="done-mark">✓ 18 pts</b><small>joué aujourd'hui</small>` : `<b class="num">${g.avg} %</b><small>${isWeek && i === 5 ? '<span class="leaves">part bientôt</span>' : "moyenne"}</small>`}</span>
+  </button>`;
+  const paintWeek = f => { $("#week").innerHTML = WEEK.filter(g => f === "all" || g.k === f).map((g, i) => row(g, WEEK.indexOf(g), true)).join("") || `<p class="muted" style="padding:16px">Pas de jeu de ce type cette semaine.</p>`; };
+  paintWeek("all");
+  $("#classics").innerHTML = CLASSICS.map((g, i) => row(g, -1, false)).join("");
+  $$(".f").forEach(b => b.onclick = () => { $$(".f").forEach(x => x.setAttribute("aria-pressed", x === b)); paintWeek(b.dataset.f); });
+
+  /* Compte à rebours jusqu'à minuit */
+  const tick = () => { const d = new Date(), m = new Date(d); m.setHours(24, 0, 0, 0); const s = Math.floor((m - d) / 1000);
+    $("#reset").textContent = `Nouveau défi dans ${Math.floor(s / 3600)} h ${String(Math.floor(s / 60) % 60).padStart(2, "0")}`; };
+  tick(); setInterval(tick, 20000);
+
+  /* Feuilles */
+  let open = null;
+  const show = id => { open = $("#sh-" + id); $("#scrim").style.display = "block"; requestAnimationFrame(() => { $("#scrim").classList.add("on"); open.classList.add("on"); }); if (id === "inconnu") seek(); };
+  const hide = () => { if (!open) return; open.classList.remove("on"); $("#scrim").classList.remove("on"); setTimeout(() => $("#scrim").style.display = "none", 260); open = null; clearTimeout(seekT); };
+  $("#scrim").style.display = "none";
+  $("#scrim").onclick = hide;
+  document.addEventListener("keydown", e => { if (e.key === "Escape") { hide(); closeGame(); } });
+  $$("[data-open]").forEach(b => b.onclick = () => show(b.dataset.open));
+  $$("[data-close]").forEach(b => b.onclick = hide);
+
+  let seekT;
+  const seek = () => {
+    $("#search").innerHTML = `<div class="radar"></div><h3>On cherche un adversaire…</h3><p class="muted">Un joueur de ton niveau, n'importe où dans le monde.</p>`;
+    seekT = setTimeout(() => {
+      $("#search").innerHTML = `<h3>Adversaire trouvé</h3><div class="found"><span class="avatar">ML</span><span style="flex:1;min-width:0"><b>Margaux_92</b><br><small class="muted">Lyon · 1 190 pts · 12 victoires</small></span></div>
+        <p class="muted" style="font-size:14px">Vous jouez les mêmes 7 manches. Elle a 24 h pour répondre.</p><button class="btn wide" data-play-duel>C'est parti</button>`;
+      $("[data-play-duel]", $("#search")).onclick = () => { hide(); startDaily("Duel contre Margaux_92", 7); };
+    }, 2200);
+  };
+  $$(".lvl").forEach(b => b.onclick = () => $$(".lvl").forEach(x => x.setAttribute("aria-pressed", x === b)));
+  $$("[data-play-duel]").forEach(b => b.onclick = () => { const bot = b.closest("#sh-bot"); hide(); startDaily(bot ? "Duel contre le bot Analyste" : "Duel entre amis", 7); });
+
+  const code = Array.from({ length: 5 }, () => "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"[Math.random() * 32 | 0]).join("");
+  $("#code").innerHTML = [...code].map(c => `<span>${c}</span>`).join("");
+  $("#copy").onclick = async () => { try { await navigator.clipboard.writeText(code); $("#copy").textContent = "Code copié"; } catch { $("#copy").textContent = code; } };
+  $$("[data-seg]").forEach(b => b.onclick = () => { $$("[data-seg]").forEach(x => x.setAttribute("aria-pressed", x === b)); $("#seg-creer").hidden = b.dataset.seg !== "creer"; $("#seg-rejoindre").hidden = b.dataset.seg === "creer"; });
+
+  /* Jeu de démonstration : l'OPEP, à écrire, façon JetPunk */
+  const OPEP = [["Algérie"], ["Arabie saoudite", "arabie", "saoudite"], ["Congo", "republique du congo"], ["Gabon"], ["Guinée équatoriale", "guinee equatoriale"], ["Irak", "iraq"], ["Iran"], ["Koweït", "koweit"], ["Libye"], ["Nigeria", "nigéria"], ["Venezuela", "vénézuela"]];
+  let timer = null;
+  const game = $("#game"), gin = $("#game-in");
+  const closeGame = () => { clearInterval(timer); game.classList.remove("on"); };
+  const openGame = html => { gin.innerHTML = html; game.classList.add("on"); game.scrollTop = 0; $(".close-g", gin).onclick = closeGame; };
+  const head = (title, right) => `<div class="g-top"><button class="back close-g" aria-label="Quitter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button><h2>${title}</h2>${right || ""}</div>`;
+
+  function startList(title) {
+    let left = 240, got = new Set();
+    openGame(`${head(title, '<button class="btn ghost" id="giveup" style="padding:8px 14px;font-size:14px">Abandonner</button>')}
+      <div class="score-bar"><div><div class="big num" id="sc">0/11</div><div class="lbl">trouvés</div></div><span></span><div class="r"><div class="big num" id="tm">4:00</div><div class="lbl">restant</div></div></div>
+      <div class="prog"><i id="pg"></i></div>
+      <input class="answer" id="ans" placeholder="Écris un pays…" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Ta réponse">
+      <div class="slots">${OPEP.map((_, i) => `<div class="slot" data-i="${i}"><span class="n num">${i + 1}</span><span></span></div>`).join("")}</div>
+      <p class="note">Pas besoin d'appuyer sur Entrée : un pays juste se place tout seul. Ils sont en Afrique, au Moyen-Orient et en Amérique du Sud.</p>`);
+    const ans = $("#ans"); setTimeout(() => ans.focus(), 380);
+    const finish = () => {
+      clearInterval(timer); ans.disabled = true;
+      OPEP.forEach((o, i) => { if (!got.has(i)) { const s = $(`.slot[data-i="${i}"]`); s.classList.add("miss"); s.lastChild.textContent = o[0]; } });
+      const pct = Math.round(got.size / OPEP.length * 100), pts = Math.round(got.size / OPEP.length * 20);
+      $(".note", gin).outerHTML = `<div class="end"><div class="big num">${got.size}/11</div><p>${pct >= 64 ? "Mieux que la moyenne des joueurs (64 %)." : "La moyenne des joueurs est de 64 %."} <b>+${pts * 2} points</b> (×2, jeu à la une).</p>
+        <p class="muted" style="font-size:14px">Le plus oublié : la Guinée équatoriale (trouvée par 31 % des joueurs).</p><button class="btn wide close-g2">Retour aux jeux</button></div>`;
+      $(".close-g2", gin).onclick = closeGame; $("#giveup").remove();
+    };
+    ans.oninput = () => {
+      const v = fold(ans.value);
+      const i = OPEP.findIndex((o, j) => !got.has(j) && o.some(n => fold(n) === v));
+      if (i < 0) return;
+      got.add(i); const s = $(`.slot[data-i="${i}"]`); s.classList.add("got"); s.lastChild.textContent = OPEP[i][0];
+      ans.value = ""; ans.classList.remove("ok"); void ans.offsetWidth; ans.classList.add("ok");
+      $("#sc").textContent = `${got.size}/11`; $("#pg").style.width = got.size / OPEP.length * 100 + "%";
+      if (got.size === OPEP.length) finish();
+    };
+    $("#giveup").onclick = finish;
+    clearInterval(timer);
+    timer = setInterval(() => { left--; $("#tm").textContent = `${left / 60 | 0}:${String(left % 60).padStart(2, "0")}`; if (left <= 0) finish(); }, 1000);
+  }
+
+  /* Démo d'une question du défi ou du duel (avant / après) */
+  const QS = [
+    { a: ["Chute du mur de Berlin", 1989], b: ["Traité de Maastricht", 1992] },
+    { a: ["Création de l'OPEP", 1960], b: ["Traité de Rome", 1957] },
+    { a: ["Accords du Plaza", 1985], b: ["Krach du lundi noir", 1987] }
+  ];
+  function startDaily(title, n) {
+    let q = 0, score = 0;
+    const draw = () => {
+      const Q = QS[q % QS.length];
+      openGame(`${head(title, `<span class="chip num">${score} pts</span>`)}
+        <div class="dots">${Array.from({ length: n }, (_, i) => `<i class="${i <= q ? "on" : ""}"></i>`).join("")}</div>
+        <div class="q-card"><span class="eyebrow">Question ${q + 1} sur ${n} · 20 points</span>
+          <h3>« ${Q.a[0]} » s'est passé avant ou après « ${Q.b[0]} » ?</h3>
+          <div class="choices"><button class="choice" data-c="avant">Avant</button><button class="choice" data-c="apres">Après</button></div>
+          <p class="muted" id="fb" style="min-height:22px"></p></div>
+        <p class="note">Démonstration : quelques questions pour voir le rythme.</p>`);
+      $$(".choice", gin).forEach(b => b.onclick = () => {
+        const right = Q.a[1] < Q.b[1] ? "avant" : "apres";
+        $$(".choice", gin).forEach(x => { x.disabled = true; if (x.dataset.c === right) x.classList.add("right"); else if (x === b) x.classList.add("wrong"); });
+        if (b.dataset.c === right) score += 20;
+        $("#fb").textContent = `${Q.a[0]} : ${Q.a[1]} · ${Q.b[0]} : ${Q.b[1]}`;
+        setTimeout(() => { q++; if (q < Math.min(n, 3)) draw(); else end(); }, 1500);
+      });
+    };
+    const end = () => openGame(`${head(title)}<div class="end"><span class="eyebrow">Fin de la démo</span><div class="big num">${score} pts</div><p class="muted">Dans la vraie partie : ${n} questions, toutes à 20 points.</p><button class="btn wide close-g2">Retour</button></div>`) || ($(".close-g2", gin).onclick = closeGame);
+    draw();
+  }
+
+  $("#go-daily").onclick = () => startDaily("Défi du jour", 5);
+  document.addEventListener("click", e => {
+    const g = e.target.closest("[data-game]"); if (!g) return;
+    if (g.dataset.game === "opep") startList("Les 11 pays de l'OPEP");
+    else startList("Les 11 pays de l'OPEP · démo");
+  });
+  $("#random").onclick = () => startList("Au hasard : les 11 pays de l'OPEP");
+})();
+</script>
