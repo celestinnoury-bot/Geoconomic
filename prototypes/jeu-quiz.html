@@ -1074,11 +1074,11 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 .mt-n { color: var(--text); }
 /* Arrière-plan : deux gladiateurs géants en filigrane, glaives croisés, étincelle orange qui pulse doucement */
 .arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: grid; place-items: center; overflow: hidden; color: var(--text); }
-.arena-svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(1150px, 165vw); max-width: none; height: auto; max-height: 96vh; opacity: .1; }
+.arena-svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(1150px, 165vw); max-width: none; height: auto; max-height: 96vh; opacity: .16; }
 /* Les cartes laissent deviner les gladiateurs derrière elles */
 .card, .champion, .daily { background: rgba(28, 28, 30, .86); }
 .arena .clash, .arena .rays { opacity: 1; }
-.arena .clash { transform-origin: 500px 133px; animation: clashPulse 3.2s ease-in-out infinite; }
+.arena .clash { transform-origin: 500px 134px; animation: clashPulse 3.2s ease-in-out infinite; }
 @keyframes clashPulse { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
 .top, main, .tabs { position: relative; z-index: 1; }
 .top { position: sticky; z-index: 5; }
@@ -1086,39 +1086,64 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 @media (prefers-reduced-motion: reduce) { .arena .clash { animation: none; } }
 </style>
 
-<!-- Arrière-plan (demande de l'auteur) : deux gladiateurs géants dont les glaives s'entrechoquent, en filigrane -->
+<!-- Arrière-plan (demande de l'auteur) : deux gladiateurs géants dont les glaives s'entrechoquent, en filigrane ; modelés comme des statues de bronze (filtre d'éclairage SVG : relief, reflet orange de l'étincelle) -->
 <div class="arena" aria-hidden="true"><svg class="arena-svg" aria-hidden="true" focusable="false" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="arena-spark" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3e0"/><stop offset=".25" stop-color="#ff8a3d" stop-opacity=".9"/><stop offset="1" stop-color="#ff8a3d" stop-opacity="0"/></radialGradient>
+    <filter id="arena-relief" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="b"/>
+      <feDiffuseLighting in="b" surfaceScale="9" diffuseConstant="1.1" lighting-color="#8f8478" result="d"><feDistantLight azimuth="-120" elevation="38"/></feDiffuseLighting>
+      <feComposite in="d" in2="SourceAlpha" operator="in" result="dd"/>
+      <feSpecularLighting in="b" surfaceScale="9" specularConstant="1.2" specularExponent="16" lighting-color="#ffb27a" result="s"><fePointLight x="500" y="134" z="160"/></feSpecularLighting>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="ss"/>
+      <feBlend in="ss" in2="dd" mode="screen"/>
+    </filter>
     <g id="arena-gl">
-      <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M292 380 C270 430 246 470 236 500 C220 540 198 580 184 612" stroke-width="32"/>
-        <path d="M186 616 L150 630" stroke-width="16"/>
-        <path d="M320 382 C350 420 380 446 392 474 C398 520 402 580 404 626" stroke-width="34"/>
-        <path d="M406 630 L446 642" stroke-width="16"/>
-        <path d="M368 238 C386 236 404 230 418 218 C434 204 446 190 458 176" stroke-width="24"/>
-        <path d="M282 246 C300 280 330 300 368 306" stroke-width="22"/>
-        <path d="M352 148 C362 108 410 92 438 126" stroke-width="12"/>
+      <!-- bouclier rectangulaire, derrière le corps -->
+      <path d="M232 238 Q270 224 304 236 L306 410 Q270 424 232 410 Z"/>
+      <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+        <!-- jambe arrière : cuisse, mollet, pied -->
+        <path d="M344 372 C330 410 312 444 296 476" stroke-width="40"/>
+        <path d="M294 480 C276 516 256 556 236 592" stroke-width="27"/>
+        <path d="M236 594 L202 608" stroke-width="16"/>
+        <!-- jambe avant fléchie -->
+        <path d="M382 370 C404 404 426 436 440 466" stroke-width="42"/>
+        <path d="M442 470 C448 512 450 556 452 600" stroke-width="31"/>
+        <path d="M452 604 L496 614" stroke-width="17"/>
+        <!-- bras du bouclier -->
+        <path d="M324 240 C306 262 296 282 290 300" stroke-width="24"/>
+        <!-- bras armé : épaule, biceps, avant-bras -->
+        <path d="M398 234 C416 222 432 214 446 208" stroke-width="30"/>
+        <path d="M448 206 C458 192 468 180 478 168" stroke-width="22"/>
+        <!-- cou -->
+        <path d="M376 196 L382 218" stroke-width="26"/>
       </g>
-      <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round">
-        <path d="M360 126 l-14 -16 M374 112 l-8 -20 M392 104 l0 -22 M410 104 l10 -20 M426 112 l16 -14"/>
-      </g>
-      <path d="M262 244 C272 216 344 208 384 230 C390 258 370 300 346 330 C340 350 338 366 340 382 L284 386 C282 360 276 336 268 314 C258 290 256 266 262 244 Z"/>
-      <path d="M276 372 L350 368 L366 424 Q314 436 262 424 Z"/>
-      <path d="M352 182 C350 146 372 128 398 128 C424 130 438 150 436 180 L444 202 C420 212 392 212 368 206 L354 204 Z"/>
-      <path d="M340 200 C380 192 420 196 456 206 L452 214 C414 206 378 204 338 210 Z"/>
-      <circle cx="384" cy="312" r="44"/>
-      <rect x="452" y="160" width="12" height="40" rx="4" transform="rotate(-38 458 180)"/>
-      <path d="M458 172 L568 96 L582 104 L468 186 Z"/>
+      <!-- mollets -->
+      <ellipse cx="270" cy="520" rx="17" ry="30" transform="rotate(28 270 520)"/>
+      <ellipse cx="456" cy="520" rx="18" ry="34" transform="rotate(-4 456 520)"/>
+      <!-- torse en V, penché vers l'avant -->
+      <path d="M314 226 C336 206 396 202 416 222 C424 246 420 272 410 296 C402 320 396 340 396 358 L332 364 C322 332 312 294 312 262 C312 248 312 236 314 226 Z"/>
+      <!-- ceinture et pagne -->
+      <path d="M326 352 L400 346 L402 366 L326 372 Z"/>
+      <path d="M332 370 L398 364 Q392 400 366 418 Q344 400 332 370 Z"/>
+      <!-- poing et glaive -->
+      <circle cx="480" cy="166" r="14"/>
+      <rect x="474" y="148" width="12" height="38" rx="4" transform="rotate(-38 480 167)"/>
+      <path d="M484 158 L586 92 L596 102 L494 170 Z"/>
+      <g transform="translate(392 168) scale(.86) translate(-392 -168)"><!-- casque : calotte, large bord, visière, cimier et plumet vers l'arrière -->
+      <path d="M352 170 C350 136 372 120 396 120 C420 122 434 140 432 170 L438 196 C416 206 390 206 366 200 L354 198 Z"/>
+      <path d="M338 196 C380 186 420 190 452 200 L448 210 C414 202 378 200 336 206 Z"/>
+      <path d="M362 132 C372 96 420 88 440 118 L432 124 C414 104 380 108 372 136 Z"/>
+      <path d="M366 112 C340 92 312 96 290 118 C312 106 336 108 356 124 Z"/></g>
     </g>
   </defs>
-  <g class="glad" fill="currentColor">
-    <use href="#arena-gl"/>
-    <use href="#arena-gl" transform="translate(1000 0) scale(-1 1)"/>
+  <g class="glad" fill="#000" filter="url(#arena-relief)">
+    <use href="#arena-gl" transform="translate(-34 0)"/>
+    <use href="#arena-gl" transform="translate(1034 0) scale(-1 1)"/>
   </g>
-  <circle class="clash" cx="500" cy="133" r="70" fill="url(#arena-spark)"/>
+  <circle class="clash" cx="500" cy="134" r="70" fill="url(#arena-spark)"/>
   <g class="rays" stroke="#ffb27a" stroke-width="3" stroke-linecap="round">
-    <path d="M500 93v-30M500 173v30M460 133h-34M540 133h34M472 105l-20-20M528 105l20-20M472 161l-20 20M528 161l20 20"/>
+    <path d="M500 94v-30M500 174v30M460 134h-34M540 134h34M472 106l-20-20M528 106l20-20M472 162l-20 20M528 162l20 20"/>
   </g>
 </svg></div>
 <header class="top">
