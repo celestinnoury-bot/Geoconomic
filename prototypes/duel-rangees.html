@@ -1,0 +1,170 @@
+<title>Rangées du Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Cinq variantes de la forme « rangées » (plateforme de films) pour l'accueil du Duel.
+   Fond Star Wars très en retrait. Les affiches sont dessinées en CSS (couleur du thème + grand signe en Times). */
+:root {
+  --bg: #000;
+  --frame: rgba(0, 0, 0, .74);
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --line: rgba(255, 255, 255, .12);
+  --text: #f5f5f7;
+  --muted: #8e8e93;
+  --accent: #ff8a3d;
+  --geo: #7d7bff;
+  --mix: #66d4cf;
+  --serif: "Times New Roman", Times, "Tinos", serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { margin: 0; color: var(--text); font: 14px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+.arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.arena-cv { width: 100%; height: 100%; display: block; opacity: .32; filter: blur(1.5px) brightness(.75) saturate(.8); }
+.arena::after { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 0%, rgba(0,0,0,.55) 70%, #000 100%); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+h1, h2, h3, p { margin: 0; }
+.page { position: relative; z-index: 1; max-width: 1900px; margin: 0 auto; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.intro { max-width: 660px; margin-bottom: 26px; display: grid; gap: 8px; }
+.intro h1 { font: 700 32px/1.1 var(--serif); letter-spacing: -.02em; }
+.intro p { color: var(--muted); }
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 36px 24px; }
+.col { display: grid; gap: 12px; justify-items: center; align-content: start; min-width: 0; }
+.cap { width: 100%; max-width: 350px; }
+.cap b { font: 700 21px/1.15 var(--serif); display: block; }
+.cap b span { color: var(--accent); margin-right: 6px; }
+.cap p { margin-top: 4px; color: var(--muted); font-size: 13px; }
+.phone { width: 100%; max-width: 350px; height: 720px; border-radius: 38px; border: 8px solid #222226; background: var(--frame); overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.bar { display: flex; align-items: center; gap: 10px; padding: 14px 16px 8px; position: relative; z-index: 2; }
+.bar .bk { width: 28px; height: 28px; border-radius: 50%; background: rgba(44,44,46,.8); display: grid; place-items: center; font-size: 14px; }
+.bar .nm { flex: 1; font-weight: 600; font-size: 15px; }
+.bar .nm em { font-style: normal; color: var(--accent); }
+.bar .st { font-size: 12px; font-weight: 600; color: var(--muted); }
+.bar .st b { color: var(--text); }
+.scr { flex: 1; overflow-y: auto; scrollbar-width: none; padding: 6px 0 18px 16px; display: grid; grid-auto-rows: max-content; gap: 18px; align-content: start; }
+.scr::-webkit-scrollbar { display: none; }
+.pad { padding-right: 16px; }
+.lbl { font-size: 11px; font-weight: 600; color: var(--muted); }
+.h { font: 700 20px/1.15 var(--serif); letter-spacing: -.01em; }
+.mut { color: var(--muted); font-size: 12px; }
+.acc { color: var(--accent); }
+.btn { border: 0; border-radius: 999px; padding: 9px 16px; font-weight: 600; font-size: 13px; background: var(--accent); color: #1a0d03; justify-self: start; }
+.btn.alt { background: rgba(255,255,255,.14); color: var(--text); }
+.rh { display: grid; gap: 8px; }
+.rh .t { display: flex; justify-content: space-between; align-items: baseline; padding-right: 16px; }
+.rh .t b { font: 700 17px var(--serif); }
+.rh .t span { font-size: 12px; color: var(--accent); }
+.shelf { display: grid; grid-auto-flow: column; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-right: 16px; scroll-snap-type: x proximity; }
+.shelf::-webkit-scrollbar { display: none; }
+.shelf > * { scroll-snap-align: start; }
+
+/* Affiche dessinée : fond teinté par le thème, grand signe, titre en bas */
+.post { position: relative; overflow: hidden; border-radius: 12px; background: var(--surface); display: grid; align-content: end; padding: 9px; gap: 2px; isolation: isolate; }
+.post::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(120% 90% at 80% 10%, color-mix(in srgb, var(--c) 45%, transparent), transparent 65%), linear-gradient(180deg, transparent 40%, rgba(0,0,0,.75)); }
+.post .sg { position: absolute; right: 8px; top: 2px; z-index: -1; font: 700 64px/1 var(--serif); color: color-mix(in srgb, var(--c) 70%, white); opacity: .55; }
+.post b { font: 700 14px/1.15 var(--serif); }
+.post small { color: rgba(255,255,255,.65); font-size: 10.5px; }
+.post.eco { --c: var(--accent); } .post.geo { --c: var(--geo); } .post.mix { --c: var(--mix); }
+.p-port { width: 112px; height: 160px; }
+.p-land { width: 210px; height: 118px; }
+.p-sq { width: 128px; height: 128px; }
+.prog { height: 3px; border-radius: 2px; background: rgba(255,255,255,.2); margin-top: 4px; overflow: hidden; }
+.prog i { display: block; height: 100%; background: var(--accent); }
+
+/* A · héros plein cadre */
+.heroA { margin: -6px 0 0 -16px; height: 300px; position: relative; display: grid; align-content: end; gap: 8px; padding: 0 16px 16px; background: radial-gradient(120% 80% at 70% 20%, rgba(255,138,61,.4), transparent 60%), linear-gradient(180deg, rgba(0,0,0,0) 35%, rgba(0,0,0,.92)); }
+.heroA .big { position: absolute; right: 14px; top: 30px; font: 700 150px/1 var(--serif); color: rgba(255,138,61,.35); }
+.heroA .h { font-size: 28px; }
+.chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 999px; background: rgba(255,255,255,.12); }
+
+/* B · carrousel d'affiches à la une */
+.carousel { display: grid; grid-auto-flow: column; grid-auto-columns: 86%; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-right: 16px; }
+.carousel::-webkit-scrollbar { display: none; }
+.carousel .post { height: 200px; padding: 14px; scroll-snap-align: start; border-radius: 18px; gap: 6px; }
+.carousel .post .sg { font-size: 110px; }
+.carousel .post b { font-size: 22px; }
+.dots { display: flex; gap: 5px; justify-content: center; padding-right: 16px; }
+.dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--surface-2); } .dots i.on { width: 16px; border-radius: 3px; background: var(--accent); }
+
+/* C · accueil « Spotify » : salut + raccourcis en grille */
+.hello { font: 700 26px var(--serif); padding-right: 16px; }
+.quick { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-right: 16px; }
+.quick div { display: flex; align-items: center; gap: 8px; background: rgba(44,44,46,.75); border-radius: 8px; overflow: hidden; font-size: 12px; font-weight: 600; line-height: 1.2; padding-right: 6px; min-height: 48px; }
+.quick div span { width: 48px; align-self: stretch; display: grid; place-items: center; font: 700 20px var(--serif); background: color-mix(in srgb, var(--c) 40%, #111); flex: none; }
+
+/* D · catégories en tuiles + « reprendre » */
+.cats { display: grid; grid-auto-flow: column; grid-auto-columns: 92px; gap: 8px; overflow-x: auto; scrollbar-width: none; padding-right: 16px; }
+.cats::-webkit-scrollbar { display: none; }
+.cat { height: 56px; border-radius: 10px; display: grid; place-items: center; font: 700 14px var(--serif); border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); background: color-mix(in srgb, var(--c) 14%, #111); }
+
+/* E · top 10 avec grands chiffres + joueurs en ronds */
+.top10 { display: grid; grid-auto-flow: column; gap: 4px; overflow-x: auto; scrollbar-width: none; padding-right: 16px; }
+.top10::-webkit-scrollbar { display: none; }
+.t10 { display: flex; align-items: end; }
+.t10 .n { font: 700 120px/.8 var(--serif); color: #000; -webkit-text-stroke: 2px rgba(255,255,255,.55); margin-right: -18px; z-index: 0; }
+.t10 .post { z-index: 1; }
+.ppl { display: grid; grid-auto-flow: column; grid-auto-columns: 66px; gap: 10px; overflow-x: auto; scrollbar-width: none; padding-right: 16px; }
+.ppl::-webkit-scrollbar { display: none; }
+.pp { display: grid; justify-items: center; gap: 4px; font-size: 11px; text-align: center; }
+.pp i { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; font: 700 20px var(--serif); font-style: normal; background: var(--surface-2); border: 2px solid var(--accent); }
+.pp.me i { background: var(--accent); color: #1a0d03; }
+</style>
+
+<div class="arena" aria-hidden="true"></div>
+<div id="play" hidden></div>
+
+<div class="page">
+  <header class="intro">
+    <h1>Cinq façons de faire les rangées</h1>
+    <p>Toutes reprennent la forme 5 (comme une plateforme de films), mais chacune à sa manière : grande affiche, carrousel, raccourcis, catégories, top 10. Le fond Star Wars reste très en retrait. Les rangées glissent sur le côté ; joueurs et scores sont des exemples.</p>
+  </header>
+  <div class="board" id="board"></div>
+</div>
+
+<script>
+(() => {
+  const Q = [
+    ["eco", "Les 11 pays de l'OPEP", "Globe · 4 min", "11"],
+    ["geo", "Ils ont pris le pouvoir", "QCM · nouveau", "?"],
+    ["geo", "Les 14 voisins de la Chine", "Globe · 4 min", "14"],
+    ["mix", "Le bassin du Nil", "Globe · 4 min", "~"],
+    ["eco", "Monnaies, krachs et accords", "QCM · 3 niveaux", "€"],
+    ["geo", "Tous les pays du monde", "Écrire · 15 min", "195"],
+  ];
+  const D = [["eco", "Toi 3 – 1 Margaux", "À toi de jouer", "3–1", 57], ["geo", "Contre Jules", "Il joue…", "J", 30], ["mix", "Un inconnu", "Lancer un duel", "+", 0], ["geo", "Un ami", "Avec un code", "#", 0]];
+  const P = ["Jules", "Inès", "Margaux", "Thomas", "Lina"];
+  const post = (cls, [t, title, sub, sg, pr]) => `<div class="post ${t} ${cls}"><span class="sg">${sg}</span><b>${title}</b><small>${sub}</small>${pr ? `<span class="prog"><i style="width:${pr}%"></i></span>` : ""}</div>`;
+  const shelf = (title, link, items, cls) => `<div class="rh"><div class="t"><b>${title}</b><span>${link}</span></div><div class="shelf">${items.map((x) => post(cls, x)).join("")}</div></div>`;
+  const bar = (right = '<b class="num">1 284</b> pts') => `<div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st">${right}</span></div>`;
+  const ranks = `<div class="rh"><div class="t"><b>Classement</b><span>Tu es 12ᵉ</span></div><div class="ppl">${P.map((n, i) => `<div class="pp"><i>${n[0]}</i>${i + 1}. ${n}</div>`).join("")}<div class="pp me"><i>C</i>12. Toi</div></div></div>`;
+
+  const V = [
+    ["A", "La grande affiche", "Comme Netflix : une affiche plein cadre en haut pour le défi du jour, puis des rangées d'affiches en hauteur.",
+      `<div class="heroA"><span class="big">5</span><div class="chips"><span class="chip">Défi du jour</span><span class="chip">encore 3 h 07</span></div><h2 class="h">5 questions, les mêmes pour tout le monde</h2><div style="display:flex;gap:8px"><button class="btn">▶ Jouer</button><button class="btn alt">Les règles</button></div></div>
+       ${shelf("Tes duels", "Tout voir", D, "p-port")}${shelf("Quiz du monde", "17 quiz", Q, "p-port")}${ranks}`],
+    ["B", "Le carrousel", "Comme l'Apple TV : en haut, des grandes affiches qu'on fait défiler (défi, duel, quiz à la une), puis des rangées d'images larges.",
+      `<div class="carousel">${post("", ["eco", "Le défi du jour", "5 questions · jusqu'à 75 pts · encore 3 h 07", "5"])}${post("", ["geo", "Duel du jour : sujet surprise", "Une partie par jour · +30", "?"])}${post("", ["eco", "À la une : l'OPEP", "Points ×2 aujourd'hui", "11"])}</div><div class="dots"><i class="on"></i><i></i><i></i></div>
+       ${shelf("Reprendre", "", D.slice(0, 2), "p-land")}${shelf("Quiz du monde", "17 quiz", Q, "p-land")}${ranks}`],
+    ["C", "Les raccourcis", "Comme Spotify : un bonjour, six raccourcis vers ce que tu joues le plus, puis des rangées de carrés.",
+      `<h2 class="hello">Bonsoir Célestin</h2>
+       <div class="quick">${[["eco", "5", "Défi du jour"], ["eco", "3–1", "Toi – Margaux"], ["geo", "?", "Duel du jour"], ["eco", "11", "L'OPEP"], ["geo", "?", "Ils ont pris le pouvoir"], ["mix", "12ᵉ", "Classement"]].map(([c, s, t]) => `<div style="--c:var(--${c === "eco" ? "accent" : c})"><span>${s}</span>${t}</div>`).join("")}</div>
+       ${shelf("Faits pour toi", "Tout voir", Q.slice(0, 4), "p-sq")}${shelf("Tes duels", "", D, "p-sq")}`],
+    ["D", "Les catégories", "Comme Disney+ : des tuiles de catégories (Pays, Histoire, Économie, Dates…), une rangée « Reprendre » avec barre de progression, puis les nouveautés.",
+      `<div class="pad">${post("", ["eco", "Le défi du jour", "5 questions, les mêmes pour tous · encore 3 h 07", "5"]).replace('class="post eco "', 'class="post eco" style="height:170px;padding:14px"')}</div>
+       <div class="cats">${[["accent", "Pays"], ["geo", "Histoire"], ["accent", "Économie"], ["mix", "Dates"], ["geo", "Capitales"]].map(([c, t]) => `<div class="cat" style="--c:var(--${c})">${t}</div>`).join("")}</div>
+       ${shelf("Reprendre", "", D.slice(0, 2), "p-land")}${shelf("Nouveautés", "", Q.slice(1, 5), "p-port")}${ranks}`],
+    ["E", "Le top 10", "Comme Prime Vidéo : le top des quiz de la semaine avec de grands chiffres, les joueurs en ronds façon stories, puis tes duels.",
+      `<div class="pad">${post("", ["eco", "Le défi du jour", "5 questions · jusqu'à 75 pts · encore 3 h 07", "5"]).replace('class="post eco "', 'class="post eco" style="height:150px;padding:14px"')}</div>
+       ${ranks}
+       <div class="rh"><div class="t"><b>Top 5 des quiz cette semaine</b><span>Tout voir</span></div><div class="top10">${Q.slice(0, 5).map((x, i) => `<div class="t10"><span class="n">${i + 1}</span>${post("p-port", x)}</div>`).join("")}</div></div>
+       ${shelf("Tes duels", "Tout voir", D, "p-land")}`],
+  ];
+  document.getElementById("board").innerHTML = V.map(([k, n, p, body]) => `<section class="col"><div class="cap"><b><span>${k}</span>${n}</b><p>${p}</p></div><div class="phone">${bar()}<div class="scr">${body}</div></div></section>`).join("");
+})();
+</script>
+<script type="module" src="duel-ships.js"></script>
