@@ -110,9 +110,9 @@ function start() {
       const dt = Math.min(0.05, (now - last) / 1000); last = now; T += dt;
       earth.rotation.y += dt * 0.08;
       ring.updateMatrixWorld();
-      const aJ = T * 0.42, gap = 0.5 + 0.12 * Math.sin(T * 0.6);
+      const aJ = T * 0.68, gap = 0.5 + 0.12 * Math.sin(T * 0.6);
       place(jedi, aJ); place(tie, aJ - gap);
-      jedi.rotateZ(Math.sin(T * 1.3) * 0.35); // le Jedi oscille pour esquiver
+      jedi.rotateZ(Math.PI + Math.sin(T * 1.3) * 0.35); // remis à l'endroit (cockpit vers le haut, demande de l'auteur) et qui oscille pour esquiver
       next -= dt; nextJ -= dt;
       if (next <= 0) { fire(tie.position, jedi.position.clone().add(V().randomDirection().multiplyScalar(0.05)), "tie"); next = 0.7 + Math.random() * 0.9; }
       if (nextJ <= 0) { // de temps en temps le Jedi riposte : il tire en arrière vers le TIE
