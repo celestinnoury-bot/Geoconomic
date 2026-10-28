@@ -128,11 +128,16 @@ function start() {
   };
 
   // Le parcours : une boucle souple qui plonge vers l'écran, frôle la caméra, puis repart très loin.
-  const KEYS = [[-16, 3, -48], [-6, 5, -16], [5, 0, 0], [2.5, -2.4, 9.5], [-7, -1, 3], [-13, 6, -26], [0, 10, -70], [15, 3, -40], [11, -6, -10], [-1.5, -4.5, 7], [-11, -3, -14], [-20, 1, -34]];
+  // Courbe sans angle (demande de l'auteur : « pas de changement de direction brusque ») : somme de sinusoïdes lentes,
+  // échantillonnée en 64 points ; un seul grand passage près de l'écran par tour, puis un long éloignement.
+  const KEYS = Array.from({ length: 64 }, (_, i) => {
+    const a = (i / 64) * Math.PI * 2;
+    return [14 * Math.sin(a) + 2.5 * Math.sin(2 * a + 1), 3.5 * Math.sin(2 * a + 0.5) + 2 * Math.sin(a + 2), -30 + 38 * Math.cos(a - 0.35)];
+  });
   let curve = null, curveLen = 1;
   const buildCurve = (portrait) => {
     const sx = portrait ? 0.42 : 1, sy = portrait ? 1.5 : 1;
-    curve = new THREE.CatmullRomCurve3(KEYS.map(([x, y, z]) => new THREE.Vector3(x * sx, y * sy, z)), true, "centripetal", 0.5);
+    curve = new THREE.CatmullRomCurve3(KEYS.map(([x, y, z]) => new THREE.Vector3(x * sx, y * sy, z)), true, "catmullrom", 0.5);
     curve.arcLengthDivisions = 600; curve.updateArcLengths(); curveLen = curve.getLength();
   };
 
@@ -164,11 +169,11 @@ function start() {
       curve.getTangentAt((((u + 0.012) % 1) + 1) % 1, tan2);
       g.position.copy(pA);
       m4.lookAt(pA, tmp.copy(pA).add(tan), up); qT.setFromRotationMatrix(m4);
-      g.quaternion.slerp(qT, damp(hard ? 7 : 5, dt));
+      g.quaternion.slerp(qT, damp(hard ? 3.2 : 2.6, dt));
       const turn = tmp.copy(tan).cross(tan2).dot(up); // >0 : virage à gauche
-      const bankTarget = THREE.MathUtils.clamp(-turn * 26, -1.25, 1.25);
-      D.bank += (bankTarget - D.bank) * damp(4, dt);
-      if (D.rollT >= 0) { D.rollT += dt; const k = Math.min(1, D.rollT / 0.85); D.roll = (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2) * Math.PI * 2 * D.rollDir; if (k >= 1) { D.rollT = -1; D.roll = 0; } }
+      const bankTarget = THREE.MathUtils.clamp(-turn * 18, -0.9, 0.9);
+      D.bank += (bankTarget - D.bank) * damp(1.6, dt);
+      if (D.rollT >= 0) { D.rollT += dt; const k = Math.min(1, D.rollT / 1.7); D.roll = (k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2) * Math.PI * 2 * D.rollDir; if (k >= 1) { D.rollT = -1; D.roll = 0; } }
       D.bankG.rotation.z = D.bank + D.roll;
     };
     const rearOf = (g, x, z, out) => out.set(x, 0, z).applyQuaternion(g.userData.bankG.getWorldQuaternion(qT)).add(g.position);
@@ -178,7 +183,7 @@ function start() {
       // Vitesse : un rythme de croisière, des accélérations franches, un petit ralenti avant les passages près de l'écran.
       const surge = Math.pow(Math.max(0, Math.sin(T * 0.45)), 3);
       const target = 17 + 15 * surge;
-      speedNow += (target - speedNow) * damp(1.5, dt);
+      speedNow += (target - speedNow) * damp(0.7, dt);
       uJ += (speedNow * dt) / curveLen;
       // Le TIE colle au Jedi puis décroche : l'écart respire.
       gap += ((6.5 + 4.5 * (0.5 + 0.5 * Math.sin(T * 0.33 + 1))) - gap) * damp(1, dt);
@@ -199,7 +204,7 @@ function start() {
         m4.lookAt(tie.position, aim, up); qT.setFromRotationMatrix(m4);
         const q = qT.clone();
         fire(tie.position, q, -0.5); setTimeout(() => fire(tie.position, q, 0.5), 70);
-        nextShot = gap < 8.5 ? 0.16 + Math.random() * 0.25 : 0.5 + Math.random() * 0.7;
+        nextShot = gap < 8.5 ? 0.55 + Math.random() * 0.5 : 1.4 + Math.random() * 1.2; // moins de tirs (demande de l'auteur)
       }
       muzzle.material.opacity *= 1 - damp(18, dt);
       for (let i = bolts.length - 1; i >= 0; i--) {
@@ -207,9 +212,9 @@ function start() {
         const dJ = bo.position.distanceTo(jedi.position);
         if (dJ < 1.25) { // touché : gerbe d'étincelles, bouclier qui s'allume, tonneau d'esquive
           impact(bo.position); shieldFlash.material.opacity = 0.9;
-          const D = jedi.userData; if (D.rollT < 0 && Math.random() < 0.6) { D.rollT = 0; D.rollDir = Math.random() < 0.5 ? -1 : 1; }
+          const D = jedi.userData; if (D.rollT < 0 && Math.random() < 0.2) { D.rollT = 0; D.rollDir = Math.random() < 0.5 ? -1 : 1; }
           bo.userData.life = 0;
-        } else if (dJ < 3.5 && jedi.userData.rollT < 0 && Math.random() < 0.02) { jedi.userData.rollT = 0; jedi.userData.rollDir = Math.random() < 0.5 ? -1 : 1; }
+        }
         if (bo.userData.life <= 0) { scene.remove(bo); bolts.splice(i, 1); }
       }
       shieldFlash.material.opacity *= 1 - damp(6, dt);
@@ -233,12 +238,12 @@ function start() {
       // Caméra : elle suit le duel en souplesse (on regarde entre les deux), recule ou se rapproche,
       // grand-angle pendant les accélérations, petite secousse quand un vaisseau frôle l'écran.
       mid.copy(jedi.position).lerp(tie.position, 0.4);
-      look.lerp(tmp.copy(mid).multiplyScalar(0.55).setZ(Math.min(mid.z, -4)), damp(2.2, dt));
+      look.lerp(tmp.copy(mid).multiplyScalar(0.55).setZ(Math.min(mid.z, -4)), damp(1.1, dt));
       const near = Math.min(jedi.position.distanceTo(camera.position), tie.position.distanceTo(camera.position));
       if (near < 7) shake = Math.max(shake, (7 - near) / 7 * 0.35);
       shake *= 1 - damp(4, dt);
       const camTarget = tmp.copy(camBase).add(V().set(Math.sin(T * 0.21) * 2.5 + mid.x * 0.18, Math.sin(T * 0.17) * 1.6 + mid.y * 0.15, Math.cos(T * 0.13) * 3 + (mid.z < -30 ? -6 : 0)));
-      camVel.lerp(camTarget.sub(camera.position), damp(1.4, dt));
+      camVel.lerp(camTarget.sub(camera.position), damp(0.8, dt));
       camera.position.addScaledVector(camVel, damp(2.5, dt));
       camera.position.x += (Math.random() - 0.5) * shake; camera.position.y += (Math.random() - 0.5) * shake;
       camera.lookAt(look);
