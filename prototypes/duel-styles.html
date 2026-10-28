@@ -1,0 +1,234 @@
+<title>Styles du Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Oswald:wght@500;700&family=Tinos:wght@400;700&display=swap">
+<style>
+/* Cinq habillages de la page Duel, au-dessus du vrai fond animé (poursuite TIE / Jedi de duel-ships.js).
+   Même contenu partout ; seul le style change. Le sélecteur en haut passe de l'un à l'autre. */
+:root {
+  --bg: #000;
+  --text: #f5f5f7;
+  --muted: #8e8e93;
+  --accent: #ff8a3d;
+  --laser: #6dff6a;
+  --cyan: #7fe3ff;
+  --serif: "Times New Roman", Times, "Tinos", serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --cond: "Oswald", "Arial Narrow", sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { color: var(--text); font: 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; margin: 0; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: #000; }
+.arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.arena-cv { width: 100%; height: 100%; display: block; opacity: var(--ships, .62); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* Sélecteur des cinq styles */
+.picker { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20; background: rgba(0,0,0,.82); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.12); }
+.picker .in { max-width: 720px; margin: 0 auto; padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; gap: 8px; }
+.picker .row { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; }
+.picker .row::-webkit-scrollbar { display: none; }
+.picker button { flex: none; border: 1px solid rgba(255,255,255,.16); background: none; border-radius: 999px; padding: 7px 13px; font: 600 13px var(--font); color: var(--muted); }
+.picker button[aria-pressed="true"] { background: var(--text); color: #000; border-color: var(--text); }
+.picker p { margin: 0; font-size: 13px; color: var(--muted); min-height: 2.9em; }
+.picker p b { color: var(--text); }
+
+/* Contenu commun */
+.app { position: relative; z-index: 1; max-width: 560px; margin: 0 auto; padding-block: 0 110px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.top { display: flex; align-items: center; gap: 10px; padding-block: 14px; }
+.top .back { width: 32px; height: 32px; border-radius: 50%; border: 0; background: rgba(255,255,255,.08); display: grid; place-items: center; flex: none; }
+.top .brand { flex: 1; font-weight: 600; font-size: 16px; }
+.top .brand em { font-style: normal; color: var(--accent); }
+.top .stat { font-size: 13px; font-weight: 600; color: var(--muted); }
+.top .stat b { color: var(--text); }
+main { display: grid; gap: 16px; }
+.blk { display: grid; gap: 8px; }
+.lbl { font-size: 12px; font-weight: 600; color: var(--muted); }
+h1, h2, h3 { margin: 0; text-wrap: balance; }
+.hero h1 { font: 700 30px/1.08 var(--serif); letter-spacing: -.02em; }
+.blk h2 { font: 700 22px/1.15 var(--serif); }
+.meta { font-size: 14px; color: var(--muted); margin: 0; }
+.meta b { color: var(--accent); }
+.btns { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { border: 0; border-radius: 999px; padding: 11px 18px; font-weight: 600; font-size: 15px; background: var(--accent); color: #1a0d03; }
+.btn.alt { background: rgba(255,255,255,.1); color: var(--text); }
+.vs { display: flex; align-items: center; gap: 12px; }
+.vs .av { width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; background: rgba(255,255,255,.12); flex: none; }
+.vs .av.me { background: var(--accent); color: #1a0d03; }
+.vs .sc { font: 700 26px var(--serif); }
+.vs .who { flex: 1; font-size: 14px; color: var(--muted); }
+.list { display: grid; }
+.list .it { display: flex; justify-content: space-between; gap: 10px; align-items: baseline; padding: 10px 0; border-top: 1px solid rgba(255,255,255,.1); }
+.list .it:first-child { border-top: 0; }
+.list .it b { font-weight: 600; }
+.list .it span { color: var(--muted); font-size: 13px; white-space: nowrap; }
+.rank .it b::before { content: attr(data-r) "  "; color: var(--muted); font-variant-numeric: tabular-nums; }
+.rank .it.me b, .rank .it.me span { color: var(--accent); }
+.tabs { position: fixed; z-index: 5; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: 1fr 1fr; text-align: center; padding: 10px 0 calc(12px + env(safe-area-inset-bottom, 0px)); font-size: 12px; font-weight: 600; color: var(--muted); background: rgba(0,0,0,.85); border-top: 1px solid rgba(255,255,255,.1); }
+.tabs .on { color: var(--accent); }
+
+/* ── 1 · Journal de bord : le style actuel en plus aéré, sans cartes, filets fins, tout en Times ── */
+.s1 .blk { padding-bottom: 16px; border-bottom: 1px solid rgba(255,255,255,.14); }
+.s1 .lbl { font: 600 11px var(--font); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.s1 .hero h1 { font-size: 40px; }
+.s1 main { gap: 22px; padding-top: 6px; }
+.s1 .app::before { content: ""; position: fixed; inset: 0; z-index: -1; background: radial-gradient(120% 80% at 50% 40%, transparent 30%, rgba(0,0,0,.75) 100%); pointer-events: none; }
+
+/* ── 2 · Cockpit : affichage tête haute, coins de visée, chiffres en police machine, cyan + orange ── */
+.s2 { --ships: .8; }
+.s2 .blk { position: relative; padding: 16px; background: rgba(4,18,26,.45); border: 1px solid rgba(127,227,255,.22); }
+.s2 .blk::before, .s2 .blk::after { content: ""; position: absolute; width: 14px; height: 14px; border: 2px solid var(--cyan); }
+.s2 .blk::before { top: -2px; left: -2px; border-right: 0; border-bottom: 0; }
+.s2 .blk::after { bottom: -2px; right: -2px; border-left: 0; border-top: 0; }
+.s2 .lbl, .s2 .meta, .s2 .list .it span, .s2 .top .stat, .s2 .tabs { font-family: var(--mono); letter-spacing: .04em; }
+.s2 .lbl { color: var(--cyan); text-transform: uppercase; font-size: 11px; }
+.s2 .lbl::before { content: "▸ "; }
+.s2 h1, .s2 h2, .s2 .vs .sc { font-family: var(--mono) !important; letter-spacing: -.01em; }
+.s2 .hero h1 { font-size: 24px; font-weight: 700; }
+.s2 .blk h2 { font-size: 17px; }
+.s2 .btn { border-radius: 2px; font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; font-size: 13px; }
+.s2 .btn.alt { background: none; border: 1px solid rgba(127,227,255,.4); color: var(--cyan); }
+.s2 .list .it { border-top-color: rgba(127,227,255,.14); }
+.s2 .vs .av { border-radius: 2px; }
+.s2 .hero { border-color: rgba(255,138,61,.5); }
+.s2 .hero::before, .s2 .hero::after { border-color: var(--accent); }
+.s2 .tabs { background: rgba(2,10,14,.9); border-top-color: rgba(127,227,255,.25); }
+.s2 .scan { position: fixed; inset: 0; pointer-events: none; z-index: 2; background: repeating-linear-gradient(0deg, rgba(127,227,255,.035) 0 1px, transparent 1px 3px); }
+
+/* ── 3 · Verre fumé : cartes flottantes floutées, coins très arrondis, liseré lumineux ── */
+.s3 { --ships: .9; }
+.s3 .blk { padding: 18px; border-radius: 26px; background: rgba(30,30,34,.38); -webkit-backdrop-filter: blur(22px) saturate(160%); backdrop-filter: blur(22px) saturate(160%); border: 1px solid rgba(255,255,255,.14); box-shadow: inset 0 1px 0 rgba(255,255,255,.12), 0 20px 50px rgba(0,0,0,.35); }
+.s3 .hero { background: linear-gradient(160deg, rgba(255,138,61,.22), rgba(30,30,34,.35) 60%); }
+.s3 .hero h1 { font-family: var(--font); font-weight: 700; letter-spacing: -.03em; font-size: 30px; }
+.s3 .blk h2 { font-family: var(--font); font-weight: 700; letter-spacing: -.02em; font-size: 20px; }
+.s3 .vs .sc { font-family: var(--font); }
+.s3 .btn.alt { background: rgba(255,255,255,.14); }
+.s3 .tabs { background: rgba(20,20,22,.5); -webkit-backdrop-filter: blur(22px); backdrop-filter: blur(22px); margin: 0 12px 10px; border: 1px solid rgba(255,255,255,.14); border-radius: 22px; left: 0; right: 0; max-width: 540px; margin-inline: auto; bottom: 10px; padding-bottom: 12px; }
+.s3 .top { position: sticky; top: 64px; z-index: 3; }
+
+/* ── 4 · Générique de film : grands titres centrés, beaucoup de noir, la poursuite au premier plan ── */
+.s4 { --ships: 1; }
+.s4 main { gap: 54px; text-align: center; padding-top: 28vh; }
+.s4 .blk { justify-items: center; }
+.s4 .lbl { font: 600 11px var(--font); letter-spacing: .3em; text-transform: uppercase; color: var(--accent); }
+.s4 .hero h1 { font-size: 44px; line-height: 1.02; font-weight: 400; letter-spacing: -.01em; }
+.s4 .blk h2 { font-size: 30px; font-weight: 400; }
+.s4 .btns { justify-content: center; }
+.s4 .btn { background: none; border: 1px solid rgba(255,255,255,.5); color: var(--text); letter-spacing: .12em; text-transform: uppercase; font-size: 12px; padding: 12px 22px; }
+.s4 .btn:not(.alt):first-child { border-color: var(--accent); color: var(--accent); }
+.s4 .vs { justify-content: center; }
+.s4 .vs .who { flex: none; }
+.s4 .list { width: 100%; max-width: 340px; }
+.s4 .list .it { justify-content: center; gap: 14px; border-top: 0; padding: 5px 0; }
+.s4 .tabs { background: linear-gradient(transparent, rgba(0,0,0,.9) 40%); border-top: 0; }
+
+/* ── 5 · Arcade : capitales serrées, bordures néon orange et vert laser, gros chiffres ── */
+.s5 { --ships: .75; }
+.s5 .blk { padding: 16px; border-radius: 14px; background: rgba(10,10,12,.7); border: 2px solid rgba(255,138,61,.55); box-shadow: 0 0 22px rgba(255,138,61,.18), inset 0 0 18px rgba(255,138,61,.06); }
+.s5 .blk:nth-child(3n+2) { border-color: rgba(109,255,106,.5); box-shadow: 0 0 22px rgba(109,255,106,.15), inset 0 0 18px rgba(109,255,106,.05); }
+.s5 h1, .s5 h2, .s5 .vs .sc, .s5 .top .brand { font-family: var(--cond) !important; text-transform: uppercase; letter-spacing: .01em; font-weight: 700; }
+.s5 .hero h1 { font-size: 36px; line-height: 1; }
+.s5 .blk h2 { font-size: 24px; }
+.s5 .lbl { font-family: var(--cond); text-transform: uppercase; letter-spacing: .12em; font-size: 13px; color: var(--accent); }
+.s5 .blk:nth-child(3n+2) .lbl { color: var(--laser); }
+.s5 .btn { border-radius: 10px; font-family: var(--cond); text-transform: uppercase; letter-spacing: .08em; font-size: 16px; box-shadow: 0 0 18px rgba(255,138,61,.5); }
+.s5 .btn.alt { box-shadow: none; border: 2px solid rgba(255,255,255,.3); background: none; }
+.s5 .vs .sc { font-size: 34px; color: var(--laser); text-shadow: 0 0 14px rgba(109,255,106,.6); }
+.s5 .tabs { font-family: var(--cond); text-transform: uppercase; letter-spacing: .1em; font-size: 13px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<div class="arena" aria-hidden="true"></div>
+<div id="play" hidden></div>
+<div class="scan" id="scan" hidden></div>
+
+<nav class="picker" aria-label="Styles proposés">
+  <div class="in">
+    <div class="row" role="group">
+      <button data-s="1" aria-pressed="true">1 · Journal de bord</button>
+      <button data-s="2" aria-pressed="false">2 · Cockpit</button>
+      <button data-s="3" aria-pressed="false">3 · Verre fumé</button>
+      <button data-s="4" aria-pressed="false">4 · Générique</button>
+      <button data-s="5" aria-pressed="false">5 · Arcade</button>
+    </div>
+    <p id="pitch"></p>
+  </div>
+</nav>
+
+<div class="app s1" id="app">
+  <header class="top">
+    <button class="back" aria-label="Retour à Geonomix">‹</button>
+    <span class="brand">Geonomix <em>Duel</em></span>
+    <span class="stat num"><b>1 284</b> pts · 6 j</span>
+  </header>
+  <main>
+    <section class="blk hero">
+      <span class="lbl">Défi du jour · mercredi 28 octobre</span>
+      <h1>5 questions, les mêmes pour tout le monde</h1>
+      <p class="meta">Jusqu'à <b>75 pts</b> · nouveau défi dans 3 h 07</p>
+      <div class="btns"><button class="btn">Jouer le défi</button></div>
+    </section>
+    <section class="blk">
+      <span class="lbl">1 contre 1 · 7 manches</span>
+      <h2>Sept manches entre amis</h2>
+      <div class="vs"><span class="av me">C</span><span class="sc num">3 – 1</span><span class="av">M</span><span class="who">contre Margaux · à toi de jouer</span></div>
+      <div class="btns"><button class="btn">Jouer la manche</button><button class="btn alt">Un inconnu</button><button class="btn alt">Un ami (code)</button></div>
+    </section>
+    <section class="blk">
+      <span class="lbl">Duel du jour</span>
+      <h2>Sujet surprise</h2>
+      <p class="meta">Tu le découvres au départ. Seul ou contre quelqu'un, une partie par jour. Victoire <b>+30</b>.</p>
+      <div class="btns"><button class="btn alt">Découvrir</button></div>
+    </section>
+    <section class="blk">
+      <span class="lbl">Quiz du monde</span>
+      <div class="list">
+        <div class="it"><b>Les 11 pays de l'OPEP</b><span>Globe · 4 min</span></div>
+        <div class="it"><b>Ils ont pris le pouvoir</b><span>QCM · nouveau</span></div>
+        <div class="it"><b>Les 14 voisins de la Chine</b><span>Globe · 4 min</span></div>
+        <div class="it"><b>Tous les pays du monde</b><span>Écrire · 15 min</span></div>
+      </div>
+    </section>
+    <section class="blk">
+      <span class="lbl">Classement</span>
+      <div class="list rank">
+        <div class="it"><b data-r="1">Jules</b><span class="num">2 410</span></div>
+        <div class="it"><b data-r="2">Inès</b><span class="num">2 188</span></div>
+        <div class="it"><b data-r="3">Margaux</b><span class="num">1 960</span></div>
+        <div class="it me"><b data-r="12">Toi</b><span class="num">1 284</span></div>
+      </div>
+    </section>
+  </main>
+  <div class="tabs"><span class="on">Jouer</span><span>Classement</span></div>
+</div>
+
+<script>
+(() => {
+  const PITCH = {
+    1: "<b>Journal de bord.</b> Le style actuel, plus aéré : plus de cartes grises, juste des filets fins et de grands titres en Times. La poursuite se voit partout entre les blocs.",
+    2: "<b>Cockpit.</b> Comme l'écran de visée d'un chasseur : coins de cible, chiffres en police machine, cyan pour l'interface, orange pour l'action, fines lignes de balayage.",
+    3: "<b>Verre fumé.</b> Des cartes en verre dépoli qui flottent devant l'espace : on voit les vaisseaux passer flous derrière. Barre d'onglets en verre, elle aussi.",
+    4: "<b>Générique de film.</b> Tout centré, de grands titres fins, beaucoup de noir entre les blocs : la poursuite est la vedette, le menu se lit comme un générique.",
+    5: "<b>Arcade.</b> Capitales serrées, cadres néon orange et vert laser (la couleur des tirs du TIE), score qui brille. Le plus « jeu » des cinq."
+  };
+  const app = document.getElementById("app"), btns = [...document.querySelectorAll(".picker button")];
+  const set = (n) => {
+    app.className = "app s" + n;
+    document.documentElement.style.setProperty("--ships", { 1: .62, 2: .8, 3: .9, 4: 1, 5: .75 }[n]);
+    document.getElementById("scan").hidden = n !== "2";
+    btns.forEach((b) => b.setAttribute("aria-pressed", b.dataset.s === n));
+    document.getElementById("pitch").innerHTML = PITCH[n];
+    try { history.replaceState(null, "", "#style-" + n); } catch (e) {}
+  };
+  btns.forEach((b) => (b.onclick = () => set(b.dataset.s)));
+  const h = /^#style-([1-5])$/.exec(location.hash); set(h ? h[1] : "1");
+  addEventListener("hashchange", () => { const m = /^#style-([1-5])$/.exec(location.hash); if (m) set(m[1]); });
+})();
+</script>
+<script type="module" src="duel-ships.js"></script>
