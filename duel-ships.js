@@ -130,15 +130,16 @@ function start() {
   // Le parcours : une boucle souple qui plonge vers l'écran, frôle la caméra, puis repart très loin.
   // Courbe sans angle (demande de l'auteur : « pas de changement de direction brusque ») : somme de sinusoïdes lentes,
   // échantillonnée en 64 points ; un seul grand passage près de l'écran par tour, puis un long éloignement.
-  const KEYS = Array.from({ length: 64 }, (_, i) => {
-    const a = (i / 64) * Math.PI * 2;
-    return [14 * Math.sin(a) + 2.5 * Math.sin(2 * a + 1), 3.5 * Math.sin(2 * a + 0.5) + 2 * Math.sin(a + 2), -30 + 38 * Math.cos(a - 0.35)];
+  // Boucle très longue (demande de l'auteur, 28 oct. 2026) : grands lacets, plusieurs approches et éloignements par tour.
+  const KEYS = Array.from({ length: 160 }, (_, i) => {
+    const a = (i / 160) * Math.PI * 2;
+    return [20 * Math.sin(a) + 7 * Math.sin(3 * a + 0.7), 5 * Math.sin(2 * a + 0.5) + 2.5 * Math.sin(5 * a + 1), -50 + 52 * Math.cos(a - 0.35) + 6 * Math.cos(3 * a + 0.4)];
   });
   let curve = null, curveLen = 1;
   const buildCurve = (portrait) => {
     const sx = portrait ? 0.42 : 1, sy = portrait ? 1.5 : 1;
     curve = new THREE.CatmullRomCurve3(KEYS.map(([x, y, z]) => new THREE.Vector3(x * sx, y * sy, z)), true, "catmullrom", 0.5);
-    curve.arcLengthDivisions = 600; curve.updateArcLengths(); curveLen = curve.getLength();
+    curve.arcLengthDivisions = 1600; curve.updateArcLengths(); curveLen = curve.getLength();
   };
 
   const loader = new GLTFLoader();
@@ -181,8 +182,8 @@ function start() {
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000); last = now; T += dt;
       // Vitesse : un rythme de croisière, des accélérations franches, un petit ralenti avant les passages près de l'écran.
-      const surge = Math.pow(Math.max(0, Math.sin(T * 0.45)), 3);
-      const target = 17 + 15 * surge;
+      const surge = Math.pow(Math.max(0, Math.sin(T * 0.22)), 3);
+      const target = 8 + 7 * surge; // plus lent (demande de l'auteur)
       speedNow += (target - speedNow) * damp(0.7, dt);
       uJ += (speedNow * dt) / curveLen;
       // Le TIE colle au Jedi puis décroche : l'écart respire.
@@ -227,7 +228,7 @@ function start() {
       sparkGeo.attributes.position.needsUpdate = true;
 
       // Étoiles qui défilent ; plus c'est rapide, plus elles s'étirent.
-      const sv = 30 + speedNow * 3.2, streak = 0.6 + speedNow * 0.09 + surge * 2.5;
+      const sv = 18 + speedNow * 2.6, streak = 0.4 + speedNow * 0.08 + surge * 2;
       for (let i = 0; i < N; i++) {
         let z = seed[i * 3 + 2] + sv * dt; if (z > 16) z -= 336; seed[i * 3 + 2] = z;
         S[i * 6] = S[i * 6 + 3] = seed[i * 3]; S[i * 6 + 1] = S[i * 6 + 4] = seed[i * 3 + 1];
