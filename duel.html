@@ -1086,6 +1086,23 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 .top, main, .tabs { position: relative; z-index: 1; }
 .top { position: sticky; z-index: 5; }
 .tabs { position: fixed; z-index: 6; }
+/* Grande affiche du défi du jour, avec le globe (variante A choisie par l'auteur) */
+.dhero { position: relative; overflow: hidden; border-radius: 22px; min-height: 360px; display: grid; align-content: end; background: radial-gradient(120% 80% at 75% 15%, rgba(255,138,61,.22), transparent 60%), rgba(20,20,22,.6); isolation: isolate; }
+.dhero-globe { position: absolute; right: -70px; top: -26px; width: 300px; height: 300px; z-index: -1; }
+.dhero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 32%, rgba(0,0,0,.92) 78%); }
+.dhero-in { padding: 18px; display: grid; gap: 10px; }
+.dhero h1 { font-family: var(--display); font-size: clamp(28px, 7.6vw, 36px); line-height: 1.08; margin: 0; text-shadow: 0 2px 14px #000; }
+.dchips { display: flex; gap: 6px; flex-wrap: wrap; }
+.dchips span { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.14); }
+.dchips span:first-child { background: var(--accent); color: #1a0d03; }
+.dpts { display: flex; gap: 14px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.dpts b { color: var(--accent); font-size: 16px; }
+.dhero .btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
+.dhero-rules { margin: 0; }
+@media (min-width: 560px) { .dhero { min-height: 400px; } .dhero-globe { width: 360px; height: 360px; right: -60px; } }
+/* Fond Star Wars en retrait (demande de l'auteur) : sombre, flou, vignette */
+.arena-cv { opacity: .32 !important; filter: blur(1.5px) brightness(.75) saturate(.8); }
+.arena::after { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 0%, rgba(0,0,0,.55) 70%, #000 100%); }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -1881,25 +1898,68 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       <div class="mode-ico" style="background:#16243d;color:var(--blue)">${ICON.swords}</div>
       <div><h3>1 contre 1</h3>
       <p>${MATCH_Q} manches : « avant ou après » sur des dates de niche, années à écrire et culture du monde. Chacun joue quand il veut, le résultat tombe quand les deux ont fini.</p>
-      <div class="pts-row"><span><b>58</b> victoire</span><span><b>7</b> égalité</span><span><b>0</b> défaite</span></div>
-      ${shared ? `<div class="btns"><button class="btn blue" id="random-go">${ICON.dice}Adversaire au hasard</button><button class="btn gold" id="friend-go">Défier un ami</button></div>
+      <div class="pts-row"><span><b>58</b> victoire</span><span><b>7</b> égalité</span><span><b>${lossOf(S.points) ? "−" + lossOf(S.points) : 0}</b> défaite</span></div>
+      ${shared ? `<div class="btns"><button class="btn blue" id="random-go">${ICON.dice}Un inconnu</button><button class="btn gold" id="friend-go">Un ami (code)</button></div>
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
         ${list ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${list}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
         : `<p class="note">Le 1 contre 1 se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`}</div>
     </section>`;
   }
+  // Accueil « grande affiche » (choix de l'auteur, 28 oct. 2026, variante A des rangées) : le défi du jour en grande affiche
+  // avec le globe, puis le 1 contre 1 (inconnu ou ami), le duel du jour et les quiz ; le classement reste sur son onglet.
+  function heroDaily() {
+    const done = S.daily && S.daily.date === today();
+    return `<section class="dhero">
+      <canvas class="dhero-globe" id="hero-globe" aria-hidden="true"></canvas>
+      <div class="dhero-in">
+        <div class="dchips"><span>Défi du jour</span><span>${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</span><span>encore ${msToMidnight()}</span></div>
+        <h1>${done ? `Fait : ${S.daily.score} / ${DAILY_MAX} points` : "5 questions, les mêmes pour tout le monde"}</h1>
+        <div class="dpts">${done ? `<b>${esc(rankDailyText())}</b>` : `<span><b>15</b> par bonne réponse</span><span><b>${DAILY_MAX}</b> au maximum</span>`}</div>
+        <div class="btns">${done ? `<button class="btn" data-go="classement">Voir le classement</button>` : `<button class="btn" id="daily-go">▶ Jouer</button>`}<button class="btn ghost" id="rules-go">Les règles</button></div>
+        <p class="note dhero-rules" id="rules" hidden>Deux « avant ou après » et une question de culture du monde : 15 points chacune. Deux années à écrire : 15 points pile, puis 3 de moins par année d'écart. Les mêmes questions pour tous, une partie par jour.</p>
+      </div>
+    </section>`;
+  }
+  function drawHeroGlobe() {
+    const cv = document.getElementById("hero-globe");
+    if (!cv || !QD || !window.d3) return;
+    const dpr = Math.min(devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
+    if (!w || !h) return;
+    cv.width = w * dpr; cv.height = h * dpr;
+    const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
+    const r = Math.min(w, h) * 0.4, cx = w * 0.5, cy = h * 0.5, col = "#ff8a3d";
+    const proj = d3.geoOrthographic().translate([cx, cy]).scale(r).clipAngle(90).rotate([-30, -24]);
+    const path = d3.geoPath(proj, ctx);
+    const feats = QD.geo.map(([id, c]) => ({ type: "Feature", id, geometry: { type: "MultiPolygon", coordinates: c } }));
+    const lit = new Set(["818", "250", "156", "076", "124", "682", "643"]);
+    const halo = ctx.createRadialGradient(cx, cy, r * .9, cx, cy, r * 1.35);
+    halo.addColorStop(0, "rgba(255,138,61,.35)"); halo.addColorStop(1, "rgba(255,138,61,0)");
+    ctx.fillStyle = halo; ctx.beginPath(); ctx.arc(cx, cy, r * 1.35, 0, 7); ctx.fill();
+    const sea = ctx.createRadialGradient(cx - r * .35, cy - r * .4, r * .1, cx, cy, r);
+    sea.addColorStop(0, "#1c2a55"); sea.addColorStop(1, "#05081a");
+    ctx.fillStyle = sea; ctx.beginPath(); path({ type: "Sphere" }); ctx.fill();
+    ctx.beginPath(); path(d3.geoGraticule10()); ctx.strokeStyle = "rgba(160,170,255,.1)"; ctx.lineWidth = .6; ctx.stroke();
+    ctx.beginPath(); feats.forEach((f) => { if (!lit.has(f.id)) path(f); }); ctx.fillStyle = "#2b3050"; ctx.fill();
+    ctx.strokeStyle = "rgba(0,0,0,.5)"; ctx.lineWidth = .5; ctx.stroke();
+    ctx.save(); ctx.shadowColor = col; ctx.shadowBlur = 12; ctx.beginPath(); feats.forEach((f) => { if (lit.has(f.id)) path(f); }); ctx.fillStyle = col; ctx.fill(); ctx.restore();
+    // anneau des 5 questions
+    const tilt = -0.35, R = r * 1.32, k = 0.28;
+    ctx.save(); ctx.translate(cx, cy); ctx.rotate(tilt); ctx.scale(1, k); ctx.beginPath(); ctx.arc(0, 0, R, 0, 7); ctx.strokeStyle = "rgba(255,138,61,.55)"; ctx.lineWidth = 2.2; ctx.stroke(); ctx.restore();
+    for (let i = 0; i < 5; i++) {
+      const a = 0.5 + i * 1.256, x0 = Math.cos(a) * R, y0 = Math.sin(a) * R * k;
+      const x = cx + x0 * Math.cos(tilt) - y0 * Math.sin(tilt), y = cy + x0 * Math.sin(tilt) + y0 * Math.cos(tilt);
+      ctx.beginPath(); ctx.arc(x, y, 4, 0, 7); ctx.fillStyle = "#ffcf9e"; ctx.fill();
+    }
+    const shine = ctx.createRadialGradient(cx - r * .45, cy - r * .5, 0, cx - r * .45, cy - r * .5, r * 1.1);
+    shine.addColorStop(0, "rgba(255,255,255,.14)"); shine.addColorStop(1, "rgba(255,255,255,0)");
+    ctx.fillStyle = shine; ctx.beginPath(); path({ type: "Sphere" }); ctx.fill();
+  }
   function viewJouer() {
     return `<div class="stack">
-      <section class="duel-hero">
-        <p class="label">Entre deux actus, un petit duel ?</p>
-        <h1>Avant ou <span class="scribble">après<svg viewBox="0 0 120 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 9c18-6 38-7 58-4s38 4 56-3"/></svg></span> ?<br><span class="grad-warm">Sept manches entre amis.</span></h1>
-        <p class="muted">Deux événements, une seule question : lequel est arrivé en premier ? Par exemple :</p>
-        <div class="example"><button class="fact-mini" data-ex="0">La valise à roulettes</button><span class="or">ou</span><button class="fact-mini" data-ex="1">Les premiers pas sur la Lune</button></div>
-        <p class="note" id="ex-res" aria-live="polite"></p>
-      </section>
+      ${heroDaily()}
       ${db ? "" : `<a class="card online-banner" href="${ONLINE_URL}" target="_blank" rel="noopener"><b>Jouer contre les autres ›</b><span>Le 1 contre 1, le duel du jour et le classement commun sont dans la version en ligne. Ici, tu peux jouer seul.</span></a>`}
-      ${dailyCard()}${matchCard()}${quizCards()}</div>`;
+      ${matchCard()}${quizCards()}</div>`;
   }
   function viewClassement() {
     let general;
@@ -1958,6 +2018,8 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     renderCounters();
     const on = (sel, fn) => { const el = $(sel); if (el) el.onclick = fn; };
     on("#daily-go", startDaily);
+    on("#rules-go", () => { const r = $("#rules"); if (r) r.hidden = !r.hidden; });
+    if (tab === "jouer") requestAnimationFrame(drawHeroGlobe);
     on("#friend-go", () => createMatch({ open: false }));
     on("#random-go", () => randomMatch($("#join-msg")));
     on("#join-go", () => {
