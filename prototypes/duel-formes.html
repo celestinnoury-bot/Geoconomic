@@ -1,0 +1,203 @@
+<title>Formes du Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Cinq formes de page Duel (pas seulement des habillages) : billets, mosaïque, cercle, journée, rangées.
+   Le fond Star Wars est volontairement très en retrait : sombre, flou, petit. */
+:root {
+  --bg: #000;
+  --frame: rgba(0, 0, 0, .72);
+  --surface: rgba(28, 28, 30, .9);
+  --surface-2: #2c2c2e;
+  --line: rgba(255, 255, 255, .12);
+  --text: #f5f5f7;
+  --muted: #8e8e93;
+  --accent: #ff8a3d;
+  --serif: "Times New Roman", Times, "Tinos", serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { background: var(--bg); }
+body { margin: 0; color: var(--text); font: 14px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+/* Fond en retrait : opacité basse, flou léger, assombri, vignette noire par-dessus */
+.arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.arena-cv { width: 100%; height: 100%; display: block; opacity: .32; filter: blur(1.5px) brightness(.75) saturate(.8); }
+.arena::after { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 0%, rgba(0,0,0,.55) 70%, #000 100%); }
+button { font: inherit; color: inherit; cursor: pointer; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.num { font-variant-numeric: tabular-nums; }
+h1, h2, h3, p { margin: 0; }
+.page { position: relative; z-index: 1; max-width: 1900px; margin: 0 auto; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.intro { max-width: 660px; margin-bottom: 26px; display: grid; gap: 8px; }
+.intro h1 { font: 700 32px/1.1 var(--serif); letter-spacing: -.02em; }
+.intro p { color: var(--muted); }
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 36px 24px; }
+.col { display: grid; gap: 12px; justify-items: center; align-content: start; min-width: 0; }
+.cap { width: 100%; max-width: 350px; }
+.cap b { font: 700 21px/1.15 var(--serif); display: block; }
+.cap b span { color: var(--accent); margin-right: 6px; }
+.cap p { margin-top: 4px; color: var(--muted); font-size: 13px; }
+.phone { width: 100%; max-width: 350px; height: 700px; border-radius: 38px; border: 8px solid #222226; background: var(--frame); overflow: hidden; display: flex; flex-direction: column; position: relative; }
+.bar { display: flex; align-items: center; gap: 10px; padding: 14px 16px 8px; }
+.bar .bk { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; font-size: 14px; }
+.bar .nm { flex: 1; font-weight: 600; font-size: 15px; }
+.bar .nm em { font-style: normal; color: var(--accent); }
+.bar .st { font-size: 12px; font-weight: 600; color: var(--muted); }
+.bar .st b { color: var(--text); }
+.scr { flex: 1; overflow-y: auto; scrollbar-width: none; padding: 8px 16px 18px; display: grid; gap: 12px; align-content: start; }
+.scr::-webkit-scrollbar { display: none; }
+.lbl { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .02em; }
+.h { font: 700 20px/1.15 var(--serif); letter-spacing: -.01em; }
+.mut { color: var(--muted); font-size: 13px; }
+.acc { color: var(--accent); }
+.btn { border: 0; border-radius: 999px; padding: 9px 15px; font-weight: 600; font-size: 13px; background: var(--accent); color: #1a0d03; justify-self: start; }
+.btn.alt { background: var(--surface-2); color: var(--text); }
+
+/* 1 · Les billets : chaque mode est un billet de cinéma détachable */
+.ticket { display: grid; grid-template-columns: 1fr 74px; background: var(--surface); border-radius: 16px; position: relative; overflow: hidden; }
+.ticket .main { padding: 14px; display: grid; gap: 5px; }
+.ticket .stub { border-left: 2px dashed rgba(255,255,255,.18); display: grid; place-items: center; text-align: center; padding: 8px 4px; gap: 2px; }
+.ticket .stub b { font: 700 24px var(--serif); color: var(--accent); line-height: 1; }
+.ticket .stub small { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.ticket::before, .ticket::after { content: ""; position: absolute; right: 64px; width: 20px; height: 20px; border-radius: 50%; background: #000; }
+.ticket::before { top: -10px; } .ticket::after { bottom: -10px; }
+.ticket.big .main { padding: 18px 14px; }
+.ticket.big .h { font-size: 25px; }
+
+/* 2 · La mosaïque : tuiles de tailles différentes, la plus importante en grand */
+.bento { display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 92px; gap: 10px; }
+.tile { background: var(--surface); border-radius: 18px; padding: 12px; display: grid; align-content: space-between; min-width: 0; }
+.tile.w2 { grid-column: span 2; } .tile.h2 { grid-row: span 2; } .tile.h3 { grid-row: span 3; }
+.tile .big { font: 700 34px/1 var(--serif); }
+.tile.hot { background: linear-gradient(160deg, rgba(255,138,61,.28), var(--surface) 70%); }
+
+/* 3 · Le cercle : un gros bouton central, les modes autour comme des satellites */
+.orbit { position: relative; width: 100%; aspect-ratio: 1; max-width: 280px; justify-self: center; margin-block: 44px 48px; }
+.orbit .ring { position: absolute; inset: 12%; border-radius: 50%; border: 1px dashed rgba(255,255,255,.16); }
+.orbit .core { position: absolute; inset: 30%; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ffb27a, var(--accent) 55%, #c4561a); color: #1a0d03; display: grid; place-items: center; text-align: center; border: 0; box-shadow: 0 0 40px rgba(255,138,61,.35); }
+.orbit .core b { font: 700 20px/1.05 var(--serif); display: block; }
+.orbit .core small { font-size: 11px; font-weight: 600; }
+.orbit .sat { position: absolute; width: 84px; height: 84px; margin: -42px 0 0 -42px; border-radius: 50%; background: var(--surface); border: 1px solid var(--line); display: grid; place-items: center; text-align: center; font-size: 11px; font-weight: 600; line-height: 1.2; padding: 6px; }
+.orbit .sat b { display: block; font: 700 15px var(--serif); }
+
+/* 4 · La journée : une frise verticale de ce qui t'attend aujourd'hui */
+.day { display: grid; gap: 0; position: relative; padding-left: 26px; }
+.day::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--accent), rgba(255,255,255,.1)); }
+.step { position: relative; padding: 4px 0 18px; display: grid; gap: 4px; }
+.step::before { content: ""; position: absolute; left: -24px; top: 7px; width: 12px; height: 12px; border-radius: 50%; background: #000; border: 2px solid var(--accent); }
+.step.done::before { background: var(--accent); }
+.step.later::before { border-color: var(--muted); }
+.step .when { font-size: 11px; font-weight: 700; color: var(--accent); letter-spacing: .06em; text-transform: uppercase; }
+.step.later .when { color: var(--muted); }
+
+/* 5 · Les rangées : comme une plateforme de films, une rangée par type de jeu */
+.rowh { display: grid; gap: 8px; }
+.rowh .t { display: flex; justify-content: space-between; align-items: baseline; }
+.rowh .t b { font: 700 18px var(--serif); }
+.rowh .t span { font-size: 12px; color: var(--accent); }
+.shelf { display: grid; grid-auto-flow: column; grid-auto-columns: 128px; gap: 8px; overflow-x: auto; scrollbar-width: none; margin-right: -16px; padding-right: 16px; }
+.shelf::-webkit-scrollbar { display: none; }
+.poster { height: 170px; border-radius: 14px; background: var(--surface); padding: 10px; display: grid; align-content: end; gap: 3px; position: relative; overflow: hidden; }
+.poster .bg { position: absolute; inset: 0; opacity: .5; }
+.poster > *:not(.bg) { position: relative; }
+.poster b { font: 700 15px/1.15 var(--serif); }
+.poster small { color: var(--muted); font-size: 11px; }
+.feature { height: 190px; border-radius: 18px; padding: 14px; display: grid; align-content: end; gap: 6px; background: linear-gradient(180deg, rgba(255,138,61,.05), rgba(255,138,61,.3)), var(--surface); }
+</style>
+
+<div class="arena" aria-hidden="true"></div>
+<div id="play" hidden></div>
+
+<div class="page">
+  <header class="intro">
+    <h1>Cinq formes pour le Duel</h1>
+    <p>Cette fois, ce sont des formes de page différentes, pas des habillages : billets, mosaïque, cercle, journée, rangées. Le fond Star Wars est passé très en arrière : plus sombre, flou et discret (c'est le réglage qu'il aurait dans la vraie page). Chaque téléphone défile ; les rangées de la 5 glissent sur le côté. Joueurs et scores sont des exemples.</p>
+  </header>
+
+  <div class="board">
+    <section class="col">
+      <div class="cap"><b><span>1</span>Les billets</b><p>Chaque façon de jouer est un billet à détacher, avec les points sur le talon. Simple, une liste de billets.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b class="num">1 284</b> pts</span></div>
+        <div class="scr">
+          <div class="ticket big"><div class="main"><span class="lbl">Défi du jour · mer. 28 oct.</span><h2 class="h">5 questions, les mêmes pour tous</h2><span class="mut">Encore 3 h 07</span><button class="btn">Jouer</button></div><div class="stub"><b>75</b><small>pts max</small></div></div>
+          <div class="ticket"><div class="main"><span class="lbl">1 contre 1</span><h3 class="h">Toi 3 – 1 Margaux</h3><span class="mut">À toi de jouer la 5ᵉ manche</span></div><div class="stub"><b>58</b><small>victoire</small></div></div>
+          <div class="ticket"><div class="main"><span class="lbl">Duel du jour</span><h3 class="h">Sujet surprise</h3><span class="mut">Seul ou contre quelqu'un</span></div><div class="stub"><b>30</b><small>victoire</small></div></div>
+          <div class="ticket"><div class="main"><span class="lbl">Quiz du monde</span><h3 class="h">Les 11 pays de l'OPEP</h3><span class="mut">Et 16 autres quiz</span></div><div class="stub"><b>20</b><small>par quiz</small></div></div>
+          <div class="ticket"><div class="main"><span class="lbl">Classement</span><h3 class="h">Tu es 12ᵉ</h3><span class="mut">Jules mène avec 2 410</span></div><div class="stub"><b>12ᵉ</b><small>rang</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="cap"><b><span>2</span>La mosaïque</b><p>Des tuiles de tailles différentes : le défi en grand, ton match en cours en haut, le reste autour. Tout tient sur un écran.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st">6 jours 🔥</span></div>
+        <div class="scr">
+          <div class="bento">
+            <div class="tile w2 h2 hot"><span class="lbl">Défi du jour · encore 3 h 07</span><div><h2 class="h" style="font-size:24px">5 questions, les mêmes pour tous</h2><span class="mut">Jusqu'à 75 points</span></div><button class="btn">Jouer le défi</button></div>
+            <div class="tile h2"><span class="lbl">1 contre 1</span><div><span class="big num">3–1</span><p class="mut">contre Margaux</p></div><button class="btn alt">Jouer</button></div>
+            <div class="tile"><span class="lbl">Tes points</span><span class="big num" style="font-size:26px">1 284</span></div>
+            <div class="tile"><span class="lbl">Rang</span><span class="big num acc" style="font-size:26px">12ᵉ</span></div>
+            <div class="tile w2"><span class="lbl">Duel du jour</span><div style="display:flex;justify-content:space-between;align-items:end"><b class="h">Sujet surprise</b><button class="btn alt">Découvrir</button></div></div>
+            <div class="tile w2 h2"><span class="lbl">Quiz du monde</span><div style="display:grid;gap:6px"><b class="h" style="font-size:17px">Les 11 pays de l'OPEP</b><b class="h" style="font-size:17px">Ils ont pris le pouvoir</b><b class="h" style="font-size:17px">Les 14 voisins de la Chine</b></div><span class="mut">17 quiz · 20 pts chacun</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="cap"><b><span>3</span>Le cercle</b><p>Un gros bouton rond au centre pour la chose à faire maintenant ; les autres modes tournent autour, comme des satellites du globe.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b class="num">1 284</b> pts</span></div>
+        <div class="scr">
+          <div style="text-align:center;display:grid;gap:4px;margin-top:6px"><span class="lbl">Mercredi 28 octobre</span><h2 class="h" style="font-size:24px">Que veux-tu jouer ?</h2></div>
+          <div class="orbit">
+            <span class="ring"></span>
+            <button class="core"><span><b>Défi du jour</b><small>5 questions · 75 pts</small></span></button>
+            <span class="sat" style="left:50%;top:6%"><span><b>3–1</b>1 contre 1</span></span>
+            <span class="sat" style="left:92%;top:50%"><span><b>?</b>Duel du jour</span></span>
+            <span class="sat" style="left:50%;top:94%"><span><b>17</b>Quiz</span></span>
+            <span class="sat" style="left:8%;top:50%"><span><b>12ᵉ</b>Classement</span></span>
+          </div>
+          <p class="mut" style="text-align:center">Touche un satellite pour l'amener au centre.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="cap"><b><span>4</span>La journée</b><p>Une frise de ta journée de jeu, de haut en bas : ce qui est fait, ce qui t'attend, ce qui arrive plus tard.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b class="num">1 284</b> pts</span></div>
+        <div class="scr">
+          <div style="display:grid;gap:4px"><span class="lbl">Mercredi 28 octobre</span><h2 class="h" style="font-size:24px">Ta journée de duel</h2></div>
+          <div class="day">
+            <div class="step done"><span class="when">Ce matin · fait</span><b class="h" style="font-size:17px">Quiz : Les 11 pays de l'OPEP</b><span class="mut">9 / 11 · +16 points</span></div>
+            <div class="step"><span class="when">Maintenant</span><b class="h">Le défi du jour</b><span class="mut">5 questions, les mêmes pour tous · encore 3 h 07</span><button class="btn">Jouer</button></div>
+            <div class="step"><span class="when">En cours</span><b class="h" style="font-size:17px">Toi 3 – 1 Margaux</b><span class="mut">À toi de jouer la 5ᵉ manche</span><button class="btn alt">Reprendre</button></div>
+            <div class="step"><span class="when">Encore possible</span><b class="h" style="font-size:17px">Duel du jour : sujet surprise</b><span class="mut">Une partie avant minuit</span></div>
+            <div class="step later"><span class="when">Dans 1 h 32</span><b class="h" style="font-size:17px">Revanche contre Inès</b><span class="mut">Possible 4 h après votre match</span></div>
+            <div class="step later"><span class="when">Lundi</span><b class="h" style="font-size:17px">Nouveaux quiz de la semaine</b></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="col">
+      <div class="cap"><b><span>5</span>Les rangées</b><p>Comme une plateforme de films : une grande affiche en haut, puis une rangée par type de jeu, qu'on fait glisser sur le côté.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b class="num">1 284</b> pts</span></div>
+        <div class="scr">
+          <div class="feature"><span class="lbl acc">Défi du jour · encore 3 h 07</span><h2 class="h" style="font-size:24px">5 questions, les mêmes pour tous</h2><button class="btn">Jouer</button></div>
+          <div class="rowh"><div class="t"><b>Tes duels</b><span>Tout voir</span></div>
+            <div class="shelf"><div class="poster"><b>Toi 3 – 1 Margaux</b><small>À toi de jouer</small></div><div class="poster"><b>Contre Jules</b><small>Il joue…</small></div><div class="poster"><b>Un inconnu</b><small>Lancer un duel</small></div><div class="poster"><b>Un ami</b><small>Avec un code</small></div></div></div>
+          <div class="rowh"><div class="t"><b>Quiz du monde</b><span>17 quiz</span></div>
+            <div class="shelf"><div class="poster"><b>Les 11 pays de l'OPEP</b><small>Globe · 4 min</small></div><div class="poster"><b>Ils ont pris le pouvoir</b><small>QCM · nouveau</small></div><div class="poster"><b>Les 14 voisins de la Chine</b><small>Globe</small></div><div class="poster"><b>Tous les pays du monde</b><small>15 min</small></div></div></div>
+          <div class="rowh"><div class="t"><b>Classement</b><span>Tu es 12ᵉ</span></div>
+            <div class="shelf"><div class="poster"><b>1. Jules</b><small class="num">2 410 pts</small></div><div class="poster"><b>2. Inès</b><small class="num">2 188 pts</small></div><div class="poster"><b>3. Margaux</b><small class="num">1 960 pts</small></div></div></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<script type="module" src="duel-ships.js"></script>
