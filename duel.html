@@ -1105,6 +1105,30 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 /* Fond Star Wars en retrait (demande de l'auteur) : sombre, flou, vignette */
 .arena-cv { opacity: .32 !important; filter: blur(1.5px) brightness(.75) saturate(.8); }
 .arena::after { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 0%, rgba(0,0,0,.55) 70%, #000 100%); }
+/* Tout ce qui se touche se voit (demande de l'auteur) : tuiles colorées, cartes de quiz teintées, affiche cliquable */
+.dhero.go { cursor: pointer; }
+.dhero.go:active { transform: scale(.99); }
+.tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 12px; }
+.tiles.three { grid-template-columns: repeat(3, 1fr); }
+.tiles:has(> :only-child) { grid-template-columns: 1fr; }
+.tiles:has(> :only-child) .tile { min-height: 96px; }
+.tile { position: relative; border: 0; text-align: left; border-radius: 18px; padding: 14px 12px 12px; display: grid; gap: 3px; align-content: start; min-height: 132px; color: #fff; cursor: pointer; transition: transform .12s, filter .2s; overflow: hidden; }
+.tile:active { transform: scale(.96); }
+.tile:hover { filter: brightness(1.1); }
+.tile b { font-family: var(--display); font-size: 19px; line-height: 1.1; }
+.tile small { font-size: 12px; opacity: .85; }
+.tile .t-ico { width: 34px; height: 34px; border-radius: 11px; display: grid; place-items: center; background: rgba(255,255,255,.2); margin-bottom: 6px; }
+.tile .t-ico svg { width: 19px; height: 19px; }
+.tile .t-go { position: absolute; right: 10px; bottom: 9px; font-size: 12px; font-weight: 700; background: rgba(0,0,0,.25); padding: 3px 9px; border-radius: 999px; }
+.t-orange { background: linear-gradient(150deg, #ff9d4d, #e0561f); }
+.t-violet { background: linear-gradient(150deg, #8f8dff, #4b3bd6); }
+.t-teal { background: linear-gradient(150deg, #4fd1c5, #1f8a8a); }
+.tiles.three .tile { min-height: 120px; padding: 12px 10px 10px; }
+.tiles.three .tile b { font-size: 16px; }
+.qz-card { position: relative; border: 1px solid rgba(255,138,61,.28) !important; background: linear-gradient(120deg, rgba(255,138,61,.12), rgba(28,28,30,.85) 60%) !important; transition: transform .12s; }
+.qz-card:active { transform: scale(.98); }
+.qz-card::after { content: "›"; position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 22px; color: var(--accent); }
+.qz-card .qz-best { margin-right: 18px; }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
@@ -1649,8 +1673,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   function playMatch(code, ids, ghost) {
     const oname = ghost ? names[ghost.uid] || "Ton adversaire" : "Ton adversaire";
     startGame({
-      mode: "match", qs: [{ kind: "splash", kicker: `Match ${code}`, title: "Avant ou après ?", icon: ICON.swords, bg: "var(--blue)", fg: "#021327", cta: "Je suis prêt",
-        rules: `${MATCH_Q} manches. Trois « avant ou après » et deux questions de culture du monde : un point si tu as juste. Deux années à écrire : le point va au plus proche des deux. Ton adversaire joue les mêmes, quand il veut. Le plus de manches gagne : victoire 58 points, égalité 7${lossOf(S.points) ? `, défaite −${lossOf(S.points)} (tu as plus de ${lossOf(S.points) === 15 ? 150 : 100} points)` : ""}.${ghost ? ` ${esc(oname)} a déjà joué : tu verras ses réponses au fur et à mesure.` : ""}` }, ...buildAll(ids, code)],
+      mode: "match", qs: buildAll(ids, code),
       opponent: { name: oname, short: oname.charAt(0).toUpperCase() }, ghost: ghost ? ghost.res : null,
       onEnd: (g) => {
         const res = cleanRes(g.res);
@@ -1748,8 +1771,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     if (S.daily && S.daily.date === today()) return;
     startGame({
       mode: "daily", max: DAILY_MAX,
-      qs: [{ kind: "splash", kicker: "Défi du jour", title: "5 questions", icon: ICON.sun, bg: "var(--mint)", fg: "#062317", cta: "C'est parti",
-        rules: "Les mêmes pour tous les joueurs aujourd'hui. Deux « avant ou après » et une question de culture du monde à 15 points, et deux années à écrire : 15 points pile, puis 3 de moins par année d'écart (12, 9, 6, 3)." }, ...dailyQs()],
+      qs: dailyQs(),
       onEnd: (g) => {
         S.daily = { date: today(), score: g.me, res: g.res };
         addPoints(g.me);
@@ -1901,7 +1923,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       <div><h3>1 contre 1</h3>
       <p>${MATCH_Q} manches : « avant ou après » sur des dates de niche, années à écrire et culture du monde. Chacun joue quand il veut, le résultat tombe quand les deux ont fini.</p>
       <div class="pts-row"><span><b>58</b> victoire</span><span><b>7</b> égalité</span><span><b>${lossOf(S.points) ? "−" + lossOf(S.points) : 0}</b> défaite</span></div>
-      ${shared ? `<div class="btns"><button class="btn blue" id="random-go">${ICON.dice}Un inconnu</button><button class="btn gold" id="friend-go">Un ami (code)</button></div>
+      ${shared ? `<div class="tiles"><button class="tile t-orange" id="random-go"><span class="t-ico">${ICON.dice}</span><b>Un inconnu</b><small>Un joueur au hasard</small><span class="t-go">Jouer ›</span></button><button class="tile t-violet" id="friend-go"><span class="t-ico">${ICON.swords}</span><b>Un ami</b><small>Tu lui donnes un code</small><span class="t-go">Créer ›</span></button></div>
         <div class="join"><input id="code-in" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de match reçu"><button class="btn ghost" id="join-go">Rejoindre</button></div>
         <p class="note" id="join-msg"></p>
         ${list ? `<p class="label" style="margin-top:16px">Mes matchs</p><div class="duel-list">${list}</div><div id="match-view" style="margin-top:12px"></div>` : ""}`
@@ -1912,7 +1934,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   // avec le globe, puis le 1 contre 1 (inconnu ou ami), le duel du jour et les quiz ; le classement reste sur son onglet.
   function heroDaily() {
     const done = S.daily && S.daily.date === today();
-    return `<section class="dhero">
+    return `<section class="dhero${done ? "" : " go"}">
       <div class="dhero-globe" id="hero-orbit" aria-hidden="true"><canvas id="hero-globe"></canvas></div>
       <div class="dhero-in">
         <div class="dchips"><span>Défi du jour</span><span>${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</span><span>encore ${msToMidnight()}</span></div>
@@ -2020,7 +2042,8 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     renderCounters();
     const on = (sel, fn) => { const el = $(sel); if (el) el.onclick = fn; };
     on("#daily-go", startDaily);
-    on("#rules-go", () => { const r = $("#rules"); if (r) r.hidden = !r.hidden; });
+    on("#rules-go", (e) => { e.stopPropagation(); const r = $("#rules"); if (r) r.hidden = !r.hidden; });
+    on(".dhero.go", (e) => { if (!e.target.closest("button")) startDaily(); }); // toute l'affiche lance le défi
     if (tab === "jouer") requestAnimationFrame(drawHeroGlobe);
     on("#friend-go", () => createMatch({ open: false }));
     on("#random-go", () => randomMatch($("#join-msg")));
@@ -2285,7 +2308,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       <p class="muted">${done ? "" : "Pays, capitales, globe, classement ou dates : tu découvres le sujet au départ. "}Le même pour tout le monde aujourd'hui. Choisis : seul, ou contre quelqu'un. Une partie par jour. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}${lossOf(S.points) ? `, défaite −${lossOf(S.points)}` : ""}.</p>
       ${done ? `<p class="qd-done">Fait : <b>${S.qd.pct} %</b> en ${mmss(S.qd.secs || 0)}${S.qd.code ? ` · duel <b>${esc(S.qd.code)}</b>` : " · en solo"}. Nouveau duel dans ${msToMidnight()}.</p>
           ${mine.length ? `<div id="qd-mine">${mine.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">Chargement…</p></div>`).join("")}</div>` : ""}`
-        : `<div class="btns">${shared ? `<button class="btn" id="qd-random">${ICON.dice} Adversaire au hasard</button><button class="btn gold" id="qd-friend">Défier un ami</button>` : ""}<button class="btn ghost" id="qd-solo">Jouer seul</button></div>
+        : `<div class="tiles${shared ? " three" : ""}"><button class="tile t-teal" id="qd-solo"><span class="t-ico">${ICON.sun}</span><b>Seul</b><small>Tout de suite</small><span class="t-go">Jouer ›</span></button>${shared ? `<button class="tile t-orange" id="qd-random"><span class="t-ico">${ICON.dice}</span><b>Au hasard</b><small>Un inconnu</small><span class="t-go">Jouer ›</span></button><button class="tile t-violet" id="qd-friend"><span class="t-ico">${ICON.swords}</span><b>Un ami</b><small>Avec un code</small><span class="t-go">Créer ›</span></button>` : ""}</div>
           ${shared ? `<div class="join"><input id="qd-code" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel reçu"><button class="btn ghost" id="qd-join">Rejoindre</button></div>` : `<p class="note">Le duel contre quelqu'un se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`}
           <p class="note" id="qd-msg" aria-live="polite"></p>`}
     </section>`;
@@ -2557,24 +2580,9 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const q = QUIZZES.find((x) => x.id === id);
     if (!q) return;
     QZCTX = { duel: ctx.duel || null, daily: !!ctx.daily, noclock: false };
-    const t = QTYPE[q.type];
-    const kicker = QZCTX.duel ? `<p class="label qz-duel-tag">${ICON.swords} Duel du jour ${esc(QZCTX.duel.code)}${QZCTX.duel.vs ? ` contre ${esc(QZCTX.duel.vs)}` : ""}</p>` : QZCTX.daily ? `<p class="label qz-duel-tag">${ICON.sun} Quiz du jour, en solo</p>` : "";
-    const clockOpt = (q.type === "list" || q.type === "clues") && !QZCTX.duel ? `<div class="seg qz-modes" id="qz-clockopt"><button data-clock="on" aria-pressed="true">${ICON.clock} Chrono</button><button data-clock="off" aria-pressed="false">Sans chrono</button></div><p class="note">Sans chrono : prends tout ton temps, les points restent les mêmes.</p>` : "";
-    const modes = q.type === "list" && window.d3 && QD ? `<p class="note qz-2en1">${QICO.pen} Écris les noms <b>ou</b> ${QICO.globe} touche les pays sur le globe : les deux comptent, dans la même partie.</p>` : "";
-    qzOpen(`${qzTop(q)}
-      <div class="splash qz-splash">
-        <div class="ico" style="background:${t.bg};color:${t.fg}">${QICO[t.ico]}</div>
-        <p class="label">${esc(t.label)} · ${quizSize(q)} ${q.type === "qcm" || q.type === "dates" ? "questions" : q.type === "rank" ? "pays" : "à trouver"}</p>
-        ${kicker}<h1 class="big">${esc(q.title)}</h1>
-        <p class="rules">${esc(q.intro)}${q.time ? ` Tu as ${mmss(q.time)}.` : ""}${QZCTX.duel ? " Même quiz pour vous deux : le meilleur score gagne, à égalité le plus rapide. Pas de pause en duel." : ""}</p>
-        ${q.type !== "rank" ? `<p class="qz-sd">💥 Mort subite : ${q.type === "list" ? "un pays qui n'en fait pas partie (touché sur le globe, ou écrit puis validé avec Entrée)" : q.type === "clues" ? "une mauvaise réponse validée avec Entrée" : "une erreur"}, et c'est fini. ${q.type === "list" || q.type === "actu" ? "Sur le globe : un toucher sélectionne et zoome, un second valide." : ""}</p>` : ""}
-        ${modes}${clockOpt}
-        <button class="btn" id="qz-go">C'est parti</button>
-      </div>`);
-    let mode = "write";
-    play.querySelectorAll("[data-mode]").forEach((b) => (b.onclick = () => { mode = b.dataset.mode; play.querySelectorAll("[data-mode]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
-    play.querySelectorAll("[data-clock]").forEach((b) => (b.onclick = () => { QZCTX.noclock = b.dataset.clock === "off"; play.querySelectorAll("[data-clock]").forEach((x) => x.setAttribute("aria-pressed", String(x === b))); }));
-    $("#qz-go").onclick = () => (QZT = { t0: performance.now(), paused: 0, pausedAt: 0 }) && (q.type === "list" ? runList(q) : q.type === "clues" ? runClues(q) : q.type === "dates" ? runDates(q) : q.type === "actu" ? runActu(q) : q.type === "rank" ? runRank(q) : runQcm(q));
+    // Départ direct, sans écran d'intro (demande de l'auteur : « dès qu'on touche, on est dans le jeu »).
+    QZT = { t0: performance.now(), paused: 0, pausedAt: 0 };
+    (q.type === "list" ? runList : q.type === "clues" ? runClues : q.type === "dates" ? runDates : q.type === "actu" ? runActu : q.type === "rank" ? runRank : runQcm)(q);
   }
 
   function quizDone(q, pct, hints = 0, extra = "") {
