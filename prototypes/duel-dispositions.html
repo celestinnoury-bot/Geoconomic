@@ -1,0 +1,264 @@
+<title>Dispositions du Duel</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Planche : cinq dispositions de l'accueil du Duel, chacune dans un téléphone, au style « journal » validé
+   (fond noir, titres en Times comme les actus, texte système, orange éco comme seul accent). */
+:root {
+  --bg: #0b0b0c;
+  --phone: #000;
+  --surface: #1c1c1e;
+  --surface-2: #2c2c2e;
+  --line: rgba(255, 255, 255, .12);
+  --text: #f5f5f7;
+  --muted: #8e8e93;
+  --accent: #ff8a3d;
+  --gold: #f5c86b;
+  --green: #30d158;
+  --serif: "Times New Roman", Times, "Tinos", "Liberation Serif", serif;
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--text); font: 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+.page { max-width: 1900px; margin: 0 auto; padding-block: 28px 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.intro { max-width: 640px; margin-bottom: 28px; }
+.intro h1 { font: 700 34px/1.1 var(--serif); margin: 0 0 8px; letter-spacing: -.02em; }
+.intro p { margin: 0; color: var(--muted); }
+.board { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 36px 24px; }
+.col { display: grid; gap: 12px; align-content: start; justify-items: center; min-width: 0; }
+.cap { width: 100%; max-width: 360px; }
+.cap b { font: 700 22px/1.15 var(--serif); display: block; }
+.cap b span { color: var(--accent); margin-right: 6px; }
+.cap p { margin: 4px 0 0; color: var(--muted); font-size: 14px; }
+
+/* Le téléphone */
+.phone { width: 100%; max-width: 360px; height: 720px; border-radius: 38px; border: 8px solid #26262a; background: var(--phone); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.phone::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(1px 1px at 20% 30%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 70% 12%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 45% 65%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 85% 80%, #fff 50%, transparent 51%), radial-gradient(1px 1px at 10% 85%, #fff 50%, transparent 51%), radial-gradient(1.5px 1.5px at 60% 45%, #fff 50%, transparent 51%); background-size: 160px 160px; }
+.scr { position: relative; flex: 1; overflow-y: auto; scrollbar-width: none; padding: 14px 16px 16px; display: grid; gap: 14px; align-content: start; }
+.scr::-webkit-scrollbar { display: none; }
+.bar { position: relative; display: flex; align-items: center; gap: 10px; padding: 14px 16px 10px; border-bottom: 1px solid var(--line); background: rgba(0,0,0,.75); }
+.bar .bk { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); display: grid; place-items: center; font-size: 14px; }
+.bar .nm { flex: 1; font-weight: 600; font-size: 15px; }
+.bar .nm em { font-style: normal; color: var(--accent); }
+.bar .st { font-size: 13px; font-weight: 600; color: var(--muted); }
+.bar .st b { color: var(--accent); }
+.tabs { position: relative; display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); background: rgba(10,10,12,.9); padding: 8px 0 14px; text-align: center; font-size: 11px; font-weight: 600; color: var(--muted); }
+.tabs .on { color: var(--accent); }
+.tabs i { display: block; font-style: normal; font-size: 17px; line-height: 1.3; }
+
+.card { background: rgba(28,28,30,.85); border-radius: 18px; padding: 14px; display: grid; gap: 6px; }
+.lbl { font-size: 12px; font-weight: 600; color: var(--muted); }
+.h { font: 700 21px/1.15 var(--serif); margin: 0; letter-spacing: -.01em; }
+.h.big { font-size: 28px; }
+.h.huge { font-size: 36px; line-height: 1.02; }
+.mut { color: var(--muted); font-size: 13px; margin: 0; }
+.acc { color: var(--accent); }
+.btn { justify-self: start; border: 0; border-radius: 999px; padding: 9px 16px; font: 600 14px var(--font); background: var(--accent); color: #1a0d03; cursor: pointer; }
+.btn.ghost { background: var(--surface-2); color: var(--text); }
+.btn.wide { justify-self: stretch; text-align: center; padding: 12px; }
+.pill { display: inline-block; font-size: 12px; font-weight: 600; padding: 3px 9px; border-radius: 999px; background: var(--surface-2); color: var(--text); }
+.row { display: flex; align-items: center; gap: 10px; }
+.av { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 11px; font-weight: 700; flex: none; background: var(--surface-2); }
+.av.me { background: var(--accent); color: #1a0d03; }
+.num { font-variant-numeric: tabular-nums; }
+
+/* A · La une */
+.mast { text-align: center; border-bottom: 3px double var(--line); padding-bottom: 10px; }
+.mast .t { font: 700 30px/1 var(--serif); letter-spacing: -.01em; }
+.mast .d { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
+.lead { border-bottom: 1px solid var(--line); padding-bottom: 14px; display: grid; gap: 8px; }
+.two { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 12px; }
+.two .rule { background: var(--line); }
+.two .h { font-size: 18px; }
+.breves { display: grid; gap: 0; }
+.breves div { display: flex; justify-content: space-between; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.breves div span:last-child { color: var(--muted); font-size: 12px; white-space: nowrap; }
+.sect { font: 700 13px var(--font); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+
+/* B · L'arène */
+.vs { text-align: center; padding: 18px 10px; display: grid; gap: 12px; justify-items: center; }
+.vs .pair { display: flex; align-items: center; gap: 18px; }
+.vs .big-av { width: 74px; height: 74px; font-size: 24px; font-family: var(--serif); }
+.vs .x { font: 700 30px var(--serif); color: var(--muted); }
+.vs .score { font: 700 46px/1 var(--serif); }
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; }
+.chips .card { min-width: 150px; }
+.list .item { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px; }
+.list .item:first-child { border-top: 0; }
+.list .item span:nth-child(2) { flex: 1; min-width: 0; }
+.list .item small { color: var(--muted); }
+.state { font-size: 12px; font-weight: 600; }
+.state.go { color: var(--accent); } .state.wait { color: var(--muted); } .state.win { color: var(--green); }
+
+/* C · Tableau de bord */
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.stats div { background: rgba(28,28,30,.85); border-radius: 14px; padding: 10px; text-align: center; }
+.stats b { font: 700 22px var(--serif); display: block; }
+.stats small { color: var(--muted); font-size: 11px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.grid2 .card { min-height: 128px; align-content: space-between; }
+.grid2 .card.span { grid-column: 1 / -1; min-height: 0; }
+.ico { width: 34px; height: 34px; border-radius: 10px; background: var(--surface-2); display: grid; place-items: center; color: var(--accent); font-size: 17px; }
+.mini li { display: flex; gap: 8px; align-items: center; padding: 6px 0; font-size: 14px; border-top: 1px solid var(--line); }
+.mini li:first-child { border-top: 0; }
+.mini { list-style: none; margin: 0; padding: 0; }
+.mini li b { width: 18px; color: var(--muted); }
+.mini li span { flex: 1; }
+.mini li em { font-style: normal; color: var(--accent); font-weight: 600; }
+
+/* D · Un mode par écran */
+.deck { flex: 1; display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; position: relative; }
+.deck::-webkit-scrollbar { display: none; }
+.slide { flex: 0 0 100%; scroll-snap-align: start; padding: 24px 22px 18px; display: grid; align-content: space-between; gap: 18px; }
+.slide .orb { width: 170px; height: 170px; border-radius: 50%; justify-self: center; margin-top: 10px;
+  background: radial-gradient(circle at 35% 30%, rgba(255,138,61,.55), rgba(255,138,61,.08) 55%, transparent 70%); border: 1px solid rgba(255,138,61,.35); display: grid; place-items: center; font: 700 52px var(--serif); color: var(--accent); }
+.dots { position: relative; display: flex; justify-content: center; gap: 6px; padding: 8px 0 16px; }
+.dots i { width: 7px; height: 7px; border-radius: 50%; background: var(--surface-2); }
+.dots i.on { background: var(--accent); width: 20px; border-radius: 4px; }
+.hint { text-align: center; font-size: 12px; color: var(--muted); }
+
+/* E · Onglets du haut */
+.seg { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin: 10px 16px 0; padding: 3px; background: var(--surface); border-radius: 12px; }
+.seg button { border: 0; background: none; color: var(--muted); font: 600 12px var(--font); padding: 8px 2px; border-radius: 9px; cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--text); color: #000; }
+.qlist .q { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 11px 0; border-top: 1px solid var(--line); }
+.qlist .q:first-child { border-top: 0; }
+.qlist .q b { font: 700 16px/1.2 var(--serif); display: block; }
+.qlist .q small { color: var(--muted); font-size: 12px; }
+.podium { display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: end; gap: 6px; text-align: center; }
+.podium div { background: var(--surface-2); border-radius: 10px 10px 0 0; padding: 8px 4px; font-size: 12px; }
+.podium b { display: block; font: 700 18px var(--serif); }
+.podium .p1 { height: 110px; background: #3a3a3c; } .podium .p2 { height: 86px; } .podium .p3 { height: 70px; }
+button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 420px) { .phone { height: 680px; } }
+</style>
+
+<div class="page">
+  <header class="intro">
+    <h1>Cinq dispositions pour le Duel</h1>
+    <p>Même contenu partout (défi du jour, 1 contre 1, duel du jour, quiz du monde, classement), rangé de cinq façons différentes. Dans chaque téléphone, tu peux faire défiler ; la D se glisse vers la gauche et la E change d'onglet. Les joueurs et les scores sont des exemples.</p>
+  </header>
+
+  <div class="board">
+    <!-- A · La une -->
+    <section class="col">
+      <div class="cap"><b><span>A</span>La une</b><p>Comme la première page d'un journal : le défi du jour en gros titre, les deux duels en colonnes, les quiz en brèves.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b>1 284</b> pts</span></div>
+        <div class="scr">
+          <div class="mast"><div class="t">Le Duel</div><div class="d">Mercredi 28 octobre · n° 22</div></div>
+          <div class="lead">
+            <span class="sect">À la une</span>
+            <h2 class="h big">Le défi du jour : 5 questions, les mêmes pour tout le monde</h2>
+            <p class="mut">Nasser, Suez, le choc pétrolier… Jusqu'à 75 points. Nouveau défi dans 3 h 07.</p>
+            <button class="btn">Jouer le défi</button>
+          </div>
+          <div class="two">
+            <div style="display:grid;gap:6px"><span class="sect">1 contre 1</span><h3 class="h">Sept manches entre amis</h3><p class="mut">Margaux t'attend. Victoire +58.</p><button class="btn ghost">Jouer</button></div>
+            <span class="rule"></span>
+            <div style="display:grid;gap:6px"><span class="sect">Duel du jour</span><h3 class="h">Sujet surprise</h3><p class="mut">Seul ou contre quelqu'un. +30.</p><button class="btn ghost">Découvrir</button></div>
+          </div>
+          <div><span class="sect">Les quiz du monde</span>
+            <div class="breves"><div><span>Les 11 pays de l'OPEP</span><span>4 min</span></div><div><span>Ils ont pris le pouvoir</span><span>QCM</span></div><div><span>Les 14 voisins de la Chine</span><span>Globe</span></div><div><span>Tous les pays du monde</span><span>15 min</span></div></div>
+          </div>
+          <div><span class="sect">Le classement</span><p class="mut" style="margin-top:6px">1. Jules · 2 410 — 2. Inès · 2 188 — 3. Margaux · 1 960 — … 12. Toi · 1 284</p></div>
+        </div>
+        <div class="tabs"><span class="on"><i>⚔</i>Jouer</span><span><i>🏆</i>Classement</span></div>
+      </div>
+    </section>
+
+    <!-- B · L'arène -->
+    <section class="col">
+      <div class="cap"><b><span>B</span>L'arène</b><p>Ton prochain match d'abord, en face-à-face, avec un seul gros bouton. Le reste se range dessous.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st">12ᵉ · <b>1 284</b></span></div>
+        <div class="scr">
+          <div class="card vs">
+            <span class="lbl">Ton match en cours · 4 manches sur 7</span>
+            <div class="pair"><span class="av me big-av">C</span><span class="x">×</span><span class="av big-av">M</span></div>
+            <div class="score num">3 – 1</div>
+            <p class="mut">Toi contre Margaux. À toi de jouer la 5ᵉ manche.</p>
+            <button class="btn wide">Jouer la manche</button>
+          </div>
+          <span class="lbl">Les autres façons de jouer</span>
+          <div class="chips">
+            <div class="card"><span class="lbl">Défi du jour</span><b class="h">5 questions</b><span class="mut">+75 max</span></div>
+            <div class="card"><span class="lbl">Duel du jour</span><b class="h">Surprise</b><span class="mut">+30</span></div>
+            <div class="card"><span class="lbl">Quiz du monde</span><b class="h">17 quiz</b><span class="mut">+20 chacun</span></div>
+          </div>
+          <div class="card list">
+            <span class="lbl">Tes matchs</span>
+            <div class="item"><span class="av">J</span><span>Jules<br><small>Code K7P42</small></span><span class="state wait">Il joue…</span></div>
+            <div class="item"><span class="av">I</span><span>Inès<br><small>Revanche dans 1 h 32</small></span><span class="state win">Gagné +58</span></div>
+            <div class="item"><span class="av">?</span><span>Un inconnu<br><small>Au hasard</small></span><span class="state go">Lancer</span></div>
+          </div>
+        </div>
+        <div class="tabs"><span class="on"><i>⚔</i>Jouer</span><span><i>🏆</i>Classement</span></div>
+      </div>
+    </section>
+
+    <!-- C · Tableau de bord -->
+    <section class="col">
+      <div class="cap"><b><span>C</span>Le tableau de bord</b><p>Tes chiffres en haut, puis quatre grandes tuiles, une par façon de jouer. Tout tient sur un écran.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span></div>
+        <div class="scr">
+          <div class="stats"><div><b class="num">1 284</b><small>points</small></div><div><b class="num">12ᵉ</b><small>classement</small></div><div><b class="num acc">6</b><small>jours d'affilée</small></div></div>
+          <div class="grid2">
+            <div class="card span"><span class="lbl">Défi du jour · encore 3 h 07</span><h3 class="h big">5 questions, les mêmes pour tous</h3><button class="btn">Jouer le défi</button></div>
+            <div class="card"><span class="ico">⚔</span><div><h3 class="h">1 contre 1</h3><p class="mut">7 manches · +58</p></div></div>
+            <div class="card"><span class="ico">?</span><div><h3 class="h">Duel du jour</h3><p class="mut">Sujet surprise · +30</p></div></div>
+            <div class="card"><span class="ico">◍</span><div><h3 class="h">Quiz du monde</h3><p class="mut">17 quiz · +20</p></div></div>
+            <div class="card"><span class="ico">🏆</span><div><h3 class="h">Classement</h3><p class="mut">Tu es 12ᵉ</p></div></div>
+          </div>
+          <div class="card"><span class="lbl">Le top 3</span>
+            <ul class="mini"><li><b>1</b><span>Jules</span><em class="num">2 410</em></li><li><b>2</b><span>Inès</span><em class="num">2 188</em></li><li><b>3</b><span>Margaux</span><em class="num">1 960</em></li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- D · Un mode par écran -->
+    <section class="col">
+      <div class="cap"><b><span>D</span>Un mode par écran</b><p>Une grande carte plein écran par façon de jouer, qu'on fait glisser comme des stories. Très simple, une seule décision à la fois.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b>1 284</b> pts</span></div>
+        <div class="deck" id="deck">
+          <div class="slide"><span class="lbl">1 / 4 · Défi du jour</span><span class="orb">5</span><div style="display:grid;gap:8px"><h2 class="h huge">Le défi du jour</h2><p class="mut">5 questions, les mêmes pour tout le monde. Jusqu'à 75 points. Encore 3 h 07.</p><button class="btn wide">Jouer</button></div></div>
+          <div class="slide"><span class="lbl">2 / 4 · 1 contre 1</span><span class="orb">⚔</span><div style="display:grid;gap:8px"><h2 class="h huge">Sept manches entre amis</h2><p class="mut">Contre un inconnu ou avec un code. Victoire +58.</p><button class="btn wide">Trouver un adversaire</button></div></div>
+          <div class="slide"><span class="lbl">3 / 4 · Duel du jour</span><span class="orb">?</span><div style="display:grid;gap:8px"><h2 class="h huge">Sujet surprise</h2><p class="mut">Tu le découvres au départ. Une partie par jour. +30.</p><button class="btn wide">Découvrir</button></div></div>
+          <div class="slide"><span class="lbl">4 / 4 · Quiz du monde</span><span class="orb">◍</span><div style="display:grid;gap:8px"><h2 class="h huge">17 quiz du monde</h2><p class="mut">OPEP, voisins de la Chine, ils ont pris le pouvoir…</p><button class="btn wide">Choisir un quiz</button></div></div>
+        </div>
+        <div class="hint">Glisse vers la gauche</div>
+        <div class="dots" id="dots"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+    </section>
+
+    <!-- E · Onglets du haut -->
+    <section class="col">
+      <div class="cap"><b><span>E</span>Les onglets du haut</b><p>Quatre onglets sous le titre ; chacun ouvre une page courte. On ne voit qu'une chose à la fois, sans faire défiler longtemps.</p></div>
+      <div class="phone">
+        <div class="bar"><span class="bk">‹</span><span class="nm">Geonomix <em>Duel</em></span><span class="st"><b>1 284</b> pts</span></div>
+        <div class="seg" role="group" aria-label="Onglets">
+          <button aria-pressed="true" data-p="p1">Défi</button><button aria-pressed="false" data-p="p2">Duels</button><button aria-pressed="false" data-p="p3">Quiz</button><button aria-pressed="false" data-p="p4">Classement</button>
+        </div>
+        <div class="scr" id="p1"><div class="card"><span class="lbl">Mercredi 28 octobre · encore 3 h 07</span><h2 class="h big">Le défi du jour</h2><p class="mut">5 questions, les mêmes pour tout le monde. 2 « avant ou après », 1 question de culture, 2 années à écrire.</p><button class="btn">Jouer le défi</button></div><div class="card"><span class="lbl">Hier</span><p class="mut">Tu as fait 60 / 75. 41 % des joueurs ont fait mieux.</p></div></div>
+        <div class="scr" id="p2" hidden><div class="card"><span class="lbl">1 contre 1</span><h2 class="h">Sept manches entre amis</h2><div class="row"><button class="btn">Un inconnu</button><button class="btn ghost">Un ami (code)</button></div></div><div class="card"><span class="lbl">Duel du jour</span><h2 class="h">Sujet surprise</h2><button class="btn ghost">Découvrir</button></div></div>
+        <div class="scr" id="p3" hidden><div class="card qlist"><div class="q"><span><b>Les 11 pays de l'OPEP</b><small>Écrire ou globe · 4 min</small></span><span class="pill">64 %</span></div><div class="q"><span><b>Ils ont pris le pouvoir</b><small>QCM · 12 questions</small></span><span class="pill">nouveau</span></div><div class="q"><span><b>Les 14 voisins de la Chine</b><small>Globe · 4 min</small></span><span class="pill">48 %</span></div><div class="q"><span><b>Tous les pays du monde</b><small>Écrire · 15 min</small></span><span class="pill">38 %</span></div></div></div>
+        <div class="scr" id="p4" hidden><div class="card"><div class="podium"><div class="p2"><b>2</b>Inès</div><div class="p1"><b>1</b>Jules</div><div class="p3"><b>3</b>Margaux</div></div></div><div class="card"><ul class="mini"><li><b>4</b><span>Thomas</span><em class="num">1 702</em></li><li><b>5</b><span>Lina</span><em class="num">1 655</em></li><li><b>12</b><span>Toi</span><em class="num">1 284</em></li></ul></div></div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+(() => {
+  // D : points qui suivent la carte affichée
+  const deck = document.getElementById("deck"), dots = [...document.querySelectorAll("#dots i")];
+  deck.addEventListener("scroll", () => { const k = Math.round(deck.scrollLeft / deck.clientWidth); dots.forEach((d, i) => d.classList.toggle("on", i === k)); }, { passive: true });
+  // E : onglets du haut
+  const seg = [...document.querySelectorAll(".seg button")];
+  seg.forEach((b) => b.onclick = () => seg.forEach((x) => { x.setAttribute("aria-pressed", x === b); document.getElementById(x.dataset.p).hidden = x !== b; }));
+})();
+</script>
