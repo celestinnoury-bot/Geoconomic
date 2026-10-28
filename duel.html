@@ -1088,7 +1088,9 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 .tabs { position: fixed; z-index: 6; }
 /* Grande affiche du défi du jour, avec le globe (variante A choisie par l'auteur) */
 .dhero { position: relative; overflow: hidden; border-radius: 22px; min-height: 360px; display: grid; align-content: end; background: radial-gradient(120% 80% at 75% 15%, rgba(255,138,61,.22), transparent 60%), rgba(20,20,22,.6); isolation: isolate; }
-.dhero-globe { position: absolute; right: -70px; top: -26px; width: 300px; height: 300px; z-index: -1; }
+.dhero-globe { position: absolute; right: -50px; top: -34px; width: 360px; height: 360px; z-index: -1; }
+.dhero-globe canvas { width: 100%; height: 100%; display: block; }
+.orbit-on #hero-globe { display: none; }
 .dhero::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, transparent 32%, rgba(0,0,0,.92) 78%); }
 .dhero-in { padding: 18px; display: grid; gap: 10px; }
 .dhero h1 { font-family: var(--display); font-size: clamp(28px, 7.6vw, 36px); line-height: 1.08; margin: 0; text-shadow: 0 2px 14px #000; }
@@ -1099,7 +1101,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 .dpts b { color: var(--accent); font-size: 16px; }
 .dhero .btns { display: flex; gap: 8px; flex-wrap: wrap; margin: 0; }
 .dhero-rules { margin: 0; }
-@media (min-width: 560px) { .dhero { min-height: 400px; } .dhero-globe { width: 360px; height: 360px; right: -60px; } }
+@media (min-width: 560px) { .dhero { min-height: 430px; } .dhero-globe { width: 440px; height: 440px; right: -40px; top: -50px; } }
 /* Fond Star Wars en retrait (demande de l'auteur) : sombre, flou, vignette */
 .arena-cv { opacity: .32 !important; filter: blur(1.5px) brightness(.75) saturate(.8); }
 .arena::after { content: ""; position: absolute; inset: 0; background: radial-gradient(90% 70% at 50% 45%, transparent 0%, rgba(0,0,0,.55) 70%, #000 100%); }
@@ -1108,7 +1110,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 </style>
 
 <!-- Arrière-plan (demande de l'auteur, 28 oct. 2026) : un chasseur TIE poursuit un chasseur Jedi en tirant des lasers verts (duel-ships.js, three.js). Modèles : « Jedi Star Fighter » de Petri Liuhto (Sketchfab, CC BY-NC 4.0) et un chasseur TIE/LN fourni par l'auteur -->
-<div class="arena" aria-hidden="true"></div>
+<div class="arena" aria-hidden="true" data-mode="stars"></div>
 <header class="top">
   <div class="wrap">
     <div class="brand">
@@ -1911,7 +1913,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   function heroDaily() {
     const done = S.daily && S.daily.date === today();
     return `<section class="dhero">
-      <canvas class="dhero-globe" id="hero-globe" aria-hidden="true"></canvas>
+      <div class="dhero-globe" id="hero-orbit" aria-hidden="true"><canvas id="hero-globe"></canvas></div>
       <div class="dhero-in">
         <div class="dchips"><span>Défi du jour</span><span>${new Date().toLocaleDateString("fr-FR", { weekday: "long", day: "numeric", month: "long" })}</span><span>encore ${msToMidnight()}</span></div>
         <h1>${done ? `Fait : ${S.daily.score} / ${DAILY_MAX} points` : "5 questions, les mêmes pour tout le monde"}</h1>
@@ -1925,7 +1927,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const cv = document.getElementById("hero-globe");
     if (!cv || !QD || !window.d3) return;
     const dpr = Math.min(devicePixelRatio || 1, 2), w = cv.clientWidth, h = cv.clientHeight;
-    if (!w || !h) return;
+    if (!w || !h || document.body.classList.contains("orbit-on")) return;
     cv.width = w * dpr; cv.height = h * dpr;
     const ctx = cv.getContext("2d"); ctx.scale(dpr, dpr);
     const r = Math.min(w, h) * 0.4, cx = w * 0.5, cy = h * 0.5, col = "#ff8a3d";
@@ -3015,3 +3017,4 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 })();
 </script>
 <script type="module" src="duel-ships.js"></script>
+<script type="module" src="duel-orbit.js"></script>

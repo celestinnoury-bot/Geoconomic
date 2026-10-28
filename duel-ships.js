@@ -142,6 +142,27 @@ function start() {
     curve.arcLengthDivisions = 1600; curve.updateArcLengths(); curveLen = curve.getLength();
   };
 
+  // Mode « étoiles seules » (data-mode="stars" sur .arena) : les vaisseaux tournent autour de la Terre de l'affiche
+  // (duel-orbit.js) ; le fond garde seulement un champ d'étoiles qui défile doucement.
+  if (box.dataset.mode === "stars") {
+    let last = performance.now();
+    const step = (now) => {
+      const dt = Math.min(0.05, (now - last) / 1000); last = now;
+      for (let i = 0; i < N; i++) {
+        let z = seed[i * 3 + 2] + 10 * dt; if (z > 16) z -= 336; seed[i * 3 + 2] = z;
+        S[i * 6] = S[i * 6 + 3] = seed[i * 3]; S[i * 6 + 1] = S[i * 6 + 4] = seed[i * 3 + 1];
+        S[i * 6 + 2] = z; S[i * 6 + 5] = z - 0.35;
+      }
+      starGeo.attributes.position.needsUpdate = true; dust.geometry.attributes.position.needsUpdate = true;
+      renderer.render(scene, camera);
+    };
+    const fit = () => { const w = box.clientWidth, h = box.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); };
+    addEventListener("resize", fit); fit(); camera.lookAt(0, 0, -10);
+    if (still) { step(last + 16); return; }
+    const loop = (now) => { requestAnimationFrame(loop); if (document.hidden || (play && !play.hidden)) { last = now; return; } step(now); };
+    requestAnimationFrame(loop);
+    return;
+  }
   const loader = new GLTFLoader();
   Promise.all([loader.loadAsync("assets/models/vaisseaux/jedi.json"), loader.loadAsync("assets/models/vaisseaux/tie.json")]).then(([j, t]) => {
     const jedi = ship(j, 3.2, [0, Math.PI, 0]);

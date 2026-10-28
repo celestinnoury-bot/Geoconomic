@@ -1,6 +1,6 @@
 // Service worker : met l'application en cache pour qu'elle marche hors connexion.
 // Pense à changer la version quand tu modifies des fichiers, pour forcer la mise à jour.
-const CACHE = "geonomix-v57";
+const CACHE = "geonomix-v58";
 const FILES = [
   "./",
   "index.html",
@@ -13,6 +13,7 @@ const FILES = [
   "bienvenue.js",
   "car3d.js",
   "duel-ships.js",
+  "duel-orbit.js",
   "data/content.js",
   "data/news.js",
   "data/culture.js",
