@@ -2,7 +2,7 @@
 <html lang="fr">
 <!-- Généré par tools/build-duel.mjs depuis prototypes/jeu-quiz.html : ne pas modifier à la main. -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#16110d">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/icon.svg">
 <meta charset="utf-8">
 <title>Geonomix Duel</title>
@@ -1078,82 +1078,20 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
 .mt-row { border-top-color: var(--line); }
 .mt-row.me { background: rgba(255, 138, 61, .1); }
 .mt-n { color: var(--text); }
-/* Arrière-plan : deux gladiateurs géants en filigrane, glaives croisés, étincelle orange qui pulse doucement */
-.arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; display: grid; place-items: center; overflow: hidden; color: var(--text); }
-.arena-svg { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(1150px, 165vw); max-width: none; height: auto; max-height: 96vh; opacity: .16; }
-/* Les cartes laissent deviner les gladiateurs derrière elles */
-.card, .champion, .daily { background: rgba(28, 28, 30, .86); }
-.arena .clash, .arena .rays { opacity: 1; }
-.arena .clash { transform-origin: 500px 134px; animation: clashPulse 3.2s ease-in-out infinite; }
-@keyframes clashPulse { 0%, 100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1.1); } }
+/* Arrière-plan : la poursuite TIE contre chasseur Jedi (canvas de duel-ships.js), fixe derrière le menu */
+.arena { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.arena-cv { width: 100%; height: 100%; display: block; opacity: .62; }
+/* Les cartes laissent deviner la poursuite derrière elles */
+.card, .champion, .daily { background: rgba(28, 28, 30, .8); }
 .top, main, .tabs { position: relative; z-index: 1; }
 .top { position: sticky; z-index: 5; }
 .tabs { position: fixed; z-index: 6; }
-@media (prefers-reduced-motion: reduce) { .arena .clash { animation: none; } }
 .back-app { display: grid; place-items: center; width: 32px; height: 32px; margin-right: 2px; border-radius: 50%; color: var(--text); background: rgba(255, 255, 255, .07); flex: none; }
 .back-app:hover { background: rgba(255, 255, 255, .14); }
 </style>
 
-<!-- Arrière-plan (demande de l'auteur) : deux gladiateurs géants dont les glaives s'entrechoquent, en filigrane ; modelés comme des statues de bronze (filtre d'éclairage SVG : relief, reflet orange de l'étincelle) -->
-<div class="arena" aria-hidden="true"><svg class="arena-svg" aria-hidden="true" focusable="false" viewBox="0 0 1000 720" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <radialGradient id="arena-spark" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff3e0"/><stop offset=".25" stop-color="#ff8a3d" stop-opacity=".9"/><stop offset="1" stop-color="#ff8a3d" stop-opacity="0"/></radialGradient>
-    <filter id="arena-relief" x="-5%" y="-5%" width="110%" height="110%" filterUnits="userSpaceOnUse" primitiveUnits="userSpaceOnUse">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="7" result="b"/>
-      <feDiffuseLighting in="b" surfaceScale="9" diffuseConstant="1.1" lighting-color="#8f8478" result="d"><feDistantLight azimuth="-120" elevation="38"/></feDiffuseLighting>
-      <feComposite in="d" in2="SourceAlpha" operator="in" result="dd"/>
-      <feSpecularLighting in="b" surfaceScale="9" specularConstant="1.2" specularExponent="16" lighting-color="#ffb27a" result="s"><fePointLight x="500" y="134" z="160"/></feSpecularLighting>
-      <feComposite in="s" in2="SourceAlpha" operator="in" result="ss"/>
-      <feBlend in="ss" in2="dd" mode="screen"/>
-    </filter>
-    <g id="arena-gl">
-      <!-- bouclier rectangulaire, derrière le corps -->
-      <path d="M232 238 Q270 224 304 236 L306 410 Q270 424 232 410 Z"/>
-      <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
-        <!-- jambe arrière : cuisse, mollet, pied -->
-        <path d="M344 372 C330 410 312 444 296 476" stroke-width="40"/>
-        <path d="M294 480 C276 516 256 556 236 592" stroke-width="27"/>
-        <path d="M236 594 L202 608" stroke-width="16"/>
-        <!-- jambe avant fléchie -->
-        <path d="M382 370 C404 404 426 436 440 466" stroke-width="42"/>
-        <path d="M442 470 C448 512 450 556 452 600" stroke-width="31"/>
-        <path d="M452 604 L496 614" stroke-width="17"/>
-        <!-- bras du bouclier -->
-        <path d="M324 240 C306 262 296 282 290 300" stroke-width="24"/>
-        <!-- bras armé : épaule, biceps, avant-bras -->
-        <path d="M398 234 C416 222 432 214 446 208" stroke-width="30"/>
-        <path d="M448 206 C458 192 468 180 478 168" stroke-width="22"/>
-        <!-- cou -->
-        <path d="M376 196 L382 218" stroke-width="26"/>
-      </g>
-      <!-- mollets -->
-      <ellipse cx="270" cy="520" rx="17" ry="30" transform="rotate(28 270 520)"/>
-      <ellipse cx="456" cy="520" rx="18" ry="34" transform="rotate(-4 456 520)"/>
-      <!-- torse en V, penché vers l'avant -->
-      <path d="M314 226 C336 206 396 202 416 222 C424 246 420 272 410 296 C402 320 396 340 396 358 L332 364 C322 332 312 294 312 262 C312 248 312 236 314 226 Z"/>
-      <!-- ceinture et pagne -->
-      <path d="M326 352 L400 346 L402 366 L326 372 Z"/>
-      <path d="M332 370 L398 364 Q392 400 366 418 Q344 400 332 370 Z"/>
-      <!-- poing et glaive -->
-      <circle cx="480" cy="166" r="14"/>
-      <rect x="474" y="148" width="12" height="38" rx="4" transform="rotate(-38 480 167)"/>
-      <path d="M484 158 L586 92 L596 102 L494 170 Z"/>
-      <g transform="translate(392 168) scale(.86) translate(-392 -168)"><!-- casque : calotte, large bord, visière, cimier et plumet vers l'arrière -->
-      <path d="M352 170 C350 136 372 120 396 120 C420 122 434 140 432 170 L438 196 C416 206 390 206 366 200 L354 198 Z"/>
-      <path d="M338 196 C380 186 420 190 452 200 L448 210 C414 202 378 200 336 206 Z"/>
-      <path d="M362 132 C372 96 420 88 440 118 L432 124 C414 104 380 108 372 136 Z"/>
-      <path d="M366 112 C340 92 312 96 290 118 C312 106 336 108 356 124 Z"/></g>
-    </g>
-  </defs>
-  <g class="glad" fill="#000" filter="url(#arena-relief)">
-    <use href="#arena-gl" transform="translate(-34 0)"/>
-    <use href="#arena-gl" transform="translate(1034 0) scale(-1 1)"/>
-  </g>
-  <circle class="clash" cx="500" cy="134" r="70" fill="url(#arena-spark)"/>
-  <g class="rays" stroke="#ffb27a" stroke-width="3" stroke-linecap="round">
-    <path d="M500 94v-30M500 174v30M460 134h-34M540 134h34M472 106l-20-20M528 106l20-20M472 162l-20 20M528 162l20 20"/>
-  </g>
-</svg></div>
+<!-- Arrière-plan (demande de l'auteur, 28 oct. 2026) : un chasseur TIE poursuit un chasseur Jedi en tirant des lasers verts (duel-ships.js, three.js). Modèles : « Jedi Star Fighter » de Petri Liuhto (Sketchfab, CC BY-NC 4.0) et un chasseur TIE/LN fourni par l'auteur -->
+<div class="arena" aria-hidden="true"></div>
 <header class="top">
   <div class="wrap">
     <div class="brand">
@@ -3014,3 +2952,4 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   initShared();
 })();
 </script>
+<script type="module" src="duel-ships.js"></script>

@@ -7,7 +7,7 @@ let html = fs.readFileSync("prototypes/jeu-quiz.html", "utf8");
 const head = `<!doctype html>
 <html lang="fr">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#16110d">
+<meta name="theme-color" content="#000000">
 <link rel="icon" href="assets/icon.svg">
 `;
 const back = `<a class="back-app" href="./" aria-label="Retour à Geonomix" title="Retour à Geonomix"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a>`;
