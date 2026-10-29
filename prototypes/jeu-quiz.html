@@ -997,11 +997,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .td-th { padding: 8px 13px; border-radius: 999px; border: 1px solid rgba(64, 224, 208, .35); background: rgba(64, 224, 208, .06); color: inherit; font: 600 14px system-ui, sans-serif; cursor: pointer; }
 .td-th.on { background: #40e0d0; border-color: #40e0d0; color: #062521; }
 .qz-flag { font-size: 96px; line-height: 1.1; text-align: center; margin: 10px 0 18px; }
-.qz-why-btn { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #40e0d0; background: rgba(64, 224, 208, .12); color: #40e0d0; font: 800 16px system-ui, sans-serif; cursor: pointer; }
-.qz-why { margin: 10px 0 4px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(64, 224, 208, .45); background: rgba(64, 224, 208, .08); font-size: 15px; line-height: 1.45; }
-.qz-why b { color: #40e0d0; }
-.qz-why p { margin: 6px 0 0; }
-.qz-why-hint { color: var(--muted, #aab); }
+.qz-why-btn { flex: none; width: 28px; height: 28px; padding: 0; border-radius: 50%; border: 1.5px solid #40e0d0; background: rgba(64, 224, 208, .12); color: #40e0d0; font: 800 14px system-ui, sans-serif; cursor: pointer; }
+.qz-why-btn.bulb { border-color: #ffc94d; background: rgba(255, 201, 77, .12); font-size: 13px; }
+.qz-pop { margin: 6px 0 2px; padding: 8px 11px; border-radius: 10px; border: 1px solid rgba(64, 224, 208, .4); background: rgba(64, 224, 208, .07); font-size: 13px; line-height: 1.4; cursor: pointer; }
+.qz-pop b { color: #40e0d0; }
+.qz-pop.hint { border-color: rgba(255, 201, 77, .45); background: rgba(255, 201, 77, .07); }
 .g-mark { fill: rgba(64, 224, 208, .22); stroke: #40e0d0; stroke-width: 2.2; pointer-events: none; }
 .g-mark.line { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .g-land.g-mark-land { fill: rgba(64, 224, 208, .35); stroke: #40e0d0; stroke-width: 1.6; pointer-events: none; }
@@ -2724,8 +2724,12 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   function qzOpen(html) { play.hidden = false; document.body.style.overflow = "hidden"; play.innerHTML = `<div class="wrap qz">${html}</div>`; const x = $("#qz-quit"); if (x) x.onclick = qzQuit; }
   function qzQuit() { clearInterval(qzTimer); QZ = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render(); }
   // Bouton « ? » (demande de l'auteur) : ce que veut dire le titre du quiz (« C'est quoi l'OPEP ? »), avec un petit indice gratuit.
-  const qzWhy = (q) => q.explain ? `<button class="qz-why-btn" type="button" aria-label="${esc(q.explain.q)}" onclick="this.closest('.play-top').nextElementSibling.toggleAttribute('hidden')">?</button>` : "";
-  const qzTop = (q, right = "") => `<div class="play-top"><button class="x" id="qz-quit" aria-label="Quitter">${ICON.x}</button><div class="qz-title"><small>${esc(q.tag)}</small><b>${esc(q.title)}</b></div>${qzWhy(q)}${right}</div>${q.explain ? `<div class="qz-why" hidden><b>${esc(q.explain.q)}</b><p>${esc(q.explain.text)}</p>${q.explain.hint ? `<p class="qz-why-hint">💡 Petit indice : ${esc(q.explain.hint)}</p>` : ""}</div>` : ""}`;
+  // Deux petits boutons séparés (demande de l'auteur) : « ? » ouvre l'explication seule, l'ampoule ouvre l'indice seul ;
+  // rien ne s'affiche tant qu'on ne touche pas. Un toucher sur une bulle la referme.
+  const qzPop = (btn, k) => { const box = btn.closest(".play-top").parentElement; box.querySelectorAll(".qz-pop").forEach((p) => { p.hidden = p.dataset.k !== k || !p.hidden; }); };
+  window.qzPop = qzPop;
+  const qzWhy = (q) => q.explain ? `<button class="qz-why-btn" type="button" aria-label="${esc(q.explain.q)}" onclick="qzPop(this,'why')">?</button>${q.explain.hint ? `<button class="qz-why-btn bulb" type="button" aria-label="Un indice" onclick="qzPop(this,'hint')">💡</button>` : ""}` : "";
+  const qzTop = (q, right = "") => `<div class="play-top"><button class="x" id="qz-quit" aria-label="Quitter">${ICON.x}</button><div class="qz-title"><small>${esc(q.tag)}</small><b>${esc(q.title)}</b></div>${qzWhy(q)}${right}</div>${q.explain ? `<div class="qz-pop" data-k="why" hidden onclick="this.hidden=true"><b>${esc(q.explain.q)}</b> ${esc(q.explain.text)}</div>${q.explain.hint ? `<div class="qz-pop hint" data-k="hint" hidden onclick="this.hidden=true">💡 ${esc(q.explain.hint)}</div>` : ""}` : ""}`;
   const srcHTML = (src) => src && src.length ? `<p class="qz-src">Source${src.length > 1 ? "s" : ""} : ${src.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.short)}</a>`).join(", ")}</p>` : "";
 
   function startQuiz(id, ctx = {}) {
