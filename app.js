@@ -74,7 +74,15 @@
   }
   // Même règle que tools/plus.mjs.
   const hashCode = (c) => sha256("code:" + String(c).trim().toUpperCase().replace(/\s+/g, ""));
-  const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: "EUR" });
+  // Devise des prix (choix de l'auteur, 29 oct. 2026) : l'euro en Europe (et dans les outre-mer français),
+  // le dollar ailleurs, avec les mêmes chiffres (3,99 € ou 3,99 $). D'après le fuseau horaire, comme la région.
+  const DEVISE = (() => {
+    let tz = "";
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (e) {}
+    if (!tz) return "EUR";
+    return /^(Europe\/|Atlantic\/(Canary|Madeira|Azores|Reykjavik|Faroe)|Indian\/(Reunion|Mayotte)|America\/(Guadeloupe|Martinique|Cayenne|Miquelon|St_Barthelemy|Marigot)|Pacific\/(Noumea|Tahiti|Wallis))/.test(tz) ? "EUR" : "USD";
+  })();
+  const euros = (v) => v.toLocaleString(LOCALE, { style: "currency", currency: DEVISE, currencyDisplay: "narrowSymbol" });
 
   // ---------- Paiement par RevenueCat (Web Billing, via Stripe) ----------
   // Actif dès qu'une clé publique « rcb_… » est dans data/plus.js (node tools/plus.mjs revenuecat cle …).
@@ -116,14 +124,31 @@
     });
   }
 
+  function rcPackage(offerings, kind) {
+    const offering = (RC.offre && offerings.all[RC.offre]) || offerings.current;
+    const want = RC.paquets && RC.paquets[kind];
+    return offering && (offering.availablePackages.find((p) => p.identifier === want) || (kind === "annuel" ? offering.annual : offering.monthly));
+  }
+  // Page de l'abonnement : remplace les prix écrits dans data/plus.js par ceux de la boutique RevenueCat.
+  async function rcPrices() {
+    const rc = await rcLoad();
+    if (!rc) return;
+    try {
+      const offerings = await rc.getOfferings({ currency: DEVISE });
+      document.querySelectorAll("[data-rc-price]").forEach((el) => {
+        const pkg = rcPackage(offerings, el.dataset.rcPrice);
+        const prod = pkg && (pkg.webBillingProduct || pkg.rcBillingProduct);
+        const txt = prod && prod.currentPrice && prod.currentPrice.formattedPrice;
+        if (txt && el.firstChild) el.firstChild.nodeValue = txt;
+      });
+    } catch (e) {}
+  }
+
   async function rcBuy(kind, msg) {
     const rc = await rcLoad();
     if (!rc) { if (msg) msg.textContent = "Le paiement ne peut pas s'ouvrir ici. Réessaie depuis le site de Geonomix."; return false; }
     try {
-      const offerings = await rc.getOfferings();
-      const offering = (RC.offre && offerings.all[RC.offre]) || offerings.current;
-      const want = RC.paquets && RC.paquets[kind];
-      const pkg = offering && (offering.availablePackages.find((p) => p.identifier === want) || (kind === "annuel" ? offering.annual : offering.monthly));
+      const pkg = rcPackage(await rc.getOfferings({ currency: DEVISE }), kind);
       if (!pkg) { if (msg) msg.textContent = "Cette offre n'est pas encore en vente."; return false; }
       const res = await rc.purchase({ rcPackage: pkg });
       if (res && res.customerInfo && res.customerInfo.entitlements.active[RC.droit || "plus"]) {
@@ -1184,7 +1209,7 @@
         <div class="plans plans-3">
           <div class="plan reveal">
             <p class="eyebrow">Gratuit</p>
-            <p class="plan-price">0 €</p>
+            <p class="plan-price">${euros(0).replace(/[.,]00/, "")}</p>
             <ul>
               <li>L'actu du jour, expliquée et sourcée</li>
               <li>Le globe, les conflits, les chiffres</li>
@@ -1196,7 +1221,7 @@
           </div>
           <div class="plan plan-plus reveal">
             <p class="eyebrow">${offre.name} · Mensuel</p>
-            <p class="plan-price">${euros(PLUS.prix.mensuel)}<small> / mois</small></p>
+            <p class="plan-price" data-rc-price="mensuel">${euros(PLUS.prix.mensuel)}<small> / mois</small></p>
             <p class="plan-note">Sans engagement, résiliable à tout moment.</p>
             ${perks}
             ${buy("mensuel")}
@@ -1204,7 +1229,7 @@
           <div class="plan plan-plus plan-best reveal">
             <p class="plan-badge">${yearSave} mois offerts</p>
             <p class="eyebrow">${offre.name} · Annuel</p>
-            <p class="plan-price">${euros(PLUS.prix.annuel)}<small> / an</small></p>
+            <p class="plan-price" data-rc-price="annuel">${euros(PLUS.prix.annuel)}<small> / an</small></p>
             <p class="plan-note">Soit ${euros(PLUS.prix.annuel / 12)} par mois.</p>
             ${perks}
             ${buy("annuel")}
@@ -1212,6 +1237,7 @@
         </div>
         <p class="plus-msg" id="rc-msg" aria-live="polite"></p>
         ${RC || (PLUS.paiement && (PLUS.paiement.mensuel || PLUS.paiement.annuel)) ? `<p class="viz-cap" style="margin-top:18px">Paiement sécurisé par carte bancaire. Résiliable à tout moment. En t'abonnant, tu acceptes les <a href="#/cgu">conditions d'utilisation</a>.</p>` : `<p class="viz-cap" style="margin-top:18px">Le paiement sera ouvert au lancement public.</p>`}
+        ${DEVISE === "USD" ? `<p class="viz-cap">Prix en dollars hors d'Europe. Les taxes de ton pays peuvent s'ajouter au moment du paiement.</p>` : ""}
 
         <form class="panel geo reveal plus-guest" id="code-form" autocomplete="off">
           <p class="eyebrow">Tu es un invité ?</p>
@@ -1231,6 +1257,7 @@
     }));
     const demo = app.querySelector("#plus-demo");
     if (demo) demo.addEventListener("click", welcomePlus);
+    rcPrices();
     const status = app.querySelector("#plus-status");
     function drawStatus() {
       status.innerHTML = isPlus() ? `

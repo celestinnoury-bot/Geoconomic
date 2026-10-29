@@ -41,7 +41,7 @@ window.GEOCO.cgu = {
     {
       titre: "5. L'abonnement Geonomix+",
       texte: [
-        "Geonomix+ donne accès aux contenus réservés : cours d'approfondissement, archives, articles et lettres plus anciennes, épisodes du podcast. Prix affichés TTC : 3,99 € par mois ou 39,99 € par an ; l'offre « Membres fondateurs » est limitée aux 50 premiers abonnés et précisée sur la page de l'abonnement.",
+        "Geonomix+ donne accès aux contenus réservés : cours d'approfondissement, archives, articles et lettres plus anciennes, épisodes du podcast. Prix affichés TTC : 3,99 € par mois ou 39,99 € par an en Europe ; hors d'Europe, 3,99 $ par mois ou 39,99 $ par an, auxquels peuvent s'ajouter les taxes locales ; l'offre « Membres fondateurs » est limitée aux 50 premiers abonnés et précisée sur la page de l'abonnement.",
         "Le paiement est traité par nos prestataires (RevenueCat et Stripe) ; Geonomix ne voit ni ne conserve tes données de carte bancaire.",
         "L'abonnement se renouvelle automatiquement à chaque échéance, au même prix, sauf résiliation. Tu peux résilier à tout moment depuis le lien reçu par e-mail lors de l'achat ou en écrivant à l'éditeur ; l'accès reste ouvert jusqu'à la fin de la période déjà payée. Tout changement de prix est annoncé au moins 30 jours à l'avance et tu peux alors résilier.",
         "<b>Droit de rétractation.</b> Tu disposes en principe de 14 jours après la souscription pour te rétracter (article L221-18 du Code de la consommation). Comme l'accès aux contenus commence tout de suite, on te demande au moment de l'achat d'accepter ce démarrage immédiat et de reconnaître que tu renonces ainsi à ce droit (article L221-28, 13°). Sans cet accord, tu restes remboursé si tu te rétractes dans les 14 jours.",
