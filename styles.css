@@ -1417,3 +1417,9 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .back-arrow:hover { background: rgba(0,113,227,.85); }
 .country-head-title { top: calc(112px + env(safe-area-inset-top)); padding-left: 76px; }
 @media (min-width: 900px) { .back-arrow { top: calc(96px + env(safe-area-inset-top)); left: 24px; } .country-head-title { top: calc(96px + env(safe-area-inset-top)); } }
+
+/* Actu à la source fragile (champ `verify`) */
+.verify-badge { color: #ffb020; font-weight: 700; }
+.verify-note { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,176,32,.45); background: rgba(255,176,32,.08); font-size: 15px; line-height: 1.45; }
+.verify-note b { color: #ffb020; margin-right: 4px; }
+.verify-note a { color: inherit; opacity: .75; white-space: nowrap; }

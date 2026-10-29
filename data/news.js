@@ -6,6 +6,8 @@
 // le texte, avec un lien, et la liste complète en bas de page.
 //
 // `visuals` : cartes ("map") et graphiques ("chart") interactifs, voir viz.js.
+// `verify` (facultatif) : actu qui n'a qu'une source, ou une source fragile : la raison, affichée sous le titre
+//         avec « Source à vérifier » (badge ⚠️ dans les listes).
 // `image` (facultatif) : { src, alt, credit } pour une photo en tête d'article.
 // `geo` : lieux [longitude, latitude] où l'actu apparaît sur le globe de l'accueil ;
 //         `label` (facultatif) = nom court affiché sur le globe, `name` = nom complet dans la fiche.
@@ -14,6 +16,1933 @@
 
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
+  {
+    "id": "2026-10-29-cuba-onu-embargo-vote",
+    "date": "2026-10-29",
+    "region": "Amériques",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "La Havane, Cuba",
+        "label": "Cuba",
+        "coords": [
+          -82.37,
+          23.13
+        ]
+      }
+    ],
+    "title": "L'ONU condamne encore l'embargo américain contre Cuba, mais Cuba perd 35 voix en un an",
+    "summary": "Le 28 octobre, l'Assemblée générale a voté 130 voix contre l'embargo, 17 pour son maintien et 25 abstentions. L'an dernier, 165 pays avaient soutenu Cuba.",
+    "points": [
+      "Le 28 octobre, l'Assemblée générale de l'ONU a demandé la fin de l'embargo américain contre Cuba par 130 voix pour, 17 contre et 25 abstentions, pour la 34e année de suite [1][2][3].",
+      "En 2025, le vote avait été de 165 voix pour, 7 contre et 12 abstentions : Cuba perd donc 35 voix de soutien en un an [1][2]. Les États-Unis, Israël, l'Ukraine, l'Argentine et les Émirats arabes unis font partie des 17 pays qui ont voté contre [1].",
+      "La veille, le débat a été tendu : le ministre cubain des Affaires étrangères, Bruno Rodríguez, a interrompu l'ambassadeur américain Mike Waltz, et la séance a été brièvement suspendue [1]. Washington soutient que la crise cubaine vient de son propre gouvernement, pas de l'embargo [1]."
+    ],
+    "why": [
+      "À retenir : le texte n'oblige personne, mais il mesure chaque année combien de pays acceptent encore de s'opposer publiquement à Washington [1][2].",
+      "Cette fois, Washington met en avant la hausse des abstentions pour dire que sa pression pour isoler Cuba commence à payer [1]. La résolution cite aussi la loi américaine Helms-Burton de 1996 et demande un rapport au secrétaire général de l'ONU pour la prochaine session [1]."
+    ],
+    "forMe": "Le vote ne change rien tout de suite à ton quotidien : il montre surtout où en est le rapport de forces diplomatique autour de Cuba [1][2].",
+    "figures": [
+      {
+        "value": "130 voix",
+        "label": "pour la fin de l'embargo (contre 165 en 2025)",
+        "src": 1
+      },
+      {
+        "value": "17 contre",
+        "label": "dont les États-Unis, Israël et l'Argentine",
+        "src": 1
+      },
+      {
+        "value": "34e année",
+        "label": "de vote consécutif sur le sujet",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "sanctions"
+    ],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « UN votes to condemn embargo of Cuba despite US lobbying push » (28 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/28/un-votes-to-condemn-embargo-of-cuba-despite-us-lobbying-push"
+      },
+      {
+        "short": "UPI",
+        "name": "UPI, « Cuba loses some previous support in U.N. vote on U.S. embargo » (28 octobre 2026)",
+        "url": "https://www.upi.com/Top_News/World-News/2026/10/28/latam-cuba-united-nations-vote-us-embargo/1411793211989"
+      },
+      {
+        "short": "ONU Info",
+        "name": "ONU Info, « General Assembly weighs US embargo against Cuba ahead of 34th vote » (octobre 2026)",
+        "url": "https://news.un.org/en/story/2026/10/1168686"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-colombie-amazonie-reserve-revoquee",
+    "date": "2026-10-29",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Leticia, Amazonie colombienne",
+        "label": "Colombie",
+        "coords": [
+          -69.94,
+          -4.21
+        ]
+      }
+    ],
+    "title": "La Colombie retire à l'Amazonie sa protection contre les mines et le pétrole",
+    "summary": "Le ministère de l'Environnement a révoqué la réserve créée en août, qui couvrait environ 42 % du pays. Les opposants y voient un feu vert aux industries extractives.",
+    "points": [
+      "Le ministère colombien de l'Environnement a révoqué la résolution 0961 de 2026, qui faisait de l'Amazonie une réserve « définitive » fermée aux nouvelles concessions minières et aux nouveaux contrats pétroliers [1][2].",
+      "La zone concernée couvrait environ 483 283 km², soit à peu près 42 % du territoire continental du pays [1]. Le ministère explique que le texte a été pris sans finir la consultation préalable des communautés noires, afro-colombiennes, raizales et palenqueras [1].",
+      "Révoquer ne veut pas dire que tout est autorisé : les projets doivent encore respecter les autres règles, comme la loi de 1959 sur les réserves forestières ou le système des parcs nationaux [1]. L'ancienne ministre Irene Vélez, qui défendait le texte, critique la décision et évoque un intérêt pour les terres rares, ce qui reste son accusation, pas un fait établi [2][3]."
+    ],
+    "why": [
+      "À retenir : la protection de l'Amazonie colombienne tenait à un seul texte, signé à la fin du mandat de Gustavo Petro, et un nouveau gouvernement a pu le défaire en quelques semaines [1][3].",
+      "Le ministre de l'Environnement, Fabio Arjona, défend un problème de procédure, tandis que ses opposants parlent de recul pour la forêt [3]. Le dossier va se jouer sur les règles qui restent en vigueur et sur d'éventuels recours en justice [1]."
+    ],
+    "forMe": "Rien ne change à court terme pour toi : la décision ouvre simplement la possibilité de nouveaux projets miniers et pétroliers dans une zone jusque-là fermée [1].",
+    "figures": [
+      {
+        "value": "483 283 km²",
+        "label": "de forêt amazonienne concernés par la réserve révoquée",
+        "src": 1
+      },
+      {
+        "value": "42 %",
+        "label": "environ du territoire continental colombien",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "El Colombiano",
+        "name": "El Colombiano, « MinAmbiente revocó resolución que declaraba la Amazonía libre de concesiones mineras » (octobre 2026)",
+        "url": "https://www.elcolombiano.com/colombia/por-que-minambiente-revoca-resolucion-reserva-amazonia-DM42825565"
+      },
+      {
+        "short": "Infobae",
+        "name": "Infobae, « Gobierno revocó la resolución que protegía a la Amazonía » (28 octobre 2026)",
+        "url": "https://www.infobae.com/colombia/2026/10/28/gobierno-de-abelardo-de-la-espriella-revoco-la-resolucion-que-protegia-a-la-amazonia-exministra-irene-velez-alerto-sobre-presunto-interes-en-la-apropiacion-de-tierras-raras/"
+      },
+      {
+        "short": "Vanguardia",
+        "name": "Vanguardia, « Gobierno revoca protección de la Amazonía y desata polémica » (27 octobre 2026)",
+        "url": "https://www.vanguardia.com/colombia/2026/10/27/gobierno-revoca-proteccion-de-la-amazonia-y-desata-polemica-entre-arjona-e-irene-velez/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-irak-syrie-visite-oleoduc-baniyas",
+    "date": "2026-10-29",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Damas, Syrie",
+        "label": "Syrie",
+        "coords": [
+          36.29,
+          33.51
+        ]
+      },
+      {
+        "name": "Bagdad, Irak",
+        "label": "Irak",
+        "coords": [
+          44.37,
+          33.31
+        ]
+      }
+    ],
+    "title": "Un Premier ministre irakien à Damas pour la première fois depuis la chute d'Assad, avec le pétrole en tête de l'agenda",
+    "summary": "Ali al-Zaidi a rencontré le président syrien Ahmed al-Sharaa le 28 octobre. Le bureau du Premier ministre irakien parle d'exporter du pétrole par l'oléoduc de Baniyas, jusqu'à 2 millions de barils par jour.",
+    "points": [
+      "Le 28 octobre, le Premier ministre irakien Ali al-Zaidi a été accueilli à l'aéroport de Damas par le président syrien Ahmed al-Sharaa [1][2]. Selon une source, c'est la première visite d'un chef de gouvernement irakien depuis la chute de Bachar al-Assad en décembre 2024 [2].",
+      "Le bureau du Premier ministre irakien dit avoir parlé d'exporter du pétrole irakien par l'oléoduc de Baniyas, qui pourrait faire passer jusqu'à 2 millions de barils par jour, ainsi que de commerce, d'agriculture et de sécurité aux frontières [1].",
+      "Aucun accord signé n'a été rapporté [1]. Les autorités du Kurdistan irakien ont, de leur côté, protesté contre des accords passés par Bagdad sans les consulter [4]."
+    ],
+    "why": [
+      "À retenir : la guerre a perturbé les exportations de pétrole de l'Irak ; en juin, il avait déjà commencé à en envoyer un peu via la Syrie [3].",
+      "Pour la Syrie, devenir le couloir de l'or noir irakien serait une façon de retrouver un rôle économique ; al-Sharaa a insisté sur l'importance de ce rôle de route commerciale pour l'Irak [1][2]."
+    ],
+    "forMe": "Une route de pétrole qui évite le Golfe peut aider à approvisionner le marché pendant que la guerre perturbe les exportations, mais celle-ci n'existe encore que sur le papier [1][3].",
+    "figures": [
+      {
+        "value": "2 millions",
+        "label": "de barils par jour : capacité citée pour l'oléoduc de Baniyas",
+        "src": 1
+      },
+      {
+        "value": "Décembre 2024",
+        "label": "chute de Bachar al-Assad, avant cette première visite",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "sources": [
+      {
+        "short": "Kuwait Times",
+        "name": "Kuwait Times, « Iraqi PM talks economy, energy on Syria visit » (28 octobre 2026)",
+        "url": "https://kuwaittimes.com/article/52564/world/iraqi-pm-talks-economy-energy-on-syria-visit"
+      },
+      {
+        "short": "Arab News",
+        "name": "Arab News, « Syria and Iraq pledge stronger security cooperation as leaders meet in Damascus » (28 octobre 2026)",
+        "url": "https://www.arabnews.com/middle-east/syria-and-iraq-pledge-stronger-security-cooperation-as-leaders-meet-in-damascus-3008663"
+      },
+      {
+        "short": "Ahram Online",
+        "name": "Ahram Online (AFP), « Iraqi FM makes first visit to Syria since Assad's fall » (juin 2026)",
+        "url": "https://english.ahram.org.eg/News/571862.aspx"
+      },
+      {
+        "short": "Syriac Press",
+        "name": "Syriac Press, « Iraqi Prime Minister visits Damascus amid dispute with Erbil over Sinjar arrangements » (28 octobre 2026)",
+        "url": "https://syriacpress.com/blog/2026/10/28/iraqi-prime-minister-visits-daramsuq-damascus-amid-dispute-with-arbailo-erbil-over-shigur-sinjar-arrangements/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-azerbaidjan-turquie-voile-ecoles",
+    "date": "2026-10-29",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Bakou, Azerbaïdjan",
+        "label": "Azerbaïdjan",
+        "coords": [
+          49.87,
+          40.41
+        ]
+      }
+    ],
+    "title": "Le voile à l'école brouille Bakou et Ankara : Erdogan limoge un conseiller, l'Azerbaïdjan interdit l'entrée à 31 Turcs",
+    "summary": "Une règle sur l'uniforme scolaire, appliquée depuis le 12 octobre, a déclenché des manifestations en Azerbaïdjan, puis une dispute ouverte avec la Turquie.",
+    "points": [
+      "Le 21 septembre, Bakou a adopté des règles d'uniforme qui interdisent aux élèves et aux enseignants des écoles publiques les vêtements contraires à la laïcité, sans citer le voile [1][2]. Depuis le 12 octobre environ, des élèves et des enseignantes voilées se voient refuser l'entrée des écoles [1].",
+      "Le ministère de l'Intérieur dit avoir arrêté 37 personnes pour trouble à l'ordre public ; Amnesty évoque de son côté des arrestations de manifestants pacifiques [1][2][4].",
+      "Oktay Saral, conseiller du président turc, a demandé sur X que l'Azerbaïdjan revienne sur cette « erreur » ; Recep Tayyip Erdogan l'a ensuite limogé [3]. Bakou a aussi interdit l'entrée du pays à 31 Turcs, des politiques et des personnalités qui avaient critiqué la règle, et Ilham Aliyev a averti qu'on ne devait pas « s'immiscer dans notre mode de vie » [3][5]."
+    ],
+    "why": [
+      "À retenir : un sujet intérieur, l'école, a pris une dimension diplomatique entre Bakou et Ankara [3][5].",
+      "Le parti au pouvoir à Bakou rejette toute ingérence et défend des règles fondées, selon lui, sur l'égalité et la laïcité [4]. Les ONG, elles, parlent d'atteinte au droit à l'éducation [4]."
+    ],
+    "forMe": "Rien ne change à ton quotidien, mais l'épisode montre qu'une simple règle scolaire peut suffire à froisser deux gouvernements voisins [3][5].",
+    "figures": [
+      {
+        "value": "37",
+        "label": "personnes arrêtées selon le ministère de l'Intérieur",
+        "src": 1
+      },
+      {
+        "value": "31",
+        "label": "Turcs interdits d'entrée en Azerbaïdjan",
+        "src": 3
+      },
+      {
+        "value": "21 septembre",
+        "label": "date des nouvelles règles d'uniforme",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Tensions with teachers, pupils and Türkiye: Inside Azerbaijan's hijab row » (14 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/14/tensions-with-teachers-pupils-and-turkiye-inside-azerbaijans-hijab-row"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Azerbaijan's school hijab ban: what's behind it, and what's next? » (12 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/12/azerbaijans-school-hijab-ban-whats-behind-it-and-whats-next"
+      },
+      {
+        "short": "The New Arab",
+        "name": "The New Arab, « Erdogan sacks senior adviser amid Turkey-Azerbaijan hijab row » (octobre 2026)",
+        "url": "https://www.newarab.com/news/erdogan-sacks-senior-adviser-amid-turkey-azerbaijan-hijab-row"
+      },
+      {
+        "short": "Amnesty",
+        "name": "Amnesty International, « Azerbaijan: Stop denying access to education through discriminatory hijab restrictions and release peaceful protesters » (octobre 2026)",
+        "url": "https://www.amnesty.org/en/latest/news/2026/10/azerbaijan-stop-denying-access-to-education-through-discriminatory-hijab-restrictions-and-release-peaceful-protesters/"
+      },
+      {
+        "short": "Eurasia Review",
+        "name": "Eurasia Review, « Baku's Hijab Ban Sparks Protests In Azerbaijan And Creates Problems With Turkey » (26 octobre 2026)",
+        "url": "https://www.eurasiareview.com/26102026-bakus-hijab-ban-sparks-protests-in-azerbaijan-and-creates-problems-with-turkey-analysis/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-gabon-reseaux-sociaux-rouverts",
+    "date": "2026-10-29",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Libreville, Gabon",
+        "label": "Gabon",
+        "coords": [
+          9.45,
+          0.39
+        ]
+      }
+    ],
+    "title": "Le Gabon rouvre les réseaux sociaux après huit mois, mais il faudra montrer une pièce d'identité",
+    "summary": "La suspension, imposée le 17 février, avait été critiquée par l'opposition, des jeunes et des entreprises. Beaucoup de Gabonais la contournaient avec des VPN.",
+    "points": [
+      "L'autorité de régulation de la communication (HAC) a annoncé samedi la levée de la suspension des réseaux sociaux, en place depuis le 17 février, officiellement parce que des contenus en ligne alimentaient les tensions [1][2].",
+      "Elle explique sa décision par des discussions avec les grandes entreprises technologiques sur la modération des plateformes [2].",
+      "La réouverture a une condition : les utilisateurs devront fournir une pièce d'identité officielle pour s'inscrire, ce qui met fin de fait à l'anonymat en ligne [2]. Pendant la coupure, beaucoup avaient utilisé des VPN, et l'opposition dénonçait un abus de pouvoir [2][3]."
+    ],
+    "why": [
+      "À retenir : la coupure a duré huit mois et a été critiquée par des jeunes et des entreprises [3].",
+      "Exiger une identité pour utiliser ces plateformes est une façon de réduire l'anonymat, ce qui inquiète les défenseurs des libertés [2]."
+    ],
+    "forMe": "Quand un pays coupe les réseaux, ses habitants et ses entreprises le ressentent vite : c'est un risque à connaître avant de travailler avec lui [3].",
+    "figures": [
+      {
+        "value": "8 mois",
+        "label": "de suspension des réseaux sociaux",
+        "src": 1
+      },
+      {
+        "value": "17 février",
+        "label": "début de la suspension",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Anadolu",
+        "name": "Agence Anadolu, « Gabon lifts ban on social media networks after 8 months » (octobre 2026)",
+        "url": "https://www.aa.com.tr/en/world/gabon-lifts-ban-on-social-media-networks-after-8-months/4100419"
+      },
+      {
+        "short": "Developing Telecoms",
+        "name": "Developing Telecoms, « Gabon lifts social media ban after eight months » (octobre 2026)",
+        "url": "https://www.developingtelecoms.com/telecom-business/telecom-regulation/21035-gabon-lifts-social-media-ban-after-eight-months.html"
+      },
+      {
+        "short": "allAfrica",
+        "name": "allAfrica, « All of Africa Today » (26 octobre 2026)",
+        "url": "https://allafrica.com/stories/202610260104.html"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-nepal-fonds-pertes-dommages",
+    "date": "2026-10-29",
+    "region": "Asie",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Katmandou, Népal",
+        "label": "Népal",
+        "coords": [
+          85.32,
+          27.71
+        ]
+      }
+    ],
+    "title": "Après les inondations, le fonds climat de l'ONU verse ses 20 premiers millions au Népal, pour 4,7 milliards de dollars de besoins",
+    "summary": "C'est la première fois que le fonds « pertes et dommages » réserve de l'argent à un pays. Le Népal doit encore déposer un projet avant de toucher quoi que ce soit.",
+    "points": [
+      "Le 22 octobre, le conseil du Fonds de l'ONU pour les pertes et dommages liés au climat a réservé 20 millions de dollars au Népal, après les inondations meurtrières d'août [1][2].",
+      "C'est le premier versement du fonds à un pays [2][3]. Le gouvernement népalais estime la reconstruction à environ 4,7 milliards de dollars, ce qui place ces 20 millions sous 1 % des besoins [1][2].",
+      "L'argent n'est pas encore débloqué : le Népal doit d'abord déposer une proposition de projet [1]. Les inondations ont fait plus de 1 400 morts, selon les sources, avec des bilans qui varient autour de 1 500 [2]."
+    ],
+    "why": [
+      "À retenir : c'est le premier test d'un fonds créé pour aider les pays touchés par des dégâts climatiques, et l'écart avec les besoins est énorme [2][3].",
+      "Des militants et des experts jugent la somme très insuffisante et disent que les pays riches ont répondu froidement à la demande du Népal [2]."
+    ],
+    "forMe": "Ce débat sur qui paie les dégâts climatiques revient à chaque grand sommet sur le climat ; ici, l'aide couvre moins de 1 % des besoins estimés [1][2].",
+    "figures": [
+      {
+        "value": "20 M$",
+        "label": "réservés par le fonds de l'ONU",
+        "src": 2
+      },
+      {
+        "value": "4,7 Md$",
+        "label": "de reconstruction estimés par le Népal",
+        "src": 1
+      },
+      {
+        "value": "< 1 %",
+        "label": "des besoins couverts",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Kathmandu Post",
+        "name": "The Kathmandu Post, « Loss and Damage Fund allocates $20 million to Nepal » (22 octobre 2026)",
+        "url": "https://kathmandupost.com/national/2026/10/22/loss-and-damage-fund-allocates-20-million-to-nepal"
+      },
+      {
+        "short": "AP",
+        "name": "AP via News4Jax, « UN climate fund promises $20 million for Nepal flood recovery, far short of billions needed » (23 octobre 2026)",
+        "url": "https://www.news4jax.com/news/world/2026/10/23/un-climate-fund-promises-20-million-for-nepal-flood-recovery-far-short-of-billions-needed/"
+      },
+      {
+        "short": "SCMP",
+        "name": "South China Morning Post, « Nepal set to receive first-ever US$20 million payout from UN climate damage fund » (octobre 2026)",
+        "url": "https://scmp.com/news/asia/south-asia/article/3371840/nepal-set-receive-first-ever-us20-million-payout-un-climate-damage-fund"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-singapour-indonesie-brume-task-force",
+    "date": "2026-10-29",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Jakarta, Indonésie",
+        "label": "Indonésie",
+        "coords": [
+          106.85,
+          -6.21
+        ]
+      },
+      {
+        "name": "Singapour",
+        "label": "Singapour",
+        "coords": [
+          103.82,
+          1.35
+        ]
+      }
+    ],
+    "title": "Singapour et l'Indonésie vont suivre l'argent des entreprises derrière la brume toxique",
+    "summary": "Les deux ministres des Affaires étrangères ont annoncé le 27 octobre une équipe commune pour poursuivre les sociétés liées aux feux de forêt.",
+    "points": [
+      "Le 27 octobre, à Jakarta, Singapour et l'Indonésie ont décidé de créer une équipe commune pour poursuivre les entreprises liées aux feux de forêt qui provoquent la brume toxique [1].",
+      "Elle doit partager des informations, suivre les flux financiers, réunir des preuves de part et d'autre de la frontière et, quand c'est possible, récupérer des avoirs, a expliqué le ministre indonésien Arrmanatha Nasir [1].",
+      "Singapour a déjà adressé des avis de prévention à 10 entreprises liées aux feux en Indonésie et demandé des informations à 10 sociétés basées chez elle ; son ministre Vivian Balakrishnan promet d'utiliser « chaque pouvoir légal » contre les responsables, y compris à Singapour [1]. Bloomberg y voit aussi un moyen de calmer les tensions, après une coupure inattendue de gaz [2]."
+    ],
+    "why": [
+      "À retenir : au lieu d'accuser l'État voisin, les deux gouvernements visent les entreprises et leur argent, ce qui est plus difficile à ignorer [1].",
+      "Cet épisode de brume est l'un des plus graves depuis plus de dix ans dans la région [1]."
+    ],
+    "forMe": "La brume ne s'arrête pas aux frontières : c'est pourquoi les deux pays veulent s'attaquer aux entreprises plutôt que de se renvoyer la faute [1].",
+    "figures": [
+      {
+        "value": "10 + 10",
+        "label": "entreprises visées ou interrogées par Singapour (en Indonésie et à Singapour)",
+        "src": 1
+      },
+      {
+        "value": "Plus de 10 ans",
+        "label": "depuis un épisode de brume aussi grave dans la région",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Star",
+        "name": "The Star, « Singapore, Indonesia to set up joint task force to hold firms accountable for forest fires » (28 octobre 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/28/singapore-indonesia-to-set-up-joint-task-force-to-hold-firms-accountable-for-forest-fires"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Singapore, Indonesia Seek to Ease Tensions With Fires Taskforce » (27 octobre 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-27/singapore-s-top-envoy-visits-indonesia-after-natural-gas-cuts"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-29-afrique-pib-reevalue-guinee",
+    "verify": "Une seule source (BusinessDay), qui compare elle-même les prévisions d'avril et d'octobre du FMI : chiffres à confirmer dans les données du FMI.",
+    "date": "2026-10-29",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Conakry, Guinée",
+        "label": "Guinée",
+        "coords": [
+          -13.68,
+          9.64
+        ]
+      }
+    ],
+    "title": "Le FMI a revu la richesse de l'Afrique à la hausse de 99 milliards de dollars en six mois, la Guinée en tête",
+    "summary": "En comparant ses prévisions d'avril et d'octobre, le FMI a relevé le PIB estimé de 34 pays africains sur 52 ; la Guinée gagne 15 milliards de dollars.",
+    "points": [
+      "Entre les éditions d'avril et d'octobre 2026 des Perspectives de l'économie mondiale du FMI, le PIB estimé des économies africaines a été relevé de 99,44 milliards de dollars au total [1].",
+      "Les estimations montent dans 34 des 52 pays étudiés et baissent dans 18 : 121,38 milliards de hausses, contre 21,94 milliards de baisses [1].",
+      "La Guinée a la plus forte révision, de 15,38 milliards de dollars à 45,31 milliards ; l'Algérie gagne 14,65 milliards et l'Égypte 13,24 milliards, l'Éthiopie étant estimée à environ 127,15 milliards [1]."
+    ],
+    "why": [
+      "À retenir : ces révisions ne prouvent pas que la guerre en Iran a aidé ou freiné ces économies, précise l'article qui les a calculées [1].",
+      "Le FMI prévoit tout de même +4,5 % de croissance en Afrique subsaharienne en 2026 et en 2027, en avertissant que les pays importateurs de pétrole subissent plus de pression [1]."
+    ],
+    "forMe": "Ces révisions changent surtout la taille affichée des économies ; elles ne disent pas si les habitants vivent mieux [1].",
+    "figures": [
+      {
+        "value": "+99,44 Md$",
+        "label": "révision nette du PIB africain entre avril et octobre",
+        "src": 1
+      },
+      {
+        "value": "34 sur 52",
+        "label": "pays dont le PIB estimé augmente",
+        "src": 1
+      },
+      {
+        "value": "+15,38 Md$",
+        "label": "pour la Guinée, la plus forte hausse",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "BusinessDay",
+        "name": "BusinessDay, « African economies see $99.4bn GDP upgrade amid renewed Iran war shocks » (26 octobre 2026)",
+        "url": "https://businessday.ng/africa/article/african-economies-see-99-4bn-gdp-upgrade-amid-renewed-iran-war-shocks/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-ouganda-quarantaine-retour-rdc",
+    "date": "2026-10-28",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Kampala, Ouganda",
+        "label": "Ouganda",
+        "coords": [
+          32.58,
+          0.35
+        ]
+      }
+    ],
+    "title": "L'Ouganda impose 21 jours de quarantaine, payés par les voyageurs, à ceux qui reviennent de RD Congo",
+    "summary": "Le ministère de la Santé a durci les règles le 25 octobre : les voyageurs passés par le Congo ne peuvent plus transiter par le pays. Deux malades passés par l'aéroport d'Entebbe ont été testés positifs au Kenya et au Nigeria.",
+    "points": [
+      "Le 25 octobre, le ministère ougandais de la Santé a annoncé que les citoyens qui reviennent de RD Congo doivent passer 21 jours en quarantaine, à leurs propres frais [1][2].",
+      "Les voyageurs qui ont séjourné au Congo ne peuvent plus transiter par l'Ouganda, y compris sur des vols affrétés [1].",
+      "L'Ouganda n'a enregistré aucun cas confirmé depuis qu'il a déclaré son épidémie terminée le 28 juillet, mais deux personnes passées par chez lui ont ensuite été testées positives, au Kenya et au Nigeria ; selon l'Africa CDC, les deux ont transité par l'aéroport d'Entebbe le 3 octobre [1][2]."
+    ],
+    "why": [
+      "À retenir : un pays sans malade peut quand même fermer sa porte, parce que le virus voyage avec les passagers [1][2].",
+      "L'épidémie en RD Congo a fait des milliers de morts, et l'Ouganda préfère payer le prix de la prudence (voyages ralentis, transit interdit) plutôt que de rouvrir un foyer chez lui [1]. Les enquêtes sur le cas détecté au Nigeria sont toujours en cours [1]."
+    ],
+    "forMe": "Si tu prépares un voyage en Afrique de l'Est, une escale par Entebbe peut être refusée ou compliquée pour qui a séjourné au Congo : vérifie les règles avant de partir [1].",
+    "figures": [
+      {
+        "value": "21 jours",
+        "label": "de quarantaine, aux frais du voyageur",
+        "src": 1
+      },
+      {
+        "value": "28 juillet",
+        "label": "date où l'Ouganda a déclaré son épidémie terminée",
+        "src": 1
+      },
+      {
+        "value": "3 octobre",
+        "label": "passage par l'aéroport d'Entebbe des deux malades testés ailleurs",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "AJC",
+        "name": "The Atlanta Journal-Constitution, « Uganda tightens Ebola border controls and requires returnees from Congo to pay for quarantine » (octobre 2026)",
+        "url": "https://www.ajc.com/news/2026/10/uganda-tightens-ebola-border-controls-and-requires-returnees-from-congo-to-pay-for-quarantine/"
+      },
+      {
+        "short": "WHTC",
+        "name": "WHTC, « Uganda imposes 21-day quarantine on citizens returning from Congo », dépêche d'Elias Biryabarema (25 octobre 2026)",
+        "url": "https://whtc.com/2026/10/25/uganda-imposes-21-day-quarantine-on-citizens-returning-from-congo/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-hongrie-bloque-moldavie-ukraine-ue",
+    "date": "2026-10-28",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Budapest, Hongrie",
+        "label": "Hongrie",
+        "coords": [
+          19.04,
+          47.5
+        ]
+      },
+      {
+        "name": "Chișinău, Moldavie",
+        "label": "Moldavie",
+        "coords": [
+          28.86,
+          47.01
+        ]
+      }
+    ],
+    "title": "La Hongrie bloque encore les deux dernières étapes de l'entrée de la Moldavie et de l'Ukraine dans l'UE",
+    "summary": "Après avoir laissé passer deux chapitres de négociation le 13 octobre, Budapest a refusé le 20 octobre d'ouvrir les deux derniers, et son blocage a été réaffirmé le 27.",
+    "points": [
+      "Le 13 octobre, à Luxembourg, l'Union a débloqué deux nouveaux groupes de négociation pour l'Ukraine et la Moldavie [1].",
+      "Le 20 octobre, la Hongrie a de nouveau refusé d'approuver l'ouverture des deux derniers « chapitres » sur six, sans explication donnée, selon la presse ukrainienne [1][2].",
+      "Ce blocage a été réaffirmé le 27 octobre ; la Commission européenne doit présenter le 4 novembre ses feuilles de route d'élargissement pour l'Ukraine et la Moldavie [3]."
+    ],
+    "why": [
+      "À retenir : l'adhésion à l'UE se joue chapitre par chapitre, et il suffit qu'un pays dise non pour qu'une étape soit bloquée [1][2].",
+      "Début octobre, la presse bruxelloise écrivait que Budapest pourrait lever son blocage si Kyiv adoptait une loi sur les écoles des minorités, mais que le veto de principe sur l'adhésion elle-même restait posé [4]."
+    ],
+    "forMe": "Rien ne change tout de suite pour toi. Mais chaque chapitre ouvert rapproche deux pays du marché européen, et aucune date d'entrée n'est fixée dans les sources [1][3].",
+    "figures": [
+      {
+        "value": "2 sur 6",
+        "label": "chapitres encore bloqués par la Hongrie",
+        "src": 2
+      },
+      {
+        "value": "13 octobre",
+        "label": "deux groupes de négociation débloqués à Luxembourg",
+        "src": 1
+      },
+      {
+        "value": "4 novembre",
+        "label": "présentation des feuilles de route par la Commission",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "European Interest",
+        "name": "European Interest, « Hungary again blocks Ukraine and Moldova's EU path, angering other EU member states » (octobre 2026)",
+        "url": "https://www.europeaninterest.eu/hungary-again-blocks-ukraine-and-moldovas-eu-path-angering-other-eu-member-states/"
+      },
+      {
+        "short": "Kyiv Independent",
+        "name": "Kyiv Independent, « Hungary blocks final 2 of 6 membership to-do lists for Ukraine and Moldova, no explanation given » (octobre 2026)",
+        "url": "https://kyivindependent.com/hungary-blocks-final-2-of-6-membership-to-do-lists-for-ukraine-and-moldova-no-explanation-given/"
+      },
+      {
+        "short": "112.ua",
+        "name": "112.ua, « EU Commission to unveil enlargement roadmaps for Ukraine and Moldova on November 4 » (27 octobre 2026)",
+        "url": "https://112.ua/en/evrokomisia-predstavit-dorozni-karti-dla-ukraini-ta-moldovi-v-mezah-rozsirenna-es-4-listopada-194180"
+      },
+      {
+        "short": "Brussels Signal",
+        "name": "Brussels Signal, « Hungary set to lift block on next stage of Ukraine and Moldova EU talks » (octobre 2026)",
+        "url": "https://brusselssignal.eu/2026/10/hungary-set-to-lift-block-on-next-stage-of-ukraine-and-moldova-eu-talks/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-fmi-moyen-orient-recul-oman",
+    "date": "2026-10-28",
+    "region": "Moyen-Orient",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Mascate, Oman",
+        "label": "Oman",
+        "coords": [
+          58.41,
+          23.59
+        ]
+      }
+    ],
+    "title": "La guerre fait reculer l'économie du Moyen-Orient de 1,3 % en 2026 : dans le Golfe, seul Oman y échappe",
+    "summary": "Dans ses prévisions d'octobre, le FMI voit la région Moyen-Orient, Afrique du Nord et Pakistan se contracter cette année, avant un rebond en 2027.",
+    "points": [
+      "Le FMI prévoit que l'économie de la région Moyen-Orient, Afrique du Nord et Pakistan reculera de 1,3 % en 2026, après une croissance de 3,3 % en 2025, puis rebondira de 6,6 % en 2027 [1][2].",
+      "Il attribue ce recul aux effets de la guerre sur la production d'énergie, le transport maritime, le tourisme, le commerce et la confiance [2][3].",
+      "Les économies du Golfe (CCG) devraient toutes se contracter en 2026, sauf Oman ; d'après la dépêche reprise par Polity, les pays exportateurs de pétrole sont plus touchés que les importateurs [1][3]."
+    ],
+    "why": [
+      "À retenir : la région qui vend l'énergie du monde est celle qui recule, parce que la guerre touche justement l'énergie, les bateaux et les touristes [2][3].",
+      "Le FMI prévient que la poursuite de la guerre, ou de nouvelles coupures de production, de routes maritimes ou d'infrastructures, pourraient encore aggraver ce tableau [2]."
+    ],
+    "forMe": "Quand la région du pétrole et du gaz souffre, l'énergie reste chère et fragile, ce qui peut peser sur ton budget carburant et chauffage [1][2].",
+    "figures": [
+      {
+        "value": "−1,3 %",
+        "label": "croissance prévue en 2026 (Moyen-Orient, Afrique du Nord, Pakistan)",
+        "src": 1
+      },
+      {
+        "value": "+3,3 %",
+        "label": "croissance de 2025",
+        "src": 2
+      },
+      {
+        "value": "+6,6 %",
+        "label": "rebond prévu en 2027",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Polity",
+        "name": "Polity, « IMF sees 1.3% contraction in Middle East, North Africa and Pakistan in 2026 » (22 octobre 2026)",
+        "url": "https://www.polity.org.za/article/imf-sees-13-contraction-in-middle-east-north-africa-and-pakistan-in-2026-2026-10-22"
+      },
+      {
+        "short": "Devdiscourse",
+        "name": "Devdiscourse, « Middle East, North Africa and Pakistan GDP to contract 1.3% in 2026, IMF says » (octobre 2026)",
+        "url": "https://www.devdiscourse.com/article/international/3996345-middle-east-north-africa-and-pakistan-gdp-to-contract-13-in-2026-imf-says"
+      },
+      {
+        "short": "Gulf Times",
+        "name": "Gulf Times, « Middle East, North Africa and Pakistan GDP to contract 1.3% in 2026: IMF » (octobre 2026)",
+        "url": "https://www.gulf-times.com/article/736657/business/middle-east-north-africa-and-pakistan-gdp-to-contract-13-in-2026-imf"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-philippines-ministres-defense-cebu",
+    "date": "2026-10-28",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Cebu, Philippines",
+        "label": "Philippines",
+        "coords": [
+          123.89,
+          10.32
+        ]
+      }
+    ],
+    "title": "Aux Philippines, l'Inde et le Japon envoient leurs ministres de la Défense à une grande réunion régionale",
+    "summary": "Les 28 et 29 octobre, Cebu accueille la réunion des ministres de la Défense de l'ASEAN et de leurs partenaires, présidée cette année par Manille.",
+    "points": [
+      "La 13e réunion des ministres de la Défense de l'ASEAN et de leurs partenaires (ADMM-Plus) se tient les 28 et 29 octobre à Cebu ; les Philippines la président en 2026 [1][2].",
+      "Le ministre indien de la Défense, Rajnath Singh, est parti pour Cebu afin d'« explorer de nouvelles pistes pour renforcer les partenariats stratégiques » [1][3].",
+      "Le ministre japonais de la Défense, Shinjiro Koizumi, est attendu dès le 28 octobre, avec des entretiens bilatéraux prévus avec ses homologues américain, philippin et sud-coréen [4]."
+    ],
+    "why": [
+      "À retenir : ces rencontres servent surtout à se parler et à nouer des partenariats de défense avant qu'une crise n'éclate [1][3].",
+      "Le fait que l'Inde et le Japon fassent le déplacement montre qu'ils veulent compter dans la sécurité de l'Asie du Sud-Est, une région par où passent de nombreux navires de commerce [1][4]."
+    ],
+    "forMe": "La sécurité des mers d'Asie touche indirectement tes achats (électronique, vêtements), qui voyagent en grande partie par bateau : c'est pourquoi ces réunions comptent, même quand rien n'est signé.",
+    "figures": [
+      {
+        "value": "13e",
+        "label": "édition de la réunion ADMM-Plus",
+        "src": 2
+      },
+      {
+        "value": "28–29 octobre",
+        "label": "dates de la réunion à Cebu",
+        "src": 2
+      },
+      {
+        "value": "3",
+        "label": "entretiens bilatéraux prévus pour le ministre japonais",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "IANS",
+        "name": "IANS, « Rajnath Singh arrives in Philippines for Asean Defence Ministers' meeting » (27 octobre 2026)",
+        "url": "https://ianslive.in/rajnath-singh-arrives-in-philippines-for-asean-defence-ministes-meeting--20261027210805"
+      },
+      {
+        "short": "The Hans India",
+        "name": "The Hans India, « Rajnath Singh leaves for Philippines to attend 13th ASEAN Defence Ministers' Meeting Plus » (octobre 2026)",
+        "url": "https://www.thehansindia.com/news/national/rajnath-singh-leaves-for-philippines-to-attend-13th-asean-defence-ministers-meeting-plus-1136263"
+      },
+      {
+        "short": "The Tribune",
+        "name": "The Tribune, « Explore new avenues to strengthen strategic partnerships: Rajnath Singh leaves for ASEAN Defence Ministers' Meeting-Plus in Philippines » (octobre 2026)",
+        "url": "https://www.tribuneindia.com/news/admm-plus/explore-new-avenues-to-strengthen-strategic-partnerships-rajnath-singh-leaves-for-asean-defence-ministers-meeting-plus-in-philippines"
+      },
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Asia Intelligence Brief for Tuesday, October 27, 2026 »",
+        "url": "https://www.riotimesonline.com/asia-intelligence-brief-tuesday-october-27-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-iran-poutine-moscou-sommet-gaz",
+    "date": "2026-10-28",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Moscou, Russie",
+        "label": "Russie",
+        "coords": [
+          37.62,
+          55.75
+        ]
+      },
+      {
+        "name": "Téhéran, Iran",
+        "label": "Iran",
+        "coords": [
+          51.39,
+          35.69
+        ]
+      }
+    ],
+    "title": "Le président iranien à Moscou pour un sommet des pays exportateurs de gaz et un tête-à-tête avec Poutine",
+    "summary": "Masoud Pezeshkian devait rencontrer Vladimir Poutine le 27 octobre, en marge du sommet du Forum des pays exportateurs de gaz. À l'heure d'écrire, aucun compte rendu n'était disponible.",
+    "points": [
+      "Le président iranien Masoud Pezeshkian devait participer le 27 octobre à Moscou au 8e sommet du Forum des pays exportateurs de gaz (GECF), consacré aux marchés du gaz et à la coopération entre exportateurs [1][2].",
+      "Selon le ministre iranien des Affaires étrangères Abbas Araghchi, il devait y rencontrer Vladimir Poutine ; coopération économique et questions « géopolitiques » étaient au programme [2][3].",
+      "Les deux hommes s'étaient déjà vus à Bichkek début septembre : Pezeshkian avait alors remercié Poutine pour la position de la Russie pendant la guerre contre les États-Unis [4]."
+    ],
+    "why": [
+      "À retenir : deux grands producteurs d'énergie se parlent au moment où la guerre perturbe le gaz et le pétrole du Golfe [2][4].",
+      "À l'heure d'écrire, aucun compte rendu de la rencontre n'était disponible : c'est une actu à suivre, et on ne sait pas encore si elle débouchera sur un accord."
+    ],
+    "forMe": "Les prix de l'énergie que tu paies dépendent en partie de ces producteurs : à suivre si cette rencontre débouche sur quelque chose de concret.",
+    "figures": [
+      {
+        "value": "8e",
+        "label": "sommet du Forum des pays exportateurs de gaz",
+        "src": 2
+      },
+      {
+        "value": "27 octobre",
+        "label": "date du sommet et de la rencontre prévue avec Poutine",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "UNI",
+        "name": "UNI, « Energy: Iran, Putin meet on Oct 27 » (24 octobre 2026)",
+        "url": "https://www.uniindia.com/world/energy-iran-putin-meet-on-oct-27/224024"
+      },
+      {
+        "short": "Tasnim",
+        "name": "Tasnim, « Pezeshkian to Visit Russia for Gas Exporters' Summit » (24 octobre 2026)",
+        "url": "https://www.tasnimnews.ir/en/news/2026/10/24/3730538/pezeshkian-to-visit-russia-for-gas-exporters-summit"
+      },
+      {
+        "short": "Connaissance des énergies (AFP)",
+        "name": "Connaissance des énergies (AFP), « Le président iranien rencontrera Poutine mardi à Moscou » (24 octobre 2026)",
+        "url": "https://www.connaissancedesenergies.org/afp/le-president-iranien-rencontrera-poutine-mardi-a-moscou-media-261024"
+      },
+      {
+        "short": "Ahram",
+        "name": "Ahram Online, « Iran president thanks Putin for Russia's stance during war with US » (septembre 2026)",
+        "url": "https://english.ahram.org.eg/News/575714.aspx"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-nigeria-aide-transport-syndicats",
+    "date": "2026-10-28",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Abuja, Nigeria",
+        "label": "Nigeria",
+        "coords": [
+          7.49,
+          9.06
+        ]
+      }
+    ],
+    "title": "Au Nigeria, l'État évite le bras de fer avec les syndicats : 70 000 nairas d'aide au transport pendant six mois",
+    "summary": "Le gouvernement et la centrale syndicale NLC ont trouvé un accord le 27 octobre, mais pas sur la date d'un nouveau salaire minimum.",
+    "points": [
+      "Le 27 octobre, lors d'une réunion de conciliation au ministère du Travail, le gouvernement fédéral a approuvé une aide au transport de 70 000 nairas pour les salariés de tous niveaux, pendant six mois à partir de novembre 2026 [1].",
+      "Le paiement d'arriérés de primes, à effet du 1er mai 2026, est aussi approuvé, par versements à partir de novembre ; un accord porte aussi sur 19 mois d'arriérés pour les agents de santé [1][2].",
+      "Les deux parties ne se sont pas entendues sur la date d'entrée en vigueur d'un nouveau salaire minimum [1]. Le 9 octobre, le syndicat avait donné deux semaines au gouvernement pour baisser le prix de l'essence et rouvrir la négociation sur le salaire minimum [3]."
+    ],
+    "why": [
+      "À retenir : le gouvernement répond à la colère sur le coût de la vie par une aide temporaire plutôt que par une hausse durable du salaire minimum [1][3].",
+      "Le syndicat estime que l'inflation et le prix des transports ont rogné la valeur du salaire minimum actuel de 70 000 nairas ; un haut responsable du ministère du Travail a dit qu'un nouveau salaire minimum était en discussion, sans date de négociation fixée [3]."
+    ],
+    "forMe": "C'est le même mécanisme que chez nous quand le carburant monte : les salariés qui payent leur trajet voient leur pouvoir d'achat fondre, et l'État choisit entre aider ou augmenter les salaires.",
+    "figures": [
+      {
+        "value": "70 000 nairas",
+        "label": "aide au transport pour les salariés",
+        "src": 1
+      },
+      {
+        "value": "6 mois",
+        "label": "durée de l'aide, à partir de novembre 2026",
+        "src": 1
+      },
+      {
+        "value": "19 mois",
+        "label": "d'arriérés des agents de santé couverts par l'accord",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Channels TV",
+        "name": "Channels Television, « FG Approves Six-Month ₦70,000 Transport Support For Workers » (27 octobre 2026)",
+        "url": "https://www.channelstv.com/2026/10/27/fg-approves-six-month-%e2%82%a670000-transport-support-for-workers/"
+      },
+      {
+        "short": "allAfrica",
+        "name": "allAfrica, « Nigeria: Govt, NLC Reach Deal On N70,000 Transport Allowance, 19-Month Health Workers' Arrears » (28 octobre 2026)",
+        "url": "https://allafrica.com/stories/202610280135.html"
+      },
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « NLC gives FG two-week ultimatum to reduce petrol prices, renegotiate minimum wage » (9 octobre 2026)",
+        "url": "https://nairametrics.com/2026/10/09/nlc-gives-fg-two-week-ultimatum-to-reduce-petrol-prices-renegotiate-minimum-wage/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-28-perou-or-illegal-tambopata",
+    "date": "2026-10-28",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Réserve de Tambopata, Madre de Dios, Pérou",
+        "label": "Pérou",
+        "coords": [
+          -69.19,
+          -12.59
+        ]
+      }
+    ],
+    "title": "Au Pérou, les autorités détruisent des dizaines de camps d'or illégal en Amazonie, mais les mineurs reviennent",
+    "summary": "Plus de 30 camps d'orpaillage illégal près de la réserve de Tambopata ont été détruits, selon la presse économique latino-américaine.",
+    "points": [
+      "Les autorités péruviennes ont détruit plus de 30 camps d'orpaillage illégal près de la réserve nationale de Tambopata, dans l'Amazonie [1].",
+      "En août, une opération conduite par le parquet, avec l'appui de l'ONG américaine Global Conservation, avait déjà détruit pour près de 1,7 million de dollars de matériel de mine dans la réserve [2].",
+      "Un procureur cité par la presse reconnaît que « l'exploitation minière est en train de gagner » : les mineurs reviennent en quelques jours après chaque raid [2]."
+    ],
+    "why": [
+      "À retenir : détruire des camps ne suffit pas tant que l'or illégal rapporte beaucoup plus que ce que coûte la prise de risque [1][2].",
+      "Selon un rapport cité par la presse, les exportations d'or illégal du Pérou auraient atteint environ 11,5 milliards de dollars en 2025, et les changements fréquents de président ont empêché une stratégie suivie contre ce trafic [2]."
+    ],
+    "forMe": "L'or que tu retrouves dans les bijoux ou les placements vient en partie de mines dont l'origine est difficile à contrôler : c'est pourquoi la traçabilité de l'or devient un enjeu.",
+    "figures": [
+      {
+        "value": "30+",
+        "label": "camps d'or illégal détruits près de Tambopata",
+        "src": 1
+      },
+      {
+        "value": "≈ 1,7 M$",
+        "label": "de matériel détruit lors de l'opération d'août",
+        "src": 2
+      },
+      {
+        "value": "≈ 11,5 Md$",
+        "label": "d'exportations d'or illégal estimées en 2025",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Rio Times",
+        "name": "The Rio Times, « Peru Destroys Over 30 Illegal Gold Camps » (octobre 2026)",
+        "url": "https://riotimesonline.com/peru-tambopata-illegal-gold-camps-destroyed"
+      },
+      {
+        "short": "Mining Reporters",
+        "name": "Mining Reporters, « Peru illegal gold mining Tambopata reserve military raids » (août 2026)",
+        "url": "https://www.miningreporters.com/noticia/news/2026/08/peru-illegal-gold-mining-tambopata-reserve-military-raids"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-serbie-liste-etudiants-vucic-defaite",
+    "date": "2026-10-27",
+    "region": "Europe",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Belgrade, Serbie",
+        "label": "Serbie",
+        "coords": [
+          20.46,
+          44.82
+        ]
+      }
+    ],
+    "title": "En Serbie, le mouvement étudiant bat Vučić aux législatives, après quatorze ans de pouvoir",
+    "summary": "La Liste des étudiants a gagné les législatives anticipées du 25 octobre et Aleksandar Vučić a reconnu sa défaite. Elle devrait avoir seule la majorité au Parlement.",
+    "points": [
+      "Le 25 octobre, la Liste des étudiants a remporté les législatives anticipées en Serbie et Aleksandar Vučić, au pouvoir depuis quatorze ans, a reconnu sa défaite : « La Liste des étudiants a gagné » [1][2].",
+      "Selon des résultats encore provisoires de la Commission électorale (8 077 bureaux sur 8 392 dépouillés), la Liste des étudiants a obtenu 52,54 % des voix, contre 39,29 % pour la liste de Vučić ; Euronews donne un écart un peu différent pour le second [1][2]. Vučić lui-même estime que les étudiants auront entre 135 et 140 sièges sur 250, et son camp environ 105 [2].",
+      "Le mouvement est né de près de deux ans de manifestations menées par des jeunes, après la mort de 16 personnes dans l'effondrement de l'auvent de la gare de Novi Sad en 2024. Vučić a dénoncé les médias indépendants et des ingérences étrangères ; aucun nom de Premier ministre n'a encore été avancé par les étudiants [2][3]."
+    ],
+    "why": [
+      "À retenir : une liste portée par des étudiants, dont aucun n'était candidat, vient de priver de sa majorité un dirigeant qui tenait la Serbie depuis quatorze ans [1][2].",
+      "Le plus dur commence : le nouveau pouvoir doit former un gouvernement, choisir un Premier ministre et dire ce qu'il fera du budget et des grands contrats. Les sources consultées ne détaillent pas encore son programme économique, et les résultats ne sont pas définitifs [2]."
+    ],
+    "forMe": "La Serbie est un pays européen, voisin de plusieurs pays de l'Union. Ce que fera le nouveau gouvernement (budget, relations avec Bruxelles et avec Moscou) pèsera sur la stabilité des Balkans et sur les entreprises qui y investissent.",
+    "figures": [
+      {
+        "value": "52,54 %",
+        "label": "des voix pour la Liste des étudiants (résultats provisoires)",
+        "src": 2
+      },
+      {
+        "value": "135 à 140",
+        "label": "sièges sur 250 estimés pour les étudiants par Vučić lui-même",
+        "src": 2
+      },
+      {
+        "value": "16",
+        "label": "morts à Novi Sad en 2024, point de départ du mouvement",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Euronews",
+        "name": "Euronews, « Student List wins Serbian election in political earthquake as Vučić concedes defeat » (25 octobre 2026)",
+        "url": "https://www.euronews.com/2026/10/25/vucic-concedes-defeat-in-pivotal-serbian-elections-says-student-movement-has-won"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Serbia after Vucic: Who will be PM and when will a government be formed? » (26 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/26/serbia-after-vucic-who-will-be-pm-and-when-will-a-government-be-formed"
+      },
+      {
+        "short": "NPR",
+        "name": "NPR, « 'The smell of freedom': Serbia's student movement celebrates election triumph » (26 octobre 2026)",
+        "url": "https://www.npr.org/2026/10/26/nx-s1-6016298/serbia-student-list-vucic-election"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-bresil-lula-reelu-bourse-s-effondre",
+    "date": "2026-10-27",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Brasília, Brésil",
+        "label": "Brésil",
+        "coords": [
+          -47.88,
+          -15.79
+        ]
+      }
+    ],
+    "title": "Lula réélu pour un quatrième mandat : la Bourse du Brésil s'effondre de près de 14 % en une séance",
+    "summary": "Les marchés avaient parié sur la victoire de Flávio Bolsonaro. Lula l'a emporté d'environ 4,4 millions de voix, et la Bourse et la monnaie ont chuté lundi.",
+    "points": [
+      "Le 25 octobre, Lula a gagné le second tour avec 51,79 % des voix contre 48,21 % pour Flávio Bolsonaro, soit environ 4,4 millions de voix d'avance. Son adversaire refuse de reconnaître le résultat et veut demander son annulation à la justice [1].",
+      "Lundi 26 octobre, l'indice Ibovespa, la Bourse de São Paulo, a perdu jusqu'à 17 % en séance avant de clôturer en baisse de 13,9 %, tandis que le real, la monnaie brésilienne, plongeait face au dollar [2][3]. Les sources divergent sur l'ampleur exacte de la chute du real.",
+      "Selon Bloomberg, les investisseurs s'étaient massivement placés sur une victoire de Bolsonaro ; ils craignent aussi des dépenses publiques en hausse, alors que le déficit approche 10 % du PIB après les dépenses d'avant-élection [2][4]."
+    ],
+    "why": [
+      "À retenir : ce n'est pas seulement l'élection qui a fait chuter la Bourse, c'est la surprise : le marché avait parié sur l'autre camp [2][4].",
+      "Quand une monnaie baisse, les produits importés (carburant, engrais, blé) coûtent plus cher en reais, et les dettes en dollars deviennent plus lourdes. À l'inverse, les exportateurs de soja, de viande ou de minerai y gagnent. Reste à voir si la contestation de Flávio Bolsonaro devant les tribunaux, jugée peu probable d'aboutir vu l'écart, prolonge les turbulences [1]."
+    ],
+    "forMe": "Le Brésil est un grand fournisseur de soja, de café et de viande. Une monnaie qui chute rend ses produits moins chers à acheter pour l'étranger, et les grands fonds qui ont des actions brésiliennes, y compris dans des placements européens, ont pu perdre de la valeur.",
+    "figures": [
+      {
+        "value": "51,79 %",
+        "label": "des voix pour Lula, contre 48,21 % pour Flávio Bolsonaro",
+        "src": 1
+      },
+      {
+        "value": "−13,9 %",
+        "label": "clôture de l'Ibovespa lundi 26 octobre (jusqu'à −17 % en séance)",
+        "src": 3
+      },
+      {
+        "value": "≈ 10 %",
+        "label": "du PIB : le déficit public, selon Americas Quarterly",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "dollar"
+    ],
+    "sources": [
+      {
+        "short": "CBS News",
+        "name": "CBS News, « Lula wins 4th term as Brazil's president, beating Flávio Bolsonaro in runoff, but Bolsonaro rejects results » (26 octobre 2026)",
+        "url": "https://www.cbsnews.com/news/brazil-presidential-runoff-lula-flavio-bolsonaro/"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Brazil's real sinks after Lula's re-election victory » (26 octobre 2026)",
+        "url": "https://www.aljazeera.com/economy/2026/10/26/brazils-real-sinks-after-lulas-re-election-victory"
+      },
+      {
+        "short": "The Rio Times",
+        "name": "The Rio Times, « Latin American Pulse for Monday, October 26, 2026 »",
+        "url": "https://www.riotimesonline.com/latin-american-pulse-for-monday-october-26-2026/"
+      },
+      {
+        "short": "Americas Quarterly",
+        "name": "Americas Quarterly, « REACTION: Lula Wins Brazil's Presidency in Historic Comeback » (octobre 2026)",
+        "url": "https://americasquarterly.org/article/reaction-lula-wins-brazils-presidency-in-historic-comeback/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-cisjordanie-hebron-familles-deplacees",
+    "date": "2026-10-27",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Hébron, Cisjordanie",
+        "label": "Cisjordanie",
+        "coords": [
+          35.1,
+          31.53
+        ]
+      }
+    ],
+    "title": "À Hébron, l'armée israélienne déplace des centaines de familles après la mort de deux soldats, à la veille des élections",
+    "summary": "Après l'attaque d'un point de contrôle le 23 octobre, l'armée a bouclé la ville et fait partir des familles d'un quartier ; les chiffres vont de 150 familles à 2 000 personnes. Israël vote le 27.",
+    "points": [
+      "Le 23 octobre, deux soldats israéliens ont été tués à un point de contrôle près d'Hébron, en Cisjordanie ; l'armée a lancé une grande opération dans la ville, d'environ 200 000 habitants [1][2][3].",
+      "Le ministre de la Défense Israël Katz parle d'environ 2 000 personnes déplacées samedi soir ; la mairie compte 370 familles, le gouverneur environ 150 et le maire environ 250 [1][2]. Le gouverneur Khaled Dudin dénonce une punition collective et l'état d'urgence a été déclaré dans la province [2].",
+      "Des bâtiments proches du lieu de l'attaque ont été démolis, et Benyamin Netanyahou a annoncé que d'autres le seraient. L'opération se déroule à quelques jours d'élections très disputées, que le maire d'Hébron qualifie de manœuvre politique [3]."
+    ],
+    "why": [
+      "À retenir : les chiffres de déplacés varient du simple au décuple selon qui les donne, signe d'une situation encore floue sur le terrain [1][2].",
+      "Israël vote le 27 octobre, et les derniers sondages donnent un blocage : ni le camp de Netanyahou ni l'opposition n'atteindraient les 61 sièges de majorité, ce qui rend les petits partis décisifs [4]. Le coût économique d'un conflit qui dure est l'un des grands thèmes de la campagne [4]."
+    ],
+    "forMe": "Les violences en Cisjordanie et la campagne israélienne entretiennent l'incertitude dans toute la région, et donc le prix du pétrole et des assurances de transport. Le résultat du vote déterminera la suite de la guerre à Gaza et les relations avec l'Iran.",
+    "figures": [
+      {
+        "value": "2",
+        "label": "soldats israéliens tués le 23 octobre près d'Hébron",
+        "src": 1
+      },
+      {
+        "value": "≈ 2 000",
+        "label": "personnes déplacées selon le ministre Katz (150 à 370 familles selon les autres sources)",
+        "src": 1
+      },
+      {
+        "value": "61",
+        "label": "sièges nécessaires pour une majorité à la Knesset ; aucun camp n'y est en vue dans les sondages",
+        "src": 4
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Times of Israel",
+        "name": "The Times of Israel, « IDF op in Hebron after soldiers' killing displaces 2,000, Katz says; PM vows 'big surprise' for PA » (octobre 2026)",
+        "url": "https://www.timesofisrael.com/idf-op-in-hebron-after-soldiers-killing-said-to-displace-1500-pm-vows-big-surprise-for-pa/"
+      },
+      {
+        "short": "Euronews",
+        "name": "Euronews, « Israel removes around 250 Palestinian families from West Bank city of Hebron after soldier deaths » (24 octobre 2026)",
+        "url": "https://www.euronews.com/2026/10/24/israel-removes-around-250-palestinian-families-from-west-bank-city-of-hebron-after-soldier"
+      },
+      {
+        "short": "The New Arab",
+        "name": "The New Arab, « Israeli forces displace Palestinian families after troops killed » (octobre 2026)",
+        "url": "https://www.newarab.com/news/israeli-forces-displace-palestinian-families-after-troops-killed"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Israeli elections: What are the possible outcomes? » (25 octobre 2026)",
+        "url": "https://www.aljazeera.com/news/2026/10/25/israeli-elections-what-are-the-possible-outcomes"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-niger-penurie-carburant-export-interdit",
+    "date": "2026-10-27",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Niamey, Niger",
+        "label": "Niger",
+        "coords": [
+          2.11,
+          13.51
+        ]
+      }
+    ],
+    "title": "Le Niger produit du pétrole mais manque d'essence : Niamey interdit d'en exporter",
+    "summary": "Des files d'attente sont apparues dans les stations de la capitale. Un arrêté du 12 octobre interdit d'exporter le diesel et l'essence, sauf autorisation.",
+    "points": [
+      "Le ministre du Commerce a signé le 12 octobre un arrêté qui interdit l'exportation de diesel et d'essence « premium » ; seules les sociétés publiques SONIDEP et SORAZ peuvent vendre un surplus à l'étranger, avec l'accord du ministre pour chaque cargaison [1][2].",
+      "Le 18 octobre, de longues files se sont formées dans les stations de Niamey ; le carburant nigérian de contrebande, moins cher, a presque disparu [3].",
+      "Le pays extrait environ 90 000 barils de brut par jour à Agadem, mais sa raffinerie de Zinder n'en traite qu'environ 20 000, trop peu pour la demande nationale ; des dettes croisées entre l'État, les sociétés pétrolières et l'électricien Nigelec compliquent la situation [2][3]."
+    ],
+    "why": [
+      "À retenir : un pays qui a du pétrole peut manquer d'essence s'il n'a pas assez de raffineries pour le transformer [2].",
+      "Interdire l'export garde le carburant dans le pays mais n'en crée pas : le problème de fond est le manque de capacité de raffinage et les dettes. Un manque de carburant peut aussi gêner les transports, les mines et l'électricité, et la presse économique le lie aux perturbations venues du conflit avec l'Iran [1][3]."
+    ],
+    "forMe": "Le Niger est aussi un pays d'uranium. Un pays à court de carburant a du mal à faire rouler ses camions et ses mines, ce qui peut retarder certaines livraisons de minerais [3].",
+    "figures": [
+      {
+        "value": "≈ 90 000",
+        "label": "barils de brut extraits par jour à Agadem",
+        "src": 2
+      },
+      {
+        "value": "≈ 20 000",
+        "label": "barils par jour traités par la raffinerie de Zinder",
+        "src": 2
+      },
+      {
+        "value": "12 octobre",
+        "label": "date de l'arrêté interdisant l'export de diesel et d'essence",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Nairametrics",
+        "name": "Nairametrics, « Niger bans petrol, diesel exports to prioritise domestic fuel supply » (18 octobre 2026)",
+        "url": "https://nairametrics.com/2026/10/18/niger-bans-petrol-diesel-exports-to-prioritise-domestic-fuel-supply/"
+      },
+      {
+        "short": "Ecofin Agency",
+        "name": "Ecofin Agency, « Niger Restricts Fuel Exports to Ease Domestic Gasoline and Diesel Shortages » (octobre 2026)",
+        "url": "https://www.ecofinagency.com/news-industry/1910-59903-niger-restricts-fuel-exports-to-ease-domestic-gasoline-and-diesel-shortages"
+      },
+      {
+        "short": "The Rio Times",
+        "name": "The Rio Times, « Niger Fuel Shortage Reaches Niamey, What It Means » (octobre 2026)",
+        "url": "https://www.riotimesonline.com/niger-fuel-shortage-niamey-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-mozambique-etat-vingt-pour-cent-mines",
+    "date": "2026-10-27",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Nacala, Mozambique",
+        "label": "Mozambique",
+        "coords": [
+          40.67,
+          -14.54
+        ]
+      }
+    ],
+    "title": "Le Mozambique veut devenir actionnaire à 20 % de toutes ses grandes mines",
+    "summary": "Le président Daniel Chapo a annoncé le 20 octobre qu'une société d'État détiendrait 20 % des projets miniers, au-delà des 15 % déjà prévus par la loi de juin.",
+    "points": [
+      "Le 20 octobre, à Nacala, le président Daniel Chapo a annoncé qu'une société minière nationale, détenue par l'État, prendrait 20 % des projets miniers, alors que la loi signée le 3 juin prévoit déjà une participation de 15 % [1][2].",
+      "Lors de la même conférence, le gouvernement a signé des accords d'intention portant sur 4,2 milliards de dollars de projets de transformation de minerais sur place [2].",
+      "Les règles restent floues : on ne sait pas quels projets seront concernés, si les mines existantes sont incluses, ni comment s'articulent les 15 % de la loi et les 20 % annoncés. Une des sources précise que le texte officiel de la loi n'a pas été consulté, il faut donc rester prudent sur les chiffres exacts [3]."
+    ],
+    "why": [
+      "À retenir : le Mozambique veut garder une part plus grande de ses minerais et en transformer une partie chez lui, plutôt que de tout exporter à l'état brut [1][2].",
+      "Une participation de 20 % ne donne pas 20 % des recettes : l'État touche une part des bénéfices, mais doit parfois aussi payer sa part des coûts. Pour les groupes miniers, tout dépend des détails du texte, d'où l'attention des investisseurs [3]."
+    ],
+    "forMe": "Les minerais servent à fabriquer des batteries, des appareils et des pièces industrielles. Si les conditions deviennent plus strictes pour les groupes miniers, certains projets peuvent coûter plus cher ou être retardés, ce qui peut finir par peser sur les prix.",
+    "figures": [
+      {
+        "value": "20 %",
+        "label": "part de l'État dans les projets miniers annoncée par le président",
+        "src": 1
+      },
+      {
+        "value": "15 %",
+        "label": "part déjà prévue par la loi signée le 3 juin",
+        "src": 1
+      },
+      {
+        "value": "4,2 Md$",
+        "label": "d'accords d'intention sur la transformation de minerais",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Club of Mozambique",
+        "name": "Club of Mozambique, « Mozambique: Chapo announces 20% state stake in mining projects through new state-owned company » (octobre 2026)",
+        "url": "https://clubofmozambique.com/news/mozambique-chapo-announces-20-state-stake-in-mining-projects-through-new-state-owned-company/"
+      },
+      {
+        "short": "Trade Finance Global",
+        "name": "Trade Finance Global, « Mozambique looks to raise state mining stake to 20% and invest $4.2bn in mineral processing deals » (octobre 2026)",
+        "url": "https://www.tradefinanceglobal.com/posts/mozambique-looks-to-raise-state-mining-stake-to-20-percent/"
+      },
+      {
+        "short": "The Rio Times",
+        "name": "The Rio Times, « Mozambique State Stake in Mining Projects Eyes 20% » (octobre 2026)",
+        "url": "https://www.riotimesonline.com/mozambique-state-stake-mining-20-percent-2026/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-mexique-camionneurs-bloquent-routes",
+    "date": "2026-10-27",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Mexico, Mexique",
+        "label": "Mexique",
+        "coords": [
+          -99.13,
+          19.43
+        ]
+      }
+    ],
+    "title": "Mexique : des routiers et des agriculteurs bloquent les autoroutes « sans limite de durée » pour dénoncer l'insécurité et les péages",
+    "summary": "Depuis le 26 octobre, des blocages touchent l'entrée de Mexico, Veracruz et Oaxaca. Les manifestants réclament de la sécurité, la fin du racket et des péages moins lourds.",
+    "points": [
+      "Depuis lundi 26 octobre, des routiers et des agriculteurs bloquent des routes dans une vingtaine d'États, notamment aux entrées de la capitale et dans les États de Veracruz et d'Oaxaca ; les organisateurs parlent d'une action « sans limite de durée » [1][2].",
+      "Ils demandent plus de sécurité contre les vols, enlèvements et extorsions sur les routes, la fin du racket exigé par des groupes criminels, et des péages et taxes qu'ils jugent trop lourds pour des routes dangereuses ; l'autoroute 135D entre Tehuacán et Oaxaca a été complètement fermée [1][2][3].",
+      "Le ministère de l'Intérieur dit que la plupart des organisations ont accepté une table de dialogue, mais aucun accord n'avait été annoncé ; la confédération Conatram affirme qu'aucun de ses membres ne participe, et les sources se contredisent sur qui bloque vraiment [1][3]."
+    ],
+    "why": [
+      "À retenir : le blocage vise les routes par lesquelles circulent les marchandises, et les organisateurs le disent sans limite de durée [1][2].",
+      "Le mouvement part d'une insécurité très concrète sur les routes, que les transporteurs disent subir tous les jours, plus que d'un mot d'ordre politique. Si le dialogue échoue, le blocage peut durer, comme le promettent les organisateurs [1][2]."
+    ],
+    "forMe": "Le Mexique fabrique et exporte beaucoup de produits qui circulent par la route. Un blocage long peut retarder des livraisons et renchérir certains produits.",
+    "figures": [
+      {
+        "value": "≈ 20",
+        "label": "États mexicains concernés par des blocages ou des rassemblements",
+        "src": 1
+      },
+      {
+        "value": "26 octobre",
+        "label": "début de l'action, annoncée sans limite de durée",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Rio Times",
+        "name": "The Rio Times, « Mexico Truckers Strike Hits Roads on 26 Oct » (26 octobre 2026)",
+        "url": "https://www.riotimesonline.com/mexico-truckers-strike-roads-26-october-2026/"
+      },
+      {
+        "short": "Mexico News Daily",
+        "name": "Mexico News Daily, « Blockades reported in Oaxaca, central Mexico and Veracruz as truckers protest insecurity, steep fees » (octobre 2026)",
+        "url": "https://mexiconewsdaily.com/travel/blockades-oaxaca-central-mexico-veracruz-truckers/"
+      },
+      {
+        "short": "The Yucatan Times",
+        "name": "The Yucatan Times, « National Transport Strike Sparks Rallies and Highway Protests Across Mexico » (octobre 2026)",
+        "url": "https://theyucatantimes.com/2026/10/national-transport-strike-sparks-rallies-and-highway-protests-across-mexico/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-asean-reseau-electrique-cable-sous-marin-laos",
+    "date": "2026-10-27",
+    "region": "Asie",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Vientiane, Laos",
+        "label": "Laos",
+        "coords": [
+          102.6,
+          17.97
+        ]
+      },
+      {
+        "name": "Singapour",
+        "label": "Singapour",
+        "coords": [
+          103.82,
+          1.35
+        ]
+      }
+    ],
+    "title": "Asie du Sud-Est : Singapour veut relier les pays par des câbles électriques sous la mer, avec le Laos au centre",
+    "summary": "Pour sa présidence de l'ASEAN en 2027, Singapour veut faire adopter des règles communes pour échanger de l'électricité par câbles sous-marins. Le Laos, riche en barrages, est le maillon central.",
+    "points": [
+      "Singapour, qui présidera l'ASEAN en 2027, veut faire avancer le « réseau électrique de l'ASEAN », avec un cadre commun pour les câbles électriques sous-marins ; l'objectif est que les pays membres l'adoptent en 2027 [1][2].",
+      "Aujourd'hui, l'ASEAN n'a pas de règles uniques pour vendre de l'électricité d'un pays à l'autre, et ceux qui doivent inspecter, entretenir ou réparer ces câbles ne sont pas clairement désignés ; les investisseurs, qui récupèrent leur mise en 20 à 30 ans, demandent de la stabilité [1].",
+      "Le Laos est au cœur du projet : la liaison Laos–Thaïlande–Malaisie–Singapour doit passer de 100 à 200 mégawatts [1]. Singapour et le Laos ont aussi signé le 4 septembre un accord sur les crédits carbone, avec 58 méthodes approuvées d'avance, dont 5 % des recettes versées au Laos pour son adaptation au climat [3]. La Thaïlande prendra la présidence en 2028 [4]."
+    ],
+    "why": [
+      "À retenir : Singapour, petite île sans fleuves ni barrages, cherche à acheter de l'électricité propre à ses voisins comme le Laos [1][3].",
+      "Pour que cela marche, il faut des règles communes sur les prix, la propriété et la réparation des câbles, et des garanties pour les investisseurs. Les barrages laotiens produisent beaucoup d'électricité, mais le Laos ne peut la vendre que si les lignes et les règles suivent [1][3]."
+    ],
+    "forMe": "Les centres de données et les usines d'Asie du Sud-Est consomment de plus en plus d'électricité. Le coût de l'énergie dans cette région influence le prix des puces, des téléphones et des produits fabriqués là-bas.",
+    "figures": [
+      {
+        "value": "100 → 200 MW",
+        "label": "capacité prévue de la liaison Laos–Thaïlande–Malaisie–Singapour",
+        "src": 1
+      },
+      {
+        "value": "2027",
+        "label": "année visée pour un cadre commun sur les câbles sous-marins",
+        "src": 1
+      },
+      {
+        "value": "58",
+        "label": "méthodes de crédits carbone approuvées par l'accord Singapour-Laos",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Star",
+        "name": "The Star, « Singapore to advance Asean power grid, subsea cable framework during 2027 chairmanship » (25 octobre 2026)",
+        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/25/singapore-to-advance-asean-power-grid-subsea-cable-framework-during-2027-chairmanship"
+      },
+      {
+        "short": "The Edge Malaysia",
+        "name": "The Edge Malaysia, « Singapore to advance Asean power grid, subsea cable framework during 2027 chairmanship » (octobre 2026)",
+        "url": "https://theedgemalaysia.com/node/823171"
+      },
+      {
+        "short": "Carbon Credits",
+        "name": "CarbonCredits.com, « Singapore and Laos Build Article 6 Carbon Credit Pipeline With 58 Approved Methodologies » (2026)",
+        "url": "https://carboncredits.com/singapore-laos-58-article-6-carbon-credit-methodologies/"
+      },
+      {
+        "short": "Eco-Business",
+        "name": "Eco-Business, « Asean Power Grid: Singapore, Thailand launch two-year push to clear hurdles by 2028 » (2026)",
+        "url": "https://www.eco-business.com/news/asean-power-grid-singapore-thailand-launch-two-year-push-to-clear-hurdles-by-2028/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-27-ebola-rdc-deuxieme-plus-grande-epidemie",
+    "date": "2026-10-27",
+    "region": "Afrique",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Bunia, Ituri, RD Congo",
+        "label": "RD Congo",
+        "coords": [
+          30.25,
+          1.57
+        ]
+      }
+    ],
+    "title": "Ebola en RD Congo : près de 10 000 cas confirmés, la deuxième plus grande épidémie jamais recensée",
+    "summary": "Partie de l'Ituri, l'épidémie due au virus Bundibugyo a fait 4 687 morts selon le dernier bilan européen. Des cas sont aussi signalés au Kenya et au Nigeria.",
+    "points": [
+      "Au 21 octobre, la RD Congo comptait 9 704 cas confirmés d'Ebola, dont 4 687 décès, selon le Centre européen de prévention et de contrôle des maladies (ECDC) ; l'Ituri est la province la plus touchée, avec 7 003 cas et 3 242 décès dans 28 de ses 36 zones de santé [1].",
+      "Le CDC américain parlait de 9 235 cas confirmés le 15 octobre et la qualifiait de deuxième plus grande épidémie d'Ebola jamais enregistrée [2]. Elle est due au virus Bundibugyo [1].",
+      "Le virus a franchi des frontières : le Kenya compte 9 cas confirmés, tous liés à un premier cas importé, et le Nigeria a signalé un cas le 20 octobre ; quatre cas ont été évacués ou importés en Europe depuis mai. Les chiffres de l'Ouganda sont contestés selon les sources [1]."
+    ],
+    "why": [
+      "À retenir : le bilan officiel s'approche de 10 000 cas confirmés, et l'épidémie n'est pas limitée à une seule région du pays [1][2].",
+      "Les épidémies pèsent sur l'économie : écoles et marchés fermés, voyageurs refusés aux frontières, mines et transports ralentis dans une région déjà fragilisée par les conflits. Les deux sources ne s'appuient pas sur la même date de relevé, donc les chiffres exacts peuvent différer [1][2]."
+    ],
+    "forMe": "Le risque pour la France reste limité, mais les cas évacués vers l'Europe montrent que les pays suivent la situation de près. Pour l'économie, une épidémie longue en RD Congo, premier producteur mondial de cobalt, peut gêner les transports de minerais.",
+    "figures": [
+      {
+        "value": "9 704",
+        "label": "cas confirmés en RD Congo au 21 octobre",
+        "src": 1
+      },
+      {
+        "value": "4 687",
+        "label": "décès liés à l'épidémie au 21 octobre",
+        "src": 1
+      },
+      {
+        "value": "7 003",
+        "label": "cas confirmés dans la seule province d'Ituri",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "ECDC",
+        "name": "ECDC, « Ebola disease: Multi-country outbreak 2026 » (mise à jour du 21 octobre 2026)",
+        "url": "https://www.ecdc.europa.eu/en/ebola-disease-multi-country-outbreak-2026"
+      },
+      {
+        "short": "Contagion Live",
+        "name": "Contagion Live, « Ebola outbreak in DRC tops 9,235 confirmed cases, CDC reports » (17 octobre 2026)",
+        "url": "https://www.contagionlive.com/view/ebola-outbreak-in-drc-tops-9235-confirmed-cases-cdc-reports"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-libye-accord-maritime-turquie-grece",
+    "date": "2026-10-26",
+    "region": "Afrique",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Benghazi, Libye",
+        "label": "Libye",
+        "coords": [
+          20.07,
+          32.12
+        ]
+      }
+    ],
+    "title": "La Libye de l'Est valide un accord maritime avec la Turquie, et la Grèce crie à la nullité",
+    "summary": "Le 20 octobre, le Parlement de l'est de la Libye a approuvé à l'unanimité l'accord de 2019 qui trace une frontière maritime entre la Libye et la Turquie. Athènes, Nicosie et Bruxelles protestent.",
+    "points": [
+      "Le 20 octobre, la Chambre des représentants, le Parlement basé dans l'est de la Libye et proche du maréchal Khalifa Haftar, a approuvé à l'unanimité l'accord signé en novembre 2019 entre la Turquie et l'ancien gouvernement libyen de Tripoli ; elle a aussi annulé deux résolutions de 2020 qui le rejetaient [1][2].",
+      "La Grèce juge l'accord nul, car la Turquie et la Libye n'ont pas de côtes qui se font face ou se touchent, et il ignore les îles grecques situées entre les deux ; Chypre parle d'un texte « illégal, nul et non avenu », et la présidente de la Commission européenne, Ursula von der Leyen, dit qu'il viole les droits d'États tiers [1][2][3].",
+      "La Turquie salue la décision. Selon la presse spécialisée, l'approbation de Benghazi pourrait ouvrir la voie à des forages turcs de pétrole et de gaz à l'est de la Crète [1][4]."
+    ],
+    "why": [
+      "À retenir : un vote de Parlement libyen peut déplacer une frontière en mer et donc décider qui a le droit de forer pour du gaz en Méditerranée [1][4].",
+      "Cet accord n'avait jamais été validé par l'est de la Libye, rival du gouvernement de Tripoli, qui est proche d'Ankara. En le ratifiant, Benghazi se rapproche de la Turquie. La Grèce et l'Égypte, elles, ont signé en 2020 un accord concurrent sur leurs zones économiques en mer, que la Turquie refuse [1]. Chacun trace sa frontière à son avantage, et ce qui se joue, ce sont les futurs gisements."
+    ],
+    "forMe": "Le gaz de Méditerranée orientale intéresse l'Europe, qui cherche à moins dépendre de la Russie. Si ces eaux deviennent un terrain de conflit juridique, les projets de forage et de gazoducs peuvent être retardés.",
+    "figures": [
+      {
+        "value": "2019",
+        "label": "année de signature de l'accord Turquie-Libye, validé seulement maintenant par l'est du pays",
+        "src": 1
+      },
+      {
+        "value": "2",
+        "label": "résolutions de 2020 qui rejetaient l'accord, annulées le 20 octobre",
+        "src": 1
+      },
+      {
+        "value": "Unanimité",
+        "label": "vote du Parlement de l'est de la Libye",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Al-Monitor",
+        "name": "Al-Monitor, « Eastern Libya parliament approves maritime deal with Turkey, drawing Greek rejection » (octobre 2026)",
+        "url": "https://www.al-monitor.com/originals/2026/10/eastern-libya-parliament-approves-maritime-deal-turkey-drawing-greek-rejection"
+      },
+      {
+        "short": "Al-Ahram",
+        "name": "Ahram Online, « EU slams Libya approval of Turkey maritime deal, backs Greece and Cyprus » (octobre 2026)",
+        "url": "https://english.ahram.org.eg/News/580514.aspx"
+      },
+      {
+        "short": "The National Herald",
+        "name": "The National Herald, « Libya approves contentious Turkey deal over Mediterranean waters » (octobre 2026)",
+        "url": "https://www.thenationalherald.com/libya-approves-contentious-turkey-deal-over-mediterranean-waters/"
+      },
+      {
+        "short": "Rigzone",
+        "name": "Rigzone, « Libyan Deal Paves Way for Broader Turkish Drilling in Mediterranean » (22 octobre 2026)",
+        "url": "https://www.rigzone.com/news/wire/libyan_deal_paves_way_for_broader_turkish_drilling_in_mediterranean-22-oct-2026-184902-article/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-roumanie-gouvernement-niculescu-six-mois-crise",
+    "date": "2026-10-26",
+    "region": "Europe",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Bucarest, Roumanie",
+        "label": "Roumanie",
+        "coords": [
+          26.1,
+          44.43
+        ]
+      }
+    ],
+    "title": "La Roumanie retrouve un gouvernement après six mois de crise, et un gros déficit à régler",
+    "summary": "Un diplomate sans parti, Luca Niculescu, est devenu Premier ministre le 20 octobre. Son équipe est minoritaire et doit d'abord s'attaquer au déficit du budget.",
+    "points": [
+      "Le 20 octobre, le Parlement roumain a investi Luca Niculescu, un diplomate indépendant, comme Premier ministre ; son gouvernement de 18 ministres a prêté serment devant le président Nicușor Dan [1][2].",
+      "Le pays n'avait qu'un gouvernement par intérim depuis presque six mois, depuis la chute du Premier ministre Ilie Bolojan par une motion de censure en mai ; Niculescu est le quatrième choix du président, après l'échec de trois autres [1][2].",
+      "Le Parti social-démocrate (PSD) détient 11 postes, sept ministres sont indépendants, et le ministère des Finances revient à Alexandru Nazare. Le gouvernement est minoritaire, appuyé pour six mois par plusieurs partis, et le déficit du budget est en tête de ses priorités [1][2]. Côté énergie, le pays vise 90 % de gaz en stock pour l'hiver (87 % aujourd'hui) et pourrait aider la Moldavie voisine en cas de pénurie [3]."
+    ],
+    "why": [
+      "À retenir : la Roumanie, sans gouvernement stable depuis mai, doit maintenant corriger un déficit parmi les plus lourds de l'Union européenne [1][2].",
+      "Un pays sans gouvernement ne peut pas voter de budget ni lancer de réformes, ce qui inquiète les prêteurs et les entreprises. Cette fin de crise rassure, mais le soutien au gouvernement n'est promis que pour six mois [2]. L'hiver arrive aussi : l'État prévoit des mesures du 1er novembre au 31 mars et peut épauler la Moldavie en gaz et en électricité [3]."
+    ],
+    "forMe": "La Roumanie est un partenaire commercial et un pays où de nombreuses entreprises françaises sont implantées. Un budget qui dérape pèse sur sa monnaie et sur l'économie de toute la région.",
+    "figures": [
+      {
+        "value": "≈ 6 mois",
+        "label": "de gouvernement par intérim avant l'investiture de Niculescu",
+        "src": 1
+      },
+      {
+        "value": "18",
+        "label": "ministres dans le nouveau gouvernement (11 postes pour le PSD, 7 pour des indépendants)",
+        "src": 1
+      },
+      {
+        "value": "87 %",
+        "label": "de remplissage des stockages de gaz, pour un objectif de 90 % avant l'hiver",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Euronews",
+        "name": "Euronews, « New Romanian Prime Minister Luca Niculescu and cabinet members sworn in » (21 octobre 2026)",
+        "url": "https://www.euronews.com/2026/10/21/new-romanian-prime-minister-luca-niculescu-and-cabinet-members-sworn-in"
+      },
+      {
+        "short": "Il Post",
+        "name": "Il Post, « Romania fiducia nuovo governo, fine crisi politica » (20 octobre 2026)",
+        "url": "https://www.ilpost.it/2026/10/20/romania-fiducia-nuovo-governo-fine-crisi-politica/"
+      },
+      {
+        "short": "Romania Insider",
+        "name": "Romania Insider / Ro Times, « Ministry of Energy plans winter support for Moldova » (23 octobre 2026)",
+        "url": "https://rotimes.ro/en/article/2026-10-23-ministry-of-energy-plans-winter-support-for-moldova"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-zimbabwe-lithium-interdiction-export-2027",
+    "date": "2026-10-26",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Harare, Zimbabwe",
+        "label": "Zimbabwe",
+        "coords": [
+          31.05,
+          -17.83
+        ]
+      }
+    ],
+    "title": "Le Zimbabwe refuse de repousser l'interdiction d'exporter son lithium brut",
+    "summary": "Harare maintient l'arrêt des exportations de lithium non raffiné pour janvier 2027. Le pays veut que les batteries se fabriquent chez lui, pas seulement que ses mines alimentent la Chine.",
+    "points": [
+      "Le 9 octobre, le gouvernement du Zimbabwe a déclaré qu'il n'y avait aucune raison de retarder l'interdiction d'exporter du lithium sous forme de concentré, prévue pour janvier 2027 ; le ministre de l'Information Nick Mangwana estime que les mineurs ont eu assez de temps pour se préparer à le traiter sur place [1].",
+      "Depuis février 2026, le pays a déjà suspendu toutes ses exportations de minerais bruts et de concentrés de lithium, officiellement pour contrôler des pratiques frauduleuses à l'exportation [2].",
+      "Les exportations de minerais vendues par l'organisme public de commercialisation ont plus que doublé sur les neuf premiers mois de 2026, à 4,73 milliards de dollars [3]."
+    ],
+    "why": [
+      "À retenir : le Zimbabwe, l'un des grands producteurs africains de lithium, veut garder sur son sol la partie qui rapporte le plus [1][4].",
+      "Le concentré de lithium est une roche enrichie, vendue à bas prix à des usines étrangères qui en tirent le produit utilisé dans les batteries. En interdisant son export, Harare force les entreprises à bâtir des raffineries chez lui. Le risque : si elles ne sont pas prêtes en janvier, les ventes peuvent s'arrêter et les mines ralentir [1][4]."
+    ],
+    "forMe": "Le lithium sert aux batteries des voitures électriques et des téléphones. Quand un pays producteur durcit ses règles, l'offre mondiale peut se resserrer et rendre les batteries plus chères à moyen terme.",
+    "figures": [
+      {
+        "value": "Janv. 2027",
+        "label": "date de l'interdiction d'exporter du lithium sous forme de concentré",
+        "src": 1
+      },
+      {
+        "value": "4,73 Md$",
+        "label": "de ventes de minerais à l'export sur les neuf premiers mois de 2026",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "SMM",
+        "name": "SMM Lithium News, « Zimbabwe: No Reason to Delay Lithium Concentrates Export Ban » (octobre 2026)",
+        "url": "https://news.metal.com/newscontent/104149017-smm-lithium-news-zimbabwe-no-reason-to-delay-lithium-concentrates-export-ban"
+      },
+      {
+        "short": "Al Jazeera",
+        "name": "Al Jazeera, « Zimbabwe imposes ban on exports of all raw minerals and lithium concentrate » (25 février 2026)",
+        "url": "https://www.aljazeera.com/news/2026/2/25/zimbabwe-imposes-ban-on-exports-of-all-raw-minerals-and-lithium-concentrate"
+      },
+      {
+        "short": "The Financial Gazette",
+        "name": "The Financial Gazette, « Mineral exports fly after raw ban » (15 octobre 2026)",
+        "url": "https://fingaz.co.zw/2026/10/15/mineral-exports-fly-after-raw-ban/"
+      },
+      {
+        "short": "Further Africa",
+        "name": "Further Africa, « Zimbabwe lithium export ban locks in 2027 » (13 octobre 2026)",
+        "url": "https://furtherafrica.com/2026/10/13/zimbabwe-lithium-export-ban-locks-in-2027/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-chili-lithium-appels-offres-prives",
+    "date": "2026-10-26",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Santiago, Chili",
+        "label": "Chili",
+        "coords": [
+          -70.65,
+          -33.45
+        ]
+      }
+    ],
+    "title": "Le Chili veut plus que doubler son lithium en misant sur les entreprises privées",
+    "summary": "Le ministre chilien des Mines annonce cinq nouveaux appels d'offres pour des projets de lithium en 2027. L'objectif : passer d'environ 300 000 à 700 000 tonnes par an.",
+    "points": [
+      "Lors de la semaine du marché des métaux de Londres (LME Week), le ministre chilien des Mines, Daniel Mas, a annoncé que le Chili prévoit d'ouvrir des appels d'offres pour environ cinq nouveaux projets de lithium en 2027 [1].",
+      "Ces projets pourraient faire passer la production du pays d'environ 300 000 tonnes par an à 700 000 tonnes dans cinq à dix ans ; cinq projets en attente d'autorisation seront exploités entièrement par le privé, et l'État espère les approuver début 2027 [1].",
+      "Le Chili, l'Argentine, la Bolivie et le Pérou cherchent aussi à négocier leur lithium et leur cuivre en bloc plutôt que chacun de son côté ; le texte signé fin août à Santiago ne crée pas encore d'alliance [2]."
+    ],
+    "why": [
+      "À retenir : le Chili, déjà géant du lithium, veut plus que doubler sa production en laissant plus de place aux entreprises privées [1].",
+      "Le lithium est le métal des batteries. Le pays dépend beaucoup de son cuivre, et le lithium est son second pari. Plus d'appels d'offres, c'est plus de concurrence entre acheteurs, mais aussi plus de pression sur l'eau des salars, ces déserts de sel d'où l'on pompe la saumure [1]. Réunir quatre voisins en bloc permettrait de peser sur les prix, mais ils sont aussi concurrents [2]."
+    ],
+    "forMe": "Si la production de lithium double, le prix des batteries de voitures électriques peut baisser à terme. Mais cela dépend d'abord des autorisations, qui restent à obtenir.",
+    "figures": [
+      {
+        "value": "5",
+        "label": "nouveaux projets de lithium à mettre en appel d'offres en 2027",
+        "src": 1
+      },
+      {
+        "value": "300 000 → 700 000 t",
+        "label": "production annuelle visée dans cinq à dix ans",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Mining Weekly",
+        "name": "Mining Weekly (Reuters), « Chile plans five new lithium tenders in push to double output » (21 octobre 2026)",
+        "url": "https://www.miningweekly.com/article/chile-plans-five-new-lithium-tenders-in-push-to-double-output-2026-10-21"
+      },
+      {
+        "short": "La Razón",
+        "name": "La Razón, « Chile, Argentina, Bolivia y Perú buscan negociar como bloque su litio y su cobre » (21 octobre 2026)",
+        "url": "https://www.larazon.cl/2026/10/21/chile-argentina-bolivia-y-peru-buscan-negociar-como-bloque-su-litio-y-su-cobre/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-pacifique-japon-micronesie-australie-papouasie",
+    "date": "2026-10-26",
+    "region": "Asie",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Palikir, Micronésie",
+        "label": "Micronésie",
+        "coords": [
+          158.16,
+          6.92
+        ]
+      },
+      {
+        "name": "Port Moresby, Papouasie-Nouvelle-Guinée",
+        "label": "Papouasie-N.-Guinée",
+        "coords": [
+          147.18,
+          -9.44
+        ]
+      }
+    ],
+    "title": "Pacifique : le Japon reçoit la Micronésie pendant que l'Australie s'installe en Papouasie",
+    "summary": "Le 26 octobre, Tokyo a reçu le président micronésien, et Canberra a dit appliquer déjà son traité de défense avec la Papouasie-Nouvelle-Guinée. Les grandes puissances se disputent l'influence dans le Pacifique.",
+    "points": [
+      "Le 26 octobre à Tokyo, le Premier ministre japonais et le président des États fédérés de Micronésie ont réaffirmé l'unité du Pacifique et décidé de préparer le prochain sommet Japon-îles du Pacifique (PALM 11), prévu à Yokohama l'été prochain [1].",
+      "Le même jour, l'Australie a affirmé appliquer déjà le traité de défense mutuelle Pukpuk signé avec la Papouasie-Nouvelle-Guinée : formation de policiers, aide au système judiciaire et recrutement de Papouasiens dans l'armée australienne [1].",
+      "Ces annonces tombent alors qu'un chercheur français alerte sur l'activité chinoise en Micronésie, en Polynésie française, en Nouvelle-Calédonie et à Guam, tout en jugeant le risque militaire faible [2]."
+    ],
+    "why": [
+      "À retenir : de minuscules États du Pacifique, riches de leurs immenses zones de pêche, sont courtisés par le Japon, l'Australie et la Chine [1][2].",
+      "Ces pays ont peu d'habitants mais contrôlent de très vastes zones maritimes, avec leurs poissons et leurs câbles sous-marins. Celui qui y a des amis y gagne des voix dans les votes internationaux et des ports amis pour ses navires [1][2]."
+    ],
+    "forMe": "Ce qui se joue dans le Pacifique concerne la pêche (le thon) et les câbles par lesquels passent nos données. La rivalité entre grandes puissances pèse sur les routes commerciales de l'Asie.",
+    "figures": [
+      {
+        "value": "PALM 11",
+        "label": "prochain sommet Japon-îles du Pacifique, à Yokohama l'été prochain",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Islands Business",
+        "name": "Islands Business, « PACNEWS Two, 26 October 2026 »",
+        "url": "https://islandsbusiness.com/pacnews/pacnews-two-26-october-2026"
+      },
+      {
+        "short": "Modern Diplomacy",
+        "name": "Modern Diplomacy, « Can APEC's New Economic Coordination Plan Shield Asia-Pacific From Global Risks? » (21 octobre 2026)",
+        "url": "https://moderndiplomacy.eu/2026/10/21/can-apecs-new-economic-coordination-plan-shield-asia-pacific-from-global-risks/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-etats-unis-interdit-deepseek-administrations",
+    "date": "2026-10-26",
+    "region": "Amériques",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Washington, États-Unis",
+        "label": "États-Unis",
+        "coords": [
+          -77.04,
+          38.91
+        ]
+      }
+    ],
+    "title": "Washington interdit DeepSeek, l'IA chinoise, dans toutes ses administrations civiles",
+    "summary": "Le département de la Sécurité intérieure a ordonné aux agences fédérales civiles de retirer les produits DeepSeek et d'arrêter d'en acheter, par crainte d'envois de données vers la Chine.",
+    "points": [
+      "Le département américain de la Sécurité intérieure (DHS) a ordonné aux agences civiles fédérales de retirer DeepSeek de leurs systèmes et de ne plus en acheter, ainsi que les outils d'autres entreprises qui l'intègrent ; l'ordre est fondé sur une loi de 2018 sur la sécurité des chaînes d'approvisionnement [1][2][3].",
+      "Le DHS invoque le risque que des employés ou prestataires envoient des données sensibles en Chine, et cite des logiciels malveillants et des failles dans l'application DeepSeek sur iPhone [1][3].",
+      "L'ordre ne touche ni les entreprises privées ni les particuliers ; selon un média, l'armée et les services de renseignement en sont exemptés, et des dérogations peuvent être demandées sous 60 jours [1]. Les sources divergent sur la date de signature, fin juillet, l'ordre ayant été rendu public ces derniers jours [1][3]."
+    ],
+    "why": [
+      "À retenir : les États-Unis ferment l'accès de leur administration à une IA chinoise qui s'était fait connaître en rivalisant avec les modèles américains [1][2].",
+      "Les logiciels d'IA lisent ce qu'on leur écrit. Si le texte part vers des serveurs d'un pays rival, des secrets peuvent fuir. Washington applique ici à l'IA la méthode déjà utilisée pour les équipements de télécommunications chinois [1][3]. Le Commerce, New York, le Tennessee et la Virginie avaient déjà posé des interdictions plus étroites [1]."
+    ],
+    "forMe": "Ces règles ne s'appliquent pas à toi, mais elles montrent que l'IA devient un terrain de rivalité entre la Chine et les États-Unis, comme l'ont été les puces. Cela peut limiter les produits d'IA que les entreprises ont le droit d'utiliser.",
+    "figures": [
+      {
+        "value": "60 jours",
+        "label": "délai pour demander une dérogation à l'interdiction",
+        "src": 1
+      },
+      {
+        "value": "2018",
+        "label": "année de la loi sur la sécurité des chaînes d'approvisionnement qui sert de base à l'ordre",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Cybernews",
+        "name": "Cybernews, « US bans DeepSeek AI products from federal agencies »",
+        "url": "https://cybernews.com/tech/us-bans-deepseek-from-federal-agencies/"
+      },
+      {
+        "short": "The Standard (AFP)",
+        "name": "The Standard HK, « US bans use of China's DeepSeek by govt agencies »",
+        "url": "https://www.thestandard.com.hk/china/article/345932/US-bans-use-of-Chinas-DeepSeek-by-govt-agencies"
+      },
+      {
+        "short": "ProPakistani",
+        "name": "ProPakistani, « US bans DeepSeek across federal civilian agencies over security risks » (21 octobre 2026)",
+        "url": "https://propakistani.pk/2026/10/21/us-bans-deepseek-across-federal-civilian-agencies-over-security-risks/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-26-liban-israel-tampa-negociations-hezbollah",
+    "date": "2026-10-26",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Beyrouth, Liban",
+        "label": "Liban",
+        "coords": [
+          35.5,
+          33.89
+        ]
+      }
+    ],
+    "title": "Liban et Israël négocient à Tampa : un cessez-le-feu d'un côté, le désarmement du Hezbollah de l'autre",
+    "summary": "Des délégations libanaise et israélienne se sont retrouvées aux États-Unis le 20 octobre. Beyrouth veut que les frappes cessent, Israël veut voir l'armée libanaise désarmer le Hezbollah.",
+    "points": [
+      "Une délégation militaire libanaise devait défendre le 20 octobre à Tampa, en Floride, une demande d'arrêt des attaques israéliennes, lors d'une réunion à trois avec les États-Unis ; une source américaine parle d'une rencontre « technique » les 20 et 21 octobre [1][2].",
+      "Beyrouth veut un engagement de cessez-le-feu et un meilleur mécanisme de vérification, lié à une zone pilote où l'armée libanaise se déploierait [1].",
+      "Dans le cadre défini par les États-Unis, le Liban doit désarmer le Hezbollah et Israël se retirer progressivement ; le Hezbollah refuse de désarmer tant que l'armée israélienne reste, et Israël continue de frapper le sud du Liban [1]. Les sources consultées ne donnaient pas encore les résultats de la rencontre."
+    ],
+    "why": [
+      "À retenir : chacun veut que l'autre bouge en premier, et la rencontre de Tampa ne dit pas qui cédera [1].",
+      "Le Premier ministre israélien Benjamin Netanyahu aurait dit qu'Israël pousserait l'armée libanaise à prouver, dans deux zones pilotes, qu'elle sait écarter la menace du Hezbollah, faute de quoi Israël agirait lui-même [1]. Sans accord, les frappes continuent, et le pays, déjà en crise, ne peut pas reconstruire ni attirer d'investisseurs."
+    ],
+    "forMe": "Le Liban est un pays francophone proche de la France. Sa stabilité compte pour les prix de l'énergie en Méditerranée et pour les réfugiés qui peuvent arriver en Europe.",
+    "figures": [
+      {
+        "value": "2",
+        "label": "zones pilotes où l'armée libanaise devrait prouver qu'elle contrôle le Hezbollah, selon Netanyahu",
+        "src": 1
+      },
+      {
+        "value": "20-21 oct.",
+        "label": "dates des discussions à Tampa, selon une source américaine",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Times of Israel (Reuters)",
+        "name": "Times of Israel, « Lebanon says military delegation will press for halt to Israeli attacks at US talks » (17 octobre 2026)",
+        "url": "https://www.timesofisrael.com/liveblog_entry/lebanon-says-military-delegation-will-press-for-halt-to-israeli-attacks-at-us-talks/"
+      },
+      {
+        "short": "La Nazione",
+        "name": "La Nazione, « Media, colloqui a livello tecnico » (octobre 2026)",
+        "url": "https://www.lanazione.it/ultimaora/media-colloqui-a-livello-tecnico-ed3da4d1"
+      }
+    ]
+  },
   {
     "id": "2026-10-25-georgie-proces-interdire-opposition",
     "date": "2026-10-25",
@@ -5106,2003 +7035,6 @@ window.GEOCO.news = [
         "short": "Rio Times",
         "name": "The Rio Times, « Alberta's 19 October Referendum Explained »",
         "url": "https://www.riotimesonline.com/alberta-referendum-explained-2026/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-botswana-de-beers",
-    "date": "2026-10-14",
-    "region": "Afrique",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Gaborone",
-        "label": "Botswana",
-        "coords": [
-          25.91,
-          -24.65
-        ]
-      }
-    ],
-    "title": "Diamants : le Botswana s'apprête à peser plus lourd dans De Beers, le géant que son propriétaire veut vendre",
-    "summary": "Selon Bloomberg, le Botswana serait près de monter de 15 % à environ 25 % du capital de De Beers. L'accord n'est pas signé, mais il lèverait un obstacle majeur à la vente du groupe.",
-    "points": [
-      "Le Botswana et le Global Diamond Consortium (GDC) seraient près d'un accord qui ferait passer la part de l'État dans De Beers de 15 % à environ 25 %, selon des sources citées par Bloomberg ; rien n'est encore signé, et les termes précis restent flous [1][2].",
-      "Le GDC, mené par l'ancien patron de De Beers Gareth Penny, a été choisi en juillet comme candidat préféré pour racheter De Beers à Anglo American, qui en détient environ 85 % [2].",
-      "Le GDC compte aussi la Namibie et l'Angola : les trois États réunis auraient moins de 50 %, et des investisseurs privés garderaient le contrôle, alors que le président botswanais Duma Boko avait dit vouloir une majorité [1]."
-    ],
-    "why": [
-      "Le diamant fait vivre le Botswana : la part que l'État détient dans De Beers pèse donc bien plus qu'un simple placement. Tant que le pays n'était pas d'accord, la vente du groupe restait bloquée [2].",
-      "Si l'accord se confirme, le Botswana n'obtiendrait pas le contrôle qu'il réclamait, mais une place plus grande à la table. Ce serait aussi un rare cas où trois pays africains producteurs s'allient pour racheter ensemble un géant mondial de leur propre ressource [1]."
-    ],
-    "forMe": "Les bagues et les bijoux en diamant que tu vois en vitrine passent presque tous par De Beers. Qui possède ce groupe influence l'offre de diamants, donc leur prix, et décide de la part qui reste dans les pays producteurs.",
-    "figures": [
-      {
-        "value": "15 % → ~25 %",
-        "label": "part du Botswana dans De Beers, selon Bloomberg (pas encore signé)",
-        "src": 1
-      },
-      {
-        "value": "~85 %",
-        "label": "part d'Anglo American dans De Beers, vendeur",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Moneyweb",
-        "name": "Moneyweb, « Botswana said to near agreement on size of its De Beers stake »",
-        "url": "https://www.moneyweb.co.za/news/companies-and-deals/botswana-said-to-near-agreement-on-size-of-its-de-beers-stake/"
-      },
-      {
-        "short": "bne IntelliNews",
-        "name": "bne IntelliNews, « Botswana reportedly nears deal for 25% De Beers stake as Anglo American sale advances »",
-        "url": "https://www.intellinews.com/botswana-reportedly-nears-deal-for-25-de-beers-stake-as-anglo-american-sale-advances-475658/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-coree-puces-chute-bourse",
-    "date": "2026-10-14",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Séoul",
-        "label": "Corée du Sud",
-        "coords": [
-          126.98,
-          37.57
-        ]
-      }
-    ],
-    "title": "Séoul : la Bourse s'effondre de plus de 5 % en une séance, à cause d'un fabricant chinois de mémoires",
-    "summary": "Le Kospi a perdu 5,5 % mardi. Les investisseurs craignent qu'un concurrent chinois de Samsung et SK hynix fasse baisser les prix des puces mémoire.",
-    "points": [
-      "Le Kospi, l'indice de la Bourse de Séoul, a clôturé mardi 13 octobre à 6 035,35 points, en baisse de 5,46 %, après avoir perdu jusqu'à 7,41 % en séance [1][2].",
-      "La chute a suivi l'annonce du chinois CXMT, qui prévoit de lancer d'ici la fin de l'année une mémoire DRAM pour serveurs d'un nouveau type ; les analystes y voient un risque de pression sur les prix pour les fabricants sud-coréens [1].",
-      "Les investisseurs étrangers ont vendu pour 4 530 milliards de wons (environ 3,4 milliards de dollars) d'actions, et l'indice a perdu près de 14 % en cinq séances [1]."
-    ],
-    "why": [
-      "La Corée du Sud vit en grande partie de ses puces mémoire : Samsung et SK hynix pèsent très lourd à la Bourse. Quand la crainte d'un rival chinois apparaît, tout l'indice vacille [1].",
-      "Les États-Unis ont longtemps cherché à freiner la Chine sur les puces. Cette séance montre que Pékin avance quand même dans la mémoire, et que les marchés le prennent au sérieux. Le recul de l'enthousiasme pour l'IA et un pétrole proche d'un plus haut de deux semaines ont aussi joué, selon la presse [1]."
-    ],
-    "forMe": "Les puces mémoire sont dans ton téléphone, ton ordinateur et les serveurs de l'IA. Si un nouveau fabricant fait baisser leurs prix, tes appareils peuvent coûter moins cher à terme, mais l'économie d'un pays comme la Corée du Sud en souffre.",
-    "figures": [
-      {
-        "value": "−5,46 %",
-        "label": "chute du Kospi le 13 octobre, à 6 035,35 points",
-        "src": 1
-      },
-      {
-        "value": "3,4 Md$",
-        "label": "actions vendues par les investisseurs étrangers en une séance",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "semi-conducteurs"
-    ],
-    "sources": [
-      {
-        "short": "KED Global",
-        "name": "KED Global, « Kospi tumbles as chip rout deepens, briefly breaking below 6,000 »",
-        "url": "https://www.kedglobal.com/korean-stock-market/newsView/ked202610130001"
-      },
-      {
-        "short": "Ajupress",
-        "name": "Ajupress, « KOSPI plunges over 5% as foreign selloff batters chip giants »",
-        "url": "https://www.ajupress.com/view/20261013171446394"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-chine-sanctions-belize-paraguay",
-    "date": "2026-10-14",
-    "region": "Amériques",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Asunción",
-        "label": "Paraguay",
-        "coords": [
-          -57.58,
-          -25.28
-        ]
-      },
-      {
-        "name": "Belmopan",
-        "label": "Belize",
-        "coords": [
-          -88.77,
-          17.25
-        ]
-      }
-    ],
-    "title": "Pékin sanctionne deux ministres d'Amérique latine parce que leurs pays gardent Taïwan comme allié",
-    "summary": "La Chine a visé le ministre de la Communication du Paraguay et le ministre des Affaires étrangères du Belize. Washington dénonce de la « coercition ».",
-    "points": [
-      "Lundi 12 octobre, la Chine a sanctionné Gustavo Villate, ministre paraguayen de la Communication, et Francis Fonseca, chef de la diplomatie du Belize : leurs avoirs en Chine sont gelés, ils sont interdits d'entrée à Hong Kong et Macao, et les Chinois ne peuvent plus traiter avec eux [1].",
-      "Pékin accuse certains « politiciens anti-chinois » de pousser leur pays à garder des relations diplomatiques avec Taïwan [1].",
-      "Le département d'État américain a répondu que Washington s'oppose à la « coercition » de la Chine contre des pays de l'hémisphère ; Taïwan parle de « répression transnationale » [1][2]."
-    ],
-    "why": [
-      "Paraguay et Belize font partie des 12 seuls pays qui reconnaissent encore officiellement Taïwan [1]. Pékin leur envoie un message : garder Taïwan a un prix, y compris pour leurs dirigeants.",
-      "C'est une façon de faire pression sans droits de douane ni armée, en visant des personnes. Elle s'ajoute à la rivalité entre Washington et Pékin pour influencer l'Amérique latine."
-    ],
-    "forMe": "Ce genre de bras de fer décide qui construit les ports, les routes et les réseaux 5G d'un pays. Plus la Chine et les États-Unis se disputent l'Amérique latine, plus les entreprises européennes doivent choisir leurs partenaires avec prudence.",
-    "figures": [
-      {
-        "value": "12",
-        "label": "pays seulement ont encore des relations diplomatiques officielles avec Taïwan, dont le Paraguay et le Belize",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « China sanctions Paraguay, Belize ministers over Taiwan ties » (12 oct. 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/12/china-sanctions-paraguay-belize-ministers-over-taiwan-ties"
-      },
-      {
-        "short": "US News",
-        "name": "US News, « US says it opposes Chinese \"coercion\" after Belize, Paraguay ministers sanctioned »",
-        "url": "https://www.usnews.com/news/world/articles/2026-10-12/us-says-it-opposes-chinese-coercion-after-belize-paraguay-ministers-sanctioned"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-ukraine-treve-energetique",
-    "date": "2026-10-14",
-    "region": "Europe",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Kiev",
-        "label": "Ukraine",
-        "coords": [
-          30.52,
-          50.45
-        ]
-      }
-    ],
-    "title": "Trump annonce une « trêve de l'énergie » en Ukraine, mais les frappes continuent",
-    "summary": "Donald Trump dit qu'un cessez-le-feu sur l'énergie est en vigueur. Kiev affirme que la Russie a déjà frappé au moins six sites énergétiques depuis, et l'Europe doute.",
-    "points": [
-      "Dimanche 11 octobre, Trump a annoncé sur Truth Social un « cessez-le-feu énergétique » ; Volodymyr Zelensky dit que les forces russes ont frappé au moins six installations énergétiques ukrainiennes depuis, et Trump reconnaît des violations des deux côtés [1].",
-      "Le Kremlin dit que des discussions sont en cours, mais rejette la proposition de Zelensky d'une trêve de 60 jours pour organiser des élections [1][3].",
-      "L'annonce est venue deux jours après un assouplissement temporaire des sanctions américaines sur le diesel russe ; le chancelier allemand Friedrich Merz maintient les sanctions, et l'UE a ajouté 1 600 personnes et entités à sa liste [3]. Berlin et Kiev jugent la trêve trop étroite : elle devrait aussi protéger le réseau électrique ukrainien [2]."
-    ],
-    "why": [
-      "Les raffineries et les centrales sont devenues des cibles : les frapper fait monter les prix du carburant et plonge des villes dans le noir. Une trêve sur l'énergie serait donc utile à tout le monde, si elle tenait [1].",
-      "Mais elle montre aussi un désaccord entre Washington, qui assouplit des sanctions, et l'Europe, qui les durcit. Les deux camps ne parlent pas de la même chose : Trump vise surtout les raffineries, Kiev et Berlin veulent aussi protéger l'électricité [2][3]."
-    ],
-    "forMe": "Le diesel et le gaz que tu paies dépendent aussi de ce que la guerre fait aux raffineries. Une vraie trêve pourrait calmer les prix ; une trêve de façade, non.",
-    "figures": [
-      {
-        "value": "6",
-        "label": "installations énergétiques ukrainiennes frappées depuis l'annonce, selon Kiev",
-        "src": 1
-      },
-      {
-        "value": "1 600",
-        "label": "personnes et entités ajoutées à la liste de sanctions de l'UE",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Trump insists energy ceasefire holds as Ukraine reports new Russian strikes » (13 oct. 2026)",
-        "url": "https://www.aljazeera.com/economy/2026/10/13/trump-insists-energy-ceasefire-holds-as-ukraine-reports-new-russian-strikes"
-      },
-      {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Germany and Ukraine See Trump's Refinery Energy Truce As Too Narrow » (13 oct. 2026)",
-        "url": "https://www.bloomberg.com/news/newsletters/2026-10-13/germany-and-ukraine-see-trump-s-refinery-energy-truce-as-too-narrow"
-      },
-      {
-        "short": "Euronews",
-        "name": "Euronews, « No respite for Ukraine despite Trump's energy truce announcement » (13 oct. 2026)",
-        "url": "https://www.euronews.com/2026/10/13/no-respite-for-ukraine-despite-trumps-energy-truce-announcement"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-wang-yi-bakou-balkans",
-    "date": "2026-10-14",
-    "region": "Europe",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Bakou",
-        "label": "Azerbaïdjan",
-        "coords": [
-          49.87,
-          40.41
-        ]
-      },
-      {
-        "name": "Podgorica",
-        "label": "Monténégro",
-        "coords": [
-          19.26,
-          42.44
-        ]
-      }
-    ],
-    "title": "Le grand diplomate chinois part pour Bakou puis les Balkans, jusqu'au Monténégro",
-    "summary": "Wang Yi assiste au sommet de la CICA à Bakou, puis visite la Croatie, le Monténégro et la Bulgarie du 14 au 20 octobre. Pékin cherche des appuis sur la route de l'Europe.",
-    "points": [
-      "Le ministère chinois des Affaires étrangères a annoncé le 12 octobre que Wang Yi représentera Xi Jinping au 7e sommet de la CICA à Bakou, le 15 octobre, dans un voyage qui court du 14 au 20 octobre [1][2].",
-      "Il visitera aussi la Croatie, le Monténégro et la Bulgarie ; c'est sa première visite officielle en Azerbaïdjan depuis sept ans [2].",
-      "Selon le South China Morning Post, ce serait la première visite d'un chef de la diplomatie chinoise au Monténégro depuis l'indépendance du pays il y a vingt ans, une information que je n'ai pas pu recouper [3]. La porte-parole chinoise cite l'autoroute Nord-Sud du Monténégro comme projet phare commun [1]."
-    ],
-    "why": [
-      "La CICA réunit 28 pays d'Asie, dont la Chine, l'Inde, l'Iran, la Russie et la Turquie [2]. Bakou, sur la route entre la Chine et l'Europe, est un lieu clé pour Pékin.",
-      "Les Balkans sont à l'entrée de l'Union européenne. Y envoyer son ministre, c'est montrer qu'on peut financer des routes et des chantiers là où l'UE hésite, ce qui inquiète certains Européens."
-    ],
-    "forMe": "Les routes, les ports et les voies ferrées que la Chine finance autour de l'Europe décident par où passeront demain les marchandises que tu achètes en ligne.",
-    "figures": [
-      {
-        "value": "28",
-        "label": "pays membres de la CICA, dont la Chine, l'Inde, l'Iran, la Russie et la Turquie",
-        "src": 2
-      },
-      {
-        "value": "7 ans",
-        "label": "depuis la dernière visite officielle de Wang Yi en Azerbaïdjan",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Ambassade de Chine",
-        "name": "Ambassade de Chine, « Wang Yi to Attend CICA Summit... and Visit Azerbaijan, Croatia, Montenegro and Bulgaria » (12 oct. 2026)",
-        "url": "https://ki.china-embassy.gov.cn/eng/zgywx/202610/t20261012_12038574.htm"
-      },
-      {
-        "short": "Anadolu",
-        "name": "Anadolu, « China's top diplomat to visit Azerbaijan, Croatia, Montenegro, Bulgaria, attend CICA summit in Baku »",
-        "url": "https://aa.com.tr/en/asia-pacific/china-s-top-diplomat-to-visit-azerbaijan-croatia-montenegro-bulgaria-attend-cica-summit-in-baku/4086246"
-      },
-      {
-        "short": "SCMP via ua.news",
-        "name": "South China Morning Post (relayé par ua.news), « Wang Yi to visit Azerbaijan and three Balkan countries »",
-        "url": "https://ua.news/en/world/van-yi-vidvidaie-azerbaidzhan-i-tri-balkanski-krayini-south-china-morning-post"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-gazoduc-asie-centrale-explosion",
-    "date": "2026-10-14",
-    "region": "Europe",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Volchkovo, région de Penza",
-        "label": "Russie",
-        "coords": [
-          45,
-          53.2
-        ]
-      }
-    ],
-    "title": "Une explosion touche le gazoduc qui relie l'Asie centrale à la Russie, avec des flammes de 70 mètres",
-    "summary": "Le gazoduc « Asie centrale–Centre » a explosé mardi dans la région de Penza, en Russie. Il a été fermé ; la cause est inconnue et l'information n'est pas vérifiée de façon indépendante.",
-    "points": [
-      "Une explosion a touché mardi 13 octobre le gazoduc « Asie centrale–Centre » près du village de Volchkovo, dans la région de Penza ; les flammes ont atteint environ 70 mètres et la conduite a été coupée [1][2].",
-      "D'après les premières informations, il n'y a ni mort ni blessé ; la cause est inconnue et aucun délai de reprise n'est annoncé [1][2].",
-      "Le réseau relie le Turkménistan, l'Ouzbékistan et le Kazakhstan à la Russie ; depuis octobre 2023, une partie sert à acheminer du gaz russe vers l'Ouzbékistan via le Kazakhstan [1]. L'alerte initiale vient de la filiale de Gazprom Transgaz Saratov, citée par Kommersant ; elle n'est pas vérifiée de façon indépendante [1][3]."
-    ],
-    "why": [
-      "Ce gazoduc est un fil qui relie trois pays d'Asie centrale à la Russie. Si la conduite reste fermée, le gaz qui y circule doit être remplacé ou réduit [1].",
-      "Reste la question de la cause : accident, sabotage ou autre. Les sources que j'ai pu consulter ne la donnent pas, et il vaut mieux attendre les enquêtes avant de conclure [1][3]."
-    ],
-    "forMe": "Le gaz passe par de longs tuyaux que la guerre et les tensions rendent fragiles. Chaque incident sur ces conduites rappelle que l'énergie dépend de routes que personne ne contrôle entièrement.",
-    "figures": [
-      {
-        "value": "70 m",
-        "label": "hauteur des flammes après l'explosion près de Volchkovo",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Caspian Post",
-        "name": "Caspian Post, « Explosion Hits Central Asia–Center Gas Pipeline in Russia's Penza »",
-        "url": "https://caspianpost.com/central-asia/explosion-hits-central-asia-center-gas-pipeline-in-russia-s-penza"
-      },
-      {
-        "short": "1news.az",
-        "name": "1news.az, « Explosion hits the Central Asia–Center gas pipeline in Russia » (13 oct. 2026)",
-        "url": "https://1news.az/en/news/20261013162505730-Explosion-hits-the-Central-Asia-Center-gas-pipeline-in-Russia"
-      },
-      {
-        "short": "EADaily",
-        "name": "EADaily, « Mash: Explosion on a gas pipeline from Russia to Kazakhstan and Uzbekistan » (13 oct. 2026)",
-        "url": "https://eadaily.com/en/news/2026/10/13/mash-explosion-on-a-gas-pipeline-from-russia-to-kazakhstan-and-uzbekistan"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-liban-mission-ue-armee",
-    "date": "2026-10-14",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Beyrouth",
-        "label": "Liban",
-        "coords": [
-          35.5,
-          33.89
-        ]
-      }
-    ],
-    "title": "L'Union européenne va former l'armée libanaise, alors que les casques bleus préparent leur départ",
-    "summary": "Lundi, les ministres européens des Affaires étrangères ont créé une mission de trois ans pour conseiller et entraîner l'armée et les forces de sécurité du Liban.",
-    "points": [
-      "Le lundi 12 octobre, les ministres des Affaires étrangères de l'UE ont créé une mission d'appui au Liban, avec un premier mandat de trois ans, à la fois civile et militaire [1][2].",
-      "Le volet militaire conseillera et formera l'armée libanaise sur la sécurité des frontières et de la mer ; le volet civil formera les forces de sécurité intérieure, notamment contre la cybercriminalité et la contrebande [1][2].",
-      "Selon Kaja Kallas, plus de dix États membres sont prêts à y contribuer ; la mission ne remplace pas la force de l'ONU, la FINUL, dont le mandat s'achève en décembre [1][2]."
-    ],
-    "why": [
-      "Quand les casques bleus partiront, quelqu'un devra aider l'armée libanaise à tenir le sud du pays. L'UE veut y avoir sa place plutôt que de laisser le vide [1].",
-      "Le calendrier reste flou : il faut encore de la planification, et les sources ne s'accordent pas sur la date de début. Le nombre de soldats et de pays n'est pas fixé [1][2]."
-    ],
-    "forMe": "Un Liban qui tient son territoire coûte moins cher en réfugiés et en crises à l'Europe voisine. C'est le calcul derrière cet envoi.",
-    "figures": [
-      {
-        "value": "3 ans",
-        "label": "durée du premier mandat de la mission européenne",
-        "src": 2
-      },
-      {
-        "value": "> 10",
-        "label": "États de l'UE prêts à y contribuer, selon Kaja Kallas",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Euronews",
-        "name": "Euronews, « EU agrees new security mission in Lebanon as UN peacekeepers prepare to leave » (12 oct. 2026)",
-        "url": "https://www.euronews.com/2026/10/12/eu-agrees-new-security-mission-in-lebanon-as-un-peacekeepers-prepare-to-leave"
-      },
-      {
-        "short": "Asharq Al-Awsat",
-        "name": "Asharq Al-Awsat, « EU Establishes New Lebanon Support Mission »",
-        "url": "https://english.aawsat.com/arab-world/5328942-eu-establishes-new-lebanon-support-mission"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-14-ormuz-navires-touches",
-    "date": "2026-10-14",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Détroit d'Ormuz",
-        "label": "Ormuz",
-        "coords": [
-          56.5,
-          26.5
-        ]
-      }
-    ],
-    "title": "Ormuz : un porte-conteneurs et un pétrolier touchés par des projectiles, pendant que Washington escorte le pétrole",
-    "summary": "Deux navires ont été touchés mardi dans le détroit, sans que l'auteur soit connu. Les États-Unis disent avoir aidé à faire passer plus de 19 millions de barils la veille.",
-    "points": [
-      "L'agence britannique de sécurité maritime UKMTO a signalé mardi 13 octobre qu'un porte-conteneurs avait été touché par un projectile inconnu dans le détroit d'Ormuz ; une autre alerte faisait état d'un pétrolier touché [1][2].",
-      "Le commandement américain CENTCOM affirme avoir aidé ses partenaires du Golfe à faire passer plus de 19 millions de barils de brut lundi 12 octobre, et rejette la prétention des Gardiens de la révolution iraniens de contrôler le détroit [3].",
-      "Selon l'Iran, la réponse américaine à sa proposition pour rouvrir le détroit est « insuffisante » ; Washington veut parler du nucléaire dès le début, Téhéran veut d'abord rouvrir Ormuz [4]."
-    ],
-    "why": [
-      "Le détroit d'Ormuz est la porte de sortie du pétrole du Golfe. Tant que des navires y sont touchés, les assureurs et les armateurs hésitent, et les prix de l'énergie restent tendus.",
-      "Le chiffre de 19 millions de barils vient de l'armée américaine elle-même et n'est pas vérifié de façon indépendante [3]. L'auteur des tirs sur les navires n'est pas identifié dans les sources consultées [1][2]."
-    ],
-    "forMe": "Quand le pétrole peine à sortir du Golfe, ça se voit à la pompe et sur les prix de l'électricité en Europe, comme ces derniers mois.",
-    "figures": [
-      {
-        "value": "19 millions",
-        "label": "de barils escortés lundi par les États-Unis, selon CENTCOM (non vérifié)",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Deccan Herald",
-        "name": "Deccan Herald, « Container ship hit by projectile within Hormuz strait, UKMTO says »",
-        "url": "https://www.deccanherald.com/world/middle-east/container-ship-hit-by-projectile-within-hormuz-strait-ukmto-says-4181778"
-      },
-      {
-        "short": "MarineLink",
-        "name": "MarineLink, « Tanker Hit by Projectile in Strait of Hormuz, UKMTO Reports »",
-        "url": "https://www.marinelink.com/news/tanker-hit-projectile-strait-hormuz-ukmto-543118"
-      },
-      {
-        "short": "Jerusalem Post",
-        "name": "Jerusalem Post, « Live updates » (13 oct. 2026)",
-        "url": "https://jpost.com/middle-east/iran-news/2026-10-13/live-updates-911493"
-      },
-      {
-        "short": "Iran International",
-        "name": "Iran International, « Iran says US response on reopening Hormuz insufficient » (direct)",
-        "url": "https://www.iranintl.com/en/liveblog/202610105959"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-cuba-solaire-blocus",
-    "date": "2026-10-13",
-    "region": "Amériques",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "La Havane",
-        "label": "Cuba",
-        "coords": [
-          -82.37,
-          23.13
-        ]
-      }
-    ],
-    "title": "Privée de pétrole par Washington, Cuba se couvre de panneaux solaires chinois",
-    "summary": "Avec le blocus pétrolier américain, Cuba n'a plus assez de carburant pour ses centrales. L'île mise sur le soleil, avec l'aide de la Chine, mais le solaire ne couvre pas encore ses besoins.",
-    "points": [
-      "Selon des données du centre de recherche Ember, les exportations chinoises de panneaux solaires vers Cuba seraient passées d'environ 3 millions de dollars en 2023 à 117 millions en 2025 [1].",
-      "Un accord avec la Chine prévoit 92 parcs solaires dans le pays d'ici 2028 ; environ 50 fonctionnaient déjà à la mi-2026, et Cuba s'est engagée à atteindre au moins 24 % d'énergies renouvelables d'ici 2030 [1]. Le solaire fournirait environ 10 % de l'électricité, contre près de 3 % en 2024 [1].",
-      "Cette course au solaire répond à un décret signé le 29 janvier 2026 par Donald Trump, qui ouvre la voie à des droits de douane contre les pays qui fournissent du pétrole à Cuba [3]. Cuba a aussi réduit les transports et les horaires des écoles et des lieux de travail [2]."
-    ],
-    "why": [
-      "Quand un pays ne peut plus acheter son carburant, il doit produire son énergie lui-même. Cuba le fait avec les moyens qu'elle a : des panneaux chinois bon marché, installés à toute vitesse.",
-      "Mais les parcs sont petits et dispersés dans l'île, le soleil ne brille pas tous les jours et le stockage manque : les experts estiment que le solaire ne peut pas encore couvrir les pics de consommation, et le pays dépend toujours largement des énergies fossiles [1].",
-      "C'est aussi un exemple de la façon dont une sanction américaine peut pousser un pays vers la Chine : Pékin fournit les panneaux, Washington coupe le pétrole."
-    ],
-    "forMe": "Cuba est un cas extrême, mais il montre ce qui arrive quand l'énergie devient une arme : chacun cherche une source qu'il contrôle. Le même raisonnement pousse l'Europe à miser sur le solaire et l'éolien, et il explique pourquoi la Chine vend tant de panneaux dans le monde.",
-    "figures": [
-      {
-        "value": "3 → 117 millions $",
-        "label": "panneaux solaires chinois exportés vers Cuba, de 2023 à 2025 (Ember)",
-        "src": 1
-      },
-      {
-        "value": "92",
-        "label": "parcs solaires prévus à Cuba d'ici 2028, environ 50 déjà en service à la mi-2026",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "sanctions",
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "CTV News",
-        "name": "CTV News, « As the US starves it of oil, Cuba is pulling off one of the fastest solar revolutions on the planet with China's help »",
-        "url": "https://www.ctvnews.ca/world/article/as-the-us-starves-it-of-oil-cuba-is-pulling-off-one-of-the-fastest-solar-revolutions-on-the-planet-with-chinas-help/"
-      },
-      {
-        "short": "Mezha",
-        "name": "Mezha, « US oil blockade pushes Cuba to accelerate solar rollout with Chinese backing »",
-        "url": "https://mezha.net/eng/news/5130cea3_us_oil_blockade/"
-      },
-      {
-        "short": "PBS NewsHour",
-        "name": "PBS NewsHour, « Trump threatens tariffs on any country that sells oil to Cuba, putting pressure on Mexico » (30 janv. 2026)",
-        "url": "https://www.pbs.org/newshour/amp/politics/trump-threatens-tariffs-on-any-country-that-sells-oil-to-cuba-putting-pressure-on-mexico"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-afrique-agence-notation",
-    "date": "2026-10-13",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Port-Louis",
-        "label": "Maurice",
-        "coords": [
-          57.5,
-          -20.16
-        ]
-      }
-    ],
-    "title": "L'Afrique lance sa propre agence de notation pour juger ses dettes autrement",
-    "summary": "Inaugurée à Maurice le 7 octobre, l'Agence de notation de crédit africaine veut contester les notes des géants occidentaux, qui, selon les États africains, leur coûtent trop cher en intérêts.",
-    "points": [
-      "L'Africa Credit Rating Agency (AfCRA) a été inaugurée le mercredi 7 octobre 2026 à Balaclava, au nord de Port-Louis, à Maurice, où se trouve son siège [1].",
-      "Elle doit donner des avis de crédit sur des États, des entreprises, des collectivités et des institutions, en se concentrant surtout sur les dettes en monnaie locale ; elle n'appartiendra pas aux gouvernements africains [1].",
-      "Les gouvernements africains reprochent aux agences existantes d'imposer une « prime de préjugé » qui renchérit leurs emprunts ; le Ghana et la Zambie disent que des dégradations de note ont aggravé leurs crises de dette [1]. Le président de la Commission de l'Union africaine, Mahmoud Ali Youssouf, a prévenu qu'il ne fallait pas attendre de baisse immédiate du coût de l'argent [1]."
-    ],
-    "why": [
-      "La note d'une agence décide du taux auquel un pays peut emprunter : plus la note est basse, plus les intérêts sont élevés. Pour des pays déjà endettés, quelques points de pourcentage pèsent lourd.",
-      "L'idée de l'AfCRA est de proposer un autre regard, plus proche du terrain. La difficulté sera de convaincre les investisseurs : une agence n'a de valeur que si ses notes sont crues par ceux qui prêtent.",
-      "Le lancement suit une dispute publique entre le Mécanisme africain d'évaluation par les pairs et l'agence Fitch, après la dégradation de la banque Afreximbank ; Fitch défend sa méthode [1]."
-    ],
-    "forMe": "Les notes des agences influencent les taux de la dette de tous les pays, y compris la France. Voir l'Afrique créer la sienne montre que ce pouvoir, longtemps réservé à quelques entreprises occidentales, est de plus en plus contesté.",
-    "figures": [
-      {
-        "value": "7 octobre 2026",
-        "label": "inauguration de l'agence à Maurice, après un an de retard sur le calendrier prévu",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Business Day",
-        "name": "Business Day, « Africa launches credit ratings agency to tackle risk bias » (8 oct. 2026)",
-        "url": "https://www.businessday.co.za/economy/2026-10-08-africa-launches-credit-ratings-agency-to-tackle-risk-bias/"
-      },
-      {
-        "short": "Semafor",
-        "name": "Semafor, « Africa's first credit rating agency set to launch » (7 oct. 2026)",
-        "url": "https://www.semafor.com/article/10/07/2026/africas-first-credit-rating-agency-set-to-launch"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-nigeria-opay-bourse-new-york",
-    "date": "2026-10-13",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Lagos",
-        "label": "Nigeria",
-        "coords": [
-          3.38,
-          6.52
-        ]
-      }
-    ],
-    "title": "Nigeria : OPay, la fintech passée du déficit au profit, vise la Bourse de New York",
-    "summary": "Le paiement mobile OPay a déposé son dossier d'introduction à New York le 9 octobre. Il montre des bénéfices en hausse, mais aussi des risques sur ses placements.",
-    "points": [
-      "OPay a déposé le 9 octobre auprès du régulateur américain (SEC) un dossier d'introduction en Bourse (formulaire F-1) pour coter ses actions à New York sous le code OPAY, avec une valorisation visée d'environ 4 milliards de dollars ; aucune date de cotation n'est confirmée [1][2].",
-      "Selon ce dossier, le bénéfice net atteint 90,9 millions de dollars au premier semestre 2026, contre 21,7 millions un an plus tôt, pour 467,1 millions de dollars de revenus [2]. En 2025, la société a gagné 72,47 millions de dollars, après une perte de 50,98 millions en 2024 [3].",
-      "Le dossier signale aussi un portefeuille de placements à court terme de 532,9 millions de dollars au 30 juin 2026, qui comporte des risques de liquidité et de contrepartie [1]."
-    ],
-    "why": [
-      "OPay est l'une des applications qui remplacent la banque pour des millions de Nigérians : paiements, transferts, petits prêts. Son entrée à New York serait un signal fort pour la finance africaine.",
-      "Mais ces chiffres viennent d'un dossier de la société elle-même et de la presse, et le bénéfice net diffère de la perte attribuée aux actionnaires ordinaires à cause d'éléments non monétaires [3]. Les investisseurs vont donc regarder de près."
-    ],
-    "forMe": "Quand une application de paiement née à Lagos peut lever des milliards à New York, cela montre que la finance mobile africaine pèse désormais dans l'économie mondiale. C'est le même mouvement que celui des paiements par téléphone qui ont grandi en Chine ou en Inde.",
-    "figures": [
-      {
-        "value": "90,9 millions $",
-        "label": "bénéfice net d'OPay au premier semestre 2026",
-        "src": 2
-      },
-      {
-        "value": "≈ 4 milliards $",
-        "label": "valorisation visée à New York",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Nairametrics",
-        "name": "Nairametrics, « OPay discloses $532.9 million short-term investment portfolio ahead of US IPO » (11 oct. 2026)",
-        "url": "https://nairametrics.com/2026/10/11/opay-discloses-532-9-million-short-term-investment-portfolio-ahead-of-us-ipo/"
-      },
-      {
-        "short": "EdgeX",
-        "name": "EdgeX News, « OPay Reports $90.9 Million Six-Month Profit as It Files for US IPO »",
-        "url": "https://pro.edgex.exchange/en-US/news/article/opay-nyse-listing-90-9-million-profit"
-      },
-      {
-        "short": "Nairametrics",
-        "name": "Nairametrics, « OPay swings to profit in FY2025 as revenue surges 161% to $536.3 million » (13 août 2026)",
-        "url": "https://nairametrics.com/2026/08/13/opay-swings-to-profit-in-fy2025-as-revenue-surges-161-to-536-3-million"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-turquie-bulgarie-chemin-de-fer",
-    "date": "2026-10-13",
-    "region": "Europe",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Kapıkule (frontière bulgare)",
-        "label": "Turquie",
-        "coords": [
-          26.36,
-          41.72
-        ]
-      }
-    ],
-    "title": "Un train neuf jusqu'à la frontière bulgare : l'Europe a payé 275 millions d'euros pour ouvrir la route vers l'Asie centrale",
-    "summary": "La Turquie a inauguré le 9 octobre un tronçon de voie ferrée vers la Bulgarie, financé en partie par l'Union européenne. Il doit fluidifier le « corridor du milieu » entre l'Europe et l'Asie centrale.",
-    "points": [
-      "Le 9 octobre, le président turc Recep Tayyip Erdoğan et la commissaire européenne à l'élargissement Marta Kos ont inauguré le tronçon Çerkezköy–Kapıkule, d'environ 153 km, qui fait partie de la ligne Halkalı–Kapıkule vers la frontière avec la Bulgarie [1][2].",
-      "L'Union européenne a apporté une subvention de 275 millions d'euros, via son instrument d'aide aux pays candidats (IPA II) ; la Commission parle du plus grand projet d'infrastructure à ce jour de la coopération UE-Turquie [1]. La subvention avait été annoncée en 2019 [3].",
-      "La Commission en attend une réduction des temps de transit sur le « corridor du milieu », la route de marchandises entre l'Europe et l'Asie centrale via le Caucase ; l'Astana Times parle d'une meilleure capacité de fret à l'ouest de ce corridor [2]."
-    ],
-    "why": [
-      "Le corridor du milieu est la route de marchandises qui relie l'Asie centrale à l'Europe en traversant la mer Caspienne, le Caucase puis la Turquie. Chaque maillon trop lent freine tout le reste.",
-      "La Commission présente cette ligne comme le premier résultat concret de son programme de connexions avec l'Asie centrale par le Caucase du Sud [2].",
-      "Les chiffres varient selon les sources : la longueur annoncée va de 153 à 189 km selon le tronçon pris en compte, et le coût total n'est pas toujours le même [1][3]."
-    ],
-    "forMe": "Quand une route plus rapide s'ouvre entre l'Asie et l'Europe, c'est le prix et le délai de livraison de certains produits qui peuvent changer. La Turquie, déjà un pays-clé du commerce entre les deux continents, y gagne encore en poids face à Bruxelles.",
-    "figures": [
-      {
-        "value": "275 millions €",
-        "label": "subvention de l'Union européenne pour la ligne",
-        "src": 1
-      },
-      {
-        "value": "≈ 153 km",
-        "label": "longueur du tronçon Çerkezköy–Kapıkule inauguré",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Commission européenne (EEAS)",
-        "name": "EEAS, « Commissioner Kos attends inauguration of key railway project at the border between Türkiye and Bulgaria »",
-        "url": "https://www.eeas.europa.eu/delegations/turkiye/commissioner-kos-attends-inauguration-key-railway-project-border-between-turkiye-and-bulgaria_en"
-      },
-      {
-        "short": "Astana Times",
-        "name": "The Astana Times, « Türkiye Opens EU-Backed Railway Link to Boost Europe-Central Asia Connectivity » (oct. 2026)",
-        "url": "https://astanatimes.com/2026/10/turkiye-opens-eu-backed-railway-link-to-boost-europe-central-asia-connectivity/"
-      },
-      {
-        "short": "Turkish Minute",
-        "name": "Turkish Minute, « EU grants Turkey €275 million to build railway from Istanbul to Bulgarian border » (11 juin 2019)",
-        "url": "https://turkishminute.com/2019/06/11/eu-grants-turkey-e275-million-to-build-railway-from-istanbul-to-bulgarian-border/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-kazakhstan-cable-caspienne",
-    "date": "2026-10-13",
-    "region": "Asie",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Aktau",
-        "label": "Kazakhstan",
-        "coords": [
-          51.17,
-          43.65
-        ]
-      },
-      {
-        "name": "Sumqayit",
-        "label": "Azerbaïdjan",
-        "coords": [
-          49.67,
-          40.59
-        ]
-      }
-    ],
-    "title": "Un câble internet au fond de la mer Caspienne relie le Kazakhstan à l'Azerbaïdjan",
-    "summary": "Le câble est posé entre Aktau et Sumqayit. Il doit offrir une capacité de plus de 400 térabits par seconde, mais sa date de mise en service reste floue.",
-    "points": [
-      "Le Kazakhstan et l'Azerbaïdjan ont fini de poser le câble de fibre optique sur le fond de la mer Caspienne ; il a atteint la côte kazakhe début août 2026, et les travaux se poursuivent à terre [1].",
-      "Il est conçu pour plus de 400 térabits par seconde et exploité par la société commune CaspiLink B.V. ; sa longueur est donnée à 380 km côté azerbaïdjanais et 390 km côté kazakh [1].",
-      "Selon le ministre kazakh de l'Intelligence artificielle et du Développement numérique, il doit entrer en service en octobre 2026 [2], alors que JAM News parle d'une exploitation commerciale d'ici la fin de l'année [3]."
-    ],
-    "why": [
-      "Internet passe par des câbles. Relier les deux rives de la Caspienne ouvre une nouvelle voie directe entre l'Asie centrale et le Caucase.",
-      "Des analystes y voient un changement de la géographie numérique de l'Eurasie [3].",
-      "Il faut rester prudent : au moment des dernières informations, la mise en service n'était pas confirmée."
-    ],
-    "forMe": "Les services que tu utilises (vidéo, cloud, jeux) transitent par des câbles de ce type. Plus il y en a, plus le réseau est solide en cas de panne.",
-    "figures": [
-      {
-        "value": "400 Tbit/s",
-        "label": "capacité prévue du câble transcaspien",
-        "src": 1
-      },
-      {
-        "value": "≈ 380 km",
-        "label": "longueur du câble, côté azerbaïdjanais",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Telecom Review Asia",
-        "name": "Telecom Review Asia, « Trans-Caspian Fiber-Optic Cable Successfully Installed »",
-        "url": "https://www.telecomreviewasia.com/news/industry-news/29988-trans-caspian-fiber-optic-cable-successfully-installed/"
-      },
-      {
-        "short": "Caspian Post",
-        "name": "Caspian Post, « Trans-Caspian Fiber-Optic Link Between Kazakhstan and Azerbaijan Nears Launch »",
-        "url": "https://caspianpost.com/kazakhstan/trans-caspian-fiber-optic-link-between-kazakhstan-and-azerbaijan-nears-launch"
-      },
-      {
-        "short": "JAM News",
-        "name": "JAM News, « First digital bridge beneath Caspian Sea: How Sumqayit-Aktau cable reshapes Eurasia's geostrategic landscape »",
-        "url": "https://jam-news.net/first-digital-bridge-beneath-caspian-sea-how-sumqayit-aktau-cable-reshapes-eurasias-geostrategic-landscape/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-arabie-forum-energie-riyad",
-    "date": "2026-10-13",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Riyad",
-        "label": "Arabie saoudite",
-        "coords": [
-          46.68,
-          24.71
-        ]
-      }
-    ],
-    "title": "Riyad réunit les ministres de l'énergie du monde malgré les bombes sur son aéroport",
-    "summary": "Le Forum international de l'énergie s'est tenu à Riyad le 11 octobre, alors que l'aéroport de la ville venait d'être visé. L'Égypte et l'Arabie ont signé un accord sur le pétrole et le gaz.",
-    "points": [
-      "La 17e réunion ministérielle du Forum international de l'énergie (IEF17) s'est tenue le dimanche 11 octobre à Riyad, sur le thème « Sécurité énergétique et objectifs communs dans une ère nouvelle » ; elle ouvrait une semaine de l'énergie qui comprend aussi le Congrès mondial du pétrole [1][2].",
-      "Selon un compte rendu irakien, la conférence s'est tenue malgré des bombardements sur l'aéroport international King Khalid de Riyad, que les responsables saoudiens attribuent aux Houthis du Yémen, et elle a salué l'annonce du retour des États-Unis au Forum [2].",
-      "À l'issue de la réunion, le ministre égyptien du Pétrole, Karim Badawi, et le ministre saoudien de l'Énergie, le prince Abdulaziz ben Salmane, ont signé un protocole d'accord sur le commerce, le transport, le stockage et la distribution de pétrole brut, de produits pétroliers et de gaz [3]."
-    ],
-    "why": [
-      "Quand le détroit d'Ormuz est menacé, la question n'est plus seulement le prix du pétrole mais sa sécurité : par où il passe, qui peut le protéger, qui peut le stocker.",
-      "Que la réunion ait lieu malgré les attaques montre que l'Arabie saoudite veut se présenter comme un pôle stable de l'énergie mondiale. Le retour annoncé des États-Unis dans l'enceinte la renforce, mais il repose sur un seul compte rendu, à confirmer."
-    ],
-    "forMe": "Les décisions prises dans ces réunions pèsent sur le prix du carburant et du gaz en France. Les accords entre pays producteurs et pays consommateurs sont la face discrète de ce qui se joue aussi dans le détroit d'Ormuz.",
-    "figures": [
-      {
-        "value": "11 octobre",
-        "label": "date de la réunion ministérielle IEF17 à Riyad",
-        "src": 1
-      },
-      {
-        "value": "11–13 octobre",
-        "label": "semaine de l'énergie à Riyad (Congrès mondial du pétrole, ministériel Énergie propre)",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Asharq Al-Awsat",
-        "name": "Asharq Al-Awsat, « Riyadh Kicks off Energy Week with Ministerial Meeting on Supply Security, Market Stability »",
-        "url": "https://english.aawsat.com/node/5328271"
-      },
-      {
-        "short": "Iraqi News",
-        "name": "Iraqi News, « Iraq attends Riyadh energy summit as Saudi minister declares city capital of energy security » (11 oct. 2026)",
-        "url": "https://www.iraqinews.com/iraq/iraq-attends-riyadh-energy-summit-as-saudi-minister-declares-city-capital-of-energy-security/"
-      },
-      {
-        "short": "Egypt Oil & Gas",
-        "name": "Egypt Oil & Gas, « Egypt, Saudi Arabia Sign MoU to Expand Cooperation in Oil, Gas »",
-        "url": "https://egyptoil-gas.com/news/egypt-saudi-arabia-sign-mou-to-expand-cooperation-in-oil-gas/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-cambodge-croissance-tourisme",
-    "date": "2026-10-13",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Phnom Penh",
-        "label": "Cambodge",
-        "coords": [
-          104.92,
-          11.56
-        ]
-      }
-    ],
-    "title": "Cambodge : les touristes désertent et la croissance tombe à 3,5 %",
-    "summary": "La Banque mondiale a abaissé le 6 octobre sa prévision pour le Cambodge. Moins de visiteurs étrangers et un carburant plus cher pèsent sur les ménages.",
-    "points": [
-      "Le 6 octobre, la Banque mondiale a ramené sa prévision de croissance du Cambodge pour 2026 à 3,5 %, contre 5,3 % l'an dernier ; elle l'avait fixée à 3,9 % en avril et 4,3 % en janvier [1][3]. Elle cite la chute des arrivées de touristes étrangers, la baisse des envois d'argent des migrants et la hausse des prix du pétrole [1].",
-      "Les arrivées de touristes auraient reculé de 44 % à 2,25 millions sur les huit premiers mois de 2026, ce que la presse relie aux arnaques en ligne, aux tensions à la frontière avec la Thaïlande et aux conflits en Asie de l'Ouest [2].",
-      "Fin septembre, le FMI prévoyait 3 % de croissance et 5,6 % d'inflation pour 2026 ; la Banque mondiale attend un rebond à 4 % en 2027 puis 5 % en 2028 [1][2]."
-    ],
-    "why": [
-      "Le Cambodge vit en grande partie du tourisme et de l'habillement. Quand les visiteurs reviennent moins, ce sont les hôtels, les restaurants et les petits commerces qui souffrent.",
-      "Les exportations de vêtements, chaussures et articles de voyage résistent : elles ont progressé de 7,2 % sur un an, à 11,76 milliards de dollars sur huit mois [2]. L'économie ne s'effondre pas, mais elle repose sur peu de moteurs.",
-      "Le scénario de reprise suppose que les prix de l'énergie se calment et que le tourisme revienne [1]."
-    ],
-    "forMe": "Si tu portes un vêtement fabriqué au Cambodge, c'est l'un des produits qui continue à tenir l'économie du pays. Et l'idée qu'une crise de l'énergie à l'autre bout du monde fasse reculer le tourisme en Asie du Sud-Est te touche si tu voyages.",
-    "figures": [
-      {
-        "value": "3,5 %",
-        "label": "croissance prévue en 2026 par la Banque mondiale (5,3 % en 2025)",
-        "src": 1
-      },
-      {
-        "value": "− 44 %",
-        "label": "arrivées de touristes, huit premiers mois de 2026 (selon la presse)",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "The Star",
-        "name": "The Star, « World Bank cuts Cambodia's 2026 growth forecast to 3.5% amid tourism slump, high fuel costs » (7 oct. 2026)",
-        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/07/world-bank-cuts-cambodia039s-2026-growth-forecast-to-35-amid-tourism-slump-high-fuel-costs"
-      },
-      {
-        "short": "The Star",
-        "name": "The Star, « Cambodia's economic growth projected to slow to 3% in 2026 amid rising costs: IMF » (30 sept. 2026)",
-        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/09/30/cambodia039s-economic-growth-projected-to-slow-to-3-in-2026-amid-rising-costs-imf"
-      },
-      {
-        "short": "Vietstock",
-        "name": "Vietstock, « WB moderates Cambodia's 2026 GDP growth forecast to 3.9% » (avril 2026)",
-        "url": "https://en.vietstock.vn/2026/04/wb-moderates-cambodias-2026-gdp-growth-forecast-to-39-52000-630357.htm"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-13-panama-seisme-canal",
-    "date": "2026-10-13",
-    "region": "Amériques",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Tonosí",
-        "label": "Panama",
-        "coords": [
-          -80.44,
-          7.4
-        ]
-      }
-    ],
-    "title": "Séisme de 7,7 au Panama : le canal tient bon, mais les pertes pourraient atteindre 10 % du PIB",
-    "summary": "Un tremblement de terre a frappé le sud du pays vendredi 9 octobre. La grande voie du commerce mondial n'a pas été interrompue, mais le pays a subi des coupures et des fermetures.",
-    "points": [
-      "Un séisme de magnitude 7,7 a frappé le sud du Panama le vendredi 9 octobre, à environ 12,6 km de profondeur, selon l'USGS (l'institut géologique américain) ; des alertes au tsunami ont été émises pour la côte Pacifique de plusieurs pays d'Amérique centrale et du Sud [1][3].",
-      "L'Autorité du canal a indiqué que le canal fonctionnait normalement et que les navires passaient sans interruption ; environ 90 navires attendaient aux deux extrémités, selon des données LSEG, ce qui suggère un trafic ralenti plutôt qu'arrêté [1].",
-      "L'électricité a été coupée dans six provinces et l'aéroport international de Tocumen a suspendu ses vols avant de rouvrir [2]. L'USGS estime que les pertes économiques pourraient représenter de 1 % à 10 % du PIB du Panama [1]."
-    ],
-    "why": [
-      "Le canal de Panama voit passer une partie du commerce mondial. Un séisme aussi violent aurait pu l'arrêter ; ce n'est pas le cas, ce qui rassure les armateurs.",
-      "Reste le choc pour le pays lui-même : bâtiments abîmés, courant coupé, vols suspendus. La fourchette de l'USGS est très large, de 1 % à 10 % du PIB, ce qui montre l'incertitude sur l'ampleur réelle des dégâts.",
-      "Les premières informations restent partielles : aucun bilan officiel des dégâts n'était publié."
-    ],
-    "forMe": "Beaucoup de produits que tu achètes (voitures, électronique, énergie) passent par le canal. S'il avait fermé, les délais et les prix auraient pu monter ; son bon fonctionnement évite pour l'instant un nouvel embouteillage mondial.",
-    "figures": [
-      {
-        "value": "7,7",
-        "label": "magnitude du séisme du 9 octobre (USGS)",
-        "src": 1
-      },
-      {
-        "value": "1 à 10 % du PIB",
-        "label": "pertes économiques possibles, estimation de l'USGS",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "KSL / Reuters",
-        "name": "KSL, « Powerful quake hits Panama, damages homes; canal operations normal »",
-        "url": "https://www.ksl.com/article/51634589/76-magnitude-earthquake-felt-in-panama--usgs"
-      },
-      {
-        "short": "KSL / Reuters",
-        "name": "KSL, « Strong Panama quake damages buildings, disrupts power and air travel »",
-        "url": "https://www.ksl.com/article/51634588/strong-panama-quake-damages-buildings-disrupts-power-and-air-travel"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Panama earthquake: Tsunami warnings issued after magnitude 7.7 quake » (9 oct. 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/9/tsunami-warnings-across-latin-america-after-7-7-magnitude-earthquake-hits"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-ormuz-navette-petroliere",
-    "date": "2026-10-12",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Fujaïrah",
-        "label": "Émirats arabes unis",
-        "coords": [
-          56.34,
-          25.12
-        ]
-      },
-      {
-        "name": "Détroit d'Ormuz",
-        "label": "Iran",
-        "coords": [
-          56.25,
-          26.57
-        ]
-      }
-    ],
-    "title": "Ormuz : l'Iran menace la « navette » secrète qui fait sortir le pétrole du Golfe",
-    "summary": "Pour contourner le détroit d'Ormuz bloqué, les Émirats font passer leur pétrole sur de petits pétroliers qui font l'aller-retour. Téhéran annonce qu'il en fait désormais une cible.",
-    "points": [
-      "Dimanche soir, le responsable iranien Mohsen Rezaï a déclaré que la « navette » pétrolière organisée par les États-Unis et les Émirats arabes unis à travers le détroit d'Ormuz était désormais une cible explicite de l'Iran. Il affirme que l'Iran frappe déjà cinq ou six de ces navires chaque nuit depuis des semaines, ce qui n'a pas été vérifié de façon indépendante [1].",
-      "La veille, les attaques autour du détroit avaient repris de plus belle, alors que la médiation pour arrêter la guerre contre l'Iran est bloquée ; l'armée américaine a diffusé une vidéo d'un avion de chasse bombardant un cargo sous pavillon panaméen dans le golfe d'Oman pour faire respecter son blocus des ports iraniens [2].",
-      "Le système : depuis avril, le groupe pétrolier émirati ADNOC utilise des pétroliers « navettes » qui emportent le brut jusqu'au golfe d'Oman, où il est transféré sur de gros tankers ; environ 2,5 millions de barils par jour devaient passer ainsi en septembre, soit près de 40 % des volumes qui franchissent encore Ormuz [3]. Chaque rotation coûterait 30 à 40 millions de dollars, soit 15 à 20 dollars de plus par baril avant assurance [4]."
-    ],
-    "why": [
-      "Le détroit d'Ormuz est la porte de sortie du pétrole du Golfe : avant la guerre, environ un cinquième du pétrole et du gaz mondiaux y passait, et il est en grande partie fermé depuis les frappes américaines et israéliennes sur l'Iran du 28 février [1].",
-      "La « navette » est une parade inventée pour continuer à exporter malgré tout. En la désignant comme cible, l'Iran vise le dernier tuyau qui fonctionne encore. Si ce système s'arrête, une partie de l'offre mondiale de pétrole disparaît à nouveau du marché.",
-      "Cette histoire montre aussi qu'une guerre peut se jouer sur la logistique : des petits bateaux, des transferts en pleine mer, des primes d'assurance. Chaque étape ajoute un coût que l'acheteur final finit par payer."
-    ],
-    "forMe": "Le prix de l'essence en France dépend du prix mondial du pétrole. Si l'Iran réussit à couper cette navette, le baril peut remonter, et le plein avec, quelques semaines plus tard. Même si rien ne se passe, ce détour coûteux fait déjà partie du prix que tu paies.",
-    "figures": [
-      {
-        "value": "2,5 millions de barils/jour",
-        "label": "pétrole transféré via les navettes du golfe d'Oman en septembre (estimation Kpler)",
-        "src": 3
-      },
-      {
-        "value": "30 à 40 millions $",
-        "label": "coût estimé d'une rotation de navette",
-        "src": 4
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes",
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Iran sets crosshairs on ‘US-UAE’ oil shuttle out of Strait of Hormuz » (12 oct. 2026)",
-        "url": "https://www.aljazeera.com/economy/2026/10/12/iran-sets-crosshairs-on-us-uae-oil-shuttle-out-of-strait-of-hormuz"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Hormuz attacks intensify as efforts to end war on Iran stall » (11 oct. 2026)",
-        "url": "https://www.aljazeera.com/news/2026/10/11/hormuz-attacks-intensify-as-efforts-to-end-war-on-iran-stall"
-      },
-      {
-        "short": "gCaptain / Reuters",
-        "name": "gCaptain (chronique Reuters de Ron Bousso), « Hormuz Shuttles Keep Oil Flowing, But At a High Cost » (21 sept. 2026)",
-        "url": "https://gcaptain.com/hormuz-shuttles-keep-oil-flowing-but-at-a-high-cost/"
-      },
-      {
-        "short": "Seoul Economic Daily",
-        "name": "Seoul Economic Daily, « Gulf Producers Pay $40 Million for Risky Hormuz Shuttle Runs » (6 oct. 2026)",
-        "url": "https://en.sedaily.com/international/2026/10/06/gulf-producers-pay-40-million-for-risky-hormuz-shuttle-runs"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-algerie-maroc-61-arrestations",
-    "date": "2026-10-12",
-    "region": "Afrique",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Oran",
-        "label": "Algérie",
-        "coords": [
-          -0.64,
-          35.7
-        ]
-      }
-    ],
-    "title": "Algérie : 61 Marocains arrêtés pour un « sabotage », la guerre froide du Maghreb s'envenime",
-    "summary": "Alger affirme avoir démantelé un réseau de 61 Marocains entrés clandestinement pour commettre des sabotages. Aucune cible ni arme n'a été présentée, et la frontière entre les deux voisins est fermée depuis 1994.",
-    "points": [
-      "La police algérienne a annoncé dimanche l'arrestation de 61 Marocains, dont un ancien militaire, soupçonnés de préparer des « actes de sabotage » ; selon elle, ils sont arrivés à Tunis en avion, puis sont entrés clandestinement en Algérie par les forêts et montagnes d'El Kala avant de rejoindre Oran [1].",
-      "La police dit avoir saisi des passeports marocains et de l'argent en dirhams et en euros, mais le communiqué ne précise ni les cibles visées ni la nature des actions prévues, et ne mentionne pas d'armes [1]. Des médias marocains mettent en doute les preuves [4].",
-      "En août déjà, l'Algérie avait annoncé l'arrestation de quatre Marocains accusés de vouloir saboter ses élections législatives du 2 juillet ; la frontière terrestre est fermée depuis 1994 et Alger a rompu ses relations diplomatiques avec Rabat en 2021 [2]. Plusieurs analyses évoquent un rôle des Émirats arabes unis, sans preuve publiée, alors qu'Alger a aussi rompu avec Abou Dhabi le 10 septembre [3]."
-    ],
-    "why": [
-      "L'Algérie et le Maroc, les deux poids lourds du Maghreb, sont en guerre froide depuis des décennies, surtout à cause du Sahara occidental, un territoire que le Maroc contrôle en grande partie et que l'Algérie veut voir devenir indépendant [2].",
-      "Cette rivalité coûte cher : les deux pays ne commercent presque pas entre eux, et l'Algérie a cessé en 2021 de faire passer son gaz par le Maroc vers l'Espagne, en laissant expirer le contrat du gazoduc Maghreb-Europe [5].",
-      "Une affaire de « sabotage » sans détails publics ajoute de la tension au moment où l'Algérie se brouille aussi avec les Émirats. Le risque : des expulsions, des représailles, et encore moins de chances de coopération régionale."
-    ],
-    "forMe": "La France entretient des liens forts avec les deux pays, et des millions de personnes en France ont des familles des deux côtés. Quand Alger et Rabat se fâchent, Paris est souvent pris entre deux feux, y compris sur le gaz algérien et les questions de visas.",
-    "figures": [
-      {
-        "value": "61",
-        "label": "Marocains arrêtés en Algérie, selon la police algérienne",
-        "src": 1
-      },
-      {
-        "value": "1994",
-        "label": "année de fermeture de la frontière terrestre entre l'Algérie et le Maroc",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "La Libre / AFP",
-        "name": "La Libre Belgique (dépêche AFP), « Algérie: arrestation de 61 Marocains soupçonnés de préparer des \"actes de sabotage\" » (11 oct. 2026)",
-        "url": "https://www.lalibre.be/dernieres-depeches/2026/10/11/algerie-arrestation-de-61-marocains-soupconnes-de-preparer-des-actes-de-sabotage-7VZD4FLASBDQPOIV5JM7PHCYXE/"
-      },
-      {
-        "short": "Morocco World News",
-        "name": "Morocco World News, « Algeria Claims Arrest of 61 Moroccans Over Suspicions of ‘Sabotage’ » (oct. 2026)",
-        "url": "https://www.moroccoworldnews.com/2026/10/341699/algeria-claims-arrest-of-61-moroccans-over-suspicions-of-sabotage/"
-      },
-      {
-        "short": "Afrik.com",
-        "name": "Afrik.com, « 61 Marocains arrêtés à Oran : la question du commanditaire » (oct. 2026)",
-        "url": "https://www.afrik.com/sabotage-dejoue-a-oran-de-rabat-a-abou-dhabi-la-question-du-commanditaire"
-      },
-      {
-        "short": "Hespress",
-        "name": "Hespress, « Algeria arrests 61 Moroccans over alleged sabotage plot as questions surround evidence » (oct. 2026)",
-        "url": "https://en.hespress.com/147180-algeria-arrests-61-moroccans-over-alleged-sabotage-plot-as-questions-surround-evidence.html"
-      },
-      {
-        "short": "Morocco World News",
-        "name": "Morocco World News, « End of Maghreb-Europe Pipeline Contract Will Have No Immediate Impact on Morocco » (nov. 2021)",
-        "url": "https://www.moroccoworldnews.com/2021/11/345279/end-of-maghreb-europe-pipeline-contract-will-have-no-immediate-impact-on-morocco"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-malaisie-brume-indonesie",
-    "date": "2026-10-12",
-    "region": "Asie",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Johor Bahru",
-        "label": "Malaisie",
-        "coords": [
-          103.76,
-          1.49
-        ]
-      },
-      {
-        "name": "Kalimantan central",
-        "label": "Indonésie",
-        "coords": [
-          113.92,
-          -2.21
-        ]
-      }
-    ],
-    "title": "Brume toxique : plus de 600 000 élèves privés d'école en Malaisie à cause des feux indonésiens",
-    "summary": "Les incendies de forêts et de tourbières en Indonésie envoient une fumée épaisse sur la Malaisie et Singapour. Les voisins mettent la pression sur Jakarta.",
-    "points": [
-      "L'État malaisien de Johor, voisin de Singapour, a prolongé la fermeture de toutes ses écoles du 12 au 16 octobre, car l'indice de pollution de l'air reste bloqué entre 170 et 180, un niveau jugé mauvais pour la santé [2]. Lors de la première fermeture, cela concernait 1 198 écoles et 617 258 élèves [3].",
-      "L'Indonésie fait face à une pression croissante pour punir les pollueurs et accepter davantage d'aide étrangère contre les feux de forêts et de tourbières à Kalimantan et Sumatra ; à Singapour, une aide publique contre la brume entre en vigueur le 13 octobre après une hausse des passages aux urgences [1].",
-      "Jakarta dit avoir mobilisé 60 000 personnes contre les feux, tandis que la Malaisie a proposé un avion, trois hélicoptères et 52 agents et attend toujours la réponse indonésienne [4]. Le nombre de foyers d'incendie a encore augmenté, à 909, selon un décompte publié le 12 octobre [6]."
-    ],
-    "why": [
-      "La fumée ne connaît pas les frontières : des feux allumés en Indonésie ferment des écoles en Malaisie et remplissent les urgences à Singapour. Selon Bloomberg, l'épisode s'annonce comme le pire depuis plus de dix ans, et les foyers repérés par satellite en septembre étaient au plus haut depuis 2015 [5].",
-      "Ces feux sont souvent liés au brûlis, une technique qui consiste à brûler la végétation pour défricher des terres agricoles, par exemple pour des plantations [1]. Les tourbières, des sols gorgés de matière végétale, brûlent longtemps et dégagent énormément de fumée et de CO2.",
-      "C'est un test pour l'ASEAN, le club des pays d'Asie du Sud-Est : la Malaisie réclame une réunion d'urgence des ministres de l'Environnement, mais l'Indonésie tient à garder la main sur sa propre crise."
-    ],
-    "forMe": "Tu ne respires pas cette fumée, mais tu consommes peut-être des produits liés à ces terres : huile de palme, papier, bois. Cette crise rappelle que la déforestation à l'autre bout du monde a des effets très concrets sur la santé de millions de personnes et sur le climat de tous.",
-    "figures": [
-      {
-        "value": "617 258",
-        "label": "élèves touchés par la fermeture des écoles de Johor",
-        "src": 3
-      },
-      {
-        "value": "60 000",
-        "label": "personnes mobilisées par l'Indonésie contre les incendies",
-        "src": 4
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "The Star / Jakarta Post",
-        "name": "The Star (article du Jakarta Post), « Pressure intensifies on Indonesia as regional haze worsens » (12 oct. 2026)",
-        "url": "https://www.thestar.com.my/aseanplus/aseanplus-news/2026/10/12/pressure-intensifies-on-indonesia-as-regional-haze-worsens"
-      },
-      {
-        "short": "Malay Mail",
-        "name": "Malay Mail, « Johor extends school closures until Oct 16 as haze worsens » (11 oct. 2026)",
-        "url": "https://www.malaymail.com/news/malaysia/2026/10/11/johor-extends-school-closures-until-oct-16-as-haze-worsens/238614"
-      },
-      {
-        "short": "Malay Mail",
-        "name": "Malay Mail, « Haze: All Johor schools to close for two days starting tomorrow by Regent's decree over unhealthy API » (7 oct. 2026)",
-        "url": "https://www.malaymail.com/news/malaysia/2026/10/07/haze-all-johor-schools-to-close-for-two-days-starting-tomorrow-by-regents-decree-over-unhealthy-api/238152"
-      },
-      {
-        "short": "Malay Mail",
-        "name": "Malay Mail, « Malaysia, Indonesia in high-level contact over haze as Jakarta deploys 60,000 to fight fires » (11 oct. 2026)",
-        "url": "https://www.malaymail.com/amp/news/malaysia/2026/10/11/malaysia-indonesia-in-high-level-contact-over-haze-as-jakarta-deploys-60000-to-fight-fires-says-indonesian-minister/238683"
-      },
-      {
-        "short": "Bloomberg",
-        "name": "Bloomberg, « Why Haze Crisis Hitting Indonesia, Malaysia, Singapore Is So Bad This Year » (9 oct. 2026)",
-        "url": "https://www.bloomberg.com/news/articles/2026-10-09/why-haze-crisis-hitting-indonesia-malaysia-singapore-is-so-bad-this-year"
-      },
-      {
-        "short": "Media Selangor",
-        "name": "Media Selangor, « Forest fires continue to plague Indonesia as regional haze concerns persist » (12 oct. 2026)",
-        "url": "https://mediaselangor.com/en/2026/10/400730"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-mexique-ouragan-simon-ports",
-    "date": "2026-10-12",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Manzanillo",
-        "label": "Mexique",
-        "coords": [
-          -104.32,
-          19.05
-        ]
-      }
-    ],
-    "title": "Ouragan Simon : le Mexique ferme neuf ports, dont sa grande porte vers l'Asie",
-    "summary": "Face à un puissant ouragan sur la côte Pacifique, la Marine mexicaine a fermé Manzanillo, le premier port à conteneurs du pays. Les échanges avec l'Asie sont à l'arrêt.",
-    "points": [
-      "Dimanche 11 octobre, la Marine mexicaine a fermé neuf ports du Pacifique, dont Manzanillo et Lázaro Cárdenas, au passage de l'ouragan Simon ; 579 personnes ont été mises à l'abri dans les États de Jalisco, Colima et Nayarit [1].",
-      "Les principaux terminaux à conteneurs de Manzanillo, dont Contecon, SSA Marine et Hutchison Ports, avaient déjà suspendu leurs opérations et reporté les rendez-vous de chargement au lundi 12 octobre [3]. Les aéroports de Puerto Vallarta et de Manzanillo ont aussi été fermés [5].",
-      "L'œil de l'ouragan est resté au large et Simon s'est affaibli, mais sa pluie et sa houle ont suffi à fermer les plus grands ports du Pacifique mexicain ; aucun décès n'était signalé lundi matin [2]."
-    ],
-    "why": [
-      "Manzanillo est le premier port à conteneurs du Mexique et sa principale porte d'entrée pour les marchandises venues d'Asie [2]. En 2025, il a traité près de 3,9 millions de conteneurs « équivalent vingt pieds » (EVP, l'unité de mesure des boîtes métalliques du commerce mondial) [4].",
-      "Quand un tel port s'arrête même deux ou trois jours, des navires attendent au large, des pièces n'arrivent pas dans les usines et les retards se propagent. Le Mexique est devenu un atelier clé pour l'industrie américaine, notamment automobile.",
-      "Avec des océans plus chauds, les ouragans intenses deviennent plus fréquents. Les ports, souvent construits en bord de mer exposé, sont en première ligne."
-    ],
-    "forMe": "L'impact direct pour toi est faible : Manzanillo sert surtout le commerce entre l'Asie et l'Amérique du Nord. Mais cette histoire montre à quel point nos objets dépendent de quelques grands ports, et qu'une seule tempête peut gripper une chaîne d'approvisionnement à l'autre bout du monde.",
-    "figures": [
-      {
-        "value": "9",
-        "label": "ports du Pacifique fermés par la Marine mexicaine",
-        "src": 1
-      },
-      {
-        "value": "3,9 millions",
-        "label": "conteneurs (EVP) traités par Manzanillo en 2025",
-        "src": 4
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Hurricane Simon: Manzanillo Port Shut, 579 Moved to Safety » (11-12 oct. 2026)",
-        "url": "https://www.riotimesonline.com/mexico-hurricane-simon-ports-closed-evacuations-2026/"
-      },
-      {
-        "short": "HNGN",
-        "name": "HNGN, « Hurricane Simon Crawls Past Jalisco Offshore, Shutting Mexico's Biggest Pacific Ports » (12 oct. 2026)",
-        "url": "https://www.hngn.com/articles/273488/20261012/hurricane-simon-crawls-past-jalisco-offshore-shutting-mexicos-biggest-pacific-ports.htm"
-      },
-      {
-        "short": "DataPortuaria",
-        "name": "DataPortuaria, « Hurricane Simon Halts Operations at Manzanillo Terminals » (oct. 2026)",
-        "url": "https://dataportuaria.com/en/mexico/logistics/hurricane-simon-halts-operations-at-manzanillo-terminals-9153a9"
-      },
-      {
-        "short": "Cluster Industrial",
-        "name": "Cluster Industrial, « Manzanillo cierra 2025 como líder portuario con casi 4 millones de TEUs » (janv. 2026)",
-        "url": "https://clusterindustrial.com.mx/manzanillo-cierra-2025-como-lider-portuario-con-casi-4-millones-de-teus/"
-      },
-      {
-        "short": "Infobae",
-        "name": "Infobae, « Cerrados los aeropuertos mexicanos de Puerto Vallarta y Manzanillo ante el huracán Simón » (11 oct. 2026)",
-        "url": "https://www.infobae.com/america/agencias/2026/10/11/cerrados-los-aeropuertos-mexicanos-de-puerto-vallarta-y-manzanillo-ante-el-huracan-simon/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-bresil-paris-sportifs-interdits",
-    "date": "2026-10-12",
-    "region": "Amériques",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Rio de Janeiro (Maracanã)",
-        "label": "Brésil",
-        "coords": [
-          -43.23,
-          -22.91
-        ]
-      }
-    ],
-    "title": "Brésil : Lula interdit les paris sportifs, Flamengo et Fluminense jouent avec un slogan de protestation",
-    "summary": "Au Brésil, les paris sportifs en ligne sont interdits depuis le 6 octobre. Au derby de Rio, les deux clubs ont remplacé leur sponsor par « Interdire n'est pas protéger ».",
-    "points": [
-      "Dimanche 11 octobre, au stade Maracanã, Flamengo et Fluminense ont remplacé sur leur maillot le logo de leur ancien sponsor de paris (Betano et Superbet) par le slogan « Proibir não é proteger » (« Interdire n'est pas protéger »), contre la mesure provisoire 1.394/2026 qui interdit les paris sportifs à cote fixe [1].",
-      "Signé par Lula le 25 septembre, ce texte a bloqué les nouveaux dépôts et fait fermer les sites et applications de paris le 6 octobre ; le Congrès doit l'approuver dans les 120 jours pour qu'il reste en vigueur [3]. Les fédérations de football de São Paulo et de Rio ont parlé d'un « coup fatal pour le football brésilien », et Lula a répondu que les clubs « devront se débrouiller » [4].",
-      "Le derby a eu lieu deux semaines avant le second tour de l'élection présidentielle du 25 octobre, ce qui transforme ce match en moment politique [2]."
-    ],
-    "why": [
-      "Le gouvernement justifie l'interdiction par l'addiction au jeu et le surendettement des familles : selon le ministère des Finances, les ménages brésiliens dépensent environ 60 milliards de reais par an en paris en ligne, alors que le secteur rapporte environ 10 milliards de reais d'impôts [3].",
-      "Les opérateurs répondent que l'interdiction va pousser plus de 30 millions de parieurs vers des sites illégaux, sans protection ni impôts [3]. Le football, lui, perd d'un coup ses plus gros sponsors.",
-      "C'est un vrai choix de société, en pleine campagne : protéger les ménages ou défendre une industrie qui finance le sport. La décision finale reviendra au Congrès."
-    ],
-    "forMe": "En France, les paris sportifs en ligne sont autorisés et encadrés par l'Autorité nationale des jeux (ANJ), et leurs publicités sont partout pendant les matchs. Le Brésil montre qu'un pays peut décider de tout arrêter d'un coup : un débat qui pourrait un jour arriver chez nous.",
-    "figures": [
-      {
-        "value": "60 milliards de reais",
-        "label": "dépensés chaque année par les ménages brésiliens en paris en ligne (estimation du ministère des Finances)",
-        "src": 3
-      },
-      {
-        "value": "30 millions",
-        "label": "parieurs qui risquent de partir vers des sites illégaux, selon l'association de l'industrie ANJL",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Inside World Football",
-        "name": "Inside World Football, « Flu-Fla derby sees ‘Proibir não é proteger’ shirt protest over Brazil's betting ban » (12 oct. 2026)",
-        "url": "https://www.insideworldfootball.com/2026/10/12/flu-fla-derby-sees-proibir-nao-e-proteger-shirt-protest-over-brazils-betting-ban"
-      },
-      {
-        "short": "Latin Times",
-        "name": "Latin Times, « Fla-Flu Protest: Lula's Sudden Betting Ban Put Brazil's Football Season on a Collision Course With the Election » (oct. 2026)",
-        "url": "https://www.latintimes.com/fla-flu-protest-lulas-sudden-betting-ban-put-brazils-football-season-collision-course-600064"
-      },
-      {
-        "short": "Reuters / US News",
-        "name": "Reuters via US News, « Brazil's Lula Bans Online Betting, Unveils Debt Relief Plan as Reelection Race Tightens » (25 sept. 2026)",
-        "url": "https://www.usnews.com/news/world/articles/2026-09-25/brazils-lula-bans-online-betting-operations-as-reelection-race-tightens"
-      },
-      {
-        "short": "Reuters / Investing.com",
-        "name": "Reuters via Investing.com, « Brazilian soccer teams cry foul at Lula's online betting ban » (30 sept. 2026)",
-        "url": "https://www.investing.com/news/stock-market-news/brazilian-soccer-teams-cry-foul-at-lulas-online-betting-ban-4925519"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-danemark-robots-supermarche",
-    "date": "2026-10-12",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Copenhague",
-        "label": "Danemark",
-        "coords": [
-          12.57,
-          55.68
-        ]
-      }
-    ],
-    "title": "Danemark : des robots humanoïdes apprennent à remplir les rayons du supermarché la nuit",
-    "summary": "Un supermarché près de Copenhague teste des robots à forme humaine pour réassortir les rayons. Objectif : qu'ils travaillent seuls la nuit dès début 2027.",
-    "points": [
-      "Le groupe danois Salling teste des robots humanoïdes dans un supermarché Føtex près de Copenhague ; ils sont développés par la start-up danoise Hive Robots sur une base fabriquée par le chinois Unitree [1].",
-      "L'entraînement a commencé en juin 2026 : des opérateurs humains guident chaque mouvement pour que l'intelligence artificielle apprenne à saisir et ranger les produits, avec l'objectif d'un réassort autonome, surtout la nuit, d'ici début 2027 [1].",
-      "Selon Føtex, ses employés passent 40 à 50 % de leur temps à remplir les rayons ; mais les robots restent plus lents que les humains, et la loi danoise devrait changer avant qu'ils puissent travailler seuls au milieu des clients [2]."
-    ],
-    "why": [
-      "Après les usines, les robots humanoïdes commencent à entrer dans des métiers de service du quotidien. Remplir les rayons est une tâche répétitive et pénible, que les supermarchés ont du mal à faire assurer la nuit.",
-      "Plus tard, ces robots pourraient aussi vérifier les dates de péremption, repérer les rayons vides ou les produits mal rangés [2]. Le groupe Salling compte plus de 2 000 magasins dans six pays européens, donc un succès pourrait vite se diffuser [1].",
-      "L'expérience montre aussi une dépendance : le « corps » du robot est chinois, seule l'intelligence logicielle est européenne. C'est un enjeu de souveraineté industrielle."
-    ],
-    "forMe": "Les emplois de mise en rayon sont souvent des jobs étudiants ou des premiers emplois. Si ces robots marchent, ces postes pourraient changer, avec moins de tâches physiques et plus de surveillance de machines. Rien n'est prêt avant 2027, mais c'est une tendance à suivre.",
-    "figures": [
-      {
-        "value": "40 à 50 %",
-        "label": "du temps des employés de Føtex passé à remplir les rayons",
-        "src": 2
-      },
-      {
-        "value": "2 000",
-        "label": "magasins du groupe Salling dans six pays européens",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Euronews",
-        "name": "Euronews, « Denmark tests humanoid robots in supermarkets to help to ease staff workload at night » (11 oct. 2026)",
-        "url": "https://www.euronews.com/video/2026/10/11/denmark-tests-humanoid-robots-in-supermarkets-to-help-to-ease-staff-workload-at-night"
-      },
-      {
-        "short": "Euro Weekly News",
-        "name": "Euro Weekly News, « Humanoid robots enter Danish supermarkets to transform night shifts forever » (12 oct. 2026)",
-        "url": "https://euroweeklynews.com/2026/10/12/humanoid-robots-enter-danish-supermarkets-to-transform-night-shifts-forever/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-ouzbekistan-inflation",
-    "date": "2026-10-12",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Tachkent",
-        "label": "Ouzbékistan",
-        "coords": [
-          69.24,
-          41.3
-        ]
-      }
-    ],
-    "title": "Ouzbékistan : l'inflation ralentit à 6,4 %, la banque centrale garde son taux à 14 %",
-    "summary": "Les prix montent moins vite qu'il y a un an en Ouzbékistan. La banque centrale reste prudente et ne baisse pas encore ses taux.",
-    "points": [
-      "En septembre, l'inflation ouzbèke est de 6,4 % sur un an, contre 8 % un an plus tôt [1].",
-      "Hors fruits et légumes, elle atteint 6,8 % sur un an [1].",
-      "Le 16 septembre, la banque centrale a gardé son taux directeur à 14 % ; elle veut ramener l'inflation à 5 % d'ici fin 2027, et son prochain rendez-vous est le 28 octobre [2]."
-    ],
-    "why": [
-      "L'inflation, c'est la hausse générale des prix. Un taux directeur élevé, comme ici 14 %, rend le crédit cher et freine les prix. Tant que l'inflation reste au-dessus de la cible de 5 %, la banque centrale ne veut pas relâcher.",
-      "L'Ouzbékistan est un pays d'Asie centrale. Tant que les prix montent plus vite que la cible, la banque centrale garde un taux élevé, ce qui rend les crédits chers pour les entreprises."
-    ],
-    "forMe": "Tu n'es pas touché directement. Mais c'est un exemple de pays qui lutte contre la hausse des prix avec des taux très hauts, une recette que beaucoup d'économies émergentes utilisent.",
-    "figures": [
-      {
-        "value": "6,4 %",
-        "label": "l'inflation en Ouzbékistan en septembre 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "14 %",
-        "label": "le taux directeur, inchangé depuis le 16 septembre",
-        "src": 2
-      },
-      {
-        "value": "5 %",
-        "label": "la cible d'inflation, visée pour fin 2027",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Daryo",
-        "name": "Daryo, « Uzbekistan's annual inflation slows to 6.4% in September, down from 8% in 2025 » (6 oct. 2026)",
-        "url": "https://daryo.uz/en/2026/10/06/uzbekistans-annual-inflation-slows-to-6-4-in-september-down-from-8-in-2025/"
-      },
-      {
-        "short": "Daryo",
-        "name": "Daryo, « Uzbekistan's central bank keeps key rate unchanged at 14% as inflation slows » (16 sept. 2026)",
-        "url": "https://daryo.uz/en/2026/09/16/uzbekistans-central-bank-keeps-key-rate-unchanged-at-14-as-inflation-slows/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-ouganda-shilling",
-    "date": "2026-10-12",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Kampala",
-        "label": "Ouganda",
-        "coords": [
-          32.58,
-          0.35
-        ]
-      }
-    ],
-    "title": "Ouganda : le shilling tombe à un plus bas historique, au-dessus de 4 000 pour un dollar",
-    "summary": "La monnaie ougandaise n'a jamais valu aussi peu. Les importateurs de carburant achètent des dollars, et la banque centrale laisse faire.",
-    "points": [
-      "Début octobre, le shilling ougandais a dépassé 4 000 pour un dollar, son niveau le plus bas jamais enregistré ; il atteignait 4 025 en début de séance lundi [1][2].",
-      "Il a perdu environ 10 % depuis janvier, la deuxième plus mauvaise performance d'Afrique cette année après le cedi du Ghana [1].",
-      "Les cambistes pointent les achats de dollars par les industriels, les importateurs d'énergie et les commerçants qui préparent les importations de fin d'année, dans un contexte de pétrole cher. La banque centrale n'est pas intervenue et dit que la valeur de la monnaie dépend de l'offre et de la demande [2]."
-    ],
-    "why": [
-      "Une monnaie qui baisse rend tout ce qu'on importe plus cher. L'Ouganda doit acheter son carburant en dollars : plus le dollar est cher, plus l'essence, le transport et la nourriture coûtent en shillings.",
-      "La banque centrale pourrait vendre des dollars pour freiner la chute, mais elle garde ses réserves et laisse le marché décider. C'est un choix : ne pas dépenser ses réserves, au risque de voir les prix monter."
-    ],
-    "forMe": "Tu ne paies pas en shillings. Mais l'Ouganda exporte du café et de l'or, et une monnaie faible change les prix qu'il peut proposer. Ça concerne aussi les Ougandais de la diaspora qui envoient de l'argent au pays.",
-    "figures": [
-      {
-        "value": "4 025",
-        "label": "shillings pour un dollar, un record, en début de séance lundi",
-        "src": 1
-      },
-      {
-        "value": "−10 %",
-        "label": "la baisse du shilling depuis le début de l'année",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "Market Briefs",
-        "name": "Market Briefs, « Ugandan shilling sinks to record low as dollar demand builds »",
-        "url": "https://www.briefs.co/news/ugandan-shilling-sinks-to-record-low-as-dollar-demand-builds/"
-      },
-      {
-        "short": "Daily Monitor",
-        "name": "Daily Monitor (Ouganda), « Shilling hits record low as seasonal demand piles pressure »",
-        "url": "https://www.monitor.co.ug/uganda/news/national/shilling-hits-record-low-as-seasonal-demand-piles-pressure-5620526"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-12-arabie-houthis-aeroports",
-    "date": "2026-10-12",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Riyad",
-        "label": "Arabie saoudite",
-        "coords": [
-          46.72,
-          24.71
-        ]
-      }
-    ],
-    "title": "Arabie saoudite : quatre jours de frappes houthies sur les aéroports clouent des centaines de vols",
-    "summary": "Les rebelles houthis du Yémen visent les aéroports saoudiens, dont celui de Riyad. Le risque pour le pétrole du Golfe fait réagir les marchés.",
-    "points": [
-      "Selon Enterprise (citant Reuters), quatre jours de frappes houthies sur des aéroports saoudiens ont fait trois morts et cloué au sol des centaines de vols [1].",
-      "Les Houthis disent avoir tiré un missile sur l'aéroport international Roi-Khaled de Riyad, un jour après une attaque sur le même aéroport qui avait fait un mort. La coalition affirme avoir intercepté deux missiles au-dessus de la capitale ; des débris ont touché une école maternelle et une clinique [1].",
-      "Fin septembre déjà, le pétrole avait bondi après des attaques revendiquées par les Houthis contre des sites saoudiens [2]. Début octobre, le Brent dépassait 102 dollars le baril [3]."
-    ],
-    "why": [
-      "Les Houthis sont un groupe armé du Yémen, soutenu par l'Iran. Frapper les aéroports d'un pays, c'est viser sa vie économique : voyageurs, fret, image pour les investisseurs.",
-      "L'Arabie saoudite est un des plus gros producteurs de pétrole au monde. Chaque attaque sur ses sites fait craindre pour l'approvisionnement, et les prix réagissent même si la production n'est pas touchée."
-    ],
-    "forMe": "Quand le pétrole monte, l'essence et le gazole montent aussi à la pompe en France, avec quelques semaines de décalage. Si tu prévois un voyage avec escale dans le Golfe, regarde aussi l'état du trafic aérien.",
-    "figures": [
-      {
-        "value": "3",
-        "label": "morts en quatre jours de frappes sur des aéroports saoudiens",
-        "src": 1
-      },
-      {
-        "value": "> 102 $",
-        "label": "le baril de Brent le 5 octobre",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Enterprise",
-        "name": "Enterprise (Égypte), « Four days of Houthi strikes on Saudi airports kill three and ground hundreds of flights » (9 oct. 2026)",
-        "url": "https://enterpriseam.com/menaplus/2026/10/09/four-days-of-houthi-strikes-on-saudi-airports-kill-three-and-ground-hundreds-of-flights/"
-      },
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Oil prices jump after Yemen's Houthis claim attacks on Saudi facilities » (25 sept. 2026)",
-        "url": "https://aljazeera.com/economy/2026/9/25/oil-prices-jump-after-yemens-houthis-claim-attacks-on-saudi-facilities"
-      },
-      {
-        "short": "Gulf News",
-        "name": "Gulf News, « Oil prices split as Brent tops $102 » (5 oct. 2026)",
-        "url": "https://gulfnews.com/world/americas/oil-prices-split-as-brent-tops-102-murban-hits-110-per-barrel-on-oct-5-2026-1.500698305"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-azerbaidjan-banque-mondiale",
-    "date": "2026-10-11",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Bakou",
-        "label": "Azerbaïdjan",
-        "coords": [
-          49.87,
-          40.41
-        ]
-      }
-    ],
-    "title": "Azerbaïdjan : la Banque mondiale ramène sa prévision de croissance à 1,2 %",
-    "summary": "Le pays du Caucase, qui vit du pétrole et du gaz, va croître moins que prévu en 2026. Le déclin des champs pétroliers pèse, et l'État dépense moins pour ses chantiers.",
-    "points": [
-      "Dans sa mise à jour d'octobre, la Banque mondiale prévoit une croissance de 1,2 % en 2026 pour l'Azerbaïdjan, puis 1,8 % en 2027 et 1,9 % en 2028 [1].",
-      "Elle explique ce ralentissement par le déclin structurel du secteur pétrolier et par une activité hors pétrole plus faible qu'attendu, après des coupes dans les dépenses d'investissement de l'État [1].",
-      "C'est une baisse par rapport à avril, où la banque tablait sur 2 % pour 2026 [2]. La banque centrale azerbaïdjanaise, elle, prévoyait 1,1 % en mai [1]."
-    ],
-    "why": [
-      "Un pays qui dépend du pétrole voit ses revenus fondre quand ses puits produisent moins. L'Azerbaïdjan essaie donc de faire grandir les autres secteurs (commerce, construction, services), mais cela prend du temps.",
-      "Le pays est aussi une pièce du puzzle énergétique européen : il envoie du gaz vers l'Europe par gazoduc. Son économie compte donc au-delà du Caucase."
-    ],
-    "forMe": "Ça ne change pas ton quotidien tout de suite. Mais c'est un rappel : le gaz qui chauffe une partie de l'Europe vient de pays dont l'économie est fragile et très dépendante de cette seule ressource.",
-    "figures": [
-      {
-        "value": "1,2 %",
-        "label": "la croissance prévue en 2026 pour l'Azerbaïdjan, selon la Banque mondiale",
-        "src": 1
-      },
-      {
-        "value": "2 %",
-        "label": "la prévision de la même banque en avril",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Trend",
-        "name": "Trend.az, « World Bank forecasts Azerbaijan's GDP to grow in 2027-28 » (6 octobre 2026)",
-        "url": "https://www.trend.az/azerbaijan/4231517.html"
-      },
-      {
-        "short": "Caliber.az",
-        "name": "Caliber.az, « World Bank raises Azerbaijan's growth forecast for 2026-2027 »",
-        "url": "https://caliber.az/en/post/world-bank-raises-azerbaijan-s-growth-forecast-for-2026-2027"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-angola-banque-mondiale",
-    "date": "2026-10-11",
-    "region": "Afrique",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Luanda",
-        "label": "Angola",
-        "coords": [
-          13.23,
-          -8.84
-        ]
-      }
-    ],
-    "title": "Angola : le pétrole cher fait grimper la croissance prévue à 4,5 %",
-    "summary": "La Banque mondiale relève nettement sa prévision pour l'Angola. Le pays exporte du pétrole, donc il profite de la hausse des prix plutôt que d'en souffrir.",
-    "points": [
-      "La Banque mondiale a relevé sa prévision de croissance de l'Angola pour 2026 à 4,5 %, contre 3,1 % en 2025. Elle attend ensuite 3,3 % en 2027 et 3,1 % en 2028 [1].",
-      "Elle met cette hausse sur le compte des exportations de pétrole et de prix du brut élevés [1].",
-      "Le pays est moins exposé que d'autres au choc énergétique lié au conflit au Moyen-Orient, car il vend du pétrole au lieu d'en acheter [1]. La banque attend une inflation en baisse, à 10,3 % cette année [1]."
-    ],
-    "why": [
-      "Quand le pétrole monte, les pays qui en achètent paient plus cher, et ceux qui en vendent encaissent plus. L'Angola est dans le deuxième camp : son budget dépend en grande partie du brut.",
-      "Même avec 4,5 %, une inflation à plus de 10 % reste lourde pour les habitants : les prix montent vite, donc le pouvoir d'achat ne suit pas toujours la croissance."
-    ],
-    "forMe": "Le plein de ta voiture coûte plus cher, mais pour certains pays producteurs, c'est une bonne nouvelle. Le même événement fait des gagnants et des perdants selon que le pays vend ou achète du pétrole.",
-    "figures": [
-      {
-        "value": "4,5 %",
-        "label": "la croissance prévue en Angola en 2026",
-        "src": 1
-      },
-      {
-        "value": "10,3 %",
-        "label": "l'inflation attendue en Angola cette année",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "Ver Angola",
-        "name": "Ver Angola, « Economic dynamism prompts World Bank to revise upward forecast for Angola » (octobre 2026)",
-        "url": "https://www.verangola.net/va/en/102026/Economy/50341/Economic-dynamism-prompts-World-Bank-to-revise-upward-forecast-for-Angola.htm"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-mongolie-bad",
-    "date": "2026-10-11",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Oulan-Bator",
-        "label": "Mongolie",
-        "coords": [
-          106.92,
-          47.92
-        ]
-      }
-    ],
-    "title": "Mongolie : la Banque asiatique de développement prévoit 1,3 milliard de dollars d'ici 2027",
-    "summary": "Le patron de la banque est venu à Oulan-Bator. Trois prêts de 455 millions de dollars au total ont été signés pour la santé, l'école et les catastrophes naturelles.",
-    "points": [
-      "Le président de la Banque asiatique de développement (BAD), Masato Kanda, a annoncé une enveloppe prévue de 1,3 milliard de dollars pour la Mongolie d'ici 2027, lors d'une visite début octobre [1].",
-      "Trois accords de prêt ont été signés, pour 455 millions de dollars en tout : 225 millions pour les services de santé des provinces, 130 millions pour l'éducation en période de difficultés économiques, et 100 millions pour mieux faire face aux catastrophes [1].",
-      "Il a aussi rencontré le président mongol et le ministre des Finances, et rendu visite à une famille d'éleveurs à environ 54 kilomètres de la capitale [1]."
-    ],
-    "why": [
-      "La Mongolie est un grand pays peu peuplé, coincé entre la Russie et la Chine. Elle compte sur des partenaires financiers extérieurs pour moderniser ses services publics.",
-      "Les 1,3 milliard sont un plan jusqu'en 2027, pas un virement déjà fait : seuls les 455 millions sont signés pour l'instant."
-    ],
-    "forMe": "Pas d'effet direct sur ton portefeuille. Mais c'est un exemple de la façon dont les banques de développement financent écoles, hôpitaux et prévention des catastrophes dans des pays que les médias évoquent rarement.",
-    "figures": [
-      {
-        "value": "1,3 Md $",
-        "label": "l'enveloppe prévue pour la Mongolie d'ici 2027",
-        "src": 1
-      },
-      {
-        "value": "455 M$",
-        "label": "les trois prêts signés pendant la visite",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "BAD",
-        "name": "Banque asiatique de développement, « ADB President Announces $1.3 Billion Planned Financing for Mongolia » (1er octobre 2026)",
-        "url": "https://www.adb.org/news/adb-president-announces-1-3-billion-planned-financing-mongolia"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-oman-sp-croissance",
-    "date": "2026-10-11",
-    "region": "Moyen-Orient",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Mascate",
-        "label": "Oman",
-        "coords": [
-          58.41,
-          23.59
-        ]
-      }
-    ],
-    "title": "Oman : le pays qui exporte sans passer par Ormuz voit sa croissance prévue à 3,5 %",
-    "summary": "L'agence S&P relève fortement sa prévision pour Oman. Ses ports donnent sur la mer d'Arabie, pas sur le détroit bloqué.",
-    "points": [
-      "L'agence S&P Global Ratings a relevé sa prévision de croissance d'Oman pour 2026 à 3,5 %, contre 1,6 % auparavant, et confirmé la note du pays à BBB- avec une perspective stable [1][2].",
-      "Une grande partie des infrastructures d'export de brut, de gaz naturel liquéfié et de produits raffinés d'Oman donne directement sur le golfe d'Oman ou la mer d'Arabie, ce qui réduit sa dépendance au passage par Ormuz [1].",
-      "S&P attend une production moyenne de 1,1 million de barils par jour en 2026. Elle prévient que ses prévisions seraient revues à la baisse si l'Iran intensifiait ses attaques contre les infrastructures omanaises [1][2]."
-    ],
-    "why": [
-      "Le détroit d'Ormuz est le goulet par lequel passe une grande partie du pétrole du Golfe. Quand il est bloqué, les pays qui n'ont pas d'autre sortie perdent leurs revenus.",
-      "Oman a la chance de la géographie. À titre de comparaison, un sondage Reuters de juillet voyait le Koweït et le Qatar, entièrement dépendants d'Ormuz, se contracter de 8,1 % cette année [3]."
-    ],
-    "forMe": "Quand une route maritime se ferme, le pétrole et le gaz coûtent plus cher partout. Les pays qui ont une autre sortie, comme Oman, deviennent des fournisseurs plus précieux pour les acheteurs, dont l'Europe.",
-    "figures": [
-      {
-        "value": "3,5 %",
-        "label": "la croissance prévue d'Oman en 2026, contre 1,6 % avant la révision",
-        "src": 1
-      },
-      {
-        "value": "1,1 M",
-        "label": "barils de pétrole par jour attendus en moyenne en 2026",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "The National",
-        "name": "The National, « Oman's economy to grow 3.5% in 2026 on favourable trade logistics, S&P says » (26 septembre 2026)",
-        "url": "https://www.thenationalnews.com/business/economy/2026/09/26/omans-economy-to-grow-35-in-2026-on-favourable-trade-logistics-sp-says/"
-      },
-      {
-        "short": "Muscat Daily",
-        "name": "Muscat Daily, « S&P affirms Oman rating, lifts growth forecast to 3.5% » (26 septembre 2026)",
-        "url": "https://www.muscatdaily.com/2026/09/26/sp-affirms-oman-rating-lifts-growth-forecast-to-3-5/"
-      },
-      {
-        "short": "Enterprise",
-        "name": "Enterprise, « Oman, KSA stay insulated from Hormuz shutdown as Kuwait, Qatar contract sharply » (22 juillet 2026)",
-        "url": "https://enterpriseam.com/menaplus/2026/07/22/oman-ksa-stay-insulated-from-hormuz-shutdown-as-kuwait-qatar-contract-sharply/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-ouzbekistan-envois-argent",
-    "date": "2026-10-11",
-    "region": "Asie",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Tachkent",
-        "label": "Ouzbékistan",
-        "coords": [
-          69.24,
-          41.3
-        ]
-      }
-    ],
-    "title": "Ouzbékistan : les migrants ont envoyé 9,3 milliards de dollars en six mois",
-    "summary": "L'argent envoyé par les Ouzbeks qui travaillent à l'étranger pèse lourd dans l'économie du pays. Il vient de plus en plus du Royaume-Uni et de l'Union européenne.",
-    "points": [
-      "Selon la banque centrale, les virements venus de l'étranger vers l'Ouzbékistan ont atteint 9,3 milliards de dollars de janvier à juin 2026, soit 13 % de plus qu'un an plus tôt [1].",
-      "Les envois depuis le Royaume-Uni ont bondi de 62 %, ceux depuis l'Union européenne de 27 % et ceux depuis les États-Unis de 19 % [1].",
-      "Les virements de carte à carte ont progressé de 32 % pour atteindre 4,8 milliards de dollars, soit un peu plus de la moitié du total [2]."
-    ],
-    "why": [
-      "Beaucoup d'Ouzbeks partent travailler à l'étranger et envoient de l'argent à leur famille. Pour le pays, c'est une source de devises très importante, qui fait vivre des millions de foyers.",
-      "Le fait que les envois progressent vite depuis le Royaume-Uni et l'Union européenne montre que les Ouzbeks partent travailler dans un plus grand nombre de pays."
-    ],
-    "forMe": "Si tu envoies ou reçois de l'argent d'un proche à l'étranger, tu fais partie de ce mouvement mondial : ces envois pèsent souvent plus que l'aide officielle au développement dans de nombreux pays.",
-    "figures": [
-      {
-        "value": "9,3 Md $",
-        "label": "les envois vers l'Ouzbékistan de janvier à juin 2026",
-        "src": 1
-      },
-      {
-        "value": "+13 %",
-        "label": "la hausse par rapport au premier semestre 2025",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "dollar"
-    ],
-    "sources": [
-      {
-        "short": "Banque centrale d'Ouzbékistan",
-        "name": "Banque centrale d'Ouzbékistan, communiqué sur les virements transfrontaliers (janvier-juin 2026)",
-        "url": "https://cbu.uz/en/press_center/releases/4359624/"
-      },
-      {
-        "short": "Daryo",
-        "name": "Daryo, « Remittances to Uzbekistan rise 13% to $9.3bn in 1H26 » (15 août 2026)",
-        "url": "https://daryo.uz/en/2026/08/15/remittances-to-uzbekistan-rise-13-to-93bn-in-1h26/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-uruguay-recul-pib",
-    "date": "2026-10-11",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Montevideo",
-        "label": "Uruguay",
-        "coords": [
-          -56.19,
-          -34.9
-        ]
-      }
-    ],
-    "title": "Uruguay : l'économie recule de 0,8 % au deuxième trimestre, la sécheresse en cause",
-    "summary": "Le petit pays d'Amérique du Sud, souvent cité pour sa stabilité, voit son activité reculer. L'agriculture a souffert du manque d'eau.",
-    "points": [
-      "La banque centrale uruguayenne indique que l'activité a baissé de 0,8 % au deuxième trimestre 2026 par rapport au trimestre précédent, et de 0,5 % sur un an [1].",
-      "La forte baisse de l'agriculture est attribuée à la sécheresse qui a touché les cultures d'été lors de la dernière récolte [1].",
-      "Le ministère de l'Économie garde une prévision de croissance de 1,6 % pour 2026, déjà réduite depuis 2,2 %, tandis que la médiane des analystes privés tombe à 1 % [1][2]."
-    ],
-    "why": [
-      "Quand un pays vit beaucoup de ses exportations agricoles, la météo pèse directement sur son économie : moins de récolte, c'est moins de ventes et moins de croissance.",
-      "L'écart entre la prévision du gouvernement et celle des analystes montre qu'il reste de l'incertitude sur la suite de l'année."
-    ],
-    "forMe": "L'Uruguay exporte de la viande, du soja et des produits laitiers. Une mauvaise récolte là-bas peut un jour se voir sur certains prix à l'étranger, même si l'effet est modeste pour toi.",
-    "figures": [
-      {
-        "value": "−0,8 %",
-        "label": "l'activité uruguayenne au 2e trimestre 2026, sur trois mois",
-        "src": 1
-      },
-      {
-        "value": "1,6 %",
-        "label": "la prévision de croissance 2026 du gouvernement, réduite depuis 2,2 %",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "La República",
-        "name": "La República, « Economía uruguaya cayó 0,8 % en el segundo trimestre del año y complica la meta de crecimiento »",
-        "url": "https://www.larepublica.co/globoeconomia/economia-uruguaya-cayo-0-8-en-el-segundo-trimestre-del-ano-y-complica-la-meta-de-crecimiento-4482864"
-      },
-      {
-        "short": "La República (2)",
-        "name": "La República, « Nuevos datos sugieren que la economía uruguaya se frenó en el segundo trimestre »",
-        "url": "https://www.larepublica.co/globoeconomia/nuevos-datos-sugieren-que-la-economia-uruguaya-se-freno-en-el-segundo-trimestre-4473702"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-honduras-inflation-taux",
-    "date": "2026-10-11",
-    "region": "Amériques",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Tegucigalpa",
-        "label": "Honduras",
-        "coords": [
-          -87.2,
-          14.07
-        ]
-      }
-    ],
-    "title": "Honduras : inflation à 6,2 %, la banque centrale relève son taux",
-    "summary": "Honduras a l'inflation la plus élevée d'Amérique centrale. Sa banque centrale a augmenté son taux directeur de 0,25 point.",
-    "points": [
-      "En août 2026, l'inflation du Honduras a atteint 6,20 % sur un an, la plus haute de la région, devant la République dominicaine (5,13 %) et le Guatemala (3,37 %) [1]. Le Costa Rica est le cas inverse : ses prix ont baissé de 0,17 % sur un an [1].",
-      "Le 18 septembre, la banque centrale du Honduras a relevé son taux directeur de 5,75 % à 6 %, avec effet le 21 septembre. Son objectif d'inflation est de 4 % [2].",
-      "Elle cite la hausse du pétrole et des prix alimentaires dans le monde, aggravée par les conflits et les droits de douane. Elle présente la mesure comme préventive [2]."
-    ],
-    "why": [
-      "Un taux directeur plus haut rend le crédit plus cher : les prêts aux ménages et aux entreprises coûtent plus, ce qui freine la hausse des prix mais aussi l'activité.",
-      "Le contraste avec le Costa Rica, voisin où les prix baissent, montre que l'inflation n'est pas la même partout, même dans une petite région."
-    ],
-    "forMe": "Le pétrole cher ne touche pas que l'Europe : il pousse les prix vers le haut dans des pays aux revenus bien plus modestes, où l'essence et la nourriture pèsent plus lourd dans le budget.",
-    "figures": [
-      {
-        "value": "6,20 %",
-        "label": "l'inflation du Honduras en août 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "6 %",
-        "label": "le nouveau taux directeur, contre 5,75 % avant",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "elDinero",
-        "name": "elDinero, « Honduras y República Dominicana a la cabeza por inflación en agosto 2026 »",
-        "url": "https://eldinero.com.do/381726/honduras-y-republica-dominica-a-la-cabeza-por-inflacion-en-agosto-2026/"
-      },
-      {
-        "short": "El Heraldo",
-        "name": "El Heraldo, « BCH sube Tasa de Política Monetaria de 5.75% a 6% para bajar inflación »",
-        "url": "https://elheraldo.hn/economia/bch-sube-tasa-de-politica-monetaria-de-575-a-6-para-bajar-inflacion-AG32075995"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-11-pologne-croatie-inflation",
-    "date": "2026-10-11",
-    "region": "Europe",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Varsovie",
-        "label": "Pologne",
-        "coords": [
-          21.01,
-          52.23
-        ]
-      },
-      {
-        "name": "Zagreb",
-        "label": "Croatie",
-        "coords": [
-          15.98,
-          45.81
-        ]
-      }
-    ],
-    "title": "Pologne et Croatie : l'inflation remonte en septembre, tirée par les carburants",
-    "summary": "En Pologne, les prix grimpent de 4,0 % sur un an. En Croatie, l'estimation rapide donne 4,7 %. Dans les deux cas, l'énergie est en cause.",
-    "points": [
-      "En Pologne, l'inflation est passée à 4,0 % sur un an en septembre. Les carburants pour le transport privé ont augmenté de 36,1 %, et l'électricité, le gaz et les autres combustibles de 4,9 % [1].",
-      "En Croatie, l'estimation rapide de l'inflation de septembre est de 4,7 % sur un an [1]. Elle était de 4,2 % en août, et la hausse vient surtout de l'énergie, en hausse de 20,5 % [2].",
-      "Le plus haut récent croate remonte à mai, avec 5,2 % [2]. Attention : l'estimation rapide peut être corrigée quand le chiffre définitif sort."
-    ],
-    "why": [
-      "L'inflation est la hausse générale des prix. Quand le carburant devient beaucoup plus cher, tout ce qui se transporte augmente aussi, et la hausse s'étend peu à peu au reste.",
-      "La Croatie, membre de la zone euro, et la Pologne, qui garde sa monnaie, ont des banques centrales différentes. Mais elles subissent le même choc venu de l'énergie."
-    ],
-    "forMe": "Si tu pars en vacances en Croatie ou en Pologne, les prix locaux sont plus élevés qu'il y a un an. Le chiffre rappelle aussi que le carburant cher touche toute l'Europe, pas seulement la France.",
-    "figures": [
-      {
-        "value": "4,0 %",
-        "label": "l'inflation en Pologne en septembre 2026, sur un an",
-        "src": 1
-      },
-      {
-        "value": "4,7 %",
-        "label": "l'estimation rapide de l'inflation en Croatie, en septembre",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "inflation-taux"
-    ],
-    "sources": [
-      {
-        "short": "FXStreet",
-        "name": "FXStreet, « Energy prices push inflation higher » (5 octobre 2026)",
-        "url": "https://www.fxstreet.com/analysis/energy-prices-push-inflation-higher-202610050553"
-      },
-      {
-        "short": "RTTNews",
-        "name": "RTTNews, inflation en Croatie, estimation rapide de septembre 2026",
-        "url": "https://www.rttnews.com/story.aspx?Id=3696106"
       }
     ]
   },

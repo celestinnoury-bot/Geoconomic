@@ -45,6 +45,9 @@ Le lecteur doit apprendre quelque chose qu'il aurait envie de **raconter à tabl
 - **Jamais de chiffre inventé ni « de mémoire »**. Si un chiffre n'est pas trouvé dans une source, on ne l'écrit pas.
 - Si les sources se contredisent, on prend la plus officielle et on reste prudent dans la formulation.
 - Les liens doivent être ceux des articles réellement consultés.
+- **Plusieurs sources de qualité par actu** (demande de l'auteur, 29 oct. 2026) : au moins 2 sources indépendantes et sérieuses (agences, grands journaux, institutions, médias locaux reconnus), qui confirment les faits et les chiffres principaux. Un communiqué officiel compte comme une source, mais ce qu'il annonce s'écrit comme une annonce (« selon le gouvernement… »).
+- **Sinon, on le dit** : si on ne trouve qu'une source, ou une source fragile (blog, média partisan, chiffre repris d'un seul article, date imprécise), l'actu reçoit un champ `verify` avec la raison en une phrase (ex. « Une seule source (BusinessDay) : chiffres à confirmer dans les données du FMI. »). L'appli affiche alors « ⚠️ Source à vérifier » sous le titre et dans les listes. À traduire en en/es comme le reste. `check-content` signale toute actu à une seule source sans `verify`.
+- Si aucune source sérieuse ne confirme un fait, on ne publie pas l'actu.
 
 ## Format d'une actu
 
@@ -62,7 +65,8 @@ Copier une actu existante de `data/news.js` et remplir :
 - `forMe` : « Et moi, dans tout ça ? », l'impact concret pour un lecteur français
 - `figures` : 2 ou 3 chiffres clés avec `src`
 - `dossiers` : les cours liés (ids de `data/content.js`)
-- `sources` : `{ short, name, url }`
+- `sources` : `{ short, name, url }` (au moins 2)
+- `verify` (facultatif) : la raison si la source est unique ou fragile (voir « Fiabilité »)
 
 Les nouvelles actus se placent **en haut** du tableau. Le globe de l'accueil affiche les actus de la date la plus récente.
 

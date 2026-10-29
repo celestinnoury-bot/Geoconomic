@@ -2,6 +2,46 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-29",
+    "file": "lettres/2026-10-29.pdf",
+    "titles": [
+      "L'ONU condamne encore l'embargo américain contre Cuba, mais Cuba perd 35 voix en un an",
+      "La Colombie retire à l'Amazonie sa protection contre les mines et le pétrole",
+      "Un Premier ministre irakien à Damas pour la première fois depuis la chute d'Assad, avec le pétrole en tête de l'agenda"
+    ],
+    "fileDark": "lettres/2026-10-29-sombre.pdf"
+  },
+  {
+    "date": "2026-10-28",
+    "file": "lettres/2026-10-28.pdf",
+    "titles": [
+      "L'Ouganda impose 21 jours de quarantaine, payés par les voyageurs, à ceux qui reviennent de RD Congo",
+      "La Hongrie bloque encore les deux dernières étapes de l'entrée de la Moldavie et de l'Ukraine dans l'UE",
+      "La guerre fait reculer l'économie du Moyen-Orient de 1,3 % en 2026 : dans le Golfe, seul Oman y échappe"
+    ],
+    "fileDark": "lettres/2026-10-28-sombre.pdf"
+  },
+  {
+    "date": "2026-10-27",
+    "file": "lettres/2026-10-27.pdf",
+    "titles": [
+      "En Serbie, le mouvement étudiant bat Vučić aux législatives, après quatorze ans de pouvoir",
+      "Lula réélu pour un quatrième mandat : la Bourse du Brésil s'effondre de près de 14 % en une séance",
+      "À Hébron, l'armée israélienne déplace des centaines de familles après la mort de deux soldats, à la veille des élections"
+    ],
+    "fileDark": "lettres/2026-10-27-sombre.pdf"
+  },
+  {
+    "date": "2026-10-26",
+    "file": "lettres/2026-10-26.pdf",
+    "titles": [
+      "La Libye de l'Est valide un accord maritime avec la Turquie, et la Grèce crie à la nullité",
+      "La Roumanie retrouve un gouvernement après six mois de crise, et un gros déficit à régler",
+      "Le Zimbabwe refuse de repousser l'interdiction d'exporter son lithium brut"
+    ],
+    "fileDark": "lettres/2026-10-26-sombre.pdf"
+  },
+  {
     "date": "2026-10-25",
     "file": "lettres/2026-10-25.pdf",
     "titles": [

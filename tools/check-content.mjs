@@ -55,6 +55,9 @@ news.forEach((n, i) => {
   if (!Array.isArray(n.why) || !n.why.length) err(w, "why manquant");
   if (!Array.isArray(n.figures) || !n.figures.length) err(w, "au moins 1 chiffre");
   checkSources(w, n.sources);
+  // Plusieurs sources de qualité ; sinon l'actu le dit (champ `verify`).
+  if (Array.isArray(n.sources) && n.sources.length < 2 && !n.verify) warn.push(`${w} : une seule source, ajouter une 2e source ou un champ verify (« Source à vérifier »)`);
+  if (n.verify != null && (typeof n.verify !== "string" || !n.verify.trim())) err(w, "verify doit être une phrase (la raison)");
   [...(n.points || []), ...(n.why || []), n.summary, n.forMe].forEach((t) => checkCites(w, t, n.sources));
   // « Pour aller plus loin » : toutes les phrases sont sourcées comme le reste de l'actu.
   if (n.deep) {
