@@ -10,9 +10,9 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Branche de travail : `claude/geoeconomic-news-app-9exkx9` (ne jamais pousser ailleurs, pas de pull request sans demande).
 - Aperçu privé publié sur claude.ai : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT
   (`python3 tools/build-preview.py` puis republier `.preview/index.html` avec `root` = `.preview` et les fichiers modifiés dans `files`).
-- Routine du matin (6 h 54, Paris) : trigger `trig_01TDbguMTo7mm9kg35hg2jQX`, consigne dans `contenu/ROUTINE_ACTU.md`.
-  **Son push est refusé (403)** tant que l'auteur n'a pas ajouté le dépôt `celestinnoury-bot/geoconomic` à la routine sur claude.ai ;
-  elle publie quand même l'aperçu, et ses actus se récupèrent depuis l'aperçu (`data/news.js`, `data/i18n/*.js`, `lettres/*.pdf`).
+- Routine du matin (6 h 54, Paris) : tâche planifiée « Geonomix : actu du jour », trigger `trig_01TDbguMTo7mm9kg35hg2jQX`, consigne dans `contenu/ROUTINE_ACTU.md`.
+  Le 28 oct. 2026, sa consigne a été corrigée pour viser le nouveau dépôt `geonomixapp/geonomixapp.github.io` (elle visait encore `celestinnoury-bot/geoconomic`, d'où aucune actu publiée du 26 au 28 oct.) : elle s'ajoute le dépôt avec `add_repo` (access push) puis pousse sur la branche du site.
+  Si un push est encore refusé (403), l'auteur doit ajouter le dépôt à la tâche planifiée sur claude.ai ; elle publie quand même l'aperçu, d'où les actus se récupèrent (`data/news.js`, `data/i18n/*.js`, `lettres/*.pdf`).
   Les actus du 10 octobre 2026 ont été perdues (seule la lettre PDF reste).
 
 ## Architecture (JS sans framework, pas de build)
@@ -85,7 +85,7 @@ Contact de l'auteur (donné le 21 oct. 2026) : celestinnoury0@gmail.com, dans `d
 
 - **Idée mise de côté (26 oct. 2026), à ressortir dès que l'auteur en reparle** : pour le classement du Duel, des **avatars qui font une course sur un échiquier** (chaque joueur a son avatar, il avance sur les cases selon ses points). Rien n'est fait ; l'auteur donnera les détails.
 
-- Ajouter le dépôt à la routine (sinon le push échoue chaque matin).
+- Vérifier que la routine publie bien sur le nouveau dépôt (consigne corrigée le 28 oct. 2026).
 - Créer le compte GoatCounter et donner son code (à mettre dans `data/auteur.js`, `goatcounter`).
 - Nom de domaine (ex. geonomix.fr) à brancher sur le site GitHub Pages, si l'auteur le souhaite.
 - Prestataire de paiement (Stripe en mode test relié à RevenueCat le 24 oct. 2026 ; Paddle évoqué pour la TVA européenne), statut micro-entreprise.
