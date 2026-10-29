@@ -10,8 +10,9 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Branche de travail : `claude/geoeconomic-news-app-9exkx9` (ne jamais pousser ailleurs, pas de pull request sans demande).
 - Aperçu privé publié sur claude.ai : https://claude.ai/artifact/UxRba3w8oMS1KWe774hciT
   (`python3 tools/build-preview.py` puis republier `.preview/index.html` avec `root` = `.preview` et les fichiers modifiés dans `files`).
-- Routine du matin (6 h 54, Paris) : tâche planifiée « Geonomix : actu du jour », trigger `trig_01TDbguMTo7mm9kg35hg2jQX`, consigne dans `contenu/ROUTINE_ACTU.md`.
+- Routine du matin (5 h 23, Paris ; avancée de 6 h 54 à 5 h 23 le 29 oct. 2026, demande de l'auteur : actus tôt le matin) : tâche planifiée « Geonomix : actu du jour », trigger `trig_01TDbguMTo7mm9kg35hg2jQX`, consigne dans `contenu/ROUTINE_ACTU.md`.
   Le 28 oct. 2026, sa consigne a été corrigée pour viser le nouveau dépôt `geonomixapp/geonomixapp.github.io` (elle visait encore `celestinnoury-bot/geoconomic`, d'où aucune actu publiée du 26 au 28 oct.) : elle s'ajoute le dépôt avec `add_repo` (access push) puis pousse sur la branche du site.
+  Le 29 oct. 2026, l'auteur a ajouté le dépôt `geonomixapp/geonomixapp.github.io` aux dépôts de la tâche (avant, `add_repo` manquait dans la session de la routine et le push était refusé en 403).
   Si un push est encore refusé (403), l'auteur doit ajouter le dépôt à la tâche planifiée sur claude.ai ; elle publie quand même l'aperçu, d'où les actus se récupèrent (`data/news.js`, `data/i18n/*.js`, `lettres/*.pdf`).
   Les actus du 10 octobre 2026 ont été perdues (seule la lettre PDF reste).
 
