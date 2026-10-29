@@ -963,8 +963,8 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-clues li b { font: 600 15px var(--display); }
 .qz-clues li.ok { background: rgba(255, 179, 64, .16); } .qz-clues li.ok b { color: #ffd08a; }
 .qz-clues li.miss b { color: #ff8f9c; }
-.qd-card h2 { margin-top: 4px; }
-.qd-card .label svg, .qz-duel-tag svg { width: 15px; height: 15px; vertical-align: -2px; }
+.qd-card h2, .td-card h2 { margin-top: 4px; }
+.qd-card .label svg, .td-card .label svg, .qz-duel-tag svg { width: 15px; height: 15px; vertical-align: -2px; }
 .qd-card .btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .qd-card .join { margin-top: 10px; }
 .qd-done { margin: 12px 0 6px; }
@@ -993,6 +993,10 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-mystery .label { color: #7fb6ff; margin-bottom: 4px; }
 .qz-mask { font: 700 18px var(--display); letter-spacing: .06em; margin-right: 8px; color: var(--text); }
 .qz-mystery small { color: var(--muted); }
+.td-themes { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 14px; }
+.td-th { padding: 8px 13px; border-radius: 999px; border: 1px solid rgba(64, 224, 208, .35); background: rgba(64, 224, 208, .06); color: inherit; font: 600 14px system-ui, sans-serif; cursor: pointer; }
+.td-th.on { background: #40e0d0; border-color: #40e0d0; color: #062521; }
+.qz-flag { font-size: 96px; line-height: 1.1; text-align: center; margin: 10px 0 18px; }
 .qz-why-btn { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #40e0d0; background: rgba(64, 224, 208, .12); color: #40e0d0; font: 800 16px system-ui, sans-serif; cursor: pointer; }
 .qz-why { margin: 10px 0 4px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(64, 224, 208, .45); background: rgba(64, 224, 208, .08); font-size: 15px; line-height: 1.45; }
 .qz-why b { color: #40e0d0; }
@@ -1999,7 +2003,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     return `<div class="stack">
       ${heroDaily()}
       ${db ? "" : `<a class="card online-banner" href="${ONLINE_URL}" target="_blank" rel="noopener"><b>Jouer contre les autres ›</b><span>Le 1 contre 1, le duel du jour et le classement commun sont dans la version en ligne. Ici, tu peux jouer seul.</span></a>`}
-      ${matchCard()}${quizCards()}</div>`;
+      ${matchCard()}${tdCard()}${quizCards()}</div>`;
   }
   function viewClassement() {
     let general;
@@ -2081,7 +2085,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     });
     v.querySelectorAll("[data-go]").forEach((b) => (b.onclick = () => setTab(b.dataset.go)));
     v.querySelectorAll("[data-quiz]").forEach((b) => (b.onclick = () => startQuiz(b.dataset.quiz)));
-    if (tab === "jouer") qdBind(v);
+    if (tab === "jouer") { qdBind(v); tdBind(v); }
     v.querySelectorAll("[data-qf]").forEach((b) => (b.onclick = () => { qzFilter = b.dataset.qf; const y = scrollY; render(); scrollTo(0, y); }));
     v.querySelectorAll("[data-match]").forEach((b) => (b.onclick = () => showMatch(b.dataset.match)));
     v.querySelectorAll("[data-preview]").forEach((b) => (b.onclick = () => { preview = b.dataset.preview; render(); }));
@@ -2145,7 +2149,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     ["Commence par K : pays dont la capitale est Bichkek ?", ["Kirghizistan", "Kazakhstan", "Koweït", "Kenya"]],
     ["Commence par C : métal dont le Chili est le premier producteur ?", ["Cuivre", "Cobalt", "Chrome", "Charbon"]],
   ];
-  const QCM_POOL = () => [...QUIZZES.filter((q) => q.type === "qcm").flatMap((q) => q.qs), ...QS_LETTRES];
+  const QCM_POOL = () => [...QUIZZES.filter((q) => q.type === "qcm" && !q.flags).flatMap((q) => q.qs), ...QS_LETTRES];
   const QS_GAULLE = [
         ["D'où de Gaulle lance-t-il son appel du 18 juin 1940 ?", ["Londres", "Alger", "Brazzaville", "Paris"], "Depuis les studios de la BBC."],
         ["Dans quelle ville Charles de Gaulle est-il né, en 1890 ?", ["Lille", "Paris", "Colombey-les-Deux-Églises", "Lyon"]],
@@ -2160,6 +2164,8 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
         ["Présidentielle de 1965, la première au suffrage universel direct : qui met de Gaulle en ballottage ?", ["François Mitterrand", "Georges Pompidou", "Jean Lecanuet", "Pierre Mendès France"]],
         ["Où de Gaulle meurt-il, le 9 novembre 1970 ?", ["Colombey-les-Deux-Églises", "Paris", "Lille", "Londres"]],
       ];
+  // Drapeau en émoji à partir du code pays à deux lettres (« FR » → 🇫🇷).
+  const FL = (c) => String.fromCodePoint(...[...c].map((x) => 127397 + x.charCodeAt(0)));
   const QUIZZES = [
     { id: "opep", explain: { q: "C'est quoi l'OPEP ?", text: "L'Organisation des pays exportateurs de pétrole, créée en 1960 à Bagdad, siège à Vienne. Ses membres s'entendent sur la quantité de pétrole que chacun produit : en produisant moins ou plus, ils pèsent sur le prix mondial du baril.", hint: "6 pays sont en Afrique, 4 au Moyen-Orient et 1 en Amérique du Sud." }, type: "list", tag: "Pétrole", title: "Les 11 pays de l'OPEP", time: 240,
       intro: "Le cartel du pétrole compte 11 membres depuis le départ des Émirats arabes unis, en mai 2026.",
@@ -2209,6 +2215,25 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       intro: "Cinq pays, leur dernier chiffre d'inflation sur un an. Classe-les du plus haut au plus bas." },
     { id: "croissance", explain: { q: "C'est quoi la croissance ?", text: "La hausse de la richesse produite par un pays en un an (son PIB). Une croissance négative veut dire que l'économie recule.", hint: "Les pays pauvres qui se développent vite grandissent souvent plus que les pays riches." }, type: "rank", tag: "Chiffres", ind: "croissance", title: "Croissance 2026 : de la plus forte à la plus faible",
       intro: "Les prévisions de croissance du FMI pour 2026. Classe ces cinq pays de la plus forte à la plus faible." },
+    { id: "drapeaux", type: "qcm", tag: "Drapeaux", title: "À qui est ce drapeau ?", intro: "Des drapeaux connus d'abord, puis des voisins qui se ressemblent beaucoup.", flags: true,
+      explain: { q: "Comment ça marche ?", text: "Un drapeau s'affiche : trouve le pays parmi les quatre réponses. Attention, plusieurs pays ont des drapeaux presque identiques (le Tchad et la Roumanie, l'Indonésie et Monaco…).", hint: "Regarde l'ordre des couleurs et les petits détails : un emblème, une étoile, la forme." },
+      qs: [
+        [FL("BR"), ["Brésil", "Portugal", "Argentine", "Colombie"], "", 1],
+        [FL("JP"), ["Japon", "Corée du Sud", "Bangladesh", "Chine"], "", 1],
+        [FL("CA"), ["Canada", "Pérou", "Autriche", "Suisse"], "", 1],
+        [FL("TR"), ["Turquie", "Tunisie", "Maroc", "Pakistan"], "", 1],
+        [FL("TD"), ["Tchad", "Roumanie", "Andorre", "Moldavie"], "Presque le même que la Roumanie : le bleu du Tchad est un peu plus foncé.", 2],
+        [FL("ID"), ["Indonésie", "Monaco", "Pologne", "Singapour"], "Celui de Monaco est le même, en un peu moins allongé.", 2],
+        [FL("IE"), ["Irlande", "Côte d'Ivoire", "Italie", "Inde"], "Vert à gauche pour l'Irlande, orange à gauche pour la Côte d'Ivoire.", 2],
+        [FL("CI"), ["Côte d'Ivoire", "Irlande", "Niger", "Italie"], "Orange à gauche pour la Côte d'Ivoire, vert à gauche pour l'Irlande.", 2],
+        [FL("NL"), ["Pays-Bas", "Luxembourg", "France", "Russie"], "Le Luxembourg a les mêmes bandes, avec un bleu plus clair.", 2],
+        [FL("NZ"), ["Nouvelle-Zélande", "Australie", "Fidji", "Tuvalu"], "Des étoiles rouges pour la Nouvelle-Zélande, blanches pour l'Australie.", 2],
+        [FL("BT"), ["Bhoutan", "Népal", "Sri Lanka", "Laos"], "Le dragon du tonnerre, symbole du pays.", 3],
+        [FL("NP"), ["Népal", "Bhoutan", "Bangladesh", "Birmanie"], "Le seul drapeau national qui n'est pas rectangulaire.", 3],
+        [FL("KZ"), ["Kazakhstan", "Kirghizistan", "Ouzbékistan", "Mongolie"], "Un aigle des steppes sous un soleil.", 3],
+        [FL("MZ"), ["Mozambique", "Zimbabwe", "Angola", "Zambie"], "Le seul drapeau avec un fusil d'assaut.", 3],
+        [FL("SN"), ["Sénégal", "Mali", "Guinée", "Cameroun"], "Comme le Mali, avec une étoile verte au milieu.", 3],
+      ] },
     { id: "capitales", type: "qcm", tag: "Capitales", title: "Capitales piégeuses", intro: "Ce n'est pas toujours la plus grande ville…",
       qs: [
         ["Capitale du Kazakhstan ?", ["Astana", "Almaty", "Chymkent", "Bichkek"]],
@@ -2342,6 +2367,83 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
           <p class="note" id="qd-msg" aria-live="polite"></p>`}
     </section>`;
   }
+  // ---------- Duel à thème (demande de l'auteur, 29 oct. 2026) ----------
+  // On choisit un thème (drapeaux, capitales, OPEP…) et on affronte un inconnu ou un ami : mêmes questions,
+  // meilleur pourcentage gagne (à égalité le plus rapide), mêmes points que le duel du jour ; un toutes les 4 heures.
+  // Même collection « qduels », avec theme: true (le duel du jour les ignore).
+  const TD_EVERY = 4 * 3600 * 1000;
+  const TD_THEMES = [["drapeaux", "Drapeaux"], ["capitales", "Capitales"], ["opep", "OPEP"], ["ue", "Union européenne"], ["chine", "Voisins de la Chine"],
+    ["enclaves", "Afrique sans mer"], ["nil", "Bassin du Nil"], ["capb", "Capitales en B"], ["eco", "Monnaies et matières premières"],
+    ["histeco", "Histoire économique"], ["pouvoir", "Prises de pouvoir"], ["gaulle", "De Gaulle"]].filter(([id]) => QUIZZES.some((q) => q.id === id));
+  if (!Array.isArray(S.tdList)) S.tdList = [];
+  let tdPick = TD_THEMES[0][0];
+  const tdWait = () => (S.tdAt || 0) + TD_EVERY - Date.now();
+  const tdName = (id) => (TD_THEMES.find((x) => x[0] === id) || [id, id])[1];
+  function tdCard() {
+    const shared = !!(db && me), wait = tdWait();
+    const recent = S.tdList.filter((x) => x.day === today()).slice(-3).reverse();
+    return `<section class="card td-card">
+      <p class="label" style="color:#40e0d0">${ICON.swords} Duel à thème · toutes les 4 h</p>
+      <h2>Choisis ton thème, défie quelqu'un</h2>
+      <p class="muted">Les mêmes questions pour vous deux, le meilleur score gagne. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}${lossOf(S.points) ? `, défaite −${lossOf(S.points)}` : ""}.</p>
+      <div class="td-themes" role="radiogroup" aria-label="Thème du duel">${TD_THEMES.map(([id, n]) => `<button class="td-th${id === tdPick ? " on" : ""}" role="radio" aria-checked="${id === tdPick}" data-td="${id}">${esc(n)}</button>`).join("")}</div>
+      ${!shared ? `<p class="note">Le duel à thème se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`
+        : wait > 0 ? `<p class="qd-done">Prochain duel à thème dans <b>${waitText(wait)}</b>.</p>`
+        : `<div class="tiles"><button class="tile t-orange" id="td-random"><span class="t-ico">${ICON.dice}</span><b>Un inconnu</b><small>${esc(tdName(tdPick))}</small><span class="t-go">Jouer ›</span></button><button class="tile t-violet" id="td-friend"><span class="t-ico">${ICON.swords}</span><b>Un ami</b><small>Avec un code</small><span class="t-go">Créer ›</span></button></div>
+          <div class="join"><input id="td-code" maxlength="5" placeholder="CODE" autocomplete="off" aria-label="Code de duel à thème reçu"><button class="btn ghost" id="td-join">Rejoindre</button></div>`}
+      <p class="note" id="td-msg" aria-live="polite"></p>
+      ${shared && recent.length ? `<div id="td-mine">${recent.map((x) => `<div class="qd-res card" data-code="${esc(x.code)}"><p class="muted">${esc(tdName(x.quiz))} · chargement…</p></div>`).join("")}</div>` : ""}
+    </section>`;
+  }
+  const tdMsg = (t) => { const m = $("#td-msg"); if (m) m.textContent = t; };
+  function tdStart(code, quiz, vs) {
+    S.tdAt = Date.now(); S.tdList.push({ code, day: today(), quiz }); save();
+    startQuiz(quiz, { duel: { code, vs, theme: true } });
+  }
+  async function tdCreate(open) {
+    if (!db || !me || tdWait() > 0) return;
+    const code = newCode(), quiz = tdPick;
+    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz, host: me, open: !!open, theme: true, at: Date.now() }); } catch (e) { tdMsg("Impossible de créer le duel pour le moment."); return; }
+    tdStart(code, quiz);
+  }
+  async function tdRandom() {
+    if (!db || !me || tdWait() > 0) return;
+    tdMsg("Recherche d'un adversaire sur ce thème…");
+    try {
+      const snap = await db.collection("qduels").where("open", "==", true).get();
+      const d = snap.docs.map((x) => x.data()).filter((x) => x.theme && x.quiz === tdPick && x.day === today() && x.host !== me && !S.tdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
+      if (!d) { tdMsg("Personne n'attend sur ce thème : tu ouvres le duel, le prochain joueur le prendra."); return tdCreate(true); }
+      await db.collection("qduels").doc(d.code).update({ open: false }).catch(() => {});
+      return tdJoin(d.code);
+    } catch (e) { tdMsg("Impossible de chercher un adversaire pour le moment."); }
+  }
+  async function tdJoin(code) {
+    if (!db || !me) return;
+    try {
+      const snap = await db.collection("qduels").doc(code).get();
+      if (!snap.exists) { tdMsg("Ce code ne correspond à aucun duel."); return; }
+      const d = snap.data();
+      if (!d.theme) { tdMsg("C'est un code du duel du jour : entre-le dans la case du duel du jour."); return; }
+      if (d.day !== today()) { tdMsg("Ce duel date d'un autre jour : il faut un code d'aujourd'hui."); return; }
+      if (d.host === me || S.tdList.some((y) => y.code === code)) { tdMsg("C'est déjà ton duel : le résultat s'affiche ci-dessous."); return; }
+      if (tdWait() > 0) { tdMsg(`Ton prochain duel à thème sera possible dans ${waitText(tdWait())}.`); return; }
+      await resolveNames([d.host]);
+      tdStart(code, d.quiz, nameOf(d.host));
+    } catch (e) { tdMsg("Impossible de rejoindre ce duel pour le moment."); }
+  }
+  function tdBind(v) {
+    v.querySelectorAll("[data-td]").forEach((b) => (b.onclick = () => { tdPick = b.dataset.td; const c = v.querySelector(".td-card"); if (c) { c.outerHTML = tdCard(); tdBind(v); } }));
+    const on = (sel, fn) => { const el = v.querySelector(sel); if (el) el.onclick = fn; };
+    on("#td-random", () => tdRandom());
+    on("#td-friend", () => tdCreate(false));
+    on("#td-join", () => {
+      const code = (v.querySelector("#td-code").value || "").trim().toUpperCase();
+      if (!/^[A-Z0-9]{5}$/.test(code)) { tdMsg("Le code fait 5 caractères, par exemple K7RMX."); return; }
+      tdJoin(code);
+    });
+    v.querySelectorAll("#td-mine .qd-res").forEach((el) => qdWatch(el.dataset.code, el));
+  }
+
   function qdBind(v) {
     const on = (sel, fn) => { const el = v.querySelector(sel); if (el) el.onclick = fn; };
     on("#qd-solo", () => startQuiz(dayQuiz().id, { daily: true }));
@@ -2367,7 +2469,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     qdMsg("Recherche d'un adversaire…");
     try {
       const snap = await db.collection("qduels").where("open", "==", true).get();
-      const d = snap.docs.map((x) => x.data()).filter((x) => x.day === today() && x.host !== me && !S.qdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
+      const d = snap.docs.map((x) => x.data()).filter((x) => !x.theme && x.day === today() && x.host !== me && !S.qdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
       if (!d) { qdMsg("Personne n'attend : tu ouvres un duel, le prochain joueur le prendra."); return qdCreate(true); }
       await db.collection("qduels").doc(d.code).update({ open: false }).catch(() => {});
       return qdJoin(d.code);
@@ -2379,6 +2481,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       const snap = await db.collection("qduels").doc(code).get();
       if (!snap.exists) { qdMsg("Ce code ne correspond à aucun duel."); return; }
       const d = snap.data();
+      if (d.theme) { qdMsg("C'est un code de duel à thème : entre-le dans la case du duel à thème."); return; }
       if (d.day !== today()) { qdMsg("Ce duel date d'un autre jour : il faut un code d'aujourd'hui."); return; }
       if (d.host === me || S.qdList.some((y) => y.code === code)) { qdMsg("C'est déjà ton duel : le résultat s'affiche ci-dessous."); return; }
       if (qdPlayed()) { qdMsg("Tu as déjà joué le quiz du jour : reviens demain."); return; }
@@ -2643,7 +2746,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const daily = QZCTX.duel || QZCTX.daily;
     if (daily) {
       const dpct = Math.max(0, pct - (QZCTX.duel ? 3 * hints : 0));
-      S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct: dpct, secs };
+      if (!(QZCTX.duel && QZCTX.duel.theme)) S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct: dpct, secs };
       if (QZCTX.duel) qdSend(QZCTX.duel.code, dpct, secs);
     }
     const record = pct > st.best;
@@ -3042,7 +3145,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       const lvl = qs[QZ.k][3] || 2;
       qzOpen(`${qzTop(q, `<span class="chip num">Série ${QZ.ok} · ${QZ.k + 1}/${qs.length}</span>`)}
         <p class="qz-level">${"●".repeat(lvl)}${"○".repeat(3 - lvl)} ${["", "Pour se lancer", "On monte d'un cran", "Pour les pointus"][lvl]}</p>
-        <h2 class="question qz-q">${esc(text)}</h2>
+        <h2 class="question qz-q${q.flags ? " qz-flag" : ""}"${q.flags ? ' aria-label="Quel est ce drapeau ?"' : ""}>${esc(text)}</h2>
         <div class="qz-opts">${mixed.map((m, i) => `<button class="qz-opt" data-i="${i}">${esc(m.o)}</button>`).join("")}</div>
         <p class="note" id="qz-info" aria-live="polite"></p>
         <div class="btns qz-tools"><button class="btn" id="qz-next" hidden>${QZ.k + 1 < qs.length ? "Suivante" : "Voir mon score"}</button></div>`);
