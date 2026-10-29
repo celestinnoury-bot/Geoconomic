@@ -2385,17 +2385,17 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     ["enclaves", "Afrique sans mer"], ["nil", "Bassin du Nil"], ["capb", "Capitales en B"], ["eco", "Monnaies et matières premières"],
     ["histeco", "Histoire économique"], ["pouvoir", "Prises de pouvoir"], ["gaulle", "De Gaulle"]].filter(([id]) => QUIZZES.some((q) => q.id === id));
   if (!Array.isArray(S.tdList)) S.tdList = [];
-  let tdPick = TD_THEMES[0][0];
+  let tdPick = "mix"; // « Varié » : le thème est tiré au sort (et un inconnu peut tomber sur n'importe quel thème)
   const tdWait = () => (S.tdAt || 0) + TD_EVERY - Date.now();
-  const tdName = (id) => (TD_THEMES.find((x) => x[0] === id) || [id, id])[1];
+  const tdName = (id) => id === "mix" ? "Varié" : (TD_THEMES.find((x) => x[0] === id) || [id, id])[1];
   function tdCard() {
     const shared = !!(db && me), wait = tdWait();
     const recent = S.tdList.filter((x) => x.day === today()).slice(-3).reverse();
     return `<section class="card td-card">
-      <p class="label" style="color:#40e0d0">${ICON.swords} Duel à thème · toutes les 4 h</p>
-      <h2>Choisis ton thème, défie quelqu'un</h2>
-      <p class="muted">Les mêmes questions pour vous deux, le meilleur score gagne. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}${lossOf(S.points) ? `, défaite −${lossOf(S.points)}` : ""}.</p>
-      <div class="td-themes" role="radiogroup" aria-label="Thème du duel">${TD_THEMES.map(([id, n]) => `<button class="td-th${id === tdPick ? " on" : ""}" role="radio" aria-checked="${id === tdPick}" data-td="${id}">${esc(n)}</button>`).join("")}</div>
+      <p class="label" style="color:#40e0d0">${ICON.swords} Toutes les 4 h</p>
+      <h2>Duel à thème</h2>
+      <p class="muted">Un thème ou varié, les mêmes questions pour les deux. Victoire +${QD_PTS.win}, égalité +${QD_PTS.draw}${lossOf(S.points) ? `, défaite −${lossOf(S.points)}` : ""}.</p>
+      <div class="td-themes" role="radiogroup" aria-label="Thème du duel">${[["mix", "🎲 Varié"], ...TD_THEMES].map(([id, n]) => `<button class="td-th${id === tdPick ? " on" : ""}" role="radio" aria-checked="${id === tdPick}" data-td="${id}">${esc(n)}</button>`).join("")}</div>
       ${!shared ? `<p class="note">Le duel à thème se joue en ligne : <a class="online-link" href="${ONLINE_URL}" target="_blank" rel="noopener">ouvrir Geonomix Duel en ligne ›</a></p>`
         : wait > 0 ? `<p class="qd-done">Prochain duel à thème dans <b>${waitText(wait)}</b>.</p>`
         : `<div class="tiles"><button class="tile t-orange" id="td-random"><span class="t-ico">${ICON.dice}</span><b>Un inconnu</b><small>${esc(tdName(tdPick))}</small><span class="t-go">Jouer ›</span></button><button class="tile t-violet" id="td-friend"><span class="t-ico">${ICON.swords}</span><b>Un ami</b><small>Avec un code</small><span class="t-go">Créer ›</span></button></div>
@@ -2405,23 +2405,23 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     </section>`;
   }
   const tdMsg = (t) => { const m = $("#td-msg"); if (m) m.textContent = t; };
-  function tdStart(code, quiz, vs) {
+  function tdStart(code, quiz, vs, bot) {
     S.tdAt = Date.now(); S.tdList.push({ code, day: today(), quiz }); save();
-    startQuiz(quiz, { duel: { code, vs, theme: true } });
+    startQuiz(quiz, { duel: { code, vs, theme: true, bot } });
   }
-  async function tdCreate(open) {
+  async function tdCreate(open, bot) {
     if (!db || !me || tdWait() > 0) return;
-    const code = newCode(), quiz = tdPick;
-    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz, host: me, open: !!open, theme: true, at: Date.now() }); } catch (e) { tdMsg("Impossible de créer le duel pour le moment."); return; }
-    tdStart(code, quiz);
+    const code = newCode(), quiz = tdPick === "mix" ? TD_THEMES[Math.floor(Math.random() * TD_THEMES.length)][0] : tdPick;
+    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz, host: me, open: !!open, rnd: !!open, theme: true, at: Date.now() }); } catch (e) { tdMsg("Impossible de créer le duel pour le moment."); return; }
+    tdStart(code, quiz, undefined, bot);
   }
   async function tdRandom() {
     if (!db || !me || tdWait() > 0) return;
     tdMsg("Recherche d'un adversaire sur ce thème…");
     try {
       const snap = await db.collection("qduels").where("open", "==", true).get();
-      const d = snap.docs.map((x) => x.data()).filter((x) => x.theme && x.quiz === tdPick && x.day === today() && x.host !== me && !S.tdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
-      if (!d) { tdMsg("Personne n'attend sur ce thème : tu ouvres le duel, le prochain joueur le prendra."); return tdCreate(true); }
+      const d = snap.docs.map((x) => x.data()).filter((x) => x.theme && (tdPick === "mix" || x.quiz === tdPick) && x.day === today() && x.host !== me && !S.tdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
+      if (!d) { tdMsg(""); return tdCreate(true, true); }
       await db.collection("qduels").doc(d.code).update({ open: false }).catch(() => {});
       return tdJoin(d.code);
     } catch (e) { tdMsg("Impossible de chercher un adversaire pour le moment."); }
@@ -2466,12 +2466,12 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     v.querySelectorAll("#qd-mine .qd-res").forEach((el) => qdWatch(el.dataset.code, el));
   }
   const qdMsg = (t) => { const m = $("#qd-msg"); if (m) m.textContent = t; };
-  async function qdCreate(open) {
+  async function qdCreate(open, bot) {
     if (!db || !me || qdPlayed()) return;
     const code = newCode(), q = dayQuiz();
-    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz: q.id, host: me, open: !!open, at: Date.now() }); } catch (e) { qdMsg("Impossible de créer le duel pour le moment."); return; }
+    try { await db.collection("qduels").doc(code).set({ code, day: today(), quiz: q.id, host: me, open: !!open, rnd: !!open, at: Date.now() }); } catch (e) { qdMsg("Impossible de créer le duel pour le moment."); return; }
     S.qdList.push({ code, day: today() }); save();
-    startQuiz(q.id, { duel: { code } });
+    startQuiz(q.id, { duel: { code, bot } });
   }
   async function qdRandom() {
     if (!db || !me || qdPlayed()) return;
@@ -2479,7 +2479,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     try {
       const snap = await db.collection("qduels").where("open", "==", true).get();
       const d = snap.docs.map((x) => x.data()).filter((x) => !x.theme && x.day === today() && x.host !== me && !S.qdList.some((y) => y.code === x.code)).sort((a, b) => b.at - a.at)[0];
-      if (!d) { qdMsg("Personne n'attend : tu ouvres un duel, le prochain joueur le prendra."); return qdCreate(true); }
+      if (!d) { qdMsg(""); return qdCreate(true, true); }
       await db.collection("qduels").doc(d.code).update({ open: false }).catch(() => {});
       return qdJoin(d.code);
     } catch (e) { qdMsg("Impossible de chercher un adversaire pour le moment."); }
@@ -2499,6 +2499,19 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       startQuiz(d.quiz, { duel: { code, vs: nameOf(d.host) } });
     } catch (e) { qdMsg("Impossible de rejoindre ce duel pour le moment."); }
   }
+  // Adversaire « au hasard » sans personne en face (demande de l'auteur) : un adversaire simulé, sous un pseudo
+  // ordinaire, joue la même partie avec un score proche du joueur (il gagne un peu moins souvent que lui) ;
+  // sa réponse arrive 20 à 70 s plus tard (champ `at` dans le futur), le duel se ferme aux autres.
+  const STAND_IN = ["Léa_92", "Mathis", "Karim.B", "Juju", "Inès", "Tom34", "Nolan", "Camille R.", "Yanis", "Sarah_k", "Hugo", "Manon", "Ethan", "Zoé", "Adam_", "Lina", "Théo.v", "Nour", "Jules", "Maëlys"];
+  function qdStandIn(code, pct, secs) {
+    if (!db || !me) return;
+    const g = () => (Math.random() + Math.random() + Math.random() - 1.5) * 2; // à peu près normale, écart 1
+    const bp = Math.max(0, Math.min(100, Math.round(pct - 6 + 16 * g())));
+    const bs = Math.max(5, Math.round(secs * (0.8 + Math.random() * 0.5)));
+    const id = "j" + Math.random().toString(36).slice(2, 10);
+    db.collection("qduels").doc(code).update({ open: false }).catch(() => {});
+    db.collection("qduels").doc(`${code}-${id}`).set({ code, pct: bp, secs: bs, name: STAND_IN[Math.floor(Math.random() * STAND_IN.length)], at: Date.now() + (20 + Math.random() * 50) * 1000 }).catch(() => {});
+  }
   function qdSend(code, pct, secs) {
     if (!db || !me) return;
     db.collection("qduels").doc(`${code}-${me}`).set({ code, pct, secs, at: Date.now() }).catch(() => {});
@@ -2507,15 +2520,20 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   function qdWatch(code, el) {
     if (!db || !me) return;
     if (qdUnsubs.has(code)) qdUnsubs.get(code)();
-    const un = db.collection("qduels").where("code", "==", code).onSnapshot(async (snap) => {
+    let later = null;
+    const un = db.collection("qduels").where("code", "==", code).onSnapshot(async function paint(snap) {
+      clearTimeout(later);
       const docs = snap.docs.map((d) => Object.assign({ id: d.id }, d.data()));
-      const res = docs.filter((d) => d.id !== code && typeof d.pct === "number");
+      const soon = docs.filter((d) => d.at > Date.now()).map((d) => d.at - Date.now());
+      if (soon.length) later = setTimeout(() => paint(snap), Math.min(...soon) + 50);
+      const res = docs.filter((d) => d.id !== code && typeof d.pct === "number" && !(d.at > Date.now()));
       const mine = res.find((d) => d.id === `${code}-${me}`), other = res.find((d) => d.id !== `${code}-${me}`);
       if (!document.body.contains(el)) { un(); qdUnsubs.delete(code); return; }
       if (!mine) { el.innerHTML = `<p class="muted">Duel ${esc(code)} : à toi de jouer.</p>`; return; }
-      if (!other) { el.innerHTML = `<p><b>Duel ${esc(code)}</b> · ${mine.pct} % en ${mmss(mine.secs)}</p><p class="muted">En attente de ton adversaire. Envoie-lui le code <b class="code">${esc(code)}</b> : il a jusqu'à minuit.</p>`; return; }
+      const hostDoc = docs.find((d) => d.id === code);
+      if (!other) { el.innerHTML = `<p><b>Duel ${esc(code)}</b> · ${mine.pct} % en ${mmss(mine.secs)}</p><p class="muted">${hostDoc && hostDoc.rnd ? "Ton adversaire joue en ce moment… Le résultat s'affiche ici dès qu'il a fini." : `En attente de ton adversaire. Envoie-lui le code <b class="code">${esc(code)}</b> : il a jusqu'à minuit.`}</p>`; return; }
       const oid = other.id.slice(code.length + 1);
-      await resolveNames([oid]);
+      if (other.name) names[oid] = other.name; else await resolveNames([oid]);
       const out = mine.pct !== other.pct ? (mine.pct > other.pct ? "win" : "lose") : mine.secs !== other.secs ? (mine.secs < other.secs ? "win" : "lose") : "draw";
       if (!S.qdScored[code]) {
         S.qdScored[code] = out;
@@ -2761,6 +2779,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       const dpct = Math.max(0, pct - (QZCTX.duel ? 3 * hints : 0));
       if (!(QZCTX.duel && QZCTX.duel.theme)) S.qd = { day: today(), code: QZCTX.duel ? QZCTX.duel.code : null, pct: dpct, secs };
       if (QZCTX.duel) qdSend(QZCTX.duel.code, dpct, secs);
+      if (QZCTX.duel && QZCTX.duel.bot) qdStandIn(QZCTX.duel.code, dpct, secs);
     }
     const record = pct > st.best;
     S.quiz[q.id] = { best: Math.max(st.best, pct), day: today(), plays: (st.plays || 0) + 1 };

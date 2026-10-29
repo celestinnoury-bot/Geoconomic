@@ -35,7 +35,8 @@ window.GEOCO.cgu = {
         "Pour jouer en ligne, tu choisis un pseudo. Il apparaît, avec tes points et ton titre, dans le classement visible par les autres joueurs. Choisis un pseudo qui ne révèle pas ton identité si tu préfères rester discret.",
         "Sont interdits : les pseudos injurieux, haineux, à caractère sexuel ou qui usurpent l'identité de quelqu'un, la triche (outils automatiques, comptes multiples pour gonfler son score, exploitation d'un bug). L'éditeur peut renommer un pseudo, retirer des points ou exclure un joueur qui ne respecte pas ces règles.",
         "Les points, titres (« Empereur des ténèbres… ») et classements sont purement ludiques : ils n'ont aucune valeur marchande et ne donnent droit à aucun lot. Les classements peuvent être remis à zéro.",
-        "Les taux de réussite affichés à la fin des quiz sont calculés à partir des réponses, sans nom, de tous les joueurs."
+        "Les taux de réussite affichés à la fin des quiz sont calculés à partir des réponses, sans nom, de tous les joueurs.",
+        "Quand tu cherches un adversaire au hasard et que personne n'est disponible, l'application peut te faire jouer contre un adversaire simulé, pour que tu n'attendes pas."
       ]
     },
     {
