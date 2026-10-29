@@ -993,6 +993,10 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-mystery .label { color: #7fb6ff; margin-bottom: 4px; }
 .qz-mask { font: 700 18px var(--display); letter-spacing: .06em; margin-right: 8px; color: var(--text); }
 .qz-mystery small { color: var(--muted); }
+.g-mark { fill: rgba(64, 224, 208, .22); stroke: #40e0d0; stroke-width: 2.2; pointer-events: none; }
+.g-mark.line { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.g-land.g-mark-land { fill: rgba(64, 224, 208, .35); stroke: #40e0d0; stroke-width: 1.6; pointer-events: none; }
+.g-mark-txt { fill: #40e0d0; font: 700 12px system-ui, sans-serif; paint-order: stroke; stroke: #0b0f17; stroke-width: 3px; pointer-events: none; }
 .g-zone { fill: rgba(127, 182, 255, .14); stroke: #7fb6ff; stroke-width: 1.6; stroke-dasharray: 5 4; pointer-events: none; }
 .qz-2en1 { max-width: 320px; }
 .qz-2en1 svg { width: 15px; height: 15px; vertical-align: -2px; }
@@ -2153,7 +2157,8 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       src: [{ short: "Union européenne", url: "https://european-union.europa.eu/principles-countries-history/eu-countries_fr" }] },
     { id: "chine", type: "list", tag: "Frontières", title: "Les 14 voisins de la Chine", time: 240,
       intro: "La Chine touche 14 pays par la terre : un record qu'elle partage avec la Russie.",
-      items: ["004", "064", "356", "398", "408", "417", "418", "496", "104", "524", "586", "643", "762", "704"], src: [SRC_FACTBOOK] },
+      items: ["004", "064", "356", "398", "408", "417", "418", "496", "104", "524", "586", "643", "762", "704"], src: [SRC_FACTBOOK],
+      mark: { label: "Chine", country: "156" } },
     { id: "enclaves", type: "list", tag: "Afrique", title: "Les 16 pays d'Afrique sans accès à la mer", time: 240,
       intro: "Sans port à eux, ces pays dépendent de leurs voisins pour exporter : un vrai coût pour leur économie.",
       items: ["072", "854", "108", "140", "148", "231", "426", "454", "466", "562", "646", "728", "748", "800", "894", "716"], src: [SRC_FACTBOOK] },
@@ -2162,10 +2167,12 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       items: [["031", "Bakou"], ["368", "Bagdad"], ["466", "Bamako"], ["764", "Bangkok"], ["140", "Bangui"], ["270", "Banjul"], ["659", "Basseterre"], ["688", "Belgrade"], ["084", "Belmopan"], ["276", "Berlin"], ["756", "Berne"], ["422", "Beyrouth"], ["417", "Bichkek"], ["624", "Bissau"], ["170", "Bogota"], ["076", "Brasilia"], ["703", "Bratislava"], ["178", "Brazzaville"], ["052", "Bridgetown"], ["056", "Bruxelles"], ["642", "Bucarest"], ["348", "Budapest"], ["032", "Buenos Aires"], ["096", "Bandar Seri Begawan"]],
       src: [SRC_FACTBOOK] },
     { id: "caspienne", type: "list", tag: "Énergie", title: "Les 5 pays autour de la Caspienne", time: 120,
-      intro: "La plus grande mer fermée du monde, riche en pétrole et en gaz.", items: ["643", "398", "795", "364", "031"], src: [SRC_FACTBOOK] },
+      intro: "La plus grande mer fermée du monde, riche en pétrole et en gaz.", items: ["643", "398", "795", "364", "031"], src: [SRC_FACTBOOK],
+      mark: { label: "Mer Caspienne", zoom: 2.6, at: [50.5, 47.4], area: [[46.9, 44.6], [47.5, 45.6], [49.2, 46.4], [51.2, 47], [53, 46.8], [53.2, 45.3], [51.3, 44.5], [50.3, 44.4], [51.4, 43.1], [52.7, 42], [52.9, 41], [53, 39.6], [53.9, 38.9], [53.9, 37.3], [51.6, 36.7], [50.3, 37.2], [49.1, 37.6], [48.9, 38.4], [49.4, 40.3], [50.4, 40.4], [49.6, 40.8], [48.6, 41.9], [47.5, 43], [47.6, 43.6], [46.9, 44.6]] } },
     { id: "nil", type: "list", tag: "Eau", title: "Les 11 pays du bassin du Nil", time: 240,
       intro: "Ils partagent les eaux du Nil, au cœur de la dispute autour du grand barrage éthiopien.",
-      items: ["818", "729", "728", "231", "800", "404", "834", "646", "108", "180", "232"], src: [{ short: "Initiative du bassin du Nil", url: "https://nilebasin.org/" }] },
+      items: ["818", "729", "728", "231", "800", "404", "834", "646", "108", "180", "232"], src: [{ short: "Initiative du bassin du Nil", url: "https://nilebasin.org/" }],
+      mark: { label: "Le Nil", at: [32.6, 15.6], lines: [[[33.2, 0.4], [33, 1.5], [32.1, 3.6], [31.6, 4.85], [31.65, 9.5], [32.5, 15.6], [33.97, 17.7], [33.3, 19.5], [30.5, 19.2], [31.3, 21.8], [32.9, 24.1], [32.6, 25.7], [31.2, 27.2], [31.2, 30.05], [30.4, 31.4]], [[32.5, 15.6], [33.6, 13.6], [35.2, 11.3], [37.3, 11.6]]] } },
     { id: "monde", type: "list", tag: "Le grand classique", title: "Tous les pays du monde", time: 900, grouped: true,
       intro: "Les 193 pays de l'ONU, plus le Vatican et la Palestine : 195 pays, rangés par continent. Tu as 15 minutes.",
       items: [], src: [{ short: "ONU, États membres", url: "https://www.un.org/fr/about-us/member-states" }] },
@@ -2444,7 +2451,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   }
 
   // ---------- Globe (d3, projection orthographique) ----------
-  function makeGlobe(host, { onPick, onSelect, confirm = false } = {}) {
+  function makeGlobe(host, { onPick, onSelect, confirm = false, mark = null } = {}) {
     if (!window.d3 || !QD) { host.remove(); return null; }
     const W = Math.max(260, host.clientWidth || 340), H = Math.min(W, 360);
     const base = H / 2 - 6;
@@ -2456,7 +2463,24 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const feats = QD.geo.map(([id, c]) => ({ type: "Feature", id, geometry: { type: "MultiPolygon", coordinates: c } }));
     const byId = new Map(feats.map((f) => [f.id, f]));
     const land = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "g-land");
-    const draw = () => { svg.selectAll(".g-sea,.g-grat,.g-zone").attr("d", path); land.attr("d", path); };
+    // Repère du quiz (demande de l'auteur) : la mer, le fleuve ou le pays autour duquel on cherche, en turquoise,
+    // avec son nom ; le reste est à deviner. Le pays repère ne se touche pas (il n'est pas une réponse).
+    let markGeo = null, markAt = null, markTxt = null;
+    if (mark) {
+      if (mark.country && byId.has(mark.country)) { markGeo = byId.get(mark.country); land.filter((f) => f.id === mark.country).classed("g-mark-land", true); }
+      else if (mark.area) { markGeo = { type: "Polygon", coordinates: [mark.area] }; if (d3.geoArea(markGeo) > 2 * Math.PI) markGeo.coordinates[0].reverse(); }
+      else if (mark.lines) markGeo = { type: "MultiLineString", coordinates: mark.lines };
+      if (markGeo) {
+        markAt = mark.at || d3.geoCentroid(markGeo);
+        if (!mark.country) svg.append("path").datum(markGeo).attr("class", "g-mark" + (mark.lines ? " line" : ""));
+        markTxt = svg.append("text").attr("class", "g-mark-txt").attr("text-anchor", "middle").text(mark.label);
+        proj.rotate([-markAt[0], Math.max(-60, Math.min(60, -markAt[1]))]);
+      }
+    }
+    const draw = () => {
+      svg.selectAll(".g-sea,.g-grat,.g-zone,.g-mark").attr("d", path); land.attr("d", path);
+      if (markTxt) { const seen = d3.geoDistance(markAt, [-proj.rotate()[0], -proj.rotate()[1]]) < Math.PI / 2 - 0.05, p = proj(markAt); markTxt.attr("display", seen && p ? null : "none"); if (p) markTxt.attr("x", p[0]).attr("y", p[1] - 10); }
+    };
     draw();
     // Un seul geste pour tout : glisser fait tourner, pincer (ou la molette, ou + / −) zoome, jusqu'à 10 fois.
     let last = d3.zoomIdentity;
@@ -2471,6 +2495,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       host.classList.toggle("zoomed", t.k > 1.05);
     });
     svg.call(zoom).on("dblclick.zoom", null);
+    if (mark && mark.zoom) svg.call(zoom.scaleTo, mark.zoom); // repère petit (la Caspienne) : on part zoomé dessus
     const tools = document.createElement("div");
     tools.className = "g-zoom";
     tools.innerHTML = `<button type="button" data-z="in" aria-label="Zoomer">+</button><button type="button" data-z="out" aria-label="Dézoomer">−</button><button type="button" data-z="reset" aria-label="Revoir tout le globe">⤢</button>`;
@@ -2640,6 +2665,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       <div class="qz-count"><b class="num" id="qz-n">0</b> / ${total} <span class="muted">trouvés</span></div>
       <div class="qz-globe" id="qz-globe"></div>
       <form id="qz-form" class="qz-input" autocomplete="off"><input id="qz-in" placeholder="Écris un pays, ou touche-le sur le globe…" aria-label="Écris un pays" autocapitalize="off" spellcheck="false"></form>
+      ${q.mark && window.d3 && QD ? `<p class="note qz-tip">Repère en turquoise sur le globe : <b style="color:#40e0d0">${esc(q.mark.label)}</b>. À toi de trouver le reste.</p>` : ""}
       ${tiny.length && window.d3 && QD ? `<p class="note qz-tip">Trop petits pour le globe, à écrire : ${tiny.length} pays.</p>` : ""}
       <div class="qz-confirm" id="qz-confirm" hidden><span>Pays sélectionné sur le globe.</span><button class="btn small" id="qz-ok">Valider</button><button class="btn ghost small" id="qz-cancel">Annuler</button></div>
       <div class="qz-mystery" id="qz-mystery" hidden></div>
@@ -2653,7 +2679,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       <p class="note" id="qz-hint-txt" aria-live="polite">Chaque indice coûte ${QZCTX.duel ? "3 % du score en duel" : "2 points"}.</p>
       ${q.grouped ? [...new Set(pool.map((it) => it.group))].map((g) => { const n = pool.filter((it) => it.group === g).length; return `<p class="qz-group"><b>${esc(g)}</b> <span class="num" data-gn="${esc(g)}">0</span>/${n}</p><ol class="qz-slots" data-group="${esc(g)}">${Array.from({ length: n }, (_, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`; }).join("")
         : `<ol class="qz-slots">${pool.map((it, k) => `<li><span class="num">${k + 1}</span><b></b></li>`).join("")}</ol>`}`);
-    const globe = makeGlobe($("#qz-globe"), { onPick: pick, confirm: true, onSelect: (id) => { $("#qz-confirm").hidden = !id; } });
+    const globe = makeGlobe($("#qz-globe"), { onPick: pick, confirm: true, mark: q.mark, onSelect: (id) => { $("#qz-confirm").hidden = !id; } });
     if (!globe) play.querySelectorAll('[data-hint="zone"], [data-hint="near"]').forEach((b) => b.remove());
     $("#qz-ok").onclick = () => { const id = globe && globe.selected(); if (!id) return; globe.select(null); $("#qz-confirm").hidden = true; pick(id); };
     $("#qz-cancel").onclick = () => { globe && globe.select(null); $("#qz-confirm").hidden = true; };
