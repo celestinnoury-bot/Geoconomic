@@ -142,7 +142,7 @@ function start() {
     curve.arcLengthDivisions = 1600; curve.updateArcLengths(); curveLen = curve.getLength();
   };
 
-  // Mode « étoiles seules » (data-mode="stars" sur .arena) : les vaisseaux tournent autour de la Terre de l'affiche
+  // Mode « étoiles seules » (data-mode="stars" sur .arena) : la baguette tourne autour de la Terre de l'affiche
   // (duel-orbit.js) ; le fond garde seulement un champ d'étoiles qui défile doucement.
   if (box.dataset.mode === "stars") {
     let last = performance.now();

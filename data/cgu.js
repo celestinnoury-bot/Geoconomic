@@ -52,7 +52,7 @@ window.GEOCO.cgu = {
       titre: "6. Propriété des contenus",
       texte: [
         "Les textes, schémas, cartes, lettres PDF, quiz, titres du jeu et le nom « Geonomix » appartiennent à l'éditeur, sauf mention contraire. Tu peux les lire, les partager par lien et en citer de courts extraits en indiquant « Geonomix » et le lien. Les copier en entier, les revendre ou les republier ailleurs demande un accord écrit.",
-        "Certains éléments viennent de tiers et gardent leur propre licence, indiquée dans les crédits (par exemple le modèle 3D de la Toyota Supra par vecarz, sous licence CC BY 4.0, le chasseur Jedi du fond animé du Duel par Petri Liuhto (Sketchfab), sous licence CC BY-NC 4.0, et les données des organismes cités en source)."
+        "Certains éléments viennent de tiers et gardent leur propre licence, indiquée dans les crédits (par exemple le modèle 3D de la Toyota Supra par vecarz, sous licence CC BY 4.0, la baguette du Duel « French baguette » par Rainbow (Sketchfab), sous licence CC BY 4.0, et les données des organismes cités en source)."
       ]
     },
     {

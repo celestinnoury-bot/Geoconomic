@@ -1,6 +1,7 @@
 // La Terre de la grande affiche du Duel en 3D (demande de l'auteur, 28 oct. 2026) : le globe aux pays allumés,
-// l'anneau orange des 5 questions, et sur l'anneau le chasseur Jedi et le TIE qui tournent autour de la Terre
-// en se tirant dessus (lasers verts du TIE, rouges du Jedi qui riposte de temps en temps).
+// l'anneau orange des 5 questions, et sur l'anneau une baguette qui fait le tour de la Terre en tournant sur
+// elle-même, avec des miettes dorées (demande de l'auteur du 29 oct. 2026 : elle remplace les deux vaisseaux).
+// Modèle « French baguette » de Rainbow (Sketchfab, CC BY 4.0), allégé dans assets/models/baguette/.
 // three.js ; texture de la Terre dessinée avec d3 à partir de la géographie du bloc #quiz-data.
 // Le rendu vit dans #hero-orbit (recréé à chaque affichage de l'accueil : on y raccroche le canvas) ;
 // pause quand l'affiche n'est pas visible, quand une partie est ouverte ou quand la page est cachée.
@@ -65,38 +66,28 @@ function start() {
   earth.rotation.set(0.42, -1.95, 0); scene.add(earth);
   const halo = sprite(0xff8a3d, 3.4, 0.35); halo.renderOrder = -1; scene.add(halo);
 
-  // L'anneau des 5 questions, incliné, et ses 5 perles ; les vaisseaux tournent dessus.
+  // L'anneau des 5 questions, incliné, et ses 5 perles ; la baguette tourne dessus.
   const ring = new THREE.Group(); ring.rotation.set(1.22, 0.18, -0.38); scene.add(ring);
   const R = 1.6;
   ring.add(new THREE.Mesh(new THREE.TorusGeometry(R, 0.007, 8, 200), new THREE.MeshBasicMaterial({ color: 0xff8a3d, transparent: true, opacity: 0.75 })));
   ring.add(new THREE.Mesh(new THREE.TorusGeometry(R, 0.035, 8, 200), new THREE.MeshBasicMaterial({ color: 0xff8a3d, transparent: true, opacity: 0.12, blending: THREE.AdditiveBlending, depthWrite: false })));
   for (let i = 0; i < 5; i++) { const a = 0.4 + i * (Math.PI * 2 / 5); const d = new THREE.Mesh(new THREE.SphereGeometry(0.035, 12, 10), new THREE.MeshBasicMaterial({ color: 0xffcf9e })); d.position.set(Math.cos(a) * R, Math.sin(a) * R, 0); ring.add(d); const s = sprite(0xffa45a, 0.22, 0.7); s.position.copy(d.position); ring.add(s); }
 
-  // Tirs et étincelles.
-  const boltGeo = new THREE.CylinderGeometry(0.008, 0.008, 0.16, 6).rotateX(Math.PI / 2);
-  const mats = { tie: new THREE.MeshBasicMaterial({ color: 0xb8ffa8, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }), jedi: new THREE.MeshBasicMaterial({ color: 0xffb0a0, transparent: true, blending: THREE.AdditiveBlending, depthWrite: false }) };
-  const bolts = [];
-  const fire = (from, to, who) => {
-    const b = new THREE.Group(); b.add(new THREE.Mesh(boltGeo, mats[who]), sprite(who === "tie" ? 0x45ff5a : 0xff4a3a, 0.16, 0.8));
-    b.position.copy(from); b.lookAt(to);
-    b.userData = { v: V().subVectors(to, from).normalize().multiplyScalar(2.6), life: from.distanceTo(to) / 2.6 + 0.05, who };
-    scene.add(b); bolts.push(b);
-  };
-  const flash = sprite(0xffffff, 0.5, 0); scene.add(flash);
-
   const loader = new GLTFLoader();
-  Promise.all([loader.loadAsync("assets/models/vaisseaux/jedi.json"), loader.loadAsync("assets/models/vaisseaux/tie.json")]).then(([j, t]) => {
-    const ship = (gltf, len) => {
-      const m = gltf.scene, b = new THREE.Box3().setFromObject(m), s = b.getSize(V());
-      m.scale.setScalar(len / Math.max(s.x, s.y, s.z)); b.setFromObject(m); m.position.sub(b.getCenter(V()));
-      const pivot = new THREE.Group(); pivot.add(m); pivot.rotation.y = Math.PI; // nez vers -Z
-      const g = new THREE.Group(); g.add(pivot); scene.add(g); return g;
-    };
-    const jedi = ship(j, 0.56), tie = ship(t, 0.44);
-    const steel = new THREE.Color(0x7b808d);
-    tie.traverse((o) => { if (!o.isMesh) return; o.material.flatShading = true; if (o.material.color && o.material.color.r < 0.5) o.material.color.lerp(steel, 0.55); o.material.needsUpdate = true; });
-    const jg = sprite(0xffa04a, 0.28, 0.9); jg.position.set(0, 0, 0.28); jedi.add(jg);
-    const tg = sprite(0xff4a5a, 0.18, 0.8); tg.position.set(0, 0, 0.17); tie.add(tg);
+  loader.loadAsync("assets/models/baguette/baguette.json").then((gl) => {
+    // La baguette, mise à l'échelle, centrée et couchée le long de l'anneau (son grand axe sur -Z).
+    const m = gl.scene, box = new THREE.Box3().setFromObject(m), s = box.getSize(V());
+    m.scale.setScalar(0.8 / Math.max(s.x, s.y, s.z)); box.setFromObject(m); m.position.sub(box.getCenter(V()));
+    const axis = new THREE.Group(); axis.add(m);
+    if (s.x >= s.y && s.x >= s.z) axis.rotation.y = Math.PI / 2; else if (s.y >= s.z) axis.rotation.x = Math.PI / 2;
+    const spin = new THREE.Group(); spin.add(axis);
+    const bag = new THREE.Group(); bag.add(spin); scene.add(bag);
+    m.traverse((o) => { if (o.isMesh) { o.material.roughness = 0.7; o.material.metalness = 0; } });
+    const warm = sprite(0xffb066, 1.0, 0.35); bag.add(warm); // halo doré de croûte chaude
+
+    // Quelques miettes dorées qui suivent la baguette sur l'anneau et s'éteignent.
+    const crumbs = Array.from({ length: 14 }, () => { const c = sprite(0xffc27a, 0.07, 0); scene.add(c); return c; });
+    let ci = 0, nextCrumb = 0;
 
     const normal = V(), p = V(), q = V(), m4 = new THREE.Matrix4();
     const onRing = (a, out) => out.set(Math.cos(a) * R, Math.sin(a) * R, 0).applyMatrix4(ring.matrixWorld);
@@ -105,23 +96,17 @@ function start() {
       normal.set(0, 0, 1).transformDirection(ring.matrixWorld);
       g.position.copy(p); m4.lookAt(p, q, normal); g.quaternion.setFromRotationMatrix(m4);
     };
-    let T = 0, last = performance.now(), next = 1, nextJ = 4;
+    let T = 0, last = performance.now();
     const frame = (now) => {
       const dt = Math.min(0.05, (now - last) / 1000); last = now; T += dt;
       earth.rotation.y += dt * 0.08;
       ring.updateMatrixWorld();
-      const aJ = T * 0.68, gap = 0.5 + 0.12 * Math.sin(T * 0.6);
-      place(jedi, aJ); place(tie, aJ - gap);
-      jedi.rotateZ(Math.PI + Math.sin(T * 1.3) * 0.35); // remis à l'endroit (cockpit vers le haut, demande de l'auteur) et qui oscille pour esquiver
-      next -= dt; nextJ -= dt;
-      if (next <= 0) { fire(tie.position, jedi.position.clone().add(V().randomDirection().multiplyScalar(0.05)), "tie"); next = 0.7 + Math.random() * 0.9; }
-      if (nextJ <= 0) { // de temps en temps le Jedi riposte : il tire en arrière vers le TIE
-        fire(jedi.position, tie.position.clone(), "jedi"); nextJ = 3 + Math.random() * 3; }
-      for (let i = bolts.length - 1; i >= 0; i--) {
-        const b = bolts[i]; b.position.addScaledVector(b.userData.v, dt); b.userData.life -= dt;
-        if (b.userData.life <= 0) { flash.position.copy(b.position); flash.material.opacity = 0.9; flash.material.color.set(b.userData.who === "tie" ? 0x9dff9a : 0xffb0a0); scene.remove(b); bolts.splice(i, 1); }
-      }
-      flash.material.opacity *= 0.88;
+      place(bag, T * 0.68);
+      spin.rotation.z = T * 2.2; // elle tourne sur elle-même en faisant le tour de la Terre
+      spin.rotation.x = Math.sin(T * 1.1) * 0.25;
+      nextCrumb -= dt;
+      if (nextCrumb <= 0) { const c = crumbs[ci++ % crumbs.length]; c.position.copy(bag.position).add(V().randomDirection().multiplyScalar(0.06)); c.material.opacity = 0.85; nextCrumb = 0.09; }
+      crumbs.forEach((c) => { c.material.opacity *= 0.95; });
       renderer.render(scene, camera);
     };
     // Le canvas suit l'affiche : réaccroché quand l'accueil est redessiné, mis en pause quand elle n'est pas visible.
