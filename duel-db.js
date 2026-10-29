@@ -9,11 +9,21 @@
   const CFG = { url: "https://xnwaiyhquydhpcqnovtc.supabase.co", key: "sb_publishable_paIqtOPDAYGDFnq7DTFQyA_VpZKx33t" };
   const SDK = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm";
   const PSEUDO_KEY = "geoco.duel.pseudo";
+  // Le pseudo ne se change qu'une fois toutes les 3 semaines (demande de l'auteur) ; le premier choix est libre.
+  const PSEUDO_AT_KEY = "geoco.duel.pseudo.at";
+  const PSEUDO_EVERY = 21 * 24 * 3600 * 1000;
   const TABLE = "docs";
 
   const pseudo = {
     get() { try { return (localStorage.getItem(PSEUDO_KEY) || "").trim(); } catch (e) { return ""; } },
-    set(v) { v = String(v || "").replace(/\s+/g, " ").trim().slice(0, 20); try { localStorage.setItem(PSEUDO_KEY, v); } catch (e) {} return v; },
+    // Date à partir de laquelle on peut le changer à nouveau (0 = tout de suite).
+    nextChange() { let at = 0; try { at = Number(localStorage.getItem(PSEUDO_AT_KEY)) || 0; } catch (e) {} return this.get() && at ? at + PSEUDO_EVERY : 0; },
+    set(v) {
+      v = String(v || "").replace(/\s+/g, " ").trim().slice(0, 20);
+      if (!v || v === this.get() || this.nextChange() > Date.now()) return this.get();
+      try { localStorage.setItem(PSEUDO_KEY, v); localStorage.setItem(PSEUDO_AT_KEY, String(Date.now())); } catch (e) {}
+      return v;
+    },
   };
 
   const snapOf = (rows) => ({ docs: rows.map((r) => ({ id: r.id, exists: true, data: () => r.data })), empty: !rows.length });

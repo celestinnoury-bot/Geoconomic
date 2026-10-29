@@ -999,6 +999,11 @@ body.rank3 .grade-chip { background: var(--toxic); color: #062014; }
 .qz-mystery .label { color: #7fb6ff; margin-bottom: 4px; }
 .qz-mask { font: 700 18px var(--display); letter-spacing: .06em; margin-right: 8px; color: var(--text); }
 .qz-mystery small { color: var(--muted); }
+.qz-why-btn { flex: none; width: 30px; height: 30px; border-radius: 50%; border: 1.5px solid #40e0d0; background: rgba(64, 224, 208, .12); color: #40e0d0; font: 800 16px system-ui, sans-serif; cursor: pointer; }
+.qz-why { margin: 10px 0 4px; padding: 12px 14px; border-radius: 14px; border: 1px solid rgba(64, 224, 208, .45); background: rgba(64, 224, 208, .08); font-size: 15px; line-height: 1.45; }
+.qz-why b { color: #40e0d0; }
+.qz-why p { margin: 6px 0 0; }
+.qz-why-hint { color: var(--muted, #aab); }
 .g-mark { fill: rgba(64, 224, 208, .22); stroke: #40e0d0; stroke-width: 2.2; pointer-events: none; }
 .g-mark.line { fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
 .g-land.g-mark-land { fill: rgba(64, 224, 208, .35); stroke: #40e0d0; stroke-width: 1.6; pointer-events: none; }
@@ -1794,6 +1799,14 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   let db = null, user = null, me = null, names = {}, players = [], dailyRows = [], supa = false;
   // Sur le site public, chacun choisit le nom qui s'affiche dans le classement (claude.ai donne le sien).
   const pseudoOf = () => (supa && window.GeocoDuelDB ? window.GeocoDuelDB.pseudo.get() : "");
+  // Le pseudo se change une fois toutes les 3 semaines (demande de l'auteur) : le champ est verrouillé jusqu'à la date.
+  function pseudoCard() {
+    const next = window.GeocoDuelDB.pseudo.nextChange(), locked = next > Date.now();
+    const when = new Date(next).toLocaleDateString("fr-FR", { day: "numeric", month: "long" });
+    return `<form class="card pseudo-card" id="pseudo-form" autocomplete="off"><p class="label">Ton nom dans le classement</p>
+      <div class="join"><input id="pseudo-in" maxlength="20" placeholder="Ton pseudo" value="${esc(pseudoOf())}" aria-label="Ton pseudo"${locked ? " disabled" : ""}><button class="btn ghost" type="submit"${locked ? " disabled" : ""}>${pseudoOf() ? "Changer" : "Valider"}</button></div>
+      <p class="note" id="pseudo-msg">${locked ? `Les autres joueurs te voient sous ce nom. Tu pourras le changer à partir du ${when} (une fois toutes les 3 semaines).` : pseudoOf() ? "Les autres joueurs te voient sous ce nom. Attention : après un changement, il faudra attendre 3 semaines." : "Choisis bien : tu ne pourras le changer qu'une fois toutes les 3 semaines. Sans pseudo, tu apparais comme « Joueur »."}</p></form>`;
+  }
   async function initShared() {
     try { db = await window.claude?.use?.("db"); } catch (e) { db = null; }
     try { user = await window.claude?.use?.("user"); } catch (e) { user = null; }
@@ -2023,9 +2036,7 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const daily = !db ? "" : !dailyRows.length ? `<p class="muted">Personne n'a encore joué le défi d'aujourd'hui.</p>`
       : `<ol class="rank">${dailyRows.slice(0, 20).map((r, k) => `<li class="${r.id === me ? "me" : ""}"><span class="pos num">${k + 1}</span><span>${esc(nameOf(r.id))}</span><span class="num" style="font-weight:800">${r.score}/${DAILY_MAX}</span></li>`).join("")}</ol>`;
     return `<div class="stack">
-      ${supa ? `<form class="card pseudo-card" id="pseudo-form" autocomplete="off"><p class="label">Ton nom dans le classement</p>
-        <div class="join"><input id="pseudo-in" maxlength="20" placeholder="Ton pseudo" value="${esc(pseudoOf())}" aria-label="Ton pseudo"><button class="btn ghost" type="submit">${pseudoOf() ? "Changer" : "Valider"}</button></div>
-        <p class="note" id="pseudo-msg">${pseudoOf() ? "Les autres joueurs te voient sous ce nom." : "Sans pseudo, tu apparais comme « Joueur »."}</p></form>` : ""}
+      ${supa ? pseudoCard() : ""}
       <section class="card"><p class="label">Tous les joueurs</p><h2 style="font-size:26px;margin-top:4px">Classement général</h2>${general}</section>
       ${db ? `<section class="card"><p class="label">Défi du ${new Date().toLocaleDateString("fr-FR", { day: "numeric", month: "long" })}</p><h2 style="font-size:26px;margin-top:4px">Classement du jour</h2>${daily}</section>` : ""}
       <section class="card"><p class="label">Récompenses</p><h2 style="font-size:26px;margin-top:4px">Les grades</h2>
@@ -2060,9 +2071,11 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
     const pf = $("#pseudo-form");
     if (pf) pf.onsubmit = (e) => {
       e.preventDefault();
-      const v = window.GeocoDuelDB.pseudo.set($("#pseudo-in").value);
+      const before = pseudoOf(), v = window.GeocoDuelDB.pseudo.set($("#pseudo-in").value);
+      if (v === before) { $("#pseudo-msg").textContent = v ? "Rien n'a changé : c'est déjà ton pseudo." : "Écris un pseudo d'abord."; return; }
       if (me) { names[me] = v; syncPlayer(); }
-      $("#pseudo-msg").textContent = v ? "C'est noté : les autres joueurs te voient sous ce nom." : "Sans pseudo, tu apparais comme « Joueur ».";
+      pf.outerHTML = pseudoCard();
+      render();
     };
     on("#rules-go", (e) => { e.stopPropagation(); const r = $("#rules"); if (r) r.hidden = !r.hidden; });
     on(".dhero.go", (e) => { if (!e.target.closest("button")) startDaily(); }); // toute l'affiche lance le défi
@@ -2157,28 +2170,28 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
         ["Où de Gaulle meurt-il, le 9 novembre 1970 ?", ["Colombey-les-Deux-Églises", "Paris", "Lille", "Londres"]],
       ];
   const QUIZZES = [
-    { id: "opep", type: "list", tag: "Pétrole", title: "Les 11 pays de l'OPEP", time: 240,
+    { id: "opep", explain: { q: "C'est quoi l'OPEP ?", text: "L'Organisation des pays exportateurs de pétrole, créée en 1960 à Bagdad, siège à Vienne. Ses membres s'entendent sur la quantité de pétrole que chacun produit : en produisant moins ou plus, ils pèsent sur le prix mondial du baril.", hint: "6 pays sont en Afrique, 4 au Moyen-Orient et 1 en Amérique du Sud." }, type: "list", tag: "Pétrole", title: "Les 11 pays de l'OPEP", time: 240,
       intro: "Le cartel du pétrole compte 11 membres depuis le départ des Émirats arabes unis, en mai 2026.",
       items: ["012", "178", "226", "266", "364", "368", "414", "434", "566", "682", "862"], src: [SRC_NEWS_OPEP] },
-    { id: "ue", type: "list", tag: "Europe", title: "Les 27 pays de l'Union européenne", time: 360,
+    { id: "ue", explain: { q: "C'est quoi l'Union européenne ?", text: "Un groupe de pays européens qui partagent un marché unique (marchandises, services, argent et personnes circulent librement), des règles communes et un budget. Beaucoup utilisent aussi l'euro, mais pas tous.", hint: "Ni la Suisse, ni la Norvège, ni le Royaume-Uni, sorti en 2020." }, type: "list", tag: "Europe", title: "Les 27 pays de l'Union européenne", time: 360,
       intro: "Tous les membres de l'UE, des plus grands aux plus petits.",
       items: ["040", "056", "100", "191", "196", "203", "208", "233", "246", "250", "276", "300", "348", "372", "380", "428", "440", "442", "470", "528", "616", "620", "642", "703", "705", "724", "752"],
       src: [{ short: "Union européenne", url: "https://european-union.europa.eu/principles-countries-history/eu-countries_fr" }] },
-    { id: "chine", type: "list", tag: "Frontières", title: "Les 14 voisins de la Chine", time: 240,
+    { id: "chine", explain: { q: "C'est quoi un pays voisin ?", text: "Ici, un pays qui touche la Chine par la terre : une frontière commune sur la carte. Les voisins par la mer (Japon, Taïwan, Philippines…) ne comptent pas.", hint: "En faisant le tour de la Chine : de la Corée du Nord jusqu'au Pakistan, en passant par l'Asie centrale et l'Asie du Sud-Est." }, type: "list", tag: "Frontières", title: "Les 14 voisins de la Chine", time: 240,
       intro: "La Chine touche 14 pays par la terre : un record qu'elle partage avec la Russie.",
       items: ["004", "064", "356", "398", "408", "417", "418", "496", "104", "524", "586", "643", "762", "704"], src: [SRC_FACTBOOK],
       mark: { label: "Chine", country: "156" } },
-    { id: "enclaves", type: "list", tag: "Afrique", title: "Les 16 pays d'Afrique sans accès à la mer", time: 240,
+    { id: "enclaves", explain: { q: "C'est quoi un pays enclavé ?", text: "Un pays sans côte : il n'a pas de port à lui et doit passer par les routes, rails et ports de ses voisins pour exporter. Ça rend son commerce plus cher et plus lent.", hint: "Cherche surtout au Sahel, autour des Grands Lacs et en Afrique australe." }, type: "list", tag: "Afrique", title: "Les 16 pays d'Afrique sans accès à la mer", time: 240,
       intro: "Sans port à eux, ces pays dépendent de leurs voisins pour exporter : un vrai coût pour leur économie.",
       items: ["072", "854", "108", "140", "148", "231", "426", "454", "466", "562", "646", "728", "748", "800", "894", "716"], src: [SRC_FACTBOOK] },
-    { id: "capb", type: "list", tag: "Capitales", title: "Les pays dont la capitale commence par B", time: 300,
+    { id: "capb", explain: { q: "Comment ça marche ?", text: "On cherche le pays dont la capitale commence par B : écris le nom du pays, pas celui de la capitale. Par exemple, Berlin → l'Allemagne.", hint: "Il y en a sur tous les continents, et plusieurs en Europe et en Afrique de l'Ouest." }, type: "list", tag: "Capitales", title: "Les pays dont la capitale commence par B", time: 300,
       intro: "Écris le pays, pas la capitale. Un indice donne la capitale d'un pays manquant.",
       items: [["031", "Bakou"], ["368", "Bagdad"], ["466", "Bamako"], ["764", "Bangkok"], ["140", "Bangui"], ["270", "Banjul"], ["659", "Basseterre"], ["688", "Belgrade"], ["084", "Belmopan"], ["276", "Berlin"], ["756", "Berne"], ["422", "Beyrouth"], ["417", "Bichkek"], ["624", "Bissau"], ["170", "Bogota"], ["076", "Brasilia"], ["703", "Bratislava"], ["178", "Brazzaville"], ["052", "Bridgetown"], ["056", "Bruxelles"], ["642", "Bucarest"], ["348", "Budapest"], ["032", "Buenos Aires"], ["096", "Bandar Seri Begawan"]],
       src: [SRC_FACTBOOK] },
-    { id: "caspienne", type: "list", tag: "Énergie", title: "Les 5 pays autour de la Caspienne", time: 120,
+    { id: "caspienne", explain: { q: "C'est quoi la Caspienne ?", text: "La plus grande étendue d'eau fermée du monde : elle ne touche aucun océan. Mer ou lac ? La question a longtemps divisé ses voisins, car elle change le partage du pétrole et du gaz sous son fond.", hint: "Deux pays d'Asie centrale, un du Caucase, et deux grands voisins au nord et au sud." }, type: "list", tag: "Énergie", title: "Les 5 pays autour de la Caspienne", time: 120,
       intro: "La plus grande mer fermée du monde, riche en pétrole et en gaz.", items: ["643", "398", "795", "364", "031"], src: [SRC_FACTBOOK],
       mark: { label: "Mer Caspienne", zoom: 2.6, at: [50.5, 47.4], area: [[46.9, 44.6], [47.5, 45.6], [49.2, 46.4], [51.2, 47], [53, 46.8], [53.2, 45.3], [51.3, 44.5], [50.3, 44.4], [51.4, 43.1], [52.7, 42], [52.9, 41], [53, 39.6], [53.9, 38.9], [53.9, 37.3], [51.6, 36.7], [50.3, 37.2], [49.1, 37.6], [48.9, 38.4], [49.4, 40.3], [50.4, 40.4], [49.6, 40.8], [48.6, 41.9], [47.5, 43], [47.6, 43.6], [46.9, 44.6]] } },
-    { id: "nil", type: "list", tag: "Eau", title: "Les 11 pays du bassin du Nil", time: 240,
+    { id: "nil", explain: { q: "C'est quoi le bassin du Nil ?", text: "Toutes les terres dont l'eau finit dans le Nil : rivières, lacs et pluies. Le Nil Blanc part du lac Victoria, le Nil Bleu des hauts plateaux d'Éthiopie ; ils se rejoignent à Khartoum.", hint: "Pense aux pays autour du lac Victoria et des Grands Lacs, et à un pays de la mer Rouge." }, type: "list", tag: "Eau", title: "Les 11 pays du bassin du Nil", time: 240,
       intro: "Ils partagent les eaux du Nil, au cœur de la dispute autour du grand barrage éthiopien.",
       items: ["818", "729", "728", "231", "800", "404", "834", "646", "108", "180", "232"], src: [{ short: "Initiative du bassin du Nil", url: "https://nilebasin.org/" }],
       mark: { label: "Le Nil", at: [32.6, 15.6], lines: [[[33.2, 0.4], [33, 1.5], [32.1, 3.6], [31.6, 4.85], [31.65, 9.5], [32.5, 15.6], [33.97, 17.7], [33.3, 19.5], [30.5, 19.2], [31.3, 21.8], [32.9, 24.1], [32.6, 25.7], [31.2, 27.2], [31.2, 30.05], [30.4, 31.4]], [[32.5, 15.6], [33.6, 13.6], [35.2, 11.3], [37.3, 11.6]]] } },
@@ -2198,12 +2211,12 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
       intro: "Douze « avant ou après », des écarts les plus larges aux plus serrés. Mort subite : une erreur et la série s'arrête." },
     { id: "actu", type: "actu", tag: "Actu", title: "Les pays de l'actu", count: 8,
       intro: "Une actu de Geonomix, et un globe : clique sur le pays où elle se passe." },
-    { id: "uranium", type: "rank", tag: "Énergie", title: "Uranium : les 5 premiers producteurs", unit: "tonnes d'uranium extraites en 2023",
+    { id: "uranium", explain: { q: "C'est quoi l'uranium ?", text: "Un métal radioactif tiré de mines : une fois enrichi, c'est le combustible des centrales nucléaires. On classe ici les pays selon la quantité extraite.", hint: "Le premier est un grand pays d'Asie centrale." }, type: "rank", tag: "Énergie", title: "Uranium : les 5 premiers producteurs", unit: "tonnes d'uranium extraites en 2023",
       intro: "Classe-les du plus gros producteur au plus petit.", rows: [["398", 21109], ["124", 11001], ["516", 6986], ["036", 4693], ["860", 4000]], src: [SRC_WNA],
       note: "Ouzbékistan : estimation. À eux trois, Kazakhstan, Canada et Namibie produisent environ les trois quarts de l'uranium du monde." },
-    { id: "inflation", type: "rank", tag: "Chiffres", ind: "inflation", title: "Inflation : du plus haut au plus bas",
+    { id: "inflation", explain: { q: "C'est quoi l'inflation ?", text: "La hausse générale des prix sur un an : 5 % d'inflation veut dire qu'en moyenne, ce qui coûtait 100 en coûte 105 un an plus tard.", hint: "Les pays en crise monétaire ont souvent les chiffres les plus hauts." }, type: "rank", tag: "Chiffres", ind: "inflation", title: "Inflation : du plus haut au plus bas",
       intro: "Cinq pays, leur dernier chiffre d'inflation sur un an. Classe-les du plus haut au plus bas." },
-    { id: "croissance", type: "rank", tag: "Chiffres", ind: "croissance", title: "Croissance 2026 : de la plus forte à la plus faible",
+    { id: "croissance", explain: { q: "C'est quoi la croissance ?", text: "La hausse de la richesse produite par un pays en un an (son PIB). Une croissance négative veut dire que l'économie recule.", hint: "Les pays pauvres qui se développent vite grandissent souvent plus que les pays riches." }, type: "rank", tag: "Chiffres", ind: "croissance", title: "Croissance 2026 : de la plus forte à la plus faible",
       intro: "Les prévisions de croissance du FMI pour 2026. Classe ces cinq pays de la plus forte à la plus faible." },
     { id: "capitales", type: "qcm", tag: "Capitales", title: "Capitales piégeuses", intro: "Ce n'est pas toujours la plus grande ville…",
       qs: [
@@ -2616,7 +2629,9 @@ h1, h2, h3, .question, .splash .big, .sheet h3, .daily h2, .mode h3 { font-weigh
   const mmss = (s) => `${Math.floor(s / 60)}:${String(Math.max(0, s) % 60).padStart(2, "0")}`;
   function qzOpen(html) { play.hidden = false; document.body.style.overflow = "hidden"; play.innerHTML = `<div class="wrap qz">${html}</div>`; const x = $("#qz-quit"); if (x) x.onclick = qzQuit; }
   function qzQuit() { clearInterval(qzTimer); QZ = null; play.hidden = true; play.innerHTML = ""; document.body.style.overflow = ""; render(); }
-  const qzTop = (q, right = "") => `<div class="play-top"><button class="x" id="qz-quit" aria-label="Quitter">${ICON.x}</button><div class="qz-title"><small>${esc(q.tag)}</small><b>${esc(q.title)}</b></div>${right}</div>`;
+  // Bouton « ? » (demande de l'auteur) : ce que veut dire le titre du quiz (« C'est quoi l'OPEP ? »), avec un petit indice gratuit.
+  const qzWhy = (q) => q.explain ? `<button class="qz-why-btn" type="button" aria-label="${esc(q.explain.q)}" onclick="this.closest('.play-top').nextElementSibling.toggleAttribute('hidden')">?</button>` : "";
+  const qzTop = (q, right = "") => `<div class="play-top"><button class="x" id="qz-quit" aria-label="Quitter">${ICON.x}</button><div class="qz-title"><small>${esc(q.tag)}</small><b>${esc(q.title)}</b></div>${qzWhy(q)}${right}</div>${q.explain ? `<div class="qz-why" hidden><b>${esc(q.explain.q)}</b><p>${esc(q.explain.text)}</p>${q.explain.hint ? `<p class="qz-why-hint">💡 Petit indice : ${esc(q.explain.hint)}</p>` : ""}</div>` : ""}`;
   const srcHTML = (src) => src && src.length ? `<p class="qz-src">Source${src.length > 1 ? "s" : ""} : ${src.map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.short)}</a>`).join(", ")}</p>` : "";
 
   function startQuiz(id, ctx = {}) {
