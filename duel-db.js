@@ -6,8 +6,8 @@
 (function () {
   // Adresse du projet et clé publique (anon / publishable) : faites pour être publiques, les règles d'accès
   // de contenu/supabase.sql protègent les données. Jamais la clé « service_role » ni « secret » ici.
-  const CFG = { url: "", key: "" };
-  const SDK = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/+esm";
+  const CFG = { url: "https://xnwaiyhquydhpcqnovtc.supabase.co", key: "sb_publishable_paIqtOPDAYGDFnq7DTFQyA_VpZKx33t" };
+  const SDK = "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/+esm";
   const PSEUDO_KEY = "geoco.duel.pseudo";
   const TABLE = "docs";
 
@@ -105,7 +105,7 @@
           session = r.data.session;
         }
         return adapter(sb, session.user.id);
-      }).catch(() => null);
+      }).catch((e) => { console.warn("Duel : connexion à Supabase impossible", e); return null; });
       return ready;
     },
   };
