@@ -1,0 +1,85 @@
+<title>Mélanges de la page Actu</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="styles.css">
+<style>
+/* Planche : 4 façons de mélanger la liste d'origine (grandes cartes texte, par jour) et la mosaïque illustrée,
+   rendues avec les vraies actus et le vrai style de l'appli, en largeur de téléphone. */
+:root { --ink: #f5f5f7; --dim: #9a9aa3; --rule: rgba(255,255,255,.12); --pick: #3ddc97; color-scheme: dark; }
+body { background: #000; color: var(--ink); }
+.board { max-width: 1760px; margin: 0 auto; padding-block: 28px 60px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.board > h1 { font-family: "Times New Roman", Times, serif; font-size: clamp(28px, 4vw, 40px); margin: 0 0 8px; text-wrap: balance; }
+.board > p { color: var(--dim); max-width: 70ch; margin: 0 0 24px; font-size: 16px; line-height: 1.5; }
+.cols { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 22px; align-items: start; }
+.col { min-width: 0; }
+.col-head { padding: 0 2px 12px; border-bottom: 1px solid var(--rule); margin-bottom: 14px; }
+.col-head .k { font: 700 12px/1 var(--font); letter-spacing: .08em; text-transform: uppercase; color: var(--dim); }
+.col-head h2 { font-family: "Times New Roman", Times, serif; font-size: 24px; margin: 6px 0 6px; }
+.col-head p { margin: 0; color: var(--dim); font-size: 14px; line-height: 1.45; }
+.col-head .mine { display: inline-block; margin-top: 8px; font: 700 12px var(--font); color: #062b1c; background: var(--pick); padding: 4px 10px; border-radius: 999px; }
+.phone { border: 1px solid var(--rule); border-radius: 28px; padding: 14px 12px; max-height: 1150px; overflow: hidden; position: relative; background: #000; }
+.phone::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 90px; background: linear-gradient(transparent, #000); pointer-events: none; }
+.day-l { font: 600 13px var(--font); color: var(--dim); text-transform: uppercase; letter-spacing: .06em; margin: 18px 4px 10px; }
+.day-l:first-child { margin-top: 2px; }
+.phone .news-card { opacity: 1; transform: none; }
+.phone .news-card h3 { font-size: 21px; }
+.phone .mosaic { grid-template-columns: 1fr; }
+.phone .m-big { grid-column: auto; }
+.thumb-card { display: grid !important; grid-template-columns: 1fr 96px; gap: 12px; align-items: start; }
+.thumb-card .mini { width: 96px; height: 96px; border-radius: 14px; overflow: hidden; border: 1px solid var(--rule); background: #0f1626; }
+.thumb-card .mini svg { width: 100%; height: 100%; display: block; }
+.verdict { margin-top: 34px; border-top: 1px solid var(--rule); padding-top: 20px; max-width: 72ch; font-size: 16px; line-height: 1.55; }
+.verdict h2 { font-family: "Times New Roman", Times, serif; font-size: 26px; margin: 0 0 8px; }
+.verdict p { color: var(--dim); margin: 0 0 10px; } .verdict b { color: var(--ink); }
+</style>
+<div class="board">
+  <h1>Mélanger la liste d'origine et la mosaïque</h1>
+  <p>Quatre façons de garder les grandes cartes texte du début et d'y mêler les illustrations. Chaque colonne montre les vraies actus du 30 et du 29 octobre, avec le style de l'appli, en largeur de téléphone.</p>
+  <div class="cols">
+    <section class="col"><div class="col-head"><span class="k">A</span><h2>La une, puis la liste</h2><p>Chaque jour s'ouvre sur sa grande actu illustrée ; le reste du jour reprend les cartes texte d'origine.</p></div><div class="phone" id="pA"></div></section>
+    <section class="col"><div class="col-head"><span class="k">B</span><h2>La liste avec vignettes</h2><p>Les cartes d'origine, toutes pareilles, avec une petite vignette illustrée à droite. Calme et régulier.</p></div><div class="phone" id="pB"></div></section>
+    <section class="col"><div class="col-head"><span class="k">C</span><h2>Une sur trois</h2><p>La liste d'origine ; une actu sur trois devient une carte illustrée pleine largeur, pour casser le rythme.</p></div><div class="phone" id="pC"></div></section>
+    <section class="col"><div class="col-head"><span class="k">D</span><h2>Aujourd'hui en mosaïque, avant en liste</h2><p>Les actus du jour en mosaïque illustrée ; les jours d'avant dans la liste d'origine, par jour.</p><span class="mine">Mon choix</span></div><div class="phone" id="pD"></div></section>
+  </div>
+  <section class="verdict">
+    <h2>Ce que j'en pense</h2>
+    <p><b>Alterner au hasard, je le déconseille</b> : si une carte sur deux change de forme sans raison, l'œil ne sait plus où regarder et la page fait brouillon.</p>
+    <p><b>Alterner selon un rôle, oui</b> : quand la forme dit quelque chose (« c'est l'actu du jour », « c'est plus ancien »), le mélange se lit tout seul. C'est le cas de A et de D.</p>
+    <p><b>Je choisirais D</b> : en ouvrant l'appli, tu vois tout de suite ce qui est neuf, en images ; en descendant, tu retrouves la liste d'origine, plus rapide à parcourir pour rattraper les jours précédents. A est un bon second choix si tu veux garder la liste partout.</p>
+  </div>
+</div>
+<script src="data/countries.js"></script>
+<script src="data/news.js"></script>
+<script>
+// Remplace globe.js pour illus.js : le lieu est-il dans ce pays ? (rayon horizontal sur les contours)
+window.GeocoGlobe = { contains(f, x, y) {
+  const polys = f.geometry.type === "Polygon" ? [f.geometry.coordinates] : f.geometry.coordinates;
+  return polys.some((p) => { let inside = false; const r = p[0]; for (let i = 0, j = r.length - 1; i < r.length; j = i++) { const [xi, yi] = r[i], [xj, yj] = r[j]; if ((yi > y) !== (yj > y) && x < (xj - xi) * (y - yi) / (yj - yi) + xi) inside = !inside; } return inside; });
+} };
+</script>
+<script src="illus.js"></script>
+<script>
+const NEWS = window.GEOCO.news, THEMES = { eco: "Économie", geo: "Géopolitique", mix: "Éco & Géopo" };
+const days = [...new Set(NEWS.map((n) => n.date))].slice(0, 2);
+const byDay = (d) => NEWS.filter((n) => n.date === d);
+const label = (d, i) => i === 0 ? "Aujourd'hui" : i === 1 ? "Hier" : d;
+const chip = (t) => `<span class="theme-chip ${t}"><i aria-hidden="true"></i>${THEMES[t]}</span>`;
+const eyebrow = (n) => `<p class="eyebrow">${chip(n.theme)}${n.region ? ` · ${n.region}` : ""}</p>`;
+const classic = (n) => `<a class="news-card ${n.theme}">${eyebrow(n)}<h3>${n.title}</h3><p class="summary">${n.summary}</p><span class="more">Comprendre en 2 min ›</span></a>`;
+const illustrated = (n, kind) => `<a class="news-card mcard m-tall ${n.theme}"><div class="mc-ill">${GeocoIllus.svg(n, kind)}</div><div class="mc-body">${eyebrow(n)}<h3>${n.title}</h3><p class="summary">${n.summary}</p></div></a>`;
+const thumb = (n) => `<a class="news-card thumb-card ${n.theme}"><div>${eyebrow(n)}<h3>${n.title}</h3></div><div class="mini">${GeocoIllus.svg(n, null, true)}</div></a>`;
+const gap = (html) => `<div style="display:flex;flex-direction:column;gap:14px">${html}</div>`;
+let prev = null; const kindFor = (n) => (prev = GeocoIllus.pick(n, prev));
+
+// A : une illustrée par jour, puis la liste d'origine
+document.getElementById("pA").innerHTML = days.map((d, i) => { const l = byDay(d); return `<p class="day-l">${label(d, i)}</p>${gap(illustrated(l[0], kindFor(l[0])) + l.slice(1, 4).map(classic).join(""))}`; }).join("");
+// B : liste d'origine avec vignettes
+document.getElementById("pB").innerHTML = days.map((d, i) => `<p class="day-l">${label(d, i)}</p>${gap(byDay(d).slice(0, 5).map(thumb).join(""))}`).join("");
+// C : une sur trois illustrée
+prev = null;
+document.getElementById("pC").innerHTML = days.map((d, i) => `<p class="day-l">${label(d, i)}</p>${gap(byDay(d).slice(0, 5).map((n, k) => k % 3 === 0 ? illustrated(n, kindFor(n)) : classic(n)).join(""))}`).join("");
+// D : aujourd'hui en mosaïque, avant en liste
+prev = null;
+const SIZES = ["big", "tall", "side", "side", "tall"];
+const mos = byDay(days[0]).map((n, k) => { const s = SIZES[k % SIZES.length], kind = kindFor(n); return `<a class="news-card mcard m-${s} ${n.theme}">${`<div class="mc-ill">${GeocoIllus.svg(n, kind, s === "side")}</div>`}<div class="mc-body">${eyebrow(n)}<h3>${n.title}</h3>${s === "side" ? "" : `<p class="summary">${n.summary}</p>`}</div></a>`; }).join("");
+document.getElementById("pD").innerHTML = `<p class="day-l">Aujourd'hui</p><div class="mosaic">${mos}</div><p class="day-l">Hier</p>${gap(byDay(days[1]).slice(0, 3).map(classic).join(""))}`;
+</script>
