@@ -1423,3 +1423,27 @@ section.flash { animation: partFlash 1.6s ease-out; }
 .verify-note { margin: 14px 0 0; padding: 12px 14px; border-radius: 12px; border: 1px solid rgba(255,176,32,.45); background: rgba(255,176,32,.08); font-size: 15px; line-height: 1.45; }
 .verify-note b { color: #ffb020; margin-right: 4px; }
 .verify-note a { color: inherit; opacity: .75; white-space: nowrap; }
+
+/* Mosaïque des actus : cartes de tailles différentes, illustrations tirées des chiffres et lieux (illus.js) */
+.mosaic { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 14px; grid-auto-flow: dense; }
+.mosaic .news-card + .news-card { margin-top: 0; }
+.mcard { padding: 0; display: flex; flex-direction: column; min-width: 0; border: 1px solid var(--hairline); }
+.mcard.eco, .mcard.geo, .mcard.mix { padding-left: 0; }
+.mcard .mc-body { padding: 16px 18px 18px; min-width: 0; }
+.mcard h3 { font-size: 20px; margin-bottom: 6px; }
+.mcard .summary { font-size: 15px; color: var(--muted); margin: 0; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.mc-ill { aspect-ratio: 340 / 190; background: #0f1626; border-bottom: 1px solid var(--hairline); }
+.mc-ill svg, .news-illus svg { display: block; width: 100%; height: 100%; }
+.mc-day { color: var(--text); font-weight: 600; }
+.m-big { grid-column: span 2; }
+.m-big h3 { font-size: 27px; }
+.m-side { flex-direction: row; }
+.m-side { align-items: flex-start; }
+.m-side .mc-ill { flex: 0 0 130px; width: 130px; height: 130px; aspect-ratio: auto; margin: 14px 0 14px 14px; border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; }
+.m-side h3 { font-size: 17px; }
+.m-text { background: linear-gradient(160deg, var(--surface-2), var(--surface)); justify-content: center; }
+.m-text h3 { font-size: 23px; }
+@media (max-width: 640px) { .m-big { grid-column: auto; } .m-big h3 { font-size: 22px; } }
+.mosaic-more { text-align: center; margin-top: 18px; }
+.news-illus { margin: 18px 0 0; border-radius: 20px; overflow: hidden; border: 1px solid var(--hairline); aspect-ratio: 340 / 190; background: #0f1626; }
+@media (prefers-reduced-motion: no-preference) { .il-flow { stroke-dasharray: 6 6; animation: il-run 1.2s linear infinite; } @keyframes il-run { to { stroke-dashoffset: -12; } } }

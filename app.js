@@ -263,6 +263,32 @@
       </a>`;
   }
 
+  // Mosaïque des actus (demande de l'auteur, 30 oct. 2026) : un fil continu de cartes de tailles différentes
+  // (grande, haute, de côté, texte seul), chacune avec une illustration tirée de ses chiffres et lieux (illus.js),
+  // sans grand titre par jour : la date est une petite mention sur la carte.
+  const MOSAIC = ["big", "tall", "tall", "side", "side", "tall", "text", "tall", "side", "tall"];
+  function mosaicCard(n, size, kind) {
+    const ill = size !== "text" && window.GeocoIllus ? `<div class="mc-ill">${window.GeocoIllus.svg(n, kind, size === "side")}</div>` : "";
+    return `
+      <a class="news-card mcard m-${size} ${n.theme}${isNear(n) ? " near" : ""}" href="#/actu/${n.id}" data-kind="${size === "text" ? "" : kind}">
+        ${ill}
+        <div class="mc-body">
+          <p class="eyebrow">${themeChip(n.theme)} <span class="mc-day">${relDay(n.date)}</span>${n.region ? ` · ${n.region}` : ""}${isNear(n) ? ` · <span class="near-badge">📍 ${I18N.t("Près de chez toi")}</span>` : ""}${n.deep ? ` · <span class="deep-badge">＋ ${I18N.t("Approfondi")}</span>` : ""}${n.verify ? ` · <span class="verify-badge">⚠️ ${I18N.t("Source à vérifier")}</span>` : ""}</p>
+          <h3>${n.title}</h3>
+          ${size === "side" ? "" : `<p class="summary">${n.summary}</p>`}
+        </div>
+      </a>`;
+  }
+  function mosaicHTML(list, from = 0) {
+    let prev = null;
+    return list.map((n, i) => {
+      const size = MOSAIC[(from + i) % MOSAIC.length];
+      const kind = window.GeocoIllus ? window.GeocoIllus.pick(n, prev) : null;
+      if (size === "big" || size === "tall") prev = kind;
+      return mosaicCard(n, size, kind);
+    }).join("");
+  }
+
   function cultureTile(c) {
     return `
       <a class="tile ${c.theme}" href="#/articles/${c.id}">
@@ -1106,7 +1132,7 @@
       </section>
 
       <section class="wrap actu-days">
-        <h2 class="title reveal">L'actu du jour.</h2>
+        <h2 class="title reveal">L'actu.</h2>
         <div class="filters reveal">
           ${segmented([["all", "Tout"], ["eco", "Économie"], ["geo", "Géopolitique"]], actuTheme, "atheme")}
           <div class="chips-row" role="group" aria-label="Filtrer par région">
@@ -1120,12 +1146,16 @@
       const list = news.filter((n) =>
         (actuTheme === "all" || n.theme === actuTheme || n.theme === "mix") &&
         (actuRegion === "all" || n.region === actuRegion));
-      const days = [...new Set(list.map((n) => n.date))];
-      app.querySelector("#actu-list").innerHTML = days.map((day) => `
-        <div class="day">
-          <p class="eyebrow">${formatDate(day)} · ${list.filter((n) => n.date === day).length} actus</p>
-          ${nearFirst(list.filter((n) => n.date === day)).map(newsCard).join("")}
-        </div>`).join("") || '<p class="empty">Aucune actu pour ce filtre.</p>';
+      const sorted = nearFirst(list), STEP = 24;
+      const box = app.querySelector("#actu-list");
+      if (!sorted.length) { box.innerHTML = '<p class="empty">Aucune actu pour ce filtre.</p>'; return; }
+      box.innerHTML = `<div class="mosaic">${mosaicHTML(sorted.slice(0, STEP))}</div>${sorted.length > STEP ? `<p class="mosaic-more"><button class="more-btn" type="button">${I18N.t("Voir les actus d'avant")}</button></p>` : ""}`;
+      let shown = STEP;
+      const more = box.querySelector(".mosaic-more button");
+      if (more) more.onclick = () => {
+        box.querySelector(".mosaic").insertAdjacentHTML("beforeend", mosaicHTML(sorted.slice(shown, shown + STEP), shown));
+        shown += STEP; if (shown >= sorted.length) more.parentElement.remove();
+      };
       app.querySelectorAll("#actu-list .reveal").forEach((el) => el.classList.add("in"));
     }
     app.querySelectorAll("[data-atheme]").forEach((b) => b.addEventListener("click", () => {
@@ -1573,6 +1603,7 @@
         <p class="eyebrow reveal">${themeChip(n.theme)} ${formatDate(n.date)}</p>
         <h1 class="title reveal">${n.title}</h1>
         <p class="lead reveal">${n.summary}</p>
+        ${!n.image && window.GeocoIllus ? `<figure class="news-illus reveal">${window.GeocoIllus.svg(n)}</figure>` : ""}
         ${n.verify ? `<p class="verify-note reveal"><b>⚠️ ${I18N.t("Source à vérifier")}</b> ${n.verify} <a href="#src-1">${I18N.t("Voir les sources")} ›</a></p>` : ""}
         ${doss[0] ? learnCard(doss[0]) : ""}
         ${heroImage(n.image)}
