@@ -1,0 +1,187 @@
+<title>Illustrations des actus</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* Planche : 5 manières d'illustrer une actu, chacune sur une vraie actu, en cartes comme dans l'appli. */
+:root{
+  --bg:#000; --card:#141416; --line:#2a2a2e; --fg:#f2f2f4; --mute:#9a9aa3;
+  --eco:#ff8a3d; --geo:#7d7bff; --sea:#0f1626; --land:#2b2f3c; --good:#40e0d0;
+  --serif:"Times New Roman",Times,Georgia,serif; --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:15px;line-height:1.45}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font-family:var(--serif);font-size:clamp(28px,5vw,40px);line-height:1.1;margin:0 0 8px;text-wrap:balance}
+.lead{color:var(--mute);max-width:62ch;margin:0 0 26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px}
+.item{display:flex;flex-direction:column;gap:10px;min-width:0}
+.tag{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}
+.tag b{color:var(--fg);font-size:15px;letter-spacing:0;text-transform:none;display:block;margin-top:2px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;border-left:3px solid var(--c)}
+.card.eco{--c:var(--eco)} .card.geo{--c:var(--geo)} .card.mix{--c:var(--eco);border-image:linear-gradient(var(--eco),var(--geo)) 0 0 0 1}
+.ill{height:190px;position:relative;background:var(--sea)}
+.ill svg{width:100%;height:100%;display:block}
+.txt{padding:12px 14px 14px}
+.chip{display:inline-flex;gap:6px;align-items:center;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.chip i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.txt h3{font-family:var(--serif);font-size:19px;line-height:1.2;margin:6px 0 0;text-wrap:balance}
+.why{font-size:13.5px;color:var(--mute);margin:0}
+.why b{color:var(--fg)}
+.rule{margin-top:30px;border-top:1px solid var(--line);padding-top:20px;max-width:70ch}
+.rule h2{font-family:var(--serif);font-size:24px;margin:0 0 8px}
+.rule ol{margin:0;padding-left:20px;color:var(--mute)} .rule li{margin:4px 0} .rule li b{color:var(--fg)}
+.lbl{font:600 11px var(--sans);fill:var(--fg)} .sm{font:500 10px var(--sans);fill:var(--mute)}
+.big{font:700 54px var(--serif);fill:var(--fg)} .num{font-variant-numeric:tabular-nums}
+@media (prefers-reduced-motion:no-preference){.flow{stroke-dasharray:6 6;animation:run 1.2s linear infinite}@keyframes run{to{stroke-dashoffset:-12}}}
+</style>
+<div class="wrap">
+  <h1>5 façons d'illustrer une actu</h1>
+  <p class="lead">Chaque actu reçoit l'illustration qui va avec son contenu, tirée de ses propres chiffres et lieux. Comme ça, deux actus à la suite ne se ressemblent jamais. Exemples sur des actus réelles du 29 et du 30 octobre.</p>
+  <div class="grid">
+
+    <div class="item">
+      <p class="tag">1 · La carte de situation<b>Quand l'actu parle d'un territoire</b></p>
+      <article class="card mix"><div class="ill" id="i-map"></div>
+        <div class="txt"><span class="chip"><i></i>Éco + géo · Amériques</span><h3>La Colombie retire à l'Amazonie sa protection contre les mines et le pétrole</h3></div></article>
+      <p class="why">Le pays en relief, ses voisins en gris, un repère et <b>le chiffre clé posé sur la carte</b>. Un petit globe en coin situe le pays dans le monde.</p>
+    </div>
+
+    <div class="item">
+      <p class="tag">2 · Le chiffre-choc<b>Quand l'actu est un record ou une hausse</b></p>
+      <article class="card eco"><div class="ill" id="i-num"></div>
+        <div class="txt"><span class="chip"><i></i>Économie · Amériques</span><h3>Brésil : Petrobras bat son record de production, +11,7 % en un an</h3></div></article>
+      <p class="why">Un grand nombre façon une de journal, et <b>deux barres avant / après</b> pour voir la hausse d'un coup d'œil.</p>
+    </div>
+
+    <div class="item">
+      <p class="tag">3 · L'hémicycle<b>Quand l'actu est une élection</b></p>
+      <article class="card geo"><div class="ill" id="i-seats"></div>
+        <div class="txt"><span class="chip"><i></i>Géopolitique · Moyen-Orient</span><h3>Israël : le Likud arrive en tête, mais aucun camp n'a la majorité</h3></div></article>
+      <p class="why">Les <b>120 sièges</b> de la Knesset en demi-cercle, colorés par camp, avec la ligne de majorité (61).</p>
+    </div>
+
+    <div class="item">
+      <p class="tag">4 · Le flux<b>Quand quelque chose circule entre deux lieux</b></p>
+      <article class="card mix"><div class="ill" id="i-flow"></div>
+        <div class="txt"><span class="chip"><i></i>Éco + géo · Moyen-Orient</span><h3>Un Premier ministre irakien à Damas, avec le pétrole en tête de l'agenda</h3></div></article>
+      <p class="why">Une flèche qui avance de Kirkouk au port de Baniyas, sur la vraie carte, avec <b>le volume en étiquette</b>. Marche pour le pétrole, le gaz, les câbles, les migrations.</p>
+    </div>
+
+    <div class="item">
+      <p class="tag">5 · Les pictogrammes<b>Quand on compare deux quantités</b></p>
+      <article class="card mix"><div class="ill" id="i-picto"></div>
+        <div class="txt"><span class="chip"><i></i>Éco + géo · Moyen-Orient</span><h3>Le patron de Shell : le pétrole à 115 dollars n'est plus « temporaire »</h3></div></article>
+      <p class="why"><b>85 petits navires</b> par jour avant la crise contre 2 le 25 octobre dans le détroit d'Ormuz. On compte avec les yeux, sans lire de chiffre.</p>
+    </div>
+
+    <div class="item">
+      <p class="tag">Et pour le reste<b>Une silhouette avec un repère</b></p>
+      <article class="card geo"><div class="ill" id="i-sil"></div>
+        <div class="txt"><span class="chip"><i></i>Géopolitique · Europe</span><h3>Le voile à l'école brouille Bakou et Ankara</h3></div></article>
+      <p class="why">Quand aucun des 5 ne va : la <b>silhouette du pays</b> sur fond uni et un point rouge sur la ville, comme dans la lettre du matin.</p>
+    </div>
+  </div>
+
+  <section class="rule">
+    <h2>Comment l'appli choisirait</h2>
+    <ol>
+      <li><b>Des sièges ou un vote</b> dans les chiffres : l'hémicycle.</li>
+      <li><b>Deux lieux reliés</b> (oléoduc, route, câble) : le flux.</li>
+      <li><b>Deux quantités à comparer</b> (avant / après, 85 contre 2) : les pictogrammes.</li>
+      <li><b>Un record, un %</b> : le chiffre-choc.</li>
+      <li><b>Un territoire</b> (une zone, une frontière) : la carte de situation ; sinon la silhouette.</li>
+      <li>Et jamais deux fois la même forme à la suite dans la liste : si c'est le cas, on passe au choix suivant.</li>
+    </ol>
+  </section>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<script>
+const G = {"co":[["076","Brésil",[[[[-53.4,-33.8],[-53.6,-33.2],[-53.2,-32.7],[-53.8,-32],[-54.6,-31.5],[-55.6,-30.8],[-56,-30.9],[-57,-30.1],[-57.6,-30.2],[-56.3,-28.8],[-55.2,-27.9],[-54.5,-27.5],[-53.6,-26.9],[-53.6,-26.1],[-54.1,-25.5],[-54.6,-25.7],[-54.4,-25.2],[-54.3,-24.6],[-54.3,-24],[-54.6,-23.8],[-55,-24],[-55.4,-24],[-55.5,-23.6],[-55.6,-22.7],[-55.8,-22.4],[-56.5,-22.1],[-56.9,-22.3],[-57.9,-22.1],[-57.9,-20.7],[-58.2,-20.2],[-57.8,-20],[-57.9,-19.4],[-57.7,-19],[-57.5,-18.2],[-57.7,-17.5],[-58.3,-17.3],[-58.4,-16.9],[-58.2,-16.3],[-60.2,-16.3],[-60.5,-15.1],[-60.2,-15.1],[-60.3,-14.6],[-60.5,-14.3],[-60.5,-13.8],[-61.1,-13.5],[-61.7,-13.5],[-62.1,-13.2],[-62.8,-13],[-63.2,-12.6],[-64.3,-12.5],[-65.4,-11.6],[-65.3,-10.9],[-65.4,-10.5],[-65.3,-9.8],[-66.6,-9.9],[-67.2,-10.3],[-68,-10.7],[-68.3,-11],[-68.8,-11],[-69.5,-10.9],[-70.1,-11.1],[-70.5,-11],[-70.5,-9.5],[-71.3,-10.1],[-72.2,-10],[-72.6,-9.5],[-73.2,-9.5],[-73,-9],[-73.6,-8.4],[-74,-7.5],[-73.7,-7.3],[-73.7,-6.9],[-73.1,-6.6],[-73.2,-6.1],[-73,-5.7],[-72.9,-5.3],[-71.7,-4.6],[-70.9,-4.4],[-70.8,-4.2],[-69.9,-4.3],[-69.4,-1.6],[-69.4,-1.1],[-69.6,-0.5],[-70,-0.2],[-70,0.5],[-69.4,0.7],[-69.2,0.6],[-69.2,1],[-69.8,1.1],[-69.8,1.7],[-67.9,1.7],[-67.5,2],[-67.3,1.7],[-67.1,1.1],[-66.9,1.3],[-66.3,0.7],[-65.5,0.8],[-65.3,1.1],[-64.6,1.3],[-64.2,1.5],[-64.1,1.9],[-63.4,2.2],[-63.4,2.4],[-64.3,2.5],[-64.4,3.1],[-64.4,3.8],[-64.8,4.1],[-64.6,4.2],[-63.9,4],[-63.1,3.8],[-62.8,4],[-62.1,4.2],[-61,4.5],[-60.6,4.9],[-60.7,5.2],[-60.2,5.2],[-60,5],[-60.1,4.6],[-59.8,4.4],[-59.5,4],[-59.8,3.6],[-60,2.8],[-59.7,2.3],[-59.6,1.8],[-59,1.3],[-58.5,1.3],[-58.4,1.5],[-58.1,1.5],[-57.7,1.7],[-57.3,2],[-56.8,1.9],[-56.5,1.9],[-56,1.8],[-55.9,2],[-56.1,2.2],[-56,2.5],[-55.6,2.4],[-55.1,2.5],[-54.5,2.3],[-54.1,2.1],[-53.8,2.4],[-53.6,2.3],[-53.4,2.1],[-52.9,2.1],[-52.6,2.5],[-52.2,3.2],[-51.7,4.2],[-51.3,4.2],[-51.1,3.7],[-50.5,1.9],[-50,1.7],[-49.9,1.1],[-50.7,0.2],[-50.4,-0.1],[-48.6,-0.2],[-48.6,-1.2],[-47.8,-0.6],[-46.6,-0.9],[-44.9,-1.5],[-44.4,-2.1],[-44.6,-2.7],[-43.4,-2.4],[-41.5,-2.9],[-40,-2.9],[-38.5,-3.7],[-37.2,-4.8],[-36.4,-5.1],[-35.6,-5.1],[-35.2,-5.5],[-34.9,-6.7],[-34.7,-7.3],[-35.1,-9],[-35.6,-9.6],[-37,-11],[-37.7,-12.2],[-38.4,-13],[-38.7,-13.1],[-38.9,-13.8],[-38.9,-15.7],[-39.2,-17.2],[-39.3,-17.9],[-39.6,-18.3],[-39.8,-19.6],[-40.8,-20.9],[-40.9,-21.9],[-41.8,-22.4],[-42,-23],[-43.1,-23],[-44.6,-23.3],[-45.3,-23.8],[-46.5,-24.1],[-47.6,-24.9],[-48.5,-25.9],[-48.6,-26.6],[-48.5,-27.2],[-48.7,-28.2],[-48.9,-28.7],[-49.6,-29.2],[-50.7,-31],[-51.6,-31.8],[-52.3,-32.2],[-52.7,-33.2],[-53.4,-33.8]]]]],["604","Pérou",[[[[-69.9,-4.3],[-70.8,-4.2],[-70.9,-4.4],[-71.7,-4.6],[-72.9,-5.3],[-73,-5.7],[-73.2,-6.1],[-73.1,-6.6],[-73.7,-6.9],[-73.7,-7.3],[-74,-7.5],[-73.6,-8.4],[-73,-9],[-73.2,-9.5],[-72.6,-9.5],[-72.2,-10],[-71.3,-10.1],[-70.5,-9.5],[-70.5,-11],[-70.1,-11.1],[-69.5,-10.9],[-68.7,-12.6],[-68.9,-12.9],[-68.9,-13.6],[-68.9,-14.4],[-69.3,-14.9],[-69.2,-15.3],[-69.4,-15.7],[-69,-16.5],[-69.6,-17.6],[-69.9,-18.1],[-70.4,-18.3],[-71.4,-17.8],[-71.5,-17.4],[-73.4,-16.4],[-75.2,-15.3],[-76,-14.6],[-76.4,-13.8],[-76.3,-13.5],[-77.1,-12.2],[-78.1,-10.4],[-79,-8.4],[-79.4,-7.9],[-79.8,-7.2],[-80.5,-6.5],[-81.2,-6.1],[-80.9,-5.7],[-81.4,-4.7],[-81.1,-4],[-80.3,-3.4],[-80.2,-3.8],[-80.5,-4.1],[-80.4,-4.4],[-80,-4.3],[-79.6,-4.4],[-79.2,-5],[-78.6,-4.5],[-78.4,-3.9],[-77.8,-3],[-76.6,-2.6],[-75.5,-1.6],[-75.2,-0.9],[-75.4,-0.1],[-75.1,-0.1],[-74.4,-0.5],[-74.1,-1],[-73.7,-1.3],[-73.1,-2.3],[-72.3,-2.4],[-71.8,-2.2],[-71.4,-2.3],[-70.8,-2.3],[-70,-2.7],[-70.7,-3.7],[-70.4,-3.8],[-69.9,-4.3]]]]],["170","Colombie",[[[[-66.9,1.3],[-67.1,1.1],[-67.3,1.7],[-67.5,2],[-67.9,1.7],[-69.8,1.7],[-69.8,1.1],[-69.2,1],[-69.2,0.6],[-69.4,0.7],[-70,0.5],[-70,-0.2],[-69.6,-0.5],[-69.4,-1.1],[-69.4,-1.6],[-69.9,-4.3],[-70.4,-3.8],[-70.7,-3.7],[-70,-2.7],[-70.8,-2.3],[-71.4,-2.3],[-71.8,-2.2],[-72.3,-2.4],[-73.1,-2.3],[-73.7,-1.3],[-74.1,-1],[-74.4,-0.5],[-75.1,-0.1],[-75.4,-0.1],[-75.8,0.1],[-76.3,0.4],[-76.6,0.3],[-77.4,0.4],[-77.7,0.8],[-77.9,0.8],[-78.9,1.4],[-79,1.7],[-78.6,1.8],[-78.7,2.3],[-78.4,2.6],[-77.9,2.7],[-77.5,3.3],[-77.1,3.9],[-77.5,4.1],[-77.3,4.7],[-77.5,5.6],[-77.3,5.8],[-77.5,6.7],[-77.9,7.2],[-77.7,7.7],[-77.4,7.6],[-77.2,7.9],[-77.5,8.5],[-77.3,8.7],[-76.8,8.6],[-76.1,9.3],[-75.7,9.4],[-75.7,9.8],[-75.5,10.6],[-74.9,11.1],[-74.3,11.1],[-74.2,11.3],[-73.4,11.2],[-72.6,11.7],[-72.2,12],[-71.7,12.4],[-71.4,12.4],[-71.1,12.1],[-71.3,11.8],[-72,11.6],[-72.2,11.1],[-72.6,10.8],[-72.9,10.5],[-73,9.7],[-73.3,9.2],[-72.8,9.1],[-72.7,8.6],[-72.4,8.4],[-72.4,8],[-72.5,7.6],[-72.4,7.4],[-72.2,7.3],[-72,7],[-70.7,7.1],[-70.1,7],[-69.4,6.1],[-69,6.2],[-68.3,6.2],[-67.7,6.3],[-67.3,6.1],[-67.5,5.6],[-67.7,5.2],[-67.8,4.5],[-67.6,3.8],[-67.3,3.5],[-67.3,3.3],[-67.8,2.8],[-67.4,2.6],[-67.2,2.3],[-66.9,1.3]]]]],["591","Panama",[[[[-77.3,8.7],[-77.5,8.5],[-77.2,7.9],[-77.4,7.6],[-77.7,7.7],[-77.9,7.2],[-78.2,7.5],[-78.4,8.1],[-78.2,8.3],[-78.4,8.4],[-78.6,8.7],[-79.1,9],[-79.6,8.9],[-79.8,8.6],[-80.2,8.3],[-80.4,8.3],[-80.5,8.1],[-80,7.6],[-80.3,7.4],[-80.4,7.3],[-80.9,7.2],[-81.1,7.8],[-81.2,7.7],[-81.5,7.7],[-81.7,8.1],[-82.1,8.2],[-82.4,8.3],[-82.8,8.3],[-82.8,8.1],[-83,8.2],[-82.9,8.4],[-82.8,8.6],[-82.9,8.8],[-82.7,8.9],[-82.9,9.1],[-82.9,9.5],[-82.5,9.6],[-82.2,9.2],[-82.2,9],[-81.8,9],[-81.7,9],[-81.4,8.8],[-80.9,8.9],[-80.5,9.1],[-79.9,9.3],[-79.6,9.6],[-79,9.6],[-79.1,9.5],[-78.5,9.4],[-78,9.3],[-77.7,9],[-77.3,8.7]]]]],["862","Venezuela",[[[[-60.7,5.2],[-60.6,4.9],[-61,4.5],[-62.1,4.2],[-62.8,4],[-63.1,3.8],[-63.9,4],[-64.6,4.2],[-64.8,4.1],[-64.4,3.8],[-64.4,3.1],[-64.3,2.5],[-63.4,2.4],[-63.4,2.2],[-64.1,1.9],[-64.2,1.5],[-64.6,1.3],[-65.3,1.1],[-65.5,0.8],[-66.3,0.7],[-66.9,1.3],[-67.2,2.3],[-67.4,2.6],[-67.8,2.8],[-67.3,3.3],[-67.3,3.5],[-67.6,3.8],[-67.8,4.5],[-67.7,5.2],[-67.5,5.6],[-67.3,6.1],[-67.7,6.3],[-68.3,6.2],[-69,6.2],[-69.4,6.1],[-70.1,7],[-70.7,7.1],[-72,7],[-72.2,7.3],[-72.4,7.4],[-72.5,7.6],[-72.4,8],[-72.4,8.4],[-72.7,8.6],[-72.8,9.1],[-73.3,9.2],[-73,9.7],[-72.9,10.5],[-72.6,10.8],[-72.2,11.1],[-72,11.6],[-71.3,11.8],[-71.4,11.5],[-71.9,11.4],[-71.6,11],[-71.6,10.5],[-72.1,9.9],[-71.7,9.1],[-71.3,9.1],[-71,9.9],[-71.3,10.2],[-71.4,11],[-70.2,11.4],[-70.3,11.9],[-69.9,12.2],[-69.6,11.5],[-68.9,11.4],[-68.2,10.9],[-68.2,10.6],[-67.3,10.6],[-66.2,10.7],[-65.7,10.2],[-64.9,10.1],[-64.3,10.4],[-64.3,10.6],[-63.1,10.7],[-61.9,10.7],[-62.7,10.4],[-62.4,10],[-61.6,9.9],[-60.8,9.4],[-60.7,8.6],[-60.1,8.6],[-59.8,8.4],[-60.5,7.8],[-60.6,7.4],[-60.3,7],[-60.5,6.9],[-61.2,6.7],[-61.1,6.2],[-61.4,6],[-60.7,5.2]]]]],["218","Équateur",[[[[-75.4,-0.1],[-75.2,-0.9],[-75.5,-1.6],[-76.6,-2.6],[-77.8,-3],[-78.4,-3.9],[-78.6,-4.5],[-79.2,-5],[-79.6,-4.4],[-80,-4.3],[-80.4,-4.4],[-80.5,-4.1],[-80.2,-3.8],[-80.3,-3.4],[-79.8,-2.7],[-80,-2.2],[-80.4,-2.7],[-81,-2.2],[-80.8,-2],[-80.9,-1.1],[-80.6,-0.9],[-80.4,-0.3],[-80,0.4],[-80.1,0.8],[-79.5,1],[-78.9,1.4],[-77.9,0.8],[-77.7,0.8],[-77.4,0.4],[-76.6,0.3],[-76.3,0.4],[-75.8,0.1],[-75.4,-0.1]]]]]],"me":[["376","Israël",[[[[35.7,32.7],[35.5,32.4],[35.2,32.5],[35,31.9],[35.2,31.8],[35,31.6],[34.9,31.4],[35.4,31.5],[35.4,31.1],[34.9,29.5],[34.8,29.8],[34.3,31.2],[34.6,31.6],[34.5,31.6],[34.8,32.1],[35,32.8],[35.1,33.1],[35.5,33.1],[35.6,33.3],[35.8,33.3],[35.8,32.9],[35.7,32.7]]]]],["422","Liban",[[[[35.8,33.3],[35.6,33.3],[35.5,33.1],[35.1,33.1],[35.5,33.9],[36,34.6],[36,34.7],[36.5,34.6],[36.6,34.2],[36.1,33.8],[35.8,33.3]]]]],["275","Palestine",[[[[35.4,31.5],[34.9,31.4],[35,31.6],[35.2,31.8],[35,31.9],[35.2,32.5],[35.5,32.4],[35.5,31.8],[35.4,31.5]]]]],["400","Jordanie",[[[[35.5,32.4],[35.7,32.7],[36.8,32.3],[38.8,33.4],[39.2,32.2],[39,32],[37,31.5],[38,30.5],[37.7,30.3],[37.5,30],[36.7,29.9],[36.5,29.5],[36.1,29.2],[35,29.4],[34.9,29.5],[35.4,31.1],[35.4,31.5],[35.5,31.8],[35.5,32.4]]]]],["368","Irak",[[[[39.2,32.2],[38.8,33.4],[41,34.4],[41.4,35.6],[41.3,36.4],[41.8,36.6],[42.4,37.2],[42.8,37.4],[43.9,37.3],[44.3,37],[44.8,37.2],[45.4,36],[46.1,35.7],[46.2,35.1],[45.7,34.8],[45.4,34],[46.1,33],[47.3,32.5],[47.9,31.7],[47.7,31],[48,31],[48,30.5],[48.6,29.9],[48,30],[47.3,30.1],[46.6,29.1],[44.7,29.2],[41.9,31.2],[40.4,31.9],[39.2,32.2]]]]],["364","Iran",[[[[48.6,29.9],[48,30.5],[48,31],[47.7,31],[47.9,31.7],[47.3,32.5],[46.1,33],[45.4,34],[45.7,34.8],[46.2,35.1],[46.1,35.7],[45.4,36],[44.8,37.2],[44.2,38],[44.4,38.3],[44.1,39.4],[44.8,39.7],[45,39.3],[45.5,38.9],[46.1,38.7],[46.5,38.8],[47.7,39.5],[48.1,39.6],[48.4,39.3],[48,38.8],[48.6,38.3],[48.9,38.3],[49.2,37.6],[50.2,37.4],[50.8,36.9],[52.3,36.7],[53.8,37],[53.9,37.2],[54.8,37.4],[55.5,38],[56.2,37.9],[56.6,38.1],[57.3,38],[58.4,37.5],[59.2,37.4],[60.4,36.5],[61.1,36.5],[61.2,35.7],[60.8,34.4],[60.5,33.7],[61,33.5],[60.5,33],[60.9,32.2],[60.9,31.6],[61.7,31.4],[61.8,30.7],[60.9,29.8],[61.4,29.3],[61.8,28.7],[62.7,28.3],[62.8,27.4],[63.2,27.2],[63.3,26.8],[61.9,26.2],[61.5,25.1],[59.6,25.4],[58.5,25.6],[57.4,25.7],[57,27],[56.5,27.1],[55.7,27],[54.7,26.5],[53.5,26.8],[52.5,27.6],[51.5,27.9],[50.9,28.8],[50.1,30.2],[49.6,30],[48.9,30.3],[48.6,29.9]]]]],["760","Syrie",[[[[35.7,32.7],[35.8,32.9],[35.8,33.3],[36.1,33.8],[36.6,34.2],[36.5,34.6],[36,34.7],[35.9,35.4],[36.2,35.8],[36.4,36],[36.7,36.3],[36.7,36.8],[37.1,36.6],[38.2,36.9],[38.7,36.7],[39.5,36.7],[40.7,37.1],[41.2,37.1],[42.4,37.2],[41.8,36.6],[41.3,36.4],[41.4,35.6],[41,34.4],[38.8,33.4],[36.8,32.3],[35.7,32.7]]]]],["792","Turquie",[[[[44.8,37.2],[44.3,37],[43.9,37.3],[42.8,37.4],[42.4,37.2],[41.2,37.1],[40.7,37.1],[39.5,36.7],[38.7,36.7],[38.2,36.9],[37.1,36.6],[36.7,36.8],[36.7,36.3],[36.4,36],[36.2,35.8],[35.8,36.3],[36.2,36.7],[35.6,36.6],[34.7,36.8],[34,36.2],[32.5,36.1],[31.7,36.6],[30.6,36.7],[30.4,36.3],[29.7,36.2],[28.7,36.7],[27.6,36.7],[27.1,37.7],[26.3,38.2],[26.8,39],[26.2,39.5],[27.3,40.4],[28.8,40.5],[29.2,41.2],[31.2,41.1],[32.4,41.7],[33.5,42],[35.2,42],[36.9,41.3],[38.4,41],[39.5,41.1],[40.4,41],[41.6,41.5],[42.6,41.6],[43.6,41.1],[43.8,40.7],[43.7,40.3],[44.4,40],[44.8,39.7],[44.1,39.4],[44.4,38.3],[44.2,38],[44.8,37.2]]],[[[26.1,41.8],[27.1,42.1],[28,42],[28.1,41.6],[29,41.3],[28.8,41.1],[27.6,41],[27.2,40.7],[26.4,40.2],[26,40.6],[26.1,40.8],[26.3,40.9],[26.6,41.6],[26.1,41.8]]]]],["682","Arabie saoudite",[[[[35,29.4],[36.1,29.2],[36.5,29.5],[36.7,29.9],[37.5,30],[37.7,30.3],[38,30.5],[37,31.5],[39,32],[39.2,32.2],[40.4,31.9],[41.9,31.2],[44.7,29.2],[46.6,29.1],[47.5,29],[47.7,28.5],[48.4,28.6],[48.8,27.7],[49.3,27.5],[49.5,27.1],[50.2,26.7],[50.2,26.3],[50.1,25.9],[50.2,25.6],[50.5,25.3],[50.7,25],[50.8,24.8],[51.1,24.6],[51.4,24.6],[51.6,24.2],[51.6,24],[52,23],[55,22.5],[55.2,22.7],[55.7,22],[55,20],[52,19],[49.1,18.6],[48.2,18.2],[47.5,17.1],[47,17],[46.8,17.3],[46.4,17.2],[45.4,17.3],[45.2,17.4],[44.1,17.4],[43.8,17.3],[43.4,17.6],[43.1,17.1],[43.2,16.7],[42.8,16.4],[42.7,16.8],[42.4,17.1],[42.3,17.5],[41.8,17.8],[41.2,18.7],[40.9,19.5],[40.3,20.2],[39.8,20.3],[39.1,21.3],[39,22],[39.1,22.6],[38.5,23.7],[38,24.1],[37.5,24.3],[37.2,24.9],[37.2,25.1],[36.9,25.6],[36.6,25.8],[36.3,26.6],[35.6,27.4],[35.1,28.1],[34.6,28.1],[34.8,28.6],[34.8,29],[35,29.4]]]]],["196","Chypre",[[[[32.7,35.1],[32.9,35.1],[33.2,35.2],[33.4,35.2],[33.5,35.1],[33.5,35],[33.7,35],[33.9,35.1],[34,35.1],[34,35],[33,34.6],[32.5,34.7],[32.3,35.1],[32.7,35.1]]]]]]};
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const C = { eco: css("--eco"), geo: css("--geo"), sea: css("--sea"), land: css("--land"), fg: css("--fg"), mute: css("--mute"), line: css("--line") };
+const feat = (list) => list.map(([id, name, c]) => ({ type: "Feature", id, properties: { name }, geometry: { type: "MultiPolygon", coordinates: c } }));
+const svgIn = (id) => { const el = document.getElementById(id); const w = el.clientWidth || 340, h = el.clientHeight || 190; return [d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`), w, h]; };
+
+// 1. Carte de situation : la Colombie
+(() => {
+  const [svg, w, h] = svgIn("i-map"), fs = feat(G.co), col = fs.find((f) => f.id === "170");
+  const proj = d3.geoMercator().fitExtent([[10, 10], [w * 0.62, h - 10]], col), path = d3.geoPath(proj);
+  svg.append("g").selectAll("path").data(fs).join("path").attr("d", path).attr("fill", (f) => f.id === "170" ? C.eco : C.land).attr("fill-opacity", (f) => f.id === "170" ? 0.85 : 1).attr("stroke", "#000").attr("stroke-width", 0.6);
+  const [x, y] = proj([-69.94, -4.21]);
+  svg.append("circle").attr("cx", x).attr("cy", y).attr("r", 4).attr("fill", "#fff");
+  svg.append("text").attr("class", "lbl").attr("x", x + 8).attr("y", y + 4).text("Leticia");
+  svg.append("text").attr("x", w * 0.66).attr("y", 70).attr("class", "big num").style("font-size", "40px").text("42 %");
+  svg.append("text").attr("x", w * 0.66).attr("y", 90).attr("class", "sm").text("du territoire concerné");
+  svg.append("text").attr("x", w * 0.66).attr("y", 104).attr("class", "sm").text("483 283 km² de forêt");
+  // petit globe de repère
+  const g = d3.geoOrthographic().scale(26).translate([w - 36, h - 36]).rotate([74, 0]), gp = d3.geoPath(g);
+  svg.append("path").datum({ type: "Sphere" }).attr("d", gp).attr("fill", "#1b2236").attr("stroke", C.line);
+  svg.append("path").datum(col).attr("d", gp).attr("fill", C.eco);
+})();
+
+// 2. Chiffre-choc : Petrobras (la barre « un an avant » est calculée à partir de +11,7 %)
+(() => {
+  const [svg, w, h] = svgIn("i-num");
+  svg.append("text").attr("x", 18).attr("y", 78).attr("class", "big num").text("3,51");
+  svg.append("text").attr("x", 20).attr("y", 100).attr("class", "sm").text("millions de barils (équivalent pétrole)");
+  svg.append("text").attr("x", 20).attr("y", 114).attr("class", "sm").text("par jour : record");
+  svg.append("text").attr("x", 20).attr("y", 150).attr("fill", C.eco).style("font", "700 22px var(--sans)").text("+11,7 % en un an");
+  const now = 3.512, before = now / 1.117, top = 26, base = h - 26, sy = (v) => base - (v / 4) * (base - top), bx = w - 136;
+  [[before, "avant", C.land], [now, "maintenant", C.eco]].forEach(([v, l, c], i) => {
+    svg.append("rect").attr("x", bx + i * 62).attr("y", sy(v)).attr("width", 34).attr("height", base - sy(v)).attr("rx", 4).attr("fill", c);
+    svg.append("text").attr("x", bx + 17 + i * 62).attr("y", sy(v) - 6).attr("text-anchor", "middle").attr("class", "lbl num").text(v.toFixed(2).replace(".", ","));
+    svg.append("text").attr("x", bx + 17 + i * 62).attr("y", base + 14).attr("text-anchor", "middle").attr("class", "sm").text(l);
+  });
+})();
+
+// 3. Hémicycle : Knesset, 120 sièges (bloc Netanyahou 53 dont Likud 27, opposition 48, partis arabes 19)
+(() => {
+  const [svg, w, h] = svgIn("i-seats");
+  const groups = [["Likud", 27, C.geo], ["Alliés de Netanyahou", 26, "#a9a7ff"], ["Opposition", 48, C.eco], ["Partis arabes", 19, "#40e0d0"]];
+  const seats = groups.flatMap(([n, k, c]) => Array(k).fill(c));
+  const cx = w / 2, cy = h - 34, rows = 6, r0 = 46, dr = 13;
+  const pos = [];
+  for (let r = 0; r < rows; r++) { const rad = r0 + r * dr, n = Math.round(Math.PI * rad / 11.2); for (let i = 0; i < n; i++) pos.push({ a: Math.PI - (i / (n - 1)) * Math.PI, rad }); }
+  pos.sort((p, q) => q.a - p.a || p.rad - q.rad);
+  pos.slice(0, 120).forEach((p, i) => svg.append("circle").attr("cx", cx + Math.cos(p.a) * p.rad).attr("cy", cy - Math.sin(p.a) * p.rad).attr("r", 4.4).attr("fill", seats[i] || C.land));
+  svg.append("text").attr("x", cx).attr("y", cy - 6).attr("text-anchor", "middle").attr("class", "big num").style("font-size", "26px").text("61");
+  svg.append("text").attr("x", cx).attr("y", cy + 10).attr("text-anchor", "middle").attr("class", "sm").text("pour la majorité");
+  svg.append("text").attr("x", 14).attr("y", 22).attr("class", "lbl").style("fill", C.geo).text("Bloc Netanyahou 53");
+  svg.append("text").attr("x", w - 14).attr("y", 22).attr("text-anchor", "end").attr("class", "lbl").text("Opposition 48 · arabes 19");
+})();
+
+// 4. Flux : Kirkouk → Baniyas
+(() => {
+  const [svg, w, h] = svgIn("i-flow"), fs = feat(G.me);
+  const focus = { type: "FeatureCollection", features: fs.filter((f) => ["760", "368"].includes(f.id)) };
+  const proj = d3.geoMercator().fitExtent([[6, 6], [w - 6, h - 6]], focus), path = d3.geoPath(proj);
+  svg.append("g").selectAll("path").data(fs).join("path").attr("d", path).attr("fill", (f) => ["760", "368"].includes(f.id) ? "#3a3550" : C.land).attr("stroke", "#000").attr("stroke-width", 0.6);
+  const a = proj([44.39, 35.47]), b = proj([35.94, 35.18]), mid = [(a[0] + b[0]) / 2, Math.max(44, Math.min(a[1], b[1]) - 30)];
+  svg.append("path").attr("d", `M${a}Q${mid} ${b}`).attr("fill", "none").attr("stroke", C.eco).attr("stroke-width", 3).attr("class", "flow");
+  [[a, "Kirkouk"], [b, "Baniyas"]].forEach(([p, n]) => { svg.append("circle").attr("cx", p[0]).attr("cy", p[1]).attr("r", 4).attr("fill", "#fff"); svg.append("text").attr("class", "lbl").attr("x", p[0]).attr("y", p[1] + 16).attr("text-anchor", "middle").text(n); });
+  svg.append("rect").attr("x", mid[0] - 70).attr("y", mid[1] - 24).attr("width", 140).attr("height", 22).attr("rx", 11).attr("fill", "#000").attr("stroke", C.eco);
+  svg.append("text").attr("x", mid[0]).attr("y", mid[1] - 9).attr("text-anchor", "middle").attr("class", "lbl").text("2 millions de barils / jour");
+})();
+
+// 5. Pictogrammes : navires dans le détroit d'Ormuz, 85 par jour avant la crise contre 2 le 25 octobre
+(() => {
+  const [svg, w, h] = svgIn("i-picto");
+  const boat = (x, y, c) => svg.append("path").attr("d", `M${x} ${y}h10l-2 4h-6z M${x + 4} ${y - 4}h3v4h-3z`).attr("fill", c);
+  svg.append("text").attr("x", 14).attr("y", 22).attr("class", "lbl").text("Navires par jour dans le détroit d'Ormuz");
+  svg.append("text").attr("x", 14).attr("y", 42).attr("class", "sm").text("Avant la crise : 85");
+  for (let i = 0; i < 85; i++) boat(14 + (i % 17) * 15, 58 + Math.floor(i / 17) * 14, C.land);
+  svg.append("text").attr("x", 14).attr("y", 148).attr("class", "sm").text("Le 25 octobre : 2");
+  boat(14, 162, C.eco); boat(29, 162, C.eco);
+  svg.append("text").attr("x", w - 14).attr("y", 170).attr("text-anchor", "end").attr("class", "big num").style("font-size", "30px").style("fill", C.eco).text("115 $");
+  svg.append("text").attr("x", w - 14).attr("y", 184).attr("text-anchor", "end").attr("class", "sm").text("le baril de Brent");
+})();
+
+// Silhouette : la Turquie (Ankara), l'autre pays de cette brouille
+(() => {
+  const [svg, w, h] = svgIn("i-sil"), fs = feat(G.me), tr = fs.find((f) => f.id === "792");
+  const proj = d3.geoMercator().fitExtent([[30, 20], [w - 30, h - 20]], tr), path = d3.geoPath(proj);
+  svg.append("path").datum(tr).attr("d", path).attr("fill", "#d9d9df");
+  const [x, y] = proj([32.85, 39.93]);
+  svg.append("circle").attr("cx", x).attr("cy", y).attr("r", 6).attr("fill", "#e5484d");
+  svg.append("text").attr("x", x + 10).attr("y", y + 4).attr("class", "lbl").style("fill", "#000").text("ANKARA");
+})();
+</script>
