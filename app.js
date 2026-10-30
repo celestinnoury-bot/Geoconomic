@@ -273,9 +273,9 @@
       <a class="news-card mcard m-${size} ${n.theme}${isNear(n) ? " near" : ""}" href="#/actu/${n.id}" data-kind="${size === "text" ? "" : kind}">
         ${ill}
         <div class="mc-body">
-          <p class="eyebrow">${themeChip(n.theme)} <span class="mc-day">${relDay(n.date)}</span>${n.region ? ` · ${n.region}` : ""}${isNear(n) ? ` · <span class="near-badge">📍 ${I18N.t("Près de chez toi")}</span>` : ""}${n.deep ? ` · <span class="deep-badge">＋ ${I18N.t("Approfondi")}</span>` : ""}${n.verify ? ` · <span class="verify-badge">⚠️ ${I18N.t("Source à vérifier")}</span>` : ""}</p>
+          <p class="mc-meta"><i class="mc-dot ${n.theme}" title="${THEMES[n.theme]}"></i>${relDay(n.date)}${n.region ? ` · ${n.region}` : ""}${n.verify ? ` <span class="verify-badge" title="${I18N.t("Source à vérifier")}">⚠️</span>` : ""}</p>
           <h3>${n.title}</h3>
-          ${size === "side" ? "" : `<p class="summary">${n.summary}</p>`}
+          ${size === "big" || size === "text" ? `<p class="summary">${n.summary}</p>` : ""}
         </div>
       </a>`;
   }

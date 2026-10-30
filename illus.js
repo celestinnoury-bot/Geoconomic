@@ -105,13 +105,13 @@
     const fr = frame([b[0], b[1], b[2] + (b[2] - b[0]) * 0.9 + 4, b[3]], 10, 0.25);
     const [x, y] = fr.P(g.coords), f0 = (n.figures || [])[0];
     return `${landLayer(fr, c, accent(n))}<circle cx="${x}" cy="${y}" r="4" fill="#fff"/>${T(x + 8, y + 4, placeName(g))}
-      ${f0 ? (() => { const [l1, l2] = wrap2(f0.label, 24); return `<rect x="${W * 0.6 - 10}" y="40" width="${W * 0.4}" height="74" rx="10" fill="#000" fill-opacity=".55"/>${T(W * 0.6, 74, short(f0.value, 18), { size: fit(short(f0.value, 18), W * 0.4 - 18, 26), weight: 700, serif: true })}${T(W * 0.6, 92, l1, { size: 10, weight: 500, fill: COL.mute })}${T(W * 0.6, 105, l2, { size: 10, weight: 500, fill: COL.mute })}`; })() : ""}`;
+      ${f0 ? T(W * 0.62, 86, short(f0.value, 14), { size: fit(short(f0.value, 14), W * 0.36, 30), weight: 700, serif: true }) : ""}`;
   }
   function drawSilhouette(n) {
     const g = (n.geo || [])[0]; if (!g) return drawShock(n, true);
     const c = countryAt(g.coords[0], g.coords[1]); if (!c) return drawMap(n);
     const fr = frame(bbox(c), 3, 0.3), [x, y] = fr.P(g.coords);
-    return `<rect width="${W}" height="${H}" fill="#15161b"/><path d="${pathOf(c, fr.P)}" fill="#dcdce2"/><circle cx="${x}" cy="${y}" r="6" fill="${COL.red}"/>${T(x + 10, y + 4, placeName(g).toUpperCase(), { fill: "#000", size: 11, weight: 700 })}`;
+    return `<rect width="${W}" height="${H}" fill="#15161b"/><path d="${pathOf(c, fr.P)}" fill="#dcdce2"/><circle cx="${x}" cy="${y}" r="6" fill="${COL.red}"/>`;
   }
   function drawFlow(n) {
     const [g1, g2] = n.geo;
@@ -121,7 +121,7 @@
     const c1 = countryAt(...g1.coords), c2 = countryAt(...g2.coords);
     const land = feats().filter((f) => { const bb = bbox(f); return bb[2] >= fr.lon0 && bb[0] <= fr.lon1 && bb[3] >= fr.lat0 - 10 && bb[1] <= fr.lat1 + 10; })
       .map((f) => `<path d="${pathOf(f, fr.P)}" fill="${f === c1 || f === c2 ? "#3a3550" : COL.land}" stroke="#000" stroke-width=".6"/>`).join("");
-    const label = f0 ? short(f0.value + " " + (f0.label || ""), 30) : "";
+    const label = f0 ? short(f0.value, 18) : "";
     return `${land}<path class="il-flow" d="M${a}Q${mid} ${z}" fill="none" stroke="${accent(n)}" stroke-width="3" stroke-linecap="round"/>
       ${[[a, g1], [z, g2]].map(([p, g]) => `<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="#fff"/>${T(p[0], p[1] + 16, short(placeName(g), 18), { anchor: "middle" })}`).join("")}
       ${label ? `<rect x="${mid[0] - label.length * 3.1 - 10}" y="${mid[1] - 24}" width="${label.length * 6.2 + 20}" height="22" rx="11" fill="#000" stroke="${accent(n)}"/>${T(mid[0], mid[1] - 9, label, { anchor: "middle" })}` : ""}`;
@@ -138,16 +138,15 @@
     const maj = Math.floor(s.total / 2) + 1;
     return `${pick.map((p, i) => `<circle cx="${(cx + Math.cos(p.a) * p.rad).toFixed(1)}" cy="${(cy - Math.sin(p.a) * p.rad).toFixed(1)}" r="${rr}" fill="${colorOf(i)}"/>`).join("")}
       ${T(cx, cy - 6, String(maj), { anchor: "middle", size: 24, weight: 700, serif: true })}${T(cx, cy + 10, "pour la majorité", { anchor: "middle", size: 10, weight: 500, fill: COL.mute })}
-      ${T(12, 20, short((s.la || "").replace(/^(le |la |les )/i, ""), 22) + " " + s.a, { fill: COL.geo })}${T(W - 12, 20, short((s.lb || "").replace(/,.*$/, ""), 20) + " " + s.b, { anchor: "end", fill: COL.eco })}`;
+      ${T(18, cy, String(s.a), { size: 22, weight: 700, serif: true, fill: COL.geo })}${T(W - 18, cy, String(s.b), { anchor: "end", size: 22, weight: 700, serif: true, fill: COL.eco })}`;
   }
   function drawPicto(n) {
     const v = versus(n), unit = Math.max(v.a, v.b) > 120 ? 5 : 1;
     const dots = (count, y0, color) => { let out = "", k = Math.round(count / unit); for (let i = 0; i < k; i++) out += `<rect x="${14 + (i % 26) * 12}" y="${y0 + Math.floor(i / 26) * 12}" width="8" height="8" rx="2" fill="${color}"/>`; return [out, Math.ceil(k / 26) * 12]; };
     const [d1, h1] = dots(v.a, 46, accent(n)), [d2] = dots(v.b, 46 + h1 + 26, COL.land);
     const [la, lb] = [(v.la || "").replace(/\(.*$/, "").trim(), (v.lb || "").replace(/\(.*$/, "").trim()];
-    return `${T(14, 22, short(v.f.label || v.f.value, 46), { size: 11 })}${T(14, 40, `${v.a}${la ? " · " + short(la, 30) : ""}`, { size: 10, weight: 500, fill: COL.mute })}${d1}
-      ${T(14, 46 + h1 + 20, `${v.b}${lb ? " · " + short(lb, 30) : ""}`, { size: 10, weight: 500, fill: COL.mute })}${d2}
-      ${unit > 1 ? T(W - 12, H - 10, `1 carré = ${unit}`, { anchor: "end", size: 9, weight: 500, fill: COL.mute }) : ""}`;
+    return `${T(14, 36, String(v.a), { size: 20, weight: 700, serif: true, fill: accent(n) })}${d1}
+      ${T(14, 46 + h1 + 20, String(v.b), { size: 20, weight: 700, serif: true, fill: COL.mute })}${d2}`;
   }
   function drawShock(n, compact) {
     const f = shock(n) || (n.figures || [])[0];
@@ -157,11 +156,9 @@
       const sz = fit(v, 170, 64); // l'illustration étroite ne garde que le centre (environ 190 de large)
       return `<rect width="${W}" height="${H}" fill="#121318"/>${T(W / 2, H / 2 + sz * 0.33, v, { anchor: "middle", size: sz, weight: 700, serif: true, fill: accent(n) })}`;
     }
-    const others = (n.figures || []).filter((x) => x !== f).slice(0, 2);
     const size = fit(v, 290, 54);
     return `<rect width="${W}" height="${H}" fill="#121318"/><rect x="0" y="0" width="6" height="${H}" fill="${accent(n)}"/>
-      ${T(22, 78, v, { size, weight: 700, serif: true, fill: accent(n) })}${wrap2(f.label, 46).map((l, i) => T(24, 100 + i * 14, l, { size: 11, weight: 500, fill: COL.mute })).join("")}
-      ${others.map((o, i) => `${T(24 + i * 150, 150, short(o.value, 16), { size: 15, weight: 700 })}${T(24 + i * 150, 166, short(o.label, 24), { size: 9.5, weight: 500, fill: COL.mute })}`).join("")}`;
+      ${T(22, 104, v, { size, weight: 700, serif: true, fill: accent(n) })}${T(24, 132, short(f.label, 44), { size: 12, weight: 500, fill: COL.mute })}`;
   }
 
   // ---------- Choix de la forme ----------
