@@ -140,13 +140,24 @@ window.GEOCO = {
             "Quand un pays taxe, l'autre riposte souvent par ses propres taxes. C'est l'engrenage de la guerre commerciale, et les consommateurs des deux côtés paient plus cher.",
             "L'histoire sert d'avertissement : en 1930, la loi américaine Smoot-Hawley a augmenté les droits de douane sur des milliers de produits. Les représailles qui ont suivi ont fait chuter le commerce mondial et aggravé la Grande Dépression."
           ]
+                },
+        {
+          title: "Le cas américain : du « Liberation Day » à aujourd'hui",
+          paragraphs: [
+            "Le 2 avril 2025, Donald Trump annonce depuis la roseraie de la Maison-Blanche ce qu'il appelle le « Liberation Day » (jour de la libération) : une taxe de 10 % sur presque tout ce qui entre aux États-Unis à partir du 5 avril, puis des taux plus élevés pays par pays, par exemple 34 % pour la Chine, 20 % pour l'Union européenne, 24 % pour le Japon et 46 % pour le Viêt Nam [6]. Ces taux étaient calculés surtout à partir du déficit commercial des États-Unis avec chaque pays, pas à partir des taxes que ces pays appliquaient eux-mêmes [6].",
+            "Les recettes ont fortement augmenté. L'État fédéral a encaissé 195 milliards de dollars de droits de douane sur l'exercice 2025 (octobre 2024 à septembre 2025), puis 173 milliards sur l'exercice 2026, une baisse de 11 % surtout due aux remboursements [7]. Le bureau du budget du Congrès (CBO) prévoit pour 2026 environ 250 milliards de dollars de moins que dans ses prévisions précédentes [8].",
+            "Pourquoi des remboursements ? Le 20 février 2026, la Cour suprême a jugé, par 6 voix contre 3, que la loi d'urgence économique (IEEPA) utilisée pour ces taxes ne donnait pas au président le pouvoir de créer des droits de douane [9]. Le jour même, la Maison-Blanche les a remplacés par une surtaxe temporaire de 10 % pour 150 jours, qui a pris fin le 24 juillet 2026, puis par de nouvelles taxes de 10 à 12,5 % sur une soixantaine de pays, fondées sur une autre loi [9][10].",
+            "Qui paie ? Selon le Budget Lab de l'université Yale, les droits de douane en place coûtent plus de 1 000 dollars par an au ménage américain typique (estimation d'août 2026) [11]. Les ménages aisés paient plus en dollars, mais les ménages modestes paient plus en part de leurs revenus [12].",
+            "Où va l'argent ? Les droits de douane vont dans le budget général de l'État, sans caisse à part. Le 8 décembre 2025, le gouvernement a annoncé 12 milliards de dollars d'aide aux agriculteurs touchés par la guerre commerciale, financés selon le président par « une petite partie » des recettes douanières [13]. En revanche, le « dividende douanier » de 2 000 dollars par personne promis le 9 novembre 2025 n'a jamais été voté : il aurait coûté environ 300 milliards de dollars selon la Tax Foundation [14]."
+          ]
         }
       ],
       forMe: "Ton smartphone, tes vêtements, ton électroménager ou les pièces de ta voiture traversent souvent plusieurs frontières avant d'arriver chez toi. Chaque droit de douane ajouté en chemin finit en grande partie dans le prix que tu paies en magasin. Et si l'Europe est visée par des taxes, ce sont aussi des entreprises européennes qui exportent (vin, luxe, aéronautique) qui perdent des clients, avec des emplois en jeu.",
       figures: [
         { value: "96 %", label: "du coût des taxes américaines de 2025 payé par les acheteurs américains (Institut de Kiel)" },
         { value: "+12 %", label: "le prix des machines à laver aux États-Unis après la taxe de 2018" },
-        { value: "1930", label: "Smoot-Hawley, le contre-exemple historique" }
+        { value: "1930", label: "Smoot-Hawley, le contre-exemple historique" },
+        { value: "173 Md$", label: "de droits de douane encaissés par les États-Unis sur l'exercice 2026 (USAFacts)" }
       ],
       terms: ["droits-de-douane", "protectionnisme", "libre-echange", "mondialisation"],
       quiz: [
@@ -174,7 +185,16 @@ window.GEOCO = {
         { short: "Commission européenne", name: "Commission européenne, droits compensateurs sur les voitures électriques chinoises (octobre 2024)", url: "https://policy.trade.ec.europa.eu" },
         { short: "Institut de Kiel", name: "Institut de Kiel, étude sur l'incidence des droits de douane américains, janvier 2026 (via Fortune)", url: "https://fortune.com/2026/01/20/americans-pay-nearly-all-of-tariff-burden-study" },
         { short: "CEPR", name: "Amiti, Redding et Weinstein, « Who's Paying for the US Tariffs? A Longer-Term Perspective », CEPR, 2019", url: "https://cepr.org/publications/dp14229" },
-        { short: "NBC News", name: "NBC News, sur l'étude Flaaen, Hortaçsu et Tintelnot consacrée à la taxe sur les machines à laver (2019)", url: "https://www.nbcnews.com/business/consumer/trump-s-washing-machine-tariffs-are-costing-americans-almost-100-n999461" }
+        { short: "NBC News", name: "NBC News, sur l'étude Flaaen, Hortaçsu et Tintelnot consacrée à la taxe sur les machines à laver (2019)", url: "https://www.nbcnews.com/business/consumer/trump-s-washing-machine-tariffs-are-costing-americans-almost-100-n999461" },
+        { short: "Wikipedia", name: "« Liberation Day tariffs », Wikipedia (annonce du 2 avril 2025, taux par pays et méthode de calcul)", url: "https://en.wikipedia.org/wiki/Liberation_Day_tariffs" },
+        { short: "USAFacts", name: "USAFacts, « How much revenue does the federal government collect from tariffs? » (exercices 2025 et 2026)", url: "https://usafacts.org/answers/how-much-revenue-does-the-federal-government-collect-from-tariffs/country/united-states/" },
+        { short: "CBO", name: "Congressional Budget Office, Monthly Budget Review, juillet 2026", url: "https://www.cbo.gov/system/files/2026-08/61983-2026-07-MBR.pdf" },
+        { short: "Covington", name: "Covington & Burling, « IEEPA Tariffs Terminated, Replacement Section 122 Tariffs Take Effect », février 2026", url: "https://www.cov.com/en/news-and-insights/insights/2026/02/ieepa-tariffs-terminated-replacement-section-122-tariffs-take-effect" },
+        { short: "Sandler Travis", name: "Sandler, Travis & Rosenberg, « Section 122 Tariffs (Expired) » et taxes de la section 301 qui les remplacent", url: "https://www.strtrade.com/trade-news-resources/tariff-actions-resources/section-122-tariffs" },
+        { short: "ABC News", name: "ABC News, « Tariffs will cost US households over $1,000 a year, Yale Budget Lab says », août 2026", url: "https://abcnews.com/Business/tariffs-cost-us-households-1000-year-yale-budget/story?id=135945432" },
+        { short: "CNBC", name: "CNBC, « The uneven cost of tariffs: Why some households will pay more than others », mars 2026", url: "https://www.cnbc.com/2026/03/23/household-tariff-costs.html" },
+        { short: "NPR/WGCU", name: "WGCU (NPR), « Trump administration announces $12 billion in one-time payments to farmers », 8 décembre 2025", url: "https://www.wgcu.org/2025-12-08/trump-administration-announces-12-billion-in-one-time-payments-to-farmers" },
+        { short: "CNBC", name: "CNBC, « The odds of Trump's $2,000 tariff dividend checks are 'now effectively zero,' expert says », février 2026", url: "https://www.cnbc.com/2026/02/23/trumps-2000-tariff-dividend-checks-are-less-likely-experts-say.html" }
       ]
     },
 

@@ -35,6 +35,7 @@ Auteur : Célestin Noury (étudiant en économie). On lui parle **en français**
 - Code couleur des actus (demande de l'auteur) : `theme` eco = orange, geo = bleu-violet, mix = les deux (pastille `themeChip` dans app.js, liseré à gauche des cartes, halo, lieu coloré dans le bandeau défilant).
 - Actus : **12 à 15 par jour** (demande de l'auteur, 30 oct. 2026 ; avant 8 à 10, et la routine n'en publiait que 5 avec la règle des 2 sources), dont **2-3 sur la France et 2-3 sur le reste de l'Europe**, en plus du reste du monde ; **faits marquants**, au plus 2 actus « chiffres » (inflation, taux…) par jour ; ids en minuscules sans accent.
 - Une actu sur les taux/douane/détroits/puces/sanctions/dollar renvoie au cours lié (encadré « Le cours pour comprendre »).
+- Cours « Droits de douane » : partie « Le cas américain : du « Liberation Day » à aujourd'hui » ajoutée le 30 oct. 2026 (demande de l'auteur : faits datés, ce que paient les ménages, recettes de l'État, à quoi sert l'argent) : 2 avril 2025, recettes 195 Md$ (exercice 2025) et 173 Md$ (2026), Cour suprême 20 févr. 2026 (IEEPA), surtaxe 122 jusqu'au 24 juillet 2026 puis section 301, Yale > 1 000 $/ménage, 12 Md$ aux agriculteurs, dividende de 2 000 $ jamais voté ; sources [6] à [14], traductions dans `contenu-2026-10-30-douane.json`. À tenir à jour quand ça bouge.
 - `node tools/check-content.mjs` doit afficher « Contenu OK » avant chaque commit.
 
 ## Langues
