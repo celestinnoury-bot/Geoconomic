@@ -2,6 +2,16 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.lettres = [
   {
+    "date": "2026-10-30",
+    "file": "lettres/2026-10-30.pdf",
+    "titles": [
+      "Israël : le Likud arrive en tête, mais aucun camp n'a la majorité et les partis arabes doublent presque leurs sièges",
+      "Royaume-Uni : un premier budget sans surprise, des banques taxées et une marge de manœuvre qui fond",
+      "Tanzanie : une nouvelle poche de gaz de 223 milliards de pieds cubes, déjà prête à produire dès novembre"
+    ],
+    "fileDark": "lettres/2026-10-30-sombre.pdf"
+  },
+  {
     "date": "2026-10-29",
     "file": "lettres/2026-10-29.pdf",
     "titles": [

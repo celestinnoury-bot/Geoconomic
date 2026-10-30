@@ -17,6 +17,326 @@
 window.GEOCO = window.GEOCO || {};
 window.GEOCO.news = [
   {
+    "id": "2026-10-30-israel-elections-aucune-majorite",
+    "date": "2026-10-30",
+    "region": "Moyen-Orient",
+    "theme": "geo",
+    "geo": [
+      {
+        "name": "Jérusalem, Israël",
+        "label": "Israël",
+        "coords": [
+          35.21,
+          31.77
+        ]
+      }
+    ],
+    "title": "Israël : le Likud arrive en tête, mais aucun camp n'a la majorité et les partis arabes doublent presque leurs sièges",
+    "summary": "Le décompte final donne 27 sièges au Likud, 53 au bloc de Netanyahou et 48 à l'opposition, sur 120. Il en faut 61 pour gouverner.",
+    "points": [
+      "Le décompte des voix est terminé : le Likud de Benyamin Netanyahou reste le premier parti, avec 27 sièges sur 120 (20,5 % des voix) [1][3][4].",
+      "Le bloc de Netanyahou totalise 53 sièges et l'opposition 48, donc aucun des deux n'atteint les 61 sièges nécessaires pour former un gouvernement [2][4]. Le parti Yashar de Gadi Eisenkot en obtient 21 [4].",
+      "Les partis arabes ont gagné 19 sièges (11 pour la Liste unie, 8 pour Ra'am), contre 10 dans le Parlement sortant [2][4]. Les résultats officiels doivent être remis au président Isaac Herzog le 4 novembre, et les députés prêteront serment le 10 novembre [2]."
+    ],
+    "why": [
+      "À retenir : sans majorité claire, Israël entre dans une période de négociations qui peut durer des semaines, en pleine guerre régionale [2][4].",
+      "Aucun camp ne peut gouverner seul : il faudra soit un accord improbable entre les blocs, soit un gouvernement minoritaire qui obtiendrait quand même la confiance du Parlement [4]. Tant que la situation n'est pas réglée, les décisions budgétaires et militaires restent incertaines."
+    ],
+    "forMe": "Ce vote ne change rien à ton quotidien tout de suite, mais le pays voisin de Gaza, du Liban et de l'Iran n'aura peut-être pas de gouvernement stable avant plusieurs semaines [2][4].",
+    "figures": [
+      {
+        "value": "27 sièges",
+        "label": "pour le Likud, premier parti",
+        "src": 3
+      },
+      {
+        "value": "53 contre 48",
+        "label": "bloc de Netanyahou contre opposition, sur 120",
+        "src": 2
+      },
+      {
+        "value": "19 sièges",
+        "label": "pour les partis arabes (10 auparavant)",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Israel Hayom",
+        "name": "Israel Hayom, « Israel's 2026 election results released » (29 octobre 2026)",
+        "url": "https://www.israelhayom.com/2026/10/29/israels-2026-election-results-released/"
+      },
+      {
+        "short": "Times of Israel",
+        "name": "The Times of Israel, « Central Elections Committee publishes final election results, Knesset to be sworn in Nov. 10 » (octobre 2026)",
+        "url": "https://www.timesofisrael.com/liveblog_entry/central-elections-committee-publishes-final-election-results-knesset-to-be-sworn-in-nov-10/"
+      },
+      {
+        "short": "Globes",
+        "name": "Globes, « Count complete: Likud has 27 Knesset seats, Shas drops to 6 » (octobre 2026)",
+        "url": "https://en.globes.co.il/en/article-count-complete-likud-has-27-knesset-seats-shas-drops-to-6-1001561412"
+      },
+      {
+        "short": "Jerusalem Post",
+        "name": "The Jerusalem Post, « Israel Election 2026: Netanyahu's Likud remains Israel's biggest party » (octobre 2026)",
+        "url": "https://www.jpost.com/israel-election-2026/article-913237"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-royaume-uni-budget-healey-banques",
+    "date": "2026-10-30",
+    "region": "Europe",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Londres, Royaume-Uni",
+        "label": "Royaume-Uni",
+        "coords": [
+          -0.13,
+          51.51
+        ]
+      }
+    ],
+    "title": "Royaume-Uni : un premier budget sans surprise, des banques taxées et une marge de manœuvre qui fond",
+    "summary": "Le nouveau ministre des Finances, John Healey, promet pas d'impôt en plus pour « les gens qui travaillent » et fait payer les banques. La marge de sécurité de l'État tombe à environ 15 milliards de livres.",
+    "points": [
+      "Le 28 octobre, John Healey a présenté son premier budget comme ministre des Finances. Il a promis qu'il n'y aurait pas de hausse d'impôts pour « les travailleurs », a aidé les ménages et les automobilistes touchés par la hausse des prix de l'énergie et relevé les impôts des banques [1][3].",
+      "Le bureau indépendant du budget (OBR) estime la marge de sécurité de l'État à environ 15 milliards de livres en 2029-2030, contre 24 milliards prévus en mars [1][2].",
+      "Les marchés ont à peine réagi : le taux auquel l'État britannique emprunte à 10 ans tournait autour de 5,3 % et la livre a peu bougé [1][2]. Une fuite sur l'impôt visant les banques a pourtant poussé la présidente de la commission du Trésor, Meg Hillier, à écrire au ministère et à l'autorité financière [3]."
+    ],
+    "why": [
+      "À retenir : le budget a calmé les marchés, mais avec une marge plus faible, le moindre choc (énergie, taux) peut obliger le gouvernement à relever des impôts ou couper des dépenses [1][2].",
+      "Les analystes notent aussi qu'il ne contient aucune mesure nouvelle pour relancer la croissance à long terme [1]. Le pays emprunte déjà cher : autour de 5,3 % à 10 ans [1]."
+    ],
+    "forMe": "Si tu as de l'épargne ou un prêt en livres, le calme des marchés évite une secousse immédiate, mais l'impôt plus lourd sur les banques peut à terme se répercuter sur leurs services [1][3].",
+    "figures": [
+      {
+        "value": "≈ 15 milliards £",
+        "label": "de marge de sécurité en 2029-2030 (24 milliards prévus en mars)",
+        "src": 1
+      },
+      {
+        "value": "≈ 5,3 %",
+        "label": "taux d'emprunt de l'État à 10 ans après le budget",
+        "src": 1
+      },
+      {
+        "value": "28 octobre",
+        "label": "premier budget de John Healey",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "inflation-taux"
+    ],
+    "sources": [
+      {
+        "short": "Portfolio Adviser",
+        "name": "Portfolio Adviser, « Autumn Budget 2026: Gilts steady after budget ‘broadly consistent with market expectations’ » (octobre 2026)",
+        "url": "https://portfolio-adviser.com/autumn-budget-2026-gilts-steady-after-budget-broadly-consistent-with-market-expectations/"
+      },
+      {
+        "short": "MarketScreener",
+        "name": "MarketScreener, « Gilt Yields Ease, Sterling Falls Slightly in Muted Reaction to U.K. Budget » (octobre 2026)",
+        "url": "https://www.marketscreener.com/news/gilt-yields-ease-sterling-falls-slightly-in-muted-reaction-to-u-k-budget-update-ce785cd2de8ff526"
+      },
+      {
+        "short": "Global Banking & Finance",
+        "name": "Global Banking & Finance (Reuters), « UK Budget 2026: Healey Avoids Market Drama, Not Entirely Leak-Free » (octobre 2026)",
+        "url": "https://www.globalbankingandfinance.com/uks-healey-spares-markets-drama-budget-entirely-leak-free/"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-tanzanie-gaz-mnazi-bay-premier-gaz-novembre",
+    "date": "2026-10-30",
+    "region": "Afrique",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Mnazi Bay, Mtwara, Tanzanie",
+        "label": "Mtwara",
+        "coords": [
+          40.18,
+          -10.27
+        ]
+      }
+    ],
+    "title": "Tanzanie : une nouvelle poche de gaz de 223 milliards de pieds cubes, déjà prête à produire dès novembre",
+    "summary": "Le gouvernement annonce 223 milliards de pieds cubes de gaz à Mnazi Bay, dans le sud. L'exploitant Maurel & Prom parle de 200 milliards, avec une première production dès novembre.",
+    "points": [
+      "La Tanzanie dit avoir découvert environ 223 milliards de pieds cubes de gaz naturel à Mnazi Bay, dans la région de Mtwara, dans le sud du pays [1][2].",
+      "L'exploitant français Maurel & Prom, qui a foré le puits Kasa-1X avec la société publique TPDC, parle plutôt d'environ 200 milliards de pieds cubes bruts, dont environ 120 milliards pour sa part [1][2].",
+      "La production pourrait démarrer dès novembre 2026, avec environ 50 millions de pieds cubes par jour [1][2]. Le gouvernement estime ses réserves existantes à 57,54 mille milliards de pieds cubes [1]."
+    ],
+    "why": [
+      "À retenir : avec le gaz à des prix élevés à cause de la guerre autour d'Ormuz, un pays qui peut produire vite devient une carte à jouer [1][2].",
+      "L'écart entre 223 et 200 milliards vient de qui compte : le gouvernement annonce un volume estimé, l'entreprise donne son chiffre brut et sa part [1][2]. Il faudra attendre les mesures officielles pour trancher."
+    ],
+    "forMe": "Ce gaz sert d'abord à la Tanzanie et à ses voisins, mais chaque nouveau gisement hors du Golfe réduit un peu la dépendance mondiale à Ormuz, ce qui pèse à terme sur ta facture d'énergie [1][2].",
+    "figures": [
+      {
+        "value": "223 milliards",
+        "label": "de pieds cubes de gaz annoncés par le gouvernement",
+        "src": 1
+      },
+      {
+        "value": "≈ 200 milliards",
+        "label": "de pieds cubes bruts selon Maurel & Prom",
+        "src": 2
+      },
+      {
+        "value": "Novembre 2026",
+        "label": "début de production possible (≈ 50 millions de pieds cubes par jour)",
+        "src": 2
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "The Citizen",
+        "name": "The Citizen (Tanzanie), « Tanzania discovers 223 billion cubic feet of natural gas in Mtwara » (27 octobre 2026)",
+        "url": "https://thecitizen.co.tz/tanzania/news/national/tanzania-discovers-223-billion-cubic-feet-of-natural-gas-in-mtwara-5647712"
+      },
+      {
+        "short": "Offshore Engineer",
+        "name": "Offshore Engineer, « Tanzania Eyes Gas Reserves Boost After Mnazi Bay Offshore Discovery » (octobre 2026)",
+        "url": "https://www.oedigital.com/news/543934-tanzania-eyes-gas-reserves-boost-after-mnazi-bay-offshore-discovery"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-bresil-petrobras-record-production",
+    "date": "2026-10-30",
+    "region": "Amériques",
+    "theme": "eco",
+    "geo": [
+      {
+        "name": "Rio de Janeiro, Brésil",
+        "label": "Rio de Janeiro",
+        "coords": [
+          -43.17,
+          -22.91
+        ]
+      }
+    ],
+    "title": "Brésil : Petrobras bat son record de production, +11,7 % en un an, en plein pétrole cher",
+    "summary": "La compagnie pétrolière publique produit 3,5 millions de barils équivalent pétrole par jour au troisième trimestre, son plus haut niveau historique.",
+    "points": [
+      "Petrobras annonce une production propre record de 3,512 millions de barils équivalent pétrole par jour au troisième trimestre, soit 11,7 % de plus qu'un an plus tôt [1][2].",
+      "La production des champs qu'elle opère atteint aussi un record, à 5,08 millions de barils par jour, dont 4,46 millions viennent des gisements sous la couche de sel (le « pré-sel ») [1].",
+      "L'ancien record datait du deuxième trimestre 2026 (3,34 millions de barils par jour) [1][2]."
+    ],
+    "why": [
+      "À retenir : alors que le Golfe est bloqué, le Brésil produit et vend plus de pétrole, et gagne en importance pour les pays qui cherchent d'autres fournisseurs [1][2].",
+      "Le chiffre englobe pétrole et gaz, exprimés en « barils équivalent pétrole » ; pour le seul pétrole, les estimations sont plus basses (environ 2,9 millions de barils par jour) [2]."
+    ],
+    "forMe": "Chaque baril produit ailleurs que dans le Golfe aide à calmer un peu le prix du carburant, même si l'effet reste faible tant que le détroit d'Ormuz est fermé [1][2].",
+    "figures": [
+      {
+        "value": "3,512 millions",
+        "label": "de barils équivalent pétrole par jour (record)",
+        "src": 1
+      },
+      {
+        "value": "+11,7 %",
+        "label": "sur un an",
+        "src": 1
+      },
+      {
+        "value": "5,08 millions",
+        "label": "de barils par jour sur les champs qu'elle opère",
+        "src": 1
+      }
+    ],
+    "culture": [],
+    "dossiers": [],
+    "sources": [
+      {
+        "short": "Petrobras (SEC)",
+        "name": "Petrobras, formulaire 6-K déposé auprès de la SEC (28 octobre 2026)",
+        "url": "https://www.sec.gov/Archives/edgar/data/0001119639/000129281426005030/pbr20261028_6k.htm"
+      },
+      {
+        "short": "IndustrialInfo",
+        "name": "IndustrialInfo, « Brazil's Petrobras sets new production, export records in Q3 » (octobre 2026)",
+        "url": "https://www.industrialinfo.com/news/article/brazils-petrobras-sets-new-production-export-records-in-q3--348104"
+      }
+    ]
+  },
+  {
+    "id": "2026-10-30-ormuz-petrole-114-shell-pas-temporaire",
+    "date": "2026-10-30",
+    "region": "Moyen-Orient",
+    "theme": "mix",
+    "geo": [
+      {
+        "name": "Détroit d’Ormuz",
+        "label": "Ormuz",
+        "coords": [
+          56.5,
+          26.5
+        ]
+      }
+    ],
+    "title": "Le patron de Shell le dit : le pétrole à 115 dollars n'est plus « temporaire », car les stocks sont presque vides",
+    "summary": "Le Brent finit à environ 115 dollars, en route pour un quatrième mois de hausse. L'Iran promet de dégager le détroit en sept jours, mais Washington envisage de reprendre les frappes.",
+    "points": [
+      "Le 29 octobre, le Brent a clôturé autour de 114,88 dollars le baril et le pétrole américain (WTI) à environ 102 dollars ; au matin du 30, le Brent montait vers 116 dollars et finissait octobre avec près de 11 % de hausse, un quatrième mois de hausse d'affilée [1][2][3].",
+      "Le patron de Shell, Wael Sawan, a estimé que les prix ne semblent plus temporaires, car les stocks mondiaux sont très bas [1][3]. L'Europe a promis de libérer 42 millions de barils de ses réserves sur trois mois [1][3].",
+      "L'Iran dit s'attendre à lancer en moins d'une semaine un plan de sept jours pour dégager le détroit, mais selon le Wall Street Journal, un haut commandant a présenté à Donald Trump des options militaires, et il pourrait reprendre ses frappes après les élections américaines de mi-mandat, la semaine prochaine [1][2]. Un pétrolier a aussi été touché par un objet non identifié en quittant le détroit [1][3]."
+    ],
+    "why": [
+      "À retenir : tant que le détroit reste bloqué, le prix ne baisse pas, et même une bonne nouvelle diplomatique est vite effacée par un risque de reprise des frappes [1][2].",
+      "Le suivi du trafic indique 2 passages seulement le 25 octobre, contre 85 par jour avant la crise [3]. Les chiffres de prix varient selon le contrat et l'heure ; les ordres de grandeur concordent."
+    ],
+    "forMe": "Si le pétrole reste à ce niveau, l'essence et le fioul pèsent plus longtemps sur ton budget [1][3].",
+    "figures": [
+      {
+        "value": "≈ 115 $",
+        "label": "le baril de Brent, clôture du 29 octobre",
+        "src": 1
+      },
+      {
+        "value": "≈ +11 %",
+        "label": "de hausse du Brent en octobre, quatrième mois de hausse",
+        "src": 3
+      },
+      {
+        "value": "2 passages",
+        "label": "dans le détroit le 25 octobre, contre 85 par jour avant la crise",
+        "src": 3
+      }
+    ],
+    "culture": [],
+    "dossiers": [
+      "routes-maritimes"
+    ],
+    "verify": "Les prix et le détail des incidents diffèrent un peu d'une source à l'autre (contrat, heure) ; certains articles s'appuient sur des médias iraniens non vérifiés.",
+    "sources": [
+      {
+        "short": "Nation Thailand",
+        "name": "Nation Thailand, « WTI rises 0.8% on Oct 30 amid fears of US strikes on Iran » (30 octobre 2026)",
+        "url": "https://www.nationthailand.com/news/world/40072907"
+      },
+      {
+        "short": "Bloomberg",
+        "name": "Bloomberg, « Oil Climbs on Signs US May Resume Military Strikes Against Iran » (29 octobre 2026)",
+        "url": "https://www.bloomberg.com/news/articles/2026-10-29/latest-oil-market-news-and-analysis-for-oct-30"
+      },
+      {
+        "short": "Straits Live",
+        "name": "Straits Live, « Strait of Hormuz News, October 29, 2026: Straits Daily Brief »",
+        "url": "https://straits.live/briefs/2026-10-29"
+      }
+    ]
+  },
+  {
     "id": "2026-10-29-cuba-onu-embargo-vote",
     "date": "2026-10-29",
     "region": "Amériques",
@@ -6525,516 +6845,6 @@ window.GEOCO.news = [
         "short": "Trend",
         "name": "Trend, « Uzbekistan, five countries sign protocol to develop CASCA+ route »",
         "url": "https://www.trend.az/casia/uzbekistan/4232753.html"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-pont-yalou-coree-du-nord",
-    "date": "2026-10-15",
-    "region": "Asie",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Sinuiju et Dandong, sur le fleuve Yalou",
-        "label": "Corée du Nord",
-        "coords": [
-          124.4,
-          40.1
-        ]
-      }
-    ],
-    "title": "La Chine et la Corée du Nord ouvrent enfin leur pont neuf, fermé pendant douze ans",
-    "summary": "Un pont à quatre voies de plus de 3 kilomètres, terminé côté chinois en 2014, a accueilli ses premiers camions le 15 octobre. Il doit désengorger la frontière entre les deux pays.",
-    "points": [
-      "Le nouveau pont du Yalou, entre Dandong (Chine) et Sinuiju (Corée du Nord), a ouvert le 15 octobre 2026 : des camions aux couleurs des deux pays ont commencé à rouler dans les deux sens en fin de matinée, selon des reporters de l'AFP [2].",
-      "C'est un pont à quatre voies d'environ 3 026 mètres. La Chine a fini sa partie en 2014 ; officiellement, il manquait côté nord-coréen des routes d'accès et des installations de douane [2][3].",
-      "Jusqu'ici, le fret passait surtout par l'ancien « pont de l'Amitié », bâti en 1943, qui n'a que deux voies. Les négociants espèrent que le trafic va se répartir, et que le volume de marchandises pourrait presque doubler, même si les sanctions contre Pyongyang limitent ce qu'on peut vraiment y échanger [2][3]."
-    ],
-    "why": [
-      "Ce pont répond à une question simple : par où passent les marchandises d'un pays très isolé ? Ce couloir porte environ 70 % des échanges entre la Chine et la Corée du Nord, donc une seconde route change vraiment la capacité de commerce [3].",
-      "Le moment compte aussi : les relations entre Pékin et Pyongyang se sont réchauffées depuis 2018 et Xi Jinping s'est rendu à Pyongyang en juin [2]. L'ouverture a eu lieu un jour après un tir de missiles de croisière depuis un sous-marin, annoncé par l'agence nord-coréenne KCNA [2]. L'agence de presse officielle nord-coréenne n'avait pas, au départ, rendu compte de l'ouverture [2]."
-    ],
-    "forMe": "Tu n'achètes rien qui vienne de Corée du Nord, mais ce pont montre comment un pays sous sanctions garde un accès à son voisin géant. Plus cette porte s'ouvre, plus les sanctions occidentales pèsent moins lourd dans les faits.",
-    "figures": [
-      {
-        "value": "≈ 3 km",
-        "label": "longueur du pont, à quatre voies (l'ancien pont de l'Amitié n'en a que deux)",
-        "src": 2
-      },
-      {
-        "value": "≈ 70 %",
-        "label": "part de ce couloir dans les échanges entre la Chine et la Corée du Nord",
-        "src": 3
-      },
-      {
-        "value": "12 ans",
-        "label": "entre la fin des travaux côté chinois (2014) et l'ouverture",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "sanctions"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « China and North Korea to open New Yalu River Bridge, state media reports »",
-        "url": "https://www.aljazeera.com/news/2026/10/14/china-and-north-korea-to-open-new-yalu-river-bridge-state-media-reports"
-      },
-      {
-        "short": "Manila Times",
-        "name": "Manila Times (AFP), « New bridge between China, North Korea opens »",
-        "url": "https://www.manilatimes.net/2026/10/15/world/new-bridge-between-china-north-korea-opens/2446180"
-      },
-      {
-        "short": "Seoul Economic Daily",
-        "name": "Seoul Economic Daily, « New Yalu River Bridge Opens After 12-Year Delay »",
-        "url": "https://en.sedaily.com/international/2026/10/14/new-yalu-river-bridge-opens-after-12-year-delay"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-nord-stream-proces-hambourg",
-    "date": "2026-10-15",
-    "region": "Europe",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Hambourg",
-        "label": "Allemagne",
-        "coords": [
-          9.99,
-          53.55
-        ]
-      }
-    ],
-    "title": "Qui a fait sauter Nord Stream ? Un ex-soldat ukrainien est jugé à Hambourg",
-    "summary": "Le procès de l'unique accusé du sabotage des gazoducs de 2022 s'est ouvert le 14 octobre en Allemagne. Il nie les faits et garde le silence.",
-    "points": [
-      "Le procès s'est ouvert mercredi 14 octobre 2026 devant la cour régionale supérieure de Hambourg. Le seul accusé est Serhii K., ancien soldat ukrainien (écrit aussi Kuznetsov ou Kuznietsov), poursuivi pour complicité de crime de guerre, explosion et destruction de biens ; il risque jusqu'à 15 ans de prison [1][2].",
-      "Selon l'accusation, il serait entré en Allemagne en septembre 2022 avec un faux passeport ukrainien, puis aurait loué un yacht avec six complices pour poser les explosifs. L'acte d'accusation affirme que l'opération aurait été menée pour le compte d'organismes d'État ukrainiens [1][2].",
-      "L'accusé nie, a choisi de se taire à l'audience, et sa défense juge les preuves « indirectes » : ses empreintes n'ont pas été retrouvées sur le yacht. Il avait été arrêté en Italie en août 2025, puis envoyé en Allemagne ; les audiences doivent durer jusqu'au début de l'an prochain [1][2][3]."
-    ],
-    "why": [
-      "Ce procès est le premier à examiner en justice qui a détruit des gazoducs par lesquels le gaz russe arrivait en Allemagne. Quatre ans après les explosions, la justice allemande met enfin un nom sur l'enquête, mais un seul homme est jugé [1][3].",
-      "Le dossier est aussi un test pour les lois de la guerre : un soldat qui agit sur ordre peut-il être jugé comme un criminel de guerre pour avoir visé une infrastructure civile ? Et l'enquête allemande évoque un ordre venu de l'État ukrainien, un sujet délicat pour un allié de Berlin [1][2]."
-    ],
-    "forMe": "Ces gazoducs ont longtemps fait venir du gaz russe bon marché en Europe, et leur destruction fait partie de ce qui a fait monter les factures d'énergie en 2022. Savoir qui les a visés, c'est aussi savoir si les réseaux d'énergie en mer sont protégés.",
-    "figures": [
-      {
-        "value": "15 ans",
-        "label": "peine maximale encourue par l'accusé",
-        "src": 2
-      },
-      {
-        "value": "6",
-        "label": "complices présumés, selon l'accusation, à bord du yacht",
-        "src": 1
-      },
-      {
-        "value": "Août 2025",
-        "label": "arrestation de l'accusé en Italie",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "CNN",
-        "name": "CNN, « Nord Stream sabotage trial is getting underway. Here's a refresher »",
-        "url": "https://www.cnn.com/2026/10/14/europe/nord-stream-sabotage-trial-ukraine-russia-intl"
-      },
-      {
-        "short": "Courthouse News",
-        "name": "Courthouse News, « Nord Stream sabotage trial opens against ex-Ukrainian officer »",
-        "url": "https://www.courthousenews.com/nord-stream-sabotage-trial-opens-against-ex-ukrainian-officer/"
-      },
-      {
-        "short": "Kyiv Independent",
-        "name": "Kyiv Independent, « Germany puts Ukrainian on trial over Nord Stream sabotage »",
-        "url": "https://kyivindependent.com/germany-puts-ukrainian-on-trial-over-nord-stream-sabotage/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-soudan-frappe-mine-or",
-    "date": "2026-10-15",
-    "region": "Afrique",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Nord du Soudan, près de la frontière égyptienne",
-        "label": "Soudan",
-        "coords": [
-          33.5,
-          21.8
-        ]
-      }
-    ],
-    "title": "Soudan : une frappe aérienne sur une mine d'or près de l'Égypte tue 72 personnes, selon une ONG",
-    "summary": "Le chef de l'armée soudanaise a ouvert une enquête sur une frappe survenue le 10 octobre près de la frontière avec l'Égypte. Une organisation accuse Le Caire ; l'Égypte n'a pas commenté.",
-    "points": [
-      "Le samedi 10 octobre, une frappe aérienne a touché un site d'extraction d'or dans la zone de Jabal al-Uqaydat, près de la frontière égyptienne, et tué 72 personnes selon l'organisation Emergency Lawyers, qui accuse l'Égypte d'en être l'auteur [1][2].",
-      "Le lundi 12 octobre, le général Abdel Fattah al-Burhan a créé un comité d'enquête réunissant magistrats, procureurs et représentants des forces de sécurité [1][2].",
-      "L'AFP n'a pas pu vérifier ces accusations. L'Égypte n'a fait aucun commentaire officiel ; son ministre des Affaires étrangères a appelé son homologue soudanais pour rappeler le respect de l'intégrité territoriale de chaque pays [2]."
-    ],
-    "why": [
-      "Cette zone borde le triangle de Halaïb, que le Soudan et l'Égypte revendiquent tous les deux : une frappe sur une mine d'or à cet endroit peut transformer un conflit interne en crise entre deux pays voisins [2].",
-      "Les chiffres restent très incertains : d'autres groupes, dont le parti Oumma, avancent un bilan de 200 morts, bien au-dessus des 72 annoncés [3]. Tant que l'enquête n'a pas rendu ses conclusions, il faut surtout retenir qu'il s'agit d'accusations non prouvées."
-    ],
-    "forMe": "L'or est une valeur refuge que beaucoup d'épargnants achètent quand le monde s'inquiète. Une partie vient de mines artisanales, parfois dans des zones en guerre : chaque frappe sur un site minier rappelle que le métal brillant a aussi une origine très concrète.",
-    "figures": [
-      {
-        "value": "72",
-        "label": "morts annoncés par Emergency Lawyers (d'autres groupes parlent de 200)",
-        "src": 1
-      },
-      {
-        "value": "10 octobre",
-        "label": "date de la frappe, sur le site de Jabal al-Uqaydat",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Africanews",
-        "name": "Africanews, « Sudan army chief al-Burhan orders probe into airstrike that killed 72 »",
-        "url": "https://www.africanews.com/2026/10/13/sudan-army-chief-al-burhan-orders-probe-into-airstrike-that-killed-72/"
-      },
-      {
-        "short": "Kuwait Times",
-        "name": "Kuwait Times (AFP), « Sudan army orders probe into border airstrike that killed 72 »",
-        "url": "https://kuwaittimes.com/article/51475/world/africa/sudan-army-orders-probe-into-border-airstrike-that-killed-72/"
-      },
-      {
-        "short": "Asharq Al-Awsat",
-        "name": "Asharq Al-Awsat, « Sudan's al-Burhan orders investigation into deadly airstrike on gold mine »",
-        "url": "https://english.aawsat.com/node/5328978"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-egypte-canal-de-suez-sur-rails",
-    "date": "2026-10-15",
-    "region": "Afrique",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Aïn Sokhna, mer Rouge",
-        "label": "Égypte",
-        "coords": [
-          32.35,
-          29.6
-        ]
-      }
-    ],
-    "title": "L'Égypte construit un « canal de Suez sur rails » pour relier la mer Rouge à la Méditerranée",
-    "summary": "Face aux perturbations en mer Rouge, Le Caire mise sur une ligne à grande vitesse de 2 000 km et huit couloirs logistiques. La capacité restera petite à côté du canal.",
-    "points": [
-      "Le ministre égyptien de l'Économie, Ahmed Rostom, présente le rail et les infrastructures comme un moyen pour les négociants de faire passer des marchandises entre la mer Rouge et la Méditerranée [1].",
-      "Le projet central est une ligne électrifiée à grande vitesse d'environ 2 000 km, estimée à 8,7 milliards de dollars et surnommée « Suez Canal on Rails » [1]. L'Égypte a aussi commencé huit couloirs logistiques entre les deux mers [2].",
-      "Les autorités comptent sur environ 15 millions de tonnes de fret par an, soit à peu près 3 % du volume qui a transité par le canal de Suez l'an dernier [3]."
-    ],
-    "why": [
-      "L'idée est de ne plus dépendre d'une seule voie d'eau. Les armateurs ont évité la mer Rouge à cause des attaques, et l'Égypte, qui vit en partie des péages du canal, cherche un moyen de garder les marchandises sur son territoire [1].",
-      "Il faut pourtant relativiser : 15 millions de tonnes, c'est bien peu à côté du canal [3]. Un autre média décrit d'ailleurs ce train comme un complément du canal, pas un remplaçant [4]. C'est une assurance, pas une alternative complète."
-    ],
-    "forMe": "Ce que tu achètes en ligne qui vient d'Asie passe très souvent par Suez. Quand cette route est bloquée, les trajets s'allongent et les prix du transport montent ; chaque nouvelle voie, même petite, réduit un peu ce risque.",
-    "figures": [
-      {
-        "value": "≈ 2 000 km",
-        "label": "longueur de la ligne à grande vitesse, électrifiée",
-        "src": 1
-      },
-      {
-        "value": "8,7 Md$",
-        "label": "coût estimé du projet",
-        "src": 1
-      },
-      {
-        "value": "≈ 3 %",
-        "label": "part du trafic du canal de Suez que le rail pourrait absorber (15 Mt par an)",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Africanews",
-        "name": "Africanews, « Egypt to build a rail link as an alternative to the blocked Suez Canal »",
-        "url": "https://www.africanews.com/2026/10/14/egypt-to-build-a-rail-link-as-an-alternative-to-the-blocked-suez-canal/"
-      },
-      {
-        "short": "RailFreight",
-        "name": "RailFreight, « Egypt plans new corridors to create a 'Suez Canal on rails' »",
-        "url": "https://www.railfreight.com/intermodal/2026/10/14/egypt-plans-new-corridors-to-create-a-suez-canal-on-rails/"
-      },
-      {
-        "short": "Hürriyet Daily News",
-        "name": "Hürriyet Daily News, « Egypt high-speed trains to connect Red Sea, Mediterranean »",
-        "url": "https://www.hurriyetdailynews.com/amp/egypt-high-speed-trains-to-connect-red-sea-mediterranean-217138"
-      },
-      {
-        "short": "Newsweek",
-        "name": "Newsweek, « Egypt's Megaproject That Will Rival Suez Canal »",
-        "url": "https://www.newsweek.com/egypts-megaproject-that-will-rival-suez-canal-11265842"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-rdc-kabila-front-rebelle",
-    "date": "2026-10-15",
-    "region": "Afrique",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Goma",
-        "label": "RD Congo",
-        "coords": [
-          29.22,
-          -1.68
-        ]
-      }
-    ],
-    "title": "RD Congo : l'ancien président Kabila prend la tête d'un mouvement armé qui remplace l'AFC/M23",
-    "summary": "Joseph Kabila préside le nouveau « Front pour la refondation de la nation », annoncé à Goma le 12 octobre. Le gouvernement n'a pas encore réagi.",
-    "points": [
-      "Le 12 octobre 2026, à Goma, Joseph Kabila a été nommé président du Front pour la refondation de la nation (FRN), un mouvement politico-militaire qui succède à l'alliance AFC/M23 [1][2].",
-      "Corneille Nangaa et Bertrand Bisimwa en sont vice-présidents, et Sultani Makenga chef d'état-major de la défense [1][3].",
-      "Le mouvement dit vouloir mettre fin à ce qu'il appelle la « tyrannie » par tous les moyens, y compris la force. Kabila avait été condamné à mort par contumace il y a un an pour complicité avec le M23, ce qu'il a toujours nié ; le gouvernement de Félix Tshisekedi n'avait pas encore réagi [1][2]."
-    ],
-    "why": [
-      "Un ancien chef d'État qui prend officiellement la tête d'une rébellion, c'est un tournant : le conflit de l'est du Congo cesse d'être seulement une affaire de groupes armés pour devenir un affrontement politique ouvert contre le pouvoir de Kinshasa [1][2].",
-      "Reste une inconnue : la déclaration ne dit pas clairement ce que devient le M23 en tant que mouvement [3]. C'est l'un des points à suivre dans les prochains jours."
-    ],
-    "forMe": "L'est du Congo est une région minière dont les métaux se retrouvent dans l'électronique. Un conflit qui se durcit ajoute de l'incertitude sur ces approvisionnements, sans qu'on puisse chiffrer l'effet à ce stade.",
-    "figures": [
-      {
-        "value": "12 octobre",
-        "label": "annonce du FRN à Goma",
-        "src": 1
-      },
-      {
-        "value": "1 an",
-        "label": "depuis la condamnation à mort de Kabila par contumace",
-        "src": 2
-      }
-    ],
-    "culture": [],
-    "dossiers": [],
-    "sources": [
-      {
-        "short": "Africanews",
-        "name": "Africanews, « Former DRC president Kabila to lead new group replacing AFC/M23 »",
-        "url": "https://www.africanews.com/2026/10/13/former-drc-president-kabila-to-lead-new-group-replacing-afcm23/"
-      },
-      {
-        "short": "EWN",
-        "name": "Eyewitness News, « Former DR Congo president Kabila forms new force with M23 armed group »",
-        "url": "https://www.ewn.co.za/2026/10/13/former-dr-congo-president-kabila-forms-new-force-with-m23-armed-group"
-      },
-      {
-        "short": "The New Times",
-        "name": "The New Times, « DR Congo: Kabila leads new movement with ex-AFC/M23 leaders as deputies »",
-        "url": "https://www.newtimes.co.rw/article/39623/news/africa/dr-congo-kabila-leads-new-movement-with-ex-afcm23-leaders-as-deputies/amp"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-ormuz-cargo-coule-mine",
-    "date": "2026-10-15",
-    "region": "Moyen-Orient",
-    "theme": "geo",
-    "geo": [
-      {
-        "name": "Détroit d'Ormuz",
-        "label": "Ormuz",
-        "coords": [
-          56.3,
-          26.55
-        ]
-      }
-    ],
-    "title": "Ormuz : les Gardiens de la Révolution disent qu'un cargo a coulé sur une mine, une première dans cette guerre",
-    "summary": "Les attaques dans le détroit seraient à un niveau record : 15 incidents recensés entre le 6 et le 14 octobre, dont 11 en quatre jours. Macron prépare une tournée dans le Golfe.",
-    "points": [
-      "Le centre britannique UKMTO a recensé 15 attaques dans le détroit d'Ormuz entre le 6 et le 14 octobre, dont 11 au cours des quatre derniers jours [1].",
-      "Les Gardiens de la Révolution iraniens affirment qu'un cargo a coulé après avoir heurté une mine navale ; ce serait le premier naufrage de ce type annoncé depuis le début de la guerre. Il s'agit de leur version, pas d'un constat indépendant [1].",
-      "Emmanuel Macron doit se rendre au Koweït, aux Émirats, à Bahreïn et au Qatar du 19 au 21 octobre pour parler d'Ormuz et du prix de l'énergie [2]."
-    ],
-    "why": [
-      "Une mine est plus dangereuse qu'un tir : elle reste dans l'eau et menace tous les navires, même longtemps après. C'est pourquoi un naufrage de ce genre, s'il est confirmé, pèse sur les assureurs et les armateurs bien au-delà du jour de l'incident [1].",
-      "Le détroit est une route clé pour le pétrole du Golfe. Chaque incident de plus fait craindre des flux qui s'effondrent à nouveau, comme le suggère le titre d’Al Jazeera [1]."
-    ],
-    "forMe": "Quand le trafic baisse dans ce détroit, le pétrole devient plus cher et ça finit à la pompe et sur les factures de transport. La visite de Macron montre que Paris s'en inquiète pour de vrai.",
-    "figures": [
-      {
-        "value": "15",
-        "label": "attaques recensées par l'UKMTO entre le 6 et le 14 octobre",
-        "src": 1
-      },
-      {
-        "value": "11",
-        "label": "de ces attaques, survenues au cours des quatre derniers jours",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Al Jazeera",
-        "name": "Al Jazeera, « Iran steps up Hormuz surveillance: Attacks soar, oil flows crash again »",
-        "url": "https://www.aljazeera.com/news/2026/10/14/iran-steps-up-hormuz-surveillance-attacks-soar-oil-flows-crash-again"
-      },
-      {
-        "short": "The National",
-        "name": "The National, « Middle East latest: Saudi Arabia intercepts Houthi drone in eastern region »",
-        "url": "https://thenationalnews.com/news/mena/2026/10/15/live-saudi-arabia-drone-houthis-yemen"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-fmi-moyen-orient-recession",
-    "date": "2026-10-15",
-    "region": "Moyen-Orient",
-    "theme": "eco",
-    "geo": [
-      {
-        "name": "Koweït",
-        "label": "Koweït",
-        "coords": [
-          47.98,
-          29.37
-        ]
-      },
-      {
-        "name": "Manama",
-        "label": "Bahreïn",
-        "coords": [
-          50.58,
-          26.23
-        ]
-      }
-    ],
-    "title": "Le FMI prévoit que l'économie du Moyen-Orient va reculer, avec des chutes à deux chiffres au Koweït, en Irak, au Qatar et à Bahreïn",
-    "summary": "Le FMI table désormais sur un recul de 0,3 % pour le Moyen-Orient et l'Asie centrale, contre une croissance de 1,9 % annoncée il y a six mois, à cause de la fermeture plus longue d'Ormuz.",
-    "points": [
-      "Dans ses prévisions d'octobre, le FMI annonce que l'économie du Moyen-Orient et de l'Asie centrale va se contracter de 0,3 % en 2026, alors qu'il prévoyait une croissance de 1,9 % six mois plus tôt [1][2].",
-      "Il explique ce changement par une fermeture du détroit d'Ormuz plus longue que dans son scénario d'avril. Irak, Koweït, Qatar et Bahreïn sont les plus touchés : des contractions à deux chiffres en 2026, suivies de rebonds à deux chiffres en 2027 [1][3].",
-      "L'Arabie saoudite devrait reculer de 3,3 %, un des pays les moins touchés grâce à des routes d'exportation plus variées, mais cette prévision date d'avant les récentes attaques contre l'aéroport de Riyad [1]."
-    ],
-    "why": [
-      "Un recul de l'économie dans une région qui vend l'énergie du monde est rare : il montre à quel point la guerre et le blocage du détroit coûtent cher, même à des pays très riches [1][3].",
-      "Le FMI parie sur un grand rebond en 2027 à condition que le détroit rouvre. Si la crise dure, ces chiffres seront révisés à la baisse : tout dépend donc de la fin du conflit [1]."
-    ],
-    "forMe": "Tu ne le vois pas dans ton porte-monnaie du jour au lendemain, mais une région qui produit autant de pétrole et de gaz qui s'affaiblit, c'est un risque pour les prix de l'énergie et pour les exportations françaises vers le Golfe.",
-    "figures": [
-      {
-        "value": "-0,3 %",
-        "label": "prévision du FMI pour le Moyen-Orient et l'Asie centrale en 2026 (contre +1,9 % il y a six mois)",
-        "src": 1
-      },
-      {
-        "value": "-3,3 %",
-        "label": "prévision pour l'Arabie saoudite en 2026",
-        "src": 1
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "routes-maritimes"
-    ],
-    "sources": [
-      {
-        "short": "Oman Observer",
-        "name": "Oman Observer, « IMF cuts Middle East growth outlook due to disruptions »",
-        "url": "https://www.omanobserver.om/article/1197709/business/economy/imf-cuts-middle-east-growth-outlook-due-to-disruptions"
-      },
-      {
-        "short": "Al-Ahram",
-        "name": "Al-Ahram (AFP), « IMF slashes Middle East growth outlook due to war disruptions »",
-        "url": "https://english.ahram.org.eg/News/578816.aspx"
-      },
-      {
-        "short": "Kuwait Times",
-        "name": "Kuwait Times, « IMF slashes Middle East growth outlook due to war disruptions »",
-        "url": "https://kuwaittimes.com/article/51536/business/imf-slashes-middle-east-growth-outlook-due-to-war-disruptions/"
-      }
-    ]
-  },
-  {
-    "id": "2026-10-15-alberta-referendum-separation",
-    "date": "2026-10-15",
-    "region": "Amériques",
-    "theme": "mix",
-    "geo": [
-      {
-        "name": "Edmonton, Alberta",
-        "label": "Alberta",
-        "coords": [
-          -113.49,
-          53.55
-        ]
-      }
-    ],
-    "title": "Alberta : la province pétrolière du Canada vote lundi sur la voie de l'indépendance",
-    "summary": "Le 19 octobre, les Albertains répondent à dix questions. La dernière ne ferait qu'ouvrir la porte à un futur référendum, mais le pétrole et les pipelines sont en jeu.",
-    "points": [
-      "Le référendum a lieu le lundi 19 octobre 2026. Les questions 1 à 9 portent sur des politiques publiques ; la question 10 demande si la province doit lancer le processus vers un éventuel référendum contraignant sur la séparation [1][3].",
-      "Un « oui » ne ferait donc pas sortir l'Alberta du Canada : il ouvrirait seulement la voie à un autre référendum, après une évaluation d'Ottawa dans le cadre de la loi sur la clarté. Les sondages montrent depuis longtemps que l'indépendance est loin de convaincre la grande majorité des Albertains [1][3].",
-      "La première ministre Danielle Smith défend une « Alberta souveraine dans un Canada uni » ; le premier ministre Mark Carney parle d'un « bluff dangereux » et compare à l'épisode du Brexit [1][2]."
-    ],
-    "why": [
-      "L'Alberta envoie plus des deux tiers de ses exportations de pétrole aux États-Unis, et ce brut arrive souvent aux raffineries américaines par des oléoducs qui traversent d'autres provinces. Les analystes jugent qu'un « oui » ne perturberait pas les flux tout de suite, mais poserait des questions durables sur le transit, les règles de commerce et la confiance des investisseurs [3].",
-      "Une étude de l'université de Calgary estime le coût initial de l'indépendance entre 50 et 170 milliards de dollars sur cinq ans [3]. Le résultat dira surtout à quel point la colère contre Ottawa, notamment sur les règles environnementales, pèse dans les urnes [3]."
-    ],
-    "forMe": "Le Canada est un grand fournisseur de pétrole de ses voisins américains. Une crise politique là-bas pourrait un jour peser sur le prix du brut et sur les accords commerciaux nord-américains, dont les droits de douane sont déjà un sujet chaud.",
-    "figures": [
-      {
-        "value": "19 octobre",
-        "label": "date du référendum en Alberta",
-        "src": 1
-      },
-      {
-        "value": "> 2/3",
-        "label": "part des exportations de pétrole de l'Alberta qui vont aux États-Unis",
-        "src": 3
-      },
-      {
-        "value": "50 à 170 Md$",
-        "label": "coût initial estimé de l'indépendance sur cinq ans (étude de l'université de Calgary)",
-        "src": 3
-      }
-    ],
-    "culture": [],
-    "dossiers": [
-      "droits-de-douane"
-    ],
-    "sources": [
-      {
-        "short": "Lethbridge Herald",
-        "name": "Lethbridge Herald (La Presse canadienne), « Alberta is to vote on holding a separation referendum. A timeline on how we got here »",
-        "url": "https://lethbridgeherald.com/news/national-news/2026/10/10/alberta-is-to-vote-on-holding-a-separation-referendum-a-timeline-on-how-we-got-here/"
-      },
-      {
-        "short": "CBC",
-        "name": "CBC, « The Alberta question: How separatists took hold of the province's governing party »",
-        "url": "https://www.cbc.ca/news/canada/the-alberta-question-9.7371294"
-      },
-      {
-        "short": "Rio Times",
-        "name": "The Rio Times, « Alberta's 19 October Referendum Explained »",
-        "url": "https://www.riotimesonline.com/alberta-referendum-explained-2026/"
       }
     ]
   },
