@@ -5,7 +5,8 @@ Elle peut être modifiée librement : la mise à jour automatique relit ce fichi
 
 ## Ce qu'on cherche
 
-- **8 à 10 actus** du jour ou de la veille, **économie et géopolitique** (elles sont liées).
+- **12 à 15 actus** du jour ou de la veille, **économie et géopolitique** (elles sont liées) (demande de l'auteur, 30 oct. 2026 : « mets-en plus, des intéressantes »). Ne pas s'arrêter à 5 ou 6 : si un sujet n'a pas 2 sources sérieuses, en chercher un autre plutôt que de publier moins.
+- **France et Europe aussi** (demande de l'auteur) : chaque jour **2 à 3 actus sur la France** (économie, budget, entreprises, énergie, diplomatie, faits marquants) et **2 à 3 sur le reste de l'Europe** (UE, voisins, Royaume-Uni, Balkans…), en plus du reste du monde.
 - **Partout dans le monde**, pas seulement l'Occident : chaque jour au moins une actu en **Afrique**, une en **Asie**, une en **Amérique latine**, une au **Moyen-Orient** et une en **Europe ou Asie centrale**.
 - **De nouveaux pays sur le globe** : au moins **4 actus sur des pays qui n'ont pas eu d'actu depuis 14 jours** (regarder les `geo` des actus existantes). On cherche « sous la surface du glacier » : ce dont les grands médias français parlent peu.
 - **Le dimanche** : en plus, un « tour du monde » de 4 à 6 pays rarement traités (Asie centrale, Pacifique, Caraïbes, Afrique australe, Balkans…).
